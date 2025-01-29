@@ -20,12 +20,12 @@ const SellBuyTrade = () => {
         <main className=" max-w-7xl border-2 rounded-xl border-base-color w-fit">
           <div className=" flex w-full max-w-4xl ">
             <div className="flex-1 text-center p-4 text-primary-color bg-highlight-color font-bold text-[30px] rounded-ss-xl">
-              <a href="#" className="text-xl">
+              <a href="/sell-car" className="text-xl">
                 Sell Car
               </a>
             </div>
             <div className="flex-1 text-center p-4 bg-[#F3F9FB] rounded-se-xl font-bold text-[30px]">
-              <a href="#" className="text-xl">
+              <a href="/" className="text-xl">
                 Buy Car
               </a>
             </div>

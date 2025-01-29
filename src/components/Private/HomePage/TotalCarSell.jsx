@@ -1,14 +1,45 @@
+"use client";
 import { AllImages } from "@/assets/AllImages";
+import { Button, Modal } from "antd";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
 const TotalCarSell = () => {
-  const carSell = {
-    name: "Kia Optima",
-    address: "Hybrid (Benzin), Automatgear,2.0L, 164HK | PNO #4589020",
-    price: "$150,000",
-  };
+  const carSell = [
+    {
+      name: "Kia Optima",
+      address: "Hybrid (Benzin), Automatgear,2.0L, 164HK | PNO #4589020",
+      price: "$150,000",
+    },
+    {
+      name: "Kia Optima",
+      address: "Hybrid (Benzin), Automatgear,2.0L, 164HK | PNO #4589020",
+      price: "$160,000",
+    },
+    {
+      name: "Kia Optima",
+      address: "Hybrid (Benzin), Automatgear,2.0L, 164HK | PNO #4589020",
+      price: "$170,000",
+    },
+    {
+      name: "Kia Optima",
+      address: "Hybrid (Benzin), Automatgear,2.0L, 164HK | PNO #4589020",
+      price: "$180,000",
+    },
+  ];
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentData, setCurrentData] = useState(null);
+  const showModal = (data) => {
+    setCurrentData(data);
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   return (
     <div className="">
       <h1 className="text-[40px] font-semibold text-center">
@@ -16,86 +47,102 @@ const TotalCarSell = () => {
       </h1>
 
       <div className="flex flex-col gap-3 h-[450px] mt-3 overflow-scroll overflow-x-hidden scrollbar-hide">
-        <div className="flex  gap-3 border border-base-color py-5 max-w-2xl w-fit px-2  ">
-          <React.Fragment>
-            <Image
-              src={AllImages.car}
-              alt="car"
-              width={0}
-              height={0}
-              className="size-24 aspect-square object-cover"
-            />
-          </React.Fragment>
-          <div className="flex gap-3 md:flex-row flex-col">
-            <div className="flex flex-col max-w-sm">
-              <h3 className="text-[22px] font-medium">{carSell.name}</h3>
-              <p className="font-normal text-sm ">{carSell.address}</p>
-              <p className="font-normal text-sm">Price: {carSell.price}</p>
+        {carSell.map((car, index) => (
+          <div
+            key={index}
+            className="flex  gap-3 border border-base-color py-5 max-w-2xl w-fit px-2  "
+          >
+            <React.Fragment>
+              <Image
+                src={AllImages.car}
+                alt="car"
+                width={0}
+                height={0}
+                className="size-24 aspect-square object-cover"
+              />
+            </React.Fragment>
+            <div className="flex gap-3 md:flex-row flex-col">
+              <div className="flex flex-col max-w-sm">
+                <h3 className="text-[22px] font-medium">{car.name}</h3>
+                <p className="font-normal text-sm ">{car.address}</p>
+                <p className="font-normal text-sm">Price: {car.price}</p>
+              </div>
+              <div className="flex md:flex-col flex-row gap-2">
+                <button className="btn border border-base-color rounded px-5 py-1 w-fit whitespace-nowrap">
+                  Buy Now
+                </button>
+                <button
+                  onClick={() => showModal(car)}
+                  className="btn border border-base-color bg-[#E6F3F7] rounded px-2 py-1 w-fit whitespace-nowrap"
+                >
+                  View Details
+                </button>
+              </div>{" "}
             </div>
-            <div className="flex md:flex-col flex-row gap-2">
-              <button className="btn border border-base-color rounded px-5 py-1 w-fit whitespace-nowrap">
-                Buy Now
-              </button>
-              <button className="btn border border-base-color bg-[#E6F3F7] rounded px-2 py-1 w-fit whitespace-nowrap">
-                View Details
-              </button>
-            </div>{" "}
           </div>
-        </div>
-        <div className="flex  gap-3 border border-base-color py-5 max-w-2xl w-fit px-2  ">
-          <React.Fragment>
-            <Image
-              src={AllImages.car}
-              alt="car"
-              width={0}
-              height={0}
-              className="size-24 aspect-square object-cover"
-            />
-          </React.Fragment>
-          <div className="flex gap-3 md:flex-row flex-col">
-            <div className="flex flex-col max-w-sm">
-              <h3 className="text-[22px] font-medium">{carSell.name}</h3>
-              <p className="font-normal text-sm ">{carSell.address}</p>
-              <p className="font-normal text-sm">Price: {carSell.price}</p>
-            </div>
-            <div className="flex md:flex-col flex-row gap-2">
-              <button className="btn border border-base-color rounded px-5 py-1 w-fit whitespace-nowrap">
-                Buy Now
-              </button>
-              <button className="btn border border-base-color bg-[#E6F3F7] rounded px-2 py-1 w-fit whitespace-nowrap">
-                View Details
-              </button>
-            </div>{" "}
-          </div>
-        </div>
-        <div className="flex  gap-3 border border-base-color py-5 max-w-2xl w-fit px-2  ">
-          <React.Fragment>
-            <Image
-              src={AllImages.car}
-              alt="car"
-              width={0}
-              height={0}
-              className="size-24 aspect-square object-cover"
-            />
-          </React.Fragment>
-          <div className="flex gap-3 md:flex-row flex-col">
-            <div className="flex flex-col max-w-sm">
-              <h3 className="text-[22px] font-medium">{carSell.name}</h3>
-              <p className="font-normal text-sm ">{carSell.address}</p>
-              <p className="font-normal text-sm">Price: {carSell.price}</p>
-            </div>
-            <div className="flex md:flex-col flex-row gap-2">
-              <button className="btn border border-base-color rounded px-5 py-1 w-fit whitespace-nowrap">
-                Buy Now
-              </button>
-              <button className="btn border border-base-color bg-[#E6F3F7] rounded px-2 py-1 w-fit whitespace-nowrap">
-                View Details
-              </button>
-            </div>{" "}
-          </div>
-        </div>
+        ))}
 
+        <Modal
+          title=""
+          open={isModalOpen}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          footer={[]}
+          width={800}
+        >
+          <div className="bg-white rounded-2xl max-w-4xl w-full p-6 relative">
+            {/* Close Button */}
+            <button
+              // onClick={onClose}
+              className="absolute right-4 top-4 text-gray-600 hover:text-gray-900"
+            >
+              {/* <X size={24} /> */}
+            </button>
 
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Car Image */}
+              <div className="relative rounded-lg overflow-hidden h-[300px]">
+                <Image
+                  src={AllImages.car}
+                  alt="Ranger Black 2021"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              {/* Car Details */}
+              <div className="space-y-6">
+                <h2 className="text-2xl font-bold">Car Details</h2>
+
+                <div className="space-y-3">
+                  <div>
+                    <span className="text-gray-600">Car Owner Name: </span>
+                    <span className="font-medium">John Doe</span>
+                  </div>
+
+                  <div>
+                    <span className="text-gray-600">Car Name: </span>
+                    <span className="font-medium">Ranger Black – 2021</span>
+                  </div>
+
+                  <div>
+                    <span className="text-gray-600">Car Price: </span>
+                    <span className="font-medium">$165,000</span>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="block text-gray-600">Bid Price</label>
+                  <input
+                    type="text"
+                    value="$150,000"
+                    className="w-full px-4 py-2 rounded-lg bg-gray-50 border border-gray-200"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </Modal>
       </div>
     </div>
   );

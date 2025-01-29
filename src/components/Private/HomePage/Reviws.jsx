@@ -13,8 +13,7 @@ const reviews = [
     name: "Ali TUFAN",
     role: "Designer",
     rating: 5.0,
-    image:
-      "",
+    image: "",
     text: "I'd suggest Macklin Motors Nissan Glasgow South to a friend because I had great service from my salesman Patrick and all of the team.",
   },
   {
@@ -22,7 +21,7 @@ const reviews = [
     name: "Sarah Johnson",
     role: "Developer",
     rating: 4.8,
-    image: "/placeholder.svg?height=600&width=400",
+    image: "",
     text: "The attention to detail and customer service was exceptional. I couldn't be happier with my experience working with this team.",
   },
   {
@@ -30,7 +29,7 @@ const reviews = [
     name: "Michael Chen",
     role: "Product Manager",
     rating: 5.0,
-    image: "/placeholder.svg?height=600&width=400",
+    image: "",
     text: "What impressed me most was their ability to understand exactly what I needed. They delivered beyond my expectations.",
   },
   {
@@ -38,7 +37,7 @@ const reviews = [
     name: "Emma Wilson",
     role: "Marketing Director",
     rating: 4.9,
-    image: "/placeholder.svg?height=600&width=400",
+    image: "",
     text: "Their innovative approach and professional attitude made the entire process smooth and enjoyable. Highly recommended!",
   },
   {
@@ -46,7 +45,7 @@ const reviews = [
     name: "David Rodriguez",
     role: "Entrepreneur",
     rating: 5.0,
-    image: "/placeholder.svg?height=600&width=400",
+    image: "",
     text: "Outstanding service from start to finish. They truly understand the importance of customer satisfaction.",
   },
 ];
@@ -63,7 +62,7 @@ export default function CustomerReviews() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-16">
+    <div className="max-w-6xl mx-auto px-4 py-16 bg-[#F3F9FB]">
       <h2 className="text-4xl font-bold mb-12">What our customers say</h2>
 
       <div className="relative">
@@ -80,12 +79,12 @@ export default function CustomerReviews() {
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
             {/* Image */}
             <div className="w-full md:w-1/2 relative">
-              <div className="aspect-[3/4] relative rounded-lg overflow-hidden">
+              <div className="aspect-[4/4] relative rounded-lg overflow-hidden">
                 <Image
                   src={reviews[currentReview].image || AllImages.profile}
                   alt={reviews[currentReview].name}
                   fill
-                  className="object-cover"
+                  className="object-cover "
                 />
               </div>
             </div>

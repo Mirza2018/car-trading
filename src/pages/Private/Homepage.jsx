@@ -10,16 +10,18 @@ import React from "react";
 const Homepage = () => {
   return (
     <div className="text-text-color ">
-      <div className="flex lg:flex-row flex-col justify-around items-center " >
+      <div className="flex lg:flex-row flex-col justify-around items-center ">
         <TotalCarSell />
         <TotalCarBuy />
-          </div>
-          <SellBuyTrade />
-          <FairPriceCard />
-          <FairPriceFooter />
-          <div className="w-full h-1 border-t-2 border-t-highlight-color mt-20"></div>
-          <WhyChooseUS />
-          <CustomerReviews/>
+      </div>
+      <SellBuyTrade />
+      <FairPriceCard />
+      <FairPriceFooter />
+      <div className="w-full h-1 border-t-2 border-t-highlight-color mt-20"></div>
+      <WhyChooseUS />
+      <div className="bg-[#F3F9FB]">
+        <CustomerReviews />
+      </div>
     </div>
   );
 };

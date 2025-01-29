@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Shar/Navber";
 import { ConfigProvider } from "antd";
 import { mainTheme } from "@/theme/theme";
+import Footer from "@/components/Shar/Foooter";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
       >
         <Navbar />
         <ConfigProvider theme={mainTheme}>{children}</ConfigProvider>
+        <Footer/>
       </body>
     </html>
   );
