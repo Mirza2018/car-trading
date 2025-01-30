@@ -25,29 +25,12 @@ export default function AboutUsIntro() {
           of our community. Let us make your experience extraordinary.
         </p>
       </div>
-      {/* <div className="grid grid-cols-7 gap-5 ">
-        <div className="col-span-1">
-          <Image alt="car" src={AllImages.car} />
-          <Image alt="car" src={AllImages.car} />
-        </div>
-        <div className="col-span-3">
-          <Image alt="car" src={AllImages.car} className="" />
-        </div>
-        <div className="col-span-3 !h-fit">
-          <div className="">
-            <Image alt="car" src={AllImages.car} />
-            <div className="grid grid-cols-2">
-              <Image alt="car" src={AllImages.car} />
-              <Image alt="car" src={AllImages.car} />
-            </div>
-          </div>
-        </div>
-      </div> */}
+
 
       <div class="grid grid-cols-10 gap-4 my-14">
         {/* <!-- First Column for the text "45 Years in Business" --> */}
         <div class="col-span-2 grid grid-rows-2   gap-4">
-          <div className="bg-base-color text-center pt-4 rounded-xl">
+          <div className="bg-base-color flex justify-center items-center flex-col rounded-xl">
             <p className="text-5xl font-medium ">45</p>
             <p className="text-3xl font-bold">Years in Business</p>
           </div>

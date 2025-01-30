@@ -17,7 +17,7 @@ const Homepage = () => {
       <SellBuyTrade />
       <FairPriceCard />
       <FairPriceFooter />
-      <div className="w-full h-1 border-t-2 border-t-highlight-color mt-20"></div>
+      <div className="w-full h-1 border-t border-t-highlight-color mt-20"></div>
       <WhyChooseUS />
       <div className="bg-[#F3F9FB]">
         <CustomerReviews />

@@ -97,7 +97,7 @@ const Footer = () => {
                 placeholder="Your email"
                 className="w-full bg-[#ccdfe6] border-[#FFFFFF] border rounded-full px-6 py-6 text-lg placeholder-[#53585a] focus:outline-none pr-32"
               />
-              <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#ff991c] text-white font-medium px-8 py-3 rounded-full text-lg hover:opacity-90 transition-opacity">
+              <button className="absolute whitespace-nowrap right-2 top-1/2 -translate-y-1/2 bg-[#ff991c] text-white font-medium px-8 py-3 rounded-full text-lg hover:opacity-90 transition-opacity">
                 Sign Up
               </button>
             </div>

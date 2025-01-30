@@ -39,10 +39,10 @@ const Navbar = () => {
   const menuItems = [
     { name: "Home", path: "/" },
     { name: "Submit Listing", path: "/apply-now" },
-    { name: "Inbox", path: "/#get-started" },
+    { name: "Inbox", path: "/inbox" },
     { name: "Dashboard", path: "/#advanced" },
     { name: "About", path: "/about-us" },
-    { name: "Contact", path: "/#advanced" },
+    { name: "Contact", path: "/contact-us" },
   ];
 
   return (
