@@ -4,9 +4,16 @@ import { Form, Input, Button } from "antd";
 
 export default function ContactForm({ current, setCurrent }) {
   const onFinish = (values) => {
-    console.log("Success:", values);
-    localStorage.setItem("car-field3", JSON.stringify(values));
-    setCurrent(current + 1);
+    // console.log("Success:", values);
+    const field1 = JSON.parse(localStorage.getItem("car-field1"));
+    const field2 = JSON.parse(localStorage.getItem("car-field2"));
+    let data = {...field1, ...field2, ...values};
+    console.log(data);
+
+    
+    // localStorage.setItem("car-field3", JSON.stringify(values));
+    // setCurrent(current + 1);
+    
   };
 
   return (

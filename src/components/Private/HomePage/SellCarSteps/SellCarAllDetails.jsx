@@ -11,15 +11,30 @@ const SellCarAllDetails = () => {
     const [current, setCurrent] = useState(0);
     const steps = [
       {
-        title: "First",
+        title: (
+          <div className="">
+            <h1 className="text-3xl font-bold">Step1</h1>
+            <p className=" font-medium">Car details</p>
+          </div>
+        ),
         content: <CarInfoForm current={current} setCurrent={setCurrent} />,
       },
       {
-        title: "Second",
+        title: (
+          <div className="">
+            <h1 className="text-3xl font-bold">Step2</h1>
+            <p className=" font-medium">Upload pictures of the car</p>
+          </div>
+        ),
         content: <CarImageForm current={current} setCurrent={setCurrent} />,
       },
       {
-        title: "Last",
+        title: (
+          <div className="">
+            <h1 className="text-3xl font-bold">Step3</h1>
+            <p className=" font-medium">Contact information</p>
+          </div>
+        ),
         content: <ContactForm current={current} setCurrent={setCurrent} />,
       },
     ];
@@ -45,7 +60,7 @@ const SellCarAllDetails = () => {
   return (
     <>
       <Steps current={current} items={items} />
-      <div style={contentStyle}>{steps[current].content}</div>
+      <div style={contentStyle}>{steps[current]?.content}</div>
       <div
         style={{
           marginTop: 24,
