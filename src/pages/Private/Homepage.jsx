@@ -14,7 +14,9 @@ const Homepage = () => {
         <TotalCarSell />
         <TotalCarBuy />
       </div>
-      <SellBuyTrade />
+      <div className="my-10">
+        <SellBuyTrade />
+      </div>
       <FairPriceCard />
       <FairPriceFooter />
       <div className="w-full h-1 border-t border-t-highlight-color mt-20"></div>

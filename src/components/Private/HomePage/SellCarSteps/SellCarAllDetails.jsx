@@ -1,96 +1,228 @@
+import { AllImages } from "@/assets/AllImages";
+import { InboxOutlined, UploadOutlined } from "@ant-design/icons";
 
-import React, { useState } from "react";
-import { Button, message, Steps, theme } from "antd";
-// import WhyChooseUS from "@/components/Private/HomePage/WhyChooseUS";
-import CarInfoForm from "./CarInfoForm";
-import CarImageForm from "./CarImageForm";
-import ContactForm from "./ContactForm";
+import { Button, Form, Input, Radio, Upload } from "antd";
+import { useForm } from "antd/es/form/Form";
+import Image from "next/image";
+import React, { useRef } from "react";
 
 const SellCarAllDetails = () => {
-  const { token } = theme.useToken();
-    const [current, setCurrent] = useState(0);
-    const steps = [
-      {
-        title: (
-          <div className="">
-            <h1 className="text-3xl font-bold">Step1</h1>
-            <p className=" font-medium">Car details</p>
-          </div>
-        ),
-        content: <CarInfoForm current={current} setCurrent={setCurrent} />,
-      },
-      {
-        title: (
-          <div className="">
-            <h1 className="text-3xl font-bold">Step2</h1>
-            <p className=" font-medium">Upload pictures of the car</p>
-          </div>
-        ),
-        content: <CarImageForm current={current} setCurrent={setCurrent} />,
-      },
-      {
-        title: (
-          <div className="">
-            <h1 className="text-3xl font-bold">Step3</h1>
-            <p className=" font-medium">Contact information</p>
-          </div>
-        ),
-        content: <ContactForm current={current} setCurrent={setCurrent} />,
-      },
-    ];
-  const next = () => {
-    setCurrent(current + 1);
+  const [form] = useForm();
+  const { TextArea } = Input;
+  const inputRef = useRef(null);
+
+  const handleEditClick = () => {
+    // For Ant Design's Input, the ref points to the component instance.
+    // Access the underlying DOM input element via `inputRef.current.input`
+    const inputValue = inputRef.current?.input?.value;
+    console.log("Input value:", inputValue);
+    // Do something with inputValue...
   };
-  const prev = () => {
-    setCurrent(current - 1);
+  const normFileEvent = (e) => {
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e && e.fileList;
   };
-  const items = steps.map((item) => ({
-    key: item.title,
-    title: item.title,
-  }));
-  const contentStyle = {
-    lineHeight: "260px",
-    textAlign: "center",
-    color: token.colorTextTertiary,
-    backgroundColor: token.colorFillAlter,
-    borderRadius: token.borderRadiusLG,
-    // border: `1px dashed ${token.colorBorder}`,
-    marginTop: 16,
+
+  const handleUploadChange = (info) => {
+    if (info.file.status === "done") {
+      console.log(`${info.file.name} file uploaded successfully`);
+    } else if (info.file.status === "error") {
+      console.log(`${info.file.name} file upload failed.`);
+    }
+  };
+  const onFinish = (values) => {
+    console.log(values);
+    form.resetFields();
   };
   return (
-    <>
-      <Steps current={current} items={items} />
-      <div style={contentStyle}>{steps[current]?.content}</div>
-      <div
-        style={{
-          marginTop: 24,
-        }}
-      >
-        {current < steps.length - 1 && (
-          <Button type="primary" onClick={() => next()}>
-            Next
-          </Button>
-        )}
-        {current === steps.length - 1 && (
-          <Button
-            type="primary"
-            onClick={() => message.success("Processing complete!")}
+    <div className="container mx-auto my-12">
+      <h1 className="text-4xl font-bold">The car's information</h1>
+      <div className="h1 w-full border-t border-text-light-color my-5"></div>
+      <h1 className="text-2xl font-bold mb-5">Number plate*</h1>
+      <Input
+        ref={inputRef}
+        placeholder="input search text"
+        className=""
+        suffix={
+          <div
+            onClick={handleEditClick}
+            className="bg-highlight-color  rounded py-2 px-10"
           >
-            Done
-          </Button>
-        )}
-        {current > 0 && (
-          <Button
-            style={{
-              margin: "0 8px",
-            }}
-            onClick={() => prev()}
+            <p className="text-white font-bold text-lg">Edit</p>
+          </div>
+        }
+        prefix={
+          <div className="bg-[#007FFF] flex flex-col justify-center items-center gap-2 rounded py-2 px-5">
+            <Image width={0} height={0} alt="search" src={AllImages.star} />
+            <Image width={0} height={0} alt="search" src={AllImages.dk} />
+          </div>
+        }
+      />
+      <p className="mt-2 text-lg font-medium">
+        TESLA Model Y, Hatchback, 393 KW
+      </p>
+      <Form form={form} onFinish={onFinish}>
+        <div className="my-[10px] flex justify-between gap-5">
+          <div className="flex-1">
+            <p className="text-2xl font-medium pb-2 ">Number of kilometers driven</p>
+            <Form.Item name={`km`}>
+              <Input className="py-3" />
+            </Form.Item>
+          </div>
+          <div className="flex-1 ">
+            <p className="text-2xl font-medium pb-2 ">Number of varnish fields</p>
+            <Form.Item name={`varnish`} className="">
+              <Input className="py-3" />
+            </Form.Item>
+          </div>
+        </div>
+        <div className="my-[10px] flex justify-between gap-5">
+          <div className="flex-1">
+            <p className="text-2xl font-medium pb-2">Additional equipment</p>
+
+            <Form.Item name="equipment">
+              <Radio.Group className=" flex flex-col gap-2">
+                <Radio value="Automatic transmission">
+                  Automatic transmission
+                </Radio>
+                <Radio value="Trailer hitch">Trailer hitch</Radio>
+                <Radio value="Extra wheel set">Extra wheel set</Radio>
+              </Radio.Group>
+            </Form.Item>
+          </div>
+          <div className="flex-1">
+            <p className="text-2xl font-medium pb-2">The condition of the car</p>
+            <Form.Item name={`carCondition`}>
+              <Radio.Group name="bilens" className=" flex flex-col gap-2">
+                <Radio value="sommy">Sommy</Radio>
+                <Radio value="god">Good</Radio>
+                <Radio value="brugt">Brugt</Radio>
+                <Radio value="meget_brugt">Meget brugt</Radio>
+              </Radio.Group>
+            </Form.Item>
+          </div>
+        </div>
+        <div className="flex-1">
+          <p className="text-2xl font-medium pb-2">Defects or other comments</p>
+          <Form.Item name={`comments`}>
+            <TextArea rows={4} className="py-3" />
+          </Form.Item>
+        </div>
+        <div className="my-[10px] flex justify-between gap-5 items-center">
+          <div className="flex-1">
+            <p className="text-2xl font-medium pb-2">Expected price (DKK)*</p>
+            <Form.Item name={`expectedPrice`}>
+              <Input placeholder="Expected price (DKK)" className="py-3" />
+            </Form.Item>
+          </div>
+          <div className="flex-1">
+            {/* <p className="text-2xl font-medium pb-2">Number of varnish fields</p> */}
+            <Form.Item
+              name="dragger"
+              valuePropName="fileList"
+              getValueFromEvent={normFileEvent}
+              noStyle
+            >
+              <Upload.Dragger
+                onChange={handleUploadChange}
+                name="files"
+                action="/upload.do"
+              >
+                <p className="flex justify-center items-center">
+                  <Image
+                    src={AllImages.dragger}
+                    width={48}
+                    height={48}
+                    alt="Drag and Drop Icon"
+                  />
+                </p>
+                <p className="ant-upload-text">Drag and drop your files here</p>
+                <p className="ant-upload-text">or click to upload</p>
+              </Upload.Dragger>
+            </Form.Item>
+          </div>
+        </div>
+        <div className="flex-1">
+          <Form.Item>
+            <Radio.Group name="type" className=" flex  gap-2 ">
+              <Radio value="company" className="text-2xl">
+                Company{" "}
+              </Radio>
+              <Radio value="private" className="text-2xl">
+                Private
+              </Radio>
+            </Radio.Group>
+          </Form.Item>
+        </div>
+        <h1 className="text-4xl font-bold">Contact information</h1>
+        <div className="h1 w-full border-t border-text-light-color my-5"></div>
+        <h1 className="text-xl font-medium mb-5">
+          To provide you with the best offer for your car, we recommend
+          uploading a few pictures of your car to us. You can find some examples
+          of the angles we would like of your car.
+        </h1>
+
+        <div className="my-[10px] flex justify-between gap-5">
+          <div className="flex-1">
+            <p className="text-2xl font-medium pb-2">Company Name</p>
+            <Form.Item name={`company`}>
+              <Input placeholder="Company Name" className="py-3" />
+            </Form.Item>
+          </div>
+          <div className="flex-1">
+            <p className="text-2xl font-medium pb-2">CVR Number</p>
+            <Form.Item name={`cvr`}>
+              <Input placeholder="CVR Number" className="py-3" />
+            </Form.Item>
+          </div>
+        </div>
+        <div className="my-[10px] flex justify-between gap-5">
+          <div className="flex-1">
+            <p className="text-2xl font-medium pb-2">First Name*</p>
+            <Form.Item name={`firstName`}>
+              <Input placeholder="First Name" className="py-3" />
+            </Form.Item>
+          </div>
+          <div className="flex-1">
+            <p className="text-2xl font-medium pb-2">Last Name*</p>
+            <Form.Item name={`lastName`}>
+              <Input placeholder="Last Name" className="py-3" />
+            </Form.Item>
+          </div>
+        </div>
+        <div className="my-[10px] flex justify-between gap-5">
+          <div className="">
+            <p className="text-2xl font-medium pb-2">Postal Code*</p>
+            <Form.Item name={`PostalCode`}>
+              <Input placeholder="Postal Code" className="py-3" />
+            </Form.Item>
+          </div>
+          <div className="flex-1">
+            <p className="text-2xl font-medium pb-2">City*</p>
+            <Form.Item name={`City`}>
+              <Input placeholder="City" className="py-3" />
+            </Form.Item>
+          </div>
+        </div>
+        <div className="">
+          <p className="text-2xl font-medium pb-2">Phone Number*</p>
+          <Form.Item name={`PhoneNumber`}>
+            <Input placeholder="Phone Number" className="py-3" />
+          </Form.Item>
+        </div>
+        <div className="text-center">
+          <button
+            className="bg-highlight-color text-white text-2xl font-medium  py-5 px-20 rounded-lg "
+            htmlType="submit"
           >
-            Previous
-          </Button>
-        )}
-      </div>
-    </>
+            Create Listing
+          </button>
+        </div>
+      </Form>
+    </div>
   );
 };
+
 export default SellCarAllDetails;

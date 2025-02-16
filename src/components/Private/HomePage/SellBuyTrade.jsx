@@ -1,8 +1,10 @@
-"use client"
+"use client";
 import { Input } from "antd";
 import Head from "next/head";
 import React from "react";
 import { AudioOutlined, UserOutlined } from "@ant-design/icons";
+import { AllImages } from "@/assets/AllImages";
+import Image from "next/image";
 const { Search } = Input;
 
 const SellBuyTrade = () => {
@@ -49,17 +51,30 @@ const SellBuyTrade = () => {
               Get Offer
             </button>
           </div> */}
-          <div className="text-center mb-16">
-            <Search
+          <div className="text-center mb-16 mx-24">
+            <Input
+              //  ref={inputRef}
               placeholder="Enter license plate"
-              allowClear
-              enterButton=" Get Offer"
-              size="large"
-              prefix={<UserOutlined />}
-              onSearch={onSearch}
-              style={{
-                width: 400,
-              }}
+              className=""
+              suffix={
+                <div
+                  //  onClick={handleEditClick}
+                  className="bg-highlight-color  rounded py-3 px-10 cursor-pointer"
+                >
+                  <p className="text-white font-bold text-lg">Get Offer</p>
+                </div>
+              }
+              prefix={
+                <div className="bg-[#007FFF] flex flex-col justify-center items-center gap-2 rounded py-2 px-5">
+                  <Image
+                    width={0}
+                    height={0}
+                    alt="search"
+                    src={AllImages.star}
+                  />
+                  <Image width={0} height={0} alt="search" src={AllImages.dk} />
+                </div>
+              }
             />
           </div>
         </main>

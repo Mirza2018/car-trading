@@ -116,7 +116,7 @@ const Navbar = () => {
         <ul className="flex text-white  flex-1 gap-5 text-xl font-bold justify-center items-center">
           {menuItems.map((item) => (
             <Link href={item.path} key={item.name} className="">
-              <li className="flex text-[15px] font-medium">{item.name}</li>
+              <li className="flex text-[15px] w-fit font-medium">{item.name}</li>
             </Link>
           ))}
 
@@ -125,7 +125,7 @@ const Navbar = () => {
               alt="logo"
               width={0}
               height={0}
-              className="w-12 rounded-full border border-highlight-color aspect-square object-cover"
+              className="w-12  rounded-full border border-highlight-color aspect-square object-cover"
               src={AllImages.profile}
             />
             {/* <Avatar

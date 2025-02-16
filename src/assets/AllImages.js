@@ -9,7 +9,9 @@ import carEx3 from "./icons/carEx3.svg";
 import carEx4 from "./icons/carEx4.svg";
 import carEx5 from "./icons/carEx5.svg";
 import carEx6 from "./icons/carEx6.svg";
-
+import star from "./icons/star.svg";
+import dk from "./icons/dk.svg";
+import dragger from "./icons/dragger.svg";
 
 import profile from "./images/profile.png";
 import car from "./images/car.png";
@@ -29,5 +31,8 @@ export const AllImages = {
   carEx3,
   carEx4,
   carEx5,
-  carEx6
+  carEx6,
+  star,
+  dk,
+  dragger,
 };

@@ -30,7 +30,7 @@ export default function Reviews() {
   ];
 
   return (
-    <div className="container mx-auto  py-16 relative">
+    <div className="container mx-auto  py-16 relative ">
       <h2 className="text-3xl font-bold mb-12">What our customers say</h2>
 
       {/* Large quote mark decoration */}
