@@ -12,6 +12,13 @@ import carEx6 from "./icons/carEx6.svg";
 import star from "./icons/star.svg";
 import dk from "./icons/dk.svg";
 import dragger from "./icons/dragger.svg";
+import calender from "./icons/calender.svg";
+import map from "./icons/map.svg";
+import speed from "./icons/speed.svg";
+import suv from "./icons/suv.svg";
+import bids from "./icons/bids.svg";
+import right from "./icons/right.svg";
+import left from "./icons/left.svg";
 
 import profile from "./images/profile.png";
 import car from "./images/car.png";
@@ -35,4 +42,11 @@ export const AllImages = {
   star,
   dk,
   dragger,
+  calender,
+  map,
+  suv,
+  speed,
+  bids,
+  right,
+  left,
 };

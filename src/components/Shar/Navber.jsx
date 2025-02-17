@@ -36,14 +36,58 @@ const Navbar = () => {
     };
   }, [isOpen]);
 
-  const menuItems = [
-    { name: "Home", path: "/" },
-    { name: "Submit Listing", path: "/apply-now" },
-    { name: "Inbox", path: "/inbox" },
-    { name: "Dashboard", path: "/#advanced" },
+  const user = {
+    name: "Mirza",
+    email: "user@gmail.com",
+    role: "dealer",
+  };
+
+  // Priority Common Menu Items (shown in any specific order)
+  const PriorityCommonMenuItems = [{ name: "Home", path: "/" }];
+
+  // Items to always appear last
+  const AlwaysLastMenuItems = [
     { name: "About", path: "/about-us" },
     { name: "Contact", path: "/contact-us" },
   ];
+
+  // Specific Menus based on roles
+  const RoleSpecificMenus = {
+    default: [],
+    user: [
+      { name: "Submit Listing", path: "/submit-listing" },
+      { name: "Inbox", path: "/inbox" },
+      { name: "Dashboard", path: "/dashboard" },
+    ],
+    dealer: [
+      // { name: "Home", path: "/dealer" }, // Overridden Home for dealer
+      { name: "Listings", path: "/listings" },
+      { name: "Task", path: "/task" },
+      { name: "Inbox", path: "/inbox" },
+      { name: "Dashboard", path: "/dashboard" },
+    ],
+  };
+
+  // Function to get menu based on the user role
+  const getMenuItems = (user) => {
+    const { role } = user || {};
+    const specificItems = RoleSpecificMenus[role] || RoleSpecificMenus.default;
+
+    // Combining and de-duplicating items, allowing for role-based overrides
+    const priorityItemsMap = new Map(
+      PriorityCommonMenuItems.map((item) => [item.name, item])
+    );
+    specificItems.forEach((item) => priorityItemsMap.set(item.name, item)); // Updates or adds specific items
+
+    // Combine priority items with always-last items
+    const mergedItems = [...PriorityCommonMenuItems,...specificItems,...AlwaysLastMenuItems];
+    return mergedItems;
+  };
+
+  // Generate the main menu based on the user's role
+  const mainMenu = getMenuItems(user);
+
+  console.log(mainMenu);
 
   return (
     <div className="flex justify-around bg-secondary-color text-primary-color  items-center z-50 py-2  w-full">
@@ -79,7 +123,7 @@ const Navbar = () => {
         </div>
         {isOpen && (
           <div className="px-2 w-[180px] pt-2 pb-3 space-y-1 sm:px-3 absolute bg-black z-20 rounded-xl">
-            {menuItems.map((item) => (
+            {mainMenu.map((item) => (
               <Link
                 key={item.name}
                 href={item.path}
@@ -114,9 +158,11 @@ const Navbar = () => {
         {" "}
         {/* This is hidden in mobile device  */}
         <ul className="flex text-white  flex-1 gap-5 text-xl font-bold justify-center items-center">
-          {menuItems.map((item) => (
+          {mainMenu.map((item) => (
             <Link href={item.path} key={item.name} className="">
-              <li className="flex text-[15px] w-fit font-medium">{item.name}</li>
+              <li className="flex text-[15px] w-fit font-medium">
+                {item.name}
+              </li>
             </Link>
           ))}
 
