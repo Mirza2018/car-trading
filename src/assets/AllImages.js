@@ -19,6 +19,16 @@ import suv from "./icons/suv.svg";
 import bids from "./icons/bids.svg";
 import right from "./icons/right.svg";
 import left from "./icons/left.svg";
+import ct1 from "./icons/ct1.svg";
+import ct2 from "./icons/ct2.svg";
+import ct3 from "./icons/ct3.svg";
+import ct4 from "./icons/ct4.svg";
+import ct5 from "./icons/ct5.svg";
+import ct6 from "./icons/ct6.svg";
+import ct7 from "./icons/ct7.svg";
+import ct8 from "./icons/ct8.svg";
+import ct9 from "./icons/ct9.svg";
+import ct10 from "./icons/ct10.svg";
 
 import profile from "./images/profile.png";
 import car from "./images/car.png";
@@ -49,4 +59,14 @@ export const AllImages = {
   bids,
   right,
   left,
+  ct1,
+  ct2,
+  ct3,
+  ct4,
+  ct5,
+  ct6,
+  ct7,
+  ct8,
+  ct9,
+  ct10,
 };

@@ -73,5 +73,8 @@ export const mainTheme = {
     Modal: {
       colorBgMask: "",
     },
+    Checkbox: {
+      colorPrimary: "#1677ff",
+    },
   },
 };
