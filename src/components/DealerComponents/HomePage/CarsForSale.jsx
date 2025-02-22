@@ -246,7 +246,7 @@ const CarsForSale = () => {
                 </button>
 
                 <Modal
-                  title="Modal responsive width"
+                  // title="Modal responsive width"
                   centered
                   open={openResponsive}
                   onOk={() => setOpenResponsive(false)}

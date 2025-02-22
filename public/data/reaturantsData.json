@@ -1,0 +1,92 @@
+[
+  {
+    "UID": "#001",
+    "restaurantName": "The Golden Spoon",
+    "Assigned Owner": "Alice Johnson",
+    "Total Queries": 1234,
+    "Location": "New York, NY",
+    "Phone No": "(555) 123-4567",
+    "Status": true
+  },
+  {
+    "UID": "#002",
+    "restaurantName": "The Silver Fork",
+    "Assigned Owner": "Bob Smith",
+    "Total Queries": 5678,
+    "Location": "Los Angeles, CA",
+    "Phone No": "(555) 987-6543",
+    "Status": true
+  },
+  {
+    "UID": "#003",
+    "restaurantName": "The Bronze Knife",
+    "Assigned Owner": "Emma Davis",
+    "Total Queries": 9012,
+    "Location": "Chicago, IL",
+    "Phone No": "(555) 234-5678",
+    "Status": true
+  },
+  {
+    "UID": "#004",
+    "restaurantName": "The Platinum Spoon",
+    "Assigned Owner": "David Wilson",
+    "Total Queries": 3456,
+    "Location": "Miami, FL",
+    "Phone No": "(555) 876-5432",
+    "Status": false
+  },
+  {
+    "UID": "#005",
+    "restaurantName": "The Copper Fork",
+    "Assigned Owner": "Sophia Lee",
+    "Total Queries": 7890,
+    "Location": "San Francisco, CA",
+    "Phone No": "(555) 345-6789",
+    "Status": true
+  },
+  {
+    "UID": "#006",
+    "restaurantName": "The Titanium Knife",
+    "Assigned Owner": "James Martinez",
+    "Total Queries": 2345,
+    "Location": "Seattle, WA",
+    "Phone No": "(555) 765-4321",
+    "Status": true
+  },
+  {
+    "UID": "#007",
+    "restaurantName": "The Silver Spoon",
+    "Assigned Owner": "Olivia Garcia",
+    "Total Queries": 6789,
+    "Location": "Austin, TX",
+    "Phone No": "(555) 456-7890",
+    "Status": true
+  },
+  {
+    "UID": "#008",
+    "restaurantName": "The Gold Fork",
+    "Assigned Owner": "William Rodriguez",
+    "Total Queries": 1234,
+    "Location": "Denver, CO",
+    "Phone No": "(555) 654-3210",
+    "Status": false
+  },
+  {
+    "UID": "#009",
+    "restaurantName": "The Diamond Knife",
+    "Assigned Owner": "Ava Nguyen",
+    "Total Queries": 5678,
+    "Location": "Portland, OR",
+    "Phone No": "(555) 234-5678",
+    "Status": true
+  },
+  {
+    "UID": "#010",
+    "restaurantName": "The Rustic Spoon",
+    "Assigned Owner": "Ethan Kim",
+    "Total Queries": 9012,
+    "Location": "Boston, MA",
+    "Phone No": "(555) 876-5432",
+    "Status": false
+  }
+]

@@ -1,0 +1,152 @@
+[
+  {
+    "sl": 1,
+    "userName": "Andrés Felipe",
+    "brandName": "Rolls Royce",
+    "carModel": "Demo carModel",
+    "location": "Random Place",
+    "color": "Red",
+    "price": "5000",
+    "serviceCharge": "20"
+  },
+  {
+    "sl": 2,
+    "userName": "Maria Garcia",
+    "brandName": "Ferrari",
+    "carModel": "F8 Tributo",
+    "location": "Sunnydale",
+    "color": "Yellow",
+    "price": "3000",
+    "serviceCharge": "30"
+  },
+  {
+    "sl": 3,
+    "userName": "John Smith",
+    "brandName": "Tesla",
+    "carModel": "Model S",
+    "location": "Greenwood",
+    "color": "Black",
+    "price": " 7000",
+    "serviceCharge": "25"
+  },
+  {
+    "sl": 4,
+    "userName": "Lisa Ray",
+    "brandName": "BMW",
+    "carModel": "X5",
+    "location": "Lakeview",
+    "color": "Blue",
+    "price": "5500",
+    "serviceCharge": "15"
+  },
+  {
+    "sl": 5,
+    "userName": "Omar Hassan",
+    "brandName": "Audi",
+    "carModel": "Q7",
+    "location": "Sandshore",
+    "color": "White",
+    "price": "6000",
+    "serviceCharge": "18"
+  },
+  {
+    "sl": 6,
+    "userName": "Chen Wei",
+    "brandName": "Mercedes-Benz",
+    "carModel": "GLE Coupe",
+    "location": "Eastside",
+    "color": "Silver",
+    "price": "6500",
+    "serviceCharge": "22"
+  },
+  {
+    "sl": 7,
+    "userName": "Emily Johnson",
+    "brandName": "Land Rover",
+    "carModel": "Range Rover",
+    "location": "Highland Park",
+    "color": "Green",
+    "price": "7500",
+    "serviceCharge": "20"
+  },
+  {
+    "sl": 8,
+    "userName": "Amit Patel",
+    "brandName": "Jaguar",
+    "carModel": "F-Type",
+    "location": "Riverside",
+    "color": "Orange",
+    "price": "5000",
+    "serviceCharge": "30"
+  },
+  {
+    "sl": 9,
+    "userName": "Sofia Martinez",
+    "brandName": "Porsche",
+    "carModel": "911",
+    "location": "Maple Street",
+    "color": "Grey",
+    "price": "9500",
+    "serviceCharge": "40"
+  },
+  {
+    "sl": 10,
+    "userName": "James Wilson",
+    "brandName": "Lamborghini",
+    "carModel": "Huracan",
+    "location": "Pine Crest",
+    "color": "Purple",
+    "price": "10000",
+    "serviceCharge": "50"
+  },
+  {
+    "sl": 11,
+    "userName": "Olivia Lewis",
+    "brandName": "McLaren",
+    "carModel": "GT",
+    "location": "Ocean View",
+    "color": "Pink",
+    "price": "11000",
+    "serviceCharge": "45"
+  },
+  {
+    "sl": 12,
+    "userName": "Ethan Brown",
+    "brandName": "Bugatti",
+    "carModel": "Chiron",
+    "location": "New Dawn",
+    "color": "Cyan",
+    "price": "12000",
+    "serviceCharge": "55"
+  },
+  {
+    "sl": 13,
+    "userName": "Grace Davis",
+    "brandName": "Aston Martin",
+    "carModel": "DB11",
+    "location": "Silverlake",
+    "color": "Magenta",
+    "price": "13000",
+    "serviceCharge": "35"
+  },
+  {
+    "sl": 14,
+    "userName": "Mohammad Ali",
+    "brandName": "Chevrolet",
+    "carModel": "Camaro",
+    "location": "Brookfield",
+    "color": "Maroon",
+    "price": "4000",
+    "serviceCharge": "25"
+  },
+  {
+    "sl": 15,
+    "userName": "Charlotte Moore",
+    "brandName": "Ford",
+    "carModel": "Mustang",
+    "location": "Elm Street",
+    "color": "Beige",
+    "price": "4500",
+    "serviceCharge": "20"
+  }
+]

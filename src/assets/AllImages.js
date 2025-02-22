@@ -34,6 +34,14 @@ import profile from "./images/profile.png";
 import car from "./images/car.png";
 import fairPriceCar from "./images/home1.jpg";
 
+
+
+
+import orderTransport from "./dashboardIcons/orderTransport.svg";
+import terms from "./dashboardIcons/terms.svg";
+import totalCar from "./dashboardIcons/totalCar.svg";
+import userProfile from "./dashboardIcons/userProfile.svg";
+
 export const AllImages = {
   logo,
   profile,
@@ -69,4 +77,9 @@ export const AllImages = {
   ct8,
   ct9,
   ct10,
+  orderTransport,
+  terms,
+  totalCar,
+  userProfile,
+
 };
