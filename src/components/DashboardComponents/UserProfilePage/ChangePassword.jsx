@@ -18,8 +18,9 @@ const ChangePassword = ({ isModalOpen, handleOk, handleCancel }) => {
       footer={null}
       centered
       width={1000}
+      
     >
-      <Form form={form} onFinish={onFinish} layout="vertical" className="">
+      <Form form={form} onFinish={onFinish} layout="vertical" className="m-5">
         <div className="col-span-3">
           <Typography.Title level={4} style={{ color: "#222222" }}>
             Current password

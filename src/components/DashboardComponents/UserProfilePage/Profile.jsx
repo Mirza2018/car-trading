@@ -130,7 +130,7 @@ const Profile = () => {
                 <Input
                   required
                   placeholder="Enter your First Name"
-                  className="py-2 px-3 text-xl border !border-input-color  !bg-transparent"
+                  className="py-2 px-3 text-xl border !border-input-color  "
                 />
               </Form.Item>
             </div>
@@ -146,7 +146,7 @@ const Profile = () => {
                 <Input
                   required
                   placeholder="Enter your Last Name"
-                  className="py-2 px-3 text-xl border !border-input-color  !bg-transparent"
+                  className="py-2 px-3 text-xl border !border-input-color  "
                 />
               </Form.Item>
             </div>
@@ -162,7 +162,7 @@ const Profile = () => {
                 <Input
                   required
                   placeholder="Enter your phoneNumber"
-                  className="py-2 px-3 text-xl border !border-input-color  !bg-transparent"
+                  className="py-2 px-3 text-xl border !border-input-color  "
                 />
               </Form.Item>
             </div>
@@ -178,7 +178,7 @@ const Profile = () => {
                 <Input
                   required
                   placeholder="Enter your Website Link"
-                  className="py-2 px-3 text-xl border !border-input-color  !bg-transparent"
+                  className="py-2 px-3 text-xl border !border-input-color  "
                 />
               </Form.Item>
             </div>
@@ -196,7 +196,7 @@ const Profile = () => {
                 <Input
                   required
                   placeholder="Enter your Address"
-                  className="py-2 px-3 text-xl border !border-input-color  !bg-transparent"
+                  className="py-2 px-3 text-xl border !border-input-color  "
                 />
               </Form.Item>
             </div>
@@ -212,59 +212,62 @@ const Profile = () => {
                 <Input
                   required
                   placeholder="Enter your Email"
-                  className="py-2 px-3 text-xl border !border-input-color  !bg-transparent"
+                  className="py-2 px-3 text-xl border !border-input-color  "
                 />
               </Form.Item>
             </div>
             <div>
               <Typography.Title level={5} style={{ color: "#222222" }}>
-                Email
+                CVR Number
               </Typography.Title>
               <Form.Item
-                initialValue={profileData.email}
-                name="phoneNumber"
+                initialValue={profileData.crvNumber}
+                name="crvNumber"
                 className="text-white"
               >
                 <Input
                   required
-                  placeholder="Enter your Email"
-                  className="py-2 px-3 text-xl border !border-input-color  !bg-transparent"
+                  placeholder="Enter your CRV Number"
+                  className="py-2 px-3 text-xl border !border-input-color  "
                 />
               </Form.Item>
             </div>
-            <div className=" flex justify-center items-center">
-              <Image
-                className="h-20 w-20 relative rounded-full border border-secondary-color object-contain "
-                src={companyImageUrl}
-                width={0}
-                height={0}
-                alt=""
-              />
+            <div className="flex flex-col  items-center justify-center gap-2">
+              <div className=" flex justify-center items-center">
+                <Image
+                  className="h-20 w-20 relative rounded-full border border-secondary-color object-contain "
+                  src={companyImageUrl}
+                  width={0}
+                  height={0}
+                  alt=""
+                />
 
-              <Form.Item name="image">
-                <Upload
-                  beforeUpload={() => false} // Prevent automatic upload to server
-                  onChange={handleCompanyImageUpload}
-                  maxCount={1}
-                  accept="image/*"
-                  className="  text-end noText "
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    opacity: 0,
-                    cursor: "pointer",
-                  }}
-                >
-                  <Button
+                <Form.Item name="image">
+                  <Upload
+                    beforeUpload={() => false} // Prevent automatic upload to server
+                    onChange={handleCompanyImageUpload}
+                    maxCount={1}
+                    accept="image/*"
+                    className="  text-end noText "
                     style={{
-                      zIndex: 1,
+                      width: "100%",
+                      height: "100%",
+                      opacity: 0,
+                      cursor: "pointer",
                     }}
-                    className="bg-white p-1 w-fit h-fit  shadow !border-none  absolute right-0.5 -bottom-8   rounded-full"
                   >
-                    <IoCameraOutline className="w-4 h-4 " />
-                  </Button>
-                </Upload>
-              </Form.Item>
+                    <Button
+                      style={{
+                        zIndex: 1,
+                      }}
+                      className="bg-white p-1 w-fit h-fit  shadow !border-none  absolute right-0.5 -bottom-8   rounded-full"
+                    >
+                      <IoCameraOutline className="w-4 h-4 " />
+                    </Button>
+                  </Upload>
+                </Form.Item>
+              </div>
+              <p>Change the company logo</p>
             </div>
           </div>
           <div className="w-fit flex  gap-5">
@@ -280,7 +283,7 @@ const Profile = () => {
                 <Input
                   required
                   placeholder="Enter your Rge Nr."
-                  className="py-2 px-3 text-xl border !border-input-color  !bg-transparent"
+                  className="py-2 px-3 text-xl border !border-input-color  "
                 />
               </Form.Item>
             </div>
