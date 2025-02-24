@@ -24,7 +24,7 @@ const OrderTransportPage = () => {
               },
             ]}
           >
-            <Input />
+            <Input className="py-2 px-3 text-xl border !border-input-color" />
           </Form.Item>
           <Form.Item
             className=""
@@ -37,7 +37,7 @@ const OrderTransportPage = () => {
               },
             ]}
           >
-            <Input />
+             <Input className="py-2 px-3 text-xl border !border-input-color" />
           </Form.Item>
           <Form.Item
             className=""
@@ -50,7 +50,7 @@ const OrderTransportPage = () => {
               },
             ]}
           >
-            <Input />
+             <Input className="py-2 px-3 text-xl border !border-input-color" />
           </Form.Item>
           <Form.Item
             className=""
@@ -63,7 +63,7 @@ const OrderTransportPage = () => {
               },
             ]}
           >
-            <Input />
+             <Input className="py-2 px-3 text-xl border !border-input-color" />
           </Form.Item>
         </div>
 
@@ -79,10 +79,10 @@ const OrderTransportPage = () => {
               },
             ]}
           >
-            <Input />
+             <Input className="py-2 px-3 text-xl border !border-input-color" />
           </Form.Item>
           <Form.Item className="flex-1" label="Additional" name="additional">
-            <Input />
+             <Input className="py-2 px-3 text-xl border !border-input-color" />
           </Form.Item>
         </div>
         <Form.Item
@@ -95,11 +95,14 @@ const OrderTransportPage = () => {
             },
           ]}
         >
-          <Input />
+           <Input className="py-2 px-3 text-xl border !border-input-color" />
         </Form.Item>
 
         <Form.Item label={null} className="flex justify-end">
-          <button className="bg-highlight-color text-white font-medium text-xl px-3 py-2 rounded-md" htmlType="submit">
+          <button
+            className="bg-highlight-color text-white font-medium text-xl px-3 py-2 rounded-md"
+            htmlType="submit"
+          >
             Register
           </button>
         </Form.Item>

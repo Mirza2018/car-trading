@@ -7,8 +7,19 @@ import { IoCameraOutline, IoChevronBackOutline } from "react-icons/io5";
 import { AllImages } from "@/assets/AllImages";
 import React from "react";
 import Image from "next/image";
+import ChangePassword from "./ChangePassword";
 
 const Profile = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   const profileData = {
     firstName: "James",
     lastName: "Mitchell",
@@ -92,11 +103,19 @@ const Profile = () => {
               </Form.Item>
             </div>
             <div>
-              <button className="text-black border border-secondary-color hover:bg-green-600 hover:text-white hover:border-none transition-all rounded-md px-6 py-4 text-lg font-medium ">
+              <button
+                onClick={showModal}
+                className="text-black border border-secondary-color hover:bg-green-600 hover:text-white hover:border-none transition-all rounded-md px-6 py-4 text-lg font-medium "
+              >
                 Change Password
               </button>
             </div>
           </div>
+          <ChangePassword
+            isModalOpen={isModalOpen}
+            handleOk={handleOk}
+            handleCancel={handleCancel}
+          />
 
           <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-5">
             <div>
@@ -277,7 +296,7 @@ const Profile = () => {
                 <Input
                   required
                   placeholder="Enter your  Konto Nr."
-                  className="py-2 px-3 text-xl border !border-input-color  !bg-transparent"
+                  className="py-2 px-3 text-xl border !border-input-color"
                 />
               </Form.Item>
             </div>
