@@ -1,11 +1,12 @@
-import React from 'react';
+import UserProfilePage from "@/pages/Dashboard/UserProfilePage";
+import React from "react";
 
 const page = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+  return (
+    <div>
+      <UserProfilePage />
+    </div>
+  );
 };
 
 export default page;
