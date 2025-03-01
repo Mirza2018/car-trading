@@ -195,6 +195,10 @@ const Sidebar = ({ slider, setSlider }) => {
             <p>Log Out</p>
           </div>
         </div>
+
+
+
+        
         {/* For Mobile View */}
         <div className="block lg:hidden relative h-[90%]">
           <div>

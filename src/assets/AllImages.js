@@ -34,6 +34,17 @@ import profile from "./images/profile.png";
 import car from "./images/car.png";
 import fairPriceCar from "./images/home1.jpg";
 
+import ForgotPassword from "./authImages/ForgotPassword.png";
+import otp from "./authImages/otp.png";
+import updatePass from "./authImages/updatePass .png";
+import signinPageImage from "./authImages/signinPageImage.png";
+import otpImage from "./authImages/otpImage.png";
+
+
+import forgotLogo from "./authImages/forgotLogo.svg";
+import newPassLogo from "./authImages/newPassLogo.svg";
+import mailLogo from "./authImages/mailLogo.svg";
+
 
 
 
@@ -41,6 +52,7 @@ import orderTransport from "./dashboardIcons/orderTransport.svg";
 import terms from "./dashboardIcons/terms.svg";
 import totalCar from "./dashboardIcons/totalCar.svg";
 import userProfile from "./dashboardIcons/userProfile.svg";
+import OtpPage from "@/pages/Auth/OtpPage";
 
 export const AllImages = {
   logo,
@@ -81,5 +93,13 @@ export const AllImages = {
   terms,
   totalCar,
   userProfile,
-
+  ForgotPassword,
+  otp,
+  updatePass,
+  signinPageImage,
+  otpImage,
+  forgotLogo,
+  newPassLogo,
+  mailLogo
 };
+

@@ -42,7 +42,7 @@ const Navbar = () => {
   const user = {
     name: "Mirza",
     email: "user@gmail.com",
-    role: "dealer",
+    role: "user",
   };
 
   // Priority Common Menu Items (shown in any specific order)

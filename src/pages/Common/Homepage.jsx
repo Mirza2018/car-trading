@@ -13,7 +13,7 @@ import React, { useState } from "react";
 
 const Homepage = () => {
   const [isSellCar, setIsSellCar] = useState(true);
-  const dealer = true;
+  const dealer = false;
   const carSell = true;
   return (
     <div className="text-text-color container mx-auto">
