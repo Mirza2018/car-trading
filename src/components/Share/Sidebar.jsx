@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -8,6 +7,7 @@ import { AllImages } from "@/assets/AllImages";
 const Sidebar = ({ slider, setSlider }) => {
   const router = useRouter();
   const location = usePathname();
+  const user = JSON.parse(localStorage.getItem("car-trading_user"));
 
   return (
     <div className=" bg-base-color text-black h-[89vh] lg:h-[85vh] pt-5  overflow-y-auto">
@@ -66,52 +66,156 @@ const Sidebar = ({ slider, setSlider }) => {
         <div className="hidden lg:block relative h-full">
           <div>
             <ul className=" flex justify-center items-start flex-col gap-3 pe-10">
-              <Link href="/dashboard/total-car" className="w-full">
-                {" "}
-                <li
-                  className={`flex items-center gap-x-3 w-full py-3 px-2  font-semibold text-lg lg:rounded-tr-lg lg:rounded-br-lg  ${
-                    location === "/dashboard/total-car"
-                      ? "text-white bg-highlight-color"
-                      : "text-black"
-                  }`}
-                >
-                  <Image
-                    src={AllImages.totalCar}
-                    alt="show-feedback"
-                    width={30}
-                    style={{
-                      filter:
-                        location === "/dashboard/total-car"
-                          ? "brightness(0) invert(1) "
-                          : undefined,
-                    }}
-                  />
-                  <p>Total Car For Sell</p>
-                </li>
-              </Link>
-              <Link href="/dashboard/order-transport" className="w-full">
-                {" "}
-                <li
-                  className={`flex items-center gap-x-3 w-full py-3 px-2  font-semibold text-lg lg:rounded-tr-lg lg:rounded-br-lg ${
-                    location === "/dashboard/order-transport"
-                      ? "text-white bg-highlight-color"
-                      : "text-black"
-                  }`}
-                >
-                  <Image
-                    src={AllImages.orderTransport}
-                    alt="order-transport"
-                    width={30}
-                    style={{
-                      filter:
+              {user.role === "dealer" ? (
+                <>
+                  <Link
+                    href="/dashboard/total-dealer-car-sell"
+                    className="w-full"
+                  >
+                    <li
+                      className={`flex items-center gap-x-3 w-full py-3 px-2  font-semibold text-lg lg:rounded-tr-lg lg:rounded-br-lg  ${
+                        location === "/dashboard/total-dealer-car-sell"
+                          ? "text-white bg-highlight-color"
+                          : "text-black"
+                      }`}
+                    >
+                      <Image
+                        src={AllImages.totalCar}
+                        alt="show-feedback"
+                        width={30}
+                        style={{
+                          filter:
+                            location === "/dashboard/total-dealer-car-sell"
+                              ? "brightness(0) invert(1) "
+                              : undefined,
+                        }}
+                      />
+                      <p>Total Car For Sell</p>
+                    </li>
+                  </Link>
+                  <Link href="/dashboard/order-transport" className="w-full">
+                    <li
+                      className={`flex items-center gap-x-3 w-full py-3 px-2  font-semibold text-lg lg:rounded-tr-lg lg:rounded-br-lg ${
                         location === "/dashboard/order-transport"
-                          ? "brightness(0) invert(1)"
-                          : undefined,
-                    }}
-                  />
-                  Order Transport
-                </li>
-              </Link>
+                          ? "text-white bg-highlight-color"
+                          : "text-black"
+                      }`}
+                    >
+                      <Image
+                        src={AllImages.orderTransport}
+                        alt="order-transport"
+                        width={30}
+                        style={{
+                          filter:
+                            location === "/dashboard/order-transport"
+                              ? "brightness(0) invert(1)"
+                              : undefined,
+                        }}
+                      />
+                      Order Transport
+                    </li>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/dashboard/total-private-car-sell"
+                    className="w-full"
+                  >
+                    {" "}
+                    <li
+                      className={`flex items-center gap-x-3 w-full py-3 px-2  font-semibold text-lg lg:rounded-tr-lg lg:rounded-br-lg  ${
+                        location === "/dashboard/total-private-car-sell"
+                          ? "text-white bg-highlight-color"
+                          : "text-black"
+                      }`}
+                    >
+                      <Image
+                        src={AllImages.totalCar}
+                        alt="car"
+                        width={30}
+                        style={{
+                          filter:
+                            location === "/dashboard/total-private-car-sell"
+                              ? "brightness(0) invert(1) "
+                              : undefined,
+                        }}
+                      />
+                      <p>Total Car Sell</p>
+                    </li>
+                  </Link>
+                  <Link href="/dashboard/total-car-sold" className="w-full">
+                    {" "}
+                    <li
+                      className={`flex items-center gap-x-3 w-full py-3 px-2  font-semibold text-lg lg:rounded-tr-lg lg:rounded-br-lg  ${
+                        location === "/dashboard/total-car-sold"
+                          ? "text-white bg-highlight-color"
+                          : "text-black"
+                      }`}
+                    >
+                      <Image
+                        src={AllImages.totalCar}
+                        alt="car"
+                        width={30}
+                        style={{
+                          filter:
+                            location === "/dashboard/total-car-sold"
+                              ? "brightness(0) invert(1) "
+                              : undefined,
+                        }}
+                      />
+                      <p>Total Car Sold</p>
+                    </li>
+                  </Link>
+                  <Link href="/dashboard/offer-car" className="w-full">
+                    {" "}
+                    <li
+                      className={`flex items-center gap-x-3 w-full py-3 px-2  font-semibold text-lg lg:rounded-tr-lg lg:rounded-br-lg  ${
+                        location === "/dashboard/offer-car"
+                          ? "text-white bg-highlight-color"
+                          : "text-black"
+                      }`}
+                    >
+                      <Image
+                        src={AllImages.offer}
+                        alt="show-feedback"
+                        width={30}
+                        style={{
+                          filter:
+                            location === "/dashboard/offer-car"
+                              ? "brightness(0) invert(1) "
+                              : undefined,
+                        }}
+                      />
+                      <p>Offer car</p>
+                    </li>
+                  </Link>
+                  <Link href="/dashboard/bid-car" className="w-full">
+                    {" "}
+                    <li
+                      className={`flex items-center gap-x-3 w-full py-3 px-2  font-semibold text-lg lg:rounded-tr-lg lg:rounded-br-lg  ${
+                        location === "/dashboard/bid-car"
+                          ? "text-white bg-highlight-color"
+                          : "text-black"
+                      }`}
+                    >
+                      <Image
+                        src={AllImages.bid}
+                        alt="show-feedback"
+                        width={30}
+                        style={{
+                          filter:
+                            location === "/dashboard/bid-car"
+                              ? "brightness(0) invert(1) "
+                              : undefined,
+                        }}
+                      />
+                      <p>Bid Details</p>
+                    </li>
+                  </Link>
+                </>
+              )}
+
               <Link href="/dashboard/user-profile" className="w-full">
                 {" "}
                 <li
@@ -196,9 +300,6 @@ const Sidebar = ({ slider, setSlider }) => {
           </div>
         </div>
 
-
-
-        
         {/* For Mobile View */}
         <div className="block lg:hidden relative h-[90%]">
           <div>

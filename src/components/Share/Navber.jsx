@@ -39,11 +39,9 @@ const Navbar = () => {
     };
   }, [isOpen]);
 
-  const user = {
-    name: "Mirza",
-    email: "user@gmail.com",
-    role: "user",
-  };
+  const user = JSON.parse(localStorage.getItem("car-trading_user"));
+
+
 
   // Priority Common Menu Items (shown in any specific order)
   const PriorityCommonMenuItems = [{ name: "Home", path: "/" }];

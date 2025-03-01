@@ -40,19 +40,16 @@ import updatePass from "./authImages/updatePass .png";
 import signinPageImage from "./authImages/signinPageImage.png";
 import otpImage from "./authImages/otpImage.png";
 
-
 import forgotLogo from "./authImages/forgotLogo.svg";
 import newPassLogo from "./authImages/newPassLogo.svg";
 import mailLogo from "./authImages/mailLogo.svg";
-
-
-
 
 import orderTransport from "./dashboardIcons/orderTransport.svg";
 import terms from "./dashboardIcons/terms.svg";
 import totalCar from "./dashboardIcons/totalCar.svg";
 import userProfile from "./dashboardIcons/userProfile.svg";
-import OtpPage from "@/pages/Auth/OtpPage";
+import offer from "./dashboardIcons/offerCar.svg";
+import bid from "./dashboardIcons/bid.svg";
 
 export const AllImages = {
   logo,
@@ -100,6 +97,7 @@ export const AllImages = {
   otpImage,
   forgotLogo,
   newPassLogo,
-  mailLogo
+  mailLogo,
+  offer,
+  bid,
 };
-
