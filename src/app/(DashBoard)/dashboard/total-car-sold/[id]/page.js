@@ -1,10 +1,10 @@
-import BidCarPage from '@/pages/Dashboard/PrivateDashboard/BidCarPage';
+import ContractPaperPage from '@/pages/Common/ContractPaperPage';
 import React from 'react';
 
 const page = () => {
     return (
         <div>
-            <BidCarPage/>
+           <ContractPaperPage/>
         </div>
     );
 };

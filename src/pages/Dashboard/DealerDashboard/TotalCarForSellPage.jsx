@@ -99,7 +99,7 @@ const TotalCarForSellPage = () => {
         className="my-4 text-end me-8
       "
       ></div>
-
+ 
       {/* Table  */}
       <div className="px-10 pb-10">
         <CarListTable

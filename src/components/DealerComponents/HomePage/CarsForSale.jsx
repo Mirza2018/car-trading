@@ -244,7 +244,7 @@ const CarsForSale = () => {
                 >
                   View Details
                 </button>
-
+ 
                 <Modal
                   // title="Modal responsive width"
                   centered

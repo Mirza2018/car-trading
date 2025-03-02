@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DealerTaskPage = () => {
+const TotalPrivateCarSoldPage = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const DealerTaskPage = () => {
     );
 };
 
-export default DealerTaskPage;
+export default TotalPrivateCarSoldPage;

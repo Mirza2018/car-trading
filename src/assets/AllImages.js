@@ -50,6 +50,11 @@ import totalCar from "./dashboardIcons/totalCar.svg";
 import userProfile from "./dashboardIcons/userProfile.svg";
 import offer from "./dashboardIcons/offerCar.svg";
 import bid from "./dashboardIcons/bid.svg";
+import totalCarSellIcon from "./dashboardIcons/totalCarSellIcon.svg";
+import carIcon from "./dashboardIcons/car.svg";
+import revenue from "./dashboardIcons/revenue.svg";
+import upArrow from "./dashboardIcons/upArrow.svg";
+import logOut from "./dashboardIcons/logOut.svg";
 
 export const AllImages = {
   logo,
@@ -100,4 +105,9 @@ export const AllImages = {
   mailLogo,
   offer,
   bid,
+  totalCarSellIcon,
+  carIcon,
+  revenue,
+  upArrow,
+  logOut
 };
