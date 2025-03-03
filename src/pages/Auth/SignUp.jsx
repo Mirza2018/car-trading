@@ -12,8 +12,9 @@ const SignUp = () => {
 
   const onFinish = (values) => {
     console.log("car-trading:", values);
-    localStorage.removeItem("car-trading_user");
-    localStorage.setItem("car-trading_user", JSON.stringify(values));
+    document.cookie = `car-trading_user=${encodeURIComponent(
+      JSON.stringify(values)
+    )}; path=/; secure`;
     navigate.push("/"); // Correct use of navigate function
   };
   return (

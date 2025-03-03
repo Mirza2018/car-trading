@@ -1,17 +1,32 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { AllImages } from "@/assets/AllImages";
+import useCookie from "@/cookie/useCookie";
 
 const Sidebar = ({ slider, setSlider }) => {
-  const router = useRouter();
+  const navigate = useRouter();
+  const [carUser] = useCookie("car-trading_user");
+  console.log(carUser, "carUser");
   const location = usePathname();
-  const user = JSON.parse(localStorage.getItem("car-trading_user"));
+  const handleLogout = () => {
+    const values = {
+      name: null,
+      email: null,
+    };
+    // Clear the "car_trading_user" cookie by setting its expiry date in the past.
+    document.cookie = `car-trading_user=${encodeURIComponent(
+      JSON.stringify(values)
+    )}; path=/; secure`;
+    navigate.push("/");
+  };
+
   const menuItems = (
     <div>
       <ul className=" flex justify-center items-start flex-col gap-3 pe-10">
-        {user.role === "dealer" ? (
+        {carUser?.role === "dealer" ? (
           <>
             <Link href="/dashboard/total-dealer-car-sell" className="w-full">
               <li
@@ -225,26 +240,25 @@ const Sidebar = ({ slider, setSlider }) => {
           </li>
         </Link>
 
-        <Link href="/login" className="w-full">
-          <li
-            className={`flex items-center gap-x-3 w-full py-3 px-2  font-semibold text-lg lg:rounded-tr-lg lg:rounded-br-lg ${
-              location === "/login"
-                ? "text-white bg-highlight-color"
-                : "text-black"
-            }`}
-          >
-            <Image
-              src={AllImages.logOut}
-              alt="login"
-              width={30}
-              style={{
-                filter:
-                  location === "/login" ? "brightness(0) invert(1)" : undefined,
-              }}
-            />
-            Log Out
-          </li>
-        </Link>
+        <li
+          onClick={handleLogout}
+          className={`flex items-center gap-x-3 w-full py-3 px-2  font-semibold text-lg lg:rounded-tr-lg lg:rounded-br-lg cursor-pointer ${
+            location === "/login"
+              ? "text-white bg-highlight-color"
+              : "text-black"
+          }`}
+        >
+          <Image
+            src={AllImages.logOut}
+            alt="login"
+            width={30}
+            style={{
+              filter:
+                location === "/login" ? "brightness(0) invert(1)" : undefined,
+            }}
+          />
+          Log Out
+        </li>
       </ul>
     </div>
   );

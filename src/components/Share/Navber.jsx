@@ -6,8 +6,13 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { BellOutlined } from "@ant-design/icons";
 import React from "react";
+import useCookie from "@/cookie/useCookie";
 
 const Navbar = () => {
+  const [carUser, loading] = useCookie("car-trading_user");
+
+  console.log(carUser, "carUser");
+
   const task = true;
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,10 +44,6 @@ const Navbar = () => {
     };
   }, [isOpen]);
 
-  const user = JSON.parse(localStorage.getItem("car-trading_user"));
-
-
-
   // Priority Common Menu Items (shown in any specific order)
   const PriorityCommonMenuItems = [{ name: "Home", path: "/" }];
 
@@ -60,18 +61,17 @@ const Navbar = () => {
     user: [
       { name: "Submit Listing", path: "/submit-listing" },
       { name: "Inbox", path: "/inbox" },
-      { name: "Dashboard", path: "/dashboard" },
+      { name: "Dashboard", path: "/dashboard/total-private-car-sell" },
     ],
     dealer: [
       // { name: "Home", path: "/dealer" }, // Overridden Home for dealer
       { name: "Listings", path: "/listings" },
       { name: "Task", path: "/", onClick: true },
       { name: "Inbox", path: "/inbox" },
-      { name: "Dashboard", path: "/dashboard" },
+      { name: "Dashboard", path: "/dashboard/total-dealer-car-sell" },
     ],
   };
 
-  // Function to get menu based on the user role
   const getMenuItems = (user) => {
     const { role } = user || {};
     const specificItems = RoleSpecificMenus[role] || RoleSpecificMenus.default;
@@ -92,11 +92,13 @@ const Navbar = () => {
   };
 
   // Generate the main menu based on the user's role
-  const mainMenu = getMenuItems(user);
+  const mainMenu = getMenuItems(carUser);
 
   const showModal = () => {
     setIsModalOpen(true);
   };
+
+  console.log(loading, "loading");
 
   return (
     <div className="flex justify-around bg-secondary-color text-primary-color  items-center z-50 py-2  w-full">
@@ -184,31 +186,40 @@ const Navbar = () => {
             </Link>
           ))}
 
-          <Link href={"/apply-now"}>
-            <Image
-              alt="logo"
-              width={0}
-              height={0}
-              className="w-12  rounded-full border border-highlight-color aspect-square object-cover"
-              src={AllImages.profile}
-            />
-            {/* <Avatar
-              size={50}
-              src={
-                <Image src={AllImages.profile} width={0} height={0} alt="" />
-              }
-            /> */}
-          </Link>
-          <Link href={"/"}>
-            <Badge count={1}>
-              <Avatar size={50} icon={<BellOutlined />} />
-            </Badge>
-          </Link>
-          <Link href={"/"}>
-            <p className="bg-[#00721E] text-[15px] font-medium px-3 py-2 rounded-3xl">
-              Log In For Dealer
-            </p>
-          </Link>
+          {carUser?.role ? (
+            <>
+              {" "}
+              <Link href={""}>
+                <Image
+                  alt="logo"
+                  width={0}
+                  height={0}
+                  className="w-12  rounded-full border border-highlight-color aspect-square object-cover"
+                  src={AllImages.profile}
+                />
+              </Link>
+              <Link href={"/"}>
+                <Badge count={1}>
+                  <Avatar size={50} icon={<BellOutlined />} />
+                </Badge>
+              </Link>
+              {carUser?.role === "user" ? (
+                <Link href={"/sign-in"}>
+                  <p className="bg-[#00721E] text-[15px] font-medium px-3 py-2 rounded-3xl">
+                    Log In For Dealer
+                  </p>
+                </Link>
+              ) : (
+                ""
+              )}
+            </>
+          ) : (
+            <Link href={"/sign-in"}>
+              <p className="bg-[#00721E] text-[15px] font-medium px-3 py-2 rounded-3xl whitespace-normal">
+                Log In For Dealer
+              </p>
+            </Link>
+          )}
         </ul>
         {/* This is hidden in mobile device */}
       </div>

@@ -11,8 +11,9 @@ const SignIn = () => {
 
   const onFinish = (values) => {
     console.log("car-trading:", values);
-    localStorage.removeItem("car-trading_user");
-    localStorage.setItem("car-trading_user", JSON.stringify(values));
+     document.cookie = `car-trading_user=${encodeURIComponent(
+       JSON.stringify(values)
+     )}; path=/; secure`;
     navigate.push("/"); // Correct use of navigate function
   };
   return (
@@ -69,7 +70,7 @@ const SignIn = () => {
             >
               <Input
                 placeholder="Enter your email"
-                className="py-2 px-3 text-xl bg-site-color border !border-[#1E1E1E] r hover:bg-transparent hover:border-secoundary-color focus:bg-transparent focus:border-secoundary-color !bg-white"
+                className="py-2 px-3 text-xl bg-site-color border !border-[#1E1E1E]  hover:bg-transparent hover:border-secoundary-color focus:bg-transparent focus:border-secoundary-color !bg-white"
               />
             </Form.Item>
             <Typography.Title level={4} style={{ color: "#222222" }}>
