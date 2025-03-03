@@ -9,15 +9,16 @@ import SellBuyTrade from "@/components/Private/HomePage/SellBuyTrade";
 import TotalCarBuy from "@/components/Private/HomePage/TotalCarBuy";
 import TotalCarSell from "@/components/Private/HomePage/TotalCarSell";
 import WhyChooseUS from "@/components/Private/HomePage/WhyChooseUS";
+import useCookie from "@/cookie/useCookie";
 import React, { useState } from "react";
 
 const Homepage = () => {
+    const [carUser, loading] = useCookie("car-trading_user");
   const [isSellCar, setIsSellCar] = useState(true);
-  const dealer = false;
-  const carSell = true;
+
   return (
     <div className="text-text-color container mx-auto">
-      {dealer ? (
+      {carUser?.role === "dealer" ? (
         <>
           <div>
             <div className="flex justify-between md:flex-row flex-col mt-16 items-center gap-2">
