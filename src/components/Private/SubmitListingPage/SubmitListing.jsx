@@ -1,0 +1,535 @@
+import { AllImages } from "@/assets/AllImages";
+import { Checkbox, DatePicker, Form, Input, Radio, Select } from "antd";
+import { useForm } from "antd/es/form/Form";
+import { Button } from "antd/es/radio";
+import Image from "next/image";
+import React, { useState } from "react";
+import { IoIosArrowForward } from "react-icons/io";
+import { IoArrowForward } from "react-icons/io5";
+
+const SubmitListing = () => {
+  const [form] = useForm();
+
+  const [isDistance, setIsDistance] = useState(false);
+  const [isCompany, setIsCompany] = useState(true);
+
+  console.log(isDistance);
+
+  const { RangePicker } = DatePicker;
+  const [selectedPriceType, setSelectedPriceType] = useState(null);
+  const [selectedFuleType, setSelectedFuleType] = useState(null);
+  const [selectedGeartype, setSelectedGeartype] = useState(null);
+
+  const handleCheckboxChange = (e) => {
+    // If the clicked checkbox is already selected, unselect it
+    setSelectedPriceType(e.target.checked ? e.target.value : null);
+  };
+  const handleFuleTypeCheckboxChange = (e) => {
+    // If the clicked checkbox is already selected, unselect it
+    setSelectedFuleType(e.target.checked ? e.target.value : null);
+  };
+  const handleGeartypeCheckboxChange = (e) => {
+    // If the clicked checkbox is already selected, unselect it
+    setSelectedGeartype(e.target.checked ? e.target.value : null);
+  };
+
+  const [selectedCar, setSelectedCar] = useState(null);
+
+  const handleCarSelect = (car) => {
+    setSelectedCar(car);
+  };
+  const onFinsh = (values) => {
+    values.car = selectedCar;
+    console.log(values);
+  };
+  return (
+    <div className="max-w-[1200px] md:mx-20 mx-4">
+      <Form onFinish={onFinsh} form={form} layout="vertical">
+        <Form.Item
+          label={<span className="font-bold text-2xl">Category</span>}
+          name="category"
+        >
+          <Select
+            placeholder={<span className="text-black text-xl">personal</span>}
+          >
+            <Select.Option value="demo1">Demo1</Select.Option>
+            <Select.Option value="demo2">Demo2</Select.Option>
+            <Select.Option value="demo3">Demo3</Select.Option>
+          </Select>
+        </Form.Item>
+        <Form.Item
+          label={<span className="font-bold text-2xl">Mark</span>}
+          name="mark"
+        >
+          <Select
+            placeholder={<span className="text-black text-xl">Brands</span>}
+          >
+            <Select.Option value="demo1">Demo1</Select.Option>
+            <Select.Option value="demo2">Demo2</Select.Option>
+            <Select.Option value="demo3">Demo3</Select.Option>
+          </Select>
+        </Form.Item>
+        <Form.Item
+          text-2xl
+          label={<span className="font-bold text-2xl">Model</span>}
+          name="model"
+        >
+          <Select
+            placeholder={<span className="text-black text-xl">Model</span>}
+          >
+            <Select.Option value="demo1">Demo1</Select.Option>
+            <Select.Option value="demo2">Demo2</Select.Option>
+            <Select.Option value="demo3">Demo3</Select.Option>
+          </Select>
+        </Form.Item>
+        <h1 className="font-bold text-2xl mb-2">Cash price</h1>
+
+        <Form.Item
+          label={<span className="font-medium text-base">Max price</span>}
+          name="cash"
+          className="flex-1"
+        >
+          <Input placeholder="0" />
+        </Form.Item>
+
+        <div className="flex justify-between items-center">
+          <Form.Item
+            label={<span className="font-bold text-2xl">Price type</span>}
+            name="priceType"
+            className="flex-1"
+          >
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+            >
+              <Checkbox
+                value="cashPrice"
+                checked={selectedPriceType === "cashPrice"}
+                onChange={handleCheckboxChange}
+                style={{ lineHeight: "32px" }}
+              >
+                Cash price
+              </Checkbox>
+              <Checkbox
+                value="carsWithoutTax"
+                checked={selectedPriceType === "carsWithoutTax"}
+                onChange={handleCheckboxChange}
+                style={{ lineHeight: "32px" }}
+              >
+                Cars without tax
+              </Checkbox>
+              <Checkbox
+                value="wholesaleCVR"
+                checked={selectedPriceType === "wholesaleCVR"}
+                onChange={handleCheckboxChange}
+                style={{ lineHeight: "32px" }}
+              >
+                Wholesale/CVR
+              </Checkbox>
+            </div>
+          </Form.Item>
+
+          <Form.Item
+            className="flex-1"
+            label={<span className="font-bold text-2xl">New/used</span>}
+            name="newUsed"
+          >
+            <Select
+              placeholder={<span className="text-black text-xl">All</span>}
+            >
+              <Select.Option value="new">New</Select.Option>
+              <Select.Option value="used">Used</Select.Option>
+            </Select>
+          </Form.Item>
+        </div>
+
+        <Form.Item
+          label={<span className="font-bold text-2xl">Models</span>}
+          name="car"
+        >
+          <div className="flex flex-wrap gap-3">
+            <div
+              onClick={() => handleCarSelect("micro")}
+              className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
+                selectedCar === "micro" ? "border border-blue-500 " : "  "
+              }`}
+            >
+              <div className="border  border-secondary-color w-fit p-4 rounded-md">
+                <Image src={AllImages.ct1} alt="car" />
+              </div>
+              <p className="text-center"> Micro</p>
+            </div>
+            <div
+              onClick={() => handleCarSelect("cashPrice")}
+              className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
+                selectedCar === "cashPrice" ? "border border-blue-500 " : "  "
+              }`}
+            >
+              <div className="border  border-secondary-color w-fit p-4 rounded-md">
+                <Image src={AllImages.ct2} alt="car" />
+              </div>
+              <p className="text-center"> Station wagon</p>
+            </div>
+            <div
+              onClick={() => handleCarSelect("stationwagon")}
+              className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
+                selectedCar === "stationwagon"
+                  ? "border border-blue-500 "
+                  : "  "
+              }`}
+            >
+              <div className="border  border-secondary-color w-fit p-4 rounded-md">
+                <Image src={AllImages.ct3} alt="car" />
+              </div>
+              <p className="text-center"> SUV</p>
+            </div>
+            <div
+              onClick={() => handleCarSelect("suv")}
+              className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
+                selectedCar === "suv" ? "border border-blue-500 " : "  "
+              }`}
+            >
+              <div className="border  border-secondary-color w-fit p-4 rounded-md">
+                <Image src={AllImages.ct4} alt="car" />
+              </div>
+              <p className="text-center">Crossover (CUV)</p>
+            </div>
+            <div
+              onClick={() => handleCarSelect("crossover")}
+              className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
+                selectedCar === "crossover" ? "border border-blue-500 " : "  "
+              }`}
+            >
+              <div className="border  border-secondary-color w-fit p-4 rounded-md">
+                <Image src={AllImages.ct6} alt="car" />
+              </div>
+              <p className="text-center">Minibus (MPV)</p>
+            </div>
+            <div
+              onClick={() => handleCarSelect("minibus")}
+              className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
+                selectedCar === "minibus" ? "border border-blue-500 " : "  "
+              }`}
+            >
+              <div className="border  border-secondary-color w-fit p-4 rounded-md">
+                <Image src={AllImages.ct7} alt="car" />
+              </div>
+              <p className="text-center"> Sedan</p>
+            </div>
+            <div
+              onClick={() => handleCarSelect("sedan")}
+              className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
+                selectedCar === "sedan" ? "border border-blue-500 " : "  "
+              }`}
+            >
+              <div className="border  border-secondary-color w-fit p-4 rounded-md">
+                <Image src={AllImages.ct8} alt="car" />
+              </div>
+              <p className="text-center">Hatchback</p>
+            </div>
+            <div
+              onClick={() => handleCarSelect("hatchback")}
+              className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
+                selectedCar === "hatchback" ? "border border-blue-500 " : "  "
+              }`}
+            >
+              <div className="border  border-secondary-color w-fit p-4 rounded-md">
+                <Image src={AllImages.ct9} alt="car" />
+              </div>
+              <p className="text-center"> Cabriolet</p>
+            </div>
+            <div
+              onClick={() => handleCarSelect("cabriolet")}
+              className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
+                selectedCar === "cabriolet" ? "border border-blue-500 " : "  "
+              }`}
+            >
+              <div className="border  border-secondary-color w-fit p-4 rounded-md">
+                <Image src={AllImages.ct10} alt="car" />
+              </div>
+              <p className="text-center"> Coupe</p>
+            </div>
+          </div>
+        </Form.Item>
+        <div className="flex justify-between items-start">
+          <Form.Item
+            label={<span className="font-bold text-2xl">Fuel</span>}
+            name="fuleType"
+            className="flex-1"
+          >
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+            >
+              <Checkbox
+                value="no"
+                checked={selectedFuleType === "no"}
+                onChange={handleFuleTypeCheckboxChange}
+                style={{ lineHeight: "32px" }}
+              >
+                No
+              </Checkbox>
+              <Checkbox
+                value="petrol"
+                checked={selectedFuleType === "petrol"}
+                onChange={handleFuleTypeCheckboxChange}
+                style={{ lineHeight: "32px" }}
+              >
+                Petrol
+              </Checkbox>
+              <Checkbox
+                value="diesel"
+                checked={selectedFuleType === "diesel"}
+                onChange={handleFuleTypeCheckboxChange}
+                style={{ lineHeight: "32px" }}
+              >
+                Diesel
+              </Checkbox>
+              <Checkbox
+                value="hybridGasoline"
+                checked={selectedFuleType === "hybridGasoline"}
+                onChange={handleFuleTypeCheckboxChange}
+                style={{ lineHeight: "32px" }}
+              >
+                Hybrid - Gasoline
+              </Checkbox>
+              <Checkbox
+                value="hybridDiesel"
+                checked={selectedFuleType === "hybridDiesel"}
+                onChange={handleFuleTypeCheckboxChange}
+                style={{ lineHeight: "32px" }}
+              >
+                Hybrid - Diesel
+              </Checkbox>
+              <Checkbox
+                value="pluginPetrol"
+                checked={selectedFuleType === "pluginPetrol"}
+                onChange={handleFuleTypeCheckboxChange}
+                style={{ lineHeight: "32px" }}
+              >
+                Plug-in - Petrol
+              </Checkbox>
+              <Checkbox
+                value="pluginDiesel"
+                checked={selectedFuleType === "pluginDiesel"}
+                onChange={handleFuleTypeCheckboxChange}
+                style={{ lineHeight: "32px" }}
+              >
+                Plug-in - Diesel
+              </Checkbox>
+            </div>
+          </Form.Item>
+          <Form.Item
+            label={<span className="font-bold text-2xl">Gear type</span>}
+            name="geartype"
+            className="flex-1"
+          >
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+            >
+              <Checkbox
+                value="manualGear"
+                checked={selectedGeartype === "manualGear"}
+                onChange={handleGeartypeCheckboxChange}
+                style={{ lineHeight: "32px" }}
+              >
+                Manual gear
+              </Checkbox>
+              <Checkbox
+                value="automaticGear"
+                checked={selectedGeartype === "automaticGear"}
+                onChange={handleGeartypeCheckboxChange}
+                style={{ lineHeight: "32px" }}
+              >
+                Automatic gear
+              </Checkbox>
+              {/* <Checkbox
+                value="newVision"
+                checked={selectedGeartype === "newVision"}
+                onChange={handleGeartypeCheckboxChange}
+                style={{ lineHeight: "32px" }}
+              >
+                New vision
+              </Checkbox> */}
+            </div>
+          </Form.Item>
+        </div>
+
+        <h1 className="font-bold text-2xl mb-2">Models</h1>
+        <div className="flex  justify-between gap-5">
+          <Form.Item
+            label={<span className="font-medium text-base">From</span>}
+            name="modelFrom"
+            className="flex-1"
+          >
+            <Input placeholder="Before 1975" />
+          </Form.Item>
+          <Form.Item
+            label={<span className="font-medium text-base">To</span>}
+            name="modelTo"
+            className="flex-1"
+          >
+            <Input placeholder="After 1990" />
+          </Form.Item>
+        </div>
+
+        <h1 className="font-bold text-2xl mb-2">Driven km</h1>
+        <div className="flex  justify-between gap-5">
+          <Form.Item
+            label={<span className="font-medium text-base">From</span>}
+            name="drivenFrom"
+            className="flex-1"
+          >
+            <Input placeholder="0" />
+          </Form.Item>
+          <Form.Item
+            label={<span className="font-medium text-base">To</span>}
+            name="drivenTo"
+            className="flex-1"
+          >
+            <Input placeholder="50000+" />
+          </Form.Item>
+        </div>
+        {/* 
+        <Form.Item
+          label={<span className="font-bold text-2xl">Car Use</span>}
+          name="carUse"
+        >
+          <RangePicker />
+        </Form.Item> */}
+        <Form.Item
+          label={<span className="font-bold text-2xl">Driven km</span>}
+          name="drivenkm"
+        >
+          <Input placeholder="0" />
+        </Form.Item>
+
+        <div
+          onClick={() => setIsDistance(!isDistance)}
+          className="font-bold text-2xl bg-base-color border border-secondary-color rounded-md py-1 px-2 flex justify-between items-center"
+        >
+          <h1>Distance to seller</h1>
+          <p>
+            <IoIosArrowForward
+              className={` ${
+                isDistance
+                  ? "-rotate-90 delay-75 ease-linear transform"
+                  : "rotate-90 delay-75 transform"
+              }`}
+            />
+          </p>
+        </div>
+        {isDistance && (
+          <React.Fragment>
+            <h1 className="font-bold text-2xl my-4">Distance to seller</h1>
+            <Form.Item
+              label={<span className="font-medium">Driven km</span>}
+              name="drivenkm"
+            >
+              <Input placeholder="0" />
+            </Form.Item>
+          </React.Fragment>
+        )}
+
+        <div name="type" className=" flex  gap-10 my-8">
+          <div
+            onClick={() => setIsCompany(true)}
+            value="company"
+            className="text-3xl flex justify-center items-center gap-2  cursor-pointer"
+          >
+            <div
+              className={`w-5 aspect-square rounded-full border-4 border-white
+                  ${isCompany ? "bg-violet-500 " : " "}
+                   ring-2 ring-violet-500 `}
+            ></div>
+            Company
+          </div>
+          <div
+            onClick={() => setIsCompany(false)}
+            value="Private"
+            className="text-3xl flex justify-center items-center gap-2  cursor-pointer"
+          >
+            <div
+              className={`w-5 aspect-square rounded-full border-4 border-white
+                  ${isCompany ? " " : " bg-violet-500"}
+                   ring-2 ring-violet-500 `}
+            ></div>
+            Private
+          </div>
+        </div>
+
+        <h1 className="text-4xl font-bold">Contact information</h1>
+        <div className="h1 w-full border-t border-text-light-color my-5"></div>
+        <h1 className="text-xl font-medium mb-5">
+          To provide you with the best offer for your car, we recommend
+          uploading a few pictures of your car to us. You can find some examples
+          of the angles we would like of your car.
+        </h1>
+
+        {isCompany ? (
+         
+            <div className="my-[10px] flex justify-between gap-5">
+              <div className="flex-1">
+                <p className="text-2xl font-medium pb-2">Company Name</p>
+                <Form.Item name={`company`}>
+                  <Input placeholder="Company Name" className="py-3" />
+                </Form.Item>
+              </div>
+              <div className="flex-1">
+                <p className="text-2xl font-medium pb-2">CVR Number</p>
+                <Form.Item name={`cvr`}>
+                  <Input placeholder="CVR Number" className="py-3" />
+                </Form.Item>
+              </div>
+            </div>
+    
+        ) : (
+          <div className="my-[10px] flex justify-between gap-5">
+            <div className="flex-1">
+              <p className="text-2xl font-medium pb-2">First Name*</p>
+              <Form.Item name={`firstName`}>
+                <Input placeholder="First Name" className="py-3" />
+              </Form.Item>
+            </div>
+            <div className="flex-1">
+              <p className="text-2xl font-medium pb-2">Last Name*</p>
+              <Form.Item name={`lastName`}>
+                <Input placeholder="Last Name" className="py-3" />
+              </Form.Item>
+            </div>
+          </div>
+        )}
+
+        <div className="my-[10px] flex justify-between gap-5">
+          <div className="">
+            <p className="text-2xl font-medium pb-2">Postal Code*</p>
+            <Form.Item name={`PostalCode`}>
+              <Input placeholder="Postal Code" className="py-3" />
+            </Form.Item>
+          </div>
+          <div className="flex-1">
+            <p className="text-2xl font-medium pb-2">City*</p>
+            <Form.Item name={`City`}>
+              <Input placeholder="City" className="py-3" />
+            </Form.Item>
+          </div>
+        </div>
+        <div className="">
+          <p className="text-2xl font-medium pb-2">Phone Number*</p>
+          <Form.Item name={`PhoneNumber`}>
+            <Input placeholder="Phone Number" className="py-3" />
+          </Form.Item>
+        </div>
+
+        <div className="text-center">
+          <button
+            className="bg-highlight-color text-white py-3 px-32 rounded-md text-center my-10 text-3xl font-medium "
+            htmlType="submit"
+          >
+            Create Listing
+          </button>
+        </div>
+      </Form>
+    </div>
+  );
+};
+
+export default SubmitListing;

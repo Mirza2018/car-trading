@@ -21,11 +21,11 @@ const Homepage = () => {
       {carUser?.role === "dealer" ? (
         <>
           <div>
-            <div className="flex justify-between md:flex-row flex-col mt-16 items-center gap-2">
+            <div className="grid grid-cols-2 gap-5 my-10 select-none text-center">
               <h1
                 onClick={() => setIsSellCar(true)}
-                style={{ fontSize: "clamp(20px, 1vw + 1rem ,40px)" }}
-                className={`" font-semibold  py-5 md:px-20 px-4 rounded-lg  cursor-pointer  hover:animate-pulse  whitespace-nowrap" ${
+                style={{ fontSize: "clamp(16px, 1vw + 1rem ,30px)" }}
+                className={`" font-semibold  py-5 md:px-20 px-4 rounded-lg  cursor-pointer  hover:animate-pulse  " ${
                   isSellCar
                     ? "bg-highlight-color text-white "
                     : "bg-base-color text-text-color"
@@ -35,8 +35,8 @@ const Homepage = () => {
               </h1>
               <h1
                 onClick={() => setIsSellCar(false)}
-                style={{ fontSize: "clamp(20px, 1vw + 1rem ,40px)" }}
-                className={`" font-semibold  py-5 md:px-20 px-4 rounded-lg  cursor-pointer  hover:animate-pulse  whitespace-nowrap" ${
+                style={{ fontSize: "clamp(16px, 1vw + 1rem ,30px)" }}
+                className={`" font-semibold  py-5 md:px-20 px-4 rounded-lg  cursor-pointer  hover:animate-pulse " ${
                   isSellCar
                     ? "bg-base-color text-text-color"
                     : "bg-highlight-color text-white "

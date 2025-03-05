@@ -4,9 +4,17 @@ import { useForm } from "antd/es/form/Form";
 import { Button } from "antd/es/radio";
 import Image from "next/image";
 import React, { useState } from "react";
+import { IoIosArrowForward } from "react-icons/io";
+import { IoArrowForward } from "react-icons/io5";
 
 const Deal = () => {
   const [form] = useForm();
+
+const [isDistance,setIsDistance]=useState(false)
+
+console.log(isDistance);
+
+
   const { RangePicker } = DatePicker;
   const [selectedPriceType, setSelectedPriceType] = useState(null);
   const [selectedFuleType, setSelectedFuleType] = useState(null);
@@ -31,11 +39,11 @@ const Deal = () => {
     setSelectedCar(car);
   };
   const onFinsh = (values) => {
-    values.car = selectedCar
+    values.car = selectedCar;
     console.log(values);
   };
   return (
-    <div className="max-w-[1200px] mx-auto">
+    <div className="max-w-[1200px] md:mx-20 mx-4">
       <Form onFinish={onFinsh} form={form} layout="vertical">
         <Form.Item
           label={<span className="font-bold text-2xl">Category</span>}
@@ -61,7 +69,7 @@ const Deal = () => {
             <Select.Option value="demo3">Demo3</Select.Option>
           </Select>
         </Form.Item>
-        <Form.Item
+        <Form.Item text-2xl
           label={<span className="font-bold text-2xl">Model</span>}
           name="model"
         >
@@ -73,13 +81,16 @@ const Deal = () => {
             <Select.Option value="demo3">Demo3</Select.Option>
           </Select>
         </Form.Item>
+        <h1 className="font-bold text-2xl mb-2">Cash price</h1>
+        
+          <Form.Item
+            label={<span className="font-medium text-base">Max price</span>}
+            name="cash"
+            className="flex-1"
+          >
+            <Input placeholder="0" />
+          </Form.Item>
 
-        <Form.Item
-          label={<span className="font-bold text-2xl">Cash price</span>}
-          name="cash"
-        >
-          <Input placeholder="0" />
-        </Form.Item>
 
         <div className="flex justify-between items-center">
           <Form.Item
@@ -130,6 +141,7 @@ const Deal = () => {
             </Select>
           </Form.Item>
         </div>
+
         <Form.Item
           label={<span className="font-bold text-2xl">Models</span>}
           name="car"
@@ -341,6 +353,44 @@ const Deal = () => {
           </Form.Item>
         </div>
 
+        <h1 className="font-bold text-2xl mb-2">Models</h1>
+        <div className="flex  justify-between gap-5">
+          <Form.Item
+            label={<span className="font-medium text-base">From</span>}
+            name="modelFrom"
+            className="flex-1"
+          >
+            <Input placeholder="Before 1975" />
+          </Form.Item>
+          <Form.Item
+            label={<span className="font-medium text-base">To</span>}
+            name="modelTo"
+            className="flex-1"
+          >
+            <Input placeholder="After 1990" />
+          </Form.Item>
+        </div>
+       
+
+        <h1 className="font-bold text-2xl mb-2">Driven km</h1>
+        <div className="flex  justify-between gap-5">
+          <Form.Item
+            label={<span className="font-medium text-base">From</span>}
+            name="drivenFrom"
+            className="flex-1"
+          >
+            <Input placeholder="0" />
+          </Form.Item>
+          <Form.Item
+            label={<span className="font-medium text-base">To</span>}
+            name="drivenTo"
+            className="flex-1"
+          >
+            <Input placeholder="50000+" />
+          </Form.Item>
+        </div>
+
+
         <Form.Item
           label={<span className="font-bold text-2xl">Car Use</span>}
           name="carUse"
@@ -353,10 +403,42 @@ const Deal = () => {
         >
           <Input placeholder="0" />
         </Form.Item>
-        <div className="text-center">
-           <button className="bg-highlight-color text-white py-3 px-32 rounded-md text-center my-10 text-3xl font-medium " htmlType="submit">Offer Send</button>
+
+        <div
+          onClick={() => setIsDistance(!isDistance)}
+          className="font-bold text-2xl bg-base-color border border-secondary-color rounded-md py-1 px-2 flex justify-between items-center"
+        >
+          <h1>Distance to seller</h1>
+          <p>
+            <IoIosArrowForward
+              className={` ${
+                isDistance
+                  ? "-rotate-90 delay-75 ease-linear transform"
+                  : "rotate-90 delay-75 transform"
+              }`}
+            />
+          </p>
         </div>
-       
+        {isDistance && (
+          <React.Fragment>
+            <h1 className="font-bold text-2xl my-4">Distance to seller</h1>
+            <Form.Item
+              label={<span className="font-medium">Driven km</span>}
+              name="drivenkm"
+            >
+              <Input placeholder="0" />
+            </Form.Item>
+          </React.Fragment>
+        )}
+
+        <div className="text-center">
+          <button
+            className="bg-highlight-color text-white py-3 px-32 rounded-md text-center my-10 text-3xl font-medium "
+            htmlType="submit"
+          >
+            Offer Send
+          </button>
+        </div>
       </Form>
     </div>
   );

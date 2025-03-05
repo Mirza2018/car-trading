@@ -141,7 +141,7 @@ const CarsForSale = () => {
         {carDetailsArray.map((car, index) => (
           <div
             key={index}
-            className="flex lg:flex-row flex-col gap-10 shadow-xl rounded-md p-3"
+            className="flex lg:flex-row flex-col   gap-10 shadow-xl rounded-md p-3"
           >
             <div className="flex gap-6 justify-start items-center">
               <div>
@@ -207,8 +207,8 @@ const CarsForSale = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-wrap gap-10 items-center justify-center flex-1">
-              <div className=" flex items-center gap-2 border-x border-secondary-color h-full px-5">
+            <div className="flex xl:flex-row flex-row-reverse flex-wrap gap-10 items-center justify-between flex-1">
+              <div className=" flex items-center gap-2 border-x border-secondary-color xl:h-full px-5">
                 <Image
                   alt="speed"
                   width={0}
@@ -220,16 +220,24 @@ const CarsForSale = () => {
                   Current Bids:{car?.currentBids}
                 </p>
               </div>
-              <div className="bg-base-color border border-secondary-color rounded-full aspect-square px-2 flex flex-col justify-center items-center">
+              {/* <div className="bg-base-color border border-secondary-color rounded-full aspect-square px-2 flex flex-col justify-center items-center">
                 <h1 className="text-xl font-bold">{car?.priceInDKK}</h1>
                 <p className="whitespace-nowrap ">Minimum price achieved</p>
+              </div> */}
+
+              <div className="bg-base-color border border-secondary-color rounded-full aspect-square flex flex-col justify-center items-center px-2">
+                <h1 className="text-xl font-bold">{car?.priceInDKK}</h1>
+                <p className=" text-center text-sm">
+                  Minimum price <br /> achieved
+                </p>
               </div>
               <div className="flex flex-col gap-5 ">
                 <button
                   style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
-                  className="bg-highlight-color text-white  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
+                  className="bg-highlight-color text-white  font-semibold py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse flex flex-col  items-start"
                 >
-                  Buy Now: {car?.buyNowPrice}
+                  <p className="text-[10px] ">Buy Now :</p>
+                  <p>{car?.buyNowPrice}</p>
                 </button>
                 <button
                   style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
@@ -244,7 +252,7 @@ const CarsForSale = () => {
                 >
                   View Details
                 </button>
- 
+
                 <Modal
                   // title="Modal responsive width"
                   centered
@@ -254,12 +262,12 @@ const CarsForSale = () => {
                   width={1500}
                   footer={[
                     <div className="flex justify-end gap-80">
-                      <button
+                      {/* <button
                         style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
                         className="bg-highlight-color text-white  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
                       >
                         Send Offer
-                      </button>
+                      </button> */}
                       <button
                         onClick={() => setOpenResponsive(false)}
                         style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
@@ -271,7 +279,7 @@ const CarsForSale = () => {
                   ]}
                 >
                   <div>
-                    <main className="grid grid-cols-12 gap-4">
+                    <main className="md:grid grid-cols-12  gap-4">
                       <section className="col-span-5">
                         <div className=" py-10">
                           <div className="mx-auto max-w-screen-lg px-4">
@@ -323,7 +331,7 @@ const CarsForSale = () => {
                                   }`}
                                   onClick={() => setCurrentIndex(index)}
                                 >
-                                  <div className="relative h-20 w-28">
+                                  <div className="relative h-20 lg:w-28 w-20">
                                     <Image
                                       src={image.src}
                                       alt={image.alt}

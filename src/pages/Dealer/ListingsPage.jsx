@@ -1,13 +1,12 @@
-"use client";
-import Deal from "@/components/DealerComponents/ListingsPage/Deal";
-import Listing from "@/components/DealPage/Listing";
-import React, { useState } from "react";
+"use client"
+import Deal from '@/components/DealerComponents/ListingsPage/Deal';
+import React, { useState } from 'react';
 
-const DealPage = () => {
+const ListingsPage = () => {
   const [isDeal, setIsDeal] = useState(true);
   return (
     <div className="container mx-auto min-h-screen border-2 border-secondary-color rounded-md my-20">
-      <div className="flex justify-center items-center text-2xl font-bold  gap-3 bg-base-color w-fit mx-auto border border-secondary-color rounded mt-10">
+      {/* <div className="flex justify-center items-center text-2xl font-bold  gap-3 bg-base-color w-fit mx-auto border border-secondary-color rounded mt-10">
         <button
           onClick={() => setIsDeal(true)}
           className={`px-20 rounded  ${
@@ -28,10 +27,11 @@ const DealPage = () => {
         >
           Listing
         </button>
-      </div>
-      {isDeal ? <Deal /> : <Listing/>}
+      </div> */}
+          {/* {isDeal ? <Deal /> : <Listing />} */}
+          <Deal/>
     </div>
   );
 };
 
-export default DealPage;
+export default ListingsPage;

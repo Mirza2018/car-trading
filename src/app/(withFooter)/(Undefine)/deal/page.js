@@ -3,9 +3,9 @@ import React from "react";
 
 const Page = () => {
   return (
-    <div>
+    <React.Fragment>
       <DealPage />
-    </div>
+    </React.Fragment>
   );
 };
 
