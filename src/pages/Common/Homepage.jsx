@@ -50,12 +50,12 @@ const Homepage = () => {
         </>
       ) : (
         <>
+          <div className="my-10">
+            <SellBuyTrade />
+          </div>
           <div className="flex lg:flex-row flex-col justify-around items-center ">
             <TotalCarSell />
             <TotalCarBuy />
-          </div>
-          <div className="my-10">
-            <SellBuyTrade />
           </div>
         </>
       )}
