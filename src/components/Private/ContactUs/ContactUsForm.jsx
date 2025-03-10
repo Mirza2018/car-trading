@@ -16,8 +16,8 @@ export default function ContactUsFrom() {
           <h1 className="text-4xl font-bold mb-4">Get In Touch</h1>
           <p className="text-[#050B20] mb-8">
             Likewise, a range of activities enriches life, blending vigor with
-            balance. The result is a lifestyle that's not only dynamic but also
-            deeply rewarding.
+            balance. The result is a lifestyle that&apos;s not only dynamic but
+            also deeply rewarding.
           </p>
 
           <Form onFinish={onFinish} className="space-y-6">
@@ -103,8 +103,8 @@ export default function ContactUsFrom() {
             <h2 className="text-2xl font-semibold mb-6">Contact details</h2>
             <p className="text-gray-600 mb-8">
               Likewise, a range of activities enriches life, blending vigor with
-              balance. The result is a lifestyle that's not only dynamic but
-              also deeply rewarding.
+              balance. The result is a lifestyle that&apos;s not only dynamic
+              but also deeply rewarding.
             </p>
 
             <div className="space-y-6">

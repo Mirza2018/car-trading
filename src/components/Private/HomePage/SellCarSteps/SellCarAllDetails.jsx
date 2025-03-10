@@ -39,7 +39,7 @@ const SellCarAllDetails = () => {
   };
   return (
     <div className="container mx-auto my-12">
-      <h1 className="text-4xl font-bold">The car's information</h1>
+      <h1 className="text-4xl font-bold">The car&apos;s information</h1>
       <div className="h1 w-full border-t border-text-light-color my-5"></div>
       <h1 className="text-2xl font-bold mb-5">Number plate*</h1>
       <Input

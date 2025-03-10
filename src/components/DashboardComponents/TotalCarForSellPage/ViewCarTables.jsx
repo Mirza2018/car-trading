@@ -71,7 +71,7 @@ const ViewCarTables = ({
       onCancel={handleCancel}
       width={1500}
       footer={[
-        <div className="flex justify-end ">
+        <div key="footerButton" className="flex justify-end ">
           <button
             onClick={handleCancel}
             style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}

@@ -29,8 +29,9 @@ export default function AboutUsIntro() {
           attention to exceptional service, we strive to exceed expectations and
           create lasting impressions. Your satisfaction and comfort are our top
           priorities, and we work tirelessly to deliver solutions that meet your
-          unique needs. With Car Trading, you're not just a client; you're part
-          of our community. Let us make your experience extraordinary.
+          unique needs. With Car Trading, you&apos;re not just a client;
+          you&apos;re part of our community. Let us make your experience
+          extraordinary.
         </p>
       </div>
 

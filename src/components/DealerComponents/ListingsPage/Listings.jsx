@@ -20,6 +20,7 @@ const Listings = () => {
     const [form] = useForm();
 
   const [isDistance, setIsDistance] = useState(false);
+  const [isAddition, setIsAddition] = useState(false);
   const [isCompany, setIsCompany] = useState(true);
 
   console.log(isDistance);
@@ -460,21 +461,21 @@ const Listings = () => {
         )}
 
         <div
-          onClick={() => setIsDistance(!isDistance)}
+          onClick={() => setIsAddition(!isAddition)}
           className="font-bold text-2xl bg-base-color border border-secondary-color rounded-md py-1 px-2 flex justify-between items-center my-10"
         >
           <h1 className="">Additional equipment</h1>
           <p>
             <IoIosArrowForward
               className={` ${
-                isDistance
+                isAddition
                   ? "-rotate-90 delay-75 ease-linear transform"
                   : "rotate-90 delay-75 transform"
               }`}
             />
           </p>
         </div>
-        {isDistance && (
+        {isAddition && (
           <React.Fragment>
             <Form.Item
               label={<span className="font-bold text-2xl">Color</span>}

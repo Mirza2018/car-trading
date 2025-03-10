@@ -10,6 +10,7 @@ import {
 } from "@ant-design/icons";
 import { BsCheck2All } from "react-icons/bs";
 import EmojiPicker from "emoji-picker-react";
+import Image from "next/image";
 
 const ChatList = ({ chats, activeChat, onSelectChat }) => {
   return (
@@ -193,7 +194,13 @@ const ChatWindow = ({ chat, messages }) => {
         footer={null}
         onCancel={() => setPreviewOpen(false)}
       >
-        <img alt="preview" style={{ width: "100%" }} src={previewImage} />
+        <Image
+          alt="preview"
+          style={{ width: "100%" }}
+          width={0}
+          height={0}
+          src={previewImage}
+        />
       </Modal>
     </div>
   );

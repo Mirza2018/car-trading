@@ -113,7 +113,7 @@ const FinalNode = () => {
           </div>
           <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color p-3 ">
             <p>The condition of the car</p>
-            <p>Can't drive</p>
+            <p>Can&apos;t drive</p>
           </div>
           <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color p-3 ">
             <p>Last seen</p>

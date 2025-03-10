@@ -41,7 +41,7 @@ export default function Reviews() {
           <div key={index} className="bg-white p-8 rounded-lg shadow-sm">
             <h3 className="text-xl font-semibold mb-4">{testimonial.title}</h3>
             <p className="text-gray-600 mb-6 text-sm leading-relaxed">
-              "{testimonial.quote}"
+              &quot;{testimonial.quote}&quot;
             </p>
             <div className="flex items-center gap-3">
               <Image
