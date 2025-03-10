@@ -25,7 +25,7 @@ const Homepage = () => {
               <h1
                 onClick={() => setIsSellCar(true)}
                 style={{ fontSize: "clamp(16px, 1vw + 1rem ,30px)" }}
-                className={`" font-semibold  py-5 md:px-20 px-4 rounded-lg  cursor-pointer  hover:animate-pulse  " ${
+                className={`" font-semibold  py-5 md:px-20 px-4 rounded-lg  cursor-pointer  hover:animate-pulse  flex justify-center items-center leading-none" ${
                   isSellCar
                     ? "bg-highlight-color text-white "
                     : "bg-base-color text-text-color"
@@ -64,7 +64,7 @@ const Homepage = () => {
       <FairPriceFooter />
       <div className="w-full h-1 border-t border-t-highlight-color mt-20"></div>
       <WhyChooseUS />
-      <div className="bg-[#F3F9FB]">
+      <div className="">
         <Reviews />
       </div>
     </div>

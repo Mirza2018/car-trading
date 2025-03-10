@@ -9,7 +9,6 @@ import Link from "next/link";
 const { Search } = Input;
 
 const SellBuyTrade = () => {
-  const [isSellCar, SetIsSellCar] = useState(true);
   const onSearch = (e) => {
     console.log(e);
   };
@@ -24,24 +23,16 @@ const SellBuyTrade = () => {
         <main className=" max-w-7xl border-2 rounded-xl border-base-color w-fit">
           <div className=" flex w-full max-w-4xl ">
             <div
-              onClick={() => SetIsSellCar(true)}
-              className={`flex-1 text-center p-4 font-bold text-[30px] rounded-ss-xl cursor-pointer ${
-                isSellCar
-                  ? "text-primary-color bg-highlight-color"
-                  : "bg-[#F3F9FB]"
-              }  `}
+              className={`flex-1 text-center p-4 font-bold text-[30px] rounded-ss-xl text-primary-color bg-highlight-color`}
             >
               <p className="text-xl">Sell Car</p>
             </div>
             <div
-              onClick={() => SetIsSellCar(false)}
-              className={`flex-1 text-center p-4  rounded-se-xl font-bold text-[30px]  cursor-pointer ${
-                isSellCar
-                  ? "bg-[#F3F9FB]"
-                  : "   text-primary-color bg-highlight-color"
-              }`}
+              className={`flex-1 text-center p-4  rounded-se-xl font-bold text-[30px]  cursor-pointer bg-[#F3F9FB] `}
             >
-              <p className="text-xl">Buy Car</p>
+              <Link href="/submit-listing">
+                <p className="text-xl">Buy Car</p>
+              </Link>
             </div>
           </div>
           <div className="text-center my-7 ">

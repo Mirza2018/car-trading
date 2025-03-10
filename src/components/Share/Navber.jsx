@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { BellOutlined } from "@ant-design/icons";
 import React from "react";
 import useCookie from "@/cookie/useCookie";
+import MyProfile from "./MyProfile";
 
 const Navbar = () => {
   const [carUser, loading] = useCookie("car-trading_user");
@@ -16,10 +17,17 @@ const Navbar = () => {
   const task = true;
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isProfile, setIsProfile] = useState(false);
+console.log({isProfile});
+
   const menuRef = useRef(null); // Create a ref to track the menu
+  const profileRef = useRef(null); // Create a ref to track the profile
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+  const toggleProfile = () => {
+    setIsProfile(!isProfile);
   };
 
   // Close the menu when clicking outside
@@ -44,6 +52,28 @@ const Navbar = () => {
     };
   }, [isOpen]);
 
+  // Close the Profile when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // If the menu is open and the click is outside the menuRef, close the menu
+      if (
+        isProfile &&
+        profileRef.current &&
+        !profileRef.current.contains(event.target)
+      ) {
+        setIsProfile(false);
+      }
+    };
+
+    // Add event listener for clicks outside
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Cleanup event listener on unmount
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isProfile]);
+
   // Priority Common Menu Items (shown in any specific order)
   const PriorityCommonMenuItems = [{ name: "Home", path: "/" }];
 
@@ -51,8 +81,6 @@ const Navbar = () => {
   const AlwaysLastMenuItems = [
     { name: "About", path: "/about-us" },
     { name: "Contact", path: "/contact-us" },
-    { name: "Deal", path: "/deal" },
-    { name: "Final Note", path: "/final-note" },
   ];
 
   // Specific Menus based on roles
@@ -70,6 +98,18 @@ const Navbar = () => {
       { name: "Inbox", path: "/inbox" },
       { name: "Dashboard", path: "/dashboard/total-dealer-car-sell" },
     ],
+  };
+
+  const handleLogout = () => {
+    const values = {
+      name: null,
+      email: null,
+    };
+    // Clear the "car_trading_user" cookie by setting its expiry date in the past.
+    document.cookie = `car-trading_user=${encodeURIComponent(
+      JSON.stringify(values)
+    )}; path=/; secure`;
+    navigate.push("/");
   };
 
   const getMenuItems = (user) => {
@@ -105,16 +145,15 @@ const Navbar = () => {
       {" "}
       {/* The style property fixed & w-full is to fixed the navber , if you dont want this just remove it */}
       {/* This is small/Mobile device Menu section */}
-      <div className="relative md:hidden">
+      <div ref={menuRef} className="relative md:hidden cursor-pointer">
         {" "}
         {/* This is hidden in md screen */}
         <div
           onClick={toggleMenu}
-          ref={menuRef}
-          className="relative inline-flex items-center   justify-center p-2 rounded-md text-white hover:text-white font-bold focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out cursor-pointer"
+          className="relative inline-flex items-center   justify-center p-2 rounded-md text-white hover:text-white font-bold focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out "
           aria-label="Toggle menu"
         >
-          <label className="flex flex-col gap-2 w-8">
+          <label className="flex flex-col gap-2 w-8 cursor-pointer">
             <div
               className={`rounded-2xl h-[3px]  bg-white duration-500 transform ${
                 isOpen ? "rotate-45  translate-y-[10px]" : ""
@@ -136,6 +175,7 @@ const Navbar = () => {
           <div className="px-2 w-[180px] pt-2 pb-3 space-y-1 sm:px-3 absolute bg-black z-20 rounded-xl">
             {mainMenu.map((item) => (
               <Link
+                onClick={() => setIsOpen(false)}
                 key={item.name}
                 href={item.path}
                 className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out"
@@ -189,20 +229,23 @@ const Navbar = () => {
           {carUser?.role ? (
             <>
               {" "}
-              <Link href={""}>
-                <Image
-                  alt="logo"
-                  width={0}
-                  height={0}
-                  className="w-12  rounded-full border border-highlight-color aspect-square object-cover"
-                  src={AllImages.profile}
-                />
-              </Link>
-              <Link href={"/"}>
+              <div ref={profileRef} className="cursor-pointer relative">
+                <div onClick={toggleProfile} className="relative ">
+                  <Image
+                    alt="logo"
+                    width={0}
+                    height={0}
+                    className="w-12  rounded-full border border-highlight-color aspect-square object-cover"
+                    src={AllImages.profile}
+                  />{" "}
+                </div>
+                {isProfile && <MyProfile setIsProfile={setIsProfile} />}
+              </div>
+              {/* <Link href={"/"}>
                 <Badge count={1}>
                   <Avatar size={50} icon={<BellOutlined />} />
                 </Badge>
-              </Link>
+              </Link> */}
               {carUser?.role === "user" ? (
                 <Link href={"/sign-in"}>
                   <p className="bg-[#00721E] text-[15px] font-medium px-3 py-2 rounded-3xl">

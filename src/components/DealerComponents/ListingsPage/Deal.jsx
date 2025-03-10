@@ -44,6 +44,7 @@ console.log(isDistance);
   };
   return (
     <div className="max-w-[1200px] md:mx-20 mx-4">
+      <h1 className="text-2xl font-bold"></h1>
       <Form onFinish={onFinsh} form={form} layout="vertical">
         <Form.Item
           label={<span className="font-bold text-2xl">Category</span>}
@@ -69,7 +70,8 @@ console.log(isDistance);
             <Select.Option value="demo3">Demo3</Select.Option>
           </Select>
         </Form.Item>
-        <Form.Item text-2xl
+        <Form.Item
+          text-2xl
           label={<span className="font-bold text-2xl">Model</span>}
           name="model"
         >
@@ -82,15 +84,14 @@ console.log(isDistance);
           </Select>
         </Form.Item>
         <h1 className="font-bold text-2xl mb-2">Cash price</h1>
-        
-          <Form.Item
-            label={<span className="font-medium text-base">Max price</span>}
-            name="cash"
-            className="flex-1"
-          >
-            <Input placeholder="0" />
-          </Form.Item>
 
+        <Form.Item
+          label={<span className="font-medium text-base">Max price</span>}
+          name="cash"
+          className="flex-1"
+        >
+          <Input placeholder="0" />
+        </Form.Item>
 
         <div className="flex justify-between items-center">
           <Form.Item
@@ -370,7 +371,6 @@ console.log(isDistance);
             <Input placeholder="After 1990" />
           </Form.Item>
         </div>
-       
 
         <h1 className="font-bold text-2xl mb-2">Driven km</h1>
         <div className="flex  justify-between gap-5">
@@ -389,7 +389,6 @@ console.log(isDistance);
             <Input placeholder="50000+" />
           </Form.Item>
         </div>
-
 
         <Form.Item
           label={<span className="font-bold text-2xl">Car Use</span>}

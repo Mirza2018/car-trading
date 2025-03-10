@@ -11,6 +11,7 @@ const OrderTransportPage = () => {
   };
   return (
     <div>
+      <h1 className="text-3xl font-semibold mb-10">Order transport</h1>
       <Form form={form} layout="vertical" onFinish={onFinish}>
         <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-5">
           <Form.Item
@@ -37,7 +38,7 @@ const OrderTransportPage = () => {
               },
             ]}
           >
-             <Input className="py-2 px-3 text-xl border !border-input-color" />
+            <Input className="py-2 px-3 text-xl border !border-input-color" />
           </Form.Item>
           <Form.Item
             className=""
@@ -50,7 +51,7 @@ const OrderTransportPage = () => {
               },
             ]}
           >
-             <Input className="py-2 px-3 text-xl border !border-input-color" />
+            <Input className="py-2 px-3 text-xl border !border-input-color" />
           </Form.Item>
           <Form.Item
             className=""
@@ -63,7 +64,7 @@ const OrderTransportPage = () => {
               },
             ]}
           >
-             <Input className="py-2 px-3 text-xl border !border-input-color" />
+            <Input className="py-2 px-3 text-xl border !border-input-color" />
           </Form.Item>
         </div>
 
@@ -79,10 +80,10 @@ const OrderTransportPage = () => {
               },
             ]}
           >
-             <Input className="py-2 px-3 text-xl border !border-input-color" />
+            <Input className="py-2 px-3 text-xl border !border-input-color" />
           </Form.Item>
           <Form.Item className="flex-1" label="Additional" name="additional">
-             <Input className="py-2 px-3 text-xl border !border-input-color" />
+            <Input className="py-2 px-3 text-xl border !border-input-color" />
           </Form.Item>
         </div>
         <Form.Item
@@ -95,7 +96,7 @@ const OrderTransportPage = () => {
             },
           ]}
         >
-           <Input className="py-2 px-3 text-xl border !border-input-color" />
+          <Input className="py-2 px-3 text-xl border !border-input-color" />
         </Form.Item>
 
         <Form.Item label={null} className="flex justify-end">

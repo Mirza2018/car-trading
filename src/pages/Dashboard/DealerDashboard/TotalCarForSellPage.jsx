@@ -14,6 +14,7 @@ import {
 import { DownOutlined, SearchOutlined } from "@ant-design/icons";
 import CarListTable from "@/components/DashboardComponents/TotalCarForSellPage/CarListTable";
 import ViewCarTables from "@/components/DashboardComponents/TotalCarForSellPage/ViewCarTables";
+import ViewDetailsPage from "@/components/DealerComponents/HomePage/CarViewDetailsModal/ViewDetailsPage";
 
 const TotalCarForSellPage = () => {
   const [searchText, setSearchText] = useState("");
@@ -50,7 +51,7 @@ const TotalCarForSellPage = () => {
   const filteredData = useMemo(() => {
     if (!searchText) return data;
     return data.filter((item) =>
-      item.restaurantName.toLowerCase().includes(searchText.toLowerCase())
+      item?.userName.toLowerCase().includes(searchText.toLowerCase())
     );
   }, [data, searchText]);
 
@@ -66,6 +67,25 @@ const TotalCarForSellPage = () => {
   const handleCancel = () => {
     setIsServiceUserViewModalVisible(false);
   };
+    const car = {
+      buyNowPrice: "7,000 EUR",
+      model: "Honda CR-V",
+      edition: "PHEV - LUXURY",
+      currentBids: 15,
+      priceInDKK: "33,000 DKK",
+      type: "Hybrid (Benzin)",
+      transmission: "Automatgear",
+      engineCapacity: "2.0 L",
+      horsepower: "151 HK",
+      pno: "#4430479",
+      status: "Minimum price achieved",
+      kilometers: "1,500 km",
+      serviceDate: "07/2025",
+      postalCode: "8100",
+      vehicleType: "SUV",
+      makeAnBidPrice: "26,000 kr.",
+      link: "View Details",
+    };
 
   return (
     <div
@@ -76,14 +96,14 @@ const TotalCarForSellPage = () => {
       <div className="bg-secondary-color w-full p-4   rounded-tl-xl rounded-tr-xl">
         <div className=" w-[95%] mx-auto  flex items-center justify-between">
           <p className="text-3xl text-primary-color font-semibold">
-            Restaurant List
+            Car List
           </p>
           <div className="flex gap-4 items-center">
             <ConfigProvider
               theme={{ token: { colorTextPlaceholder: "#f3f3f3" } }}
             >
               <Input
-                placeholder="Search Restaurant Name..."
+                placeholder="Search User Name..."
                 value={searchText}
                 onChange={(e) => onSearch(e.target.value)}
                 className="text-primary-color font-semibold !border-primary-color !bg-transparent py-2 !rounded-full"
@@ -99,7 +119,7 @@ const TotalCarForSellPage = () => {
         className="my-4 text-end me-8
       "
       ></div>
- 
+
       {/* Table  */}
       <div className="px-10 pb-10">
         <CarListTable
@@ -111,11 +131,17 @@ const TotalCarForSellPage = () => {
       </div>
 
       {/* Modals */}
-
+      {/* 
       <ViewCarTables
         isServiceUserViewModalVisible={isServiceUserViewModalVisible}
         handleCancel={handleCancel}
         currentRecord={currentRecord}
+      /> */}
+      <ViewDetailsPage
+        openResponsive={isServiceUserViewModalVisible}
+        setOpenResponsive={setIsServiceUserViewModalVisible}
+        car={car}
+        sendOffer={false}
       />
     </div>
   );

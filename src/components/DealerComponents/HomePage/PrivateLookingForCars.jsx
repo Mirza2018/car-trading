@@ -5,8 +5,10 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import SingleCarInfo from "./SingleCarInfo/SingleCarInfo";
+import ViewDetailsPage from "./CarViewDetailsModal/ViewDetailsPage";
 
 const PrivateLookingForCars = () => {
+  const [openOfferCar, setopenOfferCar] = useState(false);
   const [openResponsive, setOpenResponsive] = useState(false);
   const images = [
     { src: AllImages.car, alt: "Car 1" },
@@ -163,80 +165,24 @@ const PrivateLookingForCars = () => {
                   <Divider className=" bg-black" type="vertical" />
                   PNO {car?.pno}
                 </div>
-                {/* <div className="flex gap-4 flex-wrap">
-                  <div className=" flex gap-2 justify-start items-center flex-wrap">
-                    <Image
-                      alt="speed"
-                      width={0}
-                      height={0}
-                      src={AllImages.speed}
-                      className=""
-                    />
-                    <p className="text-sm font-normal">{car?.kilometers}</p>
-                  </div>
-                  <div className=" flex gap-2 justify-start items-center flex-wrap">
-                    <Image
-                      alt="speed"
-                      width={0}
-                      height={0}
-                      src={AllImages.calender}
-                      className=""
-                    />
-                    <p className="text-sm font-normal">{car?.serviceDate}</p>
-                  </div>
-                  <div className=" flex gap-2 justify-start items-center flex-wrap">
-                    <Image
-                      alt="speed"
-                      width={0}
-                      height={0}
-                      src={AllImages.map}
-                      className=""
-                    />
-                    <p className="text-sm font-normal">{car?.postalCode}</p>
-                  </div>
-                  <div className=" flex gap-2 justify-start items-center flex-wrap">
-                    <Image
-                      alt="speed"
-                      width={0}
-                      height={0}
-                      src={AllImages.suv}
-                      className=""
-                    />
-                    <p className="text-sm font-normal">{car?.vehicleType}</p>
-                  </div>
-                </div> */}
               </div>
             </div>
             <div className="flex flex-wrap gap-10 items-center justify-end flex-1">
-              {/* <div className=" flex items-center gap-2 border-x border-secondary-color h-full px-5">
-                <Image
-                  alt="speed"
-                  width={0}
-                  height={0}
-                  src={AllImages.bids}
-                  className=""
-                />
-                <p className="text-sm font-normal text-text-light-color">
-                  Current Bids:{car?.currentBids}
-                </p>
-              </div> */}
-              {/* <div className="bg-base-color border border-secondary-color rounded-full aspect-square px-2 flex flex-col justify-center items-center">
-                <h1 className="text-xl font-bold">{car?.priceInDKK}</h1>
-                <p className="whitespace-nowrap ">Minimum price achieved</p>
-              </div> */}
               <div className="flex flex-col gap-5 ">
-                {/* <button
-                  style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
-                  className="bg-highlight-color text-white  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
-                >
-                  Buy Now: {car?.buyNowPrice}
-                </button> */}
                 <button
+                  onClick={() => setopenOfferCar(true)}
                   style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
                   className="bg-highlight-color text-white  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
                 >
                   Offer Car
                 </button>
+
+                <ViewDetailsPage
+                  openResponsive={openOfferCar}
+                  setOpenResponsive={setopenOfferCar}
+                  car={car}
+                  sendOffer={true}
+                />
                 <button
                   onClick={() => setOpenResponsive(true)}
                   style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
@@ -245,131 +191,12 @@ const PrivateLookingForCars = () => {
                   View Details
                 </button>
 
-                <Modal
-                  title="Modal responsive width"
-                  centered
-                  open={openResponsive}
-                  onOk={() => setOpenResponsive(false)}
-                  onCancel={() => setOpenResponsive(false)}
-                  width={1500}
-                  footer={[
-                    <div className="flex justify-end gap-80">
-                      <button
-                        style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
-                        className="bg-highlight-color text-white  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
-                      >
-                        Send Offer
-                      </button>
-                      <button
-                        onClick={() => setOpenResponsive(false)}
-                        style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
-                        className="bg-highlight-color text-white  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
-                      >
-                        Close
-                      </button>
-                    </div>,
-                  ]}
-                >
-                  <div>
-                    <main className="grid grid-cols-12 gap-4">
-                      <section className="col-span-5">
-                        <div className=" py-10">
-                          <div className="mx-auto max-w-screen-lg px-4">
-                            {/* Main Image Display */}
-                            <div className="mb-6 relative">
-                              <div className="relative h-72 sm:h-96 w-full overflow-hidden rounded-lg shadow-md">
-                                <Image
-                                  src={images[currentIndex].src}
-                                  alt={images[currentIndex].alt}
-                                  fill
-                                  style={{ objectFit: "cover" }}
-                                  sizes="(max-width: 768px) 100vw, 768px"
-                                />
-                              </div>
-                              <div
-                                onClick={() => handleleft(images.length)}
-                                className="rounded-full flex justify-center items-center bg-[#F3F9FB]/50 size-8 absolute top-1/2 left-0 cursor-pointer select-none"
-                              >
-                                <Image
-                                  src={AllImages.right}
-                                  alt="right"
-                                  width={0}
-                                  height={0}
-                                  className=""
-                                />
-                              </div>
-                              <div
-                                onClick={() => handleRight(images.length)}
-                                className="rounded-full flex justify-center items-center bg-[#F3F9FB]/50 size-8 absolute top-1/2 right-0 cursor-pointer select-none"
-                              >
-                                <Image
-                                  src={AllImages.left}
-                                  alt="left"
-                                  width={0}
-                                  height={0}
-                                />
-                              </div>
-                            </div>
-
-                            {/* Thumbnail Images */}
-                            <div className="relative flex flex-wrap gap-2 justify-between">
-                              {images.map((image, index) => (
-                                <div
-                                  key={index}
-                                  className={` cursor-pointer overflow-hidden rounded-md border-2 ${
-                                    index === currentIndex
-                                      ? "border-blue-500"
-                                      : "border-transparent"
-                                  }`}
-                                  onClick={() => setCurrentIndex(index)}
-                                >
-                                  <div className="relative h-20 w-28">
-                                    <Image
-                                      src={image.src}
-                                      alt={image.alt}
-                                      fill
-                                      style={{ objectFit: "cover" }}
-                                      sizes="(max-width: 768px) 50vw, 150px"
-                                    />
-                                  </div>
-                                </div>
-                              ))}
-
-                              <div
-                                onClick={() => handleleft(images.length)}
-                                className="rounded-full flex justify-center items-center  absolute top-8 -left-4 cursor-pointer select-none z-20"
-                              >
-                                {/* <Image
-                                  src={AllImages.right}
-                                  alt="right"
-                                  width={0}
-                                  height={0}
-                                  className=""
-                                /> */}
-                                <FaChevronLeft />
-                              </div>
-                              <div
-                                onClick={() => handleRight(images.length)}
-                                className="rounded-full flex justify-center items-center absolute top-8 -right-4 cursor-pointer select-none z-20"
-                              >
-                                {/* <Image
-                                  src={AllImages.left}
-                                  alt="left"
-                                  width={0}
-                                  height={0}
-                                /> */}
-                                <FaChevronRight />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </section>
-                      <section className="col-span-7">
-                        <SingleCarInfo car={car} />
-                      </section>
-                    </main>
-                  </div>
-                </Modal>
+                <ViewDetailsPage
+                  openResponsive={openResponsive}
+                  setOpenResponsive={setOpenResponsive}
+                  car={car}
+                  sendOffer={false}
+                />
               </div>
             </div>
           </div>

@@ -56,6 +56,12 @@ import revenue from "./dashboardIcons/revenue.svg";
 import upArrow from "./dashboardIcons/upArrow.svg";
 import logOut from "./dashboardIcons/logOut.svg";
 
+import about1 from "./about/about1.png";
+import about2 from "./about/about2.png";
+import about3 from "./about/about3.png";
+import about4 from "./about/about4.png";
+import about5 from "./about/about5.png";
+
 export const AllImages = {
   logo,
   profile,
@@ -109,5 +115,10 @@ export const AllImages = {
   carIcon,
   revenue,
   upArrow,
-  logOut
+  logOut,
+  about1,
+  about2,
+  about3,
+  about4,
+  about5,
 };

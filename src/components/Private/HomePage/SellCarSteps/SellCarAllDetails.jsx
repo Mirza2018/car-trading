@@ -1,6 +1,6 @@
 import { AllImages } from "@/assets/AllImages";
 import { InboxOutlined, UploadOutlined } from "@ant-design/icons";
-
+ 
 import { Button, Form, Input, Radio, Upload } from "antd";
 import { useForm } from "antd/es/form/Form";
 import Image from "next/image";

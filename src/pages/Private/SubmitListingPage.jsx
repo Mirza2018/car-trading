@@ -3,32 +3,15 @@ import SubmitListing from "@/components/Private/SubmitListingPage/SubmitListing"
 import React, { useState } from "react";
 
 const SubmitListingPage = () => {
-  const [isDeal, setIsDeal] = useState(true);
   return (
-    <div className="container mx-auto min-h-screen border-2 border-secondary-color rounded-md my-20">
-      {/* <div className="flex justify-center items-center text-2xl font-bold  gap-3 bg-base-color w-fit mx-auto border border-secondary-color rounded mt-10">
+    <div className="mx-auto container min-h-screen border-2 border-secondary-color rounded-md my-20">
+      <div className="flex justify-center items-center text-2xl font-bold  gap-3 bg-base-color border border-secondary-color rounded max-w-[1200px] md:mx-20 mx-4 my-10">
         <button
-          onClick={() => setIsDeal(true)}
-          className={`px-20 rounded  ${
-            isDeal
-              ? "text-white bg-highlight-color transition-all delay-100 ease-in-out animate-bounce"
-              : ""
-          }`}
+          className={` rounded w-full  text-white bg-highlight-color m-1`}
         >
           Deal
         </button>
-        <button
-          onClick={() => setIsDeal(false)}
-          className={`px-20 rounded  ${
-            isDeal
-              ? ""
-              : "text-white bg-highlight-color transition-all delay-100 ease-in-out animate-bounce"
-          }`}
-        >
-          Listing
-        </button>
-      </div> */}
-      {/* {isDeal ? <Deal /> : <Listing />} */}
+      </div>
       <SubmitListing />
     </div>
   );

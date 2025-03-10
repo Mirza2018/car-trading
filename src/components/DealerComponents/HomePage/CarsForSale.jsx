@@ -5,8 +5,12 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import SingleCarInfo from "./SingleCarInfo/SingleCarInfo";
+import ViewDetailsPage from "./CarViewDetailsModal/ViewDetailsPage";
+import MakeABidBtn from "./CarViewDetailsModal/MakeABidBtn";
+import BuyNowBtn from "./CarViewDetailsModal/BuyNowBtn";
 
 const CarsForSale = () => {
+  const [openOfferCar, setopenOfferCar] = useState(false);
   const [openResponsive, setOpenResponsive] = useState(false);
   const images = [
     { src: AllImages.car, alt: "Car 1" },
@@ -144,6 +148,7 @@ const CarsForSale = () => {
             className="flex lg:flex-row flex-col   gap-10 shadow-xl rounded-md p-3"
           >
             <div className="flex gap-6 justify-start items-center">
+              {/* Icons */}
               <div>
                 <Image
                   src={AllImages.car}
@@ -232,19 +237,17 @@ const CarsForSale = () => {
                 </p>
               </div>
               <div className="flex flex-col gap-5 ">
-                <button
-                  style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
-                  className="bg-highlight-color text-white  font-semibold py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse flex flex-col  items-start"
-                >
-                  <p className="text-[10px] ">Buy Now :</p>
-                  <p>{car?.buyNowPrice}</p>
-                </button>
-                <button
-                  style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
-                  className="bg-highlight-color text-white  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
-                >
-                  Make An Bid Price
-                </button>
+                <div onClick={() => setopenOfferCar(true)}>
+                  <BuyNowBtn price={car?.buyNowPrice} />
+                </div>
+                <ViewDetailsPage
+                  openResponsive={openOfferCar}
+                  setOpenResponsive={setopenOfferCar}
+                  car={car}
+                  sendOffer={true}
+                />
+
+                <MakeABidBtn />
                 <button
                   onClick={() => setOpenResponsive(true)}
                   style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
@@ -253,131 +256,12 @@ const CarsForSale = () => {
                   View Details
                 </button>
 
-                <Modal
-                  // title="Modal responsive width"
-                  centered
-                  open={openResponsive}
-                  onOk={() => setOpenResponsive(false)}
-                  onCancel={() => setOpenResponsive(false)}
-                  width={1500}
-                  footer={[
-                    <div className="flex justify-end gap-80">
-                      {/* <button
-                        style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
-                        className="bg-highlight-color text-white  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
-                      >
-                        Send Offer
-                      </button> */}
-                      <button
-                        onClick={() => setOpenResponsive(false)}
-                        style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
-                        className="bg-highlight-color text-white  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
-                      >
-                        Close
-                      </button>
-                    </div>,
-                  ]}
-                >
-                  <div>
-                    <main className="md:grid grid-cols-12  gap-4">
-                      <section className="col-span-5">
-                        <div className=" py-10">
-                          <div className="mx-auto max-w-screen-lg px-4">
-                            {/* Main Image Display */}
-                            <div className="mb-6 relative">
-                              <div className="relative h-72 sm:h-96 w-full overflow-hidden rounded-lg shadow-md">
-                                <Image
-                                  src={images[currentIndex].src}
-                                  alt={images[currentIndex].alt}
-                                  fill
-                                  style={{ objectFit: "cover" }}
-                                  sizes="(max-width: 768px) 100vw, 768px"
-                                />
-                              </div>
-                              <div
-                                onClick={() => handleleft(images.length)}
-                                className="rounded-full flex justify-center items-center bg-[#F3F9FB]/50 size-8 absolute top-1/2 left-0 cursor-pointer select-none"
-                              >
-                                <Image
-                                  src={AllImages.right}
-                                  alt="right"
-                                  width={0}
-                                  height={0}
-                                  className=""
-                                />
-                              </div>
-                              <div
-                                onClick={() => handleRight(images.length)}
-                                className="rounded-full flex justify-center items-center bg-[#F3F9FB]/50 size-8 absolute top-1/2 right-0 cursor-pointer select-none"
-                              >
-                                <Image
-                                  src={AllImages.left}
-                                  alt="left"
-                                  width={0}
-                                  height={0}
-                                />
-                              </div>
-                            </div>
-
-                            {/* Thumbnail Images */}
-                            <div className="relative flex flex-wrap gap-2 justify-between">
-                              {images.map((image, index) => (
-                                <div
-                                  key={index}
-                                  className={` cursor-pointer overflow-hidden rounded-md border-2 ${
-                                    index === currentIndex
-                                      ? "border-blue-500"
-                                      : "border-transparent"
-                                  }`}
-                                  onClick={() => setCurrentIndex(index)}
-                                >
-                                  <div className="relative h-20 lg:w-28 w-20">
-                                    <Image
-                                      src={image.src}
-                                      alt={image.alt}
-                                      fill
-                                      style={{ objectFit: "cover" }}
-                                      sizes="(max-width: 768px) 50vw, 150px"
-                                    />
-                                  </div>
-                                </div>
-                              ))}
-
-                              <div
-                                onClick={() => handleleft(images.length)}
-                                className="rounded-full flex justify-center items-center  absolute top-8 -left-4 cursor-pointer select-none z-20"
-                              >
-                                {/* <Image
-                                  src={AllImages.right}
-                                  alt="right"
-                                  width={0}
-                                  height={0}
-                                  className=""
-                                /> */}
-                                <FaChevronLeft />
-                              </div>
-                              <div
-                                onClick={() => handleRight(images.length)}
-                                className="rounded-full flex justify-center items-center absolute top-8 -right-4 cursor-pointer select-none z-20"
-                              >
-                                {/* <Image
-                                  src={AllImages.left}
-                                  alt="left"
-                                  width={0}
-                                  height={0}
-                                /> */}
-                                <FaChevronRight />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </section>
-                      <section className="col-span-7">
-                        <SingleCarInfo car={car} />
-                      </section>
-                    </main>
-                  </div>
-                </Modal>
+                <ViewDetailsPage
+                  openResponsive={openResponsive}
+                  setOpenResponsive={setOpenResponsive}
+                  car={car}
+                  sendOffer={false}
+                />
               </div>
             </div>
           </div>

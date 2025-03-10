@@ -79,7 +79,7 @@ const SingleCarInfo = ({ car }) => {
           )}
         </div>
       </div>
-
+ 
       <div className="my-5">
         <p className="text-2xl font-semibold">{car?.model}</p>
         <div className="flex gap-4 justify-between my-5 flex-wrap">
