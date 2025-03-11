@@ -259,7 +259,7 @@ const Navbar = () => {
           ) : (
             <Link href={"/sign-in"}>
               <p className="bg-[#00721E] text-[15px] font-medium px-3 py-2 rounded-3xl whitespace-normal">
-                Log In For Dealer
+                Log In
               </p>
             </Link>
           )}
