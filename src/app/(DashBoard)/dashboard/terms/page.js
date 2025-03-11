@@ -1,13 +1,13 @@
-"use client"
-import TermsPage from '@/pages/Dashboard/TermsPage';
-import React from 'react';
+"use client";
+import TermsPage from "@/components/DashboardComponents/TermsPage";
+import React from "react";
 
 const page = () => {
-    return (
-        <div>
-            <TermsPage />
-        </div>
-    );
+  return (
+    <div>
+      <TermsPage />
+    </div>
+  );
 };
 
 export default page;

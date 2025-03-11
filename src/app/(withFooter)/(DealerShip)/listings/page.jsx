@@ -1,3 +1,4 @@
+"use client";
 import ListingsPage from "@/pages/Dealer/ListingsPage";
 import React from "react";
 

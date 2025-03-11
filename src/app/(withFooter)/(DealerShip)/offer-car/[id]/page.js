@@ -1,12 +1,13 @@
+"use client"
 import OfferCarPage from '@/pages/Dealer/OfferCarPage';
 import React from 'react';
 
 
 const page = () => {
     return (
-      <React.Fragment>
+      <div>
         <OfferCarPage/>
-      </React.Fragment>
+      </div>
     );
 };
 

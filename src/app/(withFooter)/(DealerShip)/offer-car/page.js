@@ -1,7 +1,8 @@
+"use client";
 import React from "react";
 
-const OfferCarPage = () => {
+const page = () => {
   return <div></div>;
 };
 
-export default OfferCarPage;
+export default page;

@@ -1,31 +1,25 @@
+"use client"
 import { AllImages } from "@/assets/AllImages";
 import {
   Checkbox,
-  ColorPicker,
-  DatePicker,
   Form,
   Input,
-  Radio,
-  Select,
-  Upload,
+  Select
 } from "antd";
 import { useForm } from "antd/es/form/Form";
-import { Button } from "antd/es/radio";
 import Image from "next/image";
 import React, { useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
-import { IoArrowForward } from "react-icons/io5";
 
 const Listings = () => {
     const [form] = useForm();
 
   const [isDistance, setIsDistance] = useState(false);
   const [isAddition, setIsAddition] = useState(false);
-  const [isCompany, setIsCompany] = useState(true);
 
   console.log(isDistance);
 
-  const { RangePicker } = DatePicker;
+
   const [selectedPriceType, setSelectedPriceType] = useState(null);
   const [selectedFuleType, setSelectedFuleType] = useState(null);
   const [selectedGeartype, setSelectedGeartype] = useState(null);

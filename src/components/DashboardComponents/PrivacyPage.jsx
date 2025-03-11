@@ -1,23 +1,20 @@
+"use client"
 import { Button } from "antd";
 import JoditEditor from "jodit-react";
 import { useRef, useState } from "react";
 
-const TermsPage = () => {
-
+const PrivacyPage = () => {
   const editor = useRef(null);
   const [content, setContent] = useState("");
-
   const handleOnSave = () => {
     console.log("Saved PP");
   };
 
   return (
-    <div
-      className=""
-    >
+    <div className="">
       <div className="bg-secondary-color w-full flex items-center p-5 mb-10  rounded-tl-xl rounded-tr-xl">
         <p className="text-2xl text-primary-color font-semibold">
-          Terms & Conditions
+          Privacy Policy
         </p>
       </div>
       <div className=" flex justify-center items-center">
@@ -41,4 +38,4 @@ const TermsPage = () => {
     </div>
   );
 };
-export default TermsPage;
+export default PrivacyPage;

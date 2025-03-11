@@ -1,5 +1,5 @@
 "use client";
-import PrivacyPage from "@/pages/Dashboard/PrivacyPage";
+import PrivacyPage from "@/components/DashboardComponents/PrivacyPage";
 import React from "react";
 
 const page = () => {

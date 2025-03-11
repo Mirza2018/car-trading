@@ -2,6 +2,7 @@
   "name": "car-trading",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -11,16 +12,20 @@
   "dependencies": {
     "@ant-design/cssinjs": "^1.23.0",
     "@ant-design/nextjs-registry": "^1.0.2",
-    "antd": "^5.23.2",
+    "antd": "^5.24.3",
     "axios": "^1.7.9",
+    "dayjs": "^1.11.13",
     "emoji-picker-react": "^4.12.0",
     "jodit-react": "^5.2.15",
     "next": "14.2.22",
+    "rc-picker": "^4.11.3",
+    "rc-util": "^5.44.4",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.4.0",
     "react-otp-input": "^3.1.1",
-    "react-quill": "^2.0.0"
+    "react-quill": "^2.0.0",
+    "sharp": "^0.33.5"
   },
   "devDependencies": {
     "eslint": "^8",
