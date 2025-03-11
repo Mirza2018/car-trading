@@ -1,15 +1,9 @@
-"use client"
+"use client";
 import { AllImages } from "@/assets/AllImages";
-import {
-  Checkbox,
-  DatePicker,
-  Form,
-  Input,
-  Select,
-  Upload
-} from "antd";
+import { Checkbox, DatePicker, Form, Input, Select, Upload } from "antd";
 import { useForm } from "antd/es/form/Form";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 const OfferCar = () => {
@@ -454,6 +448,16 @@ const OfferCar = () => {
         >
           <Input placeholder="0" />
         </Form.Item> */}
+        <Link href={`/`}>
+          <div className="text-center">
+            <button
+              className="bg-highlight-color text-white py-3 px-32 rounded-md text-center my-10 text-3xl font-medium "
+              htmlType="submit"
+            >
+              Offer Send
+            </button>{" "}
+          </div>
+        </Link>
       </Form>
     </div>
   );

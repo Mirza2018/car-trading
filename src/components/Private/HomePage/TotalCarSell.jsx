@@ -1,6 +1,6 @@
 "use client";
 import { AllImages } from "@/assets/AllImages";
-import { Button, Modal } from "antd";
+import { Button, Modal, Tooltip } from "antd";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -68,15 +68,18 @@ const TotalCarSell = () => {
                 <p className="font-normal text-sm">Price: {car.price}</p>
               </div>
               <div className="flex md:flex-col flex-row gap-2">
-                <button className="btn border border-base-color rounded px-5 py-1 w-fit whitespace-nowrap">
-                  Buy Now
-                </button>
+                <Tooltip title="Login as Dealer">
+                  <button className="btn border border-base-color rounded px-5 py-1 w-fit whitespace-nowrap cursor-not-allowed">
+                    Buy Now
+                  </button>
+                </Tooltip>
+                   <Tooltip title="Login as Dealer">
                 <button
-                  onClick={() => showModal(car)}
-                  className="btn border border-base-color bg-[#E6F3F7] rounded px-2 py-1 w-fit whitespace-nowrap"
+                  // onClick={() => showModal(car)}
+                  className="btn border border-base-color bg-[#E6F3F7] rounded px-2 py-1 w-fit whitespace-nowrap  cursor-not-allowed"
                 >
                   View Details
-                </button>
+                </button></Tooltip>
               </div>{" "}
             </div>
           </div>

@@ -8,7 +8,8 @@ import SingleCarInfo from "./SingleCarInfo/SingleCarInfo";
 import ViewDetailsPage from "./CarViewDetailsModal/ViewDetailsPage";
 import MakeABidBtn from "./CarViewDetailsModal/MakeABidBtn";
 import BuyNowBtn from "./CarViewDetailsModal/BuyNowBtn";
-
+import Link from "next/link";
+ 
 const CarsForSale = () => {
   const [openOfferCar, setopenOfferCar] = useState(false);
   const [openResponsive, setOpenResponsive] = useState(false);
@@ -237,9 +238,9 @@ const CarsForSale = () => {
                 </p>
               </div>
               <div className="flex flex-col gap-5 ">
-                <div onClick={() => setopenOfferCar(true)}>
+                <Link href={`/final-note`}>
                   <BuyNowBtn price={car?.buyNowPrice} />
-                </div>
+                </Link>
                 <ViewDetailsPage
                   openResponsive={openOfferCar}
                   setOpenResponsive={setopenOfferCar}
