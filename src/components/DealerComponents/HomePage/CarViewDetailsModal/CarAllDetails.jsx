@@ -1,7 +1,8 @@
 import { AllImages } from "@/assets/AllImages";
 import Image from "next/image";
 import React from "react";
-import CarTableDetails from "./carTableDetails";
+import CarTableDetails from "./CarTableDetails";
+
 
 const CarAllDetails = ({car}) => {
   return (

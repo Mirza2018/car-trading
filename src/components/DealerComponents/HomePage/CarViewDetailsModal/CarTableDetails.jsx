@@ -1,5 +1,5 @@
 import React from "react";
-
+ 
 const CarTableDetails = ({ car }) => {
   return (
     <main className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-5 gap-0">
