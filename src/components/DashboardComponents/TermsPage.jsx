@@ -1,7 +1,15 @@
 "use client";
 import { Button } from "antd";
-import JoditEditor from "jodit-react";
+import dynamic from "next/dynamic";
 import { useRef, useState } from "react";
+
+// Dynamically import JoditEditor with SSR disabled
+const JoditEditor = dynamic(
+  () => import("jodit-react").then((mod) => mod.default),
+  {
+    ssr: false, // Prevents server-side rendering
+  }
+);
 
 const TermsPage = () => {
   const editor = useRef(null);
@@ -12,12 +20,12 @@ const TermsPage = () => {
 
   return (
     <div className="">
-      <div className="bg-secondary-color w-full flex items-center p-5 mb-10  rounded-tl-xl rounded-tr-xl">
+      <div className="bg-secondary-color w-full flex items-center p-5 mb-10 rounded-tl-xl rounded-tr-xl">
         <p className="text-2xl text-primary-color font-semibold">
           Terms & Conditions
         </p>
       </div>
-      <div className=" flex justify-center items-center">
+      <div className="flex justify-center items-center">
         <div className="w-full lg:w-[90%]">
           <div className="">
             <JoditEditor
@@ -38,4 +46,5 @@ const TermsPage = () => {
     </div>
   );
 };
+
 export default TermsPage;

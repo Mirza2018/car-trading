@@ -16,7 +16,6 @@ const ViewDetailsPage = ({
   return (
     <Modal
       // title="Modal responsive width"
-      centered
       open={openResponsive}
       onOk={() => setOpenResponsive(false)}
       onCancel={() => setOpenResponsive(false)}

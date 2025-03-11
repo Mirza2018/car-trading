@@ -5,7 +5,6 @@ const InboxPage = () => {
     return (
         <div>
             <Message />
-   
         </div>
     );
 };

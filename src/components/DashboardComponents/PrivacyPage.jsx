@@ -1,23 +1,30 @@
-"use client"
+"use client";
 import { Button } from "antd";
-import JoditEditor from "jodit-react";
+import dynamic from "next/dynamic";
 import { useRef, useState } from "react";
+
+const JoditEditor = dynamic(
+  () => import("jodit-react").then((mod) => mod.default),
+  {
+    ssr: false,
+  }
+);
 
 const PrivacyPage = () => {
   const editor = useRef(null);
   const [content, setContent] = useState("");
   const handleOnSave = () => {
-    console.log("Saved PP");
+    console.log("Saved Privacy Policy");
   };
 
   return (
     <div className="">
-      <div className="bg-secondary-color w-full flex items-center p-5 mb-10  rounded-tl-xl rounded-tr-xl">
+      <div className="bg-secondary-color w-full flex items-center p-5 mb-10 rounded-tl-xl rounded-tr-xl">
         <p className="text-2xl text-primary-color font-semibold">
           Privacy Policy
         </p>
       </div>
-      <div className=" flex justify-center items-center">
+      <div className="flex justify-center items-center">
         <div className="w-full lg:w-[90%]">
           <div className="">
             <JoditEditor
@@ -38,4 +45,5 @@ const PrivacyPage = () => {
     </div>
   );
 };
+
 export default PrivacyPage;

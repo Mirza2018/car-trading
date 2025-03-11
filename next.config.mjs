@@ -12,7 +12,18 @@ const nextConfig = {
       },
     ],
   },
-  transpilePackages: ["antd", "rc-util", "rc-picker", "dayjs", "jodit-react"],
+  transpilePackages: [
+    "antd",
+    "rc-util",
+    "rc-picker",
+    "rc-tree",
+    "rc-table",
+    "rc-pagination",
+    "rc-input",
+    "@ant-design/icons",
+    "dayjs",
+    "jodit-react",
+  ],
 };
 
 export default nextConfig;

@@ -1,4 +1,5 @@
 "use client";
+
 import PrivacyPage from "@/components/DashboardComponents/PrivacyPage";
 import React from "react";
 

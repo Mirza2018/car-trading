@@ -18,7 +18,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isProfile, setIsProfile] = useState(false);
-console.log({isProfile});
+// console.log({isProfile});
 
   const menuRef = useRef(null); // Create a ref to track the menu
   const profileRef = useRef(null); // Create a ref to track the profile

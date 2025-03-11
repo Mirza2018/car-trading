@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react"; // Add useEffect
 import { Input, Avatar, Badge, Button, Upload, Modal, message } from "antd";
 import {
   SmileOutlined,
@@ -208,7 +208,7 @@ const ChatWindow = ({ chat, messages }) => {
 
 export default function Home() {
   const [activeChat, setActiveChat] = useState(null);
-  const [isMobileView, setIsMobileView] = useState(false);
+  const [isMobileView, setIsMobileView] = useState(false); // Default to false for SSR
   const [showChatList, setShowChatList] = useState(true);
 
   const chats = [
@@ -283,12 +283,13 @@ export default function Home() {
   };
 
   // Effect to handle responsive layout
-  useState(() => {
+  useEffect(() => {
+    // Changed from useState to useEffect
     const handleResize = () => {
       setIsMobileView(window.innerWidth < 768);
     };
 
-    handleResize();
+    handleResize(); // Set initial value
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
