@@ -262,6 +262,7 @@ const CarsForSale = () => {
                   setOpenResponsive={setOpenResponsive}
                   car={car}
                   sendOffer={false}
+                  buyNow={false}
                 />
               </div>
             </div>

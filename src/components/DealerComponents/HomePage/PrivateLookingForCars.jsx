@@ -182,6 +182,7 @@ const PrivateLookingForCars = () => {
                   setOpenResponsive={setopenOfferCar}
                   car={car}
                   sendOffer={true}
+                  buyNow={false}
                 />
                 <button
                   onClick={() => setOpenResponsive(true)}
@@ -196,6 +197,7 @@ const PrivateLookingForCars = () => {
                   setOpenResponsive={setOpenResponsive}
                   car={car}
                   sendOffer={false}
+                  buyNow={false}
                 />
               </div>
             </div>

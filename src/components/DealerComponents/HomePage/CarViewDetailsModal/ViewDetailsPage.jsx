@@ -12,6 +12,7 @@ const ViewDetailsPage = ({
   openResponsive,
   car,
   sendOffer,
+  buyNow,
 }) => {
   return (
     <Modal
@@ -67,41 +68,14 @@ const ViewDetailsPage = ({
                 </p>
               </div>
 
-              {sendOffer && (
+              {buyNow && (
                 <div className="flex flex-col gap-3 ">
                   <h1>Incl. VAT / Incl. Reg.</h1>
-
-                  {/* <button
-                  style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
-                  className="bg-highlight-color text-white  font-semibold py-2  px-11 rounded-lg  cursor-pointer  hover:animate-pulse flex flex-col  items-start w-fit "
-                >
-                  <p className="text-[10px] ">Buy Now :</p>
-                  <p>{car?.buyNowPrice}</p>
-                </button> */}
                   <Link href={`/offer-car/007`}>
                     <BuyNowBtn price={car?.buyNowPrice} />
                   </Link>
 
                   <MakeABidBtn />
-                  {/* <button
-                  onClick={() => setBidOpen(!bidOpen)}
-                  style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
-                  className="bg-highlight-color text-white  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap w-fit"
-                >
-                  Make An Bid Price
-                </button>
-
-                {bidOpen && (
-                  <Input
-                    type="number"
-                    className="!bg-[#FFDFB8] !w-[160px] transition-all"
-                    name="bid"
-                    ref={bidRef}
-                    placeholder="input bid price"
-                    suffix={suffix}
-                    size="large"
-                  />
-                )} */}
                 </div>
               )}
             </div>
