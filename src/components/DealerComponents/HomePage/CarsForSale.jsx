@@ -238,9 +238,9 @@ const CarsForSale = () => {
                 </p>
               </div>
               <div className="flex flex-col gap-5 ">
-                <Link href={`/final-note`}>
+                {/* <Link href={`/final-note`}> */}
                   <BuyNowBtn price={car?.buyNowPrice} />
-                </Link>
+                {/* </Link> */}
                 <ViewDetailsPage
                   openResponsive={openOfferCar}
                   setOpenResponsive={setopenOfferCar}

@@ -1,6 +1,6 @@
 import { AllImages } from "@/assets/AllImages";
 import { InboxOutlined, UploadOutlined } from "@ant-design/icons";
- 
+
 import { Button, Form, Input, Radio, Upload } from "antd";
 import { useForm } from "antd/es/form/Form";
 import Image from "next/image";
@@ -42,25 +42,39 @@ const SellCarAllDetails = () => {
       <h1 className="text-4xl font-bold">The car&apos;s information</h1>
       <div className="h1 w-full border-t border-text-light-color my-5"></div>
       <h1 className="text-2xl font-bold mb-5">Number plate*</h1>
-      <Input
-        ref={inputRef}
-        placeholder="input search text"
-        className=""
-        suffix={
-          <div
-            onClick={handleEditClick}
-            className="bg-highlight-color  rounded py-2 px-10"
-          >
-            <p className="text-white font-bold text-lg">Edit</p>
-          </div>
-        }
-        prefix={
-          <div className="bg-[#007FFF] flex flex-col justify-center items-center gap-2 rounded py-2 px-5">
-            <Image width={0} height={0} alt="search" src={AllImages.star} />
-            <Image width={0} height={0} alt="search" src={AllImages.dk} />
-          </div>
-        }
-      />
+      <div className="text-center mb-3 w-[600px]">
+        <Input
+          //  ref={inputRef}
+          placeholder="Enter license plate"
+          className=""
+          suffix={
+            <div
+              //  onClick={handleEditClick}
+              className="bg-highlight-color  rounded py-2 px-8 cursor-pointer"
+            >
+              Edit
+            </div>
+          }
+          prefix={
+            <div className="bg-[#007FFF] flex flex-col justify-center items-center gap-2 rounded py-2 px-7">
+              <Image
+                width={0}
+                height={0}
+                alt="search"
+                src={AllImages.star}
+                className="w-7"
+              />
+              <Image
+                width={0}
+                height={0}
+                alt="search"
+                className="w-6"
+                src={AllImages.dk}
+              />
+            </div>
+          }
+        />
+      </div>
       <p className="mt-2 text-lg font-medium">
         TESLA Model Y, Hatchback, 393 KW
       </p>

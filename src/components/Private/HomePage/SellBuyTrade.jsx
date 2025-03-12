@@ -54,7 +54,7 @@ const SellBuyTrade = () => {
               Get Offer
             </button>
           </div> */}
-          <div className="text-center mb-16 mx-24">
+          <div className="text-center mb-16 mx-10">
             <Input
               //  ref={inputRef}
               placeholder="Enter license plate"
@@ -62,7 +62,7 @@ const SellBuyTrade = () => {
               suffix={
                 <div
                   //  onClick={handleEditClick}
-                  className="bg-highlight-color  rounded py-3 px-10 cursor-pointer"
+                  className="bg-highlight-color  rounded py-2 px-8 cursor-pointer"
                 >
                   <Link
                     href="/sell-car"
@@ -73,14 +73,15 @@ const SellBuyTrade = () => {
                 </div>
               }
               prefix={
-                <div className="bg-[#007FFF] flex flex-col justify-center items-center gap-2 rounded py-2 px-5">
+                <div className="bg-[#007FFF] flex flex-col justify-center items-center gap-2 rounded py-2 px-7">
                   <Image
                     width={0}
                     height={0}
                     alt="search"
                     src={AllImages.star}
+                    className="w-7"
                   />
-                  <Image width={0} height={0} alt="search" src={AllImages.dk} />
+                  <Image width={0} height={0} alt="search" className="w-6" src={AllImages.dk} />
                 </div>
               }
             />

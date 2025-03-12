@@ -1,10 +1,8 @@
 "use client";
 import { AllImages } from "@/assets/AllImages";
-import { Col, Divider, Modal, Row } from "antd";
+import { Divider } from "antd";
 import Image from "next/image";
-import React, { useState } from "react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import SingleCarInfo from "./SingleCarInfo/SingleCarInfo";
+import { useState } from "react";
 import ViewDetailsPage from "./CarViewDetailsModal/ViewDetailsPage";
 
 const PrivateLookingForCars = () => {

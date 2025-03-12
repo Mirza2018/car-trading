@@ -71,9 +71,9 @@ const ViewDetailsPage = ({
               {buyNow && (
                 <div className="flex flex-col gap-3 ">
                   <h1>Incl. VAT / Incl. Reg.</h1>
-                  <Link href={`/offer-car/007`}>
+                  {/* <Link href={`/offer-car/007`}> */}
                     <BuyNowBtn price={car?.buyNowPrice} />
-                  </Link>
+                  {/* </Link> */}
 
                   <MakeABidBtn />
                 </div>

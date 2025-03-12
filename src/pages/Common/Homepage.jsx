@@ -21,11 +21,11 @@ const Homepage = () => {
       {carUser?.role === "dealer" ? (
         <>
           <div>
-            <div className="grid grid-cols-2 gap-5 my-10 select-none text-center">
+            <div className="grid grid-cols-2 gap-5 my-10 select-none text-center px-2">
               <h1
                 onClick={() => setIsSellCar(true)}
                 style={{ fontSize: "clamp(16px, 1vw + 1rem ,30px)" }}
-                className={`" font-semibold  py-5 md:px-20 px-4 rounded-lg  cursor-pointer  hover:animate-pulse  flex justify-center items-center leading-none" ${
+                className={`" font-semibold  sm:px-[3vw] px-2 rounded-lg  cursor-pointer  hover:animate-pulse  flex justify-center items-center leading-none" ${
                   isSellCar
                     ? "bg-highlight-color text-white "
                     : "bg-base-color text-text-color"
@@ -36,7 +36,7 @@ const Homepage = () => {
               <h1
                 onClick={() => setIsSellCar(false)}
                 style={{ fontSize: "clamp(16px, 1vw + 1rem ,30px)" }}
-                className={`" font-semibold  py-5 md:px-20 px-4 rounded-lg  cursor-pointer  hover:animate-pulse " ${
+                className={`" font-semibold  py-[1vw] sm:px-[3vw] px-2 rounded-lg  cursor-pointer  hover:animate-pulse " ${
                   isSellCar
                     ? "bg-base-color text-text-color"
                     : "bg-highlight-color text-white "
