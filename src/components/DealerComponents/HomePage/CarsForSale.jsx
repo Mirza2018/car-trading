@@ -213,7 +213,7 @@ const CarsForSale = () => {
                 </div>
               </div>
             </div>
-            <div className="flex xl:flex-row flex-row-reverse flex-wrap gap-10 items-center justify-between flex-1">
+            <div className="flex xl:flex-row  flex-wrap gap-10 items-center justify-between flex-1">
               <div className=" flex items-center gap-2 border-x border-secondary-color xl:h-full px-5">
                 <Image
                   alt="speed"
@@ -237,7 +237,7 @@ const CarsForSale = () => {
                   Minimum price <br /> achieved
                 </p>
               </div>
-              <div className="flex flex-col gap-5 ">
+              <div className="flex md:flex-col  gap-5 flex-wrap">
                 {/* <Link href={`/final-note`}> */}
                   <BuyNowBtn price={car?.buyNowPrice} />
                 {/* </Link> */}
