@@ -1,12 +1,16 @@
-import React from "react";
+"use client";
+import SignatureModal from "@/components/DealerComponents/FinalNote.jsx/SignatureModal";
+import React, { useState } from "react";
 import { FaShare } from "react-icons/fa";
 import { FaRegSquareCheck } from "react-icons/fa6";
 import { IoIosArrowDown } from "react-icons/io";
 import { LiaQuestionCircleSolid } from "react-icons/lia";
 import { TiPrinter } from "react-icons/ti";
 
-
 const FinalNode = () => {
+  const [isSignatureModalOpen, setIsSignatureModalOpen] = useState(true);
+  const signature = localStorage.getItem("signature");
+
   return (
     <div className="container mx-auto  border-2 border-secondary-color rounded-md my-20">
       <div className="max-w-[1350px]  mx-auto my-10">
@@ -215,16 +219,25 @@ const FinalNode = () => {
             <p className="text-base font-medium">Kasper Munch Sørensen</p>
             <p className="text-base font-medium">Date: 2025-01-27 13:12:38</p>
           </div>
-          <div className="flex md:flex-row flex-col justify-between md:items-end items-center gap-4 md:gap-0">
-            <div className="flex flex-col  justify-center items-center gap-2">
-              <p className=" h-36 aspect-video border-2 border-dotted border-highlight-color rounded-lg"></p>
-              <p className="text-base font-medium">Buyer Signature</p>
-              <p className="text-base font-medium">Autoone (Guide)</p>
-              <p className="text-base font-medium">Date: 2025-01-27 13:12:38</p>
+
+          <div className="flex flex-col justify-center  gap-2  items-center">
+            <div className=" h-36 aspect-video border-2 border-dotted border-highlight-color rounded-lg flex justify-center items-center relative">
+              { signature && <img
+                className="w-96 absolute"
+                src={signature}
+                alt="Saved Signature"
+              />}
+              
             </div>
-            <p className="bg-base-color w-fit px-8 py-2 border border-secondary-color rounded-md ">
+            <p className="text-base font-medium">Buyer Signature</p>
+            <p className="text-base font-medium">Autoone (Guide)</p>
+            <p className="text-base font-medium">Date: 2025-01-27 13:12:38</p>
+          </div>
+
+          <div className="!flex !justify-end !items-end">
+            <button className="bg-base-color  w-fit px-8 py-2 border border-secondary-color rounded-md text-end h-fit">
               30.000,00 kr.
-            </p>
+            </button>
           </div>
         </section>
 
@@ -263,7 +276,10 @@ const FinalNode = () => {
               <TiPrinter className="text-xl" />
               Print
             </button>
-            <button className="font-bold text-white bg-highlight-color p-2 rounded-md flex justify-center items-center gap-2">
+            <button
+              onClick={() => setIsSignatureModalOpen(true)}
+              className="font-bold text-white bg-highlight-color p-2 rounded-md flex justify-center items-center gap-2"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="25"
@@ -298,6 +314,10 @@ const FinalNode = () => {
               </svg>
               Send for signature
             </button>
+            <SignatureModal
+              isSignatureModalOpen={isSignatureModalOpen}
+              setIsSignatureModalOpen={setIsSignatureModalOpen}
+            />
             <button className="font-bold text-white bg-highlight-color p-2 rounded-md flex justify-center items-center gap-2">
               <FaShare className="text-xl text-white" />
               Save and send
@@ -310,3 +330,7 @@ const FinalNode = () => {
 };
 
 export default FinalNode;
+
+// {
+//   signature && <img src={signature} alt="Saved Signature" />;
+// }

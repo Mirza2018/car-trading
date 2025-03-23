@@ -4,6 +4,8 @@ import React, { useState } from "react";
 
 const BuyNowBtn = ({ price }) => {
   const [isBuy, setIsBuy] = useState(false);
+  const [isCongrat, setIsCongrat] = useState(false);
+
   return (
     <React.Fragment>
       <button
@@ -31,13 +33,47 @@ const BuyNowBtn = ({ price }) => {
           >
             No
           </Button>
-          <Link href={`/final-note`}>
+
+          <Button
+            onClick={() => {
+              setIsCongrat(true);
+              setIsBuy(false);
+            }}
+            className={`text-xl py-5 px-8 bg-highlight-color !hover:bg-red-600 `}
+            type="primary"
+          >
+            yes
+          </Button>
+        </section>
+      </Modal>
+
+      <Modal open={isCongrat} onCancel={() => setIsCongrat(false)} footer={[]}>
+        <h1 className="text-center text-2xl  font-medium mt-5 mb-5">
+          Congratulations on Your Purchase!
+        </h1>
+        <p className="font-medium text-center mx-20 mb-5">
+          Your car has been successfully purchased. Thank you for the deal!! you
+          can find your car in “Total Buy Car“
+        </p>
+        <section className="flex justify-center items-center ">
+          <Button
+            className="text-xl py-5 px-8 !text-black !bg-base-color border border-secondary-color"
+            type="primary"
+            onClick={() => setIsBuy(false)}
+            style={{
+              marginRight: 12,
+              background: "rgba(221, 221, 221, 1)",
+            }}
+          >
+            No
+          </Button>
+          <Link href={`/dashboard/total-dealer-car-sell`}>
             <Button
               // onClick={deleteSingleCategory}
               className={`text-xl py-5 px-8 bg-highlight-color !hover:bg-red-600 `}
               type="primary"
             >
-              yes
+              Go to Buy Car
             </Button>
           </Link>
         </section>

@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Button, Input, Space, Table, Tooltip } from "antd";
+import Link from "next/link";
 import { GoEye } from "react-icons/go";
 
 // Function to get unique company names
@@ -70,6 +71,31 @@ const CarListTable = ({
             >
               {/* <GoEye style={{ fontSize: "24px" }} /> */}
               See Details
+            </Button>
+          </Tooltip>
+        </Space>
+      ),
+    },
+    {
+      title: "Action",
+      key: "action",
+      render: (_, record) => (
+        <Space
+          size="middle"
+          className="border p-2 rounded !border-highlight-color"
+        >
+          {/* View Details Tooltip */}{" "}
+          <Link href={`/final-note`}>
+            <Tooltip placement="right" title="View Details">
+              <Button className="!bg-highlight-color   !text-white">
+                Make contract
+              </Button>
+            </Tooltip>
+          </Link>
+          <Tooltip placement="right" title="View Details">
+            <Button className="!border-highlight-color !text-black ">
+              {/* <GoEye style={{ fontSize: "24px" }} /> */}
+              Order Transport
             </Button>
           </Tooltip>
         </Space>

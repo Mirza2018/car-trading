@@ -1,5 +1,6 @@
 "use client";
 import CarsForSale from "@/components/DealerComponents/HomePage/CarsForSale";
+import FilterSection from "@/components/DealerComponents/HomePage/FilterOption/FilterSection";
 import PrivateLookingForCars from "@/components/DealerComponents/HomePage/PrivateLookingForCars";
 import Reviews from "@/components/Private/AboutUsPage/Reviews";
 import FairPriceCard from "@/components/Private/HomePage/FairPriceCard";
@@ -13,11 +14,12 @@ import useCookie from "@/cookie/useCookie";
 import React, { useState } from "react";
 
 const Homepage = () => {
-    const [carUser, loading] = useCookie("car-trading_user");
+  const [carUser, loading] = useCookie("car-trading_user");
   const [isSellCar, setIsSellCar] = useState(true);
 
   return (
     <div className="text-text-color container mx-auto">
+      <FilterSection />
       {carUser?.role === "dealer" ? (
         <>
           <div>
