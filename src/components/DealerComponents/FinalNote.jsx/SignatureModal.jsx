@@ -31,7 +31,7 @@ const SignatureModal = ({ setIsSignatureModalOpen, isSignatureModalOpen }) => {
       onOk={() => setIsSignatureModalOpen(false)}
       onCancel={() => setIsSignatureModalOpen(false)}
       footer={[
-        <div className="flex gap-3 justify-end items-center">
+        <div key={"footer-button"} className="flex gap-3 justify-end items-center">
           <button
             className=" text-[#808080] text-base  px-5  py-2 rounded-lg"
             onClick={() => setIsSignatureModalOpen(false)}
