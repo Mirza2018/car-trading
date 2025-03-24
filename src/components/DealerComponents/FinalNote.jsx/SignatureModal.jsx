@@ -54,13 +54,13 @@ const SignatureModal = ({ setIsSignatureModalOpen, isSignatureModalOpen }) => {
           </button>
         </div>,
       ]}
-      width={700}
+      width={800}
     >
-      <div className="bg-[#e8edf1] drop-shadow-md">
+      <div className="bg-[#e8edf1] drop-shadow-md flex  justify-center items-center">
         {/* <h2>Sign Here</h2> */}
         <SignatureCanvas
           ref={sigCanvas}
-          canvasProps={{ width: 700, height: 300, className: "sigCanvas " }}
+          canvasProps={{ width: 700, height: 400, className: "sigCanvas " }}
         />
 
       </div>

@@ -93,7 +93,7 @@ const Navbar = () => {
     ],
     dealer: [
       // { name: "Home", path: "/dealer" }, // Overridden Home for dealer
-      { name: "Listings", path: "/listings" },
+      // { name: "Listings", path: "/listings" },
       { name: "Task", path: "/", onClick: true },
       { name: "Inbox", path: "/inbox" },
       { name: "Dashboard", path: "/dashboard/total-dealer-car-sell" },

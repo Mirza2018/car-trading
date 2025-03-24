@@ -92,12 +92,14 @@ const CarListTable = ({
               </Button>
             </Tooltip>
           </Link>
-          <Tooltip placement="right" title="View Details">
-            <Button className="!border-highlight-color !text-black ">
-              {/* <GoEye style={{ fontSize: "24px" }} /> */}
-              Order Transport
-            </Button>
-          </Tooltip>
+          <Link href={`total-dealer-car-sell/order-transport/444`}>
+            <Tooltip placement="right" title="View Details">
+              <Button className="!border-highlight-color !text-black ">
+                {/* <GoEye style={{ fontSize: "24px" }} /> */}
+                Order Transport
+              </Button>
+            </Tooltip>
+          </Link>
         </Space>
       ),
     },

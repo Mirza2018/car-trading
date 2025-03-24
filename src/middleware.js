@@ -2,36 +2,39 @@ import { NextResponse } from "next/server";
 
 export function middleware(request) {
   const { pathname, origin } = request.nextUrl;
+  console.log("Received request for pathname:", pathname);
+
   const userCookie = request.cookies.get("car-trading_user");
-
-  const publicPaths = ["/", "/about-us", "/contact-us"];
-
   if (!userCookie) {
+    console.log("No user cookie found, checking public paths");
+    const publicPaths = ["/", "/about-us", "/contact-us"];
     if (!publicPaths.includes(pathname)) {
+      console.log("Pathname not in public paths, redirecting to home");
       return NextResponse.redirect(new URL("/", origin));
     }
+    console.log("Pathname is public, proceeding");
     return NextResponse.next();
   }
 
+  console.log("User cookie found, parsing user");
   let user;
   try {
     user = JSON.parse(decodeURIComponent(userCookie.value));
+    console.log("User parsed successfully:", user);
   } catch (error) {
+    console.log("Error parsing user, deleting cookie and redirecting:", error);
     const response = NextResponse.redirect(new URL("/", origin));
     response.cookies.delete("car-trading_user");
     return response;
   }
 
   if (pathname.startsWith("/dashboard")) {
+    console.log("Accessing dashboard, checking user role");
     if (!user.role) {
-      const allowedDealerDashboardPaths = [
-      ];
-      if (!allowedDealerDashboardPaths.includes(pathname)) {
-        return NextResponse.redirect(
-          new URL("/", origin)
-        );
-      }
+      console.log("No user role found, redirecting to home");
+      return NextResponse.redirect(new URL("/", origin));
     } else if (user.role === "dealer") {
+      console.log("User is a dealer, checking allowed paths");
       const allowedDealerDashboardPaths = [
         "/dashboard/total-dealer-car-sell",
         "/dashboard/order-transport",
@@ -39,12 +42,20 @@ export function middleware(request) {
         "/dashboard/terms",
         "/dashboard/privacy",
       ];
-      if (!allowedDealerDashboardPaths.includes(pathname)) {
+      const isAllowedPath = allowedDealerDashboardPaths.some((path) =>
+        pathname.startsWith(path)
+      );
+      const isOrderTransportPath = pathname.startsWith(
+        "/dashboard/total-dealer-car-sell/order-transport"
+      );
+      if (!isAllowedPath && !isOrderTransportPath) {
+        console.log("Dealer trying to access unauthorized path, redirecting");
         return NextResponse.redirect(
           new URL("/dashboard/total-dealer-car-sell", origin)
         );
       }
     } else if (user.role === "user") {
+      console.log("User is a regular user, checking allowed paths");
       const allowedUserDashboardPaths = [
         "/dashboard/total-private-car-sell",
         "/dashboard/total-car-sold",
@@ -54,7 +65,11 @@ export function middleware(request) {
         "/dashboard/terms",
         "/dashboard/privacy",
       ];
-      if (!allowedUserDashboardPaths.includes(pathname)) {
+      const isAllowedPath = allowedUserDashboardPaths.some((path) =>
+        pathname.startsWith(path)
+      );
+      if (!isAllowedPath) {
+        console.log("User trying to access unauthorized path, redirecting");
         return NextResponse.redirect(
           new URL("/dashboard/total-private-car-sell", origin)
         );
@@ -62,16 +77,7 @@ export function middleware(request) {
     }
   }
 
-  if (pathname === "/submit-listing" && user.role !== "user") {
-    return NextResponse.redirect(new URL("/", origin));
-  }
-  if (
-    (pathname === "/listings" || pathname === "/task") &&
-    user.role !== "dealer"
-  ) {
-    return NextResponse.redirect(new URL("/", origin));
-  }
-
+  console.log("Request processed, continuing");
   return NextResponse.next();
 }
 
