@@ -1,14 +1,16 @@
+"use client"
 import SingleOfferCarComponent from '@/components/DashboardComponents/OfferCarPage/SingleOfferCarComponent';
-import React from 'react';
+import React from "react";
 
 const OfferCarPage = () => {
-    return (
-        <div className='flex flex-col gap-10'>
+  return (
+    <div className="flex flex-col gap-10">
+      <SingleOfferCarComponent/>
             <SingleOfferCarComponent/>
             <SingleOfferCarComponent/>
-            <SingleOfferCarComponent/>
-        </div>
-    );
+
+    </div>
+  );
 };
 
 export default OfferCarPage;

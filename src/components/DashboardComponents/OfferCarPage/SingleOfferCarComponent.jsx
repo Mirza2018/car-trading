@@ -1,37 +1,18 @@
 "use client";
-import { AllImages } from "@/assets/AllImages";
+import React from "react";
 
-import Image from "next/image";
-import React, { useState } from "react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import OfferCarSideInfo from "./OfferCarSideInfo";
+import { IoMdLink } from "react-icons/io";
 
+import Link from "next/link";
+import ImageSlider from "@/components/DealerComponents/HomePage/CarViewDetailsModal/ImageSlider";
+import BuyNowBtn from "@/components/DealerComponents/HomePage/CarViewDetailsModal/BuyNowBtn";
+import MakeABidBtn from "@/components/DealerComponents/HomePage/CarViewDetailsModal/MakeABidBtn";
+import CarAllDetails from "@/components/DealerComponents/HomePage/CarViewDetailsModal/CarAllDetails";
+import { Button } from "antd";
+
+ 
 const SingleOfferCarComponent = ({ openCarSee, setOpennCarSee }) => {
-  const images = [
-    { src: AllImages.car, alt: "Car 1" },
-    { src: AllImages.bids, alt: "Car 2" },
-    { src: AllImages.car, alt: "Car 3" },
-    { src: AllImages.car, alt: "Car 4" },
-  ];
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const handleRight = (index) => {
-    console.log(index);
 
-    if (currentIndex === index - 1) {
-      setCurrentIndex(0);
-    } else {
-      setCurrentIndex(() => currentIndex + 1);
-    }
-  };
-  const handleleft = (index) => {
-    console.log(index);
-
-    if (currentIndex === 0) {
-      setCurrentIndex(index - 1);
-    } else {
-      setCurrentIndex(() => currentIndex - 1);
-    }
-  };
   const car = {
     buyNowPrice: "6,300 EUR",
     model: "Honda CR-V",
@@ -54,96 +35,45 @@ const SingleOfferCarComponent = ({ openCarSee, setOpennCarSee }) => {
 
   return (
     <div>
-      <main className="grid grid-cols-12 gap-4">
+      <main className="md:grid grid-cols-12  gap-4">
+        {/* Left Side */}
         <section className="col-span-5">
-          <div className=" py-10">
-            <div className="mx-auto max-w-screen-lg px-4">
-              {/* Main Image Display */}
-              <div className="mb-6 relative">
-                <div className="relative h-72 sm:h-96 w-full overflow-hidden rounded-lg shadow-md">
-                  <Image
-                    src={images[currentIndex].src}
-                    alt={images[currentIndex].alt}
-                    fill
-                    style={{ objectFit: "cover" }}
-                    sizes="(max-width: 768px) 100vw, 768px"
-                  />
-                </div>
-                <div
-                  onClick={() => handleleft(images.length)}
-                  className="rounded-full flex justify-center items-center bg-[#F3F9FB]/50 size-8 absolute top-1/2 left-0 cursor-pointer select-none"
-                >
-                  <Image
-                    src={AllImages.right}
-                    alt="right"
-                    width={0}
-                    height={0}
-                    className=""
-                  />
-                </div>
-                <div
-                  onClick={() => handleRight(images.length)}
-                  className="rounded-full flex justify-center items-center bg-[#F3F9FB]/50 size-8 absolute top-1/2 right-0 cursor-pointer select-none"
-                >
-                  <Image src={AllImages.left} alt="left" width={0} height={0} />
-                </div>
-              </div>
+          <ImageSlider />
+        </section>
+        {/* Right Side */}
+        <section className="col-span-7">
+          {/* Top portion  */}
+          <div className="flex flex-wrap gap-4 justify-between items-center">
+            <div className="flex  justify-start items-center  font-bold text-base">
+              <IoMdLink className="rotate-90" />
+              Registration certificate
+            </div>
+            <div className=" font-bold text-base">Feb.03 13:06:18</div>
+            <div className="bg-base-color border border-secondary-color rounded-full aspect-square flex flex-col justify-center items-center px-2">
+              <h1 className="text-xl font-bold">{car?.priceInDKK}</h1>
+              <p className=" text-center text-sm">
+                Minimum price <br /> achieved
+              </p>
+            </div>
 
-              {/* Thumbnail Images */}
-              <div className="relative flex flex-wrap gap-2 justify-between">
-                {images.map((image, index) => (
-                  <div
-                    key={index}
-                    className={` cursor-pointer overflow-hidden rounded-md border-2 ${
-                      index === currentIndex
-                        ? "border-blue-500"
-                        : "border-transparent"
-                    }`}
-                    onClick={() => setCurrentIndex(index)}
-                  >
-                    <div className="relative h-20 w-28">
-                      <Image
-                        src={image.src}
-                        alt={image.alt}
-                        fill
-                        style={{ objectFit: "cover" }}
-                        sizes="(max-width: 768px) 50vw, 150px"
-                      />
-                    </div>
-                  </div>
-                ))}
-
-                <div
-                  onClick={() => handleleft(images.length)}
-                  className="rounded-full flex justify-center items-center  absolute top-8 -left-4 cursor-pointer select-none z-20"
-                >
-                  {/* <Image
-                                  src={AllImages.right}
-                                  alt="right"
-                                  width={0}
-                                  height={0}
-                                  className=""
-                                /> */}
-                  <FaChevronLeft />
-                </div>
-                <div
-                  onClick={() => handleRight(images.length)}
-                  className="rounded-full flex justify-center items-center absolute top-8 -right-4 cursor-pointer select-none z-20"
-                >
-                  {/* <Image
-                                  src={AllImages.left}
-                                  alt="left"
-                                  width={0}
-                                  height={0}
-                                /> */}
-                  <FaChevronRight />
-                </div>
-              </div>
+            <div className="flex flex-col gap-3 ">
+              <h1>Incl. VAT / Incl. Reg.</h1>
+              <Button
+                className={`text-xl py-5 px-8 !bg-highlight-color !hover:bg-red-600 `}
+                type="primary"
+              >
+                Accept
+              </Button>
+              <Button
+                className={`text-xl py-5 px-8 !bg-[#DC3545] !hover:bg-red-600 `}
+                type="primary"
+              >
+                Reject
+              </Button>
             </div>
           </div>
-        </section>
-        <section className="col-span-7">
-          <OfferCarSideInfo car={car} />
+          {/* Middel part car All Details */}
+          <CarAllDetails car={car} />
         </section>
       </main>
     </div>

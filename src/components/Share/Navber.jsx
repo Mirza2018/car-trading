@@ -12,7 +12,7 @@ import MyProfile from "./MyProfile";
 const Navbar = () => {
   const [carUser, loading] = useCookie("car-trading_user");
 
-  console.log(carUser, "carUser");
+  // console.log(carUser, "carUser");
 
   const task = true;
   const [isOpen, setIsOpen] = useState(false);
@@ -138,7 +138,7 @@ const Navbar = () => {
     setIsModalOpen(true);
   };
 
-  console.log(loading, "loading");
+  // console.log(loading, "loading");
 
   return (
     <div className="flex justify-around bg-secondary-color text-primary-color  items-center z-50 py-2  w-full">

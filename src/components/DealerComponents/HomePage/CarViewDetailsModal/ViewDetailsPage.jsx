@@ -6,7 +6,7 @@ import BuyNowBtn from "./BuyNowBtn";
 import MakeABidBtn from "./MakeABidBtn";
 import CarAllDetails from "./CarAllDetails";
 import Link from "next/link";
-
+ 
 const ViewDetailsPage = ({
   setOpenResponsive,
   openResponsive,

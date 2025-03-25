@@ -29,6 +29,10 @@ import ct7 from "./icons/ct7.svg";
 import ct8 from "./icons/ct8.svg";
 import ct9 from "./icons/ct9.svg";
 import ct10 from "./icons/ct10.svg";
+import cross from "./icons/cross.svg";
+import print from "./icons/print.svg";
+import signature from "./icons/signature.svg";
+import save from "./icons/save.svg";
 
 import profile from "./images/profile.png";
 import car from "./images/car.png";
@@ -121,4 +125,9 @@ export const AllImages = {
   about3,
   about4,
   about5,
+  cross,
+  print,
+  signature,
+  save, 
+
 };

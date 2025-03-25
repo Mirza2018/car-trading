@@ -19,7 +19,8 @@ const Homepage = () => {
 
   return (
     <div className="text-text-color container mx-auto">
-      <FilterSection />
+      {carUser?.role === "dealer" && <FilterSection />}
+
       {carUser?.role === "dealer" ? (
         <>
           <div>

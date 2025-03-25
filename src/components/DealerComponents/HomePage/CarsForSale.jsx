@@ -247,7 +247,7 @@ const CarsForSale = () => {
                   car={car}
                   sendOffer={true}
                 />
-
+ 
                 <MakeABidBtn />
                 <button
                   onClick={() => setOpenResponsive(true)}

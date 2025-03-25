@@ -1,19 +1,25 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import SignatureCanvas from "react-signature-canvas";
 import { Modal } from "antd";
 
-const SignatureModal = ({ setIsSignatureModalOpen, isSignatureModalOpen }) => {
+const SignatureModal = ({
+  setIsSignatureModalOpen,
+  isSignatureModalOpen,
+  onSignatureSave, // Add the callback prop
+}) => {
   const sigCanvas = useRef(null);
-  const [signature, setSignature] = useState(
-    localStorage.getItem("signature") || ""
-  );
+
   const saveSignature = () => {
-    const dataUrl = sigCanvas.current.toDataURL();
-    localStorage.setItem("signature", dataUrl);
-    setSignature(dataUrl);
-    setIsSignatureModalOpen(false);
-    sigCanvas.current.clear();
+    try {
+      const dataUrl = sigCanvas.current.toDataURL();
+      localStorage.setItem("signature", dataUrl);
+      onSignatureSave(dataUrl); // Call the callback to update the parent
+      setIsSignatureModalOpen(false);
+      sigCanvas.current.clear();
+    } catch (error) {
+      console.error("Error saving signature to localStorage:", error);
+    }
   };
 
   const clearSignature = () => {
@@ -31,23 +37,24 @@ const SignatureModal = ({ setIsSignatureModalOpen, isSignatureModalOpen }) => {
       onOk={() => setIsSignatureModalOpen(false)}
       onCancel={() => setIsSignatureModalOpen(false)}
       footer={[
-        <div key={"footer-button"} className="flex gap-3 justify-end items-center">
+        <div
+          key={"footer-button"}
+          className="flex gap-3 justify-end items-center"
+        >
           <button
-            className=" text-[#808080] text-base  px-5  py-2 rounded-lg"
+            className="text-[#808080] text-base px-5 py-2 rounded-lg"
             onClick={() => setIsSignatureModalOpen(false)}
           >
             Cancel
           </button>
-
           <button
-            className="border border-dashed border-highlight-color text-[#808080] text-base  px-5  py-2 rounded-lg"
+            className="border border-dashed border-highlight-color text-[#808080] text-base px-5 py-2 rounded-lg"
             onClick={clearSignature}
           >
             Clear
           </button>
-
           <button
-            className="bg-highlight-color text-white text-xl font-bold px-5  py-2 rounded-lg"
+            className="bg-highlight-color text-white text-xl font-bold px-5 py-2 rounded-lg"
             onClick={saveSignature}
           >
             Save Signature
@@ -56,13 +63,11 @@ const SignatureModal = ({ setIsSignatureModalOpen, isSignatureModalOpen }) => {
       ]}
       width={800}
     >
-      <div className="bg-[#e8edf1] drop-shadow-md flex  justify-center items-center">
-        {/* <h2>Sign Here</h2> */}
+      <div className="bg-[#e8edf1] drop-shadow-md flex justify-center items-center m-6">
         <SignatureCanvas
           ref={sigCanvas}
-          canvasProps={{ width: 700, height: 400, className: "sigCanvas " }}
+          canvasProps={{ width: 700, height: 400, className: "sigCanvas" }}
         />
-
       </div>
     </Modal>
   );

@@ -85,7 +85,7 @@ const CarListTable = ({
           className="border p-2 rounded !border-highlight-color"
         >
           {/* View Details Tooltip */}{" "}
-          <Link href={`/final-note`}>
+          <Link href={`total-dealer-car-sell/contract/777`}>
             <Tooltip placement="right" title="View Details">
               <Button className="!bg-highlight-color   !text-white">
                 Make contract

@@ -9,7 +9,7 @@ import useCookie from "@/cookie/useCookie";
 const Sidebar = ({ slider, setSlider }) => {
   const navigate = useRouter();
   const [carUser] = useCookie("car-trading_user");
-  console.log(carUser, "carUser");
+  // console.log(carUser, "carUser");
   const location = usePathname();
   const handleLogout = () => {
     const values = {

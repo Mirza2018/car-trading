@@ -1,8 +1,8 @@
 "use client";
 import { Button, Input, Space, Table, Tooltip } from "antd";
 import Link from "next/link";
- 
-const PrivateCarSellTable = ({
+
+const PrivateCarSoldTable = ({
   data,
   loading,
   setOpennCarSee,
@@ -57,16 +57,16 @@ const PrivateCarSellTable = ({
         </div>
       ),
     },
-    {
-      title: "Service Charge",
-      dataIndex: "serviceCharge",
-      sorter: (a, b) => a.serviceCharge - b.serviceCharge,
-      render: (_, record) => (
-        <div>
-          <p>{record.serviceCharge}$</p>
-        </div>
-      ),
-    },
+    // {
+    //   title: "Service Charge",
+    //   dataIndex: "serviceCharge",
+    //   sorter: (a, b) => a.serviceCharge - b.serviceCharge,
+    //   render: (_, record) => (
+    //     <div>
+    //       <p>{record.serviceCharge}$</p>
+    //     </div>
+    //   ),
+    // },
 
     {
       title: "Status",
@@ -74,15 +74,34 @@ const PrivateCarSellTable = ({
       render: (_, record) => (
         <Space size="middle">
           {/* View Details Tooltip */}
+
           <Tooltip placement="right" title="View Details">
             <Button
               onClick={() => setOpennCarSee(true)}
-              className="border-[#00721E] hover:border-[#34df61]"
+              className="!border-[#00721E] !text-black"
             >
-              {/* <GoEye style={{ fontSize: "24px" }} /> */}
               See Details
             </Button>
           </Tooltip>
+        </Space>
+      ),
+    },
+    {
+      title: "Action",
+      key: "action",
+      render: (_, record) => (
+        <Space size="middle">
+          {/* View Details Tooltip */}
+          <Link href={`total-car-sold/contract/777`}>
+            <Tooltip placement="right" title="View Details">
+              <Button
+                // onClick={() => setOpennCarSee(true)}
+                className="border-4 !border-white !ring-1 !ring-highlight-color !bg-highlight-color !text-white px-2"
+              >
+                See contract
+              </Button>
+            </Tooltip>
+          </Link>
         </Space>
       ),
     },
@@ -102,4 +121,4 @@ const PrivateCarSellTable = ({
   );
 };
 
-export default PrivateCarSellTable;
+export default PrivateCarSoldTable;

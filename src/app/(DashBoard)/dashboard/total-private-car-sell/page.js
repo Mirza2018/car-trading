@@ -3,10 +3,10 @@ import React from 'react';
 
 const page = () => {
     return (
-        <div>
+        <div> 
             <TotalPrivateCarSellPage/>
         </div>
     );
 };
-
+ 
 export default page;

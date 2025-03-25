@@ -1,5 +1,6 @@
 "use client";
 import { AllImages } from "@/assets/AllImages";
+import PrivateCarSoldTable from "@/components/DashboardComponents/TotalCarSold/PrivateCarSoldTable";
 import PrivateCarSeeDetails from "@/components/DashboardComponents/TotalPrivateCarSellPage/PrivateCarSeeDetails";
 import PrivateCarSellTable from "@/components/DashboardComponents/TotalPrivateCarSellPage/PrivateCarSellTable";
 import ViewDetailsPage from "@/components/DealerComponents/HomePage/CarViewDetailsModal/ViewDetailsPage";
@@ -7,7 +8,7 @@ import axios from "axios";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
-const TotalPrivateCarSellPage = () => {
+const TotalCarSold = () => {
   const [data, setData] = useState([]);
   const [openCarSee, setOpennCarSee] = useState(false);
 
@@ -27,6 +28,7 @@ const TotalPrivateCarSellPage = () => {
     fetchData();
   }, []);
   console.log(data, "data");
+
   const car = {
     buyNowPrice: "6,300 EUR",
     model: "Honda CR-V",
@@ -67,7 +69,7 @@ const TotalPrivateCarSellPage = () => {
               </div>
               <div className="text-start">
                 <p className="text-4xl font-bold mb-1">75</p>
-                <p className="text-base font-normal ">Total Car Sell</p>
+                <p className="text-base font-normal ">Total Car Sold</p>
                 <div className="text-xs font-normal text-[#A3A3A3] flex justify-center items-center gap-1">
                   <Image
                     width={0}
@@ -163,7 +165,7 @@ const TotalPrivateCarSellPage = () => {
       </div>
 
       <div className="">
-        <PrivateCarSellTable
+        <PrivateCarSoldTable
           data={data}
           loading={loading}
           setOpennCarSee={setOpennCarSee}
@@ -173,6 +175,7 @@ const TotalPrivateCarSellPage = () => {
           openCarSee={openCarSee}
           setOpennCarSee={setOpennCarSee}
         /> */}
+
         <ViewDetailsPage
           openResponsive={openCarSee}
           setOpenResponsive={setOpennCarSee}
@@ -185,4 +188,4 @@ const TotalPrivateCarSellPage = () => {
   );
 };
 
-export default TotalPrivateCarSellPage;
+export default TotalCarSold;
