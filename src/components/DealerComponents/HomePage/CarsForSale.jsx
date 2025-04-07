@@ -9,7 +9,7 @@ import ViewDetailsPage from "./CarViewDetailsModal/ViewDetailsPage";
 import MakeABidBtn from "./CarViewDetailsModal/MakeABidBtn";
 import BuyNowBtn from "./CarViewDetailsModal/BuyNowBtn";
 import Link from "next/link";
- 
+
 const CarsForSale = () => {
   const [openOfferCar, setopenOfferCar] = useState(false);
   const [openResponsive, setOpenResponsive] = useState(false);
@@ -239,7 +239,7 @@ const CarsForSale = () => {
               </div>
               <div className="flex md:flex-col  gap-5 flex-wrap">
                 {/* <Link href={`/final-note`}> */}
-                  <BuyNowBtn price={car?.buyNowPrice} />
+                <BuyNowBtn price={car?.buyNowPrice} />
                 {/* </Link> */}
                 <ViewDetailsPage
                   openResponsive={openOfferCar}
@@ -247,7 +247,7 @@ const CarsForSale = () => {
                   car={car}
                   sendOffer={true}
                 />
- 
+
                 <MakeABidBtn />
                 <button
                   onClick={() => setOpenResponsive(true)}
@@ -256,6 +256,15 @@ const CarsForSale = () => {
                 >
                   View Details
                 </button>
+                <Link href={`/inbox`} className="!w-full">
+                  {" "}
+                  <button
+                    style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
+                    className="bg-base-color !w-full text-black border border-secondary-color  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
+                  >
+                    Chat
+                  </button>
+                </Link>
 
                 <ViewDetailsPage
                   openResponsive={openResponsive}
