@@ -6,25 +6,32 @@ import { AiOutlineSend } from "react-icons/ai";
 const MakeABidBtn = () => {
   const [bidOpen, setBidOpen] = useState(false);
   const [isBuy, setIsBuy] = useState(false);
+  const [isBid, setIsBid] = useState(false);
   const bidRef = useRef(null);
 
   const bidValue = () => {
     console.log(bidRef.current.input.value);
     setBidOpen(false);
-    setIsBuy(true)
+    setIsBuy(true);
   };
   const suffix = (
-    <p onClick={bidValue} className="cursor-pointer">
-      <AiOutlineSend className="text-2xl text-highlight-color" />
+    <p className="cursor-pointer">
+      <AiOutlineSend
+        onClick={bidValue}
+        className={`text-2xl  text-highlight-color`}
+      />
     </p>
   );
   console.log(bidRef);
   return (
     <React.Fragment>
       <button
+        disabled={isBid}
         onClick={() => setBidOpen(!bidOpen)}
         style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
-        className="bg-highlight-color text-white  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap w-fit"
+        className={`   font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse text-white whitespace-nowrap w-fit ${
+          isBid ? "bg-[#00721E]" : "bg-highlight-color "
+        }`}
       >
         Make An Bid Price
       </button>
@@ -59,7 +66,10 @@ const MakeABidBtn = () => {
           </Button>
           {/* <Link href={`/final-note`}> */}
           <Button
-            onClick={() => setIsBuy(false)}
+            onClick={() => {
+              setIsBuy(false);
+              setIsBid(true);
+            }}
             className={`text-xl py-5 px-8 bg-highlight-color !hover:bg-red-600 `}
             type="primary"
           >

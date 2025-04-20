@@ -68,7 +68,7 @@ const SellBuyTrade = () => {
                     href="/sell-car"
                     className="text-white font-bold text-lg"
                   >
-                    Get Offer
+                   Search
                   </Link>
                 </div>
               }

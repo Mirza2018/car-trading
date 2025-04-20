@@ -19,9 +19,11 @@ const Homepage = () => {
 
   return (
     <div className="text-text-color container mx-auto">
+      {/* dealer */}
       {carUser?.role === "dealer" && <FilterSection />}
 
       {carUser?.role === "dealer" ? (
+        // dealer
         <>
           <div>
             <div className="grid grid-cols-2 gap-5 my-10 select-none text-center px-2">
@@ -48,10 +50,12 @@ const Homepage = () => {
                 Private looking for car (387)
               </h1>
             </div>
+            {/* Dealer */}
             {isSellCar ? <CarsForSale /> : <PrivateLookingForCars />}
           </div>
         </>
       ) : (
+        // Private User
         <>
           <div className="my-10">
             <SellBuyTrade />

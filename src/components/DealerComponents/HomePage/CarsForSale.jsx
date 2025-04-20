@@ -21,26 +21,6 @@ const CarsForSale = () => {
   ];
 
   // Track the current (main) image index
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const handleRight = (index) => {
-    console.log(index);
-
-    if (currentIndex === index - 1) {
-      setCurrentIndex(0);
-    } else {
-      setCurrentIndex(() => currentIndex + 1);
-    }
-  };
-  const handleleft = (index) => {
-    console.log(index);
-
-    if (currentIndex === 0) {
-      setCurrentIndex(index - 1);
-    } else {
-      setCurrentIndex(() => currentIndex - 1);
-    }
-  };
 
   const carDetailsArray = [
     {

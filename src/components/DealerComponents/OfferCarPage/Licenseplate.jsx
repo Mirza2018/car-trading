@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-const OfferCar = () => {
+const Licenseplate = () => {
   const [form] = useForm();
   const { RangePicker } = DatePicker;
 
@@ -62,60 +62,26 @@ const OfferCar = () => {
       </div> */}
       <Form onFinish={onFinsh} form={form} layout="vertical">
         <Form.Item
-          label={<span className="font-bold text-2xl">Car Category</span>}
-          name="category"
+          label={
+            <span className="font-bold text-2xl">Car License Plate Number</span>
+          }
+          name="licensePlate"
         >
-          <Select
-            className="!h-12 "
-            placeholder={
-              <span className="text-black text-xl ">
-                Private car or company car
-              </span>
-            }
-          >
-            <Select.Option value="privateCar">Private car</Select.Option>
-            <Select.Option value="companyCar">company car</Select.Option>
-          </Select>
+          <Input />
         </Form.Item>
-        {/* <Form.Item
-          label={<span className="font-bold text-2xl">Mark</span>}
-          name="mark"
-        >
-          <Select
-            placeholder={<span className="text-black text-xl">Brands</span>}
-          >
-            <Select.Option value="demo1">Demo1</Select.Option>
-            <Select.Option value="demo2">Demo2</Select.Option>
-            <Select.Option value="demo3">Demo3</Select.Option>
-          </Select>
-        </Form.Item> */}
+
         <Form.Item
           label={<span className="font-bold text-2xl">Mark</span>}
           name="mark"
         >
-          <Select
-            placeholder={<span className="text-black text-xl">Brands</span>}
-            className="!h-12 !bg-base-color"
-            showSearch
-            optionFilterProp="label"
-            filterSort={(optionA, optionB) =>
-              (optionA?.label ?? "")
-                .toLowerCase()
-                .localeCompare((optionB?.label ?? "").toLowerCase())
-            }
-            options={carBrands}
-          />
+          <Input />
         </Form.Item>
         <Form.Item
           text-2xl
           label={<span className="font-bold text-2xl">Model</span>}
           name="model"
         >
-          <Select
-            placeholder={<span className="text-black text-xl">Model</span>}
-            className="!h-12 !bg-base-color"
-            options={carModels}
-          />
+          <Input />
         </Form.Item>
         {/* 
         <p className="text-2xl font-medium pb-2">Model*</p>
@@ -123,10 +89,8 @@ const OfferCar = () => {
           <Input placeholder="Phone Number" className="py-3" />
         </Form.Item> */}
 
-        <h1 className="font-bold text-2xl mb-2">Cash price</h1>
-
         <Form.Item
-          label={<span className="font-medium text-base">Max price</span>}
+          label={<span className="font-bold text-2xl">Cash price</span>}
           name="cash"
           className="flex-1"
         >
@@ -167,19 +131,6 @@ const OfferCar = () => {
                 Wholesale/CVR
               </Checkbox>
             </div>
-          </Form.Item>
-
-          <Form.Item
-            className="flex-1"
-            label={<span className="font-bold text-2xl">New/used</span>}
-            name="newUsed"
-          >
-            <Select
-              placeholder={<span className="text-black text-xl">All</span>}
-            >
-              <Select.Option value="new">New</Select.Option>
-              <Select.Option value="used">Used</Select.Option>
-            </Select>
           </Form.Item>
         </div>
 
@@ -471,7 +422,7 @@ const OfferCar = () => {
   );
 };
 
-export default OfferCar;
+export default Licenseplate;
 
 const carBrands = [
   { label: "Acura", value: "acura" },

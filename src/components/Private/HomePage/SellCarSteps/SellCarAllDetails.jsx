@@ -1,7 +1,7 @@
 import { AllImages } from "@/assets/AllImages";
 import { InboxOutlined, UploadOutlined } from "@ant-design/icons";
 
-import { Button, Form, Input, Radio, Upload } from "antd";
+import { Button, Checkbox, Form, Input, Radio, Upload } from "antd";
 import { useForm } from "antd/es/form/Form";
 import Image from "next/image";
 import React, { useRef, useState } from "react";
@@ -50,9 +50,9 @@ const SellCarAllDetails = () => {
           suffix={
             <div
               //  onClick={handleEditClick}
-              className="bg-highlight-color  rounded py-2 px-8 cursor-pointer"
+              className="bg-highlight-color font-semibold text-white rounded py-2 px-8 cursor-pointer"
             >
-              Edit
+              Search
             </div>
           }
           prefix={
@@ -133,13 +133,13 @@ const SellCarAllDetails = () => {
               ]}
               name="equipment"
             >
-              <Radio.Group className=" flex flex-col gap-2">
-                <Radio value="Automatic transmission">
+              <Checkbox.Group className=" flex flex-col gap-2">
+                <Checkbox value="Automatic transmission">
                   Automatic transmission*
-                </Radio>
-                <Radio value="Trailer hitch">Trailer hitch</Radio>
-                <Radio value="Extra wheel set">Extra wheel set</Radio>
-              </Radio.Group>
+                </Checkbox>
+                <Checkbox value="Trailer hitch">Trailer hitch</Checkbox>
+                <Checkbox value="Extra wheel set">Extra wheel set</Checkbox>
+              </Checkbox.Group>
             </Form.Item>
           </div>
           <div className="flex-1">
