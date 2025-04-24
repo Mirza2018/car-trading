@@ -6,6 +6,10 @@ import {
   LinkedinFilled,
 } from "@ant-design/icons";
 import { FaApple, FaGooglePlay } from "react-icons/fa";
+import Image from "next/image";
+import { AllImages } from "@/assets/AllImages";
+import { Input } from "antd";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -78,7 +82,7 @@ const Footer = () => {
           </div>
           <div>
             <h3 className="font-medium text-[20px] mt-3">Join BoxCar</h3>
-            <p className="text-[15px] font-normal mb-3">
+            <p  className="text-[15px] font-normal mb-3">
               Receive pricing updates, shopping tips & more!
             </p>
             {/* <div className="flex flex-col space-y-4">
@@ -92,14 +96,48 @@ const Footer = () => {
               </button>
             </div> */}
             <div className="relative max-w-3xl">
-              <input
+              <Input
+                //  ref={inputRef}
+                placeholder="Your email"
+                className="w-full bg-[#ccdfe6] border-[#FFFFFF] border rounded-full  text-lg placeholder-[#53585a] focus:outline-none "
+                suffix={
+                  <div
+                    //  onClick={handleEditClick}
+                    className="whitespace-nowrap   bg-[#ff991c] text-white font-medium px-4 py-2 rounded-full lg:text-lg text-sm hover:opacity-90 transition-opacity"
+                  >
+                    <Link href="/sign-up" className="">
+                      Sign Up
+                    </Link>
+                  </div>
+                }
+                // prefix={
+                //   <div className="bg-[#007FFF] flex flex-col justify-center items-center gap-2 rounded py-2 px-7">
+                //     <Image
+                //       width={0}
+                //       height={0}
+                //       alt="search"
+                //       src={AllImages.star}
+                //       className="w-7"
+                //     />
+                //     <Image
+                //       width={0}
+                //       height={0}
+                //       alt="search"
+                //       className="w-6"
+                //       src={AllImages.dk}
+                //     />
+                //   </div>
+                // }
+              />
+
+              {/* <input
                 type="email"
                 placeholder="Your email"
                 className="w-full bg-[#ccdfe6] border-[#FFFFFF] border rounded-full px-6 py-6 text-lg placeholder-[#53585a] focus:outline-none pr-32"
               />
               <button className="absolute whitespace-nowrap right-2 top-1/2 -translate-y-1/2 bg-[#ff991c] text-white font-medium px-8 py-3 rounded-full text-lg hover:opacity-90 transition-opacity">
                 Sign Up
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
