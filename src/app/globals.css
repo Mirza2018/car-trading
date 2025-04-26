@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+
 .noText .ant-upload-list-text {
   display: none !important;
 }

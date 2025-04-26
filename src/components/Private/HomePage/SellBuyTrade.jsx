@@ -43,17 +43,7 @@ const SellBuyTrade = () => {
             </p>{" "}
           </div>
 
-          {/* <div className="  rounded-lg shadow-lg flex items-center ">
-            <span className="p-3 bg-blue-500 text-white ">DK</span>
-            <input
-              type="text"
-              placeholder="Enter license plate"
-              className="flex-1 border-2 p-2 "
-            />
-            <button className="bg-orange-500 text-white px-4 py-2 rounded-lg">
-              Get Offer
-            </button>
-          </div> */}
+
           <div className="text-center mb-16 mx-10">
             <Input
               //  ref={inputRef}

@@ -23,7 +23,6 @@ const SubmitListing = () => {
 
   console.log(isDistance);
 
-  const { RangePicker } = DatePicker;
   const [selectedPriceType, setSelectedPriceType] = useState(null);
   const [selectedFuleType, setSelectedFuleType] = useState(null);
   const [selectedGeartype, setSelectedGeartype] = useState(null);
@@ -51,7 +50,7 @@ const SubmitListing = () => {
     console.log(values);
   };
   return (
-    <div className="max-w-[1200px] md:mx-20 mx-4">
+    <div className="max-w-[1200px] md:mx-20 mx-4 select-none">
       <Form onFinish={onFinsh} form={form} layout="vertical">
         <Form.Item
           label={<span className="font-bold text-2xl">Car Category</span>}

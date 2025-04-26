@@ -82,19 +82,10 @@ const Footer = () => {
           </div>
           <div>
             <h3 className="font-medium text-[20px] mt-3">Join BoxCar</h3>
-            <p  className="text-[15px] font-normal mb-3">
+            <p className="text-[15px] font-normal mb-3">
               Receive pricing updates, shopping tips & more!
             </p>
-            {/* <div className="flex flex-col space-y-4">
-              <input
-                type="email"
-                placeholder="Your email"
-                className="p-2 rounded text-black"
-              />
-              <button className="bg-white text-[#9BC1CD] p-2 rounded">
-                Sign Up
-              </button>
-            </div> */}
+
             <div className="relative max-w-3xl">
               <Input
                 //  ref={inputRef}
@@ -103,31 +94,13 @@ const Footer = () => {
                 suffix={
                   <div
                     //  onClick={handleEditClick}
-                    className="whitespace-nowrap   bg-[#ff991c] text-white font-medium px-4 py-2 rounded-full lg:text-lg text-sm hover:opacity-90 transition-opacity"
+                    className="whitespace-nowrap   bg-[#ff991c] !text-white font-medium px-4 py-2 rounded-full lg:text-lg text-sm hover:opacity-90 transition-opacity"
                   >
-                    <Link href="/sign-up" className="">
+                    <Link href="/sign-up" className=" !text-white">
                       Sign Up
                     </Link>
                   </div>
                 }
-                // prefix={
-                //   <div className="bg-[#007FFF] flex flex-col justify-center items-center gap-2 rounded py-2 px-7">
-                //     <Image
-                //       width={0}
-                //       height={0}
-                //       alt="search"
-                //       src={AllImages.star}
-                //       className="w-7"
-                //     />
-                //     <Image
-                //       width={0}
-                //       height={0}
-                //       alt="search"
-                //       className="w-6"
-                //       src={AllImages.dk}
-                //     />
-                //   </div>
-                // }
               />
 
               {/* <input

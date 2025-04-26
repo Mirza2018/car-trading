@@ -20,6 +20,7 @@ const SignatureModal = dynamic(
 const FinalNode = () => {
   const [isSignatureModalOpen, setIsSignatureModalOpen] = useState(false);
   const [signature, setSignature] = useState(null);
+  const [isValueIncressed, setIsValueIncreased] = useState(false);
 
   // Access localStorage only on the client side for initial load
   useEffect(() => {
@@ -32,6 +33,8 @@ const FinalNode = () => {
   const handleSignatureSave = (newSignature) => {
     setSignature(newSignature);
   };
+  console.log(isValueIncressed);
+  
 
   return (
     <div className="container mx-auto border-2 border-secondary-color rounded-md md:my-20 overflow-x-clip">
@@ -198,13 +201,27 @@ const FinalNode = () => {
                 >
                   Purchase amount*
                 </h1>
-                <p className="bg-base-color md:px-8 px-2 py-2 border border-secondary-color rounded-md flex justify-center items-center gap-2">
-                  ink <IoIosArrowDown className="text-xl" />
+                <p
+                  onClick={() => setIsValueIncreased(false)}
+                  className={`bg-base-color md:px-8 px-2 py-2 rounded-md flex justify-center items-center gap-2 ${
+                    isValueIncressed ? "" : "border border-secondary-color "
+                  }`}
+                >
+                  inkl
                 </p>
-                <p>moms</p>
+                <p
+                  onClick={() => setIsValueIncreased(true)}
+                  className={`bg-base-color md:px-8 px-2 py-2  rounded-md flex justify-center items-center gap-2 ${
+                    isValueIncressed ? "border border-secondary-color" : ""
+                  }`}
+                >
+                  moms
+                </p>
               </div>
               <p className="bg-base-color px-8 py-2 border border-secondary-color rounded-md">
-                3000
+                {isValueIncressed
+                  ? `${3000000 + (3000000 * 0.25)} kr.`
+                  : "3000000 kr."}
               </p>
             </div>
             <div className="flex justify-between items-center w-full gap-5 flex-wrap">
