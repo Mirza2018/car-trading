@@ -1,11 +1,13 @@
 import { AllImages } from "@/assets/AllImages";
 import {
   Checkbox,
+  Col,
   ColorPicker,
   DatePicker,
   Form,
   Input,
   Radio,
+  Row,
   Select,
 } from "antd";
 import { useForm } from "antd/es/form/Form";
@@ -20,8 +22,6 @@ const SubmitListing = () => {
 
   const [isDistance, setIsDistance] = useState(false);
   const [isCompany, setIsCompany] = useState(true);
-
-  console.log(isDistance);
 
   const [selectedPriceType, setSelectedPriceType] = useState(null);
   const [selectedFuleType, setSelectedFuleType] = useState(null);
@@ -45,6 +45,18 @@ const SubmitListing = () => {
   const handleCarSelect = (car) => {
     setSelectedCar(car);
   };
+  const carColors = rawColors.map((color) => ({
+    label: (
+      <div className="flex items-center gap-2">
+        <span
+          className="w-5 h-5 rounded-full border border-gray-300"
+          style={{ backgroundColor: color.colorCode }}
+        />
+        <span className=" !text-black">{color.label}</span>
+      </div>
+    ),
+    value: color.value,
+  }));
   const onFinsh = (values) => {
     values.car = selectedCar;
     console.log(values);
@@ -130,34 +142,40 @@ const SubmitListing = () => {
             name="priceType"
             className="flex-1"
           >
-            <div
-              style={{ display: "flex", flexDirection: "column", gap: "10px" }}
-            >
-              <Checkbox
-                value="cashPrice"
-                checked={selectedPriceType === "cashPrice"}
-                onChange={handleCheckboxChange}
-                style={{ lineHeight: "32px" }}
+            <Checkbox.Group style={{ width: "100%" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "10px",
+                }}
               >
-                Cash price
-              </Checkbox>
-              <Checkbox
-                value="carsWithoutTax"
-                checked={selectedPriceType === "carsWithoutTax"}
-                onChange={handleCheckboxChange}
-                style={{ lineHeight: "32px" }}
-              >
-                Cars without tax
-              </Checkbox>
-              <Checkbox
-                value="wholesaleCVR"
-                checked={selectedPriceType === "wholesaleCVR"}
-                onChange={handleCheckboxChange}
-                style={{ lineHeight: "32px" }}
-              >
-                Wholesale/CVR
-              </Checkbox>
-            </div>
+                <Checkbox
+                  value="cashPrice"
+                  // checked={selectedPriceType === "cashPrice"}
+                  // onChange={handleCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Cash price
+                </Checkbox>
+                <Checkbox
+                  value="carsWithoutTax"
+                  // checked={selectedPriceType === "carsWithoutTax"}
+                  // onChange={handleCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Cars without tax
+                </Checkbox>
+                <Checkbox
+                  value="wholesaleCVR"
+                  // checked={selectedPriceType === "wholesaleCVR"}
+                  // onChange={handleCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Wholesale/CVR
+                </Checkbox>
+              </div>
+            </Checkbox.Group>
           </Form.Item>
 
           <Form.Item
@@ -190,10 +208,13 @@ const SubmitListing = () => {
               </div>
               <p className="text-center"> Micro</p>
             </div>
+
             <div
-              onClick={() => handleCarSelect("cashPrice")}
+              onClick={() => handleCarSelect("stationWagon")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "cashPrice" ? "border border-blue-500 " : "  "
+                selectedCar === "stationWagon"
+                  ? "border border-blue-500 "
+                  : "  "
               }`}
             >
               <div className="border  border-secondary-color w-fit p-4 rounded-md">
@@ -201,12 +222,11 @@ const SubmitListing = () => {
               </div>
               <p className="text-center"> Station wagon</p>
             </div>
+
             <div
-              onClick={() => handleCarSelect("stationwagon")}
+              onClick={() => handleCarSelect("suv")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "stationwagon"
-                  ? "border border-blue-500 "
-                  : "  "
+                selectedCar === "suv" ? "border border-blue-500 " : "  "
               }`}
             >
               <div className="border  border-secondary-color w-fit p-4 rounded-md">
@@ -214,10 +234,11 @@ const SubmitListing = () => {
               </div>
               <p className="text-center"> SUV</p>
             </div>
+
             <div
-              onClick={() => handleCarSelect("suv")}
+              onClick={() => handleCarSelect("crossover")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "suv" ? "border border-blue-500 " : "  "
+                selectedCar === "crossover" ? "border border-blue-500 " : "  "
               }`}
             >
               <div className="border  border-secondary-color w-fit p-4 rounded-md">
@@ -226,9 +247,9 @@ const SubmitListing = () => {
               <p className="text-center">Crossover (CUV)</p>
             </div>
             <div
-              onClick={() => handleCarSelect("crossover")}
+              onClick={() => handleCarSelect("minibus")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "crossover" ? "border border-blue-500 " : "  "
+                selectedCar === "minibus" ? "border border-blue-500 " : "  "
               }`}
             >
               <div className="border  border-secondary-color w-fit p-4 rounded-md">
@@ -237,9 +258,9 @@ const SubmitListing = () => {
               <p className="text-center">Minibus (MPV)</p>
             </div>
             <div
-              onClick={() => handleCarSelect("minibus")}
+              onClick={() => handleCarSelect("sedan")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "minibus" ? "border border-blue-500 " : "  "
+                selectedCar === "sedan" ? "border border-blue-500 " : "  "
               }`}
             >
               <div className="border  border-secondary-color w-fit p-4 rounded-md">
@@ -248,9 +269,9 @@ const SubmitListing = () => {
               <p className="text-center"> Sedan</p>
             </div>
             <div
-              onClick={() => handleCarSelect("sedan")}
+              onClick={() => handleCarSelect("hatchback")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "sedan" ? "border border-blue-500 " : "  "
+                selectedCar === "hatchback" ? "border border-blue-500 " : "  "
               }`}
             >
               <div className="border  border-secondary-color w-fit p-4 rounded-md">
@@ -259,9 +280,9 @@ const SubmitListing = () => {
               <p className="text-center">Hatchback</p>
             </div>
             <div
-              onClick={() => handleCarSelect("hatchback")}
+              onClick={() => handleCarSelect("cabriolet")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "hatchback" ? "border border-blue-500 " : "  "
+                selectedCar === "cabriolet" ? "border border-blue-500 " : "  "
               }`}
             >
               <div className="border  border-secondary-color w-fit p-4 rounded-md">
@@ -270,9 +291,9 @@ const SubmitListing = () => {
               <p className="text-center"> Cabriolet</p>
             </div>
             <div
-              onClick={() => handleCarSelect("cabriolet")}
+              onClick={() => handleCarSelect("coupe")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "cabriolet" ? "border border-blue-500 " : "  "
+                selectedCar === "coupe" ? "border border-blue-500 " : "  "
               }`}
             >
               <div className="border  border-secondary-color w-fit p-4 rounded-md">
@@ -288,92 +309,104 @@ const SubmitListing = () => {
             name="fuleType"
             className="flex-1"
           >
-            <div
-              style={{ display: "flex", flexDirection: "column", gap: "10px" }}
-            >
-              <Checkbox
-                value="no"
-                checked={selectedFuleType === "electricCar"}
-                onChange={handleFuleTypeCheckboxChange}
-                style={{ lineHeight: "32px" }}
+            <Checkbox.Group>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "10px",
+                }}
               >
-                Electric Car
-              </Checkbox>
-              <Checkbox
-                value="petrol"
-                checked={selectedFuleType === "petrol"}
-                onChange={handleFuleTypeCheckboxChange}
-                style={{ lineHeight: "32px" }}
-              >
-                Petrol
-              </Checkbox>
-              <Checkbox
-                value="diesel"
-                checked={selectedFuleType === "diesel"}
-                onChange={handleFuleTypeCheckboxChange}
-                style={{ lineHeight: "32px" }}
-              >
-                Diesel
-              </Checkbox>
-              <Checkbox
-                value="hybridGasoline"
-                checked={selectedFuleType === "hybridGasoline"}
-                onChange={handleFuleTypeCheckboxChange}
-                style={{ lineHeight: "32px" }}
-              >
-                Hybrid - Gasoline
-              </Checkbox>
-              <Checkbox
-                value="hybridDiesel"
-                checked={selectedFuleType === "hybridDiesel"}
-                onChange={handleFuleTypeCheckboxChange}
-                style={{ lineHeight: "32px" }}
-              >
-                Hybrid - Diesel
-              </Checkbox>
-              <Checkbox
-                value="pluginPetrol"
-                checked={selectedFuleType === "pluginPetrol"}
-                onChange={handleFuleTypeCheckboxChange}
-                style={{ lineHeight: "32px" }}
-              >
-                Plug-in - Petrol
-              </Checkbox>
-              <Checkbox
-                value="pluginDiesel"
-                checked={selectedFuleType === "pluginDiesel"}
-                onChange={handleFuleTypeCheckboxChange}
-                style={{ lineHeight: "32px" }}
-              >
-                Plug-in - Diesel
-              </Checkbox>
-            </div>
+                <Checkbox
+                  value="electricCar"
+                  // checked={selectedFuleType === "electricCar"}
+                  // onChange={handleFuleTypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Electric Car
+                </Checkbox>
+                <Checkbox
+                  value="petrol"
+                  // checked={selectedFuleType === "petrol"}
+                  // onChange={handleFuleTypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Petrol
+                </Checkbox>
+                <Checkbox
+                  value="diesel"
+                  // checked={selectedFuleType === "diesel"}
+                  // onChange={handleFuleTypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Diesel
+                </Checkbox>
+                <Checkbox
+                  value="hybridGasoline"
+                  // checked={selectedFuleType === "hybridGasoline"}
+                  // onChange={handleFuleTypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Hybrid - Gasoline
+                </Checkbox>
+                <Checkbox
+                  value="hybridDiesel"
+                  // checked={selectedFuleType === "hybridDiesel"}
+                  // onChange={handleFuleTypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Hybrid - Diesel
+                </Checkbox>
+                <Checkbox
+                  value="pluginPetrol"
+                  // checked={selectedFuleType === "pluginPetrol"}
+                  // onChange={handleFuleTypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Plug-in - Petrol
+                </Checkbox>
+                <Checkbox
+                  value="pluginDiesel"
+                  // checked={selectedFuleType === "pluginDiesel"}
+                  // onChange={handleFuleTypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Plug-in - Diesel
+                </Checkbox>
+              </div>
+            </Checkbox.Group>
           </Form.Item>
           <Form.Item
             label={<span className="font-bold text-2xl">Gear type</span>}
             name="geartype"
             className="flex-1"
           >
-            <div
-              style={{ display: "flex", flexDirection: "column", gap: "10px" }}
-            >
-              <Checkbox
-                value="manualGear"
-                checked={selectedGeartype === "manualGear"}
-                onChange={handleGeartypeCheckboxChange}
-                style={{ lineHeight: "32px" }}
+            <Checkbox.Group>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "10px",
+                }}
               >
-                Manual gear
-              </Checkbox>
-              <Checkbox
-                value="automaticGear"
-                checked={selectedGeartype === "automaticGear"}
-                onChange={handleGeartypeCheckboxChange}
-                style={{ lineHeight: "32px" }}
-              >
-                Automatic gear
-              </Checkbox>
-            </div>
+                <Checkbox
+                  value="manualGear"
+                  // checked={selectedGeartype === "manualGear"}
+                  // onChange={handleGeartypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Manual gear
+                </Checkbox>
+                <Checkbox
+                  value="automaticGear"
+                  // checked={selectedGeartype === "automaticGear"}
+                  // onChange={handleGeartypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Automatic gear
+                </Checkbox>
+              </div>
+            </Checkbox.Group>
           </Form.Item>
         </div>
 
@@ -433,10 +466,8 @@ const SubmitListing = () => {
           <h1>Additional equipment</h1>
           <p>
             <IoIosArrowForward
-              className={` ${
-                isDistance
-                  ? "-rotate-90 delay-75 ease-linear transform"
-                  : "rotate-90 delay-75 transform"
+              className={` transition-all ease-in duration-300 ${
+                isDistance ? "-rotate-90 " : "rotate-90 "
               }`}
             />
           </p>
@@ -444,25 +475,27 @@ const SubmitListing = () => {
         {isDistance && (
           <React.Fragment>
             <Form.Item
+              className="mt-4"
               label={<span className="font-bold text-2xl">Color</span>}
-              name="mark"
+              name="color"
             >
               <Select
                 placeholder={
-                  <span className="text-black text-xl">Choose Color</span>
+                  <span className="text-black text-xl flex">Choose Color</span>
                 }
-                className="!h-12 !bg-base-color"
+                className=" !bg-base-color"
                 showSearch
+                mode="multiple"
                 optionFilterProp="label"
-                filterSort={(optionA, optionB) =>
-                  (optionA?.label ?? "")
-                    .toLowerCase()
-                    .localeCompare((optionB?.label ?? "").toLowerCase())
+                filterOption={(input, option) =>
+                  option?.label?.props?.children?.[1]?.props?.children
+                    ?.toLowerCase()
+                    .includes(input.toLowerCase())
                 }
                 options={carColors}
               />
             </Form.Item>
-            <h1 className="font-bold text-2xl ">Trailer</h1>
+            {/* <h1 className="font-bold text-2xl ">Trailer</h1>
             <div className="flex  justify-between items-center gap-5 mt-3">
               <Form.Item
                 label={<span className="font-bold text-sm">Trailer hitch</span>}
@@ -496,7 +529,7 @@ const SubmitListing = () => {
                   <Select.Option value="demo3">Demo3</Select.Option>
                 </Select>
               </Form.Item>
-            </div>
+            </div> */}
             <div className="flex justify-between items-start">
               <Form.Item
                 label={<span className="font-bold text-2xl">Exterior</span>}
@@ -1340,63 +1373,84 @@ const carModels = [
     ],
   },
 ];
-const carColors = [
-  { label: "Black", value: "black" },
-  { label: "White", value: "white" },
-  { label: "Gray", value: "gray" },
-  { label: "Silver", value: "silver" },
-  { label: "Blue", value: "blue" },
-  { label: "Red", value: "red" },
-  { label: "Green", value: "green" },
-  { label: "Yellow", value: "yellow" },
-  { label: "Orange", value: "orange" },
-  { label: "Brown", value: "brown" },
-  { label: "Purple", value: "purple" },
-  { label: "Beige", value: "beige" },
-  { label: "Pink", value: "pink" },
-  { label: "Gold", value: "gold" },
-  { label: "Bronze", value: "bronze" },
-  { label: "Turquoise", value: "turquoise" },
-  { label: "Champagne", value: "champagne" },
-  { label: "Ivory", value: "ivory" },
-  { label: "Tan", value: "tan" },
-  { label: "Copper", value: "copper" },
-  { label: "Emerald Green", value: "emerald_green" },
-  { label: "Navy Blue", value: "navy_blue" },
-  { label: "Matte Black", value: "matte_black" },
-  { label: "Matte White", value: "matte_white" },
-  { label: "Metallic Gray", value: "metallic_gray" },
-  { label: "Metallic Blue", value: "metallic_blue" },
-  { label: "Pearl White", value: "pearl_white" },
-  { label: "Lime Green", value: "lime_green" },
-  { label: "Sky Blue", value: "sky_blue" },
-  { label: "Rose Gold", value: "rose_gold" },
-  { label: "Mint Green", value: "mint_green" },
-  { label: "Bright Yellow", value: "bright_yellow" },
-  { label: "Sunset Orange", value: "sunset_orange" },
-  { label: "Fuchsia", value: "fuchsia" },
-  { label: "Silver Metallic", value: "silver_metallic" },
-  { label: "Burgundy", value: "burgundy" },
-  { label: "Sea Green", value: "sea_green" },
-  { label: "Cobalt Blue", value: "cobalt_blue" },
-  { label: "Electric Blue", value: "electric_blue" },
-  { label: "Candy Red", value: "candy_red" },
-  { label: "Jet Black", value: "jet_black" },
-  { label: "Sapphire Blue", value: "sapphire_blue" },
-  { label: "Racing Green", value: "racing_green" },
-  { label: "Sunflower Yellow", value: "sunflower_yellow" },
-  { label: "Chocolate Brown", value: "chocolate_brown" },
-  { label: "Graphite", value: "graphite" },
-  { label: "Platinum Silver", value: "platinum_silver" },
-  { label: "Onyx Black", value: "onyx_black" },
-  { label: "Crystal White", value: "crystal_white" },
-  { label: "Bright Blue", value: "bright_blue" },
-  { label: "Red Metallic", value: "red_metallic" },
-  { label: "Coral Red", value: "coral_red" },
-  { label: "Midnight Blue", value: "midnight_blue" },
-  { label: "Brite Red", value: "brite_red" },
-  { label: "Frost White", value: "frost_white" },
-  { label: "Deep Purple", value: "deep_purple" },
-  { label: "Candy Apple Red", value: "candy_apple_red" },
-  { label: "Vermilion Red", value: "vermilion_red" },
+const rawColors = [
+  { label: "Any", value: "any", colorCode: "#" },
+  { label: "Black", value: "black", colorCode: "#000000" },
+  { label: "White", value: "white", colorCode: "#FFFFFF" },
+  { label: "Gray", value: "gray", colorCode: "#808080" },
+  { label: "Silver", value: "silver", colorCode: "#C0C0C0" },
+  { label: "Blue", value: "blue", colorCode: "#0000FF" },
+  { label: "Red", value: "red", colorCode: "#FF0000" },
+  { label: "Green", value: "green", colorCode: "#008000" },
+  { label: "Yellow", value: "yellow", colorCode: "#FFFF00" },
+  { label: "Orange", value: "orange", colorCode: "#FFA500" },
+  { label: "Brown", value: "brown", colorCode: "#A52A2A" },
+  { label: "Purple", value: "purple", colorCode: "#800080" },
+  { label: "Beige", value: "beige", colorCode: "#F5F5DC" },
+  { label: "Pink", value: "pink", colorCode: "#FFC0CB" },
+  { label: "Gold", value: "gold", colorCode: "#FFD700" },
+  { label: "Bronze", value: "bronze", colorCode: "#CD7F32" },
+  { label: "Turquoise", value: "turquoise", colorCode: "#40E0D0" },
+  { label: "Champagne", value: "champagne", colorCode: "#F7E7CE" },
+  { label: "Ivory", value: "ivory", colorCode: "#FFFFF0" },
+  { label: "Tan", value: "tan", colorCode: "#D2B48C" },
+  { label: "Copper", value: "copper", colorCode: "#B87333" },
+  { label: "Emerald Green", value: "emerald_green", colorCode: "#50C878" },
+  { label: "Navy Blue", value: "navy_blue", colorCode: "#000080" },
+  { label: "Matte Black", value: "matte_black", colorCode: "#1C1C1C" },
+  { label: "Matte White", value: "matte_white", colorCode: "#F4F4F4" },
+  { label: "Metallic Gray", value: "metallic_gray", colorCode: "#A9A9A9" },
+  { label: "Metallic Blue", value: "metallic_blue", colorCode: "#3B9C9C" },
+  { label: "Pearl White", value: "pearl_white", colorCode: "#F8F6F0" },
+  { label: "Lime Green", value: "lime_green", colorCode: "#32CD32" },
+  { label: "Sky Blue", value: "sky_blue", colorCode: "#87CEEB" },
+  { label: "Rose Gold", value: "rose_gold", colorCode: "#B76E79" },
+  { label: "Mint Green", value: "mint_green", colorCode: "#98FF98" },
+  { label: "Bright Yellow", value: "bright_yellow", colorCode: "#FFEA00" },
+  { label: "Sunset Orange", value: "sunset_orange", colorCode: "#FF4500" },
+  { label: "Fuchsia", value: "fuchsia", colorCode: "#FF00FF" },
+  { label: "Silver Metallic", value: "silver_metallic", colorCode: "#B0C4DE" },
+  { label: "Burgundy", value: "burgundy", colorCode: "#800020" },
+  { label: "Sea Green", value: "sea_green", colorCode: "#2E8B57" },
+  { label: "Cobalt Blue", value: "cobalt_blue", colorCode: "#0047AB" },
+  { label: "Electric Blue", value: "electric_blue", colorCode: "#7DF9FF" },
+  { label: "Candy Red", value: "candy_red", colorCode: "#D2042D" },
+  { label: "Jet Black", value: "jet_black", colorCode: "#343434" },
+  { label: "Sapphire Blue", value: "sapphire_blue", colorCode: "#0F52BA" },
+  { label: "Racing Green", value: "racing_green", colorCode: "#004225" },
+  {
+    label: "Sunflower Yellow",
+    value: "sunflower_yellow",
+    colorCode: "#FFC512",
+  },
+  { label: "Chocolate Brown", value: "chocolate_brown", colorCode: "#381819" },
+  { label: "Graphite", value: "graphite", colorCode: "#4B4B4B" },
+  { label: "Platinum Silver", value: "platinum_silver", colorCode: "#E5E4E2" },
+  { label: "Onyx Black", value: "onyx_black", colorCode: "#353839" },
+  { label: "Crystal White", value: "crystal_white", colorCode: "#FBFBF9" },
+  { label: "Bright Blue", value: "bright_blue", colorCode: "#0096FF" },
+  { label: "Red Metallic", value: "red_metallic", colorCode: "#C21807" },
+  { label: "Coral Red", value: "coral_red", colorCode: "#FF4040" },
+  { label: "Midnight Blue", value: "midnight_blue", colorCode: "#191970" },
+  { label: "Brite Red", value: "brite_red", colorCode: "#FF2400" },
+  { label: "Frost White", value: "frost_white", colorCode: "#FDFEFE" },
+  { label: "Deep Purple", value: "deep_purple", colorCode: "#301934" },
+  { label: "Candy Apple Red", value: "candy_apple_red", colorCode: "#A40000" },
+  { label: "Vermilion Red", value: "vermilion_red", colorCode: "#E34234" },
+  { label: "Anthracite", value: "anthracite", colorCode: "#293133" },
+  { label: "Steel Blue", value: "steel_blue", colorCode: "#4682B4" },
+  { label: "Mocha Brown", value: "mocha_brown", colorCode: "#837060" },
+  { label: "Gunmetal Gray", value: "gunmetal_gray", colorCode: "#2a3439" },
+  { label: "Storm Gray", value: "storm_gray", colorCode: "#71797E" },
+  { label: "Magnetic Gray", value: "magnetic_gray", colorCode: "#6E6E6E" },
+  { label: "Titanium Silver", value: "titanium_silver", colorCode: "#D6D6D6" },
+  { label: "Alpine White", value: "alpine_white", colorCode: "#EDEDED" },
+  { label: "Carbon Black", value: "carbon_black", colorCode: "#1C1C1C" },
+  { label: "Shadow Black", value: "shadow_black", colorCode: "#2B2B2B" },
+  { label: "Blizzard Pearl", value: "blizzard_pearl", colorCode: "#F6F8F9" },
+  { label: "Inferno Red", value: "inferno_red", colorCode: "#B22222" },
+  { label: "Desert Sand", value: "desert_sand", colorCode: "#EDC9Af" },
+  { label: "Forest Green", value: "forest_green", colorCode: "#228B22" },
+  { label: "Magenta", value: "magenta", colorCode: "#FF00FF" },
+  { label: "Amethyst", value: "amethyst", colorCode: "#9966CC" },
 ];
