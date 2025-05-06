@@ -6,7 +6,8 @@ import BuyNowBtn from "./BuyNowBtn";
 import MakeABidBtn from "./MakeABidBtn";
 import CarAllDetails from "./CarAllDetails";
 import Link from "next/link";
- 
+import BrandnViewTableDetails from "../BrandViewDetailsModal/BrandnViewTableDetails";
+
 const ViewDetailsPage = ({
   setOpenResponsive,
   openResponsive,
@@ -53,9 +54,9 @@ const ViewDetailsPage = ({
             <ImageSlider />
           </section>
           {/* Right Side */}
-          <section className="col-span-7">
+          <section className="col-span-7 flex justify-center items-center">
             {/* Top portion  */}
-            <div className="flex flex-wrap gap-4 justify-between items-center">
+            {/* <div className="flex flex-wrap gap-4 justify-between items-center">
               <div className="flex  justify-start items-center  font-bold text-base">
                 <IoMdLink className="rotate-90" />
                 Registration certificate
@@ -67,20 +68,20 @@ const ViewDetailsPage = ({
                   Minimum price <br /> achieved
                 </p>
               </div>
-
-              {buyNow && (
-                <div className="flex flex-col gap-3 ">
-                  <h1>Incl. VAT / Incl. Reg.</h1>
-                  {/* <Link href={`/offer-car/007`}> */}
-                    <BuyNowBtn price={car?.buyNowPrice} />
-                  {/* </Link> */}
-
-                  <MakeABidBtn />
-                </div>
-              )}
-            </div>
+            </div> */}
             {/* Middel part car All Details */}
-            <CarAllDetails car={car} />
+            {/* <CarAllDetails car={car} /> */}
+            <BrandnViewTableDetails />
+            {buyNow && (
+              <div className="flex flex-col gap-3 ">
+                <h1>Incl. VAT / Incl. Reg.</h1>
+                {/* <Link href={`/offer-car/007`}> */}
+                <BuyNowBtn price={car?.buyNowPrice} />
+                {/* </Link> */}
+
+                <MakeABidBtn />
+              </div>
+            )}
           </section>
         </main>
       </div>

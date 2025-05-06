@@ -1,101 +1,100 @@
 import React from "react";
-  
-const CarTableDetails = ({ car }) => {
+
+const BrandnViewTableDetails = () => {
   return (
     <main className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-5 gap-0">
       <section className="flex flex-col gap-2">
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Brand</p>
-          <p>Audi</p>
+          <p>Car Category</p>
+          <p>SUV</p>
         </div>
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Variant</p>
-          <p>Allure Sky</p>
+          <p>Model</p>
+          <p>308</p>
         </div>
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Gearbox</p>
-          <p>Manual</p>
+          <p>Mileage</p>
+          <p>68,500 km</p>
+        </div>
+
+        <div className="flex justify-between border-b border-text-light-color">
+          <p>Max Price</p>
+          <p>30.0000</p>
+        </div>
+        <div className="flex justify-between border-b border-text-light-color">
+          <p>Price Type</p>
+          <p>cash Price/Cars without tax</p>
+        </div>
+        <div className="flex justify-between border-b border-text-light-color">
+          <p>Car Type</p>
+          <p>New Used</p>
         </div>
         <div className="flex justify-between border-b border-text-light-color">
           <p>Fuel Type</p>
           <p>Petrol</p>
         </div>
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Engine Performance</p>
-          <p>96 kW / 131 HP</p>
+          <p>Gearbox</p>
+          <p>Manual</p>
         </div>
         <div className="flex justify-between border-b border-text-light-color">
-          <p>CO2 Emissions</p>
-          <p>120 g</p>
+          <p>Driven-KM</p>
+          <p>0-30000KM</p>
         </div>
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Color</p>
-          <p>Black</p>
-        </div>
-        <div className="flex justify-between border-b border-text-light-color">
-          <p>Registration Number</p>
-          <p>BX40437</p>
-        </div>
-        <div className="flex justify-between border-b border-text-light-color">
-          <p>Registration Number</p>
-          <p>Audi</p>
-        </div>
-        <div className="flex justify-between border-b border-text-light-color">
-          <p>VAT</p>
-          <p>Including VAT</p>
-        </div>
-        <div className="flex justify-between border-b border-text-light-color">
-          <p>
-            Can the car brake, use the handbrake, drive, and reverse on an auto
-            transporter?
-          </p>
-          <p>yes</p>
+          <p>Exterior</p>
+          <p>LED Headlights</p>
         </div>
       </section>
       <section className="flex flex-col gap-2">
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Model</p>
-          <p>308</p>
+          <p>Mark</p>
+          <p>Audi</p>
+        </div>
+
+        <div className="flex justify-between border-b border-text-light-color">
+          <p>Car For</p>
+          <p>Company</p>
         </div>
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Car Category</p>
-          <p>SUV</p>
+          <p>Company Name</p>
+          <p>STA</p>
         </div>
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Mileage</p>
-          <p>68,500 km</p>
+          <p>CVR Number</p>
+          <p>123456789</p>
         </div>
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Engine Size</p>
-          <p>1.2L</p>
+          <p>First Name</p>
+          <p>Takibul</p>
         </div>
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Fuel Consumption</p>
-          <p>5.2 L/100km</p>
+          <p>Last Name</p>
+          <p>Hasan</p>
         </div>
         <div className="flex justify-between border-b border-text-light-color">
-          <p>EURO Standard</p>
-          <p>Euro VI</p>
+          <p>Postal Code</p>
+          <p>123456</p>
         </div>
         <div className="flex justify-between border-b border-text-light-color">
-          <p>First Registration Date</p>
-          <p>19/03/2018</p>
+          <p>City</p>
+          <p>Dhaka</p>
         </div>
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Chassis Number</p>
-          <p>VF3LRHNSPJS092227</p>
+          <p>Phone Number</p>
+          <p>012345-678910</p>
         </div>
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Tax</p>
-          <p>Including Taxes</p>
+          <p>Color</p>
+          <p>ALL</p>
         </div>
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Inspection Date</p>
-          <p>20/03/2024</p>
+          <p>Interior</p>
+          <p>Seat Heating</p>
         </div>
       </section>
     </main>
   );
 };
 
-export default CarTableDetails;
+export default BrandnViewTableDetails;
