@@ -61,9 +61,9 @@ const OrderTransport = () => {
       </div>
 
       <div className=" flex justify-center gap-5 items-center my-12 flex-wrap">
-        <button className="bg-highlight-color font-medium text-white rounded-2xl px-16 py-5 text-2xl ">
+        {/* <button className="bg-highlight-color font-medium text-white rounded-2xl px-16 py-5 text-2xl ">
           Cancel
-        </button>
+        </button> */}
         <button className="bg-highlight-color font-medium text-white rounded-2xl px-12 py-5 text-2xl ">
           Cancel Transport{" "}
         </button>

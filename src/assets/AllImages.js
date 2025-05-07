@@ -37,6 +37,7 @@ import save from "./icons/save.svg";
 import profile from "./images/profile.png";
 import car from "./images/car.png";
 import fairPriceCar from "./images/home1.jpg";
+import brand1 from "./images/brand1.svg";
 
 import ForgotPassword from "./authImages/ForgotPassword.png";
 import otp from "./authImages/otp.png";
@@ -128,6 +129,6 @@ export const AllImages = {
   cross,
   print,
   signature,
-  save, 
-
+  save,
+  brand1,
 };

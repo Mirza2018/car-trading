@@ -1,13 +1,14 @@
 import { Modal } from "antd";
 import React from "react";
-import ImageSlider from "./ImageSlider";
-import { IoMdLink } from "react-icons/io";
-import BuyNowBtn from "./BuyNowBtn";
-import MakeABidBtn from "./MakeABidBtn";
-import CarAllDetails from "./CarAllDetails";
+// import BuyNowBtn from "./BuyNowBtn";
 import Link from "next/link";
+import Image from "next/image";
+import { AllImages } from "@/assets/AllImages";
+import BrandnViewTableDetails from "./BrandnViewTableDetails";
+import MakeABidBtn from "../CarViewDetailsModal/MakeABidBtn";
+import BuyNowBtn from "../CarViewDetailsModal/BuyNowBtn";
 
-const ViewDetailsPage = ({
+const BrandVIewDetailsPage = ({
   setOpenResponsive,
   openResponsive,
   car,
@@ -49,13 +50,17 @@ const ViewDetailsPage = ({
       <div>
         <main className="md:grid grid-cols-12  gap-4">
           {/* Left Side */}
-          <section className="col-span-5">
-            <ImageSlider />
+          <section className="col-span-5  flex justify-center items-center">
+            {/* <ImageSlider /> */}
+            <Image
+              src={AllImages.brand1}
+              className="max-w-56 min-w-36 aspect-square object-cover"
+            />
           </section>
           {/* Right Side */}
-          <section className="col-span-7">
+          <section className="col-span-7 flex justify-center items-center">
             {/* Top portion  */}
-            <div className="flex flex-wrap gap-4 justify-between items-center">
+            {/* <div className="flex flex-wrap gap-4 justify-between items-center">
               <div className="flex  justify-start items-center  font-bold text-base">
                 <IoMdLink className="rotate-90" />
                 Registration certificate
@@ -67,20 +72,20 @@ const ViewDetailsPage = ({
                   Minimum price <br /> achieved
                 </p>
               </div>
-
-              {buyNow && (
-                <div className="flex flex-col gap-3 ">
-                  <h1>Incl. VAT / Incl. Reg.</h1>
-                  {/* <Link href={`/offer-car/007`}> */}
-                  <BuyNowBtn price={car?.buyNowPrice} />
-                  {/* </Link> */}
-
-                  <MakeABidBtn />
-                </div>
-              )}
-            </div>
+            </div> */}
             {/* Middel part car All Details */}
-            <CarAllDetails car={car} />
+            {/* <CarAllDetails car={car} /> */}
+            <BrandnViewTableDetails />
+            {buyNow && (
+              <div className="flex flex-col gap-3 ">
+                <h1>Incl. VAT / Incl. Reg.</h1>
+                {/* <Link href={`/offer-car/007`}> */}
+                <BuyNowBtn price={car?.buyNowPrice} />
+                {/* </Link> */}
+
+                <MakeABidBtn />
+              </div>
+            )}
           </section>
         </main>
       </div>
@@ -88,4 +93,4 @@ const ViewDetailsPage = ({
   );
 };
 
-export default ViewDetailsPage;
+export default BrandVIewDetailsPage;

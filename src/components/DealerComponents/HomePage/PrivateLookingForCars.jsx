@@ -4,6 +4,7 @@ import { Divider } from "antd";
 import Image from "next/image";
 import { useState } from "react";
 import ViewDetailsPage from "./CarViewDetailsModal/ViewDetailsPage";
+import BrandVIewDetailsPage from "./BrandViewDetailsModal/BrandVIewDetailsPage";
 
 const PrivateLookingForCars = () => {
   const [openOfferCar, setopenOfferCar] = useState(false);
@@ -146,7 +147,7 @@ const PrivateLookingForCars = () => {
             <div className="flex gap-6 justify-start items-center">
               <div>
                 <Image
-                  src={AllImages.car}
+                  src={AllImages.brand1}
                   alt="car"
                   width={0}
                   height={0}
@@ -175,7 +176,7 @@ const PrivateLookingForCars = () => {
                   Offer Car
                 </button>
 
-                <ViewDetailsPage
+                <BrandVIewDetailsPage
                   openResponsive={openOfferCar}
                   setOpenResponsive={setopenOfferCar}
                   car={car}
@@ -190,7 +191,7 @@ const PrivateLookingForCars = () => {
                   View Details
                 </button>
 
-                <ViewDetailsPage
+                <BrandVIewDetailsPage
                   openResponsive={openResponsive}
                   setOpenResponsive={setOpenResponsive}
                   car={car}

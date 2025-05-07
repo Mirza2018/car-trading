@@ -193,7 +193,7 @@ const Sidebar = ({ slider, setSlider }) => {
             <p>User Profile</p>
           </li>
         </Link>
-        {/* <Link href="/dashboard/terms" className="w-full">
+        <Link href="/dashboard/terms" className="w-full">
           {" "}
           <li
             className={`flex items-center gap-x-3 w-full py-3 px-2  font-semibold text-lg lg:rounded-tr-lg lg:rounded-br-lg ${
@@ -238,7 +238,7 @@ const Sidebar = ({ slider, setSlider }) => {
             />
             Privacy Policy
           </li>
-        </Link> */}
+        </Link>
 
         <li
           onClick={handleLogout}

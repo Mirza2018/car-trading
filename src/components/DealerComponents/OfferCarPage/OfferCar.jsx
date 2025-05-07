@@ -139,34 +139,40 @@ const OfferCar = () => {
             name="priceType"
             className="flex-1"
           >
-            <div
-              style={{ display: "flex", flexDirection: "column", gap: "10px" }}
-            >
-              <Checkbox
-                value="cashPrice"
-                checked={selectedPriceType === "cashPrice"}
-                onChange={handleCheckboxChange}
-                style={{ lineHeight: "32px" }}
+            <Checkbox.Group style={{ width: "100%" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "10px",
+                }}
               >
-                Cash price
-              </Checkbox>
-              <Checkbox
-                value="carsWithoutTax"
-                checked={selectedPriceType === "carsWithoutTax"}
-                onChange={handleCheckboxChange}
-                style={{ lineHeight: "32px" }}
-              >
-                Cars without tax
-              </Checkbox>
-              <Checkbox
-                value="wholesaleCVR"
-                checked={selectedPriceType === "wholesaleCVR"}
-                onChange={handleCheckboxChange}
-                style={{ lineHeight: "32px" }}
-              >
-                Wholesale/CVR
-              </Checkbox>
-            </div>
+                <Checkbox
+                  value="cashPrice"
+                  // checked={selectedPriceType === "cashPrice"}
+                  // onChange={handleCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Cash price
+                </Checkbox>
+                <Checkbox
+                  value="carsWithoutTax"
+                  // checked={selectedPriceType === "carsWithoutTax"}
+                  // onChange={handleCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Cars without tax
+                </Checkbox>
+                <Checkbox
+                  value="wholesaleCVR"
+                  // checked={selectedPriceType === "wholesaleCVR"}
+                  // onChange={handleCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Wholesale/CVR
+                </Checkbox>
+              </div>
+            </Checkbox.Group>
           </Form.Item>
 
           <Form.Item
@@ -199,10 +205,13 @@ const OfferCar = () => {
               </div>
               <p className="text-center"> Micro</p>
             </div>
+
             <div
-              onClick={() => handleCarSelect("cashPrice")}
+              onClick={() => handleCarSelect("stationWagon")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "cashPrice" ? "border border-blue-500 " : "  "
+                selectedCar === "stationWagon"
+                  ? "border border-blue-500 "
+                  : "  "
               }`}
             >
               <div className="border  border-secondary-color w-fit p-4 rounded-md">
@@ -210,12 +219,11 @@ const OfferCar = () => {
               </div>
               <p className="text-center"> Station wagon</p>
             </div>
+
             <div
-              onClick={() => handleCarSelect("stationwagon")}
+              onClick={() => handleCarSelect("suv")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "stationwagon"
-                  ? "border border-blue-500 "
-                  : "  "
+                selectedCar === "suv" ? "border border-blue-500 " : "  "
               }`}
             >
               <div className="border  border-secondary-color w-fit p-4 rounded-md">
@@ -223,10 +231,11 @@ const OfferCar = () => {
               </div>
               <p className="text-center"> SUV</p>
             </div>
+
             <div
-              onClick={() => handleCarSelect("suv")}
+              onClick={() => handleCarSelect("crossover")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "suv" ? "border border-blue-500 " : "  "
+                selectedCar === "crossover" ? "border border-blue-500 " : "  "
               }`}
             >
               <div className="border  border-secondary-color w-fit p-4 rounded-md">
@@ -235,9 +244,9 @@ const OfferCar = () => {
               <p className="text-center">Crossover (CUV)</p>
             </div>
             <div
-              onClick={() => handleCarSelect("crossover")}
+              onClick={() => handleCarSelect("minibus")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "crossover" ? "border border-blue-500 " : "  "
+                selectedCar === "minibus" ? "border border-blue-500 " : "  "
               }`}
             >
               <div className="border  border-secondary-color w-fit p-4 rounded-md">
@@ -246,9 +255,9 @@ const OfferCar = () => {
               <p className="text-center">Minibus (MPV)</p>
             </div>
             <div
-              onClick={() => handleCarSelect("minibus")}
+              onClick={() => handleCarSelect("sedan")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "minibus" ? "border border-blue-500 " : "  "
+                selectedCar === "sedan" ? "border border-blue-500 " : "  "
               }`}
             >
               <div className="border  border-secondary-color w-fit p-4 rounded-md">
@@ -257,9 +266,9 @@ const OfferCar = () => {
               <p className="text-center"> Sedan</p>
             </div>
             <div
-              onClick={() => handleCarSelect("sedan")}
+              onClick={() => handleCarSelect("hatchback")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "sedan" ? "border border-blue-500 " : "  "
+                selectedCar === "hatchback" ? "border border-blue-500 " : "  "
               }`}
             >
               <div className="border  border-secondary-color w-fit p-4 rounded-md">
@@ -268,9 +277,9 @@ const OfferCar = () => {
               <p className="text-center">Hatchback</p>
             </div>
             <div
-              onClick={() => handleCarSelect("hatchback")}
+              onClick={() => handleCarSelect("cabriolet")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "hatchback" ? "border border-blue-500 " : "  "
+                selectedCar === "cabriolet" ? "border border-blue-500 " : "  "
               }`}
             >
               <div className="border  border-secondary-color w-fit p-4 rounded-md">
@@ -279,9 +288,9 @@ const OfferCar = () => {
               <p className="text-center"> Cabriolet</p>
             </div>
             <div
-              onClick={() => handleCarSelect("cabriolet")}
+              onClick={() => handleCarSelect("coupe")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "cabriolet" ? "border border-blue-500 " : "  "
+                selectedCar === "coupe" ? "border border-blue-500 " : "  "
               }`}
             >
               <div className="border  border-secondary-color w-fit p-4 rounded-md">
@@ -297,103 +306,106 @@ const OfferCar = () => {
             name="fuleType"
             className="flex-1"
           >
-            <div
-              style={{ display: "flex", flexDirection: "column", gap: "10px" }}
-            >
-              <Checkbox
-                value="no"
-                checked={selectedFuleType === "electricCar"}
-                onChange={handleFuleTypeCheckboxChange}
-                style={{ lineHeight: "32px" }}
+            <Checkbox.Group>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "10px",
+                }}
               >
-                Electric Car
-              </Checkbox>
-              <Checkbox
-                value="petrol"
-                checked={selectedFuleType === "petrol"}
-                onChange={handleFuleTypeCheckboxChange}
-                style={{ lineHeight: "32px" }}
-              >
-                Petrol
-              </Checkbox>
-              <Checkbox
-                value="diesel"
-                checked={selectedFuleType === "diesel"}
-                onChange={handleFuleTypeCheckboxChange}
-                style={{ lineHeight: "32px" }}
-              >
-                Diesel
-              </Checkbox>
-              <Checkbox
-                value="hybridGasoline"
-                checked={selectedFuleType === "hybridGasoline"}
-                onChange={handleFuleTypeCheckboxChange}
-                style={{ lineHeight: "32px" }}
-              >
-                Hybrid - Gasoline
-              </Checkbox>
-              <Checkbox
-                value="hybridDiesel"
-                checked={selectedFuleType === "hybridDiesel"}
-                onChange={handleFuleTypeCheckboxChange}
-                style={{ lineHeight: "32px" }}
-              >
-                Hybrid - Diesel
-              </Checkbox>
-              <Checkbox
-                value="pluginPetrol"
-                checked={selectedFuleType === "pluginPetrol"}
-                onChange={handleFuleTypeCheckboxChange}
-                style={{ lineHeight: "32px" }}
-              >
-                Plug-in - Petrol
-              </Checkbox>
-              <Checkbox
-                value="pluginDiesel"
-                checked={selectedFuleType === "pluginDiesel"}
-                onChange={handleFuleTypeCheckboxChange}
-                style={{ lineHeight: "32px" }}
-              >
-                Plug-in - Diesel
-              </Checkbox>
-            </div>
+                <Checkbox
+                  value="electricCar"
+                  // checked={selectedFuleType === "electricCar"}
+                  // onChange={handleFuleTypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Electric Car
+                </Checkbox>
+                <Checkbox
+                  value="petrol"
+                  // checked={selectedFuleType === "petrol"}
+                  // onChange={handleFuleTypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Petrol
+                </Checkbox>
+                <Checkbox
+                  value="diesel"
+                  // checked={selectedFuleType === "diesel"}
+                  // onChange={handleFuleTypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Diesel
+                </Checkbox>
+                <Checkbox
+                  value="hybridGasoline"
+                  // checked={selectedFuleType === "hybridGasoline"}
+                  // onChange={handleFuleTypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Hybrid - Gasoline
+                </Checkbox>
+                <Checkbox
+                  value="hybridDiesel"
+                  // checked={selectedFuleType === "hybridDiesel"}
+                  // onChange={handleFuleTypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Hybrid - Diesel
+                </Checkbox>
+                <Checkbox
+                  value="pluginPetrol"
+                  // checked={selectedFuleType === "pluginPetrol"}
+                  // onChange={handleFuleTypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Plug-in - Petrol
+                </Checkbox>
+                <Checkbox
+                  value="pluginDiesel"
+                  // checked={selectedFuleType === "pluginDiesel"}
+                  // onChange={handleFuleTypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Plug-in - Diesel
+                </Checkbox>
+              </div>
+            </Checkbox.Group>
           </Form.Item>
           <Form.Item
             label={<span className="font-bold text-2xl">Gear type</span>}
             name="geartype"
             className="flex-1"
           >
-            <div
-              style={{ display: "flex", flexDirection: "column", gap: "10px" }}
-            >
-              <Checkbox
-                value="manualGear"
-                checked={selectedGeartype === "manualGear"}
-                onChange={handleGeartypeCheckboxChange}
-                style={{ lineHeight: "32px" }}
+            <Checkbox.Group>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "10px",
+                }}
               >
-                Manual gear
-              </Checkbox>
-              <Checkbox
-                value="automaticGear"
-                checked={selectedGeartype === "automaticGear"}
-                onChange={handleGeartypeCheckboxChange}
-                style={{ lineHeight: "32px" }}
-              >
-                Automatic gear
-              </Checkbox>
-              <Checkbox
-                value="newVision"
-                checked={selectedGeartype === "newVision"}
-                onChange={handleGeartypeCheckboxChange}
-                style={{ lineHeight: "32px" }}
-              >
-                New vision
-              </Checkbox>
-            </div>
+                <Checkbox
+                  value="manualGear"
+                  // checked={selectedGeartype === "manualGear"}
+                  // onChange={handleGeartypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Manual gear
+                </Checkbox>
+                <Checkbox
+                  value="automaticGear"
+                  // checked={selectedGeartype === "automaticGear"}
+                  // onChange={handleGeartypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Automatic gear
+                </Checkbox>
+              </div>
+            </Checkbox.Group>
           </Form.Item>
         </div>
-
         <h1 className="font-bold text-2xl mb-2">Models</h1>
         <div className="flex  justify-between gap-5">
           <Form.Item
