@@ -4,17 +4,60 @@ import { DownOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { AllImages } from "@/assets/AllImages";
 import Image from "next/image";
+
+import { toast } from "sonner";
+import { useUserLoginMutation } from "@/redux/api/features/authApi";
+import { jwtDecode } from "jwt-decode";
+import { useDispatch } from "react-redux";
+import { setAccessToken, setUserInfo } from "@/redux/slices/authSlice";
+import Cookies from "universal-cookie";
 import { useRouter } from "next/navigation";
 
-const SignIn = () => {
-  const navigate = useRouter(); // useNavigate hook for navigation
 
-  const onFinish = (values) => {
+const SignIn = () => {
+  const [userLogin] = useUserLoginMutation();
+  const dispatch = useDispatch();
+  const navigate = useRouter();
+
+  const cookies = new Cookies();
+
+  const onFinish = async (values) => {
+    const toastId = toast.loading(" Logging in...");
     console.log("car-trading:", values);
-     document.cookie = `car-trading_user=${encodeURIComponent(
-       JSON.stringify(values)
-     )}; path=/; secure`;
-    navigate.push("/"); // Correct use of navigate function
+
+    try {
+      const res = await userLogin(values).unwrap();
+      const decodeToken = jwtDecode(res?.data?.accessToken);
+      dispatch(setAccessToken(res?.data?.accessToken));
+      dispatch(setUserInfo(decodeToken));
+      console.log("res: ", res, decodeToken);
+      cookies.set("car_trading_accessToken", res?.data?.accessToken);
+      toast.success(res.message, {
+        id: toastId,
+        duration: 2000,
+      });
+      navigate.push("/");
+    } catch (error) {
+      console.error("Login Error:", error); // Log the error for debugging
+
+      toast.error(
+        error?.data?.message ||
+          error?.error ||
+          "An error occurred during Login",
+        {
+          id: toastId,
+          duration: 2000,
+        }
+      );
+    }
+
+    return;
+
+    document.cookie = `car-trading_user=${encodeURIComponent(
+      JSON.stringify(values)
+    )}; path=/; secure`;
+
+    navigate.push("/");
   };
   return (
     <div className=" bg-[#E6F3F7]">
@@ -69,6 +112,7 @@ const SignIn = () => {
               ]}
             >
               <Input
+                autoComplete="email"
                 placeholder="Enter your email"
                 className="py-2 px-3 text-xl bg-site-color border !border-[#1E1E1E]  hover:bg-transparent hover:border-secoundary-color focus:bg-transparent focus:border-secoundary-color !bg-white"
               />
@@ -87,11 +131,12 @@ const SignIn = () => {
               className="text-base-color"
             >
               <Input.Password
+                autoComplete="current-password"
                 placeholder="Enter your password"
                 className="py-2 px-3 text-xl bg-site-color border !border-[#1E1E1E] hover:bg-transparent hover:border-secoundary-color focus:bg-transparent focus:border-secoundary-color !bg-white"
               />
             </Form.Item>
-            <Typography.Title level={4} style={{ color: "#222222" }}>
+            {/* <Typography.Title level={4} style={{ color: "#222222" }}>
               Role
             </Typography.Title>
             <Form.Item
@@ -109,7 +154,7 @@ const SignIn = () => {
                 <Select.Option value="dealer">Dealer</Select.Option>
                 <Select.Option value="user">Private User</Select.Option>
               </Select>
-            </Form.Item>
+            </Form.Item> */}
             <div className="flex justify-between items-center mt-10">
               <Checkbox className="">Remember me</Checkbox>
               <Link href="/forgot-password" className="!text-[#1E1E1E] ">
@@ -127,6 +172,12 @@ const SignIn = () => {
               </Button>
             </Form.Item>
           </Form>
+          <div className=" mb-5 flex justify-center items-center gap-2">
+            <p>Don’t have an account?</p>
+            <Link className="text-[#FF991C] font-bold text-lg" href="sign-up">
+              Sign up
+            </Link>
+          </div>
         </div>
       </div>
     </div>

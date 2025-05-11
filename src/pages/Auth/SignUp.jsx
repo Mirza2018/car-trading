@@ -5,18 +5,62 @@ import Link from "next/link";
 import { AllImages } from "@/assets/AllImages";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useSignUpMutation } from "@/redux/api/features/authApi";
+import { toast } from "sonner";
+import { useState } from "react";
+import {
+  clearAccessToken,
+  clearAuth,
+  clearForgotPasswordToken,
+  setResendSignUpToken,
+  setSignUpToken,
+} from "@/redux/slices/authSlice";
+import { useDispatch } from "react-redux";
 
 const SignUp = () => {
+  const [userSignUp] = useSignUpMutation();
+  const [role, setRole] = useState(null);
+  const handleRoleChange = (value) => {
+    setRole(value); // Update role state when the value changes
+  };
   const [form] = Form.useForm();
   const navigate = useRouter(); // useNavigate hook for navigation
+  const dispatch = useDispatch();
+  const onFinish = async (values) => {
+    dispatch(clearAuth());
+    const toastId = toast.loading(" Sign Up...");
+    console.log("car-trading sign up values", values);
 
-  const onFinish = (values) => {
-    console.log("car-trading:", values);
-    document.cookie = `car-trading_user=${encodeURIComponent(
-      JSON.stringify(values)
-    )}; path=/; secure`;
-    navigate.push("/"); // Correct use of navigate function
+    // return;
+
+    try {
+      const res = await userSignUp(values).unwrap();
+
+      dispatch(setSignUpToken(res?.data?.signUpToken));
+      dispatch(setResendSignUpToken(res?.data?.signUpToken));
+      console.log(res?.data?.signUpToken);
+
+      toast.success(res.message, {
+        id: toastId,
+        duration: 2000,
+      });
+
+      navigate.push("/verify-otp");
+    } catch (error) {
+      console.error("Login Error:", error); // Log the error for debugging
+
+      toast.error(
+        error?.data?.message ||
+          error?.error ||
+          "An error occurred during registration please try later",
+        {
+          id: toastId,
+          duration: 2000,
+        }
+      );
+    }
   };
+
   return (
     <div className=" bg-[#E6F3F7]">
       <div className="max-w-[1350px] w-[90%] mx-auto grid grid-cols-1 lg:grid-cols-2 items-center justify-items-center gap-10 min-h-screen py-10">
@@ -50,23 +94,42 @@ const SignUp = () => {
             onFinish={onFinish}
           >
             <Typography.Title level={4} style={{ color: "#222222" }}>
-              Name
+              First Name
             </Typography.Title>
             <Form.Item
-              name="name"
+              name="first_name"
               className="text-base-color"
               rules={[
                 {
                   required: true,
-                  message: "Name is Required",
+                  message: "First name is Required",
                 },
               ]}
             >
               <Input
-                placeholder="Enter your Name"
+                placeholder="Enter your first name"
                 className="py-2 px-3 text-xl bg-site-color border !border-[#1E1E1E] r hover:bg-transparent hover:border-secoundary-color focus:bg-transparent focus:border-secoundary-color !bg-white"
               />
             </Form.Item>
+            <Typography.Title level={4} style={{ color: "#222222" }}>
+              Last Name
+            </Typography.Title>
+            <Form.Item
+              name="last_name"
+              className="text-base-color"
+              rules={[
+                {
+                  required: true,
+                  message: "Last name is Required",
+                },
+              ]}
+            >
+              <Input
+                placeholder="Enter your last name"
+                className="py-2 px-3 text-xl bg-site-color border !border-[#1E1E1E] r hover:bg-transparent hover:border-secoundary-color focus:bg-transparent focus:border-secoundary-color !bg-white"
+              />
+            </Form.Item>
+
             <Typography.Title level={4} style={{ color: "#222222" }}>
               Email
             </Typography.Title>
@@ -146,6 +209,7 @@ const SignUp = () => {
               className="text-white"
             >
               <Select
+                onChange={handleRoleChange}
                 placeholder="Select Role"
                 suffixIcon={
                   <DownOutlined className="text-[#222222] text-xl  mt-1" />
@@ -153,9 +217,33 @@ const SignUp = () => {
                 className="h-12 text-xl bg-site-color  text-base-color   "
               >
                 <Select.Option value="dealer">Dealer</Select.Option>
-                <Select.Option value="user">Private User</Select.Option>
+                <Select.Option value="private_user">Private User</Select.Option>
               </Select>
             </Form.Item>
+
+            {role === "dealer" && (
+              <>
+                <Typography.Title level={4} style={{ color: "#222222" }}>
+                  Do you want to use transport?
+                </Typography.Title>
+                <Form.Item
+                  rules={[{ required: true }]}
+                  name="isUseTransport"
+                  className="text-white"
+                >
+                  <Select
+                    placeholder="Do you want to use transport? "
+                    suffixIcon={
+                      <DownOutlined className="text-[#222222] text-xl  mt-1" />
+                    }
+                    className="h-12 text-xl bg-site-color  text-base-color   "
+                  >
+                    <Select.Option value={true}>Yes</Select.Option>
+                    <Select.Option value={false}>No</Select.Option>
+                  </Select>
+                </Form.Item>
+              </>
+            )}
             <Form.Item>
               <Button
                 type="primary"

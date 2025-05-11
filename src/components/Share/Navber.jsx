@@ -1,24 +1,29 @@
 "use client";
 import { AllImages } from "@/assets/AllImages";
-import { Avatar, Badge, Modal } from "antd";
+import { Modal } from "antd";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { BellOutlined } from "@ant-design/icons";
-import React from "react";
-import useCookie from "@/cookie/useCookie";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import MyProfile from "./MyProfile";
+import { clearAuth } from "@/redux/slices/authSlice";
+import Cookies from "universal-cookie";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+
 
 const Navbar = () => {
-  const [carUser, loading] = useCookie("car-trading_user");
-
+  const userInfo = useSelector((state) => state.auth.userInfo);
+  const navigate = useRouter();
+  const dispatch = useDispatch();
+  const cookies = new Cookies();
   // console.log(carUser, "carUser");
 
   const task = true;
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isProfile, setIsProfile] = useState(false);
-// console.log({isProfile});
+  // console.log({isProfile});
 
   const menuRef = useRef(null); // Create a ref to track the menu
   const profileRef = useRef(null); // Create a ref to track the profile
@@ -86,7 +91,7 @@ const Navbar = () => {
   // Specific Menus based on roles
   const RoleSpecificMenus = {
     default: [],
-    user: [
+    private_user: [
       { name: "Submit Listing", path: "/submit-listing" },
       { name: "Inbox", path: "/inbox" },
       { name: "Dashboard", path: "/dashboard/total-private-car-sell" },
@@ -101,15 +106,11 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    const values = {
-      name: null,
-      email: null,
-    };
-    // Clear the "car_trading_user" cookie by setting its expiry date in the past.
-    document.cookie = `car-trading_user=${encodeURIComponent(
-      JSON.stringify(values)
-    )}; path=/; secure`;
+
+    dispatch(clearAuth());
+    cookies.remove("car_trading_accessToken");
     navigate.push("/");
+    toast.success("Log out successfully done")
   };
 
   const getMenuItems = (user) => {
@@ -132,7 +133,7 @@ const Navbar = () => {
   };
 
   // Generate the main menu based on the user's role
-  const mainMenu = getMenuItems(carUser);
+  const mainMenu = getMenuItems(userInfo);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -226,7 +227,7 @@ const Navbar = () => {
             </Link>
           ))}
 
-          {carUser?.role ? (
+          {userInfo?.role ? (
             <>
               {" "}
               <div ref={profileRef} className="cursor-pointer relative">
@@ -239,14 +240,19 @@ const Navbar = () => {
                     src={AllImages.profile}
                   />{" "}
                 </div>
-                {isProfile && <MyProfile setIsProfile={setIsProfile} />}
+                {isProfile && (
+                  <MyProfile
+                    setIsProfile={setIsProfile}
+                    handleLogout={handleLogout}
+                  />
+                )}
               </div>
               {/* <Link href={"/"}>
                 <Badge count={1}>
                   <Avatar size={50} icon={<BellOutlined />} />
                 </Badge>
               </Link> */}
-              {carUser?.role === "user" ? (
+              {userInfo?.role === "private_user" ? (
                 <Link href={"/sign-in"}>
                   <p className="bg-[#00721E] text-[15px] font-medium px-3 py-2 rounded-3xl">
                     Log In For Dealer

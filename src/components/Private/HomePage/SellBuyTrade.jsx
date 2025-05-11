@@ -6,9 +6,16 @@ import { AudioOutlined, UserOutlined } from "@ant-design/icons";
 import { AllImages } from "@/assets/AllImages";
 import Image from "next/image";
 import Link from "next/link";
+import useGetData from "@/components/DataFetch/useGetData";
 const { Search } = Input;
 
 const SellBuyTrade = () => {
+  // const { data, loading, error } = useGetData(
+  //   "https://api.nrpla.de/AJ30124",
+  //   "tZ1FaGCRDX9OsDgE1LPKfcTOmgyOxvG0aSS2LqtDp7TsS6toH3SwKCzNxrwURzQw"
+  // );
+  // console.log(data,loading,error);
+  
   const onSearch = (e) => {
     console.log(e);
   };
@@ -43,7 +50,6 @@ const SellBuyTrade = () => {
             </p>{" "}
           </div>
 
-
           <div className="text-center mb-16 mx-10">
             <Input
               //  ref={inputRef}
@@ -58,7 +64,7 @@ const SellBuyTrade = () => {
                     href="/sell-car"
                     className="text-white font-bold text-lg"
                   >
-                   Search
+                    Search
                   </Link>
                 </div>
               }
@@ -71,7 +77,13 @@ const SellBuyTrade = () => {
                     src={AllImages.star}
                     className="w-7"
                   />
-                  <Image width={0} height={0} alt="search" className="w-6" src={AllImages.dk} />
+                  <Image
+                    width={0}
+                    height={0}
+                    alt="search"
+                    className="w-6"
+                    src={AllImages.dk}
+                  />
                 </div>
               }
             />

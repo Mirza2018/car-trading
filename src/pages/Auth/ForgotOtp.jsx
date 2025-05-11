@@ -1,15 +1,19 @@
 "use client";
 import { AllImages } from "@/assets/AllImages";
 import {
+  useForgetOtpVerifyMutation,
   useResendOTPMutation,
   useVerifiedEmailMutation,
 } from "@/redux/api/features/authApi";
 import {
   clearAuth,
+  clearForgotPasswordToken,
   clearResendSignUpToken,
   clearSignUpToken,
   setAccessToken,
+  setForgotPasswordToken,
   setResendSignUpToken,
+  setResetPasswordToken,
   setSignUpToken,
   setUserInfo,
 } from "@/redux/slices/authSlice";
@@ -24,8 +28,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 import Cookies from "universal-cookie";
 
-const OtpPage = () => {
-  const [varifyOtp] = useVerifiedEmailMutation();
+const ForgotOtp = () => {
+  const [varifyOtp] = useForgetOtpVerifyMutation();
   const [resendOtp] = useResendOTPMutation();
   const [otp, setOtp] = useState("");
   const navigate = useRouter();
@@ -35,17 +39,17 @@ const OtpPage = () => {
   const resendToken = useSelector((state) => state.auth.resendSignUpToken);
 
   // const userInfo = useSelector((state) => state.auth.resendSignUpToken);
-  // console.log(userInfo);
+  console.log("yes yes",resendToken);
 
   const handleResendOtp = async () => {
-    dispatch(clearSignUpToken());
+    dispatch(clearForgotPasswordToken());
     const data = {
-      purpose: "email-verification",
+      purpose: "forget-password",
     };
     const toastId = toast.loading("OTP is Resending...");
     try {
       const res = await resendOtp(data).unwrap();
-      dispatch(setSignUpToken(resendToken));
+      dispatch(setForgotPasswordToken(resendToken));
       console.log(res);
       toast.success(res.message, {
         id: toastId,
@@ -83,13 +87,14 @@ const OtpPage = () => {
         duration: 2000,
       });
       dispatch(clearAuth());
+      dispatch(setResetPasswordToken(res?.data?.resetPasswordToken));
 
-      const decodeToken = jwtDecode(res?.data?.accessToken);
-      dispatch(setAccessToken(res?.data?.accessToken));
-      dispatch(setUserInfo(decodeToken));
-      cookies.set("car_trading_accessToken", res?.data?.accessToken);
+      //   const decodeToken = jwtDecode(res?.data?.accessToken);
+      //   dispatch(setAccessToken(res?.data?.accessToken));
+      //   dispatch(setUserInfo(decodeToken));
+      //   cookies.set("car_trading_accessToken", res?.data?.accessToken);
 
-      navigate.push("/");
+        navigate.push("/update-password");
     } catch (error) {
       console.error("Login Error:", error); // Log the error for debugging
 
@@ -175,4 +180,4 @@ const OtpPage = () => {
     </div>
   );
 };
-export default OtpPage;
+export default ForgotOtp;

@@ -1,15 +1,50 @@
 "use client";
 import { AllImages } from "@/assets/AllImages";
+import { useForgetPasswordMutation } from "@/redux/api/features/authApi";
+import {
+  setForgotPasswordToken,
+  setResendSignUpToken,
+} from "@/redux/slices/authSlice";
 import { Button, Form, Input } from "antd";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { toast } from "sonner";
 
 const ForgotPassword = () => {
+  const [forgotPassEmail] = useForgetPasswordMutation();
+  const dispatch = useDispatch();
   const navigate = useRouter();
 
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
+    const toastId = toast.loading(" Password reseting...");
     console.log("Success:", values);
-    navigate.push("/verify-otp");
+
+    try {
+      const res = await forgotPassEmail(values).unwrap();
+
+      console.log("res: ", res?.data?.forgotPasswordToken);
+      dispatch(setForgotPasswordToken(res?.data?.forgotPasswordToken));
+      dispatch(setResendSignUpToken(res?.data?.forgotPasswordToken));
+
+      toast.success(res.message, {
+        id: toastId,
+        duration: 2000,
+      });
+      navigate.push("/forgot-otp");
+    } catch (error) {
+      console.error("Login Error:", error);
+
+      toast.error(
+        error?.data?.message ||
+          error?.error ||
+          "An error occurred during Reset password",
+        {
+          id: toastId,
+          duration: 2000,
+        }
+      );
+    }
   };
   return (
     <div className=" bg-[#E6F3F7]">

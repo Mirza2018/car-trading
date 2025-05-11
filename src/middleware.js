@@ -1,10 +1,14 @@
+import Cookies from "universal-cookie";
+import { jwtDecode } from "jwt-decode";
 import { NextResponse } from "next/server";
 
 export function middleware(request) {
+  const cookies = new Cookies();
   const { pathname, origin } = request.nextUrl;
   console.log("Received request for pathname:", pathname);
+  const userCookie = request.cookies.get("car_trading_accessToken")?.value;
+  console.log("User cookie on homepage:", userCookie);
 
-  const userCookie = request.cookies.get("car-trading_user");
   if (!userCookie) {
     console.log("No user cookie found, checking public paths");
     const publicPaths = ["/", "/about-us", "/contact-us"];
@@ -17,15 +21,36 @@ export function middleware(request) {
   }
 
   console.log("User cookie found, parsing user");
+
   let user;
   try {
-    user = JSON.parse(decodeURIComponent(userCookie.value));
+    user = jwtDecode(userCookie);
     console.log("User parsed successfully:", user);
   } catch (error) {
     console.log("Error parsing user, deleting cookie and redirecting:", error);
     const response = NextResponse.redirect(new URL("/", origin));
     response.cookies.delete("car-trading_user");
     return response;
+  }
+
+  // Restrict /task and /task/:id to dealers only
+  if (pathname === "/task" || pathname.startsWith("/task/")) {
+    console.log("Accessing task route, checking user role");
+    if (user.role !== "dealer") {
+      console.log("Non-dealer trying to access task route, redirecting");
+      return NextResponse.redirect(new URL("/", origin));
+    }
+  }
+
+  // Restrict /submit-listing to private_user only
+  if (pathname === "/submit-listing") {
+    console.log("Accessing submit-listing route, checking user role");
+    if (user.role !== "private_user") {
+      console.log(
+        "Non-private_user trying to access submit-listing, redirecting"
+      );
+      return NextResponse.redirect(new URL("/", origin));
+    }
   }
 
   if (pathname.startsWith("/dashboard")) {
@@ -54,7 +79,7 @@ export function middleware(request) {
           new URL("/dashboard/total-dealer-car-sell", origin)
         );
       }
-    } else if (user.role === "user") {
+    } else if (user.role === "private_user") {
       console.log("User is a regular user, checking allowed paths");
       const allowedUserDashboardPaths = [
         "/dashboard/total-private-car-sell",
@@ -82,5 +107,10 @@ export function middleware(request) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/submit-listing", "/listings", "/task"],
+  matcher: [
+    "/dashboard/:path*",
+    "/submit-listing",
+    "/listings",
+    "/task/:path*",
+  ],
 };

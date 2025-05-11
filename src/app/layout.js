@@ -4,6 +4,8 @@ import Navbar from "@/components/Share/Navber";
 import { ConfigProvider } from "antd";
 import { mainTheme } from "@/theme/theme";
 import Footer from "@/components/Share/Foooter";
+import Providers from "@/lib/Providers";
+import { Toaster } from "sonner";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,7 +30,10 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {/* <Navbar /> */}
-        <ConfigProvider theme={mainTheme}>{children}</ConfigProvider>
+        <Providers>
+          <Toaster richColors={true} position="top-center" />
+          <ConfigProvider theme={mainTheme}>{children}</ConfigProvider>
+        </Providers>
       </body>
     </html>
   );

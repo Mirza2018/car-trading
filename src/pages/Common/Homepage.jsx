@@ -5,24 +5,28 @@ import PrivateLookingForCars from "@/components/DealerComponents/HomePage/Privat
 import Reviews from "@/components/Private/AboutUsPage/Reviews";
 import FairPriceCard from "@/components/Private/HomePage/FairPriceCard";
 import FairPriceFooter from "@/components/Private/HomePage/FairPriceFooter";
-import CustomerReviews from "@/components/Private/HomePage/Reviws";
 import SellBuyTrade from "@/components/Private/HomePage/SellBuyTrade";
 import TotalCarBuy from "@/components/Private/HomePage/TotalCarBuy";
 import TotalCarSell from "@/components/Private/HomePage/TotalCarSell";
 import WhyChooseUS from "@/components/Private/HomePage/WhyChooseUS";
-import useCookie from "@/cookie/useCookie";
-import React, { useState } from "react";
+
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Homepage = () => {
-  const [carUser, loading] = useCookie("car-trading_user");
+  // console.log(accessToken);
+  const userInfo = useSelector((state) => state.auth.userInfo);
+  // console.log(userInfo);
+
+  const carUser = "car_trading_accessToken";
   const [isSellCar, setIsSellCar] = useState(true);
 
   return (
     <div className="text-text-color container mx-auto">
       {/* dealer */}
-      {carUser?.role === "dealer" && <FilterSection />}
+      {userInfo?.role === "dealer" && <FilterSection />}
 
-      {carUser?.role === "dealer" ? (
+      {userInfo?.role === "dealer" ? (
         // dealer
         <>
           <div>

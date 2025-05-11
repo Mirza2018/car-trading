@@ -1,22 +1,11 @@
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+
 
 import React from "react";
 
-const MyProfile = ({ setIsProfile }) => {
-  const navigate = useRouter();
-  const handleLogout = () => {
-    const values = {
-      name: null,
-      email: null,
-    };
-    // Clear the "car_trading_user" cookie by setting its expiry date in the past.
-    document.cookie = `car-trading_user=${encodeURIComponent(
-      JSON.stringify(values)
-    )}; path=/; secure`;
-    setIsProfile(false);
-    window.location.reload();
-  };
+const MyProfile = ({ setIsProfile, handleLogout }) => {
+
+
   return (
     <div className=" absolute right-0 z-50 bg-[#F3F9FB] text-base font-normal flex flex-col justify-center items-center gap-3 pb-16  rounded-2xl cursor-context-menu">
       <div className="cursor-pointer py-3 px-4 rounded-t-2xl bg-highlight-color text-white flex justify-start gap-2 w-full">
