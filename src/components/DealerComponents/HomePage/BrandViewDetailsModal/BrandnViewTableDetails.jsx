@@ -1,9 +1,128 @@
 import React from "react";
 
-const BrandnViewTableDetails = () => {
+const BrandnViewTableDetails = ({car}) => {
   return (
-    <main className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-5 gap-0">
-      <section className="flex flex-col gap-2">
+    <main className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-7 gap-y-2">
+      {car?.carCategory && (
+        <div className="flex justify-between border-b border-text-light-color">
+          <p>Car Category:</p>
+          <p>{car?.carCategory}</p>
+        </div>
+      )}
+      {car?.mark && (
+        <div className="flex justify-between border-b border-text-light-color">
+          <p>Mark:</p>
+          <p>{car?.mark}</p>
+        </div>
+      )}
+      {car?.model && (
+        <div className="flex justify-between border-b border-text-light-color">
+          <p>Model:</p>
+          <p>{car?.model}</p>
+        </div>
+      )}
+      {car?.cashPrice && (
+        <div className="flex justify-between border-b border-text-light-color">
+          <p>Cash Price:</p>
+          <p>{car?.cashPrice} DKK</p>
+        </div>
+      )}
+      {car?.priceType && (
+        <div className="flex justify-between border-b border-text-light-color">
+          <p>priceType</p>
+          {car?.priceType.map((p) => (
+            <p>{p}</p>
+          ))}
+        </div>
+      )}
+      {car?.carCondition && (
+        <div className="flex justify-between border-b border-text-light-color">
+          <p>Car Condition:</p>
+          <p>{car?.carCondition} </p>
+        </div>
+      )}
+      {car?.models && (
+        <div className="flex justify-between border-b border-text-light-color">
+          <p>Models:</p>
+          <p>{car?.models} </p>
+        </div>
+      )}
+      {car?.fuel && (
+        <div className="flex justify-between border-b border-text-light-color">
+          <p>Fuel</p>
+          {car?.fuel.map((p) => (
+            <p>{p}</p>
+          ))}
+        </div>
+      )}
+      {car?.gearType && (
+        <div className="flex justify-between border-b border-text-light-color">
+          <p>GearType</p>
+          {car?.gearType.map((p) => (
+            <p>{p}</p>
+          ))}
+        </div>
+      )}
+      {car?.models && (
+        <div className="flex justify-between border-b border-text-light-color">
+          <p>Models:</p>
+          <p>{car?.models} </p>
+        </div>
+      )}
+      {car?.drivenKmFrom && (
+        <div className="flex justify-between border-b border-text-light-color">
+          <p>Driven Km:</p>
+          <p>
+            {car?.drivenKmFrom}-{car?.drivenKmTo}{" "}
+          </p>
+        </div>
+      )}
+      {car?.modelsFrom && (
+        <div className="flex justify-between border-b border-text-light-color">
+          <p>Models Year:</p>
+          <p>
+            {car?.modelsFrom}-{car?.modelsTo}{" "}
+          </p>
+        </div>
+      )}
+
+      {car?.color && (
+        <div className="flex justify-between border-b border-text-light-color">
+          <p>Color:</p>
+          <p>{car?.color} </p>
+        </div>
+      )}
+      {car?.trailerHitch && (
+        <div className="flex justify-between border-b border-text-light-color">
+          <p>TrailerHitch:</p>
+          <p>{car?.trailerHitch} </p>
+        </div>
+      )}
+      {car?.exterior && (
+        <div className="flex justify-between border-b border-text-light-color">
+          <p>Exterior:</p>
+          <p>{car?.exterior} </p>
+        </div>
+      )}
+      {car?.interior && (
+        <div className="flex justify-between border-b border-text-light-color">
+          <p>Interior:</p>
+          <p>{car?.interior} </p>
+        </div>
+      )}
+      {car?.city && (
+        <div className="flex justify-between border-b border-text-light-color">
+          <p>City:</p>
+          <p>{car?.city} </p>
+        </div>
+      )}
+      {car?.postalCode && (
+        <div className="flex justify-between border-b border-text-light-color">
+          <p>Postal Code:</p>
+          <p>{car?.postalCode} </p>
+        </div>
+      )}
+      {/* <section className="flex flex-col gap-2">
         <div className="flex justify-between border-b border-text-light-color">
           <p>Car Category</p>
           <p>SUV</p>
@@ -92,7 +211,7 @@ const BrandnViewTableDetails = () => {
           <p>Interior</p>
           <p>Seat Heating</p>
         </div>
-      </section>
+      </section> */}
     </main>
   );
 };

@@ -11,7 +11,7 @@ import Cookies from "universal-cookie";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-
+ 
 const Navbar = () => {
   const userInfo = useSelector((state) => state.auth.userInfo);
   const navigate = useRouter();

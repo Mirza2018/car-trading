@@ -16,7 +16,7 @@ import { useSelector } from "react-redux";
 const Homepage = () => {
   // console.log(accessToken);
   const userInfo = useSelector((state) => state.auth.userInfo);
-  // console.log(userInfo);
+
 
   const carUser = "car_trading_accessToken";
   const [isSellCar, setIsSellCar] = useState(true);

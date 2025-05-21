@@ -1,34 +1,34 @@
 import React from "react";
-  
-const CarTableDetails = ({ car }) => {
-  const date = new Date(car?.inspectionDate).toDateString();
+
+const DealerCarTableDetails = ({ car }) => {
+  const date = new Date(car?.car?.inspectionDate).toDateString();
   return (
-    <> 
+    <>
       <main className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-7 gap-y-2">
-        {car?.noOfKmDriven && (
+        {car?.car?.noOfKmDriven && (
           <div className="flex justify-between border-b border-text-light-color">
             <p>Driven Km:</p>
-            <p>{car?.noOfKmDriven} Km</p>
+            <p>{car?.car?.noOfKmDriven} Km</p>
           </div>
         )}
-        {car?.noOfVarnishField && (
+        {car?.car?.noOfVarnishField && (
           <div className="flex justify-between border-b border-text-light-color">
             <p>Varnish Field:</p>
-            <p>{car?.noOfVarnishField} </p>
+            <p>{car?.car?.noOfVarnishField} </p>
           </div>
         )}
-        {car?.additionalEquipment && (
+        {car?.car?.additionalEquipment && (
           <div className="flex justify-between border-b border-text-light-color">
             <p>Additional Equipment</p>
-            {car?.additionalEquipment.map((p) => (
+            {car?.car?.additionalEquipment.map((p) => (
               <p>{p}</p>
             ))}
           </div>
         )}
-        {car?.condition && (
+        {car?.car?.condition && (
           <div className="flex justify-between border-b border-text-light-color">
             <p>Condition:</p>
-            <p>{car?.condition} </p>
+            <p>{car?.car?.condition} </p>
           </div>
         )}
         {car?.carCategory && (
@@ -37,32 +37,32 @@ const CarTableDetails = ({ car }) => {
             <p>{car?.carCategory} </p>
           </div>
         )}
-        {car?.comment && (
+        {car?.car?.comment && (
           <div className="flex justify-between border-b border-text-light-color">
             <p>Comment:</p>
-            <p>{car?.comment} </p>
+            <p>{car?.car?.comment} </p>
           </div>
         )}
-        {car?.registrationNumber && (
+        {car?.car?.registrationNumber && (
           <div className="flex justify-between border-b border-text-light-color">
             <p>Registration Number:</p>
-            <p>{car?.registrationNumber} </p>
+            <p>{car?.car?.registrationNumber} </p>
           </div>
         )}
 
-        {car?.milage && (
+        {car?.car?.milage && (
           <div className="flex justify-between border-b border-text-light-color">
             <p>Milage:</p>
-            <p>{car?.milage} </p>
+            <p>{car?.car?.milage} </p>
           </div>
         )}
-        {car?.chassisNumber && (
+        {car?.car?.chassisNumber && (
           <div className="flex justify-between border-b border-text-light-color">
             <p>Chassis Number:</p>
-            <p>{car?.chassisNumber} </p>
+            <p>{car?.car?.chassisNumber} </p>
           </div>
         )}
-        {car?.inspectionDate && (
+        {car?.car?.inspectionDate && (
           <div className="flex justify-between border-b border-text-light-color">
             <p>Inspection Date:</p>
             <p>{date} </p>
@@ -80,17 +80,17 @@ const CarTableDetails = ({ car }) => {
             <p>Model:</p>
             <p>{car?.carModel?.model} </p>
           </div>
-        ) :""
-        
-        
-        
-        }
+        ) : (
+          ""
+        )}
         {car?.carModel?.modelYear ? (
           <div className="flex justify-between border-b border-text-light-color">
             <p>Model Year:</p>
             <p>{car?.carModel?.modelYear} </p>
           </div>
-        ):""}
+        ) : (
+          ""
+        )}
         {car?.carModel?.variant && (
           <div className="flex justify-between border-b border-text-light-color">
             <p>Variant:</p>
@@ -229,4 +229,4 @@ const CarTableDetails = ({ car }) => {
   );
 };
 
-export default CarTableDetails;
+export default DealerCarTableDetails;

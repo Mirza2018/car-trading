@@ -1,11 +1,6 @@
-// For fetchbase query
-// import Cookies from "universal-cookie";
-// const cookies = new Cookies();
 import { tagTypes } from "../../tagTypes";
 import { baseApi } from "../baseApi";
-// import { decodedToken } from "@/utils/jwt";
 
-const AUTH_URL = "/users";
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
@@ -111,33 +106,33 @@ export const authApi = baseApi.injectEndpoints({
 
 
 
-    myProfile: build.query({
-      query: () => {
-        return {
-          url: `${AUTH_URL}/my-profile`,
-          method: "GET",
-        };
-      },
-      providesTags: [tagTypes.user], // Ensures that the profile data can be invalidated if needed
-    }),
-    getAllUsers: build.query({
-      query: () => {
-        return {
-          url: `${AUTH_URL}/all-users`,
-          method: "GET",
-          query: {},
-        };
-      },
-      providesTags: [tagTypes.user], // Ensures that the profile data can be invalidated if needed
-    }),
-    donationUser: build.query({
-      query: () => {
-        return {
-          url: `/donation`,
-          method: "GET",
-        };
-      },
-    }),
+    // myProfile: build.query({
+    //   query: () => {
+    //     return {
+    //       url: `${AUTH_URL}/my-profile`,
+    //       method: "GET",
+    //     };
+    //   },
+    //   providesTags: [tagTypes.user], // Ensures that the profile data can be invalidated if needed
+    // }),
+    // getAllUsers: build.query({
+    //   query: () => {
+    //     return {
+    //       url: `${AUTH_URL}/all-users`,
+    //       method: "GET",
+    //       query: {},
+    //     };
+    //   },
+    //   providesTags: [tagTypes.user], // Ensures that the profile data can be invalidated if needed
+    // }),
+    // donationUser: build.query({
+    //   query: () => {
+    //     return {
+    //       url: `/donation`,
+    //       method: "GET",
+    //     };
+    //   },
+    // }),
   }),
 });
 

@@ -1,5 +1,12 @@
 export const tagTypes = {
   user: "User",
+  bid: "Bid",
+  offer: "Offer",
+
+
+
+
+
   product: "Product",
   shelter: "Shelter",
   userProfile: "UserProfile",
@@ -8,6 +15,11 @@ export const tagTypes = {
 
 export const tagTypesList = [
   tagTypes.user,
+  tagTypes.bid,
+  tagTypes.offer,
+
+
+
   tagTypes.product,
   tagTypes.shelter,
   tagTypes.userProfile,

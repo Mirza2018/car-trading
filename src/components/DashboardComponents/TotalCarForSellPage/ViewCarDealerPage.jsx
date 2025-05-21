@@ -1,21 +1,18 @@
 import { Modal } from "antd";
-import React from "react";
-import ImageSlider from "./ImageSlider";
-import { IoMdLink } from "react-icons/io";
-import BuyNowBtn from "./BuyNowBtn";
-import MakeABidBtn from "./MakeABidBtn";
-import CarAllDetails from "./CarAllDetails";
-import Link from "next/link";
-import DealerAllCarDetails from "@/components/DashboardComponents/TotalCarForSellPage/DealerAllCarDetails";
- 
-const ViewDetailsPage = ({
+
+
+import ImageSlider from "@/components/DealerComponents/HomePage/CarViewDetailsModal/ImageSlider";
+import DealerAllCarDetails from "./DealerAllCarDetails";
+
+const ViewCarDealerPage = ({
   setOpenResponsive,
   openResponsive,
   car,
-  sendOffer,
-  buyNow,
+
 }) => {
-  const date = new Date(car?.createdAt).toDateString();
+  const date = new Date(car?.carModel?.updatedAt).toDateString();
+  console.log("sdasdasd", car);
+
   return (
     <Modal
       // title="Modal responsive width"
@@ -25,18 +22,7 @@ const ViewDetailsPage = ({
       width={1500}
       footer={[
         <div key="footerButton" className="flex justify-end gap-80">
-          {sendOffer && (
-            <>
-              <Link href={`/offer-car/007`}>
-                <button
-                  style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
-                  className="bg-highlight-color text-white  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
-                >
-                  Send Offer
-                </button>
-              </Link>
-            </>
-          )}
+
 
           <button
             onClick={() => setOpenResponsive(false)}
@@ -80,6 +66,8 @@ const ViewDetailsPage = ({
                   </p>
                 </div>
               )} */}
+
+ 
             </div>
             {/* Middel part car All Details */}
             <DealerAllCarDetails car={car} />
@@ -91,4 +79,4 @@ const ViewDetailsPage = ({
   );
 };
 
-export default ViewDetailsPage;
+export default ViewCarDealerPage;

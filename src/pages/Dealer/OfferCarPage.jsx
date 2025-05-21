@@ -1,9 +1,12 @@
 "use client";
 import Licenseplate from "@/components/DealerComponents/OfferCarPage/Licenseplate";
 import OfferCar from "@/components/DealerComponents/OfferCarPage/OfferCar";
+import { useOfferCarDealMutation } from "@/redux/api/features/carDealer";
 import React, { useState } from "react";
 
 const OfferCarPage = () => {
+  const [offerCar] = useOfferCarDealMutation();
+
   const [isDeal, setIsDeal] = useState(true);
   return (
     <div className="container mx-auto min-h-screen border-2 border-secondary-color rounded-md my-20">
@@ -26,7 +29,11 @@ const OfferCarPage = () => {
             License plate
           </p>
         </div>
-        {isDeal ? <OfferCar /> : <Licenseplate />}
+        {isDeal ? (
+          <OfferCar offerCar={offerCar} />
+        ) : (
+          <Licenseplate offerCar={offerCar} />
+        )}
       </div>
     </div>
   );

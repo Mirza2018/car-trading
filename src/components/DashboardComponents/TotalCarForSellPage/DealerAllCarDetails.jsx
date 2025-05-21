@@ -1,10 +1,8 @@
 import { AllImages } from "@/assets/AllImages";
 import Image from "next/image";
-import React from "react";
-import CarTableDetails from "./CarTableDetails";
+import DealerCarTableDetails from "./DealerCarTableDetails";
 
-
-const CarAllDetails = ({car}) => {
+const DealerAllCarDetails = ({ car }) => {
   return (
     <div className="my-5">
       <p className="text-2xl font-semibold">{car?.model}</p>
@@ -52,7 +50,7 @@ const CarAllDetails = ({car}) => {
       </div> */}
 
       <div className="flex gap-4 justify-between my-5 flex-wrap">
-        {car?.noOfKmDriven && (
+        {car?.car?.noOfKmDriven && (
           <div className=" flex gap-2 justify-start items-center flex-wrap">
             <Image
               alt="speed"
@@ -61,11 +59,11 @@ const CarAllDetails = ({car}) => {
               src={AllImages.speed}
               className=""
             />
-            <p className="text-sm font-normal">{car?.noOfKmDriven} Km</p>
+            <p className="text-sm font-normal">{car?.car?.noOfKmDriven} Km</p>
           </div>
         )}
 
-        {car?.firstRegistrationDate && (
+        {car?.car?.firstRegistrationDate && (
           <div className=" flex gap-2 justify-start items-center flex-wrap">
             <Image
               alt="speed"
@@ -74,7 +72,9 @@ const CarAllDetails = ({car}) => {
               src={AllImages.calender}
               className=""
             />
-            <p className="text-sm font-normal">{car?.firstRegistrationDate}</p>
+            <p className="text-sm font-normal">
+              {car?.car?.firstRegistrationDate}
+            </p>
           </div>
         )}
 
@@ -87,11 +87,13 @@ const CarAllDetails = ({car}) => {
               src={AllImages.map}
               className=""
             />
-            <p className="text-sm font-normal">{car?.company?.postCode}</p>
+            <p className="text-sm font-normal">
+              {car?.company?.city} ({car?.company?.postCode})
+            </p>
           </div>
         )}
 
-        {car?.carCategory && (
+        {car?.car?.carCategory && (
           <div className=" flex gap-2 justify-start items-center flex-wrap">
             <Image
               alt="speed"
@@ -100,7 +102,7 @@ const CarAllDetails = ({car}) => {
               src={AllImages.suv}
               className=""
             />
-            <p className="text-sm font-normal">{car?.carCategory}</p>
+            <p className="text-sm font-normal">{car?.car?.carCategory}</p>
           </div>
         )}
       </div>
@@ -112,9 +114,9 @@ const CarAllDetails = ({car}) => {
           <p className="cursor-pointer">Services</p>
           <p className="cursor-pointer">Seller</p>
         </div> */}
-      <CarTableDetails car={car} />
+      <DealerCarTableDetails car={car} />
     </div>
   );
 };
 
-export default CarAllDetails;
+export default DealerAllCarDetails;

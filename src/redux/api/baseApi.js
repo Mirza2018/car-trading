@@ -12,11 +12,11 @@ const baseQuery = fetchBaseQuery({
     const resendSignUpToken = getState().auth.resendSignUpToken;
     const forgotPassToken = getState().auth.forgotPasswordToken;
     const resetPasswordToken = getState().auth.resetPasswordToken;
-    console.log(1,token);
-    console.log(2,signUpToken);
-    console.log(3,resendSignUpToken);
-    console.log(4,forgotPassToken);
-    console.log(5, resetPasswordToken);
+    // console.log(1,token);
+    // console.log(2,signUpToken);
+    // console.log(3,resendSignUpToken);
+    // console.log(4,forgotPassToken);
+    // console.log(5, resetPasswordToken);
     
 
     if (token) {

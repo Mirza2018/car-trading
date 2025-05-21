@@ -1,10 +1,41 @@
 import { Button, Modal } from "antd";
 import Link from "next/link";
 import React, { useState } from "react";
+import { toast } from "sonner";
 
-const BuyNowBtn = ({ price }) => {
+const BuyNowBtn = ({ price, carId, buyCar }) => {
   const [isBuy, setIsBuy] = useState(false);
   const [isCongrat, setIsCongrat] = useState(false);
+
+  const buyCarHandle = async () => {
+    const toastId = toast.loading("You buying a car...");
+    const data = {
+      carId: carId,
+    };
+    console.log(data);
+
+    try {
+      const res = await buyCar(data).unwrap();
+      console.log(res);
+      toast.success("You successfully buy a car", {
+        id: toastId,
+        duration: 2000,
+      });
+
+      setIsCongrat(true);
+      setIsBuy(false);
+    } catch (error) {
+      console.log(error);
+      toast.error(
+        error?.data?.message ||
+          "There is an problem to buy car, please try letter",
+        {
+          id: toastId,
+          duration: 2000,
+        }
+      );
+    }
+  };
 
   return (
     <React.Fragment>
@@ -14,7 +45,7 @@ const BuyNowBtn = ({ price }) => {
         className="bg-highlight-color text-white  font-semibold py-2  px-11 rounded-lg  cursor-pointer  hover:animate-pulse flex flex-col  items-start w-fit "
       >
         <p className="text-[10px] ">Buy Now :</p>
-        <p>{price}</p>
+        <p>{price} DKK</p>
       </button>
 
       <Modal open={isBuy} onCancel={() => setIsBuy(false)} footer={[]}>
@@ -35,10 +66,7 @@ const BuyNowBtn = ({ price }) => {
           </Button>
 
           <Button
-            onClick={() => {
-              setIsCongrat(true);
-              setIsBuy(false);
-            }}
+            onClick={buyCarHandle}
             className={`text-xl py-5 px-8 bg-highlight-color !hover:bg-red-600 `}
             type="primary"
           >

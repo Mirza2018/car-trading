@@ -9,14 +9,29 @@ import {
   Input,
   Modal,
   Select,
-  Typography,
+  Spin,
+  Typography, 
 } from "antd";
 import { DownOutlined, SearchOutlined } from "@ant-design/icons";
 import CarListTable from "@/components/DashboardComponents/TotalCarForSellPage/CarListTable";
 import ViewCarTables from "@/components/DashboardComponents/TotalCarForSellPage/ViewCarTables";
 import ViewDetailsPage from "@/components/DealerComponents/HomePage/CarViewDetailsModal/ViewDetailsPage";
+import { useTotalPurchasedCarsQuery } from "@/redux/api/features/dealerDashboard";
+import ViewCarDealerPage from "@/components/DashboardComponents/TotalCarForSellPage/ViewCarDealerPage";
 
 const TotalCarForSellPage = () => {
+  const {
+    data: purchasedCar,
+    currentData,
+    isLoading,
+    isFetching,
+    isSuccess,
+  } = useTotalPurchasedCarsQuery();
+
+  const displayedData = purchasedCar ?? currentData;
+
+  console.log("purchasedCar", purchasedCar);
+
   const [searchText, setSearchText] = useState("");
 
   //* Use to set user
@@ -67,84 +82,89 @@ const TotalCarForSellPage = () => {
   const handleCancel = () => {
     setIsServiceUserViewModalVisible(false);
   };
-    const car = {
-      buyNowPrice: "7,000 EUR",
-      model: "Honda CR-V",
-      edition: "PHEV - LUXURY",
-      currentBids: 15,
-      priceInDKK: "33,000 DKK",
-      type: "Hybrid (Benzin)",
-      transmission: "Automatgear",
-      engineCapacity: "2.0 L",
-      horsepower: "151 HK",
-      pno: "#4430479",
-      status: "Minimum price achieved",
-      kilometers: "1,500 km",
-      serviceDate: "07/2025",
-      postalCode: "8100",
-      vehicleType: "SUV",
-      makeAnBidPrice: "26,000 kr.",
-      link: "View Details",
-    };
+  const car = {
+    buyNowPrice: "7,000 EUR",
+    model: "Honda CR-V",
+    edition: "PHEV - LUXURY",
+    currentBids: 15,
+    priceInDKK: "33,000 DKK",
+    type: "Hybrid (Benzin)",
+    transmission: "Automatgear",
+    engineCapacity: "2.0 L",
+    horsepower: "151 HK",
+    pno: "#4430479",
+    status: "Minimum price achieved",
+    kilometers: "1,500 km",
+    serviceDate: "07/2025",
+    postalCode: "8100",
+    vehicleType: "SUV",
+    makeAnBidPrice: "26,000 kr.",
+    link: "View Details",
+  };
 
-  return (
-    <div
-      className=" min-h-[90vh]  rounded-xl"
-      style={{ boxShadow: "0px 0px 5px  rgba(0, 0, 0, 0.25)" }}
-    >
-      {/* Header  */}
-      <div className="bg-secondary-color w-full p-4   rounded-tl-xl rounded-tr-xl">
-        <div className=" w-[95%] mx-auto  flex items-center justify-between">
-          <p className="text-3xl text-primary-color font-semibold">
-            Car List
-          </p>
-          <div className="flex gap-4 items-center">
-            <ConfigProvider
-              theme={{ token: { colorTextPlaceholder: "#f3f3f3" } }}
-            >
-              <Input
-                placeholder="Search User Name..."
-                value={searchText}
-                onChange={(e) => onSearch(e.target.value)}
-                className="text-primary-color font-semibold !border-primary-color !bg-transparent py-2 !rounded-full"
-                prefix={
-                  <SearchOutlined className="text-primary-color font-bold text-lg mr-2" />
-                }
-              />
-            </ConfigProvider>
+  if (isLoading)
+    return <Spin className="flex justify-center items-center" size="large" />;
+  if (!isLoading && isFetching)
+    return <Spin className="flex justify-center items-center" size="large" />;
+  if (isSuccess && displayedData)
+    return (
+      <div
+        className=" min-h-[90vh]  rounded-xl"
+        style={{ boxShadow: "0px 0px 5px  rgba(0, 0, 0, 0.25)" }}
+      >
+        {/* Header  */}
+        <div className="bg-secondary-color w-full p-4   rounded-tl-xl rounded-tr-xl">
+          <div className=" w-[95%] mx-auto  flex items-center justify-between">
+            <p className="text-3xl text-primary-color font-semibold">
+              Car List
+            </p>
+            <div className="flex gap-4 items-center">
+              <ConfigProvider
+                theme={{ token: { colorTextPlaceholder: "#f3f3f3" } }}
+              >
+                <Input
+                  placeholder="Search User Name..."
+                  value={searchText}
+                  onChange={(e) => onSearch(e.target.value)}
+                  className="text-primary-color font-semibold !border-primary-color !bg-transparent py-2 !rounded-full"
+                  prefix={
+                    <SearchOutlined className="text-primary-color font-bold text-lg mr-2" />
+                  }
+                />
+              </ConfigProvider>
+            </div>
           </div>
         </div>
-      </div>
-      <div
-        className="my-4 text-end me-8
+        <div
+          className="my-4 text-end me-8
       "
-      ></div>
+        ></div>
 
-      {/* Table  */}
-      <div className="px-10 pb-10">
-        <CarListTable
-          data={filteredData}
-          loading={loading}
-          showViewServiceUserModal={showViewServiceUserModal}
-          pageSize={12}
-        />
-      </div>
+        {/* Table  */}
+        <div className="px-10 pb-10">
+          <CarListTable
+            data={displayedData?.data?.result}
+            loading={isLoading}
+            showViewServiceUserModal={showViewServiceUserModal}
+            pageSize={12}
+          />
+        </div>
 
-      {/* Modals */}
-      {/* 
+        {/* Modals */}
+        {/* 
       <ViewCarTables
         isServiceUserViewModalVisible={isServiceUserViewModalVisible}
         handleCancel={handleCancel}
         currentRecord={currentRecord}
       /> */}
-      <ViewDetailsPage
-        openResponsive={isServiceUserViewModalVisible}
-        setOpenResponsive={setIsServiceUserViewModalVisible}
-        car={car}
-        sendOffer={false}
-      />
-    </div>
-  );
+        <ViewCarDealerPage
+          openResponsive={isServiceUserViewModalVisible}
+          setOpenResponsive={setIsServiceUserViewModalVisible}
+          car={currentRecord}
+     
+        />
+      </div>
+    );
 };
 
 export default TotalCarForSellPage;

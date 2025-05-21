@@ -30,6 +30,7 @@ const authSlice = createSlice({
     setUserInfo: (state, action) => {
       state.userInfo = action.payload;
     },
+
     clearAccessToken: (state) => {
       state.accessToken = null;
     },
@@ -53,6 +54,7 @@ const authSlice = createSlice({
       state.resendSignUpToken = null;
       state.forgotPasswordToken = null;
       state.resetPasswordToken = null;
+      state.userInfo = null;
     },
   },
 });

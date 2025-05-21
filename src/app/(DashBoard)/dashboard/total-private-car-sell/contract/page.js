@@ -1,10 +1,10 @@
-import ContractPaperPage from '@/pages/Common/ContractPaperPage';
+"use client"
 import React from 'react';
 
 const page = () => {
     return (
         <div>
-           <ContractPaperPage/>
+            
         </div>
     );
 };

@@ -3,7 +3,7 @@ import { jwtDecode } from "jwt-decode";
 import { NextResponse } from "next/server";
 
 export function middleware(request) {
-  const cookies = new Cookies();
+  const cookies = new Cookies(); 
   const { pathname, origin } = request.nextUrl;
   console.log("Received request for pathname:", pathname);
   const userCookie = request.cookies.get("car_trading_accessToken")?.value;

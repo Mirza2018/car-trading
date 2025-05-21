@@ -5,7 +5,7 @@ import Link from "next/link";
 const PrivateCarSoldTable = ({
   data,
   loading,
-  setOpennCarSee,
+  showViewServiceUserModal,
   pageSize = 0,
 }) => {
   const columns = [
@@ -17,43 +17,52 @@ const PrivateCarSoldTable = ({
     },
     {
       title: "Dealer Name",
-      dataIndex: "dealerName",
-      key: "dealerName",
-    },
-    {
-      title: "Brand Name",
-      dataIndex: "brandName",
-      key: "brandName",
-    },
-    {
-      title: "Contract Paper",
-      key: "contractPaper",
-      key: "action",
-      render: (_, record) => (
-        <Link href={`/dashboard/total-private-car-sell/${record.sl}`}>
-          <Tooltip placement="right" title="View Details">
-            {record.contractPaper}
-          </Tooltip>
-        </Link>
+      dataIndex: "profile",
+      key: "profile",
+      render: (text) => (
+        <p className="whitespace-nowrap">
+          {text?.first_name} {text?.last_name}
+        </p>
       ),
     },
     {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
+      title: "Brand Name",
+      dataIndex: "carModel",
+      key: "carModel",
+      render: (text) => <p>{text.brand}</p>,
     },
+    // {
+    //   title: "Contract Paper",
+    //   key: "contractPaper",
+    //   key: "action",
+    //   render: (_, record) => (
+    //     <Link
+    //       href={`/dashboard/total-private-car-sell/contract/${record.car._id}`}
+    //     >
+    //       <Tooltip placement="right" title="View Details">
+    //         {/* {record.contractPaper} */}See paper
+    //       </Tooltip>
+    //     </Link>
+    //   ),
+    // },
+    // {
+    //   title: "Address",
+    //   dataIndex: "address",
+    //   key: "address",
+    // },
     {
       title: "Color",
-      dataIndex: "color",
-      key: "color",
+      dataIndex: "carModel",
+      key: "carModel",
+      render: (text) => <p>{text.color}</p>,
     },
     {
       title: "Price",
-      dataIndex: "price",
-      sorter: (a, b) => a.price - b.price,
-      render: (_, record) => (
+      dataIndex: "car",
+      sorter: (a, b) => a.car.expectedPrice - b.car.expectedPrice,
+      render: (text) => (
         <div>
-          <p>{record.price}$</p>
+          <p className="whitespace-nowrap">{text.expectedPrice} Dkk</p>
         </div>
       ),
     },
@@ -77,7 +86,7 @@ const PrivateCarSoldTable = ({
 
           <Tooltip placement="right" title="View Details">
             <Button
-              onClick={() => setOpennCarSee(true)}
+              onClick={() => showViewServiceUserModal(record)}
               className="!border-[#00721E] !text-black"
             >
               See Details
@@ -92,7 +101,9 @@ const PrivateCarSoldTable = ({
       render: (_, record) => (
         <Space size="middle">
           {/* View Details Tooltip */}
-          <Link href={`total-car-sold/contract/777`}>
+          <Link
+            href={`/dashboard/total-private-car-sell/contract/${record.car._id}`}
+          >
             <Tooltip placement="right" title="View Details">
               <Button
                 // onClick={() => setOpennCarSee(true)}

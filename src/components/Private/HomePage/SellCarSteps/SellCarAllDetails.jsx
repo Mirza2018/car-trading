@@ -1,23 +1,64 @@
 import { AllImages } from "@/assets/AllImages";
-import { InboxOutlined, UploadOutlined } from "@ant-design/icons";
+import {
+  useLazyGetCarInfoQuery,
+  useSaleCarMutation,
+} from "@/redux/api/features/carPrivate";
+import {
+  clearCarLicenseInfo,
+  setCarLicenseInfo,
+} from "@/redux/slices/carInfoSlice";
 
-import { Button, Checkbox, Form, Input, Radio, Upload } from "antd";
+import { Checkbox, Form, Input, InputNumber, Radio, Upload } from "antd";
 import { useForm } from "antd/es/form/Form";
 import Image from "next/image";
-import React, { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "sonner";
 
 const SellCarAllDetails = () => {
+  const [saleData] = useSaleCarMutation();
+  const [trigger, { data, isSuccess, isError }] = useLazyGetCarInfoQuery();
+  const carData = useSelector((state) => state.carInfo.carLicenseInfo);
+  console.log(carData);
+
   const [isCompany, setIsCompany] = useState(true);
   const [form] = useForm();
   const { TextArea } = Input;
   const inputRef = useRef(null);
+  const toastId = "unique-toast-id";
+  const dispatch = useDispatch();
+  const navigate = useRouter();
 
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("License plate data fetch successfully...", {
+        id: toastId,
+        duration: 2000,
+      });
+      const numberPlates = inputRef?.current?.input?.value;
+
+      const carAllDetails = {
+        ...data?.data?.data,
+        numberPlates: numberPlates,
+      };
+      dispatch(clearCarLicenseInfo());
+      dispatch(setCarLicenseInfo(carAllDetails));
+    }
+
+    if (isError) {
+      toast.error("Give a valid license plate number", {
+        id: toastId,
+        duration: 2000,
+      });
+    }
+  }, [isSuccess, isError, data, dispatch]);
   const handleEditClick = () => {
-    // For Ant Design's Input, the ref points to the component instance.
-    // Access the underlying DOM input element via `inputRef.current.input`
+    toast.loading("License plate is Checking....", {
+      id: toastId,
+    });
     const inputValue = inputRef.current?.input?.value;
-    console.log("Input value:", inputValue);
-    // Do something with inputValue...
+    trigger({ license: inputValue });
   };
   const normFileEvent = (e) => {
     if (Array.isArray(e)) {
@@ -33,10 +74,109 @@ const SellCarAllDetails = () => {
       console.log(`${info.file.name} file upload failed.`);
     }
   };
-  const onFinish = (values) => {
-    console.log(values);
-    form.resetFields();
+
+  // const onFinish = (values) => {
+  //   const data = {
+  //     ...values,
+  //     registrationNumber: carData?.registration,
+  //     carCategory: carData?.type,
+  //     milage: carData?.last_inspection_odometer,
+  //     firstRegistrationDate: carData?.first_registration_date,
+  //     chassisNumber: carData?.vin,
+  //     inspectionDate: carData?.last_inspection_date,
+  //     brand: carData?.brand,
+  //     model: carData?.model,
+  //     modelYear: carData?.model_year,
+  //     variant: carData?.version,
+  //     color: carData?.color.name,
+  //     fuelType: carData?.fuel_type,
+  //     engineSize: carData?.engine_displacement,
+  //     enginePerformance: carData?.engine_power,
+  //     fuelConsumption: carData?.fuel_efficiency,
+  //     euroStandard: carData?.type_approval_code,
+  //     numberPlates: 1232546665,
+  //   };
+  //   console.log(data);
+  //   form.resetFields();
+  // };
+
+  const onFinishFailed = ({ errorFields }) => {
+    toast.error(errorFields[0]?.errors[0], {
+      toastId: "formError",
+      autoClose: 2000,
+    });
+    console.log(errorFields);
   };
+
+  const onFinish = async (values) => {
+    const toastId = toast.loading("Your Car is listing...");
+    try {
+      const data = {
+        ...values,
+        registrationNumber: carData?.registration,
+        carCategory: carData?.type,
+        milage: carData?.last_inspection_odometer,
+        firstRegistrationDate: carData?.first_registration_date,
+        chassisNumber: carData?.vin,
+        inspectionDate: carData?.last_inspection_date,
+        brand: carData?.brand,
+        model: carData?.model,
+        modelYear: carData?.model_year || "000",
+        variant: carData?.version,
+        color: carData?.color?.name,
+        fuelType: carData?.fuel_type,
+        engineSize: carData?.engine_displacement,
+        enginePerformance: carData?.engine_power,
+        fuelConsumption: carData?.fuel_efficiency,
+        euroStandard: carData?.type_approval_code,
+        numberPlates: carData?.numberPlates,
+        gearBox: "Not Available",
+      };
+
+      delete data.images;
+
+      const formData = new FormData();
+
+      // Append non-image data as a JSON string under the 'data' key
+      formData.append("data", JSON.stringify(data));
+
+
+      const images = values.images || []; // Assuming images come from form values
+      images.forEach((image, index) => {
+        if (image.originFileObj) {
+          formData.append("images", image.originFileObj);
+        }
+      });
+      for (let [key, value] of formData.entries()) {
+        console.log(key, value);
+      }
+
+      const res = await saleData(formData).unwrap();
+      console.log("API Response:", res);
+      toast.success("Car listing is Successfully done", {
+        id: toastId,
+        duration: 2000,
+      });
+
+      // Reset form fields on success
+      navigate.push("/");
+      form.resetFields();
+    } catch (error) {
+      console.error("Error submitting to cardetails API:", error);
+      if (error?.data?.message.includes("E11000")) {
+        toast.error("This car is already Listed", {
+          id: toastId,
+          duration: 2000,
+        });
+        return;
+      }
+      toast.error(error?.data?.message || "Try Again", {
+        id: toastId,
+        duration: 2000,
+      });
+    }
+  };
+
   return (
     <div className="container mx-auto my-12">
       <h1 className="text-4xl font-bold">The car&apos;s information</h1>
@@ -44,12 +184,12 @@ const SellCarAllDetails = () => {
       <h1 className="text-2xl font-bold mb-5">Number plate*</h1>
       <div className="text-center mb-3 w-[600px]">
         <Input
-          //  ref={inputRef}
+          ref={inputRef}
           placeholder="Enter license plate"
           className=""
           suffix={
             <div
-              //  onClick={handleEditClick}
+              onClick={handleEditClick}
               className="bg-highlight-color font-semibold text-white rounded py-2 px-8 cursor-pointer"
             >
               Search
@@ -76,26 +216,28 @@ const SellCarAllDetails = () => {
         />
       </div>
       <p className="mt-2 text-lg font-medium">
-        TESLA Model Y, Hatchback, 393 KW
+        {carData?.brand} {carData?.model}, {carData?.version}{" "}
+        {carData?.body_type?.name} {carData?.engine_power}
+        {carData?.engine_power && " KW"}
       </p>
-      <Form form={form} onFinish={onFinish}>
+      <Form form={form} onFinish={onFinish} onFinishFailed={onFinishFailed}>
         <div className="my-[10px] flex justify-between gap-5">
           <div className="flex-1">
             <p className="text-2xl font-medium pb-2 ">
               Number of kilometers driven*
             </p>
             <Form.Item
-              name={`km`}
+              name={`noOfKmDriven`}
               rules={[
                 {
                   required: true,
-                  message: "Please input!",
+                  message: "Please Input Number of kilometers driven",
                 },
               ]}
             >
-              <Input
+              <InputNumber
                 placeholder="Enter Number of kilometers driven"
-                className="py-3"
+                className="py-3 w-full"
               />
             </Form.Item>
           </div>
@@ -107,32 +249,29 @@ const SellCarAllDetails = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input!",
+                  message: "Please input the number of varnish fields!",
+                },
+                {
+                  type: "number",
+                  min: 0,
+                  message: "Number of varnish fields must be at Number!",
                 },
               ]}
-              name={`varnish`}
+              name={`noOfVarnishField`}
               className=""
             >
-              <Input
+              <InputNumber
                 placeholder="Enter  Number of varnish fields"
-                className="py-3"
+                className="py-3 w-full"
               />
             </Form.Item>
           </div>
         </div>
         <div className="my-[10px] flex justify-between gap-5">
           <div className="flex-1">
-            <p className="text-2xl font-medium pb-2">Additional equipment*</p>
+            <p className="text-2xl font-medium pb-2">Additional equipment</p>
 
-            <Form.Item
-              rules={[
-                {
-                  required: true,
-                  message: "Please Select one!",
-                },
-              ]}
-              name="equipment"
-            >
+            <Form.Item name="additionalEquipment">
               <Checkbox.Group className=" flex flex-col gap-2">
                 <Checkbox value="Automatic transmission">
                   Automatic transmission*
@@ -150,10 +289,10 @@ const SellCarAllDetails = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please Select one!",
+                  message: "Please Select one condition!",
                 },
               ]}
-              name={`carCondition`}
+              name={`condition`}
             >
               <Radio.Group name="bilens" className=" flex  gap-2">
                 <Radio value="good">Good</Radio>
@@ -167,7 +306,7 @@ const SellCarAllDetails = () => {
           <p className="text-2xl font-medium pb-2">
             Defects or other comments*
           </p>
-          <Form.Item name={`comments`}>
+          <Form.Item name={`comment`}>
             <TextArea
               placeholder="Defects or other comments"
               rows={4}
@@ -182,12 +321,15 @@ const SellCarAllDetails = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input!",
+                  message: "Please input your expected price!",
                 },
               ]}
               name={`expectedPrice`}
             >
-              <Input placeholder="Expected price (DKK)" className="py-3" />
+              <InputNumber
+                placeholder="Expected price (DKK)"
+                className="py-3 w-full"
+              />
             </Form.Item>
           </div>
           <div className="flex-1">
@@ -196,7 +338,7 @@ const SellCarAllDetails = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please Select one Image!",
+                  message: "Please Select at least one Image!",
                 },
               ]}
               name="images"
@@ -208,6 +350,7 @@ const SellCarAllDetails = () => {
                 multiple="true"
                 onChange={handleUploadChange}
                 name="files"
+                maxCount={10}
                 // action="/upload.do"
               >
                 <p className="flex justify-center items-center">
@@ -229,7 +372,7 @@ const SellCarAllDetails = () => {
         <div name="type" className=" flex  gap-10 my-8">
           <div
             onClick={() => setIsCompany(true)}
-            value="company"
+            value="companyName"
             className="text-3xl flex justify-center items-center gap-2  cursor-pointer"
           >
             <div
@@ -269,10 +412,10 @@ const SellCarAllDetails = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please input!",
+                    message: "Please input company Name!",
                   },
                 ]}
-                name={`company`}
+                name={`companyName`}
               >
                 <Input placeholder="Company Name" className="py-3" />
               </Form.Item>
@@ -283,10 +426,10 @@ const SellCarAllDetails = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please input!",
+                    message: "Please input CVR Number!",
                   },
                 ]}
-                name={`cvr`}
+                name={`cvrNumber`}
               >
                 <Input placeholder="CVR Number" className="py-3" />
               </Form.Item>
@@ -300,10 +443,10 @@ const SellCarAllDetails = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please input!",
+                    message: "Please input your first Name!",
                   },
                 ]}
-                name={`firstName`}
+                name={`first_name`}
               >
                 <Input placeholder="First Name" className="py-3" />
               </Form.Item>
@@ -314,10 +457,10 @@ const SellCarAllDetails = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please input!",
+                    message: "Please input your last name!",
                   },
                 ]}
-                name={`lastName`}
+                name={`last_name`}
               >
                 <Input placeholder="Last Name" className="py-3" />
               </Form.Item>
@@ -332,10 +475,10 @@ const SellCarAllDetails = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input!",
+                  message: "Please input your postal code!",
                 },
               ]}
-              name={`postalCode`}
+              name={`postCode`}
             >
               <Input placeholder="Postal Code" className="py-3" />
             </Form.Item>
@@ -346,7 +489,7 @@ const SellCarAllDetails = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input!",
+                  message: "Please input city!",
                 },
               ]}
               name={`city`}
@@ -361,7 +504,7 @@ const SellCarAllDetails = () => {
             rules={[
               {
                 required: true,
-                message: "Please input!",
+                message: "Please input your phone number!",
               },
             ]}
             name={`phoneNumber`}

@@ -26,7 +26,7 @@ const BrandVIewDetailsPage = ({
         <div key="footerButton" className="flex justify-end gap-80">
           {sendOffer && (
             <>
-              <Link href={`/offer-car/007`}>
+              <Link href={`/offer-car/${car?._id}`}>
                 <button
                   style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
                   className="bg-highlight-color text-white  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
@@ -75,7 +75,7 @@ const BrandVIewDetailsPage = ({
             </div> */}
             {/* Middel part car All Details */}
             {/* <CarAllDetails car={car} /> */}
-            <BrandnViewTableDetails />
+            <BrandnViewTableDetails car={car} />
             {buyNow && (
               <div className="flex flex-col gap-3 ">
                 <h1>Incl. VAT / Incl. Reg.</h1>

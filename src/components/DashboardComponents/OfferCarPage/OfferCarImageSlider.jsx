@@ -4,8 +4,8 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-const ImageSlider = ({ carImages }) => {
-  const images = [
+const OfferCarImageSlider = ({ carImages }) => {
+  const images = [ 
     { src: AllImages.car, alt: "Car 1" },
     { src: AllImages.bids, alt: "Car 2" },
     { src: AllImages.car, alt: "Car 3" },
@@ -33,7 +33,7 @@ const ImageSlider = ({ carImages }) => {
       setCurrentIndex(() => currentIndex - 1);
     }
   };
-  console.log(carImages?.length);
+  console.log(carImages.length);
 
   return (
     <div className=" py-10">
@@ -124,4 +124,4 @@ const ImageSlider = ({ carImages }) => {
   );
 };
 
-export default ImageSlider;
+export default OfferCarImageSlider;

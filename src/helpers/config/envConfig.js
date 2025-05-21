@@ -1,7 +1,7 @@
 export const getBaseUrl = () => {
-  return process.env.NEXT_BASE_URL || "http://182.252.68.227:8010/api/v1";
+  return process.env.NEXT_PUBLIC_BASE_URL;
 };
 
-export const getImageUrl = (key) => {
-  return process.env.NEXT_IMAGE_URL || "http://182.252.68.227:8010/";
+export const getImageUrl = () => {
+  return process.env.NEXT_PUBLIC_IMAGE_URL;
 };

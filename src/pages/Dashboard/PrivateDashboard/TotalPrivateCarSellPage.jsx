@@ -3,13 +3,26 @@ import { AllImages } from "@/assets/AllImages";
 import PrivateCarSeeDetails from "@/components/DashboardComponents/TotalPrivateCarSellPage/PrivateCarSeeDetails";
 import PrivateCarSellTable from "@/components/DashboardComponents/TotalPrivateCarSellPage/PrivateCarSellTable";
 import ViewDetailsPage from "@/components/DealerComponents/HomePage/CarViewDetailsModal/ViewDetailsPage";
-import axios from "axios";
+import { useSellCarQuery } from "@/redux/api/features/privateDashboard";
+import axios from "axios"; 
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-
+  
 const TotalPrivateCarSellPage = () => {
-  const [data, setData] = useState([]);
+  const { data: sellCarData, currentData, isLoading } = useSellCarQuery({ filter: "sell" });
+  
+  const displayedData = sellCarData ?? currentData;
+  console.log(displayedData);
+  const [currentRecord, setCurrentRecord] = useState(null);
+  const [data, setData] = useState([]); 
   const [openCarSee, setOpennCarSee] = useState(false);
+
+
+
+  const showViewServiceUserModal = (record) => {
+    setCurrentRecord(record);
+    setOpennCarSee(true);
+  };
 
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -26,7 +39,7 @@ const TotalPrivateCarSellPage = () => {
 
     fetchData();
   }, []);
-  console.log(data, "data");
+  // console.log(data, "data");
   const car = {
     buyNowPrice: "6,300 EUR",
     model: "Honda CR-V",
@@ -164,9 +177,9 @@ const TotalPrivateCarSellPage = () => {
 
       <div className="">
         <PrivateCarSellTable
-          data={data}
-          loading={loading}
-          setOpennCarSee={setOpennCarSee}
+          data={displayedData?.data?.result}
+          loading={isLoading}
+          showViewServiceUserModal={showViewServiceUserModal}
           pageSize={12}
         />
         {/* <PrivateCarSeeDetails
@@ -176,7 +189,7 @@ const TotalPrivateCarSellPage = () => {
         <ViewDetailsPage
           openResponsive={openCarSee}
           setOpenResponsive={setOpennCarSee}
-          car={car}
+          car={currentRecord}
           sendOffer={false}
           buyNow={false}
         />

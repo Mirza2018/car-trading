@@ -13,7 +13,6 @@ import { setAccessToken, setUserInfo } from "@/redux/slices/authSlice";
 import Cookies from "universal-cookie";
 import { useRouter } from "next/navigation";
 
-
 const SignIn = () => {
   const [userLogin] = useUserLoginMutation();
   const dispatch = useDispatch();
@@ -28,6 +27,7 @@ const SignIn = () => {
     try {
       const res = await userLogin(values).unwrap();
       const decodeToken = jwtDecode(res?.data?.accessToken);
+
       dispatch(setAccessToken(res?.data?.accessToken));
       dispatch(setUserInfo(decodeToken));
       console.log("res: ", res, decodeToken);

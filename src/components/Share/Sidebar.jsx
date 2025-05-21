@@ -5,11 +5,12 @@ import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { AllImages } from "@/assets/AllImages";
 import useCookie from "@/cookie/useCookie";
+import { useSelector } from "react-redux";
 
 const Sidebar = ({ slider, setSlider }) => {
   const navigate = useRouter();
-  const [carUser] = useCookie("car-trading_user");
-  // console.log(carUser, "carUser");
+  const userInfo = useSelector((state) => state.auth.userInfo);
+  // console.log(userInfo, "userInfo");
   const location = usePathname();
   const handleLogout = () => {
     const values = {
@@ -26,7 +27,7 @@ const Sidebar = ({ slider, setSlider }) => {
   const menuItems = (
     <div>
       <ul className=" flex justify-center items-start flex-col gap-3 pe-10">
-        {carUser?.role === "dealer" ? (
+        {userInfo?.role === "dealer" ? (
           <>
             <Link href="/dashboard/total-dealer-car-sell" className="w-full">
               <li

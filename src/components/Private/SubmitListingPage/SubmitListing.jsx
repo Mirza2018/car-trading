@@ -1,4 +1,5 @@
 import { AllImages } from "@/assets/AllImages";
+import { useSubmitListingCreateMutation } from "@/redux/api/features/carPrivate";
 import {
   Checkbox,
   Col,
@@ -6,6 +7,7 @@ import {
   DatePicker,
   Form,
   Input,
+  InputNumber,
   Radio,
   Row,
   Select,
@@ -16,30 +18,14 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoArrowForward } from "react-icons/io5";
-
+import { toast } from "sonner";
+ 
 const SubmitListing = () => {
+  const [submitListingData] = useSubmitListingCreateMutation();
   const [form] = useForm();
 
   const [isDistance, setIsDistance] = useState(false);
   const [isCompany, setIsCompany] = useState(true);
-
-  const [selectedPriceType, setSelectedPriceType] = useState(null);
-  const [selectedFuleType, setSelectedFuleType] = useState(null);
-  const [selectedGeartype, setSelectedGeartype] = useState(null);
-
-  const handleCheckboxChange = (e) => {
-    // If the clicked checkbox is already selected, unselect it
-    setSelectedPriceType(e.target.checked ? e.target.value : null);
-  };
-  const handleFuleTypeCheckboxChange = (e) => {
-    // If the clicked checkbox is already selected, unselect it
-    setSelectedFuleType(e.target.checked ? e.target.value : null);
-  };
-  const handleGeartypeCheckboxChange = (e) => {
-    // If the clicked checkbox is already selected, unselect it
-    setSelectedGeartype(e.target.checked ? e.target.value : null);
-  };
-
   const [selectedCar, setSelectedCar] = useState(null);
 
   const handleCarSelect = (car) => {
@@ -57,16 +43,34 @@ const SubmitListing = () => {
     ),
     value: color.value,
   }));
-  const onFinsh = (values) => {
-    values.car = selectedCar;
-    console.log(values);
+
+  const onFinsh = async (values) => {
+    values.models = selectedCar;
+    console.log("main value", values);
+    const toastId = toast.loading("Car details is submitting..");
+    // return;
+    try {
+      const res = await submitListingData(values).unwrap();
+      console.log(res);
+      toast.success(res?.data?.message || "Listing created successfully", {
+        id: toastId,
+        duration: 2000,
+      });
+    } catch (error) {
+      console.log(error);
+
+      toast.error("Something wrong please try latter.. ", {
+        id: toastId,
+        duration: 2000,
+      });
+    }
   };
   return (
     <div className="max-w-[1200px] md:mx-20 mx-4 select-none">
       <Form onFinish={onFinsh} form={form} layout="vertical">
         <Form.Item
           label={<span className="font-bold text-2xl">Car Category</span>}
-          name="category"
+          name="carCategory"
         >
           <Select
             className="!h-12 "
@@ -114,11 +118,12 @@ const SubmitListing = () => {
           label={<span className="font-bold text-2xl">Model</span>}
           name="model"
         >
-          <Select
+          {/* <Select
             placeholder={<span className="text-black text-xl">Model</span>}
             className="!h-12 !bg-base-color"
             options={carModels}
-          />
+          /> */}
+          <Input placeholder="Give model name" />
         </Form.Item>
         {/* 
         <p className="text-2xl font-medium pb-2">Model*</p>
@@ -130,10 +135,10 @@ const SubmitListing = () => {
 
         <Form.Item
           label={<span className="font-medium text-base">Max price</span>}
-          name="cash"
+          name="cashPrice"
           className="flex-1"
         >
-          <Input placeholder="0" />
+          <InputNumber placeholder="0" className=" w-full" />
         </Form.Item>
 
         <div className="flex justify-between items-center">
@@ -181,7 +186,7 @@ const SubmitListing = () => {
           <Form.Item
             className="flex-1"
             label={<span className="font-bold text-2xl">New/used</span>}
-            name="newUsed"
+            name="carCondition"
           >
             <Select
               placeholder={<span className="text-black text-xl">All</span>}
@@ -194,7 +199,7 @@ const SubmitListing = () => {
 
         <Form.Item
           label={<span className="font-bold text-2xl">Models</span>}
-          name="car"
+          name="models"
         >
           <div className="flex flex-wrap gap-3">
             <div
@@ -306,7 +311,7 @@ const SubmitListing = () => {
         <div className="flex justify-between items-start">
           <Form.Item
             label={<span className="font-bold text-2xl">Fuel</span>}
-            name="fuleType"
+            name="fuel"
             className="flex-1"
           >
             <Checkbox.Group>
@@ -378,7 +383,7 @@ const SubmitListing = () => {
           </Form.Item>
           <Form.Item
             label={<span className="font-bold text-2xl">Gear type</span>}
-            name="geartype"
+            name="gearType"
             className="flex-1"
           >
             <Checkbox.Group>
@@ -414,17 +419,18 @@ const SubmitListing = () => {
         <div className="flex  justify-between gap-5">
           <Form.Item
             label={<span className="font-medium text-base">From</span>}
-            name="modelFrom"
+            name="modelsFrom"
             className="flex-1"
           >
-            <Input placeholder="Before 1975" />
+            <InputNumber placeholder="Before 1975" className="w-full" />
           </Form.Item>
           <Form.Item
             label={<span className="font-medium text-base">To</span>}
-            name="modelTo"
+            name="modelsTo"
             className="flex-1"
           >
-            <Input placeholder="After 1990" />
+            {/* <Input placeholder="After 1990" /> */}
+            <InputNumber placeholder="After 1990" className="w-full" />
           </Form.Item>
         </div>
 
@@ -432,17 +438,17 @@ const SubmitListing = () => {
         <div className="flex  justify-between gap-5">
           <Form.Item
             label={<span className="font-medium text-base">From</span>}
-            name="drivenFrom"
+            name="drivenKmFrom"
             className="flex-1"
           >
-            <Input placeholder="0" />
+            <InputNumber placeholder="0" className="w-full" />
           </Form.Item>
           <Form.Item
             label={<span className="font-medium text-base">To</span>}
-            name="drivenTo"
+            name="drivenKmTo"
             className="flex-1"
           >
-            <Input placeholder="50000+" />
+            <InputNumber placeholder="50000+" className="w-full" />
           </Form.Item>
         </div>
         {/* 
@@ -495,25 +501,20 @@ const SubmitListing = () => {
                 options={carColors}
               />
             </Form.Item>
-            {/* <h1 className="font-bold text-2xl ">Trailer</h1>
+            <h1 className="font-bold text-2xl ">Trailer</h1>
             <div className="flex  justify-between items-center gap-5 mt-3">
-              <Form.Item
-                label={<span className="font-bold text-sm">Trailer hitch</span>}
-                name="mark"
-                className="flex-1"
-              >
+              <Form.Item name="trailerHitch" className="flex-1">
                 <Select
-                  className=" !h-14"
+                  className=" !h-10"
                   placeholder={
                     <span className="text-black text-xl">Trailer hitch</span>
                   }
                 >
-                  <Select.Option value="demo1">Demo1</Select.Option>
-                  <Select.Option value="demo2">Demo2</Select.Option>
-                  <Select.Option value="demo3">Demo3</Select.Option>
+                  <Select.Option value="yes">Yes</Select.Option>
+                  <Select.Option value="no">No</Select.Option>
                 </Select>
               </Form.Item>
-              <Form.Item
+              {/* <Form.Item
                 className="flex-1 "
                 label={<span className="font-bold text-sm">Trailer hitch</span>}
                 name="mark"
@@ -528,8 +529,8 @@ const SubmitListing = () => {
                   <Select.Option value="demo2">Demo2</Select.Option>
                   <Select.Option value="demo3">Demo3</Select.Option>
                 </Select>
-              </Form.Item>
-            </div> */}
+              </Form.Item> */}
+            </div>
             <div className="flex justify-between items-start">
               <Form.Item
                 label={<span className="font-bold text-2xl">Exterior</span>}
@@ -665,13 +666,13 @@ const SubmitListing = () => {
           <div className="my-[10px] flex justify-between gap-5">
             <div className="flex-1">
               <p className="text-2xl font-medium pb-2">Company Name</p>
-              <Form.Item name={`company`}>
+              <Form.Item name={`companyName`}>
                 <Input placeholder="Company Name" className="py-3" />
               </Form.Item>
             </div>
             <div className="flex-1">
               <p className="text-2xl font-medium pb-2">CVR Number</p>
-              <Form.Item name={`cvr`}>
+              <Form.Item name={`cvrNumber`}>
                 <Input placeholder="CVR Number" className="py-3" />
               </Form.Item>
             </div>
@@ -696,20 +697,20 @@ const SubmitListing = () => {
         <div className="my-[10px] flex justify-between gap-5">
           <div className="">
             <p className="text-2xl font-medium pb-2">Postal Code*</p>
-            <Form.Item name={`PostalCode`}>
+            <Form.Item name={`postalCode`}>
               <Input placeholder="Postal Code" className="py-3" />
             </Form.Item>
           </div>
           <div className="flex-1">
             <p className="text-2xl font-medium pb-2">City*</p>
-            <Form.Item name={`City`}>
+            <Form.Item name={`city`}>
               <Input placeholder="City" className="py-3" />
             </Form.Item>
           </div>
         </div>
         <div className="">
           <p className="text-2xl font-medium pb-2">Phone Number*</p>
-          <Form.Item name={`PhoneNumber`}>
+          <Form.Item name={`phoneNumber`}>
             <Input placeholder="Phone Number" className="py-3" />
           </Form.Item>
         </div>

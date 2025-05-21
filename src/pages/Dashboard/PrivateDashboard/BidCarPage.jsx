@@ -1,47 +1,33 @@
+"use client";
 import BidCar from "@/components/DashboardComponents/BidCarPage/BidCar";
+import {
+  useBidCarActionMutation,
+  useBidCarDetailsQuery,
+} from "@/redux/api/features/privateDashboard";
+import { Spin } from "antd";
 import React from "react";
 
 const BidCarPage = () => {
-  return (
-    <div>
-      {bidsdetails.map((bids) => (
-        <BidCar bids={bids} key={bids.id} />
-      ))}
-    </div>
-  );
+  const { data, currentData, isLoading, isFetching, isSuccess } =
+    useBidCarDetailsQuery();
+  const [bidCarAction] = useBidCarActionMutation();
+  const displayedData = data ?? currentData;
+  // console.log(displayedData);
+
+  if (isLoading)
+    return <Spin className="flex justify-center items-center" size="large" />;
+  if (!isLoading && isFetching)
+    return <Spin className="flex justify-center items-center" size="large" />;
+  if (isSuccess && displayedData)
+    return (
+      <div>
+        {displayedData?.data?.result.map((bids) => (
+          <BidCar bids={bids} key={bids._id} bidCarAction={bidCarAction} />
+        ))}
+      </div>
+    );
+
+  return <p>No data available</p>;
 };
 
 export default BidCarPage;
-
-const bidsdetails = [
-  {
-    id: "001",
-    car: "Toyota Corolla 2020",
-    highestBid: "19500",
-    bid: true,
-  },
-  {
-    id: "002",
-    car: "Toyota Corolla 2020",
-    highestBid: "15500",
-    bid: false,
-  },
-  {
-    id: "003",
-    car: "Toyota Corolla 2020",
-    highestBid: "12500",
-    bid: true,
-  },
-  {
-    id: "004",
-    car: "Toyota Corolla 2020",
-    highestBid: "11500",
-    bid: false,
-  },
-  {
-    id: "005",
-    car: "Toyota Corolla 2020",
-    highestBid: "22500",
-    bid: true,
-  },
-];

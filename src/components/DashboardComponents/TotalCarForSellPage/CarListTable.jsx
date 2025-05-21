@@ -11,7 +11,7 @@ const getUniqueCompanyNames = (data) => {
 
 const CarListTable = ({
   data,
-  loading,
+  loading, 
   showViewServiceUserModal,
   pageSize = 0,
 }) => {
@@ -24,36 +24,47 @@ const CarListTable = ({
     },
     {
       title: "User Name",
-      dataIndex: "userName",
-      key: "userName",
+      dataIndex: "carOwner",
+      key: "carOwner",
+      render: (text) => (
+        <p className="whitespace-nowrap">
+          {text.first_name} {text.last_name}
+        </p>
+      ),
     },
     {
       title: "Brand Name",
-      dataIndex: "brandName",
-      key: "brandName",
+      dataIndex: "carModel",
+      key: "carModel",
+      render: (text) => <p>{text.brand}</p>,
     },
     {
       title: "Car Model",
       dataIndex: "carModel",
       key: "carModel",
+      render: (text) => <p>{text.model}</p>,
     },
     {
       title: "Location",
-      dataIndex: "location",
-      key: "location",
+      dataIndex: "company",
+      key: "company",
+      render: (text) => (
+        <div>{text.cvrNumber ? <p>{text.city}</p> : <p>{text.city}</p>}</div>
+      ),
     },
     {
       title: "Color",
-      dataIndex: "color",
-      key: "color",
+      dataIndex: "carModel",
+      key: "carModel",
+      render: (text) => <p>{text.color}</p>,
     },
     {
       title: "Price",
-      dataIndex: "price",
-      sorter: (a, b) => a.price - b.price,
-      render: (_, record) => (
+      dataIndex: "expectedPrice",
+      sorter: (a, b) => a.expectedPrice - b.expectedPrice,
+      render: (text) => (
         <div>
-          <p>{record.price}$</p>
+          <p className="whitespace-nowrap">{text} Dkk</p>
         </div>
       ),
     },
@@ -85,14 +96,22 @@ const CarListTable = ({
           className="border p-2 rounded !border-highlight-color"
         >
           {/* View Details Tooltip */}{" "}
-          <Link href={`total-dealer-car-sell/contract/777`}>
+          <Link href={`total-dealer-car-sell/contract/${record.car._id}`}>
             <Tooltip placement="right" title="View Details">
-              <Button className="!bg-highlight-color   !text-white">
-                Make contract
+              <Button
+                className={`  !text-white ${
+                  record.status == "sold"
+                    ? "!bg-green-500 "
+                    : "!bg-highlight-color"
+                }`}
+              >
+                {record.status == "sold" ? "See Contract " : " Make contract"}
               </Button>
             </Tooltip>
           </Link>
-          <Link href={`total-dealer-car-sell/order-transport/444`}>
+          <Link
+            href={`total-dealer-car-sell/order-transport/${record.car._id}`}
+          >
             <Tooltip placement="right" title="View Details">
               <Button className="!border-highlight-color !text-black ">
                 {/* <GoEye style={{ fontSize: "24px" }} /> */}
@@ -107,6 +126,7 @@ const CarListTable = ({
 
   return (
     <div>
+      {/* <pre>{JSON.stringify(data, null, 4)}</pre> */}
       <Table
         columns={columns}
         dataSource={data} // Use the filtered data here based on selected company

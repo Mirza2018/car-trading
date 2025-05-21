@@ -3,7 +3,7 @@ import OfferCarPage from '@/pages/Dealer/OfferCarPage';
 import React from 'react';
 
 
-const page = () => {
+const page = () => { 
     return (
       <div>
         <OfferCarPage/>

@@ -1,16 +1,30 @@
 "use client";
 import { AllImages } from "@/assets/AllImages";
 import PrivateCarSoldTable from "@/components/DashboardComponents/TotalCarSold/PrivateCarSoldTable";
-import PrivateCarSeeDetails from "@/components/DashboardComponents/TotalPrivateCarSellPage/PrivateCarSeeDetails";
-import PrivateCarSellTable from "@/components/DashboardComponents/TotalPrivateCarSellPage/PrivateCarSellTable";
 import ViewDetailsPage from "@/components/DealerComponents/HomePage/CarViewDetailsModal/ViewDetailsPage";
+import { useSellCarQuery } from "@/redux/api/features/privateDashboard";
 import axios from "axios";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
-
+import { useEffect, useState } from "react";
+  
 const TotalCarSold = () => {
+  const { data: soldCarData,currentData, isLoading } = useSellCarQuery({
+    filter: "sold",
+  });
+    
+  const displayedData = soldCarData ?? currentData;
+  console.log(displayedData);
+   const [currentRecord, setCurrentRecord] = useState(null);
   const [data, setData] = useState([]);
   const [openCarSee, setOpennCarSee] = useState(false);
+
+  
+
+  const showViewServiceUserModal = (record) => {
+    setCurrentRecord(record);
+    setOpennCarSee(true);
+  };
+
 
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -166,9 +180,9 @@ const TotalCarSold = () => {
 
       <div className="">
         <PrivateCarSoldTable
-          data={data}
-          loading={loading}
-          setOpennCarSee={setOpennCarSee}
+          data={displayedData?.data?.result}
+          loading={isLoading}
+          showViewServiceUserModal={showViewServiceUserModal}
           pageSize={12}
         />
         {/* <PrivateCarSeeDetails
@@ -179,7 +193,7 @@ const TotalCarSold = () => {
         <ViewDetailsPage
           openResponsive={openCarSee}
           setOpenResponsive={setOpennCarSee}
-          car={car}
+          car={currentRecord}
           sendOffer={false}
           buyNow={false}
         />

@@ -1,24 +1,62 @@
 "use client";
 import { Input } from "antd";
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AudioOutlined, UserOutlined } from "@ant-design/icons";
 import { AllImages } from "@/assets/AllImages";
 import Image from "next/image";
 import Link from "next/link";
 import useGetData from "@/components/DataFetch/useGetData";
+import {
+  useGetCarInfoQuery,
+  useLazyGetCarInfoQuery,
+} from "@/redux/api/features/carPrivate";
+import { usePathname, useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { useDispatch } from "react-redux";
+import { setCarLicenseInfo } from "@/redux/slices/carInfoSlice";
 const { Search } = Input;
 
 const SellBuyTrade = () => {
-  // const { data, loading, error } = useGetData(
-  //   "https://api.nrpla.de/AJ30124",
-  //   "tZ1FaGCRDX9OsDgE1LPKfcTOmgyOxvG0aSS2LqtDp7TsS6toH3SwKCzNxrwURzQw"
-  // );
-  // console.log(data,loading,error);
-  
-  const onSearch = (e) => {
-    console.log(e);
+  // const { data, isFetching } = useGetCarInfoQuery();
+  const [trigger, { data, isSuccess, isError }] = useLazyGetCarInfoQuery();
+  const license = useRef();
+  const navigate = useRouter();
+  const toastId = "unique-toast-id";
+  const dispatch = useDispatch();
+  const handleEditClick = () => {
+    toast.loading("License plate is Checking....", {
+      id: toastId,
+    });
+    console.log(license?.current?.input?.value);
+    // AJ30124;
+    const lisenceNumber = license?.current?.input?.value;
+    trigger({ license: lisenceNumber });
   };
+
+  console.log(isSuccess, isError, data?.data?.data);
+
+  if (isSuccess) {
+    toast.success("License plate data fetch successfully...", {
+      id: toastId,
+      duration: 2000,
+    });
+    const numberPlates = license?.current?.input?.value;
+
+    const carAllDetails = {
+      ...data?.data?.data,
+      numberPlates: numberPlates,
+    };
+    dispatch(setCarLicenseInfo(carAllDetails));
+    navigate.push("/sell-car");
+  }
+  if (isError) {
+    toast.error("Give a valid license plate number", {
+      id: toastId,
+      duration: 2000,
+    });
+  }
+
   return (
     <div>
       <Head>
@@ -52,20 +90,20 @@ const SellBuyTrade = () => {
 
           <div className="text-center mb-16 mx-10">
             <Input
-              //  ref={inputRef}
+              ref={license}
               placeholder="Enter license plate"
-              className=""
+              name="number"
               suffix={
                 <div
-                  //  onClick={handleEditClick}
+                  onClick={handleEditClick}
                   className="bg-highlight-color  rounded py-2 px-8 cursor-pointer"
                 >
-                  <Link
-                    href="/sell-car"
+                  <p
+                    // href="/sell-car"
                     className="text-white font-bold text-lg"
                   >
                     Search
-                  </Link>
+                  </p>
                 </div>
               }
               prefix={
