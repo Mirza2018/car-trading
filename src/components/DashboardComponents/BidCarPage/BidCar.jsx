@@ -3,16 +3,17 @@ import { toast } from "sonner";
 
 const BidCar = ({ bids, bidCarAction }) => {
   console.log(bids);
-  
+
   const acceptOffer = async () => {
     const toastId = toast.loading("Offer is accepting...");
     const data = {
       bidCarId: bids._id,
       status: "accepted",
+      carId: bids.carId,
     };
+
     console.log(data);
 
-    
     try {
       const res = await bidCarAction(data).unwrap();
       console.log(res);

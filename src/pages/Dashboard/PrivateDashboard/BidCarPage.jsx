@@ -12,7 +12,7 @@ const BidCarPage = () => {
     useBidCarDetailsQuery();
   const [bidCarAction] = useBidCarActionMutation();
   const displayedData = data ?? currentData;
-  // console.log(displayedData);
+  console.log(displayedData);
 
   if (isLoading)
     return <Spin className="flex justify-center items-center" size="large" />;

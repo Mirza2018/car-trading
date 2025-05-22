@@ -6,7 +6,7 @@ import React, { useState } from "react";
 
 const TotalCarSell = () => {
   const carSell = [
-    {
+    { 
       name: "Kia Optima",
       address: "Hybrid (Benzin), Automatgear,2.0L, 164HK | PNO #4589020",
       price: "$150,000",

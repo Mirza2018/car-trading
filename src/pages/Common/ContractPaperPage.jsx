@@ -39,6 +39,12 @@ const ContractPaperPage = () => {
 
   const displayedData = data ?? currentData;
   // console.log(displayedData);
+  let carPrice;
+  if (displayedData?.data?.car?.isBid) {
+    carPrice = displayedData?.data?.car?.bidPrice;
+  } else {
+    carPrice = displayedData?.data?.expectedPrice;
+  }
 
   const inspectionDate = new Date(
     displayedData?.data?.car?.inspectionDate
@@ -340,11 +346,8 @@ const ContractPaperPage = () => {
                 </div>
                 <p className="bg-base-color px-8 py-2 border border-secondary-color rounded-md">
                   {isValueIncressed
-                    ? `${
-                        displayedData?.data?.expectedPrice +
-                        displayedData?.data?.expectedPrice * 0.25
-                      } DKK`
-                    : `${displayedData?.data?.expectedPrice} DKK`}
+                    ? `${carPrice + carPrice * 0.25} DKK`
+                    : `${carPrice} DKK`}
                 </p>
               </div>
               <div className="flex justify-between items-center w-full gap-5 flex-wrap">
@@ -385,27 +388,23 @@ const ContractPaperPage = () => {
                   transfer, is
                 </h1>
                 <p className="bg-base-color px-2 py-2 border border-secondary-color rounded-md ">
-                  {displayedData?.data?.expectedPrice ? (
+                  {carPrice ? (
                     <>
                       {isValueIncressed
                         ? `${
-                            displayedData?.data?.expectedPrice +
-                            displayedData?.data?.expectedPrice * 0.25 -
+                            carPrice +
+                            carPrice * 0.25 -
                             displayedData?.data?.advancedPayment
                           } DKK`
                         : `${
-                            displayedData?.data?.expectedPrice -
-                            displayedData?.data?.advancedPayment
+                            carPrice - displayedData?.data?.advancedPayment
                           } DKK`}{" "}
                     </>
                   ) : (
                     <>
                       {isValueIncressed
-                        ? `${
-                            displayedData?.data?.expectedPrice +
-                            displayedData?.data?.expectedPrice * 0.25
-                          } DKK`
-                        : `${displayedData?.data?.expectedPrice} DKK`}
+                        ? `${carPrice + carPrice * 0.25} DKK`
+                        : `${carPrice} DKK`}
                     </>
                   )}
                 </p>
@@ -578,11 +577,8 @@ const ContractPaperPage = () => {
             <div className="!flex !justify-end !items-end">
               <button className="bg-base-color w-fit px-8 py-2 border border-secondary-color rounded-md text-end h-fit whitespace-nowrap">
                 {isValueIncressed
-                  ? `${
-                      displayedData?.data?.expectedPrice +
-                      displayedData?.data?.expectedPrice * 0.25
-                    } DKK`
-                  : `${displayedData?.data?.expectedPrice} DKK`}
+                  ? `${carPrice + carPrice * 0.25} DKK`
+                  : `${carPrice} DKK`}
               </button>
             </div>
           </section>

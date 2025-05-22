@@ -37,14 +37,22 @@ const FinalNode = () => {
   const [contractPaper] = useUpdateContactPaperMutation();
 
   const displayedData = data ?? currentData;
-  // console.log(displayedData);
+
+  let carPrice
+  if (displayedData?.data?.car?.isBid) {
+    carPrice = displayedData?.data?.car?.bidPrice;
+  } else {
+    carPrice = displayedData?.data?.expectedPrice;
+  }
+  
+  console.log(displayedData?.data);
 
   const inspectionDate = new Date(
     displayedData?.data?.car?.inspectionDate
   ).toDateString();
   const [advanceAmount, setAdvanceAmount] = useState(0);
   useEffect(() => {
-    if (displayedData?.data?.expectedPrice) {
+    if (carPrice) {
       setAdvanceAmount(displayedData?.data?.advancedPayment);
     }
   }, [displayedData?.data?.advancedPayment]);
@@ -168,6 +176,7 @@ console.log(advanceAmount);
     return (
       <div className="container mx-auto border-2 border-secondary-color rounded-md md:my-20 overflow-x-clip">
         <div className="max-w-[1350px] mx-auto md:my-10 ">
+          <pre>{JSON.stringify(displayedData, null, 2)}</pre>
           <h1
             style={{ fontSize: "clamp(20px, 3vw + 1rem ,60px)" }}
             className="font-bold "
@@ -363,11 +372,8 @@ console.log(advanceAmount);
                 </div>
                 <p className="bg-base-color px-8 py-2 border border-secondary-color rounded-md">
                   {isValueIncressed
-                    ? `${
-                        displayedData?.data?.expectedPrice +
-                        displayedData?.data?.expectedPrice * 0.25
-                      } DKK`
-                    : `${displayedData?.data?.expectedPrice} DKK`}
+                    ? `${carPrice + carPrice * 0.25} DKK`
+                    : `${carPrice} DKK`}
                 </p>
               </div>
               <div className="flex justify-between items-center w-full gap-5 flex-wrap">
@@ -424,23 +430,14 @@ console.log(advanceAmount);
                     <>
                       {" "}
                       {isValueIncressed
-                        ? `${
-                            displayedData?.data?.expectedPrice +
-                            displayedData?.data?.expectedPrice * 0.25 -
-                            advanceAmount
-                          } DKK`
-                        : `${
-                            displayedData?.data?.expectedPrice - advanceAmount
-                          } DKK`}{" "}
+                        ? `${carPrice + carPrice * 0.25 - advanceAmount} DKK`
+                        : `${carPrice - advanceAmount} DKK`}{" "}
                     </>
                   ) : (
                     <>
                       {isValueIncressed
-                        ? `${
-                            displayedData?.data?.expectedPrice +
-                            displayedData?.data?.expectedPrice * 0.25
-                          } DKK`
-                        : `${displayedData?.data?.expectedPrice} DKK`}
+                        ? `${carPrice + carPrice * 0.25} DKK`
+                        : `${carPrice} DKK`}
                     </>
                   )}
                 </p>
@@ -600,11 +597,8 @@ console.log(advanceAmount);
             <div className="!flex !justify-end !items-end">
               <button className="bg-base-color w-fit px-8 py-2 border border-secondary-color rounded-md text-end h-fit">
                 {isValueIncressed
-                  ? `${
-                      displayedData?.data?.expectedPrice +
-                      displayedData?.data?.expectedPrice * 0.25
-                    } DKK`
-                  : `${displayedData?.data?.expectedPrice} DKK`}
+                  ? `${carPrice + carPrice * 0.25} DKK`
+                  : `${carPrice} DKK`}
               </button>
             </div>
           </section>

@@ -1,7 +1,7 @@
 "use client";
 import { Button, Input, Space, Table, Tooltip } from "antd";
 import Link from "next/link";
- 
+
 const PrivateCarSellTable = ({
   data,
   loading,
@@ -15,7 +15,7 @@ const PrivateCarSellTable = ({
       key: "sl",
       responsive: ["md"],
     },
-    { 
+    {
       title: "Dealer Name",
       dataIndex: "profile",
       key: "profile",
@@ -29,14 +29,14 @@ const PrivateCarSellTable = ({
       title: "Brand Name",
       dataIndex: "carModel",
       key: "carModel",
-      render: (text) => <p>{text.brand}</p>,
+      render: (text) => <p>{text?.brand}</p>,
     },
     {
       title: "Contract Paper",
       key: "action",
       render: (_, record) => (
         <Link
-          href={`/dashboard/total-private-car-sell/contract/${record.car._id}`}
+          href={`/dashboard/total-private-car-sell/contract/${record?.car?._id}`}
         >
           <Tooltip placement="right" title="View Details">
             {/* {record.contractPaper} */}See paper
@@ -53,7 +53,7 @@ const PrivateCarSellTable = ({
       title: "Color",
       dataIndex: "carModel",
       key: "carModel",
-      render: (text) => <p>{text.color}</p>,
+      render: (text) => <p>{text?.color}</p>,
     },
     {
       title: "Price",
@@ -61,7 +61,9 @@ const PrivateCarSellTable = ({
       sorter: (a, b) => a.car.expectedPrice - b.car.expectedPrice,
       render: (text) => (
         <div>
-          <p className="whitespace-nowrap">{text.expectedPrice} Dkk</p>
+          <p className="whitespace-nowrap">
+            {text?.isBid ? text.bidPrice : text.expectedPrice}Dkk
+          </p>
         </div>
       ),
     },
@@ -71,7 +73,10 @@ const PrivateCarSellTable = ({
       sorter: (a, b) => a.car.expectedPrice - b.car.expectedPrice,
       render: (text) => (
         <div>
-          <p className="whitespace-nowrap">{text.expectedPrice * 0.25} Dkk</p>
+          <p className="whitespace-nowrap">
+            {/* {text?.expectedPrice * 0.25} */}
+            {text.isBid ? text.bidPrice * 0.25 : text.expectedPrice * 0.25} DKK
+          </p>
         </div>
       ),
     },

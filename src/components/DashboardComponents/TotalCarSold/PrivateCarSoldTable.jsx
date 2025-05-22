@@ -62,7 +62,10 @@ const PrivateCarSoldTable = ({
       sorter: (a, b) => a.car.expectedPrice - b.car.expectedPrice,
       render: (text) => (
         <div>
-          <p className="whitespace-nowrap">{text.expectedPrice} Dkk</p>
+          <p className="whitespace-nowrap">
+            {text.isBid ? text.bidPrice : text.expectedPrice}
+             Dkk
+          </p>
         </div>
       ),
     },

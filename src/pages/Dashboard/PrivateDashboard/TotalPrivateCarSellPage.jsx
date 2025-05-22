@@ -176,6 +176,7 @@ const TotalPrivateCarSellPage = () => {
       </div>
 
       <div className="">
+        {/* <pre>{JSON.stringify(displayedData?.data?.result, null, 2)}</pre> */}
         <PrivateCarSellTable
           data={displayedData?.data?.result}
           loading={isLoading}

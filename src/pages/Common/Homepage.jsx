@@ -9,14 +9,29 @@ import SellBuyTrade from "@/components/Private/HomePage/SellBuyTrade";
 import TotalCarBuy from "@/components/Private/HomePage/TotalCarBuy";
 import TotalCarSell from "@/components/Private/HomePage/TotalCarSell";
 import WhyChooseUS from "@/components/Private/HomePage/WhyChooseUS";
+import {
+  useSaleCarListQuery,
+  useSubmitListingQuery,
+} from "@/redux/api/features/carDealer";
 
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
 const Homepage = () => {
-  // console.log(accessToken);
-  const userInfo = useSelector((state) => state.auth.userInfo);
+  const { data, currentData, isLoading, isFetching, isSuccess } =
+    useSaleCarListQuery();
+  const {
+    data: submitData,
+    currentData: submitCurrentData,
+    isLoading: submitIsLoading,
+    isFetching: submitIsFetching,
+    isSuccess: submitIsSuccess,
+  } = useSubmitListingQuery();
 
+  const displayedData = data ?? currentData;
+  const submitDisplayedData = submitData ?? submitCurrentData;
+
+  const userInfo = useSelector((state) => state.auth.userInfo);
 
   const carUser = "car_trading_accessToken";
   const [isSellCar, setIsSellCar] = useState(true);
@@ -40,7 +55,7 @@ const Homepage = () => {
                     : "bg-base-color text-text-color"
                 }`}
               >
-                Cars for sale (750)
+                Cars for sale
               </h1>
               <h1
                 onClick={() => setIsSellCar(false)}
@@ -51,11 +66,27 @@ const Homepage = () => {
                     : "bg-highlight-color text-white "
                 }`}
               >
-                Private looking for car (387)
+                Private looking for car
               </h1>
             </div>
             {/* Dealer */}
-            {isSellCar ? <CarsForSale /> : <PrivateLookingForCars />}
+
+            {/* {(displayedData, isLoading, isFetching, isSuccess)} */}
+            {isSellCar ? (
+              <CarsForSale
+                displayedData={displayedData}
+                isLoading={isLoading}
+                isFetching={isFetching}
+                isSuccess={isSuccess}
+              />
+            ) : (
+              <PrivateLookingForCars
+                displayedData={submitDisplayedData}
+                isLoading={submitIsLoading}
+                isFetching={submitIsFetching}
+                isSuccess={submitIsSuccess}
+              />
+            )}
           </div>
         </>
       ) : (

@@ -10,7 +10,7 @@ import DealerAllCarDetails from "@/components/DashboardComponents/TotalCarForSel
  
 const ViewDetailsPage = ({
   setOpenResponsive,
-  openResponsive,
+  openResponsive, 
   car,
   sendOffer,
   buyNow,

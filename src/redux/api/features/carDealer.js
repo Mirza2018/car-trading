@@ -1,3 +1,4 @@
+import { tagTypes } from "@/redux/tagTypes";
 import { baseApi } from "../baseApi";
 
 export const carDealer = baseApi.injectEndpoints({
@@ -27,7 +28,9 @@ export const carDealer = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: [tagTypes.bid],
     }),
+
     submitListing: build.query({
       query: () => {
         return {
@@ -46,6 +49,7 @@ export const carDealer = baseApi.injectEndpoints({
         };
       },
     }),
+
     buyCar: build.mutation({
       query: (buyCar) => {
         return {
@@ -56,8 +60,25 @@ export const carDealer = baseApi.injectEndpoints({
       },
     }),
 
+    bidCreate: build.mutation({
+      query: (bidCreate) => {
+        return {
+          url: `/bid/create`,
+          method: "POST",
+          body: bidCreate,
+        };
+      },
+      invalidatesTags: [tagTypes.bid],
+    }),
+
     //end
   }),
 });
 
-export const { useSaleCarListQuery,useSubmitListingQuery,useOfferCarDealMutation,useBuyCarMutation } = carDealer;
+export const {
+  useSaleCarListQuery,
+  useSubmitListingQuery,
+  useOfferCarDealMutation,
+  useBuyCarMutation,
+  useBidCreateMutation,
+} = carDealer;

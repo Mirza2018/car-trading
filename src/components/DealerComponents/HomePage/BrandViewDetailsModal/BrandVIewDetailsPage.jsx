@@ -52,10 +52,16 @@ const BrandVIewDetailsPage = ({
           {/* Left Side */}
           <section className="col-span-5  flex justify-center items-center">
             {/* <ImageSlider /> */}
-            <Image
-              src={AllImages.brand1}
-              className="max-w-56 min-w-36 aspect-square object-cover"
-            />
+            <div className="text-4xl font-bold flex justify-center items-center !w-52 uppercase bg-secondary-color py-10 px-5 rounded-xl">
+                    {/* <Image
+                      src={AllImages.brand1}
+                      alt="car"
+                      width={0}
+                      height={0}
+                      className="w-44 aspect-square object-cover rounded-lg"
+                    /> */}
+                    {car?.mark}
+                  </div>
           </section>
           {/* Right Side */}
           <section className="col-span-7 flex justify-center items-center">

@@ -115,16 +115,16 @@ const SellCarAllDetails = () => {
         ...values,
         registrationNumber: carData?.registration,
         carCategory: carData?.type,
-        milage: carData?.last_inspection_odometer,
-        firstRegistrationDate: carData?.first_registration_date,
+        milage: carData?.last_inspection_odometer || "0" ,
+        firstRegistrationDate: carData?.first_registration_date || "",
         chassisNumber: carData?.vin,
-        inspectionDate: carData?.last_inspection_date,
+        inspectionDate: carData?.last_inspection_date || "",
         brand: carData?.brand,
         model: carData?.model,
         modelYear: carData?.model_year || "000",
         variant: carData?.version,
         color: carData?.color?.name,
-        fuelType: carData?.fuel_type,
+        fuelType: carData?.fuel_type||"",
         engineSize: carData?.engine_displacement,
         enginePerformance: carData?.engine_power,
         fuelConsumption: carData?.fuel_efficiency,
@@ -139,7 +139,6 @@ const SellCarAllDetails = () => {
 
       // Append non-image data as a JSON string under the 'data' key
       formData.append("data", JSON.stringify(data));
-
 
       const images = values.images || []; // Assuming images come from form values
       images.forEach((image, index) => {
@@ -269,12 +268,12 @@ const SellCarAllDetails = () => {
         </div>
         <div className="my-[10px] flex justify-between gap-5">
           <div className="flex-1">
-            <p className="text-2xl font-medium pb-2">Additional equipment</p>
+            <p className="text-2xl font-medium pb-2">Additional equipment*</p>
 
             <Form.Item name="additionalEquipment">
               <Checkbox.Group className=" flex flex-col gap-2">
                 <Checkbox value="Automatic transmission">
-                  Automatic transmission*
+                  Automatic transmission
                 </Checkbox>
                 <Checkbox value="Trailer hitch">Trailer hitch</Checkbox>
                 <Checkbox value="Extra wheel set">Extra wheel set</Checkbox>
@@ -294,10 +293,10 @@ const SellCarAllDetails = () => {
               ]}
               name={`condition`}
             >
-              <Radio.Group name="bilens" className=" flex  gap-2">
-                <Radio value="good">Good</Radio>
-                <Radio value="used">Used</Radio>
-                <Radio value="veryUsed">Very used</Radio>
+              <Radio.Group name="condition" className=" flex  gap-2">
+                <Radio value="Good">Good</Radio>
+                <Radio value="Used">Used</Radio>
+                <Radio value="very Used">Very used</Radio>
               </Radio.Group>
             </Form.Item>
           </div>
@@ -436,38 +435,38 @@ const SellCarAllDetails = () => {
             </div>
           </div>
         ) : (
-          <div className="my-[10px] flex justify-between gap-5">
-            <div className="flex-1">
-              <p className="text-2xl font-medium pb-2">First Name*</p>
-              <Form.Item
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your first Name!",
-                  },
-                ]}
-                name={`first_name`}
-              >
-                <Input placeholder="First Name" className="py-3" />
-              </Form.Item>
-            </div>
-            <div className="flex-1">
-              <p className="text-2xl font-medium pb-2">Last Name*</p>
-              <Form.Item
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your last name!",
-                  },
-                ]}
-                name={`last_name`}
-              >
-                <Input placeholder="Last Name" className="py-3" />
-              </Form.Item>
-            </div>
-          </div>
+          ""
         )}
-
+        <div className="my-[10px] flex justify-between gap-5">
+          <div className="flex-1">
+            <p className="text-2xl font-medium pb-2">First Name*</p>
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your first Name!",
+                },
+              ]}
+              name={`first_name`}
+            >
+              <Input placeholder="First Name" className="py-3" />
+            </Form.Item>
+          </div>
+          <div className="flex-1">
+            <p className="text-2xl font-medium pb-2">Last Name*</p>
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your last name!",
+                },
+              ]}
+              name={`last_name`}
+            >
+              <Input placeholder="Last Name" className="py-3" />
+            </Form.Item>
+          </div>
+        </div>
         <div className="my-[10px] flex justify-between gap-5">
           <div className="">
             <p className="text-2xl font-medium pb-2">Postal Code*</p>

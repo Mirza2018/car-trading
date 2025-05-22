@@ -1,19 +1,54 @@
+import { useBidCreateMutation } from "@/redux/api/features/carDealer";
 import { Button, Input, Modal } from "antd";
-import Link from "next/link";
 import React, { useRef, useState } from "react";
 import { AiOutlineSend } from "react-icons/ai";
+import { toast } from "sonner";
 
-const MakeABidBtn = () => {
+const MakeABidBtn = ({ carid }) => {
+  const [bidCreate] = useBidCreateMutation();
   const [bidOpen, setBidOpen] = useState(false);
   const [isBuy, setIsBuy] = useState(false);
   const [isBid, setIsBid] = useState(false);
+  const [valueOfBid, setValueOfBid] = useState(false);
   const bidRef = useRef(null);
 
   const bidValue = () => {
-    console.log(bidRef.current.input.value);
+    // console.log(bidRef.current.input.value);
+    setValueOfBid(bidRef.current.input.value);
     setBidOpen(false);
     setIsBuy(true);
   };
+
+  const submitBid = async () => {
+    const toastId = toast.loading("Bid is Submiting...");
+
+    const data = {
+      carId: carid,
+      bidAmount: valueOfBid,
+    };
+    // console.log(data);
+
+    try {
+      const res = await bidCreate(data).unwrap();
+      console.log(res);
+      toast.success("Your Bid Submiting Successfully", {
+        id: toastId,
+        duration: 2000,
+      });
+      setIsBuy(false);
+      setIsBid(true);
+    } catch (error) {
+      console.log(error);
+      toast.error(
+        error?.data?.message || "There is an problem in Bid try latter ",
+        {
+          id: toastId,
+          duration: 2000,
+        }
+      );
+    }
+  };
+
   const suffix = (
     <p className="cursor-pointer">
       <AiOutlineSend
@@ -22,7 +57,7 @@ const MakeABidBtn = () => {
       />
     </p>
   );
-  console.log(bidRef);
+
   return (
     <React.Fragment>
       <button
@@ -66,10 +101,7 @@ const MakeABidBtn = () => {
           </Button>
           {/* <Link href={`/final-note`}> */}
           <Button
-            onClick={() => {
-              setIsBuy(false);
-              setIsBid(true);
-            }}
+            onClick={submitBid}
             className={`text-xl py-5 px-8 bg-highlight-color !hover:bg-red-600 `}
             type="primary"
           >

@@ -1,8 +1,11 @@
 import React from "react";
 
-const BrandnViewTableDetails = ({car}) => {
+const BrandnViewTableDetails = ({ car }) => {
+  console.log(car);
+  
   return (
     <main className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-7 gap-y-2">
+      {/* <pre>{ JSON.stringify(car,null,2)}</pre> */}
       {car?.carCategory && (
         <div className="flex justify-between border-b border-text-light-color">
           <p>Car Category:</p>
@@ -50,17 +53,21 @@ const BrandnViewTableDetails = ({car}) => {
       {car?.fuel && (
         <div className="flex justify-between border-b border-text-light-color">
           <p>Fuel</p>
-          {car?.fuel.map((p) => (
-            <p>{p}</p>
-          ))}
+          <p>
+            {car?.fuel.map((p) => (
+              <>{p}, </>
+            ))}
+          </p>
         </div>
       )}
       {car?.gearType && (
         <div className="flex justify-between border-b border-text-light-color">
           <p>GearType</p>
-          {car?.gearType.map((p) => (
-            <p>{p}</p>
-          ))}
+          <p>
+            {car?.gearType.map((p) => (
+              <>{p}, </>
+            ))}
+          </p>
         </div>
       )}
       {car?.models && (
@@ -89,7 +96,13 @@ const BrandnViewTableDetails = ({car}) => {
       {car?.color && (
         <div className="flex justify-between border-b border-text-light-color">
           <p>Color:</p>
-          <p>{car?.color} </p>
+          {/* <p>{car?.color}</p> */}
+
+          <p>
+            {car?.color.map((p) => (
+              <>{p}, </>
+            ))}
+          </p>
         </div>
       )}
       {car?.trailerHitch && (
@@ -101,13 +114,23 @@ const BrandnViewTableDetails = ({car}) => {
       {car?.exterior && (
         <div className="flex justify-between border-b border-text-light-color">
           <p>Exterior:</p>
-          <p>{car?.exterior} </p>
+          {/* <p>{car?.exterior} </p> */}
+          <p>
+            {car?.exterior.map((p) => (
+              <>{p}, </>
+            ))}
+          </p>
         </div>
       )}
       {car?.interior && (
-        <div className="flex justify-between border-b border-text-light-color">
+        <div className="flex justify-between border-b border-text-light-color gap-3">
           <p>Interior:</p>
-          <p>{car?.interior} </p>
+          {/* <p>{car?.interior} </p> */}
+          <p>
+            {car?.interior.map((p) => (
+              <>{p}, </>
+            ))}
+          </p>
         </div>
       )}
       {car?.city && (

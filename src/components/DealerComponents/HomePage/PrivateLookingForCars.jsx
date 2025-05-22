@@ -2,16 +2,23 @@
 import { AllImages } from "@/assets/AllImages";
 import { Divider, Spin } from "antd";
 import Image from "next/image";
-import { useState } from "react";
+import { useState } from "react"; 
 import ViewDetailsPage from "./CarViewDetailsModal/ViewDetailsPage";
 import BrandVIewDetailsPage from "./BrandViewDetailsModal/BrandVIewDetailsPage";
 import { useSubmitListingQuery } from "@/redux/api/features/carDealer";
 
-const PrivateLookingForCars = () => {
-  const { data, currentData, isLoading, isFetching, isSuccess } =
-    useSubmitListingQuery();
-  const displayedData = data ?? currentData;
+const PrivateLookingForCars = ({
+  displayedData,
+  isLoading,
+  isFetching,
+  isSuccess,
+}) => {
+  // const { data, currentData, isLoading, isFetching, isSuccess } =
+  //   useSubmitListingQuery();
+  // const displayedData = data ?? currentData;
   const [openOfferCar, setopenOfferCar] = useState(false);
+  const [selectedCar, setSelectedCar] = useState(null);
+
   const [openResponsive, setOpenResponsive] = useState(false);
 
   // Track the current (main) image index
@@ -151,14 +158,15 @@ const PrivateLookingForCars = () => {
                 className="flex lg:flex-row flex-col gap-10 shadow-xl rounded-md p-3"
               >
                 <div className="flex gap-6 justify-start items-center">
-                  <div>
-                    <Image
+                  <div className="text-4xl font-bold flex justify-center items-center !w-52 uppercase bg-secondary-color py-10 px-5 rounded-xl">
+                    {/* <Image
                       src={AllImages.brand1}
                       alt="car"
                       width={0}
                       height={0}
                       className="w-44 aspect-square object-cover rounded-lg"
-                    />
+                    /> */}
+                    {car?.mark}
                   </div>
 
                   <div className="flex flex-col gap-2 ">
@@ -200,12 +208,15 @@ const PrivateLookingForCars = () => {
                     <BrandVIewDetailsPage
                       openResponsive={openOfferCar}
                       setOpenResponsive={setopenOfferCar}
-                      car={car}
+                      car={selectedCar}
                       sendOffer={true}
                       buyNow={false}
                     />
                     <button
-                      onClick={() => setOpenResponsive(true)}
+                      onClick={() => {
+                        setSelectedCar(car);
+                        setOpenResponsive(true);
+                      }}
                       style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
                       className="bg-base-color text-black border border-secondary-color  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
                     >
@@ -215,7 +226,7 @@ const PrivateLookingForCars = () => {
                     <BrandVIewDetailsPage
                       openResponsive={openResponsive}
                       setOpenResponsive={setOpenResponsive}
-                      car={car}
+                      car={selectedCar}
                       sendOffer={false}
                       buyNow={false}
                     />
