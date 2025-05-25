@@ -35,6 +35,7 @@ import signature from "./icons/signature.svg";
 import save from "./icons/save.svg";
 
 import profile from "./images/profile.png";
+import companyLogo from "./images/companyLogo.jpg";
 import car from "./images/car.png";
 import fairPriceCar from "./images/home1.jpg";
 import brand1 from "./images/brand1.svg";
@@ -68,6 +69,7 @@ import about4 from "./about/about4.png";
 import about5 from "./about/about5.png";
 
 export const AllImages = {
+  companyLogo,
   logo,
   profile,
   car,

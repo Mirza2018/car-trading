@@ -3,7 +3,7 @@ import { jwtDecode } from "jwt-decode";
 import { NextResponse } from "next/server";
 
 export function middleware(request) {
-  const cookies = new Cookies(); 
+  const cookies = new Cookies();
   const { pathname, origin } = request.nextUrl;
   console.log("Received request for pathname:", pathname);
   const userCookie = request.cookies.get("car_trading_accessToken")?.value;
@@ -62,6 +62,7 @@ export function middleware(request) {
       console.log("User is a dealer, checking allowed paths");
       const allowedDealerDashboardPaths = [
         "/dashboard/total-dealer-car-sell",
+        "/dashboard/dealer-offer-car-aggrement",
         "/dashboard/order-transport",
         "/dashboard/user-profile",
         "/dashboard/terms",
@@ -83,6 +84,7 @@ export function middleware(request) {
       console.log("User is a regular user, checking allowed paths");
       const allowedUserDashboardPaths = [
         "/dashboard/total-private-car-sell",
+        "/dashboard/private-offer-car-aggrement",
         "/dashboard/total-car-sold",
         "/dashboard/offer-car",
         "/dashboard/bid-car",

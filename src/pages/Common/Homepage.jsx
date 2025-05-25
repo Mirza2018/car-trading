@@ -33,7 +33,7 @@ const Homepage = () => {
 
   const userInfo = useSelector((state) => state.auth.userInfo);
 
-  const carUser = "car_trading_accessToken";
+
   const [isSellCar, setIsSellCar] = useState(true);
 
   return (

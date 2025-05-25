@@ -10,9 +10,14 @@ import { clearAuth } from "@/redux/slices/authSlice";
 import Cookies from "universal-cookie";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import TaskPage from "../DealerComponents/TaskPage/taskPage";
+import { useTaskListQuery } from "@/redux/api/features/taskApi";
 
- 
 const Navbar = () => {
+  const { data, currentData, isLoading, isFetching, isSuccess } =
+    useTaskListQuery();
+  const displayedData = data ?? currentData;
+  console.log(displayedData);
   const userInfo = useSelector((state) => state.auth.userInfo);
   const navigate = useRouter();
   const dispatch = useDispatch();
@@ -106,11 +111,10 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-
     dispatch(clearAuth());
     cookies.remove("car_trading_accessToken");
     navigate.push("/");
-    toast.success("Log out successfully done")
+    toast.success("Log out successfully done");
   };
 
   const getMenuItems = (user) => {
@@ -253,11 +257,17 @@ const Navbar = () => {
                 </Badge>
               </Link> */}
               {userInfo?.role === "private_user" ? (
-                <Link href={"/sign-in"}>
-                  <p className="bg-[#00721E] text-[15px] font-medium px-3 py-2 rounded-3xl">
+                <p
+                  // href={"/sign-in"}
+                  onClick={() => {
+                    handleLogout();
+                    navigate.push("/sign-in");
+                  }}
+                >
+                  <p className="bg-[#00721E] text-[15px] cursor-pointer font-medium px-3 py-2 rounded-3xl">
                     Log In For Dealer
                   </p>
-                </Link>
+                </p>
               ) : (
                 ""
               )}
@@ -278,7 +288,7 @@ const Navbar = () => {
         open={isModalOpen}
         footer={[]}
       >
-        <React.Fragment>
+        {/* <React.Fragment>
           <div className="flex flex-col justify-center items-center p-20">
             <h1
               style={{ fontSize: "clamp(20px, 1vw + 1rem ,48px)" }}
@@ -352,7 +362,8 @@ const Navbar = () => {
               </svg>
             )}
           </div>
-        </React.Fragment>
+        </React.Fragment> */}
+        <TaskPage />
       </Modal>
       {/* This is Profile or contract section */}
     </div>

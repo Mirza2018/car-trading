@@ -51,6 +51,31 @@ const Sidebar = ({ slider, setSlider }) => {
                 <p>Total Purchased Cars</p>
               </li>
             </Link>
+            <Link
+              href="/dashboard/dealer-offer-car-aggrement"
+              className="w-full"
+            >
+              <li
+                className={`flex items-center gap-x-3 w-full py-3 px-2  font-semibold text-lg lg:rounded-tr-lg lg:rounded-br-lg  ${
+                  location === "/dashboard/dealer-offer-car-aggrement"
+                    ? "text-white bg-highlight-color"
+                    : "text-black"
+                }`}
+              >
+                <Image
+                  src={AllImages.totalCar}
+                  alt="show-feedback"
+                  width={30}
+                  style={{
+                    filter:
+                      location === "/dashboard/dealer-offer-car-aggrement"
+                        ? "brightness(0) invert(1) "
+                        : undefined,
+                  }}
+                />
+                <p>Offer Car Aggrement</p>
+              </li>
+            </Link>
             <Link href="/dashboard/order-transport" className="w-full">
               <li
                 className={`flex items-center gap-x-3 w-full py-3 px-2  font-semibold text-lg lg:rounded-tr-lg lg:rounded-br-lg ${
@@ -99,6 +124,7 @@ const Sidebar = ({ slider, setSlider }) => {
                 <p>Total Car Sell</p>
               </li>
             </Link>
+
             <Link href="/dashboard/total-car-sold" className="w-full">
               {" "}
               <li
@@ -122,6 +148,34 @@ const Sidebar = ({ slider, setSlider }) => {
                 <p>Total Car Sold</p>
               </li>
             </Link>
+
+            <Link
+              href="/dashboard/private-offer-car-aggrement"
+              className="w-full"
+            >
+              {" "}
+              <li
+                className={`flex items-center gap-x-3 w-full py-3 px-2  font-semibold text-lg lg:rounded-tr-lg lg:rounded-br-lg  ${
+                  location === "/dashboard/private-offer-car-aggrement"
+                    ? "text-white bg-highlight-color"
+                    : "text-black"
+                }`}
+              >
+                <Image
+                  src={AllImages.totalCar}
+                  alt="car"
+                  width={30}
+                  style={{
+                    filter:
+                      location === "/dashboard/private-offer-car-aggrement"
+                        ? "brightness(0) invert(1) "
+                        : undefined,
+                  }}
+                />
+                <p>Offer Car Aggrement</p>
+              </li>
+            </Link>
+
             <Link href="/dashboard/offer-car" className="w-full">
               {" "}
               <li

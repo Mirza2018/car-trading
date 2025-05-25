@@ -1,36 +1,29 @@
-import { useMemo } from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import axios from "axios";
+"use client"
+import { useOfferCarListQuery } from "@/redux/api/features/privateDashboard";
+import { SearchOutlined } from "@ant-design/icons";
 import {
-  Button,
   ConfigProvider,
   Form,
   Input,
-  Modal,
-  Select,
-  Spin,
-  Typography,
+  Spin
 } from "antd";
-import { DownOutlined, SearchOutlined } from "@ant-design/icons";
-import CarListTable from "@/components/DashboardComponents/TotalCarForSellPage/CarListTable";
-import ViewCarTables from "@/components/DashboardComponents/TotalCarForSellPage/ViewCarTables";
-import ViewDetailsPage from "@/components/DealerComponents/HomePage/CarViewDetailsModal/ViewDetailsPage";
-import { useTotalPurchasedCarsQuery } from "@/redux/api/features/dealerDashboard";
-import ViewCarDealerPage from "@/components/DashboardComponents/TotalCarForSellPage/ViewCarDealerPage";
+import axios from "axios";
+import { useEffect, useMemo, useState } from "react";
+import OfferDealerCarAcceptTable from "./OfferDealerCarAcceptTable";
+import ViewOfferDealerCarAcceptDetails from "./ViewOfferDealerCarAcceptDetails";
 
-const TotalCarForSellPage = () => {
+const TotalDealerOfferCarPage = () => {
   const {
-    data: purchasedCar,
+    data: purchasedCar, 
     currentData,
     isLoading,
     isFetching,
     isSuccess,
-  } = useTotalPurchasedCarsQuery();
+  } = useOfferCarListQuery();
 
   const displayedData = purchasedCar ?? currentData;
 
-  console.log("purchasedCar", purchasedCar);
+  console.log("offerCar", purchasedCar);
 
   const [searchText, setSearchText] = useState("");
 
@@ -79,9 +72,6 @@ const TotalCarForSellPage = () => {
     setIsServiceUserViewModalVisible(true);
   };
 
-  const handleCancel = () => {
-    setIsServiceUserViewModalVisible(false);
-  };
   const car = {
     buyNowPrice: "7,000 EUR",
     model: "Honda CR-V",
@@ -142,7 +132,7 @@ const TotalCarForSellPage = () => {
 
         {/* Table  */}
         <div className="px-10 pb-10">
-          <CarListTable
+          <OfferDealerCarAcceptTable
             data={displayedData?.data?.result}
             loading={isLoading}
             showViewServiceUserModal={showViewServiceUserModal}
@@ -157,7 +147,7 @@ const TotalCarForSellPage = () => {
         handleCancel={handleCancel}
         currentRecord={currentRecord}
       /> */}
-        <ViewCarDealerPage
+        <ViewOfferDealerCarAcceptDetails
           openResponsive={isServiceUserViewModalVisible}
           setOpenResponsive={setIsServiceUserViewModalVisible}
           car={currentRecord}
@@ -166,4 +156,4 @@ const TotalCarForSellPage = () => {
     );
 };
 
-export default TotalCarForSellPage;
+export default TotalDealerOfferCarPage;

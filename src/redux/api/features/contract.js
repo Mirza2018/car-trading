@@ -24,11 +24,21 @@ export const contract = baseApi.injectEndpoints({
         };
       },
     }),
+    updateOfferContactPaper: build.mutation({
+      query: ({ ContactPaper, ContactData }) => {
+        console.log("ContactPaper", ContactPaper);
+        console.log("ContactData", ContactData);
+
+        return {
+          url: `/offer_car/update_offer_car/${ContactPaper}`,
+          method: "PATCH",
+          body: ContactData,
+        };
+      },
+    }),
 
     //end
   }),
 });
 
-export const {
-useContactPaperQuery,useUpdateContactPaperMutation
-} = contract;
+export const { useContactPaperQuery, useUpdateContactPaperMutation,useUpdateOfferContactPaperMutation } = contract;

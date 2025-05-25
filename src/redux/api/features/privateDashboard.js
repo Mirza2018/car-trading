@@ -5,7 +5,7 @@ import { tagTypes } from "@/redux/tagTypes";
 export const privateDashboard = baseApi.injectEndpoints({
   endpoints: (build) => ({
     // getCarInfo: build.query({
-    //   query: ({ license }) => { 
+    //   query: ({ license }) => {
     //     console.log(license);
     //     return {
     //       url: `/car/car_info?carNumber=${license}`,
@@ -79,6 +79,17 @@ export const privateDashboard = baseApi.injectEndpoints({
       invalidatesTags: [tagTypes.bid],
     }),
 
+    offerCarList: build.query({
+      query: () => {
+        // console.log(filter);
+        return {
+          url: `/offer_car/my_list`,
+          method: "GET",
+        };
+      },
+      // providesTags: [tagTypes.bid],
+    }),
+
     // end
   }),
 });
@@ -89,4 +100,5 @@ export const {
   useOfferCarActionMutation,
   useBidCarDetailsQuery,
   useBidCarActionMutation,
+  useOfferCarListQuery
 } = privateDashboard;

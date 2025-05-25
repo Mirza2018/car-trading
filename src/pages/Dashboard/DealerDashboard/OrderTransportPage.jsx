@@ -1,18 +1,67 @@
 "use client";
-import { Button, Checkbox, Form, Input } from "antd";
-import { useForm } from "antd/es/form/Form";
-import React from "react";
+import { useCreateOrderTransportMutation } from "@/redux/api/features/orderTransport";
+import { Form, Input } from "antd";
+import { toast } from "sonner";
 
 const OrderTransportPage = () => {
+  const [transportData] = useCreateOrderTransportMutation();
+
   const [form] = Form.useForm();
-  const onFinish = (values) => {
-    console.log("Success:", values);
-    form.resetFields();
+
+  const onFinishFailed = ({ errorFields }) => {
+    console.log(errorFields[0].errors[0]);
+
+    toast.error(errorFields[0].errors[0], {
+      id: "error_fields",
+      duration: 2000,
+    });
   };
+
+  const onFinish = async (values) => {
+    const toastId = toast.loading("Order transport is Registering..");
+    console.log("Success:", values);
+    //   {
+    //     "companyName": "Rasel Company",
+    //     "address": "Reasel Viper",
+    //     "contactPerson": "01236987541",
+    //     "phone": "039696255",
+    //     "email": "raselViper@gmail.com",
+    //     "additional": "hello",
+    //     "cvr": "1236654"
+    // }
+    // return;
+    try {
+      const res = await transportData(values).unwrap();
+      console.log(res);
+      toast.success(
+        res?.data?.message || "Order transport created successfully",
+        {
+          id: toastId,
+          duration: 2000,
+        }
+      );
+      form.resetFields();
+    } catch (error) {
+      console.log(error);
+      toast.error(
+        error?.data?.message || "There is an issue to register Order transoport",
+        {
+          id: toastId,
+          duration: 2000,
+        }
+      );
+    }
+  };
+
   return (
     <div>
       <h1 className="text-3xl font-semibold mb-10">Order transport</h1>
-      <Form form={form} layout="vertical" onFinish={onFinish}>
+      <Form
+        form={form}
+        layout="vertical"
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+      >
         <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-5">
           <Form.Item
             className="block"
@@ -30,7 +79,7 @@ const OrderTransportPage = () => {
           <Form.Item
             className=""
             label="Address"
-            name="address*"
+            name="address"
             rules={[
               {
                 required: true,
@@ -60,7 +109,7 @@ const OrderTransportPage = () => {
             rules={[
               {
                 required: true,
-                message: "Please input your Phone!",
+                message: "Please input your Phone number!",
               },
             ]}
           >
