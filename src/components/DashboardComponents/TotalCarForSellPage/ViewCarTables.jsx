@@ -48,7 +48,7 @@ const ViewCarTables = ({
     model: "Honda CR-V",
     edition: "PHEV - LUXURY",
     currentBids: 15,
-    priceInDKK: "33,000 DKK",
+    priceInDKK: "33,000 .kr",
     type: "Hybrid (Benzin)",
     transmission: "Automatgear",
     engineCapacity: "2.0 L",

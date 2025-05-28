@@ -68,7 +68,7 @@ const BidCar = ({ bids, bidCarAction }) => {
           Car: {bids?.carName} {bids?.modelYear}
         </h1>
         <h1 className="text-lg font-semibold">
-          Highest Bid: {bids.bidAmount} DKK
+          Highest Bid: {bids.bidAmount} .kr
         </h1>
       </div>
       <div className="flex gap-3 h-fit ">

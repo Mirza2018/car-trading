@@ -1,8 +1,8 @@
 "use client";
 import { AllImages } from "@/assets/AllImages";
-import { Divider, Spin } from "antd";
+import { Divider, Pagination, Spin } from "antd";
 import Image from "next/image";
-import { useState } from "react"; 
+import { useState } from "react";
 import ViewDetailsPage from "./CarViewDetailsModal/ViewDetailsPage";
 import BrandVIewDetailsPage from "./BrandViewDetailsModal/BrandVIewDetailsPage";
 import { useSubmitListingQuery } from "@/redux/api/features/carDealer";
@@ -12,10 +12,11 @@ const PrivateLookingForCars = ({
   isLoading,
   isFetching,
   isSuccess,
+  onPageChange,
 }) => {
   // const { data, currentData, isLoading, isFetching, isSuccess } =
   //   useSubmitListingQuery();
-  // const displayedData = data ?? currentData;
+  console.log(displayedData?.data?.pagination);
   const [openOfferCar, setopenOfferCar] = useState(false);
   const [selectedCar, setSelectedCar] = useState(null);
 
@@ -43,103 +44,6 @@ const PrivateLookingForCars = ({
     }
   };
 
-  const carDetailsArray = [
-    {
-      buyNowPrice: "6,300 EUR",
-      model: "Honda CR-V",
-      edition: "PHEV - STYLE SMART",
-      currentBids: 12,
-      priceInDKK: "32,000 DKK",
-      type: "Hybrid (Benzin)",
-      transmission: "Automatgear",
-      engineCapacity: "2.0 L",
-      horsepower: "151 HK",
-      pno: "#4430457",
-      status: "Minimum price achieved",
-      kilometers: "1,749 km",
-      serviceDate: "08/2025",
-      postalCode: "8000",
-      vehicleType: "SUV",
-      makeAnBidPrice: "25,000 kr.",
-      link: "View Details",
-    },
-    {
-      buyNowPrice: "5,900 EUR",
-      model: "Honda CR-V",
-      edition: "PHEV - EXECUTIVE",
-      currentBids: 8,
-      priceInDKK: "29,500 DKK",
-      type: "Hybrid (Benzin)",
-      transmission: "Automatgear",
-      engineCapacity: "2.0 L",
-      horsepower: "151 HK",
-      pno: "#4430468",
-      status: "Minimum price not achieved",
-      kilometers: "2,300 km",
-      serviceDate: "09/2025",
-      postalCode: "8200",
-      vehicleType: "SUV",
-      makeAnBidPrice: "28,000 kr.",
-      link: "View Details",
-    },
-    {
-      buyNowPrice: "7,000 EUR",
-      model: "Honda CR-V",
-      edition: "PHEV - LUXURY",
-      currentBids: 15,
-      priceInDKK: "33,000 DKK",
-      type: "Hybrid (Benzin)",
-      transmission: "Automatgear",
-      engineCapacity: "2.0 L",
-      horsepower: "151 HK",
-      pno: "#4430479",
-      status: "Minimum price achieved",
-      kilometers: "1,500 km",
-      serviceDate: "07/2025",
-      postalCode: "8100",
-      vehicleType: "SUV",
-      makeAnBidPrice: "26,000 kr.",
-      link: "View Details",
-    },
-    {
-      buyNowPrice: "6,800 EUR",
-      model: "Honda CR-V",
-      edition: "PHEV - PREMIUM",
-      currentBids: 10,
-      priceInDKK: "31,800 DKK",
-      type: "Hybrid (Benzin)",
-      transmission: "Automatgear",
-      engineCapacity: "2.0 L",
-      horsepower: "151 HK",
-      pno: "#4430485",
-      status: "Minimum price achieved",
-      kilometers: "2,100 km",
-      serviceDate: "08/2025",
-      postalCode: "8500",
-      vehicleType: "SUV",
-      makeAnBidPrice: "27,000 kr.",
-      link: "View Details",
-    },
-    {
-      buyNowPrice: "6,500 EUR",
-      model: "Honda CR-V",
-      edition: "PHEV - SPORT",
-      currentBids: 9,
-      priceInDKK: "30,000 DKK",
-      type: "Hybrid (Benzin)",
-      transmission: "Automatgear",
-      engineCapacity: "2.0 L",
-      horsepower: "151 HK",
-      pno: "#4430492",
-      status: "Minimum price not achieved",
-      kilometers: "1,800 km",
-      serviceDate: "07/2025",
-      postalCode: "8300",
-      vehicleType: "SUV",
-      makeAnBidPrice: "26,500 kr.",
-      link: "View Details",
-    },
-  ];
   console.log(displayedData);
 
   if (isLoading)
@@ -173,16 +77,16 @@ const PrivateLookingForCars = ({
                     <p className="text-2xl font-semibold">{car?.mark}</p>
                     {/* <p className="text-sm font-normal">{car?.edition}</p> */}
                     <div className="text-sm font-normal">
-                      {car.fuel && (
+                      {car?.fuel && (
                         <>
-                          {car.fuel.map((f) => (
+                          {car?.fuel?.map((f) => (
                             <span>{f}, </span>
                           ))}
                         </>
                       )}
-                      {car.gearType && (
+                      {car?.gearType && (
                         <>
-                          {car.gearType.map((f) => (
+                          {car?.gearType?.map((f) => (
                             <span>{f}, </span>
                           ))}
                         </>
@@ -236,6 +140,15 @@ const PrivateLookingForCars = ({
             </>
           ))}
         </div>
+        <Pagination
+          current={displayedData?.data?.pagination?.page}
+          pageSize={displayedData?.data?.pagination?.limit}
+          total={displayedData?.data?.pagination?.total}
+          onChange={onPageChange}
+          align="end"
+          // showSizeChanger={true}
+          // pageSizeOptions={["3", "6", "9"]}
+        />
       </div>
     );
 };

@@ -1,6 +1,6 @@
 "use client";
 import { AllImages } from "@/assets/AllImages";
-import { Col, Divider, Modal, Row, Spin } from "antd";
+import { Col, Divider, Modal, Pagination, Row, Spin } from "antd";
 import Image from "next/image";
 import React, { useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
@@ -17,7 +17,13 @@ import { getImageUrl } from "@/helpers/config/envConfig";
 import { useCreateConversationMutation } from "@/redux/api/features/conversation";
 import { clearSignUpToken } from "@/redux/slices/authSlice";
 
-const CarsForSale = ({ displayedData, isLoading, isFetching, isSuccess }) => {
+const CarsForSale = ({
+  displayedData,
+  isLoading,
+  isFetching,
+  isSuccess,
+  onPageChange,
+}) => {
   // { displayedData, isLoading, isFetching, isSuccess }
   // const { data, currentData, isLoading, isFetching, isSuccess } =
   //   useSaleCarListQuery();
@@ -26,7 +32,8 @@ const CarsForSale = ({ displayedData, isLoading, isFetching, isSuccess }) => {
 
   // const displayedData = data ?? currentData;
 
-  // console.log(displayedData);
+  console.log(displayedData?.data?.pagination);
+
   const [openResponsive, setOpenResponsive] = useState(false);
   const [selectedCar, setSelectedCar] = useState(null);
 
@@ -164,7 +171,7 @@ const CarsForSale = ({ displayedData, isLoading, isFetching, isSuccess }) => {
                 <p className="whitespace-nowrap ">Minimum price achieved</p>
               </div> */}
               {car?.maxBidAmount ? (
-                <div className="bg-base-color border border-secondary-color rounded-full aspect-square flex flex-col justify-center items-center px-2">
+                <div className="bg-base-color border border-secondary-color rounded-full aspect-square flex flex-col justify-center items-center px-2 ">
                   <h1 className="text-xl font-bold px-1">
                     {car?.maxBidAmount} DKK
                   </h1>
@@ -181,7 +188,7 @@ const CarsForSale = ({ displayedData, isLoading, isFetching, isSuccess }) => {
                 </div>
               )}
 
-              <div className="flex md:flex-col  gap-5 flex-wrap">
+              <div className="flex md:flex-col  gap-5 flex-wrap ">
                 {/* <Link href={`/final-note`}> */}
                 <BuyNowBtn
                   price={car?.expectedPrice}
@@ -210,7 +217,8 @@ const CarsForSale = ({ displayedData, isLoading, isFetching, isSuccess }) => {
                 <Link
                   // href={`/inbox`}
                   href={`/`}
-                  className="!w-full">
+                  className="!w-full"
+                >
                   {" "}
                   <button
                     onClick={() => handleCreateConversation(car?.carOwner)}
@@ -224,6 +232,15 @@ const CarsForSale = ({ displayedData, isLoading, isFetching, isSuccess }) => {
             </div>
           </div>
         ))}
+        <Pagination
+          current={displayedData?.data?.pagination?.page}
+          pageSize={displayedData?.data?.pagination?.limit}
+          total={displayedData?.data?.pagination?.total}
+          onChange={onPageChange}
+          align="end"
+          // showSizeChanger={true}
+          // pageSizeOptions={["3", "6", "9"]}
+        />
       </div>
     );
 };

@@ -376,8 +376,8 @@ const OfferCarContract = () => {
               </div>
               <p className="bg-base-color px-8 py-2 border border-secondary-color rounded-md">
                 {isValueIncressed
-                  ? `${carPrice + carPrice * 0.25} DKK`
-                  : `${carPrice} DKK`}
+                  ? `${carPrice + carPrice * 0.25} .kr`
+                  : `${carPrice} .kr`}
               </p>
             </div>
             <div className="flex justify-between items-center w-full gap-5 flex-wrap">
@@ -398,12 +398,12 @@ const OfferCarContract = () => {
               <h1 className="flex-1">
                 It has been agreed that the buyer pays a deposit to the seller
                 as security for the transaction. The remaining amount is paid
-                upon handover of the car. The deposit amounts to DKK
+                upon handover of the car. The deposit amounts to .kr
               </h1>
 
               {displayedData?.advancedPayment ? (
                 <p className="bg-base-color border border-secondary-color py-1 px-3 rounded-lg">
-                  {displayedData?.advancedPayment} DKK
+                  {displayedData?.advancedPayment} .kr
                 </p>
               ) : (
                 <InputNumber
@@ -411,7 +411,7 @@ const OfferCarContract = () => {
                   onChange={(e) => setAdvanceAmount(e)}
                   name="advancedPayment"
                   ref={advancedRef}
-                  suffix="DKK"
+                  suffix=".kr"
                   className=" !w-40"
                 />
               )}
@@ -425,14 +425,14 @@ const OfferCarContract = () => {
                 {carPrice ? (
                   <>
                     {isValueIncressed
-                      ? `${carPrice + carPrice * 0.25 - advanceAmount} DKK`
-                      : `${carPrice - advanceAmount} DKK`}{" "}
+                      ? `${carPrice + carPrice * 0.25 - advanceAmount} .kr`
+                      : `${carPrice - advanceAmount} .kr`}{" "}
                   </>
                 ) : (
                   <>
                     {isValueIncressed
-                      ? `${carPrice + carPrice * 0.25} DKK`
-                      : `${carPrice} DKK`}
+                      ? `${carPrice + carPrice * 0.25} .kr`
+                      : `${carPrice} .kr`}
                   </>
                 )}
               </p>
@@ -605,8 +605,8 @@ const OfferCarContract = () => {
           <div className="!flex !justify-end !items-end">
             <button className="bg-base-color w-fit px-8 py-2 border border-secondary-color rounded-md text-end h-fit whitespace-nowrap">
               {isValueIncressed
-                ? `${carPrice + carPrice * 0.25} DKK`
-                : `${carPrice} DKK`}
+                ? `${carPrice + carPrice * 0.25} .kr`
+                : `${carPrice} .kr`}
             </button>
           </div>
         </section>

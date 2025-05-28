@@ -15,7 +15,7 @@ const SingleOfferCarComponent = ({ offerCar, offercarAction }) => {
     model: "Honda CR-V",
     edition: "PHEV - STYLE SMART",
     currentBids: 12,
-    priceInDKK: "32,000 DKK",
+    priceInDKK: "32,000 .kr",
     type: "Hybrid (Benzin)",
     transmission: "Automatgear",
     engineCapacity: "2.0 L",
@@ -98,7 +98,7 @@ const SingleOfferCarComponent = ({ offerCar, offercarAction }) => {
             </div> */}
             <div className=" font-bold text-base">{date}</div>
             <div className=" font-bold text-base">
-              Maximum Price: {offerCar.cashPrice} DKK
+              Maximum Price: {offerCar.cashPrice} .kr
             </div>
             {/* <div className="bg-base-color border border-secondary-color rounded-full aspect-square flex flex-col justify-center items-center px-2">
               <h1 className="text-xl font-bold">{car?.priceInDKK}</h1>

@@ -42,10 +42,13 @@ const BuyNowBtn = ({ price, carId, buyCar }) => {
       <button
         onClick={() => setIsBuy(true)}
         style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
-        className="bg-highlight-color text-white  font-semibold py-2  px-11 rounded-lg  cursor-pointer  hover:animate-pulse flex flex-col  items-start w-fit "
+        className="bg-highlight-color text-white  font-semibold py-1  rounded-lg  cursor-pointer  hover:animate-pulse flex flex-col  items-center w-44"
       >
-        <p className="text-[10px] ">Buy Now :</p>
-        <p>{price} DKK</p>
+        <div className="text-start">
+
+        <p className="text-[10px] text-start">Buy Now :</p>
+        <p>{price} .kr</p>
+        </div>
       </button>
 
       <Modal open={isBuy} onCancel={() => setIsBuy(false)} footer={[]}>

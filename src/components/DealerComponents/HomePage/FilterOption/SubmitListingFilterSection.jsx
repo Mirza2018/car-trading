@@ -1,9 +1,9 @@
 import { Form, Input, Select } from "antd";
 import React from "react";
 
-const FilterSection = ({ onFinish }) => {
+const SubmitListingFilterSection = ({ onFinishPrivate }) => {
   return (
-    <Form onFinish={onFinish}>
+    <Form onFinish={onFinishPrivate}>
       <div className="flex justify-between items-center gap-5 mx-2">
         <div className="grid lg:grid-cols-4  grid-cols-2  gap-2 my-12 flex-1">
           <div className="flex flex-col justify-between">
@@ -89,7 +89,7 @@ const FilterSection = ({ onFinish }) => {
   );
 };
 
-export default FilterSection;
+export default SubmitListingFilterSection;
 
 const carBrands = [
   { label: "Acura", value: "Acura" },

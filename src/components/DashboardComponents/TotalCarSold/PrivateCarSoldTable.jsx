@@ -64,7 +64,7 @@ const PrivateCarSoldTable = ({
         <div>
           <p className="whitespace-nowrap">
             {text.isBid ? text.bidPrice : text.expectedPrice}
-             Dkk
+             .kr
           </p>
         </div>
       ),

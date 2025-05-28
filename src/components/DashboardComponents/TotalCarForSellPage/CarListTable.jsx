@@ -64,7 +64,7 @@ const CarListTable = ({
       sorter: (a, b) => a.expectedPrice - b.expectedPrice,
       render: (text) => (
         <div>
-          <p className="whitespace-nowrap">{text} Dkk</p>
+          <p className="whitespace-nowrap">{text} .kr</p>
         </div>
       ),
     },
