@@ -9,23 +9,34 @@ import ViewDetailsPage from "./CarViewDetailsModal/ViewDetailsPage";
 import MakeABidBtn from "./CarViewDetailsModal/MakeABidBtn";
 import BuyNowBtn from "./CarViewDetailsModal/BuyNowBtn";
 import Link from "next/link";
-import { 
+import {
   useBuyCarMutation,
   useSaleCarListQuery,
 } from "@/redux/api/features/carDealer";
 import { getImageUrl } from "@/helpers/config/envConfig";
+import { useCreateConversationMutation } from "@/redux/api/features/conversation";
+import { clearSignUpToken } from "@/redux/slices/authSlice";
 
 const CarsForSale = ({ displayedData, isLoading, isFetching, isSuccess }) => {
   // { displayedData, isLoading, isFetching, isSuccess }
   // const { data, currentData, isLoading, isFetching, isSuccess } =
   //   useSaleCarListQuery();
+  const [createConversation] = useCreateConversationMutation();
   const [buyCar] = useBuyCarMutation();
 
   // const displayedData = data ?? currentData;
 
-  console.log(displayedData);
+  // console.log(displayedData);
   const [openResponsive, setOpenResponsive] = useState(false);
   const [selectedCar, setSelectedCar] = useState(null);
+
+  const handleCreateConversation = async (receiverId) => {
+    try {
+      const res = await createConversation(receiverId);
+
+      console.log(res);
+    } catch (error) {}
+  };
 
   // Track the current (main) image index
 
@@ -196,9 +207,13 @@ const CarsForSale = ({ displayedData, isLoading, isFetching, isSuccess }) => {
                   sendOffer={false}
                   buyNow={false}
                 />
-                <Link href={`/inbox`} className="!w-full">
+                <Link
+                  // href={`/inbox`}
+                  href={`/`}
+                  className="!w-full">
                   {" "}
                   <button
+                    onClick={() => handleCreateConversation(car?.carOwner)}
                     style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
                     className="bg-base-color !w-full text-black border border-secondary-color  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
                   >

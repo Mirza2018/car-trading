@@ -1,12 +1,13 @@
 "use client";
 import { AllImages } from "@/assets/AllImages";
-import { Button, Modal, Tooltip } from "antd";
+import { getImageUrl } from "@/helpers/config/envConfig";
+import { Button, Divider, Modal, Tooltip } from "antd";
 import Image from "next/image";
 import React, { useState } from "react";
 
-const TotalCarSell = () => {
+const TotalCarSell = ({ displayedData }) => {
   const carSell = [
-    { 
+    {
       name: "Kia Optima",
       address: "Hybrid (Benzin), Automatgear,2.0L, 164HK | PNO #4589020",
       price: "$150,000",
@@ -28,6 +29,8 @@ const TotalCarSell = () => {
     },
   ];
 
+  console.log(displayedData?.data?.result[0]);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentData, setCurrentData] = useState(null);
   const showModal = (data) => {
@@ -43,43 +46,64 @@ const TotalCarSell = () => {
   return (
     <div className="">
       <h1 className="text-[40px] font-semibold text-center">
-        Total Car Sell (750)
+        Total Car Sell ({displayedData?.data?.result?.length})
       </h1>
 
-      <div className="flex flex-col gap-3 h-[450px] mt-3 overflow-scroll overflow-x-hidden scrollbar-hide">
-        {carSell.map((car, index) => (
+      <div className="flex flex-col gap-3 h-[450px] mt-3 overflow-scroll overflow-x-hidden scrollbar-hide ">
+        {displayedData?.data?.result?.slice(0, 3).map((car) => (
           <div
-            key={index}
-            className="flex  gap-3 border border-base-color py-5 max-w-2xl w-fit px-2  "
+            key={car?._id}
+            className="flex justify-between gap-3 border border-base-color py-5 max-w-2xl  me-3 px-2  "
           >
             <React.Fragment>
               <Image
-                src={AllImages.car}
+                src={getImageUrl() + car?.carModel?.images[0]}
                 alt="car"
-                width={0}
-                height={0}
+                width={100}
+                height={100}
                 className="size-24 aspect-square object-cover"
               />
             </React.Fragment>
-            <div className="flex gap-3 md:flex-row flex-col">
+            <div className="flex flex-1 justify-between  gap-3 md:flex-row flex-col">
               <div className="flex flex-col max-w-sm">
-                <h3 className="text-[22px] font-medium">{car.name}</h3>
-                <p className="font-normal text-sm ">{car.address}</p>
-                <p className="font-normal text-sm">Price: {car.price}</p>
+                <h3 className="text-[22px] font-medium">
+                  {car?.carModel?.brand} {car?.carModel?.model}
+                </h3>
+                <p className="font-normal text-sm ">
+                  {" "}
+                  {car?.carModel?.fuelType != 0 && car?.carModel?.fuelType}{" "}
+                  {car?.additionalEquipment.includes("Automatic transmission")
+                    ? "Automatgear"
+                    : ""}
+                  {car?.carModel?.engineSize &&
+                    `${car?.carModel?.engineSize}L ,`}{" "}
+                  {car?.carModel?.enginePerformance &&
+                    `${car?.carModel?.enginePerformance} HK`}
+                  {car?.registrationNumber && (
+                    <>
+                      <Divider className=" bg-black" type="vertical" />{" "}
+                      {car?.registrationNumber}
+                    </>
+                  )}
+                </p>
+                <p className="font-normal text-sm">
+                  Price: {car?.expectedPrice} kr.
+                </p>
               </div>
-              <div className="flex md:flex-col flex-row gap-2">
+              <div className="flex md:flex-col flex-row gap-2 text-end">
                 <Tooltip title="Login as Dealer">
                   <button className="btn border border-base-color rounded px-5 py-1 w-fit whitespace-nowrap cursor-not-allowed">
                     Buy Now
                   </button>
                 </Tooltip>
-                   <Tooltip title="Login as Dealer">
-                <button
-                  // onClick={() => showModal(car)}
-                  className="btn border border-base-color bg-[#E6F3F7] rounded px-2 py-1 w-fit whitespace-nowrap  cursor-not-allowed"
-                >
-                  View Details
-                </button></Tooltip>
+                <Tooltip title="Login as Dealer">
+                  <button
+                    // onClick={() => showModal(car)}
+                    className="btn border border-base-color bg-[#E6F3F7] rounded px-2 py-1 w-fit whitespace-nowrap  cursor-not-allowed"
+                  >
+                    View Details
+                  </button>
+                </Tooltip>
               </div>{" "}
             </div>
           </div>

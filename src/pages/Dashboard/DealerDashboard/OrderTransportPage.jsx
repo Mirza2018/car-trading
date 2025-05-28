@@ -1,11 +1,17 @@
 "use client";
-import { useCreateOrderTransportMutation } from "@/redux/api/features/orderTransport";
-import { Form, Input } from "antd";
+import {
+  useCreateOrderTransportMutation,
+  useGetOrderTransportQuery,
+} from "@/redux/api/features/orderTransport";
+import { Form, Input, Spin } from "antd";
 import { toast } from "sonner";
 
 const OrderTransportPage = () => {
   const [transportData] = useCreateOrderTransportMutation();
-
+  const { data, currentData, isLoading, isError } = useGetOrderTransportQuery();
+  const displayData = data || currentData;
+  console.log(displayData?.data);
+  
   const [form] = Form.useForm();
 
   const onFinishFailed = ({ errorFields }) => {
@@ -44,7 +50,8 @@ const OrderTransportPage = () => {
     } catch (error) {
       console.log(error);
       toast.error(
-        error?.data?.message || "There is an issue to register Order transoport",
+        error?.data?.message ||
+          "There is an issue to register Order transoport",
         {
           id: toastId,
           duration: 2000,
@@ -53,10 +60,15 @@ const OrderTransportPage = () => {
     }
   };
 
+  if (isLoading) {
+    return <Spin className="flex justify-center items-center" size="large"></Spin>
+  }
+
   return (
     <div>
       <h1 className="text-3xl font-semibold mb-10">Order transport</h1>
       <Form
+        initialValues={displayData?.data}
         form={form}
         layout="vertical"
         onFinish={onFinish}

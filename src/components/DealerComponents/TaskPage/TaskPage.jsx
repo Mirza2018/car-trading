@@ -1,15 +1,17 @@
 "use client";
 import { useTaskListQuery } from "@/redux/api/features/taskApi";
+import { Spin } from "antd";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
-const TaskPage = () => {
-  let task = true;
+const TaskPage = ({setIsModalOpen}) => {
+  
   const { data, currentData, isLoading, isFetching, isSuccess } =
     useTaskListQuery();
-    const displayedData = data ?? currentData;
-    console.log(displayedData);
-    
+  const navigate=useRouter()
+  const displayedData = data ?? currentData;
+  console.log(displayedData?.data);
 
   if (isLoading)
     return <Spin className="flex justify-center items-center" size="large" />;
@@ -26,41 +28,27 @@ const TaskPage = () => {
             Task
           </h1>
 
-          {task ? (
+          {displayedData?.data?.length > 0 ? (
             <div className="flex flex-col gap-3 w-full min-w-[400px]">
-              <div className="flex justify-between bg-secondary-color rounded-md  p-3">
-                <div className="">
-                  <h1 className="font-semibold">Unanswered Questions</h1>
-                  <p className="text-xs">Respond to customer inquiry</p>
+              {displayedData?.data.map((task) => (
+                <div
+                  key={task?._id}
+                  className="flex justify-between bg-secondary-color rounded-md  p-3"
+                >
+                  <div className="">
+                    <h1 className="font-semibold">{task?.taskTitle}</h1>
+                    <p className="text-xs">{task?.taskDescription}</p>
+                  </div>
+                  {/* <Link
+                    onClick={() => setIsModalOpen(false)}
+                    href={`/task/${task?._id}`}
+                  > */}
+                    <button onClick={()=>{ setIsModalOpen(false); navigate.push(`/task/${task?._id}`);}} className="text-[15px] px-3 py-2 text-white bg-highlight-color rounded-md">
+                      Resolve
+                    </button>
+                  {/* </Link> */}
                 </div>
-                <Link href={"/task/01"}>
-                  <button className="text-[15px] px-3 py-2 text-white bg-highlight-color rounded-md">
-                    Resolve
-                  </button>
-                </Link>
-              </div>
-              <div className="flex justify-between bg-secondary-color rounded-md w-full p-3">
-                <div className="">
-                  <h1 className="font-semibold">Unanswered Questions</h1>
-                  <p className="text-xs">Respond to customer inquiry</p>
-                </div>
-                <Link href={"/task/02"}>
-                  <button className="text-[15px] px-3 py-2 text-white bg-highlight-color rounded-md">
-                    Resolve
-                  </button>
-                </Link>
-              </div>
-              <div className="flex justify-between bg-secondary-color rounded-md w-full p-3">
-                <div className="">
-                  <h1 className="font-semibold">Unanswered Questions</h1>
-                  <p className="text-xs">Respond to customer inquiry</p>
-                </div>
-                <Link href={"/task/03"}>
-                  <button className="text-[15px] px-3 py-2 text-white bg-highlight-color rounded-md">
-                    Resolve
-                  </button>
-                </Link>
-              </div>
+              ))}
             </div>
           ) : (
             <svg

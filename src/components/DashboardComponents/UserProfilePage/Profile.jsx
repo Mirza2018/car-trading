@@ -1,6 +1,14 @@
-import { Button, ConfigProvider, Form, Input, Typography, Upload } from "antd";
+import {
+  Button,
+  ConfigProvider,
+  Form,
+  Input,
+  Spin,
+  Typography,
+  Upload,
+} from "antd";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { EditOutlined } from "@ant-design/icons";
 import { MdOutlineEdit } from "react-icons/md";
 import { IoCameraOutline, IoChevronBackOutline } from "react-icons/io5";
@@ -14,15 +22,17 @@ import {
 } from "@/redux/api/features/myProfile";
 import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
+import { getImageUrl } from "@/helpers/config/envConfig";
 
 const Profile = () => {
   const { data, currentData, isLoading, isFetching, isSuccess } =
     useProfileQuery();
   const [profileUpdate] = useUpdateProfileMutation();
   const displayedData = data ?? currentData;
-  console.log("Update data", displayedData);
+
+  // console.log("Update data", displayedData);
   const userInfo = useSelector((state) => state.auth.userInfo);
-  console.log(userInfo);
+  // console.log(displayedData);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
@@ -62,6 +72,13 @@ const Profile = () => {
   const [imageUrl, setImageUrl] = useState(AllImages.profile);
   const [companyImageUrl, setCompanyImageUrl] = useState(AllImages.companyLogo);
 
+  useEffect(() => {
+    setImageUrl(getImageUrl() + displayedData?.data?.profile?.profileImage);
+    setCompanyImageUrl(
+      getImageUrl() + displayedData?.data?.profile?.companyLogo
+    );
+  }, [displayedData?.data?.profile]);
+
   const handleImageUpload = (info) => {
     if (info.file.status === "removed") {
       setImageUrl(AllImages.profile); // Reset to null or fallback image
@@ -91,22 +108,24 @@ const Profile = () => {
 
   const onFinish = async (values) => {
     const toastId = toast.loading("Profile is updateing...");
+
     const data = { ...values };
     delete data.profileImage;
     delete data.companyLogo;
     // console.log(data);
     const formData = new FormData();
     formData.append("data", JSON.stringify(data));
+console.log(values);
 
-    if (values.profileImage) {
-      const profileImage = values.profileImage.fileList[0].originFileObj;
+    if (values?.profileImage?.fileList?.[0].originFileObj) {
+      const profileImage = values.profileImage?.fileList[0]?.originFileObj;
 
       console.log(profileImage);
       formData.append("profileImage", profileImage);
     }
 
-    if (values.companyLogo) {
-      const companyLogo = values.companyLogo.fileList[0].originFileObj;
+    if (values?.companyLogo?.fileList?.[0].originFileObj) {
+      const companyLogo = values.companyLogo?.fileList[0].originFileObj;
 
       console.log(companyLogo);
       formData.append("companyLogo", companyLogo);
@@ -132,12 +151,18 @@ const Profile = () => {
       });
     }
   };
+
+  if (isLoading) {
+    return (
+      <Spin size="large" className="flex justify-center items-center"></Spin>
+    );
+  }
   return (
     <div className=" ">
       <Form
         onFinish={onFinish}
         layout="vertical"
-        initialValues={profileData}
+        initialValues={displayedData?.data?.profile}
         className=" "
       >
         <div className="">
@@ -146,8 +171,8 @@ const Profile = () => {
               <Image
                 className="h-40 w-40 relative rounded-full border border-secondary-color object-contain "
                 src={imageUrl}
-                width={0}
-                height={0}
+                width={500}
+                height={500}
                 alt=""
               />
 
@@ -177,12 +202,12 @@ const Profile = () => {
               </Form.Item>
             </div>
             <div>
-              <button
+              <p
                 onClick={showModal}
                 className="text-black border border-secondary-color hover:bg-green-600 hover:text-white hover:border-none transition-all rounded-md px-6 py-4 text-lg font-medium "
               >
                 Change Password
-              </button>
+              </p>
             </div>
           </div>
           <ChangePassword
@@ -234,7 +259,7 @@ const Profile = () => {
               </Typography.Title>
               <Form.Item name="websiteLink" className="text-white">
                 <Input
-                  required
+
                   placeholder="Enter your Website Link"
                   className="py-2 px-3 text-xl border !border-input-color  "
                 />
@@ -342,8 +367,8 @@ const Profile = () => {
                   <Image
                     className="h-20 w-20 relative rounded-full border border-secondary-color object-contain "
                     src={companyImageUrl}
-                    width={0}
-                    height={0}
+                    width={500}
+                    height={500}
                     alt=""
                   />
 

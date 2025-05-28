@@ -1,7 +1,6 @@
 import { tagTypes } from "../../tagTypes";
 import { baseApi } from "../baseApi";
 
-
 export const authApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     // User Login
@@ -56,10 +55,6 @@ export const authApi = baseApi.injectEndpoints({
       invalidatesTags: [tagTypes.user],
     }),
 
-
-
-
-    
     forgetOtpVerify: build.mutation({
       query: (otpData) => {
         return {
@@ -70,12 +65,6 @@ export const authApi = baseApi.injectEndpoints({
       },
       invalidatesTags: [tagTypes.user],
     }),
-
-
-
-
-
-
 
     // resendForgetOTP: build.mutation({
     //   query: () => {
@@ -103,8 +92,16 @@ export const authApi = baseApi.injectEndpoints({
       invalidatesTags: [tagTypes.user],
     }),
 
-
-
+    changePassword: build.mutation({
+      query: (changepass) => {
+        return {
+          url: `/auth/change_password`,
+          method: "POST",
+          body: changepass,
+        };
+      },
+      invalidatesTags: [tagTypes.user],
+    }),
 
     // myProfile: build.query({
     //   query: () => {
@@ -143,5 +140,6 @@ export const {
   useResendOTPMutation,
   useForgetPasswordMutation,
   useForgetOtpVerifyMutation,
-  useResetPasswordMutation
+  useResetPasswordMutation,
+  useChangePasswordMutation
 } = authApi;

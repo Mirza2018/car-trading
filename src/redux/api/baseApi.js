@@ -12,11 +12,7 @@ const baseQuery = fetchBaseQuery({
     const resendSignUpToken = getState().auth.resendSignUpToken;
     const forgotPassToken = getState().auth.forgotPasswordToken;
     const resetPasswordToken = getState().auth.resetPasswordToken;
-    // console.log(1,token);
-    // console.log(2,signUpToken);
-    // console.log(3,resendSignUpToken);
-    // console.log(4,forgotPassToken);
-    // console.log(5, resetPasswordToken);
+
     
 
     if (token) {
@@ -48,32 +44,3 @@ export const baseApi = createApi({
   endpoints: () => ({}),
   tagTypes: tagTypesList,
 });
-
-// const baseQueryWithRefreshToken = async (args, api, extraOptions) => {
-//   let result = await baseQuery(args, api, extraOptions);
-
-//   if (result?.error?.status === 401) {
-//     const res = await fetch(`${getBaseUrl()}/auth/refresh-token`, {
-//       method: "POST",
-//       credentials: "include",
-//     });
-
-//     const data = await res.json();
-//     if (data?.data?.accessToken) {
-//       const user = api.getState().auth.user;
-
-//       api.dispatch(
-//         setUser({
-//           user,
-//           token: data.data.accessToken,
-//         })
-//       );
-
-//       result = await baseQuery(args, api, extraOptions);
-//     } else {
-//       // api.dispatch(logout());
-//     }
-//   }
-
-//   return result;
-// };

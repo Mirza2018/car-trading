@@ -1,3 +1,4 @@
+import { tagTypes } from "@/redux/tagTypes";
 import { baseApi } from "../baseApi";
 
 export const taskApi = baseApi.injectEndpoints({
@@ -16,14 +17,26 @@ export const taskApi = baseApi.injectEndpoints({
     taskList: build.query({
       query: () => {
         return {
-          url: `/task/task_list`,
+          url: `/task/my_tasks`,
           method: "GET",
         };
       },
+      providesTags: tagTypes.task,
+    }),
+
+    taskSolve: build.mutation({
+      query: (taskSolve) => {
+        return {
+          url: `/task_resolve`,
+          method: "POST",
+          body: taskSolve,
+        };
+      },
+      invalidatesTags: tagTypes.task,
     }),
 
     //end
   }),
 });
 
-export const { useTaskListQuery } = taskApi;
+export const { useTaskListQuery,useTaskSolveMutation } = taskApi;

@@ -13,28 +13,46 @@ import {
 } from "@/redux/api/features/carPrivate";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCarLicenseInfo } from "@/redux/slices/carInfoSlice";
 const { Search } = Input;
 
 const SellBuyTrade = () => {
   // const { data, isFetching } = useGetCarInfoQuery();
   const [trigger, { data, isSuccess, isError }] = useLazyGetCarInfoQuery();
+  const userInfo = useSelector((state) => state.auth.userInfo);
+  console.log(userInfo);
+
   const license = useRef();
   const navigate = useRouter();
   const toastId = "unique-toast-id";
   const dispatch = useDispatch();
   const handleEditClick = () => {
+
     toast.loading("License plate is Checking....", {
       id: toastId,
     });
+
+
+    if (!userInfo) {
+     return toast.warning("Please Login as a Private user", {
+        id: toastId,
+        duration: 2000,
+      });
+    }
+
+
+
+
     console.log(license?.current?.input?.value);
     // AJ30124;
     const lisenceNumber = license?.current?.input?.value;
     trigger({ license: lisenceNumber });
   };
 
-  console.log(isSuccess, isError, data?.data?.data);
+  // console.log(isSuccess, isError, data?.data?.data);
+
+ 
 
   if (isSuccess) {
     toast.success("License plate data fetch successfully...", {
@@ -75,7 +93,7 @@ const SellBuyTrade = () => {
             <div
               className={`flex-1 text-center p-4  rounded-se-xl font-bold text-[30px]  cursor-pointer bg-[#F3F9FB] `}
             >
-              <Link href="/submit-listing">
+              <Link di href="/submit-listing">
                 <p className="text-xl">Buy Car</p>
               </Link>
             </div>

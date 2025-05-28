@@ -96,8 +96,8 @@ const Homepage = () => {
             <SellBuyTrade />
           </div>
           <div className="flex lg:flex-row flex-col justify-around items-center ">
-            <TotalCarSell />
-            <TotalCarBuy />
+            <TotalCarSell displayedData={displayedData} />
+            <TotalCarBuy displayedData={submitDisplayedData} />
           </div>
         </>
       )}

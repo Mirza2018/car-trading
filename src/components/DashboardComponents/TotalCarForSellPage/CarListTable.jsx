@@ -89,7 +89,7 @@ const CarListTable = ({
     },
     {
       title: "Action",
-      key: "action",
+      key: "action", 
       render: (_, record) => (
         <Space
           size="middle"

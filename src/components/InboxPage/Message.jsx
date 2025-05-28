@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react"; // Add useEffect
+import { useState, useRef, useEffect, useContext } from "react"; // Add useEffect
 import { Input, Avatar, Badge, Button, Upload, Modal, message } from "antd";
 import {
   SmileOutlined,
@@ -11,8 +11,20 @@ import {
 import { BsCheck2All } from "react-icons/bs";
 import EmojiPicker from "emoji-picker-react";
 import Image from "next/image";
+import { getImageUrl } from "@/helpers/config/envConfig";
+import {
+  useLazySingleConversationQuery,
+  useSingleConversationQuery,
+} from "@/redux/api/features/conversation";
+import RelativeTime from "@/utils/RelativeTime";
+import { SocketContext } from "@/utils/SocketContext";
+import { toast } from "sonner";
+import { useDispatch } from "react-redux";
+import { baseApi } from "@/redux/api/baseApi";
+import { tagTypes } from "@/redux/tagTypes";
+// import { useSocket } from "@/utils/SocketContext";
 
-const ChatList = ({ chats, activeChat, onSelectChat }) => {
+const ChatList = ({ conversationData, chats, activeChat, onSelectChat }) => {
   return (
     <div className="flex flex-col">
       <div className="p-4">
@@ -23,7 +35,39 @@ const ChatList = ({ chats, activeChat, onSelectChat }) => {
         />
       </div>
       <div className="flex-1 overflow-y-auto">
-        {chats.map((chat) => (
+        {conversationData.map((chat) => (
+          <div
+            key={chat._id}
+            onClick={() => onSelectChat(chat)}
+            className={`flex items-center p-4 cursor-pointer hover:bg-gray-50 ${
+              activeChat?._id === chat?._id
+                ? "bg-gray-100 shadow-md rounded-md"
+                : ""
+            }`}
+          >
+            <Badge dot={chat?.online} offset={[-6, 6]}>
+              <Avatar
+                src={getImageUrl() + chat?.otherUser?.profile?.profileImage}
+                size={40}
+              />
+            </Badge>
+            <div className="ml-3 flex-1">
+              <div className="flex justify-between">
+                <span className="font-medium">
+                  {chat?.otherUser?.profile?.first_name}{" "}
+                  {chat?.otherUser?.profile?.last_name}
+                </span>
+                <span className="text-xs text-gray-500">
+                  {chat.lastMessageTime}
+                </span>
+              </div>
+              <p className="text-sm text-gray-500 truncate">
+                {chat?.lastMessage?.message}
+              </p>
+            </div>
+          </div>
+        ))}
+        {/* {chats.map((chat) => (
           <div
             key={chat.id}
             onClick={() => onSelectChat(chat)}
@@ -42,23 +86,27 @@ const ChatList = ({ chats, activeChat, onSelectChat }) => {
                 </span>
               </div>
               <p className="text-sm text-gray-500 truncate">
-                {chat.lastMessage}
+                {chat?.lastMessage}
               </p>
             </div>
           </div>
-        ))}
+        ))} */}
       </div>
     </div>
   );
 };
 
-const ChatWindow = ({ chat, messages }) => {
+const ChatWindow = ({ chat, messages, cahtMessage, conversationData }) => {
+  // const { messages:myMessages, sendMessage, isConnected } = useSocket();
+
   const [newMessage, setNewMessage] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [fileList, setFileList] = useState([]);
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const messageEndRef = useRef(null);
+  const { socket } = useContext(SocketContext);
+  const dispatch = useDispatch();
 
   const onEmojiClick = (emojiObject) => {
     setNewMessage((prev) => prev + emojiObject.emoji);
@@ -93,11 +141,42 @@ const ChatWindow = ({ chat, messages }) => {
 
   if (!chat) {
     return (
-      <div className="flex items-center justify-center h-full text-gray-500">
-        Select a chat to start messaging
-      </div>
+      <>
+        <pre>{JSON.stringify(conversationData, null, 10)}</pre>
+        <div className="flex items-center justify-center h-full text-gray-500">
+          Select a chat to start messaging
+        </div>
+      </>
     );
   }
+
+  const OtherPerson = conversationData.find((singleConversation) => {
+    singleConversation?.otherUser?._id == cahtMessage?.[0]?.senderId;
+  });
+
+  // console.log(cahtMessage, conversationData);
+  // console.log("sender id", conversationData[0]?.self?._id);
+  // console.log(cahtMessage?.[0]?.conversationId);
+
+  const handleSendMessage = () => {
+    console.log(newMessage);
+    console.log(conversationData[0]?.self?._id);
+    console.log(cahtMessage[0]?.conversationId);
+
+    const messageData = {
+      conversationId: cahtMessage[0]?.conversationId,
+      message: newMessage,
+      senderId: conversationData[0]?.self?._id,
+    };
+
+    try {
+      socket?.emit("send_message", messageData);
+      dispatch(baseApi.util.invalidateTags([tagTypes.message]));
+      setNewMessage(null);
+    } catch (error) {
+      console.error("Error sending message:", error);
+    }
+  };
 
   return (
     <div className="flex flex-col h-[85%]">
@@ -119,7 +198,60 @@ const ChatWindow = ({ chat, messages }) => {
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
-        {messages.map((message) => (
+        {/* {console.log(OtherPerson)} */}
+        {cahtMessage?.map((message) => (
+          <div
+            key={message._id}
+            className={`flex ${
+              message?.senderId == conversationData[0]?.self?._id
+                ? "justify-end"
+                : "justify-start"
+            }`}
+          >
+            {/* {console.log(
+              "hi1",
+              OtherPerson,
+              "hi2",
+              conversationData[0]?.self?._id
+            )} */}
+            <div
+              className={`message-bubble ${
+                message?.senderId == conversationData[0]?.self?._id
+                  ? "sent"
+                  : "received"
+              }`}
+            >
+              {message.file && (
+                <div className="mb-2">
+                  <a
+                    href={message.file.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline flex items-center gap-2"
+                  >
+                    <PaperClipOutlined />
+                    {message.file.name}
+                  </a>
+                </div>
+              )}
+              <p>{message?.message}</p>
+              <div
+                className={`flex justify-end items-center gap-1 text-xs ${
+                  message?.senderId == conversationData[0]?.self?._id
+                    ? "text-white/80"
+                    : "text-gray-500"
+                }`}
+              >
+                {message.time}
+                <RelativeTime timestamp={message?.createdAt} />
+                {message?.senderId == conversationData[0]?.self?._id && (
+                  <BsCheck2All className="text-blue-500" />
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+        {/* {messages.map((message) => (
           <div
             key={message.id}
             className={`flex ${message.sent ? "justify-end" : "justify-start"}`}
@@ -151,7 +283,7 @@ const ChatWindow = ({ chat, messages }) => {
               </div>
             </div>
           </div>
-        ))}
+        ))} */}
         <div ref={messageEndRef} />
       </div>
 
@@ -175,6 +307,7 @@ const ChatWindow = ({ chat, messages }) => {
           <Input
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
+            // onChange={(e) => setNewMessage(console.log(e.target.value))}
             placeholder="Type a message"
             prefix={
               <SmileOutlined
@@ -182,7 +315,12 @@ const ChatWindow = ({ chat, messages }) => {
                 onClick={() => setShowEmojiPicker(!showEmojiPicker)}
               />
             }
-            suffix={<SendOutlined className="text-primary cursor-pointer" />}
+            suffix={
+              <SendOutlined
+                onClick={handleSendMessage}
+                className="text-primary cursor-pointer"
+              />
+            }
             className="rounded-full"
           />
         </div>
@@ -206,10 +344,27 @@ const ChatWindow = ({ chat, messages }) => {
   );
 };
 
-export default function Home() {
+export default function Home({ conversationData }) {
   const [activeChat, setActiveChat] = useState(null);
   const [isMobileView, setIsMobileView] = useState(false); // Default to false for SSR
   const [showChatList, setShowChatList] = useState(true);
+
+  const [trigger, { data, isLoading, isFetching, isSuccess, currentData }] =
+    useLazySingleConversationQuery();
+
+  useEffect(() => {
+    if (activeChat?._id) {
+      trigger(activeChat._id); // manually trigger fetch when activeChat changes
+    }
+  }, [activeChat]);
+
+  // const { data, currentData, isLoading, isFetching, isSuccess } =
+  //   useSingleConversationQuery(activeChat?._id);
+  // useSingleConversationQuery("68107630f354a728a439ea25");
+  const cahtMessage = data ?? currentData;
+  // console.log(cahtMessage?.data);
+
+  // console.log(activeChat?._id);
 
   const chats = [
     {
@@ -315,6 +470,7 @@ export default function Home() {
           </h1>
         </div>
         <ChatList
+          conversationData={conversationData}
           chats={chats}
           activeChat={activeChat}
           onSelectChat={handleChatSelect}
@@ -332,7 +488,12 @@ export default function Home() {
             Back to Chats
           </Button>
         )}
-        <ChatWindow chat={activeChat} messages={messages} />
+        <ChatWindow
+          conversationData={conversationData}
+          chat={activeChat}
+          messages={messages}
+          cahtMessage={cahtMessage?.data}
+        />
       </div>
     </div>
   );

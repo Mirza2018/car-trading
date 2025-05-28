@@ -14,10 +14,7 @@ import TaskPage from "../DealerComponents/TaskPage/taskPage";
 import { useTaskListQuery } from "@/redux/api/features/taskApi";
 
 const Navbar = () => {
-  const { data, currentData, isLoading, isFetching, isSuccess } =
-    useTaskListQuery();
-  const displayedData = data ?? currentData;
-  console.log(displayedData);
+
   const userInfo = useSelector((state) => state.auth.userInfo);
   const navigate = useRouter();
   const dispatch = useDispatch();
@@ -95,7 +92,7 @@ const Navbar = () => {
 
   // Specific Menus based on roles
   const RoleSpecificMenus = {
-    default: [],
+    default: [],  
     private_user: [
       { name: "Submit Listing", path: "/submit-listing" },
       { name: "Inbox", path: "/inbox" },
@@ -363,7 +360,7 @@ const Navbar = () => {
             )}
           </div>
         </React.Fragment> */}
-        <TaskPage />
+        <TaskPage setIsModalOpen={setIsModalOpen} />
       </Modal>
       {/* This is Profile or contract section */}
     </div>

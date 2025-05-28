@@ -8,7 +8,7 @@ const page = () => {
     <div>
       <TotalCarForSellPage />
     </div>
-  );
+  ); 
 };
 
 export default page;

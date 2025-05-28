@@ -5,3 +5,7 @@ export const getBaseUrl = () => {
 export const getImageUrl = () => {
   return process.env.NEXT_PUBLIC_IMAGE_URL;
 };
+
+export const getSocketUrl = () => {
+  return process.env.NEXT_PUBLIC_SOCKET_URL;
+};

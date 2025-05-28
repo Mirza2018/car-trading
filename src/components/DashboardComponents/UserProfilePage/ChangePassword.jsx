@@ -1,13 +1,37 @@
+import { useChangePasswordMutation } from "@/redux/api/features/authApi";
 import { Modal, Form, Input, Typography } from "antd";
 import Link from "next/link";
 import React from "react";
+import { toast } from "sonner";
 
 const ChangePassword = ({ isModalOpen, handleOk, handleCancel }) => {
+  const [changePass] = useChangePasswordMutation();
   const [form] = Form.useForm();
-  const onFinish = (values) => {
+
+  const onFinish = async (values) => {
     console.log("Success:", values);
-    form.resetFields();
-    handleCancel();
+
+    const toastId = toast.loading("Password is changing...");
+
+    try {
+      const res = await changePass(values).unwrap();
+      console.log(res);
+      toast.success(res?.message || "Password is change successfully", {
+        id: toastId,
+        duration: 2000,
+      });
+      form.resetFields();
+      handleCancel();
+    } catch (error) {
+      console.log(error);
+      toast.error(
+        error?.data?.message || "There is an problem changeing problem",
+        {
+          id: toastId,
+          duration: 2000,
+        }
+      );
+    }
   };
   return (
     <Modal
@@ -18,7 +42,6 @@ const ChangePassword = ({ isModalOpen, handleOk, handleCancel }) => {
       footer={null}
       centered
       width={1000}
-      
     >
       <Form form={form} onFinish={onFinish} layout="vertical" className="m-5">
         <div className="col-span-3">
@@ -32,7 +55,7 @@ const ChangePassword = ({ isModalOpen, handleOk, handleCancel }) => {
                 message: "Please enter your current password!",
               },
             ]}
-            name="currentPassword"
+            name="oldPassword"
             className="text-white "
           >
             <Input.Password
@@ -62,7 +85,7 @@ const ChangePassword = ({ isModalOpen, handleOk, handleCancel }) => {
             Re-enter new Password
           </Typography.Title>
           <Form.Item
-            name="reEnterPassword"
+            name="confirmPassword"
             className="text-white"
             rules={[
               { required: true, message: "Please confirm your password!" },
