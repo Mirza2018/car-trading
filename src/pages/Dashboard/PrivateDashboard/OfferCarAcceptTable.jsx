@@ -11,7 +11,7 @@ const getUniqueCompanyNames = (data) => {
   const companyNames = data.map((item) => item.companyName);
   return [...new Set(companyNames)]; // Remove duplicates by converting array to a Set and back to an array
 };
- 
+
 const OfferCarAcceptTable = ({
   data,
   loading,
@@ -57,7 +57,7 @@ const OfferCarAcceptTable = ({
       sorter: (a, b) => a.cashPrice - b.cashPrice,
       render: (text) => (
         <div>
-          <p className="whitespace-nowrap">{text} Dkk</p>
+          <p className="whitespace-nowrap">{text} .kr</p>
         </div>
       ),
     },
@@ -84,42 +84,46 @@ const OfferCarAcceptTable = ({
       title: "Action",
       key: "action",
       render: (_, record) => (
-        <Space
-          size="middle"
-          className="border p-2 rounded !border-highlight-color"
-        >
+        <Space size="middle" className="">
           {/* View Details Tooltip */}{" "}
-          <p
-            onClick={() => {
-              dispatch(setOfferCarInfo(record));
-              navigate.push(
-                `private-offer-car-aggrement/contract/${record?._id}`
-              );
-            }}
-            // href={`private-offer-car-aggrement/contract/${record?._id}`}
-          >
-            <Tooltip placement="right" title="View Contract Details">
-              <Button
-                className={`  !text-white ${
-                  record.status == "sold"
-                    ? "!bg-green-500 "
-                    : "!bg-highlight-color"
-                }`}
-              >
-                {record.status == "sold" ? "See Contract " : " Make contract"}
-              </Button>
-            </Tooltip>
-          </p>
-          <Link
-            href={`total-dealer-car-sell/order-transport/${record?.car?._id}`}
-          >
-            <Tooltip placement="right" title="View Details">
-              <Button className="!border-highlight-color !text-black ">
-                {/* <GoEye style={{ fontSize: "24px" }} /> */}
-                Order Transport
-              </Button>
-            </Tooltip>
-          </Link>
+          {record?.status == "accept" ? (
+            <p
+              onClick={() => {
+                dispatch(setOfferCarInfo(record));
+                navigate.push(
+                  `private-offer-car-aggrement/contract/${record?._id}`
+                );
+              }}
+            >
+              <Tooltip placement="right" title="View Contract Details">
+                {!record?.signatureAsDealer && !record?.signatureAsOwner && (
+                  <Button className={`  !text-white !bg-secondary-color`}>
+                    {" "}
+                    <p>Make your contract</p>{" "}
+                  </Button>
+                )}
+                {!record?.signatureAsDealer && record?.signatureAsOwner && (
+                  <Button className={`  !text-white !bg-highlight-color !px-5`}>
+                    {" "}
+                    <p>Pending contract</p>{" "}
+                  </Button>
+                )}
+                {record?.signatureAsDealer && record?.signatureAsOwner && (
+                  <Button className={`  !text-white !bg-green-500 !px-7`}>
+                    {" "}
+                    <p>Contract Done</p>{" "}
+                  </Button>
+                )}
+              </Tooltip>
+            </p>
+          ) : (
+            <p
+              onClick={() => navigate.push(`offer-car`)}
+              className="bg-highlight-color text-white cursor-pointer  px-4 whitespace-nowrap py-1 rounded-md"
+            >
+              Accept the Offer
+            </p>
+          )}
         </Space>
       ),
     },

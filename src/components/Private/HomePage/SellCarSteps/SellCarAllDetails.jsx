@@ -158,13 +158,22 @@ const SellCarAllDetails = () => {
   };
 
   return (
-    <div className="container mx-auto my-12">
-      <h1 className="text-4xl font-bold">The car&apos;s information</h1>
+    <div className="container mx-auto my-12 px-2">
+      <h1
+        style={{ fontSize: "clamp(18px, 3vw + 1rem ,36px)" }}
+        className=" font-bold"
+      >
+        The car&apos;s information
+      </h1>
       <div className="h1 w-full border-t border-text-light-color my-5"></div>
-      <h1 className="text-2xl font-bold mb-5">Number plate*</h1>
+      <h1
+        style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
+        className=" font-bold mb-5"
+      >
+        Number plate*
+      </h1>
 
-
-      <div className="text-center mb-3 w-[600px]">
+      <div className="text-center mb-3 max-w-[600px] ">
         <Input
           ref={inputRef}
           placeholder="Enter license plate"
@@ -196,21 +205,28 @@ const SellCarAllDetails = () => {
             </div>
           }
         />
-
       </div>
 
-
-
-
-      <p className="mt-2 text-lg font-medium">
+      <p
+        style={{ fontSize: "clamp(12px, 3vw + 1rem ,18px)" }}
+        className="mt-2 text-lg font-medium"
+      >
         {carData?.brand} {carData?.model}, {carData?.version}{" "}
         {carData?.body_type?.name} {carData?.engine_power}
         {carData?.engine_power && " KW"}
       </p>
-      <Form form={form} onFinish={onFinish} onFinishFailed={onFinishFailed}>
+      <Form
+        className="p-2"
+        form={form}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+      >
         <div className="my-[10px] flex justify-between gap-5">
           <div className="flex-1">
-            <p className="text-2xl font-medium pb-2 ">
+            <p
+              style={{ fontSize: "clamp(14px, 1vw + 1rem ,24px)" }}
+              className=" font-medium pb-2 "
+            >
               Number of kilometers driven*
             </p>
             <Form.Item
@@ -228,8 +244,11 @@ const SellCarAllDetails = () => {
               />
             </Form.Item>
           </div>
-          <div className="flex-1 ">
-            <p className="text-2xl font-medium pb-2 ">
+          <div className="flex-1 flex flex-col justify-end">
+            <p
+              style={{ fontSize: "clamp(14px, 1vw + 1rem ,24px)" }}
+              className=" font-medium pb-2 "
+            >
               Number of varnish fields*
             </p>
             <Form.Item
@@ -254,9 +273,14 @@ const SellCarAllDetails = () => {
             </Form.Item>
           </div>
         </div>
-        <div className="my-[10px] flex justify-between gap-5">
+        <div className="my-[10px] flex md:flex-row flex-col justify-between gap-5">
           <div className="flex-1">
-            <p className="text-2xl font-medium pb-2">Additional equipment*</p>
+            <p
+              style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
+              className=" font-medium pb-2"
+            >
+              Additional equipment*
+            </p>
 
             <Form.Item name="additionalEquipment">
               <Checkbox.Group className=" flex flex-col gap-2">
@@ -269,7 +293,10 @@ const SellCarAllDetails = () => {
             </Form.Item>
           </div>
           <div className="flex-1">
-            <p className="text-2xl font-medium pb-2">
+            <p
+              style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
+              className=" font-medium pb-2"
+            >
               The condition of the car*
             </p>
             <Form.Item
@@ -281,7 +308,7 @@ const SellCarAllDetails = () => {
               ]}
               name={`condition`}
             >
-              <Radio.Group name="condition" className=" flex  gap-2">
+              <Radio.Group name="condition" className=" flex flex-col gap-2">
                 <Radio value="Good">Good</Radio>
                 <Radio value="Used">Used</Radio>
                 <Radio value="very Used">Very used</Radio>
@@ -290,7 +317,10 @@ const SellCarAllDetails = () => {
           </div>
         </div>
         <div className="flex-1">
-          <p className="text-2xl font-medium pb-2">
+          <p
+            style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
+            className=" font-medium pb-2"
+          >
             Defects or other comments*
           </p>
           <Form.Item name={`comment`}>
@@ -301,9 +331,14 @@ const SellCarAllDetails = () => {
             />
           </Form.Item>
         </div>
-        <div className="my-[10px] flex justify-between gap-5 items-center">
-          <div className="flex-1">
-            <p className="text-2xl font-medium pb-2">Expected price (DKK)*</p>
+        <div className="my-[10px] flex justify-between gap-5 md:items-center flex-col md:flex-row">
+          <div className="flex-1 ">
+            <p
+              style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
+              className=" font-medium pb-2"
+            >
+              Expected price (.kr)*
+            </p>
             <Form.Item
               rules={[
                 {
@@ -320,7 +355,7 @@ const SellCarAllDetails = () => {
             </Form.Item>
           </div>
           <div className="flex-1">
-            {/* <p className="text-2xl font-medium pb-2">Number of varnish fields</p> */}
+            {/* <p className=" font-medium pb-2">Number of varnish fields</p> */}
             <Form.Item
               rules={[
                 {
@@ -358,9 +393,10 @@ const SellCarAllDetails = () => {
         </div>
         <div name="type" className=" flex  gap-10 my-8">
           <div
+            style={{ fontSize: "clamp(18px, 3vw + 1rem ,36px)" }}
             onClick={() => setIsCompany(true)}
             value="companyName"
-            className="text-3xl flex justify-center items-center gap-2  cursor-pointer"
+            className=" flex justify-center items-center gap-2  cursor-pointer"
           >
             <div
               className={`w-5 aspect-square rounded-full border-4 border-white
@@ -370,9 +406,10 @@ const SellCarAllDetails = () => {
             Company
           </div>
           <div
+            style={{ fontSize: "clamp(18px, 3vw + 1rem ,36px)" }}
             onClick={() => setIsCompany(false)}
             value="Private"
-            className="text-3xl flex justify-center items-center gap-2  cursor-pointer"
+            className=" flex justify-center items-center gap-2  cursor-pointer"
           >
             <div
               className={`w-5 aspect-square rounded-full border-4 border-white
@@ -383,9 +420,17 @@ const SellCarAllDetails = () => {
           </div>
         </div>
 
-        <h1 className="text-4xl font-bold">Contact information</h1>
+        <h1
+          style={{ fontSize: "clamp(18px, 3vw + 1rem ,36px)" }}
+          className=" font-bold"
+        >
+          Contact information
+        </h1>
         <div className="h1 w-full border-t border-text-light-color my-5"></div>
-        <h1 className="text-xl font-medium mb-5">
+        <h1
+          style={{ fontSize: "clamp(14px, 1vw + 1rem ,20px)" }}
+          className="text-xl font-medium mb-5"
+        >
           To provide you with the best offer for your car, we recommend
           uploading a few pictures of your car to us. You can find some examples
           of the angles we would like of your car.
@@ -394,7 +439,12 @@ const SellCarAllDetails = () => {
         {isCompany ? (
           <div className="my-[10px] flex justify-between gap-5">
             <div className="flex-1">
-              <p className="text-2xl font-medium pb-2">Company Name*</p>
+              <p
+                style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
+                className=" font-medium pb-2"
+              >
+                Company Name*
+              </p>
               <Form.Item
                 rules={[
                   {
@@ -408,7 +458,12 @@ const SellCarAllDetails = () => {
               </Form.Item>
             </div>
             <div className="flex-1">
-              <p className="text-2xl font-medium pb-2">CVR Number*</p>
+              <p
+                style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
+                className=" font-medium pb-2"
+              >
+                CVR Number*
+              </p>
               <Form.Item
                 rules={[
                   {
@@ -427,7 +482,12 @@ const SellCarAllDetails = () => {
         )}
         <div className="my-[10px] flex justify-between gap-5">
           <div className="flex-1">
-            <p className="text-2xl font-medium pb-2">First Name*</p>
+            <p
+              style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
+              className=" font-medium pb-2"
+            >
+              First Name*
+            </p>
             <Form.Item
               rules={[
                 {
@@ -441,7 +501,12 @@ const SellCarAllDetails = () => {
             </Form.Item>
           </div>
           <div className="flex-1">
-            <p className="text-2xl font-medium pb-2">Last Name*</p>
+            <p
+              style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
+              className=" font-medium pb-2"
+            >
+              Last Name*
+            </p>
             <Form.Item
               rules={[
                 {
@@ -456,22 +521,13 @@ const SellCarAllDetails = () => {
           </div>
         </div>
         <div className="my-[10px] flex justify-between gap-5">
-          <div className="">
-            <p className="text-2xl font-medium pb-2">Postal Code*</p>
-            <Form.Item
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your postal code!",
-                },
-              ]}
-              name={`postCode`}
+          <div className="flex-1 flex flex-col justify-end">
+            <p
+              style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
+              className=" font-medium pb-2"
             >
-              <Input placeholder="Postal Code" className="py-3" />
-            </Form.Item>
-          </div>
-          <div className="flex-1">
-            <p className="text-2xl font-medium pb-2">City*</p>
+              Address*
+            </p>
             <Form.Item
               rules={[
                 {
@@ -484,9 +540,33 @@ const SellCarAllDetails = () => {
               <Input placeholder="City" className="py-3" />
             </Form.Item>
           </div>
+          <div className=" ">
+            <p
+              style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
+              className=" font-medium pb-2"
+            >
+              Postal Code*
+            </p>
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your postal code!",
+                },
+              ]}
+              name={`postCode`}
+            >
+              <Input placeholder="Postal Code" className="py-3" />
+            </Form.Item>
+          </div>
         </div>
         <div className="">
-          <p className="text-2xl font-medium pb-2">Phone Number*</p>
+          <p
+            style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
+            className=" font-medium pb-2"
+          >
+            Phone Number*
+          </p>
           <Form.Item
             rules={[
               {
@@ -502,7 +582,8 @@ const SellCarAllDetails = () => {
 
         <div className="text-center">
           <button
-            className="bg-highlight-color text-white text-2xl font-medium  py-5 px-20 rounded-lg "
+            style={{ fontSize: "clamp(14px, 1vw + 1rem ,24px)" }}
+            className="bg-highlight-color text-white  font-medium  py-5 px-5 md:px-20 rounded-lg "
             htmlType="submit"
           >
             Create Listing

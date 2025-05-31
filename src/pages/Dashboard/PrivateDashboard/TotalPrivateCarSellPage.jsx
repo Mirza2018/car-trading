@@ -60,29 +60,11 @@ const TotalPrivateCarSellPage = () => {
     fetchData();
   }, []);
   // console.log(data, "data");
-  const car = {
-    buyNowPrice: "6,300 EUR",
-    model: "Honda CR-V",
-    edition: "PHEV - STYLE SMART",
-    currentBids: 12,
-    priceInDKK: "32,000 DKK",
-    type: "Hybrid (Benzin)",
-    transmission: "Automatgear",
-    engineCapacity: "2.0 L",
-    horsepower: "151 HK",
-    pno: "#4430457",
-    status: "Minimum price achieved",
-    kilometers: "1,749 km",
-    serviceDate: "08/2025",
-    postalCode: "8000",
-    vehicleType: "SUV",
-    makeAnBidPrice: "25,000 kr.",
-    link: "View Details",
-  };
+
 
   return (
     <div className="px-10">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 pb-10">
+      {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 pb-10">
         <div>
           <div className="flex bg-base-color border border-secondary-color gap-5 flex-wrap rounded-lg  py-2 px-1 lg:p-5 items-center justify-center flex-1">
             <div
@@ -193,7 +175,7 @@ const TotalPrivateCarSellPage = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="">
         {/* <pre>{JSON.stringify(displayedData?.data?.result, null, 2)}</pre> */}

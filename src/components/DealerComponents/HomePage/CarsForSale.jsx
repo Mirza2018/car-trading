@@ -164,6 +164,7 @@ const CarsForSale = ({
                 />
                 <p className="text-sm font-normal text-text-light-color">
                   Current Bids:{car?.totalBidCount}
+              {    console.log(car)}
                 </p>
               </div>
               {/* <div className="bg-base-color border border-secondary-color rounded-full aspect-square px-2 flex flex-col justify-center items-center">

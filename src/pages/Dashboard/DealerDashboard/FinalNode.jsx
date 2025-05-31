@@ -98,7 +98,6 @@ console.log(advanceAmount,carPrice);
       reRegistrationDeRegistrationView: registrationValue,
     };
 
-    console.log(data);
 
     if (!data.isAggrade) {
       return toast.error("Please check mark the agreement!", {

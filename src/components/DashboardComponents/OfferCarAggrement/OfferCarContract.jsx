@@ -87,10 +87,7 @@ const OfferCarContract = () => {
       advancedPayment: advancedRef.current.value,
       isAggrade: agrimentRef.current.input.checked,
       reRegistrationDeRegistrationView: registrationValue,
-
     };
-
-    console.log(data);
 
     if (!data.isAggrade) {
       return toast.error("Please check mark the agreement!", {

@@ -19,7 +19,7 @@ export const notifcationApi = baseApi.injectEndpoints({
       async onQueryStarted(arg, { queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          console.log("getAllnotificationCount response:", data);
+          // console.log("getAllnotificationCount response:", data);
         } catch (error) {
           console.error("getAllnotificationCount error:", error);
         }

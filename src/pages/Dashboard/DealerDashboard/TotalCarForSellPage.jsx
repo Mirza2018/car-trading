@@ -43,7 +43,7 @@ const TotalCarForSellPage = () => {
 
   const displayedData = purchasedCar ?? currentData;
 
-  console.log("purchasedCar", purchasedCar);
+  // console.log("purchasedCar", purchasedCar);
 
   const [searchText, setSearchText] = useState("");
 

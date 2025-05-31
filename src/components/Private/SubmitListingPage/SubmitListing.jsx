@@ -1,17 +1,6 @@
 import { AllImages } from "@/assets/AllImages";
 import { useSubmitListingCreateMutation } from "@/redux/api/features/carPrivate";
-import {
-  Checkbox,
-  Col,
-  ColorPicker,
-  DatePicker,
-  Form,
-  Input,
-  InputNumber,
-  Radio,
-  Row,
-  Select,
-} from "antd";
+import { Checkbox, Form, Input, InputNumber, Select } from "antd";
 import { useForm } from "antd/es/form/Form";
 import { Button } from "antd/es/radio";
 import Image from "next/image";
@@ -46,7 +35,6 @@ const SubmitListing = () => {
     value: color.value,
   }));
 
-
   const onFinishFailed = ({ errorFields }) => {
     toast.error(errorFields[0]?.errors[0], {
       toastId: "formError",
@@ -60,7 +48,7 @@ const SubmitListing = () => {
     console.log("main value", values);
     const toastId = toast.loading("Car details is submitting..");
     console.log(values);
-    
+
     // return;
     try {
       const res = await submitListingData(values).unwrap();
@@ -70,7 +58,6 @@ const SubmitListing = () => {
         duration: 2000,
       });
       navigate.push("/");
-
     } catch (error) {
       console.log(error);
 
@@ -795,17 +782,17 @@ const SubmitListing = () => {
             </Form.Item>
           </div>
           <div className="flex-1">
-            <p className="text-2xl font-medium pb-2">City*</p>
+            <p className="text-2xl font-medium pb-2">Addess*</p>
             <Form.Item
               rules={[
                 {
                   required: true,
-                  message: "Please inptut City",
+                  message: "Please inptut address",
                 },
               ]}
               name={`city`}
             >
-              <Input placeholder="City" className="py-3" />
+              <Input placeholder="Address" className="py-3" />
             </Form.Item>
           </div>
         </div>
@@ -921,7 +908,6 @@ const carBrands = [
   { label: "VinFast (vietnamesisk mærke)", value: "VinFast" },
 ];
 
-
 const rawColors = [
   { label: "Alle", value: "Alle", colorCode: "#" },
   { label: "Sort", value: "Sort", colorCode: "#000000" },
@@ -956,7 +942,11 @@ const rawColors = [
   { label: "Rosa guld", value: "Rosa guld", colorCode: "#B76E79" },
   { label: "Mintgrøn", value: "Mintgrøn", colorCode: "#98FF98" },
   { label: "Klar gul", value: "Klar gul", colorCode: "#FFEA00" },
-  { label: "Solnedgangsorange", value: "Solnedgangsorange", colorCode: "#FF4500" },
+  {
+    label: "Solnedgangsorange",
+    value: "Solnedgangsorange",
+    colorCode: "#FF4500",
+  },
   { label: "Fuchsia", value: "Fuchsia", colorCode: "#FF00FF" },
   { label: "Sølvmetallic", value: "Sølvmetallic", colorCode: "#B0C4DE" },
   { label: "Bourgogne", value: "Bourgogne", colorCode: "#800020" },
@@ -997,5 +987,5 @@ const rawColors = [
   { label: "Økensand", value: "Økensand", colorCode: "#EDC9Af" },
   { label: "Skovgrøn", value: "Skovgrøn", colorCode: "#228B22" },
   { label: "Magenta", value: "Magenta", colorCode: "#FF00FF" },
-  { label: "Ametyst", value: "Ametyst", colorCode: "#9966CC" }
+  { label: "Ametyst", value: "Ametyst", colorCode: "#9966CC" },
 ];

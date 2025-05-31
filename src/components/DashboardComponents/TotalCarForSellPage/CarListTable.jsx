@@ -18,12 +18,12 @@ const CarListTable = ({
   onPageChange,
 }) => {
   const columns = [
-    {
-      title: "SL.",
-      dataIndex: "sl",
-      key: "sl",
-      responsive: ["md"],
-    },
+    // {
+    //   title: "SL.",
+    //   dataIndex: "sl",
+    //   key: "sl",
+    //   responsive: ["md"],
+    // },
     {
       title: "User Name",
       dataIndex: "carOwner",
@@ -95,23 +95,33 @@ const CarListTable = ({
       render: (_, record) => (
         <Space
           size="middle"
-          className="border p-2 rounded !border-highlight-color"
+          // className="border p-2 rounded !border-highlight-color"
         >
+          {/* {console.log(record)} */}
           {/* View Details Tooltip */}{" "}
-          <Link href={`total-dealer-car-sell/contract/${record.car._id}`}>
+          <Link href={`total-dealer-car-sell/contract/${record?.car?._id}`}>
             <Tooltip placement="right" title="View Details">
-              <Button
-                className={`  !text-white ${
-                  record.status == "sold"
-                    ? "!bg-green-500 "
-                    : "!bg-highlight-color"
-                }`}
-              >
-                {record.status == "sold" ? "See Contract " : " Make contract"}
-              </Button>
+              {!record?.signatureAsDealer && !record?.signatureAsOwner && (
+                <Button className={`  !text-white !bg-secondary-color`}>
+                  {" "}
+                  <p>Make your contract</p>{" "}
+                </Button>
+              )}
+              {record?.signatureAsDealer && !record?.signatureAsOwner && (
+                <Button className={`  !text-white !bg-highlight-color !px-5`}>
+                  {" "}
+                  <p>Pending contract</p>{" "}
+                </Button>
+              )}
+              {record?.signatureAsDealer && record?.signatureAsOwner && (
+                <Button className={`  !text-white !bg-green-500 !px-7`}>
+                  {" "}
+                  <p>Contract Done</p>{" "}
+                </Button>
+              )}
             </Tooltip>
           </Link>
-          <Link
+          {record?.signatureAsDealer && record?.signatureAsOwner && <Link
             href={`total-dealer-car-sell/order-transport/${record.car._id}`}
           >
             <Tooltip placement="right" title="View Details">
@@ -120,7 +130,8 @@ const CarListTable = ({
                 Order Transport
               </Button>
             </Tooltip>
-          </Link>
+          </Link>}
+         
         </Space>
       ),
     },
@@ -141,11 +152,9 @@ const CarListTable = ({
           pageSize: meta?.limit,
           total: meta?.total,
           onChange: onPageChange,
-          showSizeChanger:true
+          showSizeChanger: true,
         }}
       />
-
-
     </div>
   );
 };

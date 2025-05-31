@@ -11,7 +11,7 @@ const ViewCarDealerPage = ({
 
 }) => {
   const date = new Date(car?.carModel?.updatedAt).toDateString();
-  console.log("sdasdasd", car);
+  // console.log("sdasdasd", car);
 
   return (
     <Modal

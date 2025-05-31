@@ -96,42 +96,62 @@ const OfferDealerCarAcceptTable = ({
       title: "Action",
       key: "action",
       render: (_, record) => (
-        <Space
-          size="middle"
-          className="border p-2 rounded !border-highlight-color"
-        >
-          {/* View Details Tooltip */}{" "}
-          <p
-            onClick={() => {
-              dispatch(setOfferCarInfo(record));
-              navigate.push(
-                `dealer-offer-car-aggrement/contract/${record?._id}`
-              );
-            }}
-            // href={`private-offer-car-aggrement/contract/${record?._id}`}
-          >
-            <Tooltip placement="right" title="View Contract Details">
-              <Button
-                className={`  !text-white ${
-                  record.status == "sold"
-                    ? "!bg-green-500 "
-                    : "!bg-highlight-color"
-                }`}
-              >
-                {record.status == "sold" ? "See Contract " : " Make contract"}
-              </Button>
-            </Tooltip>
-          </p>
-          <Link
-            href={`total-dealer-car-sell/order-transport/${record?.car?._id}`}
-          >
-            <Tooltip placement="right" title="View Details">
-              <Button className="!border-highlight-color !text-black ">
-                {/* <GoEye style={{ fontSize: "24px" }} /> */}
-                Order Transport
-              </Button>
-            </Tooltip>
-          </Link>
+        <Space size="middle" className="">
+          {/* View Details Tooltip */}
+          {record?.status == "accept" ? (
+            <p
+              onClick={() => {
+                dispatch(setOfferCarInfo(record));
+                navigate.push(
+                  `dealer-offer-car-aggrement/contract/${record?._id}`
+                );
+              }}
+              // href={`private-offer-car-aggrement/contract/${record?._id}`}
+            >
+              <Tooltip placement="right" title="View Contract Details">
+                {!record?.signatureAsDealer && !record?.signatureAsOwner && (
+                  <Button className={`  !text-white  !bg-highlight-color`}>
+                    <p>Pending contract</p>
+                  </Button>
+                )}
+                {!record?.signatureAsDealer && record?.signatureAsOwner && (
+                  <Button className={`  !text-white !bg-secondary-color !px-5`}>
+                    {" "}
+                    <p>Make your contract</p>{" "}
+                  </Button>
+                )}
+                {record?.signatureAsDealer && record?.signatureAsOwner && (
+                  <Button className={`  !text-white !bg-green-500 !px-7`}>
+                    {" "}
+                    <p>Contract Done</p>{" "}
+                  </Button>
+                )}
+              </Tooltip>
+            </p>
+          ) : (
+            <p className="bg-highlight-color text-white cursor-pointer  px-4 whitespace-nowrap py-1 rounded-md">
+              Waiting For Accept
+            </p>
+          )}
+
+          {record?.signatureAsDealer && record?.signatureAsOwner && (
+            <p
+              onClick={() => {
+                dispatch(setOfferCarInfo(record));
+                navigate.push(
+                  `dealer-offer-car-aggrement/order-transport/${record?._id}`
+                );
+              }}
+             
+            >
+              <Tooltip placement="right" title="View Details">
+                <Button className="!border-highlight-color !text-black ">
+                  {/* <GoEye style={{ fontSize: "24px" }} /> */}
+                  Order Transport
+                </Button>
+              </Tooltip>
+            </p>
+          )}
         </Space>
       ),
     },

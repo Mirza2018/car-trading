@@ -6,11 +6,12 @@ import { useSellCarQuery } from "@/redux/api/features/privateDashboard";
 import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-  
+
 const TotalCarSold = () => {
   const [filters, setFilters] = useState({
     page: 1,
     limit: 8,
+    filter: "sold",
   });
 
   const onPageChange = (page, limit) => {
@@ -18,27 +19,25 @@ const TotalCarSold = () => {
       ...prev,
       page,
       limit,
-      filter: "sold",
     }));
   };
 
+  const {
+    data: soldCarData,
+    currentData,
+    isLoading,
+  } = useSellCarQuery(filters);
 
-
-  const { data: soldCarData,currentData, isLoading } = useSellCarQuery(filters);
-    
   const displayedData = soldCarData ?? currentData;
   console.log(displayedData);
-   const [currentRecord, setCurrentRecord] = useState(null);
+  const [currentRecord, setCurrentRecord] = useState(null);
   const [data, setData] = useState([]);
   const [openCarSee, setOpennCarSee] = useState(false);
-
-  
 
   const showViewServiceUserModal = (record) => {
     setCurrentRecord(record);
     setOpennCarSee(true);
   };
-
 
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -79,7 +78,7 @@ const TotalCarSold = () => {
 
   return (
     <div className="px-10">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 pb-10">
+      {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 pb-10">
         <div>
           <div className="flex bg-base-color border border-secondary-color gap-5 flex-wrap rounded-lg  py-2 px-1 lg:p-5 items-center justify-center flex-1">
             <div
@@ -190,7 +189,7 @@ const TotalCarSold = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="">
         <PrivateCarSoldTable

@@ -2,6 +2,9 @@ import { baseApi } from "../baseApi";
 
 export const contract = baseApi.injectEndpoints({
   endpoints: (build) => ({
+
+
+
     contactPaper: build.query({
       query: (ContactPaper) => {
         console.log(ContactPaper);
@@ -11,6 +14,13 @@ export const contract = baseApi.injectEndpoints({
         };
       },
     }),
+
+
+
+
+
+
+
 
     updateContactPaper: build.mutation({
       query: ({ ContactPaper, ContactData }) => {

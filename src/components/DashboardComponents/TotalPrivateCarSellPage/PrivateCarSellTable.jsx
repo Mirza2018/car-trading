@@ -11,12 +11,6 @@ const PrivateCarSellTable = ({
 }) => {
   const columns = [
     {
-      title: "SL.",
-      dataIndex: "sl",
-      key: "sl",
-      responsive: ["md"],
-    },
-    {
       title: "Dealer Name",
       dataIndex: "profile",
       key: "profile",
@@ -32,19 +26,7 @@ const PrivateCarSellTable = ({
       key: "carModel",
       render: (text) => <p>{text?.brand}</p>,
     },
-    {
-      title: "Contract Paper",
-      key: "action",
-      render: (_, record) => (
-        <Link
-          href={`/dashboard/total-private-car-sell/contract/${record?.car?._id}`}
-        >
-          <Tooltip placement="right" title="View Details">
-            {/* {record.contractPaper} */}See paper
-          </Tooltip>
-        </Link>
-      ),
-    },
+
     // {
     //   title: "Address",
     //   dataIndex: "address",
@@ -79,6 +61,37 @@ const PrivateCarSellTable = ({
             {text.isBid ? text.bidPrice * 0.25 : text.expectedPrice * 0.25} DKK
           </p>
         </div>
+      ),
+    },
+    {
+      title: "Contract Paper",
+      key: "action",
+      render: (_, record) => (
+        <Link
+          href={`/dashboard/total-private-car-sell/contract/${record?.car?._id}`}
+        >
+          <Tooltip placement="right" title="View Details">
+            <Tooltip placement="right" title="View Details">
+              {!record?.signatureAsDealer && !record?.signatureAsOwner && (
+                <Button className={`  !text-white !bg-secondary-color`}>
+                  {" "}
+                  <p>Pending contract</p>
+                </Button>
+              )}
+              {record?.signatureAsDealer && !record?.signatureAsOwner && (
+                <Button className={`  !text-white !bg-highlight-color `}>
+                  <p>Finish your contract</p>
+                </Button>
+              )}
+              {record?.signatureAsDealer && record?.signatureAsOwner && (
+                <Button className={`  !text-white !bg-green-500 !px-6`}>
+                  {" "}
+                  <p>See Contract</p>{" "}
+                </Button>
+              )}
+            </Tooltip>
+          </Tooltip>
+        </Link>
       ),
     },
 

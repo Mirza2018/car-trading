@@ -97,21 +97,7 @@ const TotalOfferCarPage = () => {
             <p className="text-3xl text-primary-color font-semibold">
               Car List
             </p>
-            <div className="flex gap-4 items-center">
-              <ConfigProvider
-                theme={{ token: { colorTextPlaceholder: "#f3f3f3" } }}
-              >
-                <Input
-                  placeholder="Search User Name..."
-                  value={searchText}
-                  onChange={(e) => onSearch(e.target.value)}
-                  className="text-primary-color font-semibold !border-primary-color !bg-transparent py-2 !rounded-full"
-                  prefix={
-                    <SearchOutlined className="text-primary-color font-bold text-lg mr-2" />
-                  }
-                />
-              </ConfigProvider>
-            </div>
+     
           </div>
         </div>
         <div

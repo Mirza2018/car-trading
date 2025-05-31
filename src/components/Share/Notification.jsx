@@ -22,8 +22,8 @@ const Notification = () => {
 
   // Sync socket and RTK Query data
   useEffect(() => {
-    console.log("Socket count:", count);
-    console.log("RTK Query data:", allNotificationCount);
+    // console.log("Socket count:", count);
+    // console.log("RTK Query data:", allNotificationCount);
     if (allNotificationCount?.data?.count !== undefined) {
       console.log(
         "Setting count from RTK Query:",

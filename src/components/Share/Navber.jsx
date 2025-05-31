@@ -23,7 +23,7 @@ const Navbar = () => {
     useProfileQuery();
   const displayedData = data ?? currentData;
   const userInfo = useSelector((state) => state.auth.userInfo);
-  console.log(displayedData?.data?.profile);
+  // console.log(displayedData?.data?.profile);
 
   const { notify } = useContext(SocketContext);
 
@@ -251,7 +251,7 @@ const Navbar = () => {
               <Notification />
               <div ref={profileRef} className="cursor-pointer relative">
                 <div onClick={toggleProfile} className="relative ">
-                  {false ? (
+                  {displayedData?.data?.profile?.profileImage ? (
                     <Avatar
                       size={50}
                       className="ring ring-highlight-color"
