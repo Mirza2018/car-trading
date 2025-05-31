@@ -9,9 +9,29 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
   
 const TotalPrivateCarSellPage = () => {
-  const { data: sellCarData, currentData, isLoading } = useSellCarQuery({ filter: "sell" });
+  const [filters, setFilters] = useState({
+    page: 1,
+    limit: 8,
+    filter:"sell"
+  });
+
+  const onPageChange = (page, limit) => {
+    setFilters((prev) => ({
+      ...prev,
+      page,
+      limit,
+    }));
+  };
+
+
+
+
+
+  const { data: sellCarData, currentData, isLoading } = useSellCarQuery(filters);
   
   const displayedData = sellCarData ?? currentData;
+
+  console.log("meta", displayedData?.data?.meta);
   console.log(displayedData);
   const [currentRecord, setCurrentRecord] = useState(null);
   const [data, setData] = useState([]); 
@@ -181,7 +201,8 @@ const TotalPrivateCarSellPage = () => {
           data={displayedData?.data?.result}
           loading={isLoading}
           showViewServiceUserModal={showViewServiceUserModal}
-          pageSize={12}
+          meta={displayedData?.data?.meta}
+          onPageChange={onPageChange}
         />
         {/* <PrivateCarSeeDetails
           openCarSee={openCarSee}

@@ -5,7 +5,7 @@ import {
 } from "@/redux/api/features/carPrivate";
 import {
   clearCarLicenseInfo,
-  setCarLicenseInfo,
+  setCarLicenseInfo, 
 } from "@/redux/slices/carInfoSlice";
 
 import { Checkbox, Form, Input, InputNumber, Radio, Upload } from "antd";
@@ -53,6 +53,7 @@ const SellCarAllDetails = () => {
       });
     }
   }, [isSuccess, isError, data, dispatch]);
+
   const handleEditClick = () => {
     toast.loading("License plate is Checking....", {
       id: toastId,
@@ -60,6 +61,10 @@ const SellCarAllDetails = () => {
     const inputValue = inputRef.current?.input?.value;
     trigger({ license: inputValue });
   };
+
+
+
+  
   const normFileEvent = (e) => {
     if (Array.isArray(e)) {
       return e;
@@ -75,30 +80,6 @@ const SellCarAllDetails = () => {
     }
   };
 
-  // const onFinish = (values) => {
-  //   const data = {
-  //     ...values,
-  //     registrationNumber: carData?.registration,
-  //     carCategory: carData?.type,
-  //     milage: carData?.last_inspection_odometer,
-  //     firstRegistrationDate: carData?.first_registration_date,
-  //     chassisNumber: carData?.vin,
-  //     inspectionDate: carData?.last_inspection_date,
-  //     brand: carData?.brand,
-  //     model: carData?.model,
-  //     modelYear: carData?.model_year,
-  //     variant: carData?.version,
-  //     color: carData?.color.name,
-  //     fuelType: carData?.fuel_type,
-  //     engineSize: carData?.engine_displacement,
-  //     enginePerformance: carData?.engine_power,
-  //     fuelConsumption: carData?.fuel_efficiency,
-  //     euroStandard: carData?.type_approval_code,
-  //     numberPlates: 1232546665,
-  //   };
-  //   console.log(data);
-  //   form.resetFields();
-  // };
 
   const onFinishFailed = ({ errorFields }) => {
     toast.error(errorFields[0]?.errors[0], {
@@ -181,6 +162,8 @@ const SellCarAllDetails = () => {
       <h1 className="text-4xl font-bold">The car&apos;s information</h1>
       <div className="h1 w-full border-t border-text-light-color my-5"></div>
       <h1 className="text-2xl font-bold mb-5">Number plate*</h1>
+
+
       <div className="text-center mb-3 w-[600px]">
         <Input
           ref={inputRef}
@@ -213,7 +196,12 @@ const SellCarAllDetails = () => {
             </div>
           }
         />
+
       </div>
+
+
+
+
       <p className="mt-2 text-lg font-medium">
         {carData?.brand} {carData?.model}, {carData?.version}{" "}
         {carData?.body_type?.name} {carData?.engine_power}

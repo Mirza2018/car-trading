@@ -26,8 +26,9 @@ const SignIn = () => {
 
     try {
       const res = await userLogin(values).unwrap();
-      const decodeToken = jwtDecode(res?.data?.accessToken);
       cookies.remove("car_trading_accessToken");
+      cookies.remove("car_trading_accessToken");
+      const decodeToken = jwtDecode(res?.data?.accessToken);
 
       dispatch(setAccessToken(res?.data?.accessToken));
       dispatch(setUserInfo(decodeToken));

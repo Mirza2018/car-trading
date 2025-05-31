@@ -11,12 +11,13 @@ const getUniqueCompanyNames = (data) => {
   const companyNames = data.map((item) => item.companyName);
   return [...new Set(companyNames)]; // Remove duplicates by converting array to a Set and back to an array
 };
- 
+  
 const OfferDealerCarAcceptTable = ({
   data,
   loading,
   showViewServiceUserModal,
-  pageSize = 0,
+  meta,
+  onPageChange,
 }) => {
   const dispatch = useDispatch();
   const navigate = useRouter();
@@ -143,7 +144,13 @@ const OfferDealerCarAcceptTable = ({
         columns={columns}
         dataSource={data} // Use the filtered data here based on selected company
         loading={loading}
-        pagination={pageSize > 0 ? { pageSize } : false}
+        pagination={{
+          current: meta?.page,
+          pageSize: meta?.limit,
+          total: meta?.total,
+          onChange: onPageChange,
+          showSizeChanger: true,
+        }}
         rowKey="id"
         scroll={{ x: true }}
       />

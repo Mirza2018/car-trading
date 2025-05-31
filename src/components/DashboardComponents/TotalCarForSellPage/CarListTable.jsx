@@ -11,9 +11,11 @@ const getUniqueCompanyNames = (data) => {
 
 const CarListTable = ({
   data,
-  loading, 
+  loading,
   showViewServiceUserModal,
   pageSize = 0,
+  meta,
+  onPageChange,
 }) => {
   const columns = [
     {
@@ -89,7 +91,7 @@ const CarListTable = ({
     },
     {
       title: "Action",
-      key: "action", 
+      key: "action",
       render: (_, record) => (
         <Space
           size="middle"
@@ -126,15 +128,24 @@ const CarListTable = ({
 
   return (
     <div>
-      {/* <pre>{JSON.stringify(data, null, 4)}</pre> */}
+      {/* <pre>{JSON.stringify(meta, null, 4)}</pre> */}
+
       <Table
         columns={columns}
         dataSource={data} // Use the filtered data here based on selected company
         loading={loading}
-        pagination={pageSize > 0 ? { pageSize } : false}
         rowKey="id"
         scroll={{ x: true }}
+        pagination={{
+          current: meta?.page,
+          pageSize: meta?.limit,
+          total: meta?.total,
+          onChange: onPageChange,
+          showSizeChanger:true
+        }}
       />
+
+
     </div>
   );
 };

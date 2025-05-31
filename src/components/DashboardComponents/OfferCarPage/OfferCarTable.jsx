@@ -10,7 +10,7 @@ const OfferCarTable = ({ offerCar }) => {
           <p>{offerCar?.carCategory}</p>
         </div>
       )}
- 
+
       {offerCar?.mark && (
         <div className="flex justify-between border-b border-text-light-color">
           <p>Mark</p>
@@ -32,8 +32,8 @@ const OfferCarTable = ({ offerCar }) => {
       {offerCar?.priceType && (
         <div className="flex justify-between border-b border-text-light-color">
           <p>Price Type</p>
-          {offerCar?.priceType.map((p) => (
-            <p>{p}</p>
+          {offerCar?.priceType.map((p, index) => (
+            <p key={index}>{p}</p>
           ))}
         </div>
       )}
@@ -55,16 +55,16 @@ const OfferCarTable = ({ offerCar }) => {
       {offerCar?.fuel && (
         <div className="flex justify-between border-b border-text-light-color">
           <p>Fuel</p>
-          {offerCar?.fuel.map((p) => (
-            <p>{p}</p>
+          {offerCar?.fuel.map((p, index) => (
+            <p key={index}>{p}</p>
           ))}
         </div>
       )}
       {offerCar?.gearType && (
         <div className="flex justify-between border-b border-text-light-color">
           <p>GearType</p>
-          {offerCar?.gearType.map((p) => (
-            <p>{p}</p>
+          {offerCar?.gearType.map((p,index) => (
+            <p key={index}>{p}</p>
           ))}
         </div>
       )}
@@ -81,9 +81,6 @@ const OfferCarTable = ({ offerCar }) => {
           <p>{offerCar?.status}</p>
         </div>
       )}
-
- 
-
 
       {/*           
       <section className="flex flex-col gap-2">

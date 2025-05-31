@@ -23,11 +23,12 @@ export const privateDashboard = baseApi.injectEndpoints({
     //   },
     // }),
     sellCar: build.query({
-      query: ({ filter }) => {
-        console.log(filter);
+      query: (params) => {
+        console.log(params);
         return {
-          url: `/sell_car?filter=${filter}`,
+          url: `/sell_car?filter`,
           method: "GET",
+          params,
         };
       },
     }),
@@ -56,11 +57,12 @@ export const privateDashboard = baseApi.injectEndpoints({
     }),
 
     bidCarDetails: build.query({
-      query: () => {
+      query: (params) => {
         // console.log(filter);
         return {
           url: `/bid`,
           method: "GET",
+          params
         };
       },
       providesTags: [tagTypes.bid],
@@ -80,11 +82,12 @@ export const privateDashboard = baseApi.injectEndpoints({
     }),
 
     offerCarList: build.query({
-      query: () => {
+      query: (params) => {
         // console.log(filter);
         return {
           url: `/offer_car/my_list`,
           method: "GET",
+          params,
         };
       },
       // providesTags: [tagTypes.bid],

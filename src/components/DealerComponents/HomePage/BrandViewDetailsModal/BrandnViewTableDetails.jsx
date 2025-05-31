@@ -33,8 +33,8 @@ const BrandnViewTableDetails = ({ car }) => {
       {car?.priceType && (
         <div className="flex justify-between border-b border-text-light-color">
           <p>priceType</p>
-          {car?.priceType.map((p) => (
-            <p>{p}</p>
+          {car?.priceType.map((p, index) => (
+            <p key={index}>{p}</p>
           ))}
         </div>
       )}

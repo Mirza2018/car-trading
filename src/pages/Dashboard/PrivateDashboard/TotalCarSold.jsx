@@ -8,9 +8,23 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
   
 const TotalCarSold = () => {
-  const { data: soldCarData,currentData, isLoading } = useSellCarQuery({
-    filter: "sold",
+  const [filters, setFilters] = useState({
+    page: 1,
+    limit: 8,
   });
+
+  const onPageChange = (page, limit) => {
+    setFilters((prev) => ({
+      ...prev,
+      page,
+      limit,
+      filter: "sold",
+    }));
+  };
+
+
+
+  const { data: soldCarData,currentData, isLoading } = useSellCarQuery(filters);
     
   const displayedData = soldCarData ?? currentData;
   console.log(displayedData);
@@ -183,7 +197,8 @@ const TotalCarSold = () => {
           data={displayedData?.data?.result}
           loading={isLoading}
           showViewServiceUserModal={showViewServiceUserModal}
-          pageSize={12}
+          meta={displayedData?.data?.meta}
+          onPageChange={onPageChange}
         />
         {/* <PrivateCarSeeDetails
           openCarSee={openCarSee}

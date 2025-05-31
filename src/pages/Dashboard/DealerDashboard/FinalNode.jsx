@@ -56,7 +56,7 @@ const FinalNode = () => {
       setAdvanceAmount(displayedData?.data?.advancedPayment);
     }
   }, [displayedData?.data?.advancedPayment]);
-console.log(advanceAmount);
+console.log(advanceAmount,carPrice);
 
   const [registrationValue, setRegistrationValue] = useState(null);
 

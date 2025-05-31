@@ -10,9 +10,22 @@ export const myProfile = baseApi.injectEndpoints({
         };
       },
     }),
+
+    staticContent: build.query({
+      query: (params) => {
+        console.log(params);
+
+        return {
+          url: `/static_content?type=${params}`,
+          method: "GET",
+          // params,
+        };
+      },
+    }),
+
     updateProfile: build.mutation({
       query: (profileInfo) => {
-        console.log("hi",profileInfo);
+        console.log("hi", profileInfo);
         // return;
         return {
           url: `/profile/update_profile/${profileInfo.userId}`,
@@ -26,4 +39,8 @@ export const myProfile = baseApi.injectEndpoints({
   }),
 });
 
-export const { useProfileQuery, useUpdateProfileMutation } = myProfile;
+export const {
+  useProfileQuery,
+  useUpdateProfileMutation,
+  useStaticContentQuery,
+} = myProfile;

@@ -12,13 +12,16 @@ const PrivateLookingForCars = ({
   isLoading,
   isFetching,
   isSuccess,
-  onPageChange,
+  onPageChange2,
 }) => {
   // const { data, currentData, isLoading, isFetching, isSuccess } =
   //   useSubmitListingQuery();
   console.log(displayedData?.data?.pagination);
   const [openOfferCar, setopenOfferCar] = useState(false);
   const [selectedCar, setSelectedCar] = useState(null);
+
+
+  
 
   const [openResponsive, setOpenResponsive] = useState(false);
 
@@ -79,15 +82,15 @@ const PrivateLookingForCars = ({
                     <div className="text-sm font-normal">
                       {car?.fuel && (
                         <>
-                          {car?.fuel?.map((f) => (
-                            <span>{f}, </span>
+                          {car?.fuel?.map((f, index) => (
+                            <span key={index}>{f}, </span>
                           ))}
                         </>
                       )}
                       {car?.gearType && (
                         <>
-                          {car?.gearType?.map((f) => (
-                            <span>{f}, </span>
+                          {car?.gearType?.map((f, index) => (
+                            <span key={index}>{f}, </span>
                           ))}
                         </>
                       )}
@@ -102,7 +105,10 @@ const PrivateLookingForCars = ({
                 <div className="flex flex-wrap gap-10 items-center justify-end flex-1">
                   <div className="flex flex-col gap-5 ">
                     <button
-                      onClick={() => setopenOfferCar(true)}
+                      onClick={() => {
+                        setSelectedCar(car);
+                        setopenOfferCar(true);
+                      }}
                       style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
                       className="bg-highlight-color text-white  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
                     >
@@ -116,6 +122,7 @@ const PrivateLookingForCars = ({
                       sendOffer={true}
                       buyNow={false}
                     />
+
                     <button
                       onClick={() => {
                         setSelectedCar(car);
@@ -144,7 +151,7 @@ const PrivateLookingForCars = ({
           current={displayedData?.data?.pagination?.page}
           pageSize={displayedData?.data?.pagination?.limit}
           total={displayedData?.data?.pagination?.total}
-          onChange={onPageChange}
+          onChange={onPageChange2}
           align="end"
           // showSizeChanger={true}
           // pageSizeOptions={["3", "6", "9"]}

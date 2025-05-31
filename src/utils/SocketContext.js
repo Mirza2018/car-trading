@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext, useMemo, useEffect } from "react";
+import { createContext, useContext, useMemo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { io } from "socket.io-client";
 import { toast } from "sonner";
@@ -21,6 +21,9 @@ export const useSocket = () => useContext(SocketContext);
 export const SocketProvider = ({ children }) => {
   const navigate = useRouter();
   const dispatch = useDispatch(); //
+  const [notify, setNotify] = useState(null);
+  const [count, setCount] = useState(0);
+  const toastId = "socket-notification";
   let user;
   const token = cookies.get("car_trading_accessToken");
 
@@ -51,15 +54,36 @@ export const SocketProvider = ({ children }) => {
     });
 
     socketInstance.on("connect", () => {
-      toast.success("Connected to socket server");
+      toast.success("Connected to socket server", {
+        id: toastId,
+        duration: 2000,
+      });
+    });
+
+    socketInstance.on("notification", (data) => {
+      // toast.success(data?.data?.message,
+      //   {
+      //     id: toastId,
+      //     duration: 2000,
+      //   });
+      console.log("from soket",data?.data);
+
+      setNotify(data?.data?.message);
+      setCount(data?.data?.count);
     });
 
     socketInstance.on("disconnect", (reason) => {
-      toast.error("Disconnected from socket server");
+      toast.error("Disconnected from socket server", {
+        id: toastId,
+        duration: 2000,
+      });
     });
 
     socketInstance.on("connect_error", (error) => {
-      toast.error(`Connection error: ${error.message}`);
+      toast.error(`Connection error: ${error.message}`, {
+        id: toastId,
+        duration: 2000,
+      });
     });
 
     return socketInstance;
@@ -82,7 +106,7 @@ export const SocketProvider = ({ children }) => {
   }, [socket]);
 
   return (
-    <SocketContext.Provider value={{ socket }}>
+    <SocketContext.Provider value={{ socket, notify, count }}>
       {children}
     </SocketContext.Provider>
   );

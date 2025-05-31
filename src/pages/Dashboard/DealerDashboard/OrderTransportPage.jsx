@@ -1,5 +1,5 @@
 "use client";
-import {
+import { 
   useCreateOrderTransportMutation,
   useGetOrderTransportQuery,
 } from "@/redux/api/features/orderTransport";
@@ -65,14 +65,27 @@ const OrderTransportPage = () => {
   }
 
   return (
-    <div>
-      <h1 className="text-3xl font-semibold mb-10">Order transport</h1>
+    <div
+      className=" min-h-[90vh]  rounded-xl"
+      style={{ boxShadow: "0px 0px 5px  rgba(0, 0, 0, 0.25)" }}
+    >
+      {/* Header  */}
+      <div className="bg-secondary-color w-full p-4   rounded-tl-xl rounded-tr-xl ">
+        <div className=" w-[95%] mx-auto  flex items-center justify-between">
+          <p className="text-3xl text-primary-color font-semibold">
+            Order transport
+          </p>
+        </div>
+      </div>
+
+      {/* <h1 className="text-3xl font-semibold mb-10">Order transport</h1> */}
       <Form
         initialValues={displayData?.data}
         form={form}
         layout="vertical"
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
+        className="px-10 mt-10"
       >
         <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-5">
           <Form.Item

@@ -1,17 +1,54 @@
 "use client";
 import { AllImages } from "@/assets/AllImages";
+import { useLazyGetCarInfoQuery } from "@/redux/api/features/carPrivate";
+import {
+  clearCarLicenseInfo,
+  setCarLicenseInfo,
+} from "@/redux/slices/carInfoSlice";
 import { Checkbox, Form, Input, InputNumber, Select, Upload } from "antd";
 import { useForm } from "antd/es/form/Form";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 
 const Licenseplate = ({ offerCar }) => {
+  const [trigger, { data, isSuccess, isError }] = useLazyGetCarInfoQuery();
+  const carData = useSelector((state) => state.carInfo.carLicenseInfo);
+  console.log(carData);
   const [form] = useForm();
   const param = useParams();
   const navigate = useRouter();
   const [selectedCar, setSelectedCar] = useState(null);
+  const inputRef = useRef(null);
+  const toastId = "unique-toast-id";
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("License plate data fetch successfully...", {
+        id: toastId,
+        duration: 2000,
+      });
+      const numberPlates = inputRef?.current?.input?.value;
+
+      const carAllDetails = {
+        ...data?.data?.data,
+        numberPlates: numberPlates,
+      };
+      dispatch(clearCarLicenseInfo());
+      dispatch(setCarLicenseInfo(carAllDetails));
+    }
+
+    if (isError) {
+      console.log(isError);
+
+      toast.error("Give a valid license plate number", {
+        id: toastId,
+        duration: 2000,
+      });
+    }
+  }, [isSuccess, isError, data, dispatch]);
   const normFileEvent = (e) => {
     if (Array.isArray(e)) {
       return e;
@@ -27,6 +64,18 @@ const Licenseplate = ({ offerCar }) => {
   };
   const handleCarSelect = (car) => {
     setSelectedCar(car);
+  };
+
+  const handleEditClick = async () => {
+    toast.loading("License plate is Checking....", {
+      id: toastId,
+    });
+    const inputValue = inputRef.current?.input?.value;
+
+    try {
+      const res = await trigger({ license: inputValue }).unwrap(); // unwrap returns a promise that rejects on error
+      console.log("res", res);
+    } catch (error) {}
   };
 
   const carColors = rawColors.map((color) => ({
@@ -48,14 +97,28 @@ const Licenseplate = ({ offerCar }) => {
       autoClose: 2000,
     });
     console.log(errorFields);
-  }; 
+  };
 
   const onFinsh = async (values) => {
     const toastId = toast.loading("Deal is sending...");
     values.models = selectedCar;
     console.log(values);
 
-    const data = { ...values, submitListingCarId: param.id };
+    if (!carData) {
+     return toast.error("Please search a lisense plate number", {
+        id: toastId,
+        duration: 2000,
+      });
+    }
+
+    
+
+    const data = {
+      ...values,
+      submitListingCarId: param.id,
+      carLicensePlateNumber: carData?.numberPlates,
+    };
+
     delete data.carImages;
     const formData = new FormData();
     formData.append("data", JSON.stringify(data));
@@ -92,13 +155,55 @@ const Licenseplate = ({ offerCar }) => {
 
   return (
     <div className="">
+      <div className="mb-3 ">
+        <p className="font-bold text-2xl pb-2">Lisense plate Number</p>
+        <Input
+          ref={inputRef}
+          placeholder="Enter license plate"
+          className=""
+          suffix={
+            <div
+              onClick={handleEditClick}
+              className="bg-highlight-color font-semibold text-white rounded py-2 px-8 cursor-pointer"
+            >
+              Search
+            </div>
+          }
+          prefix={
+            <div className="bg-[#007FFF] flex flex-col justify-center items-center gap-2 rounded px-4 py-1">
+              <Image
+                width={0}
+                height={0}
+                alt="search"
+                src={AllImages.star}
+                className="w-4"
+              />
+              <Image
+                width={0}
+                height={0}
+                alt="search"
+                className="w-3"
+                src={AllImages.dk}
+              />
+            </div>
+          }
+        />
+
+        {carData && (
+          <p className="mt-2 text-lg font-medium text-start">
+            {carData?.brand} {carData?.model}, {carData?.version}{" "}
+            {carData?.body_type?.name} {carData?.engine_power}
+            {carData?.engine_power && " KW"}
+          </p>
+        )}
+      </div>
       <Form
         onFinish={onFinsh}
         onFinishFailed={onFinishFailed}
         form={form}
         layout="vertical"
       >
-        <Form.Item
+        {/* <Form.Item
           label={
             <span className="font-bold text-2xl">Lisense plate Number</span>
           }
@@ -111,7 +216,8 @@ const Licenseplate = ({ offerCar }) => {
           ]}
         >
           <Input placeholder="Car lisense plate Number" />
-        </Form.Item>
+        </Form.Item> */}
+
         <div className="grid sm:grid-cols-2 gap-5">
           <Form.Item
             label={<span className="font-bold text-2xl">Category</span>}

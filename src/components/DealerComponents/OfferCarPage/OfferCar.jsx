@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
-
+ 
 const OfferCar = ({ offerCar }) => {
   const [form] = useForm();
   const param = useParams();

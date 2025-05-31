@@ -29,7 +29,7 @@ const TotalCarSell = ({ displayedData }) => {
     },
   ];
 
-  console.log(displayedData?.data?.result[0]);
+  // console.log(displayedData?.data?.result[0]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentData, setCurrentData] = useState(null);

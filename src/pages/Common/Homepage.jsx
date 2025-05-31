@@ -88,8 +88,8 @@ const Homepage = () => {
          page: 1,
          limit: 4,
          filter: filters.length > 0 ? filters : undefined,
-         modelYearFrom: values.modelYearFrom,
-         modelYearTo: values.modelYearTo,
+         modelsFrom: values.modelYearFrom,
+         modelsTo: values.modelYearTo,
          drivenKmFrom: values.drivenKmFrom,
          drivenKmTo: values.drivenKmTo,
        };
@@ -162,7 +162,7 @@ const Homepage = () => {
                 isLoading={submitIsLoading}
                 isFetching={submitIsFetching}
                 isSuccess={submitIsSuccess}
-                onPageChange={onPageChange2}
+                onPageChange2={onPageChange2}
               />
             )}
           </div>

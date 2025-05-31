@@ -25,6 +25,8 @@ import { tagTypes } from "@/redux/tagTypes";
 // import { useSocket } from "@/utils/SocketContext";
 
 const ChatList = ({ conversationData, chats, activeChat, onSelectChat }) => {
+  // console.log("conversationData", conversationData);
+  
   return (
     <div className="flex flex-col">
       <div className="p-4">
@@ -97,8 +99,20 @@ const ChatList = ({ conversationData, chats, activeChat, onSelectChat }) => {
 };
 
 const ChatWindow = ({ chat, messages, cahtMessage, conversationData }) => {
-  // const { messages:myMessages, sendMessage, isConnected } = useSocket();
 
+  console.log(getImageUrl()+chat?.otherUser?.profile?.profileImage);
+  
+  // const { messages:myMessages, sendMessage, isConnected } = useSocket();
+  const [updateMessage, setUpdateMessage] = useState(
+    Array.isArray(cahtMessage) ? [...cahtMessage] : []
+  );
+  useEffect(() => {
+    if (Array.isArray(cahtMessage)) {
+      setUpdateMessage([...cahtMessage]);
+    } else {
+      setUpdateMessage([]);
+    }
+  }, [cahtMessage]);
   const [newMessage, setNewMessage] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [fileList, setFileList] = useState([]);
@@ -107,6 +121,31 @@ const ChatWindow = ({ chat, messages, cahtMessage, conversationData }) => {
   const messageEndRef = useRef(null);
   const { socket } = useContext(SocketContext);
   const dispatch = useDispatch();
+
+
+const messagesEndRef = useRef(null);
+const messagesContainerRef = useRef(null);
+
+// useEffect(() => {
+//   if (messagesContainerRef.current && messagesEndRef.current) {
+//     // Scroll the container to the bottom smoothly
+//     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+//   }
+// }, [cahtMessage]);
+  
+  
+  
+    useEffect(() => {
+      if (messagesContainerRef.current) {
+        messagesContainerRef.current.scrollTop =
+          messagesContainerRef.current.scrollHeight;
+      }
+    });
+  
+  
+  
+
+
 
   const onEmojiClick = (emojiObject) => {
     setNewMessage((prev) => prev + emojiObject.emoji);
@@ -142,7 +181,7 @@ const ChatWindow = ({ chat, messages, cahtMessage, conversationData }) => {
   if (!chat) {
     return (
       <>
-        <pre>{JSON.stringify(conversationData, null, 10)}</pre>
+        {/* <pre>{JSON.stringify(conversationData, null, 10)}</pre> */}
         <div className="flex items-center justify-center h-full text-gray-500">
           Select a chat to start messaging
         </div>
@@ -157,26 +196,40 @@ const ChatWindow = ({ chat, messages, cahtMessage, conversationData }) => {
   // console.log(cahtMessage, conversationData);
   // console.log("sender id", conversationData[0]?.self?._id);
   // console.log(cahtMessage?.[0]?.conversationId);
+// console.log(cahtMessage);
 
   const handleSendMessage = () => {
+ 
+ 
     console.log(newMessage);
     console.log(conversationData[0]?.self?._id);
-    console.log(cahtMessage[0]?.conversationId);
+    console.log(chat?._id);
 
+    // console.log(chat);
+    
+    // return;
+    const date = new Date().toISOString();
     const messageData = {
-      conversationId: cahtMessage[0]?.conversationId,
+      conversationId: chat?._id,
       message: newMessage,
       senderId: conversationData[0]?.self?._id,
     };
+    const messagefake = { ...messageData, createdAt:date };
 
     try {
-      socket?.emit("send_message", messageData);
+      socket?.emit("send_message", messageData, (res) => {
+        console.log(res);
+        
+      });
+      setUpdateMessage([...updateMessage, messagefake]);
       dispatch(baseApi.util.invalidateTags([tagTypes.message]));
       setNewMessage(null);
     } catch (error) {
       console.error("Error sending message:", error);
     }
   };
+// const date = new Date().toISOString();
+  // console.log(date);
 
   return (
     <div className="flex flex-col h-[85%]">
@@ -184,10 +237,16 @@ const ChatWindow = ({ chat, messages, cahtMessage, conversationData }) => {
       <div className="flex items-center justify-between p-4 border-b">
         <div className="flex items-center">
           <Badge dot={chat.online} offset={[-6, 6]}>
-            <Avatar src={chat.avatar} size={40} />
+            <Avatar
+              src={getImageUrl() + chat?.otherUser?.profile?.profileImage}
+              size={40}
+            />
           </Badge>
           <div className="ml-3">
-            <div className="font-medium">{chat.name}</div>
+            <div className="font-medium">
+              {chat?.otherUser?.profile?.first_name}{" "}
+              {chat?.otherUser?.profile?.last_name}
+            </div>
             <div className="text-xs text-gray-500">
               {chat.online ? "Online" : "Offline"}
             </div>
@@ -197,9 +256,12 @@ const ChatWindow = ({ chat, messages, cahtMessage, conversationData }) => {
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div
+        ref={messagesContainerRef}
+        className="flex-1 overflow-y-auto p-4 space-y-4"
+      >
         {/* {console.log(OtherPerson)} */}
-        {cahtMessage?.map((message) => (
+        {updateMessage?.map((message) => (
           <div
             key={message._id}
             className={`flex ${
@@ -208,12 +270,6 @@ const ChatWindow = ({ chat, messages, cahtMessage, conversationData }) => {
                 : "justify-start"
             }`}
           >
-            {/* {console.log(
-              "hi1",
-              OtherPerson,
-              "hi2",
-              conversationData[0]?.self?._id
-            )} */}
             <div
               className={`message-bubble ${
                 message?.senderId == conversationData[0]?.self?._id
@@ -235,6 +291,7 @@ const ChatWindow = ({ chat, messages, cahtMessage, conversationData }) => {
                 </div>
               )}
               <p>{message?.message}</p>
+
               <div
                 className={`flex justify-end items-center gap-1 text-xs ${
                   message?.senderId == conversationData[0]?.self?._id
@@ -251,40 +308,7 @@ const ChatWindow = ({ chat, messages, cahtMessage, conversationData }) => {
             </div>
           </div>
         ))}
-        {/* {messages.map((message) => (
-          <div
-            key={message.id}
-            className={`flex ${message.sent ? "justify-end" : "justify-start"}`}
-          >
-            <div
-              className={`message-bubble ${message.sent ? "sent" : "received"}`}
-            >
-              {message.file && (
-                <div className="mb-2">
-                  <a
-                    href={message.file.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline flex items-center gap-2"
-                  >
-                    <PaperClipOutlined />
-                    {message.file.name}
-                  </a>
-                </div>
-              )}
-              <p>{message.text}</p>
-              <div
-                className={`flex justify-end items-center gap-1 text-xs ${
-                  message.sent ? "text-white/80" : "text-gray-500"
-                }`}
-              >
-                {message.time}
-                {message.sent && <BsCheck2All />}
-              </div>
-            </div>
-          </div>
-        ))} */}
-        <div ref={messageEndRef} />
+        <div ref={messagesEndRef} />
       </div>
 
       {/* Message Input */}
@@ -348,20 +372,23 @@ export default function Home({ conversationData }) {
   const [activeChat, setActiveChat] = useState(null);
   const [isMobileView, setIsMobileView] = useState(false); // Default to false for SSR
   const [showChatList, setShowChatList] = useState(true);
+// console.log("activeChat", activeChat);
 
   const [trigger, { data, isLoading, isFetching, isSuccess, currentData }] =
     useLazySingleConversationQuery();
 
   useEffect(() => {
     if (activeChat?._id) {
-      trigger(activeChat._id); // manually trigger fetch when activeChat changes
+      trigger(activeChat?._id); // manually trigger fetch when activeChat changes
     }
-  }, [activeChat]);
+  }, [activeChat,trigger]);
 
   // const { data, currentData, isLoading, isFetching, isSuccess } =
   //   useSingleConversationQuery(activeChat?._id);
   // useSingleConversationQuery("68107630f354a728a439ea25");
   const cahtMessage = data ?? currentData;
+  // console.log("data", cahtMessage);
+  
   // console.log(cahtMessage?.data);
 
   // console.log(activeChat?._id);
@@ -493,6 +520,7 @@ export default function Home({ conversationData }) {
           chat={activeChat}
           messages={messages}
           cahtMessage={cahtMessage?.data}
+         
         />
       </div>
     </div>

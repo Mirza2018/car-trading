@@ -3,6 +3,7 @@ import { getFromLocalStorage } from "@/utils/local-storage";
 import { getBaseUrl } from "@/helpers/config/envConfig";
 import { tagTypesList } from "../tagTypes";
 
+
 const baseQuery = fetchBaseQuery({
   baseUrl: getBaseUrl(),
   credentials: "include",

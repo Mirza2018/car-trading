@@ -21,7 +21,7 @@ const SellBuyTrade = () => {
   // const { data, isFetching } = useGetCarInfoQuery();
   const [trigger, { data, isSuccess, isError }] = useLazyGetCarInfoQuery();
   const userInfo = useSelector((state) => state.auth.userInfo);
-  console.log(userInfo);
+  // console.log(userInfo);
 
   const license = useRef();
   const navigate = useRouter();

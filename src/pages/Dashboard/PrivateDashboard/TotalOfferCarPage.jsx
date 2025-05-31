@@ -1,12 +1,7 @@
-"use client"
+"use client";
 import { useTotalPurchasedCarsQuery } from "@/redux/api/features/dealerDashboard";
 import { SearchOutlined } from "@ant-design/icons";
-import {
-    ConfigProvider,
-    Form,
-    Input,
-    Spin 
-} from "antd";
+import { ConfigProvider, Form, Input, Spin } from "antd";
 import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import OfferCarAcceptTable from "./OfferCarAcceptTable";
@@ -14,17 +9,28 @@ import ViewOfferCarAcceptDetails from "./ViewOfferCarAcceptDetails";
 import { useOfferCarListQuery } from "@/redux/api/features/privateDashboard";
 
 const TotalOfferCarPage = () => {
+  const [filters, setFilters] = useState({
+    page: 1,
+    limit: 8,
+  });
+
+  const onPageChange = (page, limit) => {
+    setFilters((prev) => ({
+      ...prev,
+      page,
+      limit,
+    }));
+  };
+
   const {
     data: purchasedCar,
     currentData,
     isLoading,
     isFetching,
     isSuccess,
-  } = useOfferCarListQuery();
+  } = useOfferCarListQuery(filters);
 
   const displayedData = purchasedCar ?? currentData;
-
-  console.log("offerCar", purchasedCar);
 
   const [searchText, setSearchText] = useState("");
 
@@ -74,25 +80,6 @@ const TotalOfferCarPage = () => {
   };
 
 
-  const car = {
-    buyNowPrice: "7,000 EUR",
-    model: "Honda CR-V",
-    edition: "PHEV - LUXURY",
-    currentBids: 15,
-    priceInDKK: "33,000 DKK",
-    type: "Hybrid (Benzin)",
-    transmission: "Automatgear",
-    engineCapacity: "2.0 L",
-    horsepower: "151 HK",
-    pno: "#4430479",
-    status: "Minimum price achieved",
-    kilometers: "1,500 km",
-    serviceDate: "07/2025",
-    postalCode: "8100",
-    vehicleType: "SUV",
-    makeAnBidPrice: "26,000 kr.",
-    link: "View Details",
-  };
 
   if (isLoading)
     return <Spin className="flex justify-center items-center" size="large" />;
@@ -138,7 +125,8 @@ const TotalOfferCarPage = () => {
             data={displayedData?.data?.result}
             loading={isLoading}
             showViewServiceUserModal={showViewServiceUserModal}
-            pageSize={12}
+            meta={displayedData?.data?.meta}
+            onPageChange={onPageChange}
           />
         </div>
 

@@ -1,9 +1,9 @@
 "use client";
 import { AllImages } from "@/assets/AllImages";
-import { Modal } from "antd";
+import { Avatar, Modal } from "antd";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MyProfile from "./MyProfile";
 import { clearAuth } from "@/redux/slices/authSlice";
@@ -12,10 +12,26 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import TaskPage from "../DealerComponents/TaskPage/taskPage";
 import { useTaskListQuery } from "@/redux/api/features/taskApi";
+import Notification from "./Notification";
+import { SocketContext } from "@/utils/SocketContext";
+import { useGetAllnotificationCountQuery } from "@/redux/api/features/notificationApi";
+import { useProfileQuery } from "@/redux/api/features/myProfile";
+import { getImageUrl } from "@/helpers/config/envConfig";
 
 const Navbar = () => {
-
+  const { data, currentData, isLoading, isFetching, isSuccess } =
+    useProfileQuery();
+  const displayedData = data ?? currentData;
   const userInfo = useSelector((state) => state.auth.userInfo);
+  console.log(displayedData?.data?.profile);
+
+  const { notify } = useContext(SocketContext);
+
+  // toast.success(notify, {
+  //   id: "notify",
+  //   duration: 1500,
+  // });
+
   const navigate = useRouter();
   const dispatch = useDispatch();
   const cookies = new Cookies();
@@ -92,7 +108,7 @@ const Navbar = () => {
 
   // Specific Menus based on roles
   const RoleSpecificMenus = {
-    default: [],  
+    default: [],
     private_user: [
       { name: "Submit Listing", path: "/submit-listing" },
       { name: "Inbox", path: "/inbox" },
@@ -109,7 +125,8 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch(clearAuth());
-    cookies.remove("car_trading_accessToken");
+    cookies.remove("car_trading_accessToken", { path: "/" });
+    cookies.remove("car_trading_accessToken", { path: "/dashboard" });
     navigate.push("/");
     toast.success("Log out successfully done");
   };
@@ -143,7 +160,7 @@ const Navbar = () => {
   // console.log(loading, "loading");
 
   return (
-    <div className="flex justify-around bg-secondary-color text-primary-color  items-center z-50 py-2  w-full">
+    <div className="flex justify-around bg-secondary-color text-primary-color  items-center !z-[100] py-2  w-full ">
       {" "}
       {/* The style property fixed & w-full is to fixed the navber , if you dont want this just remove it */}
       {/* This is small/Mobile device Menu section */}
@@ -231,15 +248,30 @@ const Navbar = () => {
           {userInfo?.role ? (
             <>
               {" "}
+              <Notification />
               <div ref={profileRef} className="cursor-pointer relative">
                 <div onClick={toggleProfile} className="relative ">
-                  <Image
+                  {false ? (
+                    <Avatar
+                      size={50}
+                      className="ring ring-highlight-color"
+                      src={
+                        getImageUrl() +
+                        displayedData?.data?.profile?.profileImage
+                      }
+                    />
+                  ) : (
+                    <Avatar size={45} className="ring ring-highlight-color">
+                      {displayedData?.data?.profile?.first_name?.charAt(0)}
+                    </Avatar>
+                  )}
+                  {/* <Image
                     alt="logo"
                     width={0}
                     height={0}
                     className="w-12  rounded-full border border-highlight-color aspect-square object-cover"
                     src={AllImages.profile}
-                  />{" "}
+                  />{" "} */}
                 </div>
                 {isProfile && (
                   <MyProfile

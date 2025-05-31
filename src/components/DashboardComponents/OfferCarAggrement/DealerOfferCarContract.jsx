@@ -4,7 +4,7 @@ import { getImageUrl } from "@/helpers/config/envConfig";
 // import { AllImages } from "@/assets/AllImages";
 // import { getImageUrl } from "@/helpers/config/envConfig";
 import { useUpdateOfferContactPaperMutation } from "@/redux/api/features/contract";
-import { Checkbox, InputNumber, Radio, Space } from "antd";
+import { Checkbox, Radio, Space } from "antd";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
@@ -12,7 +12,7 @@ import { useEffect, useRef, useState } from "react";
 import { LiaQuestionCircleSolid } from "react-icons/lia";
 import { useSelector } from "react-redux";
 import { toast } from "sonner";
-
+ 
 // Dynamically import SignatureModal with SSR disabled
 const SignatureModal = dynamic(
   () => import("@/components/DealerComponents/FinalNote.jsx/SignatureModal"),
@@ -31,6 +31,8 @@ const DealerOfferCarContract = () => {
   const displayedData = useSelector((state) => state.offerInfo.offerCarInfo);
   console.log(displayedData);
   let carPrice = displayedData?.cashPrice;
+  console.log(displayedData);
+  
 
   const inspectionDate = new Date(
     displayedData?.data?.car?.inspectionDate
@@ -69,7 +71,7 @@ const DealerOfferCarContract = () => {
 
   const handleSubmit = async () => {
     const toastId = toast.loading("Digital Contract is Signing...");
-    const data = { status: "sold" };
+    const data = { status: "accept" };
 
     console.log(data);
 
@@ -218,12 +220,12 @@ const DealerOfferCarContract = () => {
               {displayedData?.carCondition}
             </p>
           </div>
-          <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color p-3">
+          {/* <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color p-3">
             <p>Inspection Date</p>
             <p className="overflow-x-scroll hide-x-scrollbar">
               {inspectionDate}
             </p>
-          </div>
+          </div> */}
         </section>
 
         <main className="flex flex-col lg:grid lg:grid-cols-2 gap-0 mx-6 my-10 ">
@@ -248,23 +250,6 @@ const DealerOfferCarContract = () => {
                 <p>{displayedData?.dealerUserProfile?.last_name}</p>
               </div>
             )}
-            {displayedData?.data?.company?.companyName && (
-              <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color p-3">
-                <p>Company Name</p>
-                <p className="overflow-x-scroll  hide-x-scrollbar">
-                  {displayedData?.data?.company?.companyName}
-                </p>
-              </div>
-            )}
-
-            {displayedData?.data?.company?.city && (
-              <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color p-3">
-                <p>City</p>
-                <p className="overflow-x-scroll hide-x-scrollbar">
-                  {displayedData?.data?.company?.city}
-                </p>
-              </div>
-            )}
 
             {displayedData?.dealerUser?.email && (
               <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color p-3">
@@ -274,13 +259,16 @@ const DealerOfferCarContract = () => {
                 </p>
               </div>
             )}
-
-            {displayedData?.data?.company?.phoneNumber && (
+            {displayedData?.dealerUserProfile?.address && (
+              <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color p-3">
+                <p>Address</p>
+                <p>{displayedData?.dealerUserProfile?.address}</p>
+              </div>
+            )}
+            {displayedData?.dealerUserProfile?.phoneNumber && (
               <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color p-3">
-                <p>Telephone</p>
-                <p className="overflow-x-scroll  hide-x-scrollbar">
-                  {displayedData?.data?.company?.phoneNumber}
-                </p>
+                <p>Phone Number</p>
+                <p>{displayedData?.dealerUserProfile?.phoneNumber}</p>
               </div>
             )}
           </section>
@@ -305,25 +293,25 @@ const DealerOfferCarContract = () => {
               </div>
             )}
             {displayedData?.privateUser?.email && (
-              <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color p-3">
+              <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color p-3">
                 <p>Email</p>
                 <p>{displayedData?.privateUser?.email}</p>
               </div>
             )}
             {displayedData?.submitListing?.city && (
               <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color p-3">
-                <p>City</p>
+                <p>Address</p>
                 <p>{displayedData?.submitListing?.city}</p>
               </div>
             )}
-            {displayedData?.submitListing?.postalCode && (
+            {/* {displayedData?.submitListing?.postalCode && (
               <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color p-3">
                 <p>Postal code</p>
                 <p>{displayedData?.submitListing?.postalCode}</p>
               </div>
-            )}
+            )} */}
             {displayedData?.submitListing?.phoneNumber && (
-              <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color p-3">
+              <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color p-3">
                 <p>Phone Number</p>
                 <p>{displayedData?.submitListing?.phoneNumber}</p>
               </div>
@@ -587,7 +575,7 @@ const DealerOfferCarContract = () => {
         </section>
 
         <section className="flex justify-between mx-5 flex-wrap gap-5">
-          {displayedData?.signatureAsOwner ? (
+          {displayedData?.signatureAsDealer ? (
             ""
           ) : (
             <>

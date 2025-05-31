@@ -4,7 +4,9 @@ export const tagTypes = {
   offer: "Offer",
   order: "Order",
   task: "Task",
-  message:"Message",
+  message: "Message",
+  notification: "Notification",
+  notificationCount: "notificationCount",
 
   product: "Product",
   shelter: "Shelter",
@@ -19,6 +21,8 @@ export const tagTypesList = [
   tagTypes.order,
   tagTypes.task,
   tagTypes.message,
+  tagTypes.notification,
+  tagTypes.notificationCount,
 
   tagTypes.product,
   tagTypes.shelter,

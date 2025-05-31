@@ -3,7 +3,7 @@ import React from "react";
 const CarTableDetails = ({ car }) => {
   const date = new Date(car?.inspectionDate).toDateString();
   return (
-    <> 
+    <>
       <main className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-7 gap-y-2">
         {car?.noOfKmDriven && (
           <div className="flex justify-between border-b border-text-light-color">
@@ -20,8 +20,8 @@ const CarTableDetails = ({ car }) => {
         {car?.additionalEquipment && (
           <div className="flex justify-between border-b border-text-light-color">
             <p>Additional Equipment</p>
-            {car?.additionalEquipment.map((p) => (
-              <p>{p}</p>
+            {car?.additionalEquipment.map((p,index) => (
+              <p key={index}> {p}</p>
             ))}
           </div>
         )}
@@ -80,17 +80,17 @@ const CarTableDetails = ({ car }) => {
             <p>Model:</p>
             <p>{car?.carModel?.model} </p>
           </div>
-        ) :""
-        
-        
-        
-        }
+        ) : (
+          ""
+        )}
         {car?.carModel?.modelYear ? (
           <div className="flex justify-between border-b border-text-light-color">
             <p>Model Year:</p>
             <p>{car?.carModel?.modelYear} </p>
           </div>
-        ):""}
+        ) : (
+          ""
+        )}
         {car?.carModel?.variant && (
           <div className="flex justify-between border-b border-text-light-color">
             <p>Variant:</p>

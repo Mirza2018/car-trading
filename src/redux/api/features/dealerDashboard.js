@@ -4,11 +4,12 @@ import { baseApi } from "../baseApi";
 export const dealerDashboard = baseApi.injectEndpoints({
   endpoints: (build) => ({
     totalPurchasedCars: build.query({
-      query: () => {
+      query: (params) => {
         // console.log(filter);
         return {
           url: `/car/total_purchased_cars`,
           method: "GET",
+          params,
         };
       },
       // providesTags: [tagTypes.offer],
@@ -45,7 +46,7 @@ export const dealerDashboard = baseApi.injectEndpoints({
       // invalidatesTags: [tagTypes.offer],
     }),
 
-    // end 
+    // end
   }),
 });
 

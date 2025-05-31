@@ -57,7 +57,9 @@ const OfferCarContract = () => {
       setAdvanceAmount(displayedData?.advancedPayment);
     }
     if (displayedData?.reRegistrationDeRegistrationView) {
-      setRegistrationValue(Number(displayedData?.reRegistrationDeRegistrationView));
+      setRegistrationValue(
+        Number(displayedData?.reRegistrationDeRegistrationView)
+      );
     }
   }, [
     signature,
@@ -85,6 +87,7 @@ const OfferCarContract = () => {
       advancedPayment: advancedRef.current.value,
       isAggrade: agrimentRef.current.input.checked,
       reRegistrationDeRegistrationView: registrationValue,
+
     };
 
     console.log(data);
@@ -338,6 +341,12 @@ const OfferCarContract = () => {
                 <p>{displayedData?.submitListing?.postalCode}</p>
               </div>
             )}
+            {displayedData?.submitListing?.phoneNumber && (
+              <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color p-3">
+                <p>Phone Number</p>
+                <p>{displayedData?.submitListing?.phoneNumber}</p>
+              </div>
+            )}
           </section>
         </main>
         {/* Price */}
@@ -385,10 +394,14 @@ const OfferCarContract = () => {
                 The deal is signed and completed before inspection. The buyer
                 undertakes to pay the agreed amount upon collection of the car,
                 provided that the car is as described.{" "}
-                <Checkbox
-                  checked={displayedData?.isAggrade}
-                  ref={agrimentRef}
-                ></Checkbox>
+                {displayedData?.isAggrade ? (
+                  <Checkbox
+                    checked={displayedData?.isAggrade}
+                    ref={agrimentRef}
+                  ></Checkbox>
+                ) : (
+                  <Checkbox ref={agrimentRef}></Checkbox>
+                )}
               </h1>
               {/* <div>
                   <FaRegSquareCheck className="text-xl text-highlight-color" />
