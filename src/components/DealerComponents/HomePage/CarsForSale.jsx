@@ -16,6 +16,9 @@ import {
 import { getImageUrl } from "@/helpers/config/envConfig";
 import { useCreateConversationMutation } from "@/redux/api/features/conversation";
 import { clearSignUpToken } from "@/redux/slices/authSlice";
+import { useRouter } from "next/navigation";
+import { setCarOwnerInfo } from "@/redux/slices/carOwner";
+import { useDispatch } from "react-redux";
 
 const CarsForSale = ({
   displayedData,
@@ -29,6 +32,8 @@ const CarsForSale = ({
   //   useSaleCarListQuery();
   const [createConversation] = useCreateConversationMutation();
   const [buyCar] = useBuyCarMutation();
+  const navigate = useRouter()
+  const dispatch = useDispatch();
 
   // const displayedData = data ?? currentData;
 
@@ -40,6 +45,8 @@ const CarsForSale = ({
   const handleCreateConversation = async (receiverId) => {
     try {
       const res = await createConversation(receiverId);
+      navigate.push("/inbox");
+           dispatch(setCarOwnerInfo(receiverId));
 
       console.log(res);
     } catch (error) {}

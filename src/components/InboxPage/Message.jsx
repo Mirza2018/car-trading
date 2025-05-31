@@ -19,23 +19,23 @@ import {
 import RelativeTime from "@/utils/RelativeTime";
 import { SocketContext } from "@/utils/SocketContext";
 import { toast } from "sonner";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { baseApi } from "@/redux/api/baseApi";
 import { tagTypes } from "@/redux/tagTypes";
 // import { useSocket } from "@/utils/SocketContext";
 
 const ChatList = ({ conversationData, chats, activeChat, onSelectChat }) => {
   // console.log("conversationData", conversationData);
-  
+
   return (
     <div className="flex flex-col">
-      <div className="p-4">
+      {/* <div className="p-4">
         <Input
           prefix={<SearchOutlined className="text-gray-400" />}
           placeholder="Search messages"
           className="rounded-lg"
         />
-      </div>
+      </div> */}
       <div className="flex-1 overflow-y-auto">
         {conversationData.map((chat) => (
           <div
@@ -99,9 +99,8 @@ const ChatList = ({ conversationData, chats, activeChat, onSelectChat }) => {
 };
 
 const ChatWindow = ({ chat, messages, cahtMessage, conversationData }) => {
+  console.log(getImageUrl() + chat?.otherUser?.profile?.profileImage);
 
-  console.log(getImageUrl()+chat?.otherUser?.profile?.profileImage);
-  
   // const { messages:myMessages, sendMessage, isConnected } = useSocket();
   const [updateMessage, setUpdateMessage] = useState(
     Array.isArray(cahtMessage) ? [...cahtMessage] : []
@@ -122,30 +121,39 @@ const ChatWindow = ({ chat, messages, cahtMessage, conversationData }) => {
   const { socket } = useContext(SocketContext);
   const dispatch = useDispatch();
 
+  const messagesEndRef = useRef(null);
+  const messagesContainerRef = useRef(null);
 
-const messagesEndRef = useRef(null);
-const messagesContainerRef = useRef(null);
+  // useEffect(() => {
+  //   if (messagesContainerRef.current && messagesEndRef.current) {
+  //     // Scroll the container to the bottom smoothly
+  //     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  //   }
+  // }, [cahtMessage]);
+  console.log(chat);
 
-// useEffect(() => {
-//   if (messagesContainerRef.current && messagesEndRef.current) {
-//     // Scroll the container to the bottom smoothly
-//     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-//   }
-// }, [cahtMessage]);
-  
-  
-  
-    useEffect(() => {
-      if (messagesContainerRef.current) {
-        messagesContainerRef.current.scrollTop =
-          messagesContainerRef.current.scrollHeight;
-      }
-    });
-  
-  
-  
+  socket?.on(`receive_message::${chat?._id}`, (message) => {
+    console.log("Received message", message);
+    const date = new Date().toISOString();
+    const messagefake = { ...message, createdAt: date };
 
+    setUpdateMessage([...updateMessage, messagefake]);
 
+    // message
+  });
+
+  socket?.on(`receive_typing::${chat?.otherUser._id}`, (message) => {
+    console.log("Received type", message);
+
+    // message
+  });
+
+  useEffect(() => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop =
+        messagesContainerRef.current.scrollHeight;
+    }
+  });
 
   const onEmojiClick = (emojiObject) => {
     setNewMessage((prev) => prev + emojiObject.emoji);
@@ -196,17 +204,15 @@ const messagesContainerRef = useRef(null);
   // console.log(cahtMessage, conversationData);
   // console.log("sender id", conversationData[0]?.self?._id);
   // console.log(cahtMessage?.[0]?.conversationId);
-// console.log(cahtMessage);
+  // console.log(cahtMessage);
 
   const handleSendMessage = () => {
- 
- 
     console.log(newMessage);
     console.log(conversationData[0]?.self?._id);
     console.log(chat?._id);
 
     // console.log(chat);
-    
+
     // return;
     const date = new Date().toISOString();
     const messageData = {
@@ -214,12 +220,11 @@ const messagesContainerRef = useRef(null);
       message: newMessage,
       senderId: conversationData[0]?.self?._id,
     };
-    const messagefake = { ...messageData, createdAt:date };
+    // const messagefake = { ...messageData, createdAt: date };
 
     try {
       socket?.emit("send_message", messageData, (res) => {
         console.log(res);
-        
       });
       setUpdateMessage([...updateMessage, messagefake]);
       dispatch(baseApi.util.invalidateTags([tagTypes.message]));
@@ -228,7 +233,7 @@ const messagesContainerRef = useRef(null);
       console.error("Error sending message:", error);
     }
   };
-// const date = new Date().toISOString();
+  // const date = new Date().toISOString();
   // console.log(date);
 
   return (
@@ -236,20 +241,30 @@ const messagesContainerRef = useRef(null);
       {/* Chat Header */}
       <div className="flex items-center justify-between p-4 border-b">
         <div className="flex items-center">
-          <Badge dot={chat.online} offset={[-6, 6]}>
+          {/* <Avatar
+              src={getImageUrl() + chat?.otherUser?.profile?.profileImage}
+              size={40}
+            /> */}
+
+          {chat?.otherUser?.profile?.profileImage ? (
             <Avatar
               src={getImageUrl() + chat?.otherUser?.profile?.profileImage}
               size={40}
             />
-          </Badge>
+          ) : (
+            <Avatar style={{ backgroundColor: "#fde3cf", color: "#f56a00" }}>
+              {chat?.otherUser?.profile?.first_name.charAt(0)}
+            </Avatar>
+          )}
+
           <div className="ml-3">
             <div className="font-medium">
               {chat?.otherUser?.profile?.first_name}{" "}
               {chat?.otherUser?.profile?.last_name}
             </div>
-            <div className="text-xs text-gray-500">
+            {/* <div className="text-xs text-gray-500">
               {chat.online ? "Online" : "Offline"}
-            </div>
+            </div> */}
           </div>
         </div>
         <Button type="text" icon={<EllipsisOutlined />} />
@@ -290,7 +305,44 @@ const messagesContainerRef = useRef(null);
                   </a>
                 </div>
               )}
-              <p>{message?.message}</p>
+
+              <div>
+                {message?.senderId == conversationData[0]?.self?._id ? (
+                  <div className="flex flex-row-reverse justify-start items-center gap-2">
+                    {chat?.self?.profile?.profileImage ? (
+                      <Avatar
+                        src={getImageUrl() + chat?.self?.profile?.profileImage}
+                        size={40}
+                      />
+                    ) : (
+                      <Avatar
+                        style={{ backgroundColor: "#fde3cf", color: "#f56a00" }}
+                      >
+                        {chat?.self?.profile?.first_name.charAt(0)}
+                      </Avatar>
+                    )}
+                    <p>{message?.message}</p>
+                  </div>
+                ) : (
+                  <div className="flex justify-start items-center gap-2">
+                    {chat?.otherUser?.profile?.profileImage ? (
+                      <Avatar
+                        src={
+                          getImageUrl() + chat?.otherUser?.profile?.profileImage
+                        }
+                        size={40}
+                      />
+                    ) : (
+                      <Avatar
+                        style={{ backgroundColor: "#fde3cf", color: "#f56a00" }}
+                      >
+                        {chat?.otherUser?.profile?.first_name.charAt(0)}
+                      </Avatar>
+                    )}
+                    <p>{message?.message}</p>
+                  </div>
+                )}
+              </div>
 
               <div
                 className={`flex justify-end items-center gap-1 text-xs ${
@@ -372,7 +424,11 @@ export default function Home({ conversationData }) {
   const [activeChat, setActiveChat] = useState(null);
   const [isMobileView, setIsMobileView] = useState(false); // Default to false for SSR
   const [showChatList, setShowChatList] = useState(true);
-// console.log("activeChat", activeChat);
+  // console.log("activeChat", activeChat);
+  const displayedData = useSelector((state) => state.carowner.carOwnerInfo);
+  // const displayedData = useSelector((state) => state.offerInfo.offerCarInfo);
+// console.log(okok,displayedData);
+
 
   const [trigger, { data, isLoading, isFetching, isSuccess, currentData }] =
     useLazySingleConversationQuery();
@@ -381,14 +437,14 @@ export default function Home({ conversationData }) {
     if (activeChat?._id) {
       trigger(activeChat?._id); // manually trigger fetch when activeChat changes
     }
-  }, [activeChat,trigger]);
+  }, [activeChat, trigger]);
 
   // const { data, currentData, isLoading, isFetching, isSuccess } =
   //   useSingleConversationQuery(activeChat?._id);
   // useSingleConversationQuery("68107630f354a728a439ea25");
   const cahtMessage = data ?? currentData;
   // console.log("data", cahtMessage);
-  
+
   // console.log(cahtMessage?.data);
 
   // console.log(activeChat?._id);
@@ -488,12 +544,12 @@ export default function Home({ conversationData }) {
             : "w-[380px]"
         } border-r bg-white`}
       >
-        <div className="p-4 border-b">
+        <div className="p-[22px] border-b">
           <h1 className="text-xl font-semibold flex items-center">
             Messages
-            <span className="ml-2 text-xs bg-orange-500 text-white px-2 py-0.5 rounded-full">
-              12
-            </span>
+            {/* <span className="ml-2 text-xs bg-orange-500 text-white px-2 py-0.5 rounded-full">
+            
+            </span> */}
           </h1>
         </div>
         <ChatList
@@ -520,7 +576,6 @@ export default function Home({ conversationData }) {
           chat={activeChat}
           messages={messages}
           cahtMessage={cahtMessage?.data}
-         
         />
       </div>
     </div>

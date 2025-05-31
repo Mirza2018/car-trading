@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import authReducer from "./slices/authSlice"; // Import your auth slice
 import carInfoReducer from "./slices/carInfoSlice"; // Import your auth slice
 import offerInfoReducer from "./slices/offerCarInfoSlice"; // Import your auth slice
+import offerOwnerReducer from "./slices/carOwner"; // Import your auth slice
 import { baseApi } from "./api/baseApi";
 import { persistStore, persistReducer } from "redux-persist";
 // import createWebStorage from "redux-persist/lib/storage/createWebStorage";
@@ -51,6 +52,7 @@ const rootReducer = {
   auth: authReducer,
   carInfo: carInfoReducer,
   offerInfo: offerInfoReducer,
+  carowner: offerOwnerReducer,
 
   // Regular auth reducer (will be persisted separately)
 };

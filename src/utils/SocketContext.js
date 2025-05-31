@@ -11,7 +11,7 @@ import { jwtDecode } from "jwt-decode";
 import { useRouter } from "next/navigation";
 import { tagTypes } from "@/redux/tagTypes";
 import { baseApi } from "@/redux/api/baseApi";
-
+ 
 const cookies = new Cookies();
 
 export const SocketContext = createContext({});
@@ -60,12 +60,12 @@ export const SocketProvider = ({ children }) => {
       });
     });
 
+
+
+
+
     socketInstance.on("notification", (data) => {
-      // toast.success(data?.data?.message,
-      //   {
-      //     id: toastId,
-      //     duration: 2000,
-      //   });
+
       console.log("from soket",data?.data);
 
       setNotify(data?.data?.message);
