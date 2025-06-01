@@ -139,7 +139,7 @@ const CarListTable = ({
 
   return (
     <div>
-      {/* <pre>{JSON.stringify(meta, null, 4)}</pre> */}
+      <pre>{JSON.stringify(data, null, 4)}</pre>
 
       <Table
         columns={columns}

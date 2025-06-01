@@ -35,21 +35,23 @@ const OfferCarPage = () => {
           </div>
         </div>
         {displayedData?.data?.result != 0 ? (
-         <> {displayedData?.data?.result.map((offerCar) => (
-          <SingleOfferCarComponent
-            key={offerCar._id}
-            offerCar={offerCar}
-            offercarAction={offercarAction}
-          />
-        ))}</>
+          <>
+            {" "}
+            {displayedData?.data?.result.map((offerCar) => (
+              <SingleOfferCarComponent
+                key={offerCar._id}
+                offerCar={offerCar}
+                offercarAction={offercarAction}
+              />
+            ))}
+          </>
         ) : (
-          <div className="flex justify-center items-center text-2xl font-medium mt-10">No offer available right now</div>
+          <div className="flex justify-center items-center text-2xl font-medium mt-10">
+            No offer available right now
+          </div>
         )}
-
-       
       </div>
     );
-
 };
 
 export default OfferCarPage;

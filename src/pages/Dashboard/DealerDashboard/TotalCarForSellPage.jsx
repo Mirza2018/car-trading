@@ -1,3 +1,4 @@
+"use client";
 import { useMemo } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -114,7 +115,6 @@ const TotalCarForSellPage = () => {
             </p>
           </div>
         </div>
-   
 
         {/* Table  */}
         <div className="px-10 py-10">

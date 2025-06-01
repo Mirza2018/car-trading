@@ -1,3 +1,4 @@
+"use client";
 /* eslint-disable react/prop-types */
 import { setOfferCarInfo } from "@/redux/slices/offerCarInfoSlice";
 import { Button, Input, Space, Table, Tooltip } from "antd";

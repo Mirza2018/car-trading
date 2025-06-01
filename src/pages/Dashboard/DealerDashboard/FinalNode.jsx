@@ -22,7 +22,7 @@ import { getImageUrl } from "@/helpers/config/envConfig";
 const SignatureModal = dynamic(
   () => import("@/components/DealerComponents/FinalNote.jsx/SignatureModal"),
   { ssr: false }
-); 
+);
 
 const FinalNode = () => {
   const params = useParams();
@@ -38,13 +38,13 @@ const FinalNode = () => {
 
   const displayedData = data ?? currentData;
 
-  let carPrice
+  let carPrice;
   if (displayedData?.data?.car?.isBid) {
     carPrice = displayedData?.data?.car?.bidPrice;
   } else {
     carPrice = displayedData?.data?.expectedPrice;
   }
-  
+
   console.log(displayedData?.data);
 
   const inspectionDate = new Date(
@@ -55,8 +55,8 @@ const FinalNode = () => {
     if (carPrice) {
       setAdvanceAmount(displayedData?.data?.advancedPayment);
     }
-  }, [displayedData?.data?.advancedPayment]);
-console.log(advanceAmount,carPrice);
+  }, [displayedData?.data?.advancedPayment, carPrice]);
+  console.log(advanceAmount, carPrice);
 
   const [registrationValue, setRegistrationValue] = useState(null);
 
@@ -97,7 +97,6 @@ console.log(advanceAmount,carPrice);
       isAggrade: agrimentRef.current.input.checked,
       reRegistrationDeRegistrationView: registrationValue,
     };
-
 
     if (!data.isAggrade) {
       return toast.error("Please check mark the agreement!", {

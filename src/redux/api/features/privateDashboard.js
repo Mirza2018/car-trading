@@ -26,7 +26,7 @@ export const privateDashboard = baseApi.injectEndpoints({
       query: (params) => {
         console.log(params);
         return {
-          url: `/sell_car?filter`,
+          url: `/sell_car`,
           method: "GET",
           params,
         };

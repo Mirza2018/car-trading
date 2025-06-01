@@ -25,8 +25,7 @@ const OrderTransportOffer = () => {
   const onFinish = async (values) => {
     const toastId = toast.loading("Transport details is submiting...");
     const data = {
-      carModel: params.id,
-      userId: displayedData?.userId,
+      offerCarId: displayedData?._id,
       deliveryAddress: values.address,
       receiverPhone: values.phone,
     };
@@ -152,7 +151,7 @@ const OrderTransportOffer = () => {
               className="max-w-[800px]"
               layout="vertical"
               label={
-                <div className="text-xl font-medium">Delivery Address</div>
+                <div className="text-xl font-medium">Receiver Address</div>
               }
               name="address"
               rules={[
@@ -164,9 +163,7 @@ const OrderTransportOffer = () => {
             <Form.Item
               className="max-w-[800px]"
               layout="vertical"
-              label={
-                <div className="text-xl font-medium">Receiver Phone number</div>
-              }
+              label={<div className="text-xl font-medium">Receiver Phone Number</div>}
               name="phone"
               rules={[
                 { required: true, message: "Please input your Phone number!" },

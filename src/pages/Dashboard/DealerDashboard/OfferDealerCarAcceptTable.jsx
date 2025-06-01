@@ -1,3 +1,4 @@
+"use client";
 /* eslint-disable react/prop-types */
 import { setOfferCarInfo } from "@/redux/slices/offerCarInfoSlice";
 import { Button, Input, Space, Table, Tooltip } from "antd";
@@ -11,7 +12,7 @@ const getUniqueCompanyNames = (data) => {
   const companyNames = data.map((item) => item.companyName);
   return [...new Set(companyNames)]; // Remove duplicates by converting array to a Set and back to an array
 };
-  
+
 const OfferDealerCarAcceptTable = ({
   data,
   loading,
@@ -45,18 +46,6 @@ const OfferDealerCarAcceptTable = ({
       key: "model",
       render: (text) => <p>{text}</p>,
     },
-    // {
-    //   title: "Location",
-    //   dataIndex: "submitListing",
-    //   key: "submitListing",
-    //   render: (text) => (
-    //     <div>
-    //       <p>
-    //         {text?.city} ({text?.postalCode})
-    //       </p>
-    //     </div>
-    //   ),
-    // },
     {
       title: "Color",
       dataIndex: "color",
@@ -135,22 +124,30 @@ const OfferDealerCarAcceptTable = ({
           )}
 
           {record?.signatureAsDealer && record?.signatureAsOwner && (
-            <p
-              onClick={() => {
-                dispatch(setOfferCarInfo(record));
-                navigate.push(
-                  `dealer-offer-car-aggrement/order-transport/${record?._id}`
-                );
-              }}
-             
-            >
-              <Tooltip placement="right" title="View Details">
-                <Button className="!border-highlight-color !text-black ">
-                  {/* <GoEye style={{ fontSize: "24px" }} /> */}
-                  Order Transport
-                </Button>
-              </Tooltip>
-            </p>
+            <div>
+              {record?.isOrderTransport ? (
+                <>
+                  <Button className="!border-green-500 !text-black ">
+                   Transport Done
+                  </Button>
+                </>
+              ) : (
+                <p
+                  onClick={() => {
+                    dispatch(setOfferCarInfo(record));
+                    navigate.push(
+                      `dealer-offer-car-aggrement/order-transport/${record?._id}`
+                    );
+                  }}
+                >
+                  <Tooltip placement="right" title="View Details">
+                    <Button className="!border-highlight-color !text-black ">
+                      Order Transport
+                    </Button>
+                  </Tooltip>
+                </p>
+              )}
+            </div>
           )}
         </Space>
       ),

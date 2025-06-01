@@ -1,3 +1,4 @@
+"use client";
 import OrderTransportPage from "@/pages/Dashboard/DealerDashboard/OrderTransportPage";
 import React from "react";
 
