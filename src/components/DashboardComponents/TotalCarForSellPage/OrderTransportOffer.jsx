@@ -192,7 +192,7 @@ const OrderTransportOffer = () => {
           </button>
         </div>
       </Form>
-      <pre>{JSON.stringify(displayedData, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(displayedData, null, 2)}</pre> */}
     </div>
   );
 };

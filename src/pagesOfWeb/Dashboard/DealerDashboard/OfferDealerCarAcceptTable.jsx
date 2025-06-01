@@ -127,8 +127,8 @@ const OfferDealerCarAcceptTable = ({
             <div>
               {record?.isOrderTransport ? (
                 <>
-                  <Button className="!border-green-500 !text-black ">
-                   Transport Done
+                  <Button className="!border !border-green-500 !text-black ">
+                    Transport Done
                   </Button>
                 </>
               ) : (

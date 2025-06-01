@@ -158,7 +158,7 @@ const ContractPaperPage = () => {
               >
                 Final note
               </h1>
-              <pre>{JSON.stringify(displayedData.data, null, 4)}</pre>
+              {/* <pre>{JSON.stringify(displayedData.data, null, 4)}</pre> */}
               <section className="flex flex-col mx-5">
                 <h1
                   style={{ fontSize: "clamp(18px, 3vw + 1rem ,48px)" }}

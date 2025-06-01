@@ -1,4 +1,4 @@
-import OfferCarPage from "@/pages/Dashboard/PrivateDashboard/OfferCarPage";
+import OfferCarPage from "@/pagesOfWeb/Dashboard/PrivateDashboard/OfferCarPage";
 import React from "react";
 
 const page = () => {

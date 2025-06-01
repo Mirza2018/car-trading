@@ -17,24 +17,31 @@ import { SocketContext } from "@/utils/SocketContext";
 import { useGetAllnotificationCountQuery } from "@/redux/api/features/notificationApi";
 import { useProfileQuery } from "@/redux/api/features/myProfile";
 import { getImageUrl } from "@/helpers/config/envConfig";
+import { jwtDecode } from "jwt-decode";
 
 const Navbar = () => {
   const { data, currentData, isLoading, isFetching, isSuccess } =
     useProfileQuery();
+  const cookies = new Cookies();
+  const navigate = useRouter();
+  const dispatch = useDispatch();
   const displayedData = data ?? currentData;
-  const userInfo = useSelector((state) => state.auth.userInfo);
-  // console.log(displayedData?.data?.profile);
+  let userInfo;
+  // const userInfo = useSelector((state) => state.auth.userInfo);
+  const userCookie = cookies.get("car_trading_accessToken");
+  if (!userCookie) {
+    navigate.push("/sign-in");
+  } else {
+    userInfo = jwtDecode(userCookie);
+  }
 
-  const { notify } = useContext(SocketContext);
+  // console.log(userInfo, decodeToken);
 
   // toast.success(notify, {
   //   id: "notify",
   //   duration: 1500,
   // });
 
-  const navigate = useRouter();
-  const dispatch = useDispatch();
-  const cookies = new Cookies();
   // console.log(carUser, "carUser");
 
   const task = true;
@@ -317,7 +324,6 @@ const Navbar = () => {
         open={isModalOpen}
         footer={[]}
       >
-       
         <TaskPage setIsModalOpen={setIsModalOpen} />
       </Modal>
       {/* This is Profile or contract section */}

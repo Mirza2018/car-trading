@@ -1,12 +1,12 @@
-import TotalCarSold from '@/pages/Dashboard/PrivateDashboard/TotalCarSold';
-import React from 'react';
+import TotalCarSold from "@/pagesOfWeb/Dashboard/PrivateDashboard/TotalCarSold";
+import React from "react";
 
 const page = () => {
-    return (
-      <div>
-        <TotalCarSold/>
-      </div>
-    );
+  return (
+    <div>
+      <TotalCarSold />
+    </div>
+  );
 };
 
-export default page; 
+export default page;

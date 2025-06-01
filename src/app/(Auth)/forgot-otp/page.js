@@ -1,4 +1,4 @@
-import ForgotOtp from "@/pages/Auth/ForgotOtp";
+import ForgotOtp from "@/pagesOfWeb/Auth/ForgotOtp";
 import React from "react";
 
 const page = () => {

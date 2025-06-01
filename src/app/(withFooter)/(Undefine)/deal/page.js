@@ -1,4 +1,4 @@
-import DealPage from "@/pages/Undefine/DealPage";
+import DealPage from "@/pagesOfWeb/Undefine/DealPage";
 import React from "react";
 
 const Page = () => {

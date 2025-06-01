@@ -174,7 +174,7 @@ const FinalNode = () => {
     return (
       <div className="container mx-auto border-2 border-secondary-color rounded-md md:my-20 overflow-x-clip">
         <div className="max-w-[1350px] mx-auto md:my-10 ">
-          <pre>{JSON.stringify(displayedData, null, 2)}</pre>
+          {/* <pre>{JSON.stringify(displayedData, null, 2)}</pre> */}
           <h1
             style={{ fontSize: "clamp(20px, 3vw + 1rem ,60px)" }}
             className="font-bold "

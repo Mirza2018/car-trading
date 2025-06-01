@@ -1,4 +1,4 @@
-import ChangePassword from "@/pages/Auth/UpdatePassword";
+import ChangePassword from "@/pagesOfWeb/Auth/UpdatePassword";
 import React from "react";
 
 const page = () => {

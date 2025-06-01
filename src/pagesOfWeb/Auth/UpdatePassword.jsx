@@ -29,10 +29,7 @@ const ChangePassword = () => {
       });
       dispatch(clearAuth());
 
-      // const decodeToken = jwtDecode(res?.data?.accessToken);
-      // dispatch(setAccessToken(res?.data?.accessToken));
-      // dispatch(setUserInfo(decodeToken));
-      // cookies.set("car_trading_accessToken", res?.data?.accessToken);
+  
 
       navigate.push("/sign-in");
     } catch (error) {

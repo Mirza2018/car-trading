@@ -1,5 +1,5 @@
 "use client";
-import ListingsPage from "@/pages/Dealer/ListingsPage";
+import ListingsPage from "@/pagesOfWeb/Dealer/ListingsPage";
 import React from "react";
 
 const page = () => {

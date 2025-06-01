@@ -121,17 +121,32 @@ const CarListTable = ({
               )}
             </Tooltip>
           </Link>
-          {record?.signatureAsDealer && record?.signatureAsOwner && <Link
-            href={`total-dealer-car-sell/order-transport/${record.car._id}`}
-          >
-            <Tooltip placement="right" title="View Details">
-              <Button className="!border-highlight-color !text-black ">
-                {/* <GoEye style={{ fontSize: "24px" }} /> */}
-                Order Transport
-              </Button>
-            </Tooltip>
-          </Link>}
-         
+          {record?.signatureAsDealer && record?.signatureAsOwner && (
+            <div>
+              {record?.isOrderTransport ? (
+                <>
+                  <Button className="!border !border-green-500 !text-black ">
+                    Transport Done
+                  </Button>
+                </>
+              ) : (
+                <p
+                  onClick={() => {
+                    dispatch(setOfferCarInfo(record));
+                    navigate.push(
+                      `total-dealer-car-sell/order-transport/${record.car._id}`
+                    );
+                  }}
+                >
+                  <Tooltip placement="right" title="View Details">
+                    <Button className="!border-highlight-color !text-black ">
+                      Order Transport
+                    </Button>
+                  </Tooltip>
+                </p>
+              )}
+            </div>
+          )}
         </Space>
       ),
     },
@@ -139,7 +154,7 @@ const CarListTable = ({
 
   return (
     <div>
-      <pre>{JSON.stringify(data, null, 4)}</pre>
+      {/* <pre>{JSON.stringify(data, null, 4)}</pre> */}
 
       <Table
         columns={columns}

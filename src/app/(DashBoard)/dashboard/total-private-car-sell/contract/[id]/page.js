@@ -1,7 +1,7 @@
 "use client";
 
-import ContractPaperPage from "@/pages/Common/ContractPaperPage";
-import FinalNode from "@/pages/Dashboard/DealerDashboard/FinalNode";
+import ContractPaperPage from "@/pagesOfWeb/Common/ContractPaperPage";
+import FinalNode from "@/pagesOfWeb/Dashboard/DealerDashboard/FinalNode";
 import React from "react";
 
 const FinalPage = () => {

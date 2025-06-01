@@ -1,4 +1,4 @@
-import UserProfilePage from "@/pages/Dashboard/UserProfilePage";
+import UserProfilePage from "@/pagesOfWeb/Dashboard/UserProfilePage";
 import React from "react";
 
 const page = () => {

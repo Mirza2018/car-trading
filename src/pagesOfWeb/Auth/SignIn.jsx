@@ -27,13 +27,14 @@ const SignIn = () => {
     try {
       const res = await userLogin(values).unwrap();
       cookies.remove("car_trading_accessToken");
-      cookies.remove("car_trading_accessToken");
       const decodeToken = jwtDecode(res?.data?.accessToken);
 
       dispatch(setAccessToken(res?.data?.accessToken));
       dispatch(setUserInfo(decodeToken));
       console.log("res: ", res, decodeToken);
-      cookies.set("car_trading_accessToken", res?.data?.accessToken);
+      cookies.set("car_trading_accessToken", res?.data?.accessToken, {
+        path: "/",
+      });
       toast.success(res.message, {
         id: toastId,
         duration: 2000,
