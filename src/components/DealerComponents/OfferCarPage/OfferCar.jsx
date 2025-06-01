@@ -548,7 +548,8 @@ const OfferCar = ({ offerCar }) => {
 
         <div className="text-center">
           <button
-            className="bg-highlight-color text-white py-3 px-32 rounded-md text-center my-10 text-3xl font-medium whitespace-nowrap"
+            style={{ fontSize: "clamp(14px, 1vw + 1rem ,30px)" }}
+            className="bg-highlight-color text-white py-3 md:px-32 px-3 rounded-md text-center my-10  font-medium whitespace-nowrap"
             htmlType="submit"
           >
             Offer Send

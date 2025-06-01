@@ -56,142 +56,22 @@ const TotalCarSold = () => {
   }, []);
   console.log(data, "data");
 
-  const car = {
-    buyNowPrice: "6,300 EUR",
-    model: "Honda CR-V",
-    edition: "PHEV - STYLE SMART",
-    currentBids: 12,
-    priceInDKK: "32,000 DKK",
-    type: "Hybrid (Benzin)",
-    transmission: "Automatgear",
-    engineCapacity: "2.0 L",
-    horsepower: "151 HK",
-    pno: "#4430457",
-    status: "Minimum price achieved",
-    kilometers: "1,749 km",
-    serviceDate: "08/2025",
-    postalCode: "8000",
-    vehicleType: "SUV",
-    makeAnBidPrice: "25,000 kr.",
-    link: "View Details",
-  };
-
   return (
-    <div className="px-10">
-      {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 pb-10">
-        <div>
-          <div className="flex bg-base-color border border-secondary-color gap-5 flex-wrap rounded-lg  py-2 px-1 lg:p-5 items-center justify-center flex-1">
-            <div
-              className="flex 
-                 gap-2 xl:gap-4 items-center"
-            >
-              <div className=" rounded-full  w-fit">
-                <Image
-                  width={0}
-                  height={0}
-                  src={AllImages.totalCarSellIcon}
-                  className=""
-                  alt=""
-                />
-              </div>
-              <div className="text-start">
-                <p className="text-4xl font-bold mb-1">75</p>
-                <p className="text-base font-normal ">Total Car Sold</p>
-                <div className="text-xs font-normal text-[#A3A3A3] flex justify-center items-center gap-1">
-                  <Image
-                    width={0}
-                    height={0}
-                    src={AllImages.upArrow}
-                    className="pt-2"
-                    alt=""
-                  />
-                  4% (30 days)
-                </div>
-              </div>
-            </div>
-          </div>
+    <div
+      className=" min-h-[90vh]  rounded-xl mx-auto"
+      style={{ boxShadow: "0px 0px 5px  rgba(0, 0, 0, 0.25)" }}
+    >
+      {/* Header  */}
+      <div className="bg-secondary-color w-full p-4   rounded-tl-xl rounded-tr-xl">
+        <div className=" w-[95%] mx-auto  flex items-center justify-between">
+          <p className="text-3xl text-primary-color font-semibold">
+            Total car Sold
+          </p>
+          <div className="flex gap-4 items-center"></div>
         </div>
-        <div>
-          <div className="flex bg-base-color border border-secondary-color gap-5 flex-wrap rounded-lg  py-2 px-1 lg:p-5 items-center justify-center flex-1">
-            <div
-              className="flex 
-                 gap-2 xl:gap-4 items-center"
-            >
-              <div className="  w-fit">
-                <Image width={0} height={0} src={AllImages.carIcon} alt="" />
-              </div>
-              <div className="text-start">
-                <p className="text-4xl font-bold mb-1">45</p>
-                <p className="text-base font-normal ">Unsold Total Car</p>
-                <div className="text-xs font-normal text-[#A3A3A3] flex justify-center items-center gap-1">
-                  <Image
-                    width={0}
-                    height={0}
-                    src={AllImages.upArrow}
-                    className="pt-2"
-                    alt=""
-                  />
-                  2% (25 days)
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div className="flex bg-base-color border border-secondary-color gap-5 flex-wrap rounded-lg  py-2 px-1 lg:p-5 items-center justify-center flex-1">
-            <div
-              className="flex 
-                 gap-2 xl:gap-4 items-center"
-            >
-              <div className="   w-fit">
-                <Image width={0} height={0} src={AllImages.carIcon} alt="" />
-              </div>
-              <div className="text-start">
-                <p className="text-4xl font-bold mb-1">45</p>
-                <p className="text-base font-normal ">Total Car Buy</p>
-                <div className="text-xs font-normal text-[#A3A3A3] flex justify-center items-center gap-1">
-                  <Image
-                    width={0}
-                    height={0}
-                    src={AllImages.upArrow}
-                    className="pt-2"
-                    alt=""
-                  />
-                  2% (25 days)
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div className="flex bg-base-color border border-secondary-color gap-5 flex-wrap rounded-lg  py-2 px-1 lg:p-5 items-center justify-center flex-1">
-            <div
-              className="flex 
-                 gap-2 xl:gap-4 items-center"
-            >
-              <div className="  ">
-                <Image width={0} height={0} src={AllImages.revenue} alt="" />
-              </div>
-              <div className="text-start">
-                <p className="text-4xl font-bold mb-1">$128</p>
-                <p className="text-base font-normal ">Total Revenue</p>
-                <div className="text-xs font-normal text-[#A3A3A3] flex justify-center items-center gap-1">
-                  <Image
-                    width={0}
-                    height={0}
-                    src={AllImages.upArrow}
-                    className="pt-2"
-                    alt=""
-                  />
-                  12% (30 days)
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
+      </div>
 
-      <div className="">
+      <div className="px-10 py-10">
         <PrivateCarSoldTable
           data={displayedData?.data?.result}
           loading={isLoading}

@@ -63,121 +63,21 @@ const TotalPrivateCarSellPage = () => {
 
 
   return (
-    <div className="px-10">
-      {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 pb-10">
-        <div>
-          <div className="flex bg-base-color border border-secondary-color gap-5 flex-wrap rounded-lg  py-2 px-1 lg:p-5 items-center justify-center flex-1">
-            <div
-              className="flex 
-                 gap-2 xl:gap-4 items-center"
-            >
-              <div className=" rounded-full  w-fit">
-                <Image
-                  width={0}
-                  height={0}
-                  src={AllImages.totalCarSellIcon}
-                  className=""
-                  alt=""
-                />
-              </div>
-              <div className="text-start">
-                <p className="text-4xl font-bold mb-1">75</p>
-                <p className="text-base font-normal ">Total Car Sell</p>
-                <div className="text-xs font-normal text-[#A3A3A3] flex justify-center items-center gap-1">
-                  <Image
-                    width={0}
-                    height={0}
-                    src={AllImages.upArrow}
-                    className="pt-2"
-                    alt=""
-                  />
-                  4% (30 days)
-                </div>
-              </div>
-            </div>
-          </div>
+    <div
+      className=" min-h-[90vh]  rounded-xl mx-auto"
+      style={{ boxShadow: "0px 0px 5px  rgba(0, 0, 0, 0.25)" }}
+    >
+      {/* Header  */}
+      <div className="bg-secondary-color w-full p-4   rounded-tl-xl rounded-tr-xl">
+        <div className=" w-[95%] mx-auto  flex items-center justify-between">
+          <p className="text-3xl text-primary-color font-semibold">
+           Total car sell
+          </p>
+          <div className="flex gap-4 items-center"></div>
         </div>
-        <div>
-          <div className="flex bg-base-color border border-secondary-color gap-5 flex-wrap rounded-lg  py-2 px-1 lg:p-5 items-center justify-center flex-1">
-            <div
-              className="flex 
-                 gap-2 xl:gap-4 items-center"
-            >
-              <div className="  w-fit">
-                <Image width={0} height={0} src={AllImages.carIcon} alt="" />
-              </div>
-              <div className="text-start">
-                <p className="text-4xl font-bold mb-1">45</p>
-                <p className="text-base font-normal ">Unsold Total Car</p>
-                <div className="text-xs font-normal text-[#A3A3A3] flex justify-center items-center gap-1">
-                  <Image
-                    width={0}
-                    height={0}
-                    src={AllImages.upArrow}
-                    className="pt-2"
-                    alt=""
-                  />
-                  2% (25 days)
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div className="flex bg-base-color border border-secondary-color gap-5 flex-wrap rounded-lg  py-2 px-1 lg:p-5 items-center justify-center flex-1">
-            <div
-              className="flex 
-                 gap-2 xl:gap-4 items-center"
-            >
-              <div className="   w-fit">
-                <Image width={0} height={0} src={AllImages.carIcon} alt="" />
-              </div>
-              <div className="text-start">
-                <p className="text-4xl font-bold mb-1">45</p>
-                <p className="text-base font-normal ">Total Car Buy</p>
-                <div className="text-xs font-normal text-[#A3A3A3] flex justify-center items-center gap-1">
-                  <Image
-                    width={0}
-                    height={0}
-                    src={AllImages.upArrow}
-                    className="pt-2"
-                    alt=""
-                  />
-                  2% (25 days)
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div className="flex bg-base-color border border-secondary-color gap-5 flex-wrap rounded-lg  py-2 px-1 lg:p-5 items-center justify-center flex-1">
-            <div
-              className="flex 
-                 gap-2 xl:gap-4 items-center"
-            >
-              <div className="  ">
-                <Image width={0} height={0} src={AllImages.revenue} alt="" />
-              </div>
-              <div className="text-start">
-                <p className="text-4xl font-bold mb-1">$128</p>
-                <p className="text-base font-normal ">Total Revenue</p>
-                <div className="text-xs font-normal text-[#A3A3A3] flex justify-center items-center gap-1">
-                  <Image
-                    width={0}
-                    height={0}
-                    src={AllImages.upArrow}
-                    className="pt-2"
-                    alt=""
-                  />
-                  12% (30 days)
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
+      </div>
 
-      <div className="">
+      <div className="px-10 py-10">
         {/* <pre>{JSON.stringify(displayedData?.data?.result, null, 2)}</pre> */}
         <PrivateCarSellTable
           data={displayedData?.data?.result}

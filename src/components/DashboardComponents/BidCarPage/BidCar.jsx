@@ -65,7 +65,7 @@ const BidCar = ({ bids, bidCarAction }) => {
     <div className="rounded-lg border border-highlight-color p-7 flex justify-between my-5">
       <div className="flex gap-7 flex-col">
         <h1 className="text-lg font-semibold">
-          Car: {bids?.carName} {bids?.modelYear}
+          Car: {bids?.carName} 
         </h1>
         <h1 className="text-lg font-semibold">
           Highest Bid: {bids.bidAmount} .kr

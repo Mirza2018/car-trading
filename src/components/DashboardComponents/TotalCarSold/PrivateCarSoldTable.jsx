@@ -10,12 +10,7 @@ const PrivateCarSoldTable = ({
   onPageChange,
 }) => {
   const columns = [
-    {
-      title: "SL.",
-      dataIndex: "sl",
-      key: "sl",
-      responsive: ["md"],
-    },
+
     {
       title: "Dealer Name",
       dataIndex: "profile",

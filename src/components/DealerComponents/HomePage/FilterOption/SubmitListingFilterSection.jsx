@@ -4,7 +4,7 @@ import React from "react";
 const SubmitListingFilterSection = ({ onFinishPrivate }) => {
   return (
     <Form onFinish={onFinishPrivate}>
-      <div className="flex justify-between items-center gap-5 mx-2">
+      <div className="flex md:flex-row flex-col justify-between items-center md:gap-5 mx-2">
         <div className="grid lg:grid-cols-4  grid-cols-2  gap-2 my-12 flex-1">
           <div className="flex flex-col justify-between">
             <h1 className="sm:text-2xl font-bold">Mark</h1>
@@ -80,7 +80,7 @@ const SubmitListingFilterSection = ({ onFinishPrivate }) => {
           </div>
         </div>
         <div className="flex flex-col justify-center items-center">
-          <button className=" xl:text-3xl lg:text-2xl  md:text-xl  font-medium sm:rounded-2xl rounded-md xl:px-11 lg:px-8 md:px-4 px-2 py-2 md:py-4 bg-highlight-color text-white">
+          <button className=" xl:text-3xl lg:text-2xl  md:text-xl  font-medium sm:rounded-2xl rounded-md xl:px-11 lg:px-8 md:px-5 px-2 py-2 md:py-3 bg-highlight-color text-white">
             Search
           </button>
         </div>

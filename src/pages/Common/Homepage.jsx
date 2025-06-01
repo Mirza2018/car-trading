@@ -108,7 +108,7 @@ const Homepage = () => {
     <div className="text-text-color container mx-auto">
       {/* dealer */}
       {userInfo?.role === "dealer" && (
-        <>
+        <> 
           {isSellCar ? (
             <FilterSection onFinish={onFinish} />
           ) : (

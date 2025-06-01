@@ -171,7 +171,7 @@ const CarsForSale = ({
                 />
                 <p className="text-sm font-normal text-text-light-color">
                   Current Bids:{car?.totalBidCount}
-              {    console.log(car)}
+                  {console.log(car)}
                 </p>
               </div>
               {/* <div className="bg-base-color border border-secondary-color rounded-full aspect-square px-2 flex flex-col justify-center items-center">
@@ -196,7 +196,7 @@ const CarsForSale = ({
                 </div>
               )}
 
-              <div className="flex md:flex-col  gap-5 flex-wrap ">
+              <div className="md:flex md:flex-col grid grid-cols-2  gap-5 flex-wrap ">
                 {/* <Link href={`/final-note`}> */}
                 <BuyNowBtn
                   price={car?.expectedPrice}
@@ -211,7 +211,7 @@ const CarsForSale = ({
                     setOpenResponsive(true); // Open the modal
                   }}
                   style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
-                  className="bg-base-color text-black border border-secondary-color  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
+                  className="bg-base-color text-black border border-secondary-color  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap md:w-44 w-36"
                 >
                   View Details
                 </button>
@@ -231,7 +231,7 @@ const CarsForSale = ({
                   <button
                     onClick={() => handleCreateConversation(car?.carOwner)}
                     style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
-                    className="bg-base-color !w-full text-black border border-secondary-color  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
+                    className="bg-base-color  text-black border border-secondary-color  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap md:w-44 w-36"
                   >
                     Chat
                   </button>

@@ -5,23 +5,24 @@ import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { AllImages } from "@/assets/AllImages";
 import useCookie from "@/cookie/useCookie";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Cookies from "universal-cookie";
+import { clearAuth } from "@/redux/slices/authSlice";
+import { toast } from "sonner";
 
 const Sidebar = ({ slider, setSlider }) => {
   const navigate = useRouter();
+  const dispatch = useDispatch();
+  const cookies = new Cookies();
   const userInfo = useSelector((state) => state.auth.userInfo);
   // console.log(userInfo, "userInfo");
   const location = usePathname();
   const handleLogout = () => {
-    const values = {
-      name: null,
-      email: null,
-    };
-    // Clear the "car_trading_user" cookie by setting its expiry date in the past.
-    document.cookie = `car-trading_user=${encodeURIComponent(
-      JSON.stringify(values)
-    )}; path=/; secure`;
+    dispatch(clearAuth());
+    cookies.remove("car_trading_accessToken", { path: "/" });
+    cookies.remove("car_trading_accessToken", { path: "/dashboard" });
     navigate.push("/");
+    toast.success("Log out successfully done");
   };
 
   const menuItems = (

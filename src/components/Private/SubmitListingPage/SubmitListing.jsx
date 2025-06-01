@@ -76,7 +76,14 @@ const SubmitListing = () => {
         layout="vertical"
       >
         <Form.Item
-          label={<span className="font-bold text-2xl">Car Category</span>}
+          label={
+            <span
+              style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+              className="font-bold  "
+            >
+              Car Category
+            </span>
+          }
           name="carCategory"
           rules={[
             {
@@ -88,7 +95,10 @@ const SubmitListing = () => {
           <Select
             className="!h-12 "
             placeholder={
-              <span className="text-black text-xl ">
+              <span
+                style={{ fontSize: "clamp(12px, 1vw + 1rem ,18px)" }}
+                className="text-black   "
+              >
                 Private car or company car
               </span>
             }
@@ -105,11 +115,25 @@ const SubmitListing = () => {
               message: "Please select Mark",
             },
           ]}
-          label={<span className="font-bold text-2xl">Mark</span>}
+          label={
+            <span
+              style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+              className="font-bold  "
+            >
+              Mark
+            </span>
+          }
           name="mark"
         >
           <Select
-            placeholder={<span className="text-black text-xl">Brands</span>}
+            placeholder={
+              <span
+                style={{ fontSize: "clamp(12px, 1vw + 1rem ,18px)" }}
+                className="text-black  "
+              >
+                Brands
+              </span>
+            }
             className="!h-12 !bg-base-color"
             showSearch
             optionFilterProp="label"
@@ -129,18 +153,30 @@ const SubmitListing = () => {
               message: "Please Input Model Name",
             },
           ]}
-          label={<span className="font-bold text-2xl">Model</span>}
+          label={
+            <span
+              style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+              className="font-bold  "
+            >
+              Model
+            </span>
+          }
           name="model"
         >
           {/* <Select
-            placeholder={<span className="text-black text-xl">Model</span>}
+            placeholder={<span className="text-black  ">Model</span>}
             className="!h-12 !bg-base-color"
             options={carModels}
           /> */}
           <Input placeholder="Give model name" />
         </Form.Item>
 
-        <h1 className="font-bold text-2xl mb-2">Cash price</h1>
+        <h1
+          style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+          className="font-bold   mb-2"
+        >
+          Cash price
+        </h1>
 
         <Form.Item
           rules={[
@@ -164,7 +200,14 @@ const SubmitListing = () => {
                 message: "Please select Price type",
               },
             ]}
-            label={<span className="font-bold text-2xl">Price type</span>}
+            label={
+              <span
+                style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+                className="font-bold  "
+              >
+                Price type
+              </span>
+            }
             name="priceType"
             className="flex-1"
           >
@@ -212,11 +255,25 @@ const SubmitListing = () => {
               },
             ]}
             className="flex-1"
-            label={<span className="font-bold text-2xl">New/used</span>}
+            label={
+              <span
+                style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+                className="font-bold  "
+              >
+                New/used
+              </span>
+            }
             name="carCondition"
           >
             <Select
-              placeholder={<span className="text-black text-xl">All</span>}
+              placeholder={
+                <span
+                  style={{ fontSize: "clamp(12px, 1vw + 1rem ,18px)" }}
+                  className="text-black  "
+                >
+                  All
+                </span>
+              }
             >
               <Select.Option value="New">New</Select.Option>
               <Select.Option value="Used">Used</Select.Option>
@@ -225,7 +282,14 @@ const SubmitListing = () => {
         </div>
 
         <Form.Item
-          label={<span className="font-bold text-2xl">Models</span>}
+          label={
+            <span
+              style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+              className="font-bold  "
+            >
+              Models
+            </span>
+          }
           name="models"
         >
           <div className="flex flex-wrap gap-3">
@@ -343,7 +407,14 @@ const SubmitListing = () => {
                 message: "Please select Fuel Type",
               },
             ]}
-            label={<span className="font-bold text-2xl">Fuel</span>}
+            label={
+              <span
+                style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+                className="font-bold  "
+              >
+                Fuel
+              </span>
+            }
             name="fuel"
             className="flex-1"
           >
@@ -421,7 +492,14 @@ const SubmitListing = () => {
                 message: "Please select Gear type",
               },
             ]}
-            label={<span className="font-bold text-2xl">Gear type</span>}
+            label={
+              <span
+                style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+                className="font-bold  "
+              >
+                Gear type
+              </span>
+            }
             name="gearType"
             className="flex-1"
           >
@@ -444,7 +522,12 @@ const SubmitListing = () => {
           </Form.Item>
         </div>
 
-        <h1 className="font-bold text-2xl mb-2">Models</h1>
+        <h1
+          style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+          className="font-bold   mb-2"
+        >
+          Models
+        </h1>
         <div className="flex  justify-between gap-5">
           <Form.Item
             rules={[
@@ -475,7 +558,12 @@ const SubmitListing = () => {
           </Form.Item>
         </div>
 
-        <h1 className="font-bold text-2xl mb-2">Driven km</h1>
+        <h1
+          style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+          className="font-bold   mb-2"
+        >
+          Driven km
+        </h1>
         <div className="flex  justify-between gap-5">
           <Form.Item
             rules={[
@@ -506,8 +594,9 @@ const SubmitListing = () => {
         </div>
 
         <div
+          style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
           onClick={() => setIsDistance(!isDistance)}
-          className="font-bold text-2xl bg-base-color border border-secondary-color rounded-md py-1 px-2 flex justify-between items-center"
+          className="font-bold   bg-base-color border border-secondary-color rounded-md py-1 px-2 flex justify-between items-center"
         >
           <h1>Additional equipment</h1>
           <p>
@@ -522,12 +611,24 @@ const SubmitListing = () => {
           <React.Fragment>
             <Form.Item
               className="mt-4"
-              label={<span className="font-bold text-2xl">Color</span>}
+              label={
+                <span
+                  style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+                  className="font-bold  "
+                >
+                  Color
+                </span>
+              }
               name="color"
             >
               <Select
                 placeholder={
-                  <span className="text-black text-xl flex">Choose Color</span>
+                  <span
+                    style={{ fontSize: "clamp(12px, 1vw + 1rem ,18px)" }}
+                    className="text-black   flex"
+                  >
+                    Choose Color
+                  </span>
                 }
                 className=" !bg-base-color"
                 showSearch
@@ -541,13 +642,23 @@ const SubmitListing = () => {
                 options={carColors}
               />
             </Form.Item>
-            <h1 className="font-bold text-2xl ">Trailer</h1>
+            <h1
+              style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+              className="font-bold   "
+            >
+              Trailer
+            </h1>
             <div className="flex  justify-between items-center gap-5 mt-3">
               <Form.Item name="trailerHitch" className="flex-1">
                 <Select
                   className=" !h-10"
                   placeholder={
-                    <span className="text-black text-xl">Trailer hitch</span>
+                    <span
+                      style={{ fontSize: "clamp(12px, 1vw + 1rem ,18px)" }}
+                      className="text-black  "
+                    >
+                      Trailer hitch
+                    </span>
                   }
                 >
                   <Select.Option value="yes">Yes</Select.Option>
@@ -562,7 +673,7 @@ const SubmitListing = () => {
                 <Select
                   className="!h-14"
                   placeholder={
-                    <span className="text-black text-xl">Trailer hitch</span>
+                    <span className="text-black  ">Trailer hitch</span>
                   }
                 >
                   <Select.Option value="demo1">Demo1</Select.Option>
@@ -573,7 +684,14 @@ const SubmitListing = () => {
             </div>
             <div className="flex justify-between items-start">
               <Form.Item
-                label={<span className="font-bold text-2xl">Exterior</span>}
+                label={
+                  <span
+                    style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+                    className="font-bold  "
+                  >
+                    Exterior
+                  </span>
+                }
                 name="exterior"
                 className="flex-1"
               >
@@ -611,7 +729,14 @@ const SubmitListing = () => {
                 </Checkbox.Group>
               </Form.Item>
               <Form.Item
-                label={<span className="font-bold text-2xl">Interior</span>}
+                label={
+                  <span
+                    style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+                    className="font-bold  "
+                  >
+                    Interior
+                  </span>
+                }
                 name="interior"
                 className="flex-1"
               >
@@ -669,6 +794,7 @@ const SubmitListing = () => {
 
         <div name="type" className=" flex  gap-10 my-8">
           <div
+            style={{ fontSize: "clamp(16px, 2vw + 1rem ,30px)" }}
             onClick={() => setIsCompany(true)}
             value="company"
             className="text-3xl flex justify-center items-center gap-2  cursor-pointer"
@@ -681,6 +807,7 @@ const SubmitListing = () => {
             Company
           </div>
           <div
+            style={{ fontSize: "clamp(16px, 2vw + 1rem ,30px)" }}
             onClick={() => setIsCompany(false)}
             value="Private"
             className="text-3xl flex justify-center items-center gap-2  cursor-pointer"
@@ -694,9 +821,17 @@ const SubmitListing = () => {
           </div>
         </div>
 
-        <h1 className="text-4xl font-bold">Contact information</h1>
+        <h1
+          style={{ fontSize: "clamp(18px, 3vw + 1rem ,36px)" }}
+          className=" font-bold"
+        >
+          Contact information
+        </h1>
         <div className="h1 w-full border-t border-text-light-color my-5"></div>
-        <h1 className="text-xl font-medium mb-5">
+        <h1
+          style={{ fontSize: "clamp(12px, 1vw + 1rem ,18px)" }}
+          className=" font-medium mb-5"
+        >
           To provide you with the best offer for your car, we recommend
           uploading a few pictures of your car to us. You can find some examples
           of the angles we would like of your car.
@@ -705,7 +840,12 @@ const SubmitListing = () => {
         {isCompany ? (
           <div className="my-[10px] flex justify-between gap-5">
             <div className="flex-1">
-              <p className="text-2xl font-medium pb-2">Company Name*</p>
+              <p
+                style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+                className="  font-medium pb-2"
+              >
+                Company Name*
+              </p>
               <Form.Item
                 rules={[
                   {
@@ -719,7 +859,12 @@ const SubmitListing = () => {
               </Form.Item>
             </div>
             <div className="flex-1">
-              <p className="text-2xl font-medium pb-2">CVR Number*</p>
+              <p
+                style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+                className="  font-medium pb-2"
+              >
+                CVR Number*
+              </p>
               <Form.Item
                 rules={[
                   {
@@ -738,7 +883,12 @@ const SubmitListing = () => {
         )}
         <div className="my-[10px] flex justify-between gap-5">
           <div className="flex-1">
-            <p className="text-2xl font-medium pb-2">First Name*</p>
+            <p
+              style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+              className="  font-medium pb-2"
+            >
+              First Name*
+            </p>
             <Form.Item
               rules={[
                 {
@@ -752,7 +902,12 @@ const SubmitListing = () => {
             </Form.Item>
           </div>
           <div className="flex-1">
-            <p className="text-2xl font-medium pb-2">Last Name*</p>
+            <p
+              style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+              className="  font-medium pb-2"
+            >
+              Last Name*
+            </p>
             <Form.Item
               rules={[
                 {
@@ -768,7 +923,12 @@ const SubmitListing = () => {
         </div>
         <div className="my-[10px] flex justify-between gap-5">
           <div className="">
-            <p className="text-2xl font-medium pb-2">Postal Code*</p>
+            <p
+              style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+              className="  font-medium pb-2"
+            >
+              Postal Code*
+            </p>
             <Form.Item
               rules={[
                 {
@@ -782,7 +942,12 @@ const SubmitListing = () => {
             </Form.Item>
           </div>
           <div className="flex-1">
-            <p className="text-2xl font-medium pb-2">Addess*</p>
+            <p
+              style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+              className="  font-medium pb-2"
+            >
+              Addess*
+            </p>
             <Form.Item
               rules={[
                 {
@@ -797,7 +962,12 @@ const SubmitListing = () => {
           </div>
         </div>
         <div className="">
-          <p className="text-2xl font-medium pb-2">Phone Number*</p>
+          <p
+            style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+            className="  font-medium pb-2 "
+          >
+            Phone Number*
+          </p>
           <Form.Item
             rules={[
               {
@@ -813,7 +983,8 @@ const SubmitListing = () => {
 
         <div className="text-center">
           <button
-            className="bg-highlight-color text-white py-3 px-32 rounded-md text-center my-10 text-3xl font-medium "
+            style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+            className="bg-highlight-color text-white py-3 md:px-32 px-3 rounded-md text-center my-10  font-medium "
             htmlType="submit"
           >
             Create Listing

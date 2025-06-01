@@ -83,7 +83,7 @@ const SingleOfferCarComponent = ({ offerCar, offercarAction }) => {
 
   return (
     <div>
-      <main className="md:grid grid-cols-12  gap-4">
+      <main className="md:grid grid-cols-12  gap-4 px-10">
         {/* Left Side */}
         <section className="col-span-5">
           <OfferCarImageSlider carImages={offerCar.carImages} />

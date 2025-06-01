@@ -1,12 +1,7 @@
-"use client"
+"use client";
 import { useOfferCarListQuery } from "@/redux/api/features/privateDashboard";
 import { SearchOutlined } from "@ant-design/icons";
-import {
-  ConfigProvider,
-  Form,
-  Input,
-  Spin
-} from "antd";
+import { ConfigProvider, Form, Input, Spin } from "antd";
 import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import OfferDealerCarAcceptTable from "./OfferDealerCarAcceptTable";
@@ -27,7 +22,7 @@ const TotalDealerOfferCarPage = () => {
   };
 
   const {
-    data: purchasedCar, 
+    data: purchasedCar,
     currentData,
     isLoading,
     isFetching,
@@ -35,7 +30,6 @@ const TotalDealerOfferCarPage = () => {
   } = useOfferCarListQuery(filters);
 
   const displayedData = purchasedCar ?? currentData;
-
 
   // console.log("meta", displayedData?.data?.meta);
 
@@ -86,7 +80,6 @@ const TotalDealerOfferCarPage = () => {
     setIsServiceUserViewModalVisible(true);
   };
 
-
   if (isLoading)
     return <Spin className="flex justify-center items-center" size="large" />;
   if (!isLoading && isFetching)
@@ -103,18 +96,13 @@ const TotalDealerOfferCarPage = () => {
             <p className="text-3xl text-primary-color font-semibold">
               Offer cars
             </p>
-            <div className="flex gap-4 items-center">
-       
-            </div>
+            <div className="flex gap-4 items-center"></div>
           </div>
         </div>
-        <div
-          className="my-4 text-end me-8
-      "
-        ></div>
+      
 
         {/* Table  */}
-        <div className="px-10 pb-10">
+        <div className="px-10 py-10">
           <OfferDealerCarAcceptTable
             data={displayedData?.data?.result}
             loading={isLoading}

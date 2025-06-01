@@ -77,7 +77,7 @@ const Footer = () => {
               </a> */}
             </div>
             <h3 className="font-medium text-[20px] mb-4 mt-3">
-              Connect With Us
+              Comming soon...
             </h3>
           </div>
           <div>

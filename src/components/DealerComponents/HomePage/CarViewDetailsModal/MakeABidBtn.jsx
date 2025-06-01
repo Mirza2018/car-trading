@@ -64,7 +64,7 @@ const MakeABidBtn = ({ carid }) => {
         disabled={isBid}
         onClick={() => setBidOpen(!bidOpen)}
         style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
-        className={`   font-medium  py-2 rounded-lg  cursor-pointer  hover:animate-pulse text-white whitespace-nowrap w-44 ${
+        className={`   font-medium  py-2 rounded-lg  cursor-pointer  hover:animate-pulse text-white whitespace-nowrap md:w-44 w-36 ${
           isBid ? "bg-[#00721E]" : "bg-highlight-color "
         }`}
       >
@@ -74,7 +74,7 @@ const MakeABidBtn = ({ carid }) => {
         <Input
           required
           type="number"
-          className="!bg-[#FFDFB8] !w-[180px] transition-all"
+          className="!bg-[#FFDFB8] md:w-44 w-36 transition-all"
           name="bid"
           ref={bidRef}
           placeholder="input bid price"

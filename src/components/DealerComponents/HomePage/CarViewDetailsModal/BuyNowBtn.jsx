@@ -42,12 +42,11 @@ const BuyNowBtn = ({ price, carId, buyCar }) => {
       <button
         onClick={() => setIsBuy(true)}
         style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
-        className="bg-highlight-color text-white  font-semibold py-1  rounded-lg  cursor-pointer  hover:animate-pulse flex flex-col  items-center w-44"
+        className="bg-highlight-color text-white  font-semibold py-1  rounded-lg  cursor-pointer  hover:animate-pulse flex flex-col  items-center md:w-44 w-36"
       >
         <div className="text-start">
-
-        <p className="text-[10px] text-start">Buy Now :</p>
-        <p>{price} .kr</p>
+          <p className="text-[10px] text-start">Buy Now :</p>
+          <p>{price} .kr</p>
         </div>
       </button>
 

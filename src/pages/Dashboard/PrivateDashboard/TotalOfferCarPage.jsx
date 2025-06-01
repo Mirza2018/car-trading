@@ -100,13 +100,10 @@ const TotalOfferCarPage = () => {
      
           </div>
         </div>
-        <div
-          className="my-4 text-end me-8
-      "
-        ></div>
+       
 
         {/* Table  */}
-        <div className="px-10 pb-10">
+        <div className="px-10 py-10">
           <OfferCarAcceptTable
             data={displayedData?.data?.result}
             loading={isLoading}

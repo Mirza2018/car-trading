@@ -17,6 +17,7 @@ const OfferCarPage = () => {
       <div className="max-w-[1200px] md:mx-20 mx-4">
         <div className=" bg-base-color  mx-auto border border-secondary-color rounded mt-10 w-full my-5 grid grid-cols-2">
           <p
+            style={{ fontSize: "clamp(14px, 1vw + 1rem ,24px)" }}
             onClick={() => setIsDeal(true)}
             className={`text-2xl font-bold cursor-pointer m-1 rounded text-center py-1  ${
               isDeal ? "bg-highlight-color text-white " : ""
@@ -25,8 +26,9 @@ const OfferCarPage = () => {
             Deal
           </p>
           <p
+            style={{ fontSize: "clamp(14px, 1vw + 1rem ,24px)" }}
             onClick={() => setIsDeal(false)}
-            className={`text-2xl font-bold cursor-pointer  m-1 rounded text-center py-1 ${
+            className={` font-bold cursor-pointer  m-1 rounded text-center py-1 ${
               isDeal ? "" : "bg-highlight-color text-white "
             }`}
           >
