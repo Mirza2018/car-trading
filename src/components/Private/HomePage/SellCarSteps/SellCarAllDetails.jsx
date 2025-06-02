@@ -5,7 +5,7 @@ import {
 } from "@/redux/api/features/carPrivate";
 import {
   clearCarLicenseInfo,
-  setCarLicenseInfo, 
+  setCarLicenseInfo,
 } from "@/redux/slices/carInfoSlice";
 
 import { Checkbox, Form, Input, InputNumber, Radio, Upload } from "antd";
@@ -62,9 +62,6 @@ const SellCarAllDetails = () => {
     trigger({ license: inputValue });
   };
 
-
-
-  
   const normFileEvent = (e) => {
     if (Array.isArray(e)) {
       return e;
@@ -79,7 +76,6 @@ const SellCarAllDetails = () => {
       console.log(`${info.file.name} file upload failed.`);
     }
   };
-
 
   const onFinishFailed = ({ errorFields }) => {
     toast.error(errorFields[0]?.errors[0], {
@@ -96,26 +92,30 @@ const SellCarAllDetails = () => {
         ...values,
         registrationNumber: carData?.registration,
         carCategory: carData?.type,
-        milage: carData?.last_inspection_odometer || "0" ,
+        milage: carData?.last_inspection_odometer || 0,
         firstRegistrationDate: carData?.first_registration_date || "",
         chassisNumber: carData?.vin,
         inspectionDate: carData?.last_inspection_date || "",
         brand: carData?.brand,
         model: carData?.model,
-        modelYear: carData?.model_year || "000",
+        modelYear: carData?.model_year || 0,
         variant: carData?.version,
         color: carData?.color?.name,
-        fuelType: carData?.fuel_type||"",
+        fuelType: carData?.fuel_type || 0,
         engineSize: carData?.engine_displacement,
         enginePerformance: carData?.engine_power,
         fuelConsumption: carData?.fuel_efficiency,
-        euroStandard: carData?.type_approval_code,
+        euroStandard: carData?.type_approval_code || "",
         numberPlates: carData?.numberPlates,
         gearBox: "Not Available",
       };
 
       delete data.images;
 
+      if (!isCompany) {
+        delete data.cvrNumber;
+        delete data.companyName;
+      }
       const formData = new FormData();
 
       // Append non-image data as a JSON string under the 'data' key
@@ -139,8 +139,8 @@ const SellCarAllDetails = () => {
       });
 
       // Reset form fields on success
-      navigate.push("/");
       form.resetFields();
+      navigate.push("/");
     } catch (error) {
       console.error("Error submitting to cardetails API:", error);
       if (error?.data?.message.includes("E11000")) {
@@ -396,7 +396,7 @@ const SellCarAllDetails = () => {
             style={{ fontSize: "clamp(18px, 3vw + 1rem ,36px)" }}
             onClick={() => setIsCompany(true)}
             value="companyName"
-            className=" flex justify-center items-center gap-2  cursor-pointer"
+            className=" flex justify-center items-center gap-2 font-medium cursor-pointer"
           >
             <div
               className={`w-5 aspect-square rounded-full border-4 border-white
@@ -409,7 +409,7 @@ const SellCarAllDetails = () => {
             style={{ fontSize: "clamp(18px, 3vw + 1rem ,36px)" }}
             onClick={() => setIsCompany(false)}
             value="Private"
-            className=" flex justify-center items-center gap-2  cursor-pointer"
+            className=" flex justify-center items-center gap-2 font-medium cursor-pointer"
           >
             <div
               className={`w-5 aspect-square rounded-full border-4 border-white

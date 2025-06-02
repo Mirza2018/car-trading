@@ -147,7 +147,7 @@ const DealerCarTableDetails = ({ car }) => {
           <div className="flex justify-between border-b border-text-light-color">
             <p>Gearbox</p>
             <p>Manual</p>
-          </div>
+          </div> 
           <div className="flex justify-between border-b border-text-light-color">
             <p>Fuel Type</p>
             <p>Petrol</p>

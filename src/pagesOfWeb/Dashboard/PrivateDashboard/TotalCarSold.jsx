@@ -39,22 +39,7 @@ const TotalCarSold = () => {
     setOpennCarSee(true);
   };
 
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/data/privateCarSellList.json");
-        setData(response?.data); // Make sure this is an array
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
 
-    fetchData();
-  }, []);
-  console.log(data, "data");
 
   return (
     <div

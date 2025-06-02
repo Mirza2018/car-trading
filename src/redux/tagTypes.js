@@ -7,7 +7,9 @@ export const tagTypes = {
   message: "Message",
   notification: "Notification",
   notificationCount: "notificationCount",
-
+  sellCar: "SellCar",
+  contactPaper: "ContactPaper",
+  purchasedCar: "purchasedCar",
   product: "Product",
   shelter: "Shelter",
   userProfile: "UserProfile",
@@ -23,7 +25,9 @@ export const tagTypesList = [
   tagTypes.message,
   tagTypes.notification,
   tagTypes.notificationCount,
-
+  tagTypes.sellCar,
+  tagTypes.contactPaper,
+  tagTypes.purchasedCar,
   tagTypes.product,
   tagTypes.shelter,
   tagTypes.userProfile,

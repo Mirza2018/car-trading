@@ -10,7 +10,7 @@ export const orderTransport = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags: tagTypes.order,
+      providesTags: [tagTypes.order],
     }),
 
     createOrderTransport: build.mutation({
@@ -23,7 +23,7 @@ export const orderTransport = baseApi.injectEndpoints({
           body: transportDetails,
         };
       },
-      invalidatesTags: tagTypes.order,
+      invalidatesTags: [tagTypes.order, tagTypes.purchasedCar],
     }),
 
     SendMailOrderTransport: build.mutation({
@@ -35,7 +35,7 @@ export const orderTransport = baseApi.injectEndpoints({
           body: transportDetails,
         };
       },
-      invalidatesTags: tagTypes.order,
+      invalidatesTags: [tagTypes.purchasedCar, tagTypes.offer],
     }),
 
     //end
@@ -45,5 +45,5 @@ export const orderTransport = baseApi.injectEndpoints({
 export const {
   useCreateOrderTransportMutation,
   useSendMailOrderTransportMutation,
-  useGetOrderTransportQuery
+  useGetOrderTransportQuery,
 } = orderTransport;

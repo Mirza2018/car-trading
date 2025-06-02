@@ -8,6 +8,7 @@ import { SocketContext } from "@/utils/SocketContext";
 import { BellFilled } from "@ant-design/icons";
 import { Badge, Dropdown } from "antd";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -19,7 +20,7 @@ const Notification = () => {
   const { count } = useContext(SocketContext);
   const [notificationRead] = useNotificationActionMutation();
   const userInfo = useSelector((state) => state.auth.userInfo);
-
+  const navigate = useRouter();
   // Sync socket and RTK Query data
   useEffect(() => {
     // console.log("Socket count:", count);
@@ -43,8 +44,9 @@ const Notification = () => {
         action: "markAllAsRead",
       }).unwrap();
       console.log("notificationRead response:", response);
-      setIsNewNotificationCount(0); // Optimistically set to 0
-      refetchCount(); // Force refetch to ensure sync
+      setIsNewNotificationCount(0);
+      refetchCount();
+      navigate.push("/dashboard/bid-car");
     } catch (error) {
       console.error("Failed to mark notifications as read:", error);
     }
@@ -71,7 +73,7 @@ const Notification = () => {
       {userInfo?.role === "private_user" ? (
         <p
           onClick={handleNotificationRead}
-          href={`/dashboard/bid-car`}
+          // href={`/dashboard/bid-car`}
           className="w-2/3 mx-auto bg-secondary-color !text-primary-color rounded h-8 py-1 cursor-pointer"
         >
           See all

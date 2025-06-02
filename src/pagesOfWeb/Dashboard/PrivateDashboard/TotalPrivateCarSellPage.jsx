@@ -19,7 +19,7 @@ const TotalPrivateCarSellPage = () => {
     setFilters((prev) => ({
       ...prev,
       page,
-      limit,
+      limit, 
     }));
   };
 

@@ -1,27 +1,8 @@
-import { clearSignUpToken } from "@/redux/slices/authSlice";
-import { baseApi } from "../baseApi";
 import { tagTypes } from "@/redux/tagTypes";
+import { baseApi } from "../baseApi";
 
 export const privateDashboard = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    // getCarInfo: build.query({
-    //   query: ({ license }) => {
-    //     console.log(license);
-    //     return {
-    //       url: `/car/car_info?carNumber=${license}`,
-    //       method: "GET",
-    //     };
-    //   },
-    // }),
-    // saleCar: build.mutation({
-    //   query: (carData) => {
-    //     return {
-    //       url: `/car/sale_car`,
-    //       method: "POST",
-    //       body: carData,
-    //     };
-    //   },
-    // }),
     sellCar: build.query({
       query: (params) => {
         console.log(params);
@@ -31,6 +12,7 @@ export const privateDashboard = baseApi.injectEndpoints({
           params,
         };
       },
+      providesTags: [tagTypes.sellCar],
     }),
 
     offerCar: build.query({
@@ -46,7 +28,7 @@ export const privateDashboard = baseApi.injectEndpoints({
 
     offerCarAction: build.mutation({
       query: (offerCar) => {
-        console.log(offerCar, "i am fro");
+        console.log(offerCar, "i am from");
         return {
           url: `/offer_car/action`,
           method: "PATCH",
@@ -62,7 +44,7 @@ export const privateDashboard = baseApi.injectEndpoints({
         return {
           url: `/bid`,
           method: "GET",
-          params
+          params,
         };
       },
       providesTags: [tagTypes.bid],
@@ -78,7 +60,7 @@ export const privateDashboard = baseApi.injectEndpoints({
           body: bidCar,
         };
       },
-      invalidatesTags: [tagTypes.bid],
+      invalidatesTags: [tagTypes.bid, tagTypes.sellCar],
     }),
 
     offerCarList: build.query({
@@ -90,7 +72,7 @@ export const privateDashboard = baseApi.injectEndpoints({
           params,
         };
       },
-      // providesTags: [tagTypes.bid],
+      providesTags: [tagTypes.offer],
     }),
 
     // end

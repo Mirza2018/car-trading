@@ -1,3 +1,4 @@
+import { tagTypes } from "@/redux/tagTypes";
 import { baseApi } from "../baseApi";
 
 export const carPrivate = baseApi.injectEndpoints({
@@ -20,6 +21,7 @@ export const carPrivate = baseApi.injectEndpoints({
           body: carData,
         };
       },
+      invalidatesTags: [tagTypes.sellCar],
     }),
 
     submitListingCreate: build.mutation({
@@ -34,4 +36,9 @@ export const carPrivate = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetCarInfoQuery, useLazyGetCarInfoQuery,useSaleCarMutation,useSubmitListingCreateMutation } = carPrivate;
+export const {
+  useGetCarInfoQuery,
+  useLazyGetCarInfoQuery,
+  useSaleCarMutation,
+  useSubmitListingCreateMutation,
+} = carPrivate;

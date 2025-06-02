@@ -30,7 +30,8 @@ const Navbar = () => {
   // const userInfo = useSelector((state) => state.auth.userInfo);
   const userCookie = cookies.get("car_trading_accessToken");
   if (!userCookie) {
-    navigate.push("/sign-in");
+    // navigate.push("/sign-in");
+    userInfo={role:false}
   } else {
     userInfo = jwtDecode(userCookie);
   }

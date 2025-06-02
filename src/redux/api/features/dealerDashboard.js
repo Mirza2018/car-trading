@@ -12,7 +12,7 @@ export const dealerDashboard = baseApi.injectEndpoints({
           params,
         };
       },
-      // providesTags: [tagTypes.offer],
+      providesTags: [tagTypes.purchasedCar],
     }),
     contactPaper: build.query({
       query: (id) => {
