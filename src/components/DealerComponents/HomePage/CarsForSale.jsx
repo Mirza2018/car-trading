@@ -181,7 +181,7 @@ const CarsForSale = ({
               {car?.maxBidAmount ? (
                 <div className="bg-base-color border border-secondary-color rounded-full aspect-square flex flex-col justify-center items-center px-2 ">
                   <h1 className="text-xl font-bold px-1">
-                    {car?.maxBidAmount} DKK
+                    {car?.maxBidAmount} .kr
                   </h1>
                   <p className=" text-center text-sm">
                     Maximum price <br /> achieved

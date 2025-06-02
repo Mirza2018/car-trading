@@ -50,7 +50,7 @@ export const carDealer = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags: [tagTypes.user],
+      providesTags: [tagTypes.sellCarList],
     }),
 
     submitListing: build.query({
@@ -81,6 +81,7 @@ export const carDealer = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: [tagTypes.sellCarPrivate],
     }),
 
     offerCarDeal: build.mutation({
@@ -91,6 +92,7 @@ export const carDealer = baseApi.injectEndpoints({
           body: offerCar,
         };
       },
+      invalidatesTags: [tagTypes.sellCarPrivate],
     }),
 
     buyCar: build.mutation({
@@ -111,7 +113,7 @@ export const carDealer = baseApi.injectEndpoints({
           body: bidCreate,
         };
       },
-      invalidatesTags: [tagTypes.bid],
+      invalidatesTags: [tagTypes.bid, tagTypes.sellCarList],
     }),
 
     //end
