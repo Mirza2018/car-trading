@@ -45,13 +45,18 @@ const SubmitListing = () => {
 
   const onFinsh = async (values) => {
     values.models = selectedCar;
-    console.log("main value", values);
-    const toastId = toast.loading("Car details is submitting..");
-    console.log(values);
 
-    // return;
+    const toastId = toast.loading("Car details is submitting..");
+
+    const data = { ...values };
+
+    delete data.city;
+    delete data.street;
+    data.city = `${values.city}, ${values.street}`;
+    console.log(data);
+
     try {
-      const res = await submitListingData(values).unwrap();
+      const res = await submitListingData(data).unwrap();
       console.log(res);
       toast.success(res?.data?.message || "Listing created successfully", {
         id: toastId,
@@ -921,11 +926,30 @@ const SubmitListing = () => {
             </Form.Item>
           </div>
         </div>
-        <div className="my-[10px] flex justify-between gap-5">
-          <div className="">
+        <div className="my-[10px] grid md:grid-cols-3 grid-cols-2 gap-5">
+          <div className=" ">
             <p
               style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
-              className="  font-medium pb-2"
+              className=" font-medium pb-2"
+            >
+              Street Name*
+            </p>
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your Street Name!",
+                },
+              ]}
+              name={`street`}
+            >
+              <Input placeholder="Street Name" className="py-3" />
+            </Form.Item>
+          </div>
+          <div className=" ">
+            <p
+              style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+              className=" font-medium pb-2"
             >
               Postal Code*
             </p>
@@ -933,7 +957,7 @@ const SubmitListing = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please inptut Postal Code",
+                  message: "Please input your postal code!",
                 },
               ]}
               name={`postalCode`}
@@ -941,26 +965,28 @@ const SubmitListing = () => {
               <Input placeholder="Postal Code" className="py-3" />
             </Form.Item>
           </div>
-          <div className="flex-1">
+
+          <div className="col-span-2 md:col-span-1">
             <p
               style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
-              className="  font-medium pb-2"
+              className=" font-medium pb-2"
             >
-              Addess*
+              City*
             </p>
             <Form.Item
               rules={[
                 {
                   required: true,
-                  message: "Please inptut address",
+                  message: "Please input city!",
                 },
               ]}
               name={`city`}
             >
-              <Input placeholder="Address" className="py-3" />
+              <Input placeholder="City" className="py-3" />
             </Form.Item>
           </div>
         </div>
+
         <div className="">
           <p
             style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}

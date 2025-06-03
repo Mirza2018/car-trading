@@ -31,7 +31,7 @@ export const notifcationApi = baseApi.injectEndpoints({
         url: `/notification/action`,
         method: "PATCH",
       }),
-      invalidatesTags: [tagTypes.notificationCount, tagTypes.notification],
+      // invalidatesTags: [tagTypes.notificationCount, tagTypes.notification],
     }),
   }),
 });

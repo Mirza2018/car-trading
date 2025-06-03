@@ -45,7 +45,7 @@ const PrivateCarSellTable = ({
       render: (text) => (
         <div>
           <p className="whitespace-nowrap">
-            {text?.isBid ? text.bidPrice : text.expectedPrice}Dkk
+            {text?.isBid ? text?.bidPrice : text?.expectedPrice}Dkk
           </p>
         </div>
       ),
@@ -58,7 +58,7 @@ const PrivateCarSellTable = ({
         <div>
           <p className="whitespace-nowrap">
             {/* {text?.expectedPrice * 0.25} */}
-            {text.isBid ? text.bidPrice * 0.25 : text.expectedPrice * 0.25} DKK
+            {text?.isBid ? text?.bidPrice * 0.25 : text?.expectedPrice * 0.25} DKK
           </p>
         </div>
       ),

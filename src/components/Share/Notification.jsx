@@ -38,18 +38,10 @@ const Notification = () => {
     }
   }, [count, allNotificationCount, refetchCount]);
 
-  const handleNotificationRead = async () => {
-    try {
-      const response = await notificationRead({
-        action: "markAllAsRead",
-      }).unwrap();
-      console.log("notificationRead response:", response);
-      setIsNewNotificationCount(0);
-      refetchCount();
-      navigate.push("/dashboard/bid-car");
-    } catch (error) {
-      console.error("Failed to mark notifications as read:", error);
-    }
+  const handleNotificationRead = () => {
+    setIsNewNotificationCount(0);
+    notificationRead();
+    navigate.push("/dashboard/bid-car");
   };
 
   const notificationMenu = (

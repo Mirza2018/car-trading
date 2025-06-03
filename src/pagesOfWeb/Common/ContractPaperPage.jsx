@@ -1,28 +1,23 @@
 "use client";
-import dynamic from "next/dynamic";
-import Image from "next/image";
-import React, { useState, useEffect, useRef } from "react";
-import { FaShare } from "react-icons/fa";
-import { FaRegSquareCheck } from "react-icons/fa6";
-import { IoIosArrowDown } from "react-icons/io";
-import { LiaQuestionCircleSolid } from "react-icons/lia";
-import { TiPrinter } from "react-icons/ti";
-import { RxCross2 } from "react-icons/rx";
 import { AllImages } from "@/assets/AllImages";
-import { Checkbox, Input, InputNumber, Radio, Space, Spin } from "antd";
-import { useParams, useRouter } from "next/navigation";
+import { getImageUrl } from "@/helpers/config/envConfig";
 import {
   useContactPaperQuery,
   useUpdateContactPaperMutation,
 } from "@/redux/api/features/contract";
+import { Checkbox, Radio, Space, Spin } from "antd";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import { useParams, useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { LiaQuestionCircleSolid } from "react-icons/lia";
 import { toast } from "sonner";
-import { getImageUrl } from "@/helpers/config/envConfig";
 
 // Dynamically import SignatureModal with SSR disabled
 const SignatureModal = dynamic(
   () => import("@/components/DealerComponents/FinalNote.jsx/SignatureModal"),
   { ssr: false }
-);
+); 
 
 const ContractPaperPage = () => {
   const params = useParams();
@@ -37,7 +32,7 @@ const ContractPaperPage = () => {
   const [contractPaper] = useUpdateContactPaperMutation();
 
   const displayedData = data ?? currentData;
-  console.log(displayedData?.data?.signatureAsDealer);
+  // console.log(displayedData?.data?.signatureAsDealer);
   let carPrice;
   if (displayedData?.data?.car?.isBid) {
     carPrice = displayedData?.data?.car?.bidPrice;
@@ -60,6 +55,7 @@ const ContractPaperPage = () => {
   const [isValueIncressed, setIsValueIncreased] = useState(
     displayedData?.data?.isMoms
   );
+console.log(displayedData);
 
   // Access localStorage only on the client side for initial load
   useEffect(() => {
@@ -154,172 +150,252 @@ const ContractPaperPage = () => {
             <div className="max-w-[1350px] mx-auto md:my-10 ">
               <h1
                 style={{ fontSize: "clamp(20px, 3vw + 1rem ,60px)" }}
-                className="font-bold "
+                className="font-bold ms-2"
               >
-                Final note
+                SLUTSEDDEL
               </h1>
               {/* <pre>{JSON.stringify(displayedData.data, null, 4)}</pre> */}
+              <section className="mx-6 my-10 ">
+                <h1
+                  style={{ fontSize: "clamp(18px, 3vw + 1rem ,48px)" }}
+                  className="text-highlight-color  font-bold mb-3 mt-7"
+                >
+                  SÆLGER & KØBER
+                </h1>
+                <main
+                  // style={{ fontSize: "clamp(18px, 3vw + 1rem ,20px)" }}
+                  className="flex flex-col lg:grid lg:grid-cols-2 gap-0 "
+                >
+                  <section className="flex flex-col">
+                    {/* <h1
+                  style={{ fontSize: "clamp(18px, 3vw + 1rem ,48px)" }}
+                  className="text-highlight-color  font-bold mb-3 mt-7"
+                >
+                  Seller
+                </h1> */}
+
+                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+                      <p className="text-xl font-bold">SELLER</p>
+                      <p></p>
+                    </div>
+
+                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+                      <p className="ps-2">First name</p>
+                      <p className="border-s border-secondary-color ps-2 ">
+                        {displayedData?.data?.company?.first_name &&
+                          displayedData?.data?.company?.first_name}
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+                      <p className="ps-2">Surname</p>
+                      <p className="border-s border-secondary-color ps-2">
+                        {displayedData?.data?.company?.last_name &&
+                          displayedData?.data?.company?.last_name}
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+                      <p className="ps-2">City,Street Name</p>
+                      <p className="border-s border-secondary-color ps-2 overflow-x-scroll hide-x-scrollbar">
+                        {displayedData?.data?.company?.city &&
+                          displayedData?.data?.company?.city}
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+                      <p className="ps-2">Postal code</p>
+                      <p className="border-s border-secondary-color ps-2">
+                        {displayedData?.data?.company?.postCode &&
+                          displayedData?.data?.company?.postCode}
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+                      <p className="ps-2">Telephone</p>
+                      <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+                        {displayedData?.data?.company?.phoneNumber &&
+                          displayedData?.data?.company?.phoneNumber}
+                      </p>
+                    </div>
+                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color leading-10">
+                      <p className="ps-2">Private person / Company CVR</p>
+                      <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+                        {displayedData?.data?.company?.cvrNumber
+                          ? displayedData?.data?.company?.cvrNumber
+                          : "Private "}
+                      </p>
+                    </div>
+                  </section>
+
+                  {/* Buyer */}
+                  <section className="flex flex-col">
+                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+                      <p className="text-xl font-bold ms-2">BUYER</p>
+                      <p></p>
+                    </div>
+
+                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+                      <p className="ps-2">First name</p>
+                      <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+                        {displayedData?.data?.dealer?.first_name &&
+                          displayedData?.data?.dealer?.first_name}
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+                      <p className="ps-2">Surname</p>
+                      <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+                        {displayedData?.data?.dealer?.last_name &&
+                          displayedData?.data?.dealer?.last_name}
+                      </p>
+                    </div>
+
+                    {displayedData?.data?.dealer?.email && (
+                      <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color leading-10">
+                        <p className="ps-2">Email</p>
+                        <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+                          {displayedData?.data?.dealer?.email}
+                        </p>
+                      </div>
+                    )}
+                  </section>
+                </main>
+              </section>
+              <section className="mx-6 my-10 ">
+                <h1
+                  style={{ fontSize: "clamp(18px, 3vw + 1rem ,48px)" }}
+                  className="text-highlight-color  font-bold mb-3 mt-7"
+                >
+                  BILEN
+                </h1>
+                <main className="flex flex-col lg:grid lg:grid-cols-2 gap-0 ">
+                  <section className="flex flex-col">
+                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+                      <p className="ps-2"> Model and brand</p>
+                      <p className="border-s border-secondary-color ps-2">
+                        {displayedData?.data?.carModel?.brand}
+                        {displayedData?.data?.carModel?.model}
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+                      <p className="ps-2">Car type</p>
+                      <p className="border-s border-secondary-color ps-2">
+                        {displayedData?.data?.car?.carCategory}
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+                      <p className="ps-2">Kilometer</p>
+                      <p className="border-s border-secondary-color ps-2 overflow-x-scroll hide-x-scrollbar">
+                        {displayedData?.data?.car?.noOfKmDriven} KM
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color leading-10">
+                      <p className="ps-2">Fuel</p>
+                      <p className="border-s border-secondary-color ps-2">
+                        {displayedData?.data?.carModel?.fuelType}
+                      </p>
+                    </div>
+                  </section>
+
+                  {/* Buyer */}
+                  <section className="flex flex-col">
+                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+                      <p className="ps-2">Chassis number</p>
+                      <p className="border-s border-secondary-color ps-2">
+                        {displayedData?.data?.car?.chassisNumber}
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+                      <p className="ps-2">Year</p>
+                      <p className="border-s border-secondary-color ps-2 overflow-x-scroll  hide-x-scrollbar">
+                        {displayedData?.data?.carModel?.modelYear > 0 &&
+                          displayedData?.data?.carModel?.modelYear}
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+                      <p className="ps-2">Registration number</p>
+                      <p className="border-s border-secondary-color ps-2">
+                        {displayedData?.data?.car?.registrationNumber}
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color leading-10">
+                      <p className="ps-2">Inspection Date</p>
+                      <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+                        {inspectionDate}
+                      </p>
+                    </div>
+                  </section>
+                </main>
+              </section>
+
+              {/* Re-registration */}
               <section className="flex flex-col mx-5">
                 <h1
                   style={{ fontSize: "clamp(18px, 3vw + 1rem ,48px)" }}
-                  className="text-highlight-color  font-bold my-5"
+                  className="text-highlight-color  font-bold mb-3 py-3"
                 >
-                  With
+                  OMREGISTRERING/AFMELDING
                 </h1>
-                <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color p-3">
-                  <p className="overflow-x-scroll hide-x-scrollbar">
-                    Model and brand
-                  </p>
-                  <p className="overflow-x-scroll hide-x-scrollbar">
-                    {displayedData?.data?.carModel?.brand}{" "}
-                    {displayedData?.data?.carModel?.model}
-                  </p>
-                </div>
-                <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color p-3">
-                  <p>Car Category</p>
-                  <p className="overflow-x-scroll hide-x-scrollbar">
-                    {displayedData?.data?.car?.carCategory}
-                  </p>
-                </div>
-                {displayedData?.data?.carModel?.modelYear > 0 && (
-                  <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color p-3">
-                    <p>Year</p>
-                    <p>{displayedData?.data?.carModel?.modelYear}</p>
-                  </div>
-                )}
-
-                <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color p-3">
-                  <p>Kilometer</p>
-                  <p>{displayedData?.data?.car?.noOfKmDriven} KM</p>
-                </div>
-                <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color p-3">
-                  <p className="overflow-x-scroll hide-x-scrollbar">
-                    Registration number
-                  </p>
-                  <p>{displayedData?.data?.car?.registrationNumber}</p>
-                </div>
-                <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color p-3">
-                  <p>Fuel</p>
-                  <p>{displayedData?.data?.carModel?.fuelType}</p>
-                </div>
-                <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color p-3">
-                  <p className="overflow-x-scroll hide-x-scrollbar">
-                    The condition of the car
-                  </p>
-                  <p className="overflow-x-scroll hide-x-scrollbar">
-                    {displayedData?.data?.car?.condition}
-                  </p>
-                </div>
-                <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color p-3">
-                  <p>Inspection Date</p>
-                  <p className="overflow-x-scroll hide-x-scrollbar">
-                    {inspectionDate}
-                  </p>
+                <div className="border rounded-md font-medium border-secondary-color px-3 py-9 flex flex-col gap-9">
+                  <Radio.Group
+                    // onChange={onChange}
+                    onChange={onChange}
+                    // value={registrationValue}
+                    value={Number(
+                      displayedData?.data?.reRegistrationDeRegistrationView
+                    )}
+                    name="registration"
+                    style={{ width: "100%" }}
+                  >
+                    <Space
+                      // className="flex  items-start justify-between  w-full"
+                      direction="vertical"
+                    >
+                      <Radio
+                        // className="flex flex-row-reverse justify-between w-full"
+                        value={1}
+                      >
+                        Køber omregistrerer/afmelder bilen inden for 4 hverdage
+                      </Radio>
+                      <Radio
+                        // className="flex flex-row-reverse justify-between w-full"
+                        value={2}
+                      >
+                        Køber og sælger omregistrerer sammen bilen
+                      </Radio>
+                      <Radio
+                        value={3}
+                        // className="flex flex-row-reverse justify-between"
+                      >
+                        Sælger afmelder bilen og afleverer nummerplader
+                      </Radio>
+                      <Radio
+                        value={4}
+                        // className="flex flex-row-reverse justify-between"
+                      >
+                        Bilen er allerede afmeldt
+                      </Radio>
+                    </Space>
+                  </Radio.Group>
                 </div>
               </section>
 
-              <main className="flex flex-col lg:grid lg:grid-cols-2 gap-0 mx-6 my-10 ">
-                <section className="flex flex-col">
-                  <h1
-                    style={{ fontSize: "clamp(18px, 3vw + 1rem ,48px)" }}
-                    className="text-highlight-color  font-bold mb-3 mt-7"
-                  >
-                    Seller
-                  </h1>
-
-                  {displayedData?.data?.company?.first_name && (
-                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color p-3">
-                      <p>First name</p>
-                      <p>{displayedData?.data?.company?.first_name}</p>
-                    </div>
-                  )}
-
-                  {displayedData?.data?.company?.last_name && (
-                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color p-3">
-                      <p>Surname</p>
-                      <p>{displayedData?.data?.company?.last_name}</p>
-                    </div>
-                  )}
-                  {displayedData?.data?.company?.companyName && (
-                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color p-3">
-                      <p>Company Name</p>
-                      <p className="overflow-x-scroll  hide-x-scrollbar">
-                        {displayedData?.data?.company?.companyName}
-                      </p>
-                    </div>
-                  )}
-
-                  {displayedData?.data?.company?.city && (
-                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color p-3">
-                      <p>City</p>
-                      <p className="overflow-x-scroll hide-x-scrollbar">
-                        {displayedData?.data?.company?.city}
-                      </p>
-                    </div>
-                  )}
-
-                  {displayedData?.data?.company?.postCode && (
-                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color p-3">
-                      <p>Postal code</p>
-                      <p>{displayedData?.data?.company?.postCode}</p>
-                    </div>
-                  )}
-
-                  {displayedData?.data?.company?.privateUser?.email && (
-                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color p-3">
-                      <p>E-mail</p>
-                      <p className="overflow-x-scroll hide-x-scrollbar">
-                        <p>{displayedData?.data?.privateUser?.email}</p>
-                      </p>
-                    </div>
-                  )}
-
-                  {displayedData?.data?.company?.phoneNumber && (
-                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color p-3">
-                      <p>Telephone</p>
-                      <p className="overflow-x-scroll  hide-x-scrollbar">
-                        {displayedData?.data?.company?.phoneNumber}
-                      </p>
-                    </div>
-                  )}
-                </section>
-                <section className="flex flex-col">
-                  <h1
-                    style={{ fontSize: "clamp(18px, 3vw + 1rem ,48px)" }}
-                    className="text-highlight-color  font-bold my-5"
-                  >
-                    Buyer
-                  </h1>
-                  {displayedData?.data?.dealer?.first_name && (
-                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color p-3">
-                      <p>First name</p>
-                      <p>{displayedData?.data?.dealer?.first_name}</p>
-                    </div>
-                  )}
-
-                  {displayedData?.data?.dealer?.last_name && (
-                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color p-3">
-                      <p>Surname</p>
-                      <p>{displayedData?.data?.dealer?.last_name}</p>
-                    </div>
-                  )}
-                  {displayedData?.data?.dealer?.email && (
-                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color p-3">
-                      <p>Email</p>
-                      <p>{displayedData?.data?.dealer?.email}</p>
-                    </div>
-                  )}
-                </section>
-              </main>
               {/* Price */}
               <section className="flex flex-col mx-5">
-                <div
+                {/* <div
                   style={{ fontSize: "clamp(18px, 3vw + 1rem ,48px)" }}
                   className="text-highlight-color font-bold mb-3 py-3"
                 >
                   Price
-                </div>
-                <div className="border rounded-md font-medium border-secondary-color px-3 py-9 flex flex-col gap-9">
+                </div> */}
+                <div className=" rounded-md font-medium border-secondary-color px-3 py-9 flex flex-col gap-9">
                   <div className="flex justify-between items-center w-full gap-5 flex-wrap">
                     <div className="bg-base-color py-2 border border-highlight-color rounded-md flex items-center gap-5 px-5 flex-wrap">
                       <h1
@@ -351,11 +427,11 @@ const ContractPaperPage = () => {
                     </div>
                     <p className="bg-base-color px-8 py-2 border border-secondary-color rounded-md">
                       {isValueIncressed
-                        ? `${carPrice + carPrice * 0.25} DKK`
-                        : `${carPrice} DKK`}
+                        ? `${carPrice + carPrice * 0.25} .kr`
+                        : `${carPrice} .kr`}
                     </p>
                   </div>
-                  <div className="flex justify-between items-center w-full gap-5 flex-wrap">
+                  {/* <div className="flex justify-between items-center w-full gap-5 flex-wrap">
                     <h1>
                       The deal is signed and completed before inspection. The
                       buyer undertakes to pay the agreed amount upon collection
@@ -365,34 +441,37 @@ const ContractPaperPage = () => {
                         ref={agrimentRef}
                       ></Checkbox>
                     </h1>
-                    {/* <div>
-                  <FaRegSquareCheck className="text-xl text-highlight-color" />
-                </div> */}
-                  </div>
-                  <div className="flex justify-between items-start w-full gap-5  flex-wrap">
+                  </div> */}
+
+                  {/* <div className="flex justify-between items-start w-full gap-5  flex-wrap">
                     <h1 className="flex-1">
                       It has been agreed that the buyer pays a deposit to the
                       seller as security for the transaction. The remaining
                       amount is paid upon handover of the car. The deposit
                       amounts to DKK
                     </h1>
-                    {/* <InputNumber
-                  defaultValue={displayedData?.data?.advancedPayment}
-                  onChange={(e) => setAdvanceAmount(e)}
-                  name="advancedPayment"
-                  ref={advancedRef}
-                  suffix="DKK"
-                  className=" !w-40"
-                /> */}
+
                     <p className="bg-base-color border border-secondary-color py-1 px-3 rounded-lg">
                       {displayedData?.data?.advancedPayment} DKK
                     </p>
+                  </div> */}
+
+                  <div className="flex justify-between items-start w-full gap-5  flex-wrap  border-secondary-color border p-2">
+                    <h1 className="flex-1">Afslag ved hurtig handel (DKK)</h1>
+
+                    <p className="bg-base-color border border-secondary-color py-1 px-3 rounded-lg">
+                      {displayedData?.data?.advancedPayment} .kr
+                    </p>
                   </div>
+
+                  <h1
+                    style={{ fontSize: "clamp(24px, 3vw + 1rem ,32px)" }}
+                    className="text-highlight-color  font-bold  "
+                  >
+                    HANDEL
+                  </h1>
                   <div className="flex justify-between items-start w-full gap-5  flex-wrap">
-                    <h1>
-                      The remaining amount, which is paid out at the time of
-                      transfer, is
-                    </h1>
+                    <h1>Samlet købesum (DKK)</h1>
                     <p className="bg-base-color px-2 py-2 border border-secondary-color rounded-md ">
                       {carPrice ? (
                         <>
@@ -415,77 +494,56 @@ const ContractPaperPage = () => {
                       )}
                     </p>
                   </div>
-                  <div className="flex justify-between items-center w-full gap-5">
-                    <h1>
-                      *The buyer is obliged to pay the agreed amount at the time
-                      of transfer.
-                    </h1>
-                  </div>
-                </div>
-              </section>
-              {/* Re-registration */}
-              <section className="flex flex-col mx-5">
-                <h1
-                  style={{ fontSize: "clamp(18px, 3vw + 1rem ,48px)" }}
-                  className="text-highlight-color  font-bold mb-3 py-3"
-                >
-                  Re-registration/de-registration view
-                </h1>
-                <div className="border rounded-md font-medium border-secondary-color px-3 py-9 flex flex-col gap-9">
-                  <Radio.Group
-                    // onChange={onChange}
-                    onChange={onChange}
-                    // value={registrationValue}
-                    value={Number(
-                      displayedData?.data?.reRegistrationDeRegistrationView
-                    )}
-                    name="registration"
-                    style={{ width: "100%" }}
-                  >
-                    <Space
-                      // className="flex  items-start justify-between  w-full"
-                      direction="vertical"
+                  <section className="flex flex-col">
+                    <h1
+                      style={{ fontSize: "clamp(24px, 3vw + 1rem ,32px)" }}
+                      className="text-highlight-color  font-bold mb-3 py-3"
                     >
-                      <Radio
-                        // className="flex flex-row-reverse justify-between w-full"
-                        value={1}
-                      >
-                        Køber omregistrerer/afmelder bilen inden for 4 hverdage*
-                      </Radio>
-                      <Radio
-                        // className="flex flex-row-reverse justify-between w-full"
-                        value={2}
-                      >
-                        Buyer and seller re-register the car together
-                      </Radio>
-                      <Radio
-                        value={3}
-                        // className="flex flex-row-reverse justify-between"
-                      >
-                        The seller deregisters the car and hands over the number
-                        plates
-                      </Radio>
-                      <Radio
-                        value={4}
-                        // className="flex flex-row-reverse justify-between"
-                      >
-                        The car is deregistered
-                      </Radio>
-                      <Radio
-                        value={5}
-                        // className="flex flex-row-reverse justify-between"
-                      >
-                        According to Danish legislation, the car must be
-                        re-registered/de-registered no later than 4 working days
-                        after the transaction
-                      </Radio>
-                    </Space>
-                  </Radio.Group>
+                      Kommentarer
+                    </h1>
+                    <div className="flex  gap-5">
+                      <h1>
+                        Køber bekræfter at have gennemgået bilen og accepterer
+                        dens stand. Handlen gennemføres som beset.
+                      </h1>
+                      <Checkbox
+                        checked={displayedData?.data?.isAggrade}
+                        ref={agrimentRef}
+                      ></Checkbox>
+                    </div>
+                  </section>
                 </div>
               </section>
+
+              <section className="flex flex-col mx-10">
+                <section className="flex flex-col">
+                  <h1
+                    style={{ fontSize: "clamp(18px, 3vw + 1rem ,48px)" }}
+                    className="text-highlight-color  font-bold mb-3 py-3"
+                  >
+                    Underskrifter
+                  </h1>
+                </section>
+                <div className="flex flex-col gap-5">
+                  <h1>
+                    Så snart denne kontrakt er underskrevet, er handlen bindende
+                    for begge parter.
+                  </h1>
+
+                  <h1>
+                    Bilen sælges af privatperson, og handlen er derfor ikke
+                    momspligtig. Købsprisen er momsfri.
+                  </h1>
+                  <h1>
+                    Hvis der er moms i bilen, skal sælger udstede en faktura,
+                    hvor momsen fremgår særskilt.
+                  </h1>
+                </div>
+              </section>
+
               {/* Signature */}
 
-              <section className="border rounded-md font-medium border-secondary-color px-3 py-9 flex md:flex-row flex-col justify-around gap-9 mx-5 my-10">
+              <section className=" rounded-md font-medium border-secondary-color px-3 py-9 flex md:flex-row flex-col justify-around gap-9 mx-5 my-10">
                 {/* <div className="flex flex-col justify-center items-center gap-2">
               <p className="max-h-36 min-h-28 aspect-video border-2 border-dotted border-highlight-color rounded-lg"></p>
               <p className="text-base font-medium">Seller Signature</p>
@@ -507,7 +565,7 @@ const ContractPaperPage = () => {
                       />
                     </div>
                     <p className="text-base font-medium">
-                      Private User Signature
+                      Private User underskrift
                     </p>
                     <p className="text-base font-medium">
                       {displayedData?.data?.privateUser?.first_name}{" "}
@@ -533,7 +591,7 @@ const ContractPaperPage = () => {
                       )}
                     </div>
                     <p className="text-base font-medium">
-                      Private User Signature
+                      Private User underskrift
                     </p>
                     <p className="text-base font-medium">
                       {displayedData?.data?.privateUser?.first_name}{" "}
@@ -555,7 +613,7 @@ const ContractPaperPage = () => {
                         className="absolute"
                       />
                     </div>
-                    <p className="text-base font-medium">Dealer Signature</p>
+                    <p className="text-base font-medium">Dealer underskrift</p>
                     <p className="text-base font-medium">
                       {displayedData?.data?.dealer?.first_name}{" "}
                       {displayedData?.data?.dealer?.last_name}
@@ -580,7 +638,7 @@ const ContractPaperPage = () => {
                   )}
                 </div> */}
                     <p className="max-h-36 min-h-28 aspect-video border-2 border-dotted border-highlight-color rounded-lg"></p>
-                    <p className="text-base font-medium">Dealer Signature</p>
+                    <p className="text-base font-medium">Dealer underskrift</p>
                     <p className="text-base font-medium">
                       {displayedData?.data?.dealer?.first_name}{" "}
                       {displayedData?.data?.dealer?.last_name}
@@ -597,19 +655,25 @@ const ContractPaperPage = () => {
                 </div>
               </section>
 
-              <section className="flex justify-between mx-5 flex-wrap gap-5">
+              <h1 className="mx-10">
+                Så længe der ikke står noget i feltet 'Bemærkninger', anses
+                bilen for at være med fuld dansk registreringsafgift og gældfri.
+                Hvis der er gæld, betaler køber direkte til sælgers bank.
+              </h1>
+
+              <section className="flex justify-around mx-5 flex-wrap gap-5 mt-5">
                 {displayedData?.data?.signatureAsOwner ? (
                   ""
                 ) : (
                   <>
-                    <div className="flex justify-center gap-2 ">
-                      <button className="font-bold text-white bg-highlight-color p-2 rounded-md flex justify-center items-center gap-2">
+                    <div className="ms-2 ps-3 ">
+                      {/* <button className="font-bold text-white bg-highlight-color p-2 rounded-md flex justify-center items-center gap-2">
                         <LiaQuestionCircleSolid className="text-xl" />
                         Guide
-                      </button>
+                      </button> */}
                       <button
                         onClick={resetSignature}
-                        className="font-bold text-white bg-highlight-color p-2 rounded-md flex justify-center items-center gap-2"
+                        className="font-bold text-white bg-highlight-color p-2 rounded-md flex justify-center items-center gap-2 "
                       >
                         <Image
                           width={0}
@@ -671,7 +735,7 @@ const ContractPaperPage = () => {
 
             <button
               onClick={() => {
-                window.history.back()
+                window.history.back();
               }}
               className="bg-highlight-color text-white py-2 px-5 rounded-md mt-4"
             >

@@ -14,7 +14,10 @@ import TaskPage from "../DealerComponents/TaskPage/taskPage";
 import { useTaskListQuery } from "@/redux/api/features/taskApi";
 import Notification from "./Notification";
 import { SocketContext } from "@/utils/SocketContext";
-import { useGetAllnotificationCountQuery } from "@/redux/api/features/notificationApi";
+import {
+  useGetAllnotificationCountQuery,
+  useNotificationActionMutation,
+} from "@/redux/api/features/notificationApi";
 import { useProfileQuery } from "@/redux/api/features/myProfile";
 import { getImageUrl } from "@/helpers/config/envConfig";
 import { jwtDecode } from "jwt-decode";
@@ -22,6 +25,7 @@ import { jwtDecode } from "jwt-decode";
 const Navbar = () => {
   const { data, currentData, isLoading, isFetching, isSuccess } =
     useProfileQuery();
+  const [notificationRead] = useNotificationActionMutation();
   const cookies = new Cookies();
   const navigate = useRouter();
   const dispatch = useDispatch();
@@ -31,7 +35,7 @@ const Navbar = () => {
   const userCookie = cookies.get("car_trading_accessToken");
   if (!userCookie) {
     // navigate.push("/sign-in");
-    userInfo={role:false}
+    userInfo = { role: false };
   } else {
     userInfo = jwtDecode(userCookie);
   }
@@ -256,7 +260,9 @@ const Navbar = () => {
           {userInfo?.role ? (
             <>
               {" "}
-              <Notification />
+              <div onClick={() => notificationRead()}>
+                <Notification />
+              </div>
               <div ref={profileRef} className="cursor-pointer relative">
                 <div onClick={toggleProfile} className="relative ">
                   {displayedData?.data?.profile?.profileImage ? (

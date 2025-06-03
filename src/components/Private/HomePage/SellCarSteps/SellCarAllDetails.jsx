@@ -111,11 +111,15 @@ const SellCarAllDetails = () => {
       };
 
       delete data.images;
-
+      delete data.city;
+      delete data.street;
+      data.city = `${values.city}, ${values.street}`;
       if (!isCompany) {
         delete data.cvrNumber;
         delete data.companyName;
       }
+      console.log(data);
+
       const formData = new FormData();
 
       // Append non-image data as a JSON string under the 'data' key
@@ -520,24 +524,24 @@ const SellCarAllDetails = () => {
             </Form.Item>
           </div>
         </div>
-        <div className="my-[10px] flex justify-between gap-5">
-          <div className="flex-1 flex flex-col justify-end">
+        <div className="my-[10px] grid md:grid-cols-3 grid-cols-2 gap-5">
+          <div className=" ">
             <p
               style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
               className=" font-medium pb-2"
             >
-              Address*
+              Street Name*
             </p>
             <Form.Item
               rules={[
                 {
                   required: true,
-                  message: "Please input city!",
+                  message: "Please input your Street Name!",
                 },
               ]}
-              name={`city`}
+              name={`street`}
             >
-              <Input placeholder="City" className="py-3" />
+              <Input placeholder="Street Name" className="py-3" />
             </Form.Item>
           </div>
           <div className=" ">
@@ -557,6 +561,26 @@ const SellCarAllDetails = () => {
               name={`postCode`}
             >
               <Input placeholder="Postal Code" className="py-3" />
+            </Form.Item>
+          </div>
+
+          <div className="col-span-2 md:col-span-1">
+            <p
+              style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
+              className=" font-medium pb-2"
+            >
+              City*
+            </p>
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: "Please input city!",
+                },
+              ]}
+              name={`city`}
+            >
+              <Input placeholder="City" className="py-3" />
             </Form.Item>
           </div>
         </div>

@@ -25,7 +25,7 @@ const PrivateCarSoldTable = ({
       title: "Brand Name",
       dataIndex: "carModel",
       key: "carModel",
-      render: (text) => <p>{text.brand}</p>,
+      render: (text) => <p>{text?.brand}</p>,
     },
     // {
     //   title: "Contract Paper",
@@ -50,7 +50,7 @@ const PrivateCarSoldTable = ({
       title: "Color",
       dataIndex: "carModel",
       key: "carModel",
-      render: (text) => <p>{text.color}</p>,
+      render: (text) => <p>{text?.color}</p>,
     },
     {
       title: "Price",
@@ -59,7 +59,7 @@ const PrivateCarSoldTable = ({
       render: (text) => (
         <div>
           <p className="whitespace-nowrap">
-            {text.isBid ? text.bidPrice : text.expectedPrice}
+            {text?.isBid ? text?.bidPrice : text?.expectedPrice}
             .kr
           </p>
         </div>

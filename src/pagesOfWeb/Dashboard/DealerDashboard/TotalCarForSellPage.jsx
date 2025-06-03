@@ -24,7 +24,7 @@ const TotalCarForSellPage = () => {
   const [filters, setFilters] = useState({
     page: 1,
     limit: 8,
-  });
+  }); 
 
   const onPageChange = (page, limit) => {
     setFilters((prev) => ({

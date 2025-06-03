@@ -1,13 +1,9 @@
 /* eslint-disable react/prop-types */
+import { setOfferCarInfo } from "@/redux/slices/offerCarInfoSlice";
 import { Button, Input, Space, Table, Tooltip } from "antd";
 import Link from "next/link";
-import { GoEye } from "react-icons/go";
-
-// Function to get unique company names
-const getUniqueCompanyNames = (data) => {
-  const companyNames = data.map((item) => item.companyName);
-  return [...new Set(companyNames)]; // Remove duplicates by converting array to a Set and back to an array
-};
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
 
 const CarListTable = ({
   data,
@@ -17,6 +13,8 @@ const CarListTable = ({
   meta,
   onPageChange,
 }) => {
+  const dispatch = useDispatch();
+  const navigate=useRouter()
   const columns = [
     // {
     //   title: "SL.",
@@ -30,7 +28,7 @@ const CarListTable = ({
       key: "carOwner",
       render: (text) => (
         <p className="whitespace-nowrap">
-          {text.first_name} {text.last_name}
+          {text?.first_name} {text?.last_name}
         </p>
       ),
     },
@@ -38,27 +36,27 @@ const CarListTable = ({
       title: "Brand Name",
       dataIndex: "carModel",
       key: "carModel",
-      render: (text) => <p>{text.brand}</p>,
+      render: (text) => <p>{text?.brand}</p>,
     },
     {
       title: "Car Model",
       dataIndex: "carModel",
       key: "carModel",
-      render: (text) => <p>{text.model}</p>,
+      render: (text) => <p>{text?.model}</p>,
     },
     {
       title: "Location",
       dataIndex: "company",
       key: "company",
       render: (text) => (
-        <div>{text.cvrNumber ? <p>{text.city}</p> : <p>{text.city}</p>}</div>
+        <div>{text?.cvrNumber ? <p>{text?.city}</p> : <p>{text?.city}</p>}</div>
       ),
     },
     {
       title: "Color",
       dataIndex: "carModel",
       key: "carModel",
-      render: (text) => <p>{text.color}</p>,
+      render: (text) => <p>{text?.color}</p>,
     },
     {
       title: "Price",
@@ -132,9 +130,9 @@ const CarListTable = ({
               ) : (
                 <p
                   onClick={() => {
-                    dispatch(setOfferCarInfo(record));
+                    // dispatch(setOfferCarInfo(record));
                     navigate.push(
-                      `total-dealer-car-sell/order-transport/${record.car._id}`
+                      `total-dealer-car-sell/order-transport/${record?.car?._id}`
                     );
                   }}
                 >
