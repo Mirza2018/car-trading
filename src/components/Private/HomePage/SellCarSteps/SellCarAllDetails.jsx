@@ -341,7 +341,7 @@ const SellCarAllDetails = () => {
               style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
               className=" font-medium pb-2"
             >
-              Expected price (.kr)*
+              Expected price (DKK)*
             </p>
             <Form.Item
               rules={[

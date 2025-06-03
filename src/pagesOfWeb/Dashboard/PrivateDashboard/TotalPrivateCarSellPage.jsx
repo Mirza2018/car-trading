@@ -14,7 +14,7 @@ const TotalPrivateCarSellPage = () => {
     limit: 8,
     filter:"sell"
   });
-
+ 
   const onPageChange = (page, limit) => {
     setFilters((prev) => ({
       ...prev,

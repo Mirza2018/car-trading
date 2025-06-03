@@ -11,7 +11,7 @@ const CarListTable = ({
   showViewServiceUserModal,
   pageSize = 0,
   meta,
-  onPageChange,
+  onPageChange, 
 }) => {
   const dispatch = useDispatch();
   const navigate=useRouter()
@@ -60,11 +60,13 @@ const CarListTable = ({
     },
     {
       title: "Price",
-      dataIndex: "expectedPrice",
+      dataIndex: "car",
       sorter: (a, b) => a.expectedPrice - b.expectedPrice,
       render: (text) => (
         <div>
-          <p className="whitespace-nowrap">{text} .kr</p>
+          <p className="whitespace-nowrap">
+            {text?.isBid ? text?.bidPrice : text?.expectedPrice} .kr
+          </p>
         </div>
       ),
     },
@@ -152,7 +154,7 @@ const CarListTable = ({
 
   return (
     <div>
-      {/* <pre>{JSON.stringify(data, null, 4)}</pre> */}
+      <pre>{JSON.stringify(data, null, 4)}</pre>
 
       <Table
         columns={columns}

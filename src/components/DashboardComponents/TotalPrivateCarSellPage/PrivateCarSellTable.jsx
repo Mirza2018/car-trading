@@ -58,7 +58,10 @@ const PrivateCarSellTable = ({
         <div>
           <p className="whitespace-nowrap">
             {/* {text?.expectedPrice * 0.25} */}
-            {text?.isBid ? text?.bidPrice * 0.25 : text?.expectedPrice * 0.25} DKK
+            {text?.isBid
+              ? (text?.bidPrice * 0.1).toFixed(2)
+              : (text?.expectedPrice * 0.1).toFixed(2)}
+            .kr
           </p>
         </div>
       ),

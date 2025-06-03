@@ -144,7 +144,18 @@ console.log(displayedData);
     return <Spin className="flex justify-center items-center" size="large" />;
   if (isSuccess && displayedData)
     return (
-      <>
+      <div
+        className=" min-h-[90vh]  rounded-xl"
+        style={{ boxShadow: "0px 0px 5px  rgba(0, 0, 0, 0.25)" }}
+      >
+        {/* Header  */}
+        <div className="bg-secondary-color w-full p-4   rounded-tl-xl rounded-tr-xl">
+          <div className=" w-[95%] mx-auto  flex items-center justify-between">
+            <p className="text-3xl text-primary-color font-semibold">
+              Contract Paper
+            </p>
+          </div>
+        </div>
         {displayedData?.data?.signatureAsDealer ? (
           <div className="container mx-auto border-2 border-secondary-color rounded-md md:my-20 overflow-x-clip">
             <div className="max-w-[1350px] mx-auto md:my-10 ">
@@ -155,6 +166,7 @@ console.log(displayedData);
                 SLUTSEDDEL
               </h1>
               {/* <pre>{JSON.stringify(displayedData.data, null, 4)}</pre> */}
+
               <section className="mx-6 my-10 ">
                 <h1
                   style={{ fontSize: "clamp(18px, 3vw + 1rem ,48px)" }}
@@ -162,33 +174,23 @@ console.log(displayedData);
                 >
                   SÆLGER & KØBER
                 </h1>
-                <main
-                  // style={{ fontSize: "clamp(18px, 3vw + 1rem ,20px)" }}
-                  className="flex flex-col lg:grid lg:grid-cols-2 gap-0 "
-                >
+                <main className="flex flex-col lg:grid lg:grid-cols-2 gap-0 ">
                   <section className="flex flex-col">
-                    {/* <h1
-                  style={{ fontSize: "clamp(18px, 3vw + 1rem ,48px)" }}
-                  className="text-highlight-color  font-bold mb-3 mt-7"
-                >
-                  Seller
-                </h1> */}
-
                     <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
-                      <p className="text-xl font-bold">SELLER</p>
+                      <p className="text-xl font-bold">Sælger</p>
                       <p></p>
                     </div>
 
                     <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
-                      <p className="ps-2">First name</p>
-                      <p className="border-s border-secondary-color ps-2 ">
+                      <p className="ps-2">Fornavn</p>
+                      <p className="border-s border-secondary-color ps-2">
                         {displayedData?.data?.company?.first_name &&
                           displayedData?.data?.company?.first_name}
                       </p>
                     </div>
 
                     <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
-                      <p className="ps-2">Surname</p>
+                      <p className="ps-2">Efternavn</p>
                       <p className="border-s border-secondary-color ps-2">
                         {displayedData?.data?.company?.last_name &&
                           displayedData?.data?.company?.last_name}
@@ -196,30 +198,29 @@ console.log(displayedData);
                     </div>
 
                     <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
-                      <p className="ps-2">City,Street Name</p>
-                      <p className="border-s border-secondary-color ps-2 overflow-x-scroll hide-x-scrollbar">
-                        {displayedData?.data?.company?.city &&
-                          displayedData?.data?.company?.city}
-                      </p>
-                    </div>
-
-                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
-                      <p className="ps-2">Postal code</p>
+                      <p className="ps-2">Postnr.</p>
                       <p className="border-s border-secondary-color ps-2">
                         {displayedData?.data?.company?.postCode &&
                           displayedData?.data?.company?.postCode}
                       </p>
                     </div>
+                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+                      <p className="ps-2">By</p>
+                      <p className="border-s border-secondary-color ps-2 overflow-x-scroll hide-x-scrollbar">
+                        {displayedData?.data?.company?.city &&
+                          displayedData?.data?.company?.city.split(",")[0]}
+                      </p>
+                    </div>
 
                     <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
-                      <p className="ps-2">Telephone</p>
+                      <p className="ps-2">Telefon</p>
                       <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
                         {displayedData?.data?.company?.phoneNumber &&
                           displayedData?.data?.company?.phoneNumber}
                       </p>
                     </div>
                     <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color leading-10">
-                      <p className="ps-2">Private person / Company CVR</p>
+                      <p className="ps-2">Privatperson / Virksomhed CVR </p>
                       <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
                         {displayedData?.data?.company?.cvrNumber
                           ? displayedData?.data?.company?.cvrNumber
@@ -231,12 +232,12 @@ console.log(displayedData);
                   {/* Buyer */}
                   <section className="flex flex-col">
                     <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
-                      <p className="text-xl font-bold ms-2">BUYER</p>
+                      <p className="text-xl font-bold ms-2">KØBER</p>
                       <p></p>
                     </div>
 
                     <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
-                      <p className="ps-2">First name</p>
+                      <p className="ps-2">Fornavn</p>
                       <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
                         {displayedData?.data?.dealer?.first_name &&
                           displayedData?.data?.dealer?.first_name}
@@ -244,24 +245,38 @@ console.log(displayedData);
                     </div>
 
                     <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
-                      <p className="ps-2">Surname</p>
+                      <p className="ps-2">Efternavn</p>
                       <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
                         {displayedData?.data?.dealer?.last_name &&
                           displayedData?.data?.dealer?.last_name}
                       </p>
                     </div>
 
-                    {displayedData?.data?.dealer?.email && (
-                      <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color leading-10">
-                        <p className="ps-2">Email</p>
-                        <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
-                          {displayedData?.data?.dealer?.email}
-                        </p>
-                      </div>
-                    )}
+                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+                      <p className="ps-2">E-mail</p>
+                      <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+                        {displayedData?.data?.dealer?.email}
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+                      <p className="ps-2">Postnr.</p>
+                      <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+                        {displayedData?.data?.dealer?.zip &&
+                          displayedData?.data?.dealer?.zip}
+                      </p>
+                    </div>
+                    <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color leading-10">
+                      <p className="ps-2">By</p>
+                      <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+                        {displayedData?.data?.dealer?.city &&
+                          displayedData?.data?.dealer?.city}
+                      </p>
+                    </div>
                   </section>
                 </main>
               </section>
+
               <section className="mx-6 my-10 ">
                 <h1
                   style={{ fontSize: "clamp(18px, 3vw + 1rem ,48px)" }}
@@ -272,7 +287,7 @@ console.log(displayedData);
                 <main className="flex flex-col lg:grid lg:grid-cols-2 gap-0 ">
                   <section className="flex flex-col">
                     <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
-                      <p className="ps-2"> Model and brand</p>
+                      <p className="ps-2">Mærke & model</p>
                       <p className="border-s border-secondary-color ps-2">
                         {displayedData?.data?.carModel?.brand}
                         {displayedData?.data?.carModel?.model}
@@ -280,7 +295,7 @@ console.log(displayedData);
                     </div>
 
                     <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
-                      <p className="ps-2">Car type</p>
+                      <p className="ps-2">Biltype</p>
                       <p className="border-s border-secondary-color ps-2">
                         {displayedData?.data?.car?.carCategory}
                       </p>
@@ -294,7 +309,7 @@ console.log(displayedData);
                     </div>
 
                     <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color leading-10">
-                      <p className="ps-2">Fuel</p>
+                      <p className="ps-2">Brændstof</p>
                       <p className="border-s border-secondary-color ps-2">
                         {displayedData?.data?.carModel?.fuelType}
                       </p>
@@ -304,14 +319,14 @@ console.log(displayedData);
                   {/* Buyer */}
                   <section className="flex flex-col">
                     <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
-                      <p className="ps-2">Chassis number</p>
+                      <p className="ps-2">Chassisnummer</p>
                       <p className="border-s border-secondary-color ps-2">
                         {displayedData?.data?.car?.chassisNumber}
                       </p>
                     </div>
 
                     <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
-                      <p className="ps-2">Year</p>
+                      <p className="ps-2">År</p>
                       <p className="border-s border-secondary-color ps-2 overflow-x-scroll  hide-x-scrollbar">
                         {displayedData?.data?.carModel?.modelYear > 0 &&
                           displayedData?.data?.carModel?.modelYear}
@@ -319,14 +334,14 @@ console.log(displayedData);
                     </div>
 
                     <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
-                      <p className="ps-2">Registration number</p>
+                      <p className="ps-2">Registreringsnummer</p>
                       <p className="border-s border-secondary-color ps-2">
                         {displayedData?.data?.car?.registrationNumber}
                       </p>
                     </div>
 
                     <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color leading-10">
-                      <p className="ps-2">Inspection Date</p>
+                      <p className="ps-2">Syns dato</p>
                       <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
                         {inspectionDate}
                       </p>
@@ -334,7 +349,6 @@ console.log(displayedData);
                   </section>
                 </main>
               </section>
-
               {/* Re-registration */}
               <section className="flex flex-col mx-5">
                 <h1
@@ -431,30 +445,6 @@ console.log(displayedData);
                         : `${carPrice} .kr`}
                     </p>
                   </div>
-                  {/* <div className="flex justify-between items-center w-full gap-5 flex-wrap">
-                    <h1>
-                      The deal is signed and completed before inspection. The
-                      buyer undertakes to pay the agreed amount upon collection
-                      of the car, provided that the car is as described.{" "}
-                      <Checkbox
-                        checked={displayedData?.data?.isAggrade}
-                        ref={agrimentRef}
-                      ></Checkbox>
-                    </h1>
-                  </div> */}
-
-                  {/* <div className="flex justify-between items-start w-full gap-5  flex-wrap">
-                    <h1 className="flex-1">
-                      It has been agreed that the buyer pays a deposit to the
-                      seller as security for the transaction. The remaining
-                      amount is paid upon handover of the car. The deposit
-                      amounts to DKK
-                    </h1>
-
-                    <p className="bg-base-color border border-secondary-color py-1 px-3 rounded-lg">
-                      {displayedData?.data?.advancedPayment} DKK
-                    </p>
-                  </div> */}
 
                   <div className="flex justify-between items-start w-full gap-5  flex-wrap  border-secondary-color border p-2">
                     <h1 className="flex-1">Afslag ved hurtig handel (DKK)</h1>
@@ -744,7 +734,7 @@ console.log(displayedData);
             </button>
           </div>
         )}
-      </>
+      </div>
     );
 };
 
