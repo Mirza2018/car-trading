@@ -720,9 +720,9 @@ const OfferCarContract = () => {
         </section>
 
         <h1 className="mx-10 mb-5">
-          Så længe der ikke står noget i feltet 'Bemærkninger', anses bilen for
-          at være med fuld dansk registreringsafgift og gældfri. Hvis der er
-          gæld, betaler køber direkte til sælgers bank.
+          Så længe der ikke står noget i feltet &#39;Bemærkninger&#39;, anses
+          bilen for at være med fuld dansk registreringsafgift og gældfri. Hvis
+          der er gæld, betaler køber direkte til sælgers bank.
         </h1>
 
         <section className="flex justify-around mx-5 flex-wrap gap-5">
