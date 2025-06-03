@@ -17,7 +17,7 @@ const OfferDealerCarAcceptTable = ({
   data,
   loading,
   showViewServiceUserModal,
-  meta,
+  meta, 
   onPageChange,
 }) => {
   const dispatch = useDispatch();
@@ -89,38 +89,56 @@ const OfferDealerCarAcceptTable = ({
           {/* View Details Tooltip */}
           {record?.status == "accept" ? (
             <p
-              onClick={() => {
-                dispatch(setOfferCarInfo(record));
-                navigate.push(
-                  `dealer-offer-car-aggrement/contract/${record?._id}`
-                );
-              }}
-              // href={`private-offer-car-aggrement/contract/${record?._id}`}
+            // onClick={() => {
+            //   dispatch(setOfferCarInfo(record));
+            //   navigate.push(
+            //     `dealer-offer-car-aggrement/contract/${record?._id}`
+            //   );
+            // }}
+            // href={`private-offer-car-aggrement/contract/${record?._id}`}
             >
               <Tooltip placement="right" title="View Contract Details">
                 {!record?.signatureAsDealer && !record?.signatureAsOwner && (
-                  <Button className={`  !text-white  !bg-highlight-color`}>
-                    <p>Pending contract</p>
+                  <Button
+                    className={`  !text-white !bg-highlight-color   px-6`}
+                  >
+                    <p>Waiting for Sign</p>
                   </Button>
                 )}
                 {!record?.signatureAsDealer && record?.signatureAsOwner && (
-                  <Button className={`  !text-white !bg-secondary-color !px-5`}>
+                  <Button
+                    onClick={() => {
+                      dispatch(setOfferCarInfo(record));
+                      navigate.push(
+                        `dealer-offer-car-aggrement/contract/${record?._id}`
+                      );
+                    }}
+                    className={`  !text-white !bg-secondary-color !px-5`}
+                  >
                     {" "}
-                    <p>Make your contract</p>{" "}
+                    <p>Make contract</p>{" "}
                   </Button>
                 )}
                 {record?.signatureAsDealer && record?.signatureAsOwner && (
-                  <Button className={`  !text-white !bg-green-500 !px-7`}>
+                  <Button
+                    onClick={() => {
+                      dispatch(setOfferCarInfo(record));
+                      navigate.push(
+                        `dealer-offer-car-aggrement/contract/${record?._id}`
+                      );
+                    }}
+                    className={`  !text-white !bg-green-500 !px-7`}
+                  >
                     {" "}
-                    <p>Contract Done</p>{" "}
+                    <p>See Contract</p>{" "}
                   </Button>
                 )}
               </Tooltip>
             </p>
           ) : (
-            <p className="bg-highlight-color text-white cursor-pointer  px-4 whitespace-nowrap py-1 rounded-md">
+            <Button className="bg-highlight-color text-white cursor-pointer  px-3 whitespace-nowrap py-1 rounded-md">
               Waiting For Accept
-            </p>
+            </Button>
           )}
 
           {record?.signatureAsDealer && record?.signatureAsOwner && (

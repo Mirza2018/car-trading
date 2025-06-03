@@ -25,7 +25,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getImageUrl } from "@/helpers/config/envConfig";
 
 const Profile = () => {
-  const { data, currentData, isLoading, isFetching, isSuccess } =
+  const { data, currentData, isLoading, isFetching, isSuccess, refetch } =
     useProfileQuery();
   const [profileUpdate] = useUpdateProfileMutation();
   const displayedData = data ?? currentData;
@@ -115,7 +115,7 @@ const Profile = () => {
     // console.log(data);
     const formData = new FormData();
     formData.append("data", JSON.stringify(data));
-console.log(values);
+    console.log(values);
 
     if (values?.profileImage?.fileList?.[0].originFileObj) {
       const profileImage = values.profileImage?.fileList[0]?.originFileObj;
@@ -142,6 +142,7 @@ console.log(values);
         id: toastId,
         duration: 2000,
       });
+      // refetch();
     } catch (error) {
       console.log(error);
 
@@ -259,7 +260,6 @@ console.log(values);
               </Typography.Title>
               <Form.Item name="websiteLink" className="text-white">
                 <Input
-
                   placeholder="Enter your Website Link"
                   className="py-2 px-3 text-xl border !border-input-color  "
                 />

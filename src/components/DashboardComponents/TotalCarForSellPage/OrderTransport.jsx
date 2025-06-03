@@ -8,11 +8,12 @@ import React from "react";
 import { toast } from "sonner";
 
 const OrderTransport = () => {
-  const [orderTransportDetails] = useSendMailOrderTransportMutation()
   const params = useParams();
-  const navigate=useRouter()
-  const { data, currentData, isLoading, isFetching, isSuccess } =
+  const { data, currentData, isLoading, isFetching, isSuccess, refetch } =
     useContactPaperQuery(params.id);
+  const [orderTransportDetails] = useSendMailOrderTransportMutation()
+  const navigate=useRouter()
+
   const displayedData = data ?? currentData;
   console.log(displayedData);
   if (displayedData?.data?.status != "sold") {

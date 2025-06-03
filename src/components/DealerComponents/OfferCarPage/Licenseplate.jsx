@@ -105,18 +105,18 @@ const Licenseplate = ({ offerCar }) => {
     console.log(values);
 
     if (!carData) {
-     return toast.error("Please search a lisense plate number", {
+      return toast.error("Please search a lisense plate number", {
         id: toastId,
         duration: 2000,
       });
     }
 
-    
-
     const data = {
       ...values,
       submitListingCarId: param.id,
       carLicensePlateNumber: carData?.numberPlates,
+      mark: carData?.brand,
+      model: carData?.model,
     };
 
     delete data.carImages;
@@ -243,43 +243,6 @@ const Licenseplate = ({ offerCar }) => {
             rules={[
               {
                 required: true,
-                message: "Please Select Mark",
-              },
-            ]}
-            label={<span className="font-bold text-2xl">Mark</span>}
-            name="mark"
-          >
-            <Select
-              placeholder={<span className="text-black ">Brands</span>}
-              className=" !bg-base-color"
-              showSearch
-              optionFilterProp="label"
-              filterSort={(optionA, optionB) =>
-                (optionA?.label ?? "")
-                  .toLowerCase()
-                  .localeCompare((optionB?.label ?? "").toLowerCase())
-              }
-              options={carBrands}
-            />
-          </Form.Item>
-        </div>
-        <div className="grid sm:grid-cols-2 gap-5">
-          <Form.Item
-            rules={[
-              {
-                required: true,
-                message: "Please Input Model",
-              },
-            ]}
-            label={<span className="font-bold text-2xl">Model</span>}
-            name="model"
-          >
-            <Input placeholder="input Model" />
-          </Form.Item>
-          <Form.Item
-            rules={[
-              {
-                required: true,
                 message: "Please Select Car Condition",
               },
             ]}
@@ -293,6 +256,20 @@ const Licenseplate = ({ offerCar }) => {
             </Select>
           </Form.Item>
         </div>
+        {/* <div className="grid sm:grid-cols-2 gap-5">
+          <Form.Item
+            rules={[
+              {
+                required: true,
+                message: "Please Input Model",
+              },
+            ]}
+            label={<span className="font-bold text-2xl">Model</span>}
+            name="model"
+          >
+            <Input placeholder="input Model" />
+          </Form.Item>
+        </div> */}
 
         <div className="grid sm:grid-cols-2 gap-5">
           <Form.Item

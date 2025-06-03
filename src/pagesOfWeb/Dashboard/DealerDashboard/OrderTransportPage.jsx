@@ -1,5 +1,5 @@
 "use client";
-import { 
+import {
   useCreateOrderTransportMutation,
   useGetOrderTransportQuery,
 } from "@/redux/api/features/orderTransport";
@@ -7,11 +7,12 @@ import { Form, Input, Spin } from "antd";
 import { toast } from "sonner";
 
 const OrderTransportPage = () => {
+  const { data, currentData, isLoading, isError, refetch } =
+    useGetOrderTransportQuery();
   const [transportData] = useCreateOrderTransportMutation();
-  const { data, currentData, isLoading, isError } = useGetOrderTransportQuery();
   const displayData = data || currentData;
   console.log(displayData?.data);
-  
+
   const [form] = Form.useForm();
 
   const onFinishFailed = ({ errorFields }) => {
@@ -46,7 +47,7 @@ const OrderTransportPage = () => {
           duration: 2000,
         }
       );
-      form.resetFields();
+      refetch()
     } catch (error) {
       console.log(error);
       toast.error(
@@ -61,7 +62,9 @@ const OrderTransportPage = () => {
   };
 
   if (isLoading) {
-    return <Spin className="flex justify-center items-center" size="large"></Spin>
+    return (
+      <Spin className="flex justify-center items-center" size="large"></Spin>
+    );
   }
 
   return (

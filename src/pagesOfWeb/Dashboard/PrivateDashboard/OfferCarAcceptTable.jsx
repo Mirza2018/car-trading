@@ -88,19 +88,20 @@ const OfferCarAcceptTable = ({
         <Space size="middle" className="">
           {/* View Details Tooltip */}{" "}
           {record?.status == "accept" ? (
-            <p
-              onClick={() => {
-                dispatch(setOfferCarInfo(record));
-                navigate.push(
-                  `private-offer-car-aggrement/contract/${record?._id}`
-                );
-              }}
-            >
+            <p>
               <Tooltip placement="right" title="View Contract Details">
                 {!record?.signatureAsDealer && !record?.signatureAsOwner && (
-                  <Button className={`  !text-white !bg-secondary-color`}>
+                  <Button
+                    onClick={() => {
+                      dispatch(setOfferCarInfo(record));
+                      navigate.push(
+                        `private-offer-car-aggrement/contract/${record?._id}`
+                      );
+                    }}
+                    className={`  !text-white !bg-secondary-color`}
+                  >
                     {" "}
-                    <p>Make your contract</p>{" "}
+                    <p>Make contract</p>{" "}
                   </Button>
                 )}
                 {!record?.signatureAsDealer && record?.signatureAsOwner && (
@@ -110,20 +111,28 @@ const OfferCarAcceptTable = ({
                   </Button>
                 )}
                 {record?.signatureAsDealer && record?.signatureAsOwner && (
-                  <Button className={`  !text-white !bg-green-500 !px-7`}>
+                  <Button
+                    onClick={() => {
+                      dispatch(setOfferCarInfo(record));
+                      navigate.push(
+                        `private-offer-car-aggrement/contract/${record?._id}`
+                      );
+                    }}
+                    className={`  !text-white !bg-green-500 !px-7`}
+                  >
                     {" "}
-                    <p>Contract Done</p>{" "}
+                    <p>See Contract</p>{" "}
                   </Button>
                 )}
               </Tooltip>
             </p>
           ) : (
-            <p
+            <Button
               onClick={() => navigate.push(`offer-car`)}
               className="bg-highlight-color text-white cursor-pointer  px-4 whitespace-nowrap py-1 rounded-md"
             >
               Accept the Offer
-            </p>
+            </Button>
           )}
         </Space>
       ),

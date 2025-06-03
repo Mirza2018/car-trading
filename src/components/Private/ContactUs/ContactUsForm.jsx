@@ -1,11 +1,16 @@
 "use client";
 import { Form, Input } from "antd";
+import { useForm } from "antd/es/form/Form";
 import { BsMailbox } from "react-icons/bs";
 import { FaMapPin, FaPhone } from "react-icons/fa";
+import { toast } from "sonner";
 
 export default function ContactUsFrom() {
+  const [form] = useForm();
   const onFinish = (values) => {
     console.log("About us", values);
+    toast.success("Message Send successfully");
+    form.resetFields();
   };
 
   return (
@@ -14,13 +19,13 @@ export default function ContactUsFrom() {
         {/* Left Column - Contact Form */}
         <div className="col-span-4">
           <h1 className="text-4xl font-bold mb-4">Get In Touch</h1>
-          <p className="text-[#050B20] mb-8">
+          {/* <p className="text-[#050B20] mb-8">
             Likewise, a range of activities enriches life, blending vigor with
             balance. The result is a lifestyle that&apos;s not only dynamic but
             also deeply rewarding.
-          </p>
+          </p> */}
 
-          <Form onFinish={onFinish} className="space-y-6">
+          <Form onFinish={onFinish} form={form} className="space-y-6 mt-10">
             <div className="grid md:grid-cols-2 gap-6">
               <div className="relative">
                 <p className="absolute  left-4  px-1 text-[13px] text-gray-500 z-10">
@@ -90,7 +95,7 @@ export default function ContactUsFrom() {
             </div>
             <button
               type="submit"
-              className="bg-orange-500 text-white px-8 py-3 rounded-lg hover:bg-orange-600 transition-colors"
+              className="bg-highlight-color text-white px-8 py-3 rounded-lg transition-colors"
             >
               Send Message
             </button>
@@ -102,9 +107,9 @@ export default function ContactUsFrom() {
           <div className="border border-base-color rounded-2xl p-8">
             <h2 className="text-2xl font-semibold mb-6">Contact details</h2>
             <p className="text-gray-600 mb-8">
-              Likewise, a range of activities enriches life, blending vigor with
-              balance. The result is a lifestyle that&apos;s not only dynamic
-              but also deeply rewarding.
+              Dette er en bilhandelsplatform, hvor brugere kan oprette annoncer
+              for deres biler, og forhandlere har mulighed for at købe eller
+              afgive tilbud på de biler, brugerne har oprettet.
             </p>
 
             <div className="space-y-6">
@@ -114,9 +119,11 @@ export default function ContactUsFrom() {
                 <div>
                   <h3 className="font-semibold mb-1">Address</h3>
                   <p className="text-gray-600">
-                    123 Queensberry Street, North
+                    Københavnsvej 103
                     <br />
-                    Melbourne VIC3051, Australia.
+                    4000 Roskilde
+                    <br />
+                    Cvr.Nr: 38043064
                   </p>
                 </div>
               </div>
@@ -125,7 +132,7 @@ export default function ContactUsFrom() {
                 {/* <Mail className="w-6 h-6 mt-1" /> */}
                 <BsMailbox />
                 <div>
-                  <h3 className="font-semibold mb-1">Email</h3>
+                  <h3 className="font-semibold mb-1">Mail</h3>
                   <p className="text-gray-600">ali@boxcars.com</p>
                 </div>
               </div>
@@ -134,8 +141,8 @@ export default function ContactUsFrom() {
                 {/* <Phone className="w-6 h-6 mt-1" /> */}
                 <FaPhone />
                 <div>
-                  <h3 className="font-semibold mb-1">Phone</h3>
-                  <p className="text-gray-600">+76 956 123 456</p>
+                  <h3 className="font-semibold mb-1">Tlf. </h3>
+                  <p className="text-gray-600">+45 22 11 44 44</p>
                 </div>
               </div>
             </div>

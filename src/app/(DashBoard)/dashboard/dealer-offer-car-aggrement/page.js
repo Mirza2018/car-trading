@@ -6,7 +6,7 @@ const page = () => {
     <div>
       <TotalDealerOfferCarPage />
     </div>
-  );
+  ); 
 };
 
 export default page;
