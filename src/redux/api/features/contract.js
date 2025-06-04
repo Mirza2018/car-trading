@@ -25,7 +25,13 @@ export const contract = baseApi.injectEndpoints({
           body: ContactData,
         };
       },
-      invalidatesTags: [tagTypes.sellCar, tagTypes.contactPaper,tagTypes.purchasedCar],
+      invalidatesTags: [
+        tagTypes.sellCar,
+        tagTypes.contactPaper,
+        tagTypes.purchasedCar,
+        tagTypes.offer,
+        tagTypes.purchasedCar
+      ],
     }),
 
     updateOfferContactPaper: build.mutation({
@@ -38,7 +44,7 @@ export const contract = baseApi.injectEndpoints({
           body: ContactData,
         };
       },
-      invalidatesTags: [tagTypes.offer],
+      invalidatesTags: [tagTypes.offer, tagTypes.sellCar, tagTypes.offer,tagTypes.purchasedCar],
     }),
 
     //end

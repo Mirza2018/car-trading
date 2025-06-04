@@ -51,7 +51,10 @@ const OfferCarContract = () => {
     const storedSignature = localStorage.getItem("signature");
     setSignature(storedSignature);
 
-    setIsValueIncreased(displayedData?.isMoms);
+    // setIsValueIncreased(displayedData?.isMoms);
+    if (displayedData?.isMoms) {
+      setIsValueIncreased(displayedData?.isMoms);
+    }
 
     if (displayedData?.advancedPayment) {
       setAdvanceAmount(displayedData?.advancedPayment);

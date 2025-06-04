@@ -72,7 +72,9 @@ const FinalNode = () => {
   useEffect(() => {
     const storedSignature = localStorage.getItem("signature");
     setSignature(storedSignature);
-    setIsValueIncreased(displayedData?.data?.isMoms);
+    if (displayedData?.data?.isMoms) {
+      setIsValueIncreased(displayedData?.data?.isMoms);
+    }
   }, [signature, displayedData?.data?.isMoms]);
   // Callback to update signature when saved in the modal
   const handleSignatureSave = (newSignature) => {
@@ -86,7 +88,7 @@ const FinalNode = () => {
     setRegistrationValue(null);
     localStorage.removeItem("signature");
     setSignature(null);
-    console.log("eeeeee");
+    // console.log("eeeeee");
   };
 
   const handleSubmit = async () => {
