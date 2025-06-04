@@ -10,7 +10,7 @@ import { clearAuth } from "@/redux/slices/authSlice";
 import Cookies from "universal-cookie";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import TaskPage from "../DealerComponents/TaskPage/taskPage";
+
 import { useTaskListQuery } from "@/redux/api/features/taskApi";
 import Notification from "./Notification";
 import { SocketContext } from "@/utils/SocketContext";
@@ -21,6 +21,7 @@ import {
 import { useProfileQuery } from "@/redux/api/features/myProfile";
 import { getImageUrl } from "@/helpers/config/envConfig";
 import { jwtDecode } from "jwt-decode";
+import TaskManagePage from "../DealerComponents/TaskPage/TaskManagePage";
 
 const Navbar = () => {
   const { data, currentData, isLoading, isFetching, isSuccess } =
@@ -331,7 +332,7 @@ const Navbar = () => {
         open={isModalOpen}
         footer={[]}
       >
-        <TaskPage setIsModalOpen={setIsModalOpen} />
+        <TaskManagePage setIsModalOpen={setIsModalOpen} />
       </Modal>
       {/* This is Profile or contract section */}
     </div>

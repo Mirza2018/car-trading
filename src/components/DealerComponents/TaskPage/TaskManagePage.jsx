@@ -5,11 +5,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-const TaskPage = ({setIsModalOpen}) => {
-  
+const TaskManagePage = ({ setIsModalOpen }) => {
   const { data, currentData, isLoading, isFetching, isSuccess } =
     useTaskListQuery();
-  const navigate=useRouter()
+  const navigate = useRouter();
   const displayedData = data ?? currentData;
   console.log(displayedData?.data);
 
@@ -43,9 +42,15 @@ const TaskPage = ({setIsModalOpen}) => {
                     onClick={() => setIsModalOpen(false)}
                     href={`/task/${task?._id}`}
                   > */}
-                    <button onClick={()=>{ setIsModalOpen(false); navigate.push(`/task/${task?._id}`);}} className="text-[15px] px-3 py-2 text-white bg-highlight-color rounded-md">
-                      Resolve
-                    </button>
+                  <button
+                    onClick={() => {
+                      setIsModalOpen(false);
+                      navigate.push(`/task/${task?._id}`);
+                    }}
+                    className="text-[15px] px-3 py-2 text-white bg-highlight-color rounded-md"
+                  >
+                    Resolve
+                  </button>
                   {/* </Link> */}
                 </div>
               ))}
@@ -82,5 +87,4 @@ const TaskPage = ({setIsModalOpen}) => {
       </React.Fragment>
     );
 };
-
-export default TaskPage;
+export default TaskManagePage;
