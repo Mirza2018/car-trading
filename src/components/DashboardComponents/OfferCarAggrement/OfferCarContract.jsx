@@ -93,13 +93,13 @@ const OfferCarContract = () => {
     };
 
     if (!data.isAggrade) {
-      return toast.error("Please check mark the agreement!", {
+      return toast.error("Please check mark the Kommentarer!", {
         id: toastId,
         duration: 2000,
       });
     }
     if (!data.reRegistrationDeRegistrationView) {
-      return toast.error("Please Select Re-registration/de-registration view", {
+      return toast.error("Please Select OMREGISTRERING/AFMELDING", {
         id: toastId,
         duration: 2000,
       });
