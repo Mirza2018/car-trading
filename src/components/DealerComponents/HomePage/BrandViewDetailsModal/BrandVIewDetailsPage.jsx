@@ -23,9 +23,9 @@ const BrandVIewDetailsPage = ({
       onCancel={() => setOpenResponsive(false)}
       width={1500}
       footer={[
-        <div key="footerButton" className="flex justify-end gap-80">
+        <div key="footerButton" className="flex justify-end gap-10  md:pe-32 pe-12 ">
           {sendOffer && (
-            <>
+            <div>
               <Link href={`/offer-car/${car?._id}`}>
                 <button
                   style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
@@ -34,7 +34,7 @@ const BrandVIewDetailsPage = ({
                   Send Offer
                 </button>
               </Link>
-            </>
+            </div>
           )}
 
           <button
@@ -52,7 +52,7 @@ const BrandVIewDetailsPage = ({
           {/* Left Side */}
           <section className="col-span-5  flex justify-center items-center">
             {/* <ImageSlider /> */}
-            <div className="text-4xl font-bold flex justify-center items-center !w-52 uppercase bg-secondary-color py-10 px-5 rounded-xl">
+            <div className="text-4xl font-bold flex justify-center items-center md:!w-52 w-32 uppercase bg-secondary-color py-10 px-5 rounded-xl md:mb-0 mb-4 ">
                     {/* <Image
                       src={AllImages.brand1}
                       alt="car"

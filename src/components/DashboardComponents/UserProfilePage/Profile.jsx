@@ -156,7 +156,7 @@ const Profile = () => {
         className=" "
       >
         <div className="">
-          <div className="mt-5 flex flex-row justify-between ">
+          <div className="mt-5 flex md:flex-row flex-col justify-between md:pb-0 pb-5">
             <div className=" ">
               <Image
                 className="h-40 w-40 relative rounded-full border border-secondary-color object-contain "
@@ -191,10 +191,10 @@ const Profile = () => {
                 </Upload>
               </Form.Item>
             </div>
-            <div>
+            <div >
               <p
                 onClick={showModal}
-                className="text-black border border-secondary-color hover:bg-green-600 hover:text-white hover:border-none transition-all rounded-md px-6 py-4 text-lg font-medium "
+                className="text-black border border-secondary-color hover:bg-green-600 hover:text-white hover:border-none transition-all rounded-md md:px-6 px-2 md:py-4 py-2 text-lg font-medium "
               >
                 Change Password
               </p>
@@ -338,18 +338,18 @@ const Profile = () => {
                 </Form.Item>
               </div>
 
-              {/* <div>
-              <Typography.Title level={5} style={{ color: "#222222" }}>
-                Email
-              </Typography.Title>
-              <Form.Item name="email" className="text-white">
-                <Input
-                  required
-                  placeholder="Enter your Email"
-                  className="py-2 px-3 text-xl border !border-input-color  "
-                />
-              </Form.Item>
-            </div> */}
+              <div>
+                <Typography.Title level={5} style={{ color: "#222222" }}>
+                  Company Name
+                </Typography.Title>
+                <Form.Item name="companyName" className="text-white">
+                  <Input
+                    required
+                    placeholder="Enter your company name"
+                    className="py-2 px-3 text-xl border !border-input-color  "
+                  />
+                </Form.Item>
+              </div>
 
               <div className="flex flex-col  items-center justify-center gap-2">
                 <div className=" flex justify-center items-center">

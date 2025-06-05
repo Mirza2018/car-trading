@@ -102,15 +102,15 @@ const PrivateLookingForCars = ({
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-10 items-center justify-end flex-1">
-                  <div className="flex flex-col gap-5 ">
+                <div className="flex flex-wrap gap-10 items-center md:justify-end flex-1">
+                  <div className="flex md:flex-col justify-between gap-5 ">
                     <button
                       onClick={() => {
                         setSelectedCar(car);
                         setopenOfferCar(true);
                       }}
                       style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
-                      className="bg-highlight-color text-white  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
+                      className="bg-highlight-color text-white  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap w-32"
                     >
                       Offer Car
                     </button>
@@ -129,7 +129,7 @@ const PrivateLookingForCars = ({
                         setOpenResponsive(true);
                       }}
                       style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
-                      className="bg-base-color text-black border border-secondary-color  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
+                      className="bg-base-color text-black border border-secondary-color  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap w-32"
                     >
                       View Details
                     </button>

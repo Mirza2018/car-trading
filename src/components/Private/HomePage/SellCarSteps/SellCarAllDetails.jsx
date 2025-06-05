@@ -441,7 +441,7 @@ const SellCarAllDetails = () => {
         </h1>
 
         {isCompany ? (
-          <div className="my-[10px] flex justify-between gap-5">
+          <div className="my-[10px] flex justify-between items-end gap-5">
             <div className="flex-1">
               <p
                 style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
