@@ -70,31 +70,25 @@ const Homepage = () => {
     setFilters(params);
   };
 
-
-
-
-
-
-
   const onFinishPrivate = (values) => {
-       console.log(values);
+    console.log(values);
 
-       // Filter out empty/null/undefined values from filters
-       const filters = [values.fuelType, values.brand].filter(
-         (f) => f && f.trim() !== ""
-       );
+    // Filter out empty/null/undefined values from filters
+    const filters = [values.fuelType, values.brand].filter(
+      (f) => f && f.trim() !== ""
+    );
 
-       const params = {
-         page: 1,
-         limit: 4,
-         filter: filters.length > 0 ? filters : undefined,
-         modelsFrom: values.modelYearFrom,
-         modelsTo: values.modelYearTo,
-         drivenKmFrom: values.drivenKmFrom,
-         drivenKmTo: values.drivenKmTo,
-       };
+    const params = {
+      page: 1,
+      limit: 4,
+      filter: filters.length > 0 ? filters : undefined,
+      modelsFrom: values.modelYearFrom,
+      modelsTo: values.modelYearTo,
+      drivenKmFrom: values.drivenKmFrom,
+      drivenKmTo: values.drivenKmTo,
+    };
 
-       setFilters2(params);
+    setFilters2(params);
   };
 
   const displayedData = data ?? currentData;
@@ -108,7 +102,7 @@ const Homepage = () => {
     <div className="text-text-color container mx-auto">
       {/* dealer */}
       {userInfo?.role === "dealer" && (
-        <> 
+        <>
           {isSellCar ? (
             <FilterSection onFinish={onFinish} />
           ) : (
@@ -132,6 +126,7 @@ const Homepage = () => {
                 }`}
               >
                 Cars for sale
+                <br />({displayedData?.data?.pagination?.total})
               </h1>
               <h1
                 onClick={() => setIsSellCar(false)}
@@ -142,7 +137,8 @@ const Homepage = () => {
                     : "bg-highlight-color text-white "
                 }`}
               >
-                Private looking for car
+                Private looking for car (
+                {submitDisplayedData?.data?.pagination?.total})
               </h1>
             </div>
             {/* Dealer */}
@@ -170,12 +166,20 @@ const Homepage = () => {
       ) : (
         // Private User
         <>
-          <div className="my-10">
+          <div className="my-10 px-2">
             <SellBuyTrade />
           </div>
-          <div className="flex lg:flex-row flex-col justify-around items-center ">
-            <TotalCarSell displayedData={displayedData} />
-            <TotalCarBuy displayedData={submitDisplayedData} />
+          <div className="flex lg:flex-row flex-col justify-around items-center md:gap-0 gap-6 ">
+            <div>
+              {displayedData?.data?.pagination?.total > 0 && (
+                <TotalCarSell displayedData={displayedData} />
+              )}
+            </div>
+            <div>
+              {submitDisplayedData?.data?.pagination?.total && (
+                <TotalCarBuy displayedData={submitDisplayedData} />
+              )}
+            </div>
           </div>
         </>
       )}

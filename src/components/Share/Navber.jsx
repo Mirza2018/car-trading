@@ -173,7 +173,7 @@ const Navbar = () => {
   // console.log(loading, "loading");
 
   return (
-    <div className="flex justify-around bg-secondary-color text-primary-color  items-center !z-[100] py-2  w-full ">
+    <div className="flex md:justify-around justify-between px-2 bg-secondary-color text-primary-color  items-center !z-[100] md:py-2 py-0  w-full ">
       {" "}
       {/* The style property fixed & w-full is to fixed the navber , if you dont want this just remove it */}
       {/* This is small/Mobile device Menu section */}
@@ -218,10 +218,54 @@ const Navbar = () => {
                 </span>
               </Link>
             ))}
+
+            {userInfo?.role ? (
+              <>
+                {" "}
+                {/* <div onClick={() => notificationRead()}>
+                  <Notification />
+                </div> */}
+                <Link href={`/dashboard/user-profile`}>
+                  <p className="text-[15px] font-medium px-3 py-2 rounded-3xl whitespace-normal">
+                    My Profile
+                  </p>
+                </Link>
+                {userInfo?.role === "private_user" ? (
+                  <p
+                    // href={"/sign-in"}
+                    onClick={() => {
+                      handleLogout();
+                      navigate.push("/sign-in");
+                    }}
+                  >
+                    <p className=" text-[15px] cursor-pointer font-medium px-3 py-2 rounded-3xl">
+                      Log In For Dealer
+                    </p>
+                  </p>
+                ) : (
+                  ""
+                )}
+                <p onClick={handleLogout}>
+                  <p className="text-[15px] font-medium px-3 py-2 rounded-3xl whitespace-normal">
+                    Log Out
+                  </p>
+                </p>
+              </>
+            ) : (
+              <Link href={"/sign-in"}>
+                <p className="text-[15px] font-medium px-3 py-2 rounded-3xl whitespace-normal">
+                  Log In
+                </p>
+              </Link>
+            )}
           </div>
         )}
       </div>
       {/* This is logo section */}
+      <div></div>
+      {/* <div onClick={() => notificationRead()}>
+        <Notification />
+      </div> */}
       <Link href="/">
         <div className="flex justify-center items-center md:gap-2 my-7">
           <Image
@@ -261,7 +305,10 @@ const Navbar = () => {
           {userInfo?.role ? (
             <>
               {" "}
-              <div onClick={() => notificationRead()}>
+              <div
+                className="hidden lg:block  "
+                onClick={() => notificationRead()}
+              >
                 <Notification />
               </div>
               <div ref={profileRef} className="cursor-pointer relative">
@@ -280,13 +327,6 @@ const Navbar = () => {
                       {displayedData?.data?.profile?.first_name?.charAt(0)}
                     </Avatar>
                   )}
-                  {/* <Image
-                    alt="logo"
-                    width={0}
-                    height={0}
-                    className="w-12  rounded-full border border-highlight-color aspect-square object-cover"
-                    src={AllImages.profile}
-                  />{" "} */}
                 </div>
                 {isProfile && (
                   <MyProfile
@@ -295,11 +335,6 @@ const Navbar = () => {
                   />
                 )}
               </div>
-              {/* <Link href={"/"}>
-                <Badge count={1}>
-                  <Avatar size={50} icon={<BellOutlined />} />
-                </Badge>
-              </Link> */}
               {userInfo?.role === "private_user" ? (
                 <p
                   // href={"/sign-in"}
@@ -308,7 +343,7 @@ const Navbar = () => {
                     navigate.push("/sign-in");
                   }}
                 >
-                  <p className="bg-[#00721E] text-[15px] cursor-pointer font-medium px-3 py-2 rounded-3xl">
+                  <p className="bg-[#00721E] text-[14px]  cursor-pointer font-medium px-2 whitespace-nowrap py-2 rounded-3xl">
                     Log In For Dealer
                   </p>
                 </p>

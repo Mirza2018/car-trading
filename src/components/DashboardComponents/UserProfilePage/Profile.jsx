@@ -44,18 +44,7 @@ const Profile = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-  const profileData = {
-    first_name: "Takibul",
-    last_name: "Mirza",
-    phoneNumber: "012365",
-    cvrNumber: "hello12365",
-    address: "Banasree",
-    city: "Dhaka",
-    zip: "12636",
-    websiteLink: "https://rasel.com",
-    regNo: "13241",
-    kontoNr: "654546",
-  };
+
 
   //   {
   //     "first_name": "Rasel",

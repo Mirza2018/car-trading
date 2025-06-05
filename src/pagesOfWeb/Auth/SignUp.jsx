@@ -242,6 +242,43 @@ const SignUp = () => {
                     <Select.Option value={false}>No</Select.Option>
                   </Select>
                 </Form.Item>
+
+                <Typography.Title level={4} style={{ color: "#222222" }}>
+                  Company Name
+                </Typography.Title>
+                <Form.Item
+                  name="companyName"
+                  className="text-base-color"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Company name is Required",
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder="Enter your company name"
+                    className="py-2 px-3 text-xl bg-site-color border !border-[#1E1E1E] r hover:bg-transparent hover:border-secoundary-color focus:bg-transparent focus:border-secoundary-color !bg-white"
+                  />
+                </Form.Item>
+                <Typography.Title level={4} style={{ color: "#222222" }}>
+                  CVR Number
+                </Typography.Title>
+                <Form.Item
+                  name="cvrNumber"
+                  className="text-base-color"
+                  rules={[
+                    {
+                      required: true,
+                      message: " CVR Number is Required",
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder="Enter your  CVR Number"
+                    className="py-2 px-3 text-xl bg-site-color border !border-[#1E1E1E] r hover:bg-transparent hover:border-secoundary-color focus:bg-transparent focus:border-secoundary-color !bg-white"
+                  />
+                </Form.Item>
               </>
             )}
             <Form.Item>
@@ -254,6 +291,12 @@ const SignUp = () => {
               </Button>
             </Form.Item>
           </Form>
+          <div className=" mb-5 flex justify-center items-center gap-2">
+            <p>Do you have an account?</p>
+            <Link className="text-[#FF991C] font-bold text-lg" href="sign-in">
+              Sign In
+            </Link>
+          </div>
         </div>
 
         <div className="hidden lg:block">

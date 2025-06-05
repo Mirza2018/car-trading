@@ -54,10 +54,10 @@ export const SocketProvider = ({ children }) => {
     });
 
     socketInstance.on("connect", () => {
-      toast.success("Connected to socket server", {
-        id: toastId,
-        duration: 2000,
-      });
+      // toast.success("Connected to socket server", {
+      //   id: toastId,
+      //   duration: 2000,
+      // });
     });
 
 
@@ -73,17 +73,17 @@ export const SocketProvider = ({ children }) => {
     });
 
     socketInstance.on("disconnect", (reason) => {
-      toast.error("Disconnected from socket server", {
-        id: toastId,
-        duration: 2000,
-      });
+      // toast.error("Disconnected from socket server", {
+      //   id: toastId,
+      //   duration: 2000,
+      // });
     });
 
     socketInstance.on("connect_error", (error) => {
-      toast.error(`Connection error: ${error.message}`, {
-        id: toastId,
-        duration: 2000,
-      });
+      // toast.error(`Connection error: ${error.message}`, {
+      //   id: toastId,
+      //   duration: 2000,
+      // });
     });
 
     return socketInstance;

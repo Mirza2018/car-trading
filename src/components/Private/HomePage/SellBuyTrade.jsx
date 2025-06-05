@@ -86,12 +86,12 @@ const SellBuyTrade = () => {
         <main className=" max-w-7xl border-2 rounded-xl border-base-color w-fit">
           <div className=" flex w-full max-w-4xl ">
             <div
-              className={`flex-1 text-center p-4 font-bold text-[30px] rounded-ss-xl text-primary-color bg-highlight-color`}
+              className={`flex-1 text-center md:p-4 p-2 font-bold text-[30px] rounded-ss-xl text-primary-color bg-highlight-color`}
             >
               <p className="text-xl">Sell Car</p>
             </div>
             <div
-              className={`flex-1 text-center p-4  rounded-se-xl font-bold text-[30px]  cursor-pointer bg-[#F3F9FB] `}
+              className={`flex-1 text-center md:p-4 p-2 rounded-se-xl font-bold text-[30px]  cursor-pointer bg-[#F3F9FB] `}
             >
               <Link di href="/submit-listing">
                 <p className="text-xl">Buy Car</p>
@@ -114,11 +114,11 @@ const SellBuyTrade = () => {
               suffix={
                 <div
                   onClick={handleEditClick}
-                  className="bg-highlight-color  rounded py-2 px-8 cursor-pointer"
+                  className="bg-highlight-color  rounded py-2 md:px-8 px-2 cursor-pointer"
                 >
                   <p
                     // href="/sell-car"
-                    className="text-white font-bold text-lg"
+                    className="text-white font-bold md:text-lg"
                   >
                     Search
                   </p>
@@ -131,13 +131,13 @@ const SellBuyTrade = () => {
                     height={0}
                     alt="search"
                     src={AllImages.star}
-                    className="w-7"
+                    className="md:w-7 w-4"
                   />
                   <Image
                     width={0}
                     height={0}
                     alt="search"
-                    className="w-6"
+                    className="md:w-6 w-3"
                     src={AllImages.dk}
                   />
                 </div>

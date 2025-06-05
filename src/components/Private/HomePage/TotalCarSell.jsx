@@ -6,35 +6,35 @@ import Image from "next/image";
 import React, { useState } from "react";
 
 const TotalCarSell = ({ displayedData }) => {
-  const carSell = [
-    {
-      name: "Kia Optima",
-      address: "Hybrid (Benzin), Automatgear,2.0L, 164HK | PNO #4589020",
-      price: "$150,000",
-    },
-    {
-      name: "Kia Optima",
-      address: "Hybrid (Benzin), Automatgear,2.0L, 164HK | PNO #4589020",
-      price: "$160,000",
-    },
-    {
-      name: "Kia Optima",
-      address: "Hybrid (Benzin), Automatgear,2.0L, 164HK | PNO #4589020",
-      price: "$170,000",
-    },
-    {
-      name: "Kia Optima",
-      address: "Hybrid (Benzin), Automatgear,2.0L, 164HK | PNO #4589020",
-      price: "$180,000",
-    },
-  ];
+  // const carSell = [
+  //   {
+  //     name: "Kia Optima",
+  //     address: "Hybrid (Benzin), Automatgear,2.0L, 164HK | PNO #4589020",
+  //     price: "$150,000",
+  //   },
+  //   {
+  //     name: "Kia Optima",
+  //     address: "Hybrid (Benzin), Automatgear,2.0L, 164HK | PNO #4589020",
+  //     price: "$160,000",
+  //   },
+  //   {
+  //     name: "Kia Optima",
+  //     address: "Hybrid (Benzin), Automatgear,2.0L, 164HK | PNO #4589020",
+  //     price: "$170,000",
+  //   },
+  //   {
+  //     name: "Kia Optima",
+  //     address: "Hybrid (Benzin), Automatgear,2.0L, 164HK | PNO #4589020",
+  //     price: "$180,000",
+  //   },
+  // ];
 
   // console.log(displayedData?.data?.result[0]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentData, setCurrentData] = useState(null);
   const showModal = (data) => {
-    setCurrentData(data);
+    setCurrentData(data); 
     setIsModalOpen(true);
   };
   const handleOk = () => {
@@ -45,11 +45,11 @@ const TotalCarSell = ({ displayedData }) => {
   };
   return (
     <div className="">
-      <h1 className="text-[40px] font-semibold text-center">
-        Total Car Sell ({displayedData?.data?.result?.length})
+      <h1 className="xl:text-[40px] text-3xl   font-semibold text-center">
+        Total Car Sell ({displayedData?.data?.pagination?.total})
       </h1>
 
-      <div className="flex flex-col gap-3 h-[450px] mt-3 overflow-scroll overflow-x-hidden scrollbar-hide ">
+      <div className="flex flex-col gap-3 h-[450px]  mt-3 overflow-scroll overflow-x-hidden scrollbar-hide ">
         {displayedData?.data?.result?.slice(0, 3).map((car) => (
           <div
             key={car?._id}
@@ -92,14 +92,14 @@ const TotalCarSell = ({ displayedData }) => {
               </div>
               <div className="flex md:flex-col flex-row gap-2 text-end">
                 <Tooltip title="Login as Dealer">
-                  <button className="btn border border-base-color rounded px-5 py-1 w-fit whitespace-nowrap cursor-not-allowed">
+                  <button className="btn border border-base-color rounded md:px-5 px-1 py-1 w-fit whitespace-nowrap cursor-not-allowed">
                     Buy Now
                   </button>
                 </Tooltip>
                 <Tooltip title="Login as Dealer">
                   <button
                     // onClick={() => showModal(car)}
-                    className="btn border border-base-color bg-[#E6F3F7] rounded px-2 py-1 w-fit whitespace-nowrap  cursor-not-allowed"
+                    className="btn border border-base-color bg-[#E6F3F7] rounded md:px-2 px-1 py-1 w-fit whitespace-nowrap  cursor-not-allowed"
                   >
                     View Details
                   </button>
