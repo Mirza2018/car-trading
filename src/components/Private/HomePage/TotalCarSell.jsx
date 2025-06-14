@@ -1,40 +1,21 @@
 "use client";
 import { AllImages } from "@/assets/AllImages";
 import { getImageUrl } from "@/helpers/config/envConfig";
-import { Button, Divider, Modal, Tooltip } from "antd";
+import { Button, Divider, Modal, Pagination, Tooltip } from "antd";
 import Image from "next/image";
 import React, { useState } from "react";
 
-const TotalCarSell = ({ displayedData }) => {
-  // const carSell = [
-  //   {
-  //     name: "Kia Optima",
-  //     address: "Hybrid (Benzin), Automatgear,2.0L, 164HK | PNO #4589020",
-  //     price: "$150,000",
-  //   },
-  //   {
-  //     name: "Kia Optima",
-  //     address: "Hybrid (Benzin), Automatgear,2.0L, 164HK | PNO #4589020",
-  //     price: "$160,000",
-  //   },
-  //   {
-  //     name: "Kia Optima",
-  //     address: "Hybrid (Benzin), Automatgear,2.0L, 164HK | PNO #4589020",
-  //     price: "$170,000",
-  //   },
-  //   {
-  //     name: "Kia Optima",
-  //     address: "Hybrid (Benzin), Automatgear,2.0L, 164HK | PNO #4589020",
-  //     price: "$180,000",
-  //   },
-  // ];
-
-  // console.log(displayedData?.data?.result[0]);
-
+const TotalCarSell = ({
+  displayedData,
+  isLoading,
+  isFetching,
+  isSuccess,
+  onPageChange,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentData, setCurrentData] = useState(null);
   const showModal = (data) => {
-    setCurrentData(data); 
+    setCurrentData(data);
     setIsModalOpen(true);
   };
   const handleOk = () => {
@@ -50,7 +31,7 @@ const TotalCarSell = ({ displayedData }) => {
       </h1>
 
       <div className="flex flex-col gap-3 h-[450px]  mt-3 overflow-scroll overflow-x-hidden scrollbar-hide ">
-        {displayedData?.data?.result?.slice(0, 3).map((car) => (
+        {displayedData?.data?.result?.map((car) => (
           <div
             key={car?._id}
             className="flex justify-between gap-3 border border-base-color py-5 max-w-2xl  me-3 px-2  "
@@ -171,6 +152,13 @@ const TotalCarSell = ({ displayedData }) => {
           </div>
         </Modal>
       </div>
+      <Pagination
+        current={displayedData?.data?.pagination?.page}
+        pageSize={displayedData?.data?.pagination?.limit}
+        total={displayedData?.data?.pagination?.total}
+        onChange={onPageChange}
+        align="end"
+      />
     </div>
   );
 };

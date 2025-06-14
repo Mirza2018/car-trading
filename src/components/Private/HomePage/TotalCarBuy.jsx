@@ -1,12 +1,18 @@
 import { AllImages } from "@/assets/AllImages";
 import { getImageUrl } from "@/helpers/config/envConfig";
-import { Divider, Tooltip } from "antd";
+import { Divider, Pagination, Tooltip } from "antd";
 import Image from "next/image";
 import React from "react";
-
-const TotalCarBuy = ({ displayedData }) => {
+ 
+const TotalCarBuy = ({
+  displayedData,
+  isLoading,
+  isFetching,
+  isSuccess,
+  onPageChange2,
+}) => {
   // console.log(displayedData.data?.result[0]);
-  
+
   const carSell = {
     name: "Kia Optima",
     address: "Hybrid (Benzin), Automatgear,2.0L, 164HK | PNO #4589020",
@@ -69,6 +75,13 @@ const TotalCarBuy = ({ displayedData }) => {
           </div>
         ))}
       </div>
+      <Pagination
+        current={displayedData?.data?.pagination?.page}
+        pageSize={displayedData?.data?.pagination?.limit}
+        total={displayedData?.data?.pagination?.total}
+        onChange={onPageChange2}
+        align="end"
+      />
     </div>
   );
 };

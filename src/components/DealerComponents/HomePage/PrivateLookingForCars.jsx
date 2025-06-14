@@ -6,7 +6,7 @@ import BrandVIewDetailsPage from "./BrandViewDetailsModal/BrandVIewDetailsPage";
 const PrivateLookingForCars = ({
   displayedData,
   isLoading,
-  isFetching,
+  isFetching, 
   isSuccess,
   onPageChange2,
 }) => {
@@ -119,8 +119,6 @@ const PrivateLookingForCars = ({
           total={displayedData?.data?.pagination?.total}
           onChange={onPageChange2}
           align="end"
-          // showSizeChanger={true}
-          // pageSizeOptions={["3", "6", "9"]}
         />
       </div>
     );

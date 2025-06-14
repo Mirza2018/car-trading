@@ -172,12 +172,24 @@ const Homepage = () => {
           <div className="flex lg:flex-row flex-col justify-around items-center md:gap-0 gap-6 ">
             <div>
               {displayedData?.data?.pagination?.total > 0 && (
-                <TotalCarSell displayedData={displayedData} />
+                <TotalCarSell
+                  displayedData={displayedData}
+                  isLoading={isLoading}
+                  isFetching={isFetching}
+                  isSuccess={isSuccess}
+                  onPageChange={onPageChange}
+                />
               )}
             </div>
             <div>
-              {submitDisplayedData?.data?.pagination?.total && (
-                <TotalCarBuy displayedData={submitDisplayedData} />
+              {submitDisplayedData?.data?.pagination?.total > 0 && (
+                <TotalCarBuy
+                  displayedData={submitDisplayedData}
+                  isLoading={submitIsLoading}
+                  isFetching={submitIsFetching}
+                  isSuccess={submitIsSuccess}
+                  onPageChange2={onPageChange2}
+                />
               )}
             </div>
           </div>

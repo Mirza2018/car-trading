@@ -34,12 +34,7 @@ const SellBuyTrade = () => {
     });
 
 
-    // if (!userInfo) {
-    //  return toast.warning("Please Login as a Private user", {
-    //     id: toastId,
-    //     duration: 2000,
-    //   });
-    // }
+
 
 
 

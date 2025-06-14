@@ -11,7 +11,7 @@ import BuyNowBtn from "./CarViewDetailsModal/BuyNowBtn";
 import Link from "next/link";
 import {
   useBuyCarMutation,
-  useSaleCarListQuery,
+  useSaleCarListQuery, 
 } from "@/redux/api/features/carDealer";
 import { getImageUrl } from "@/helpers/config/envConfig";
 import { useCreateConversationMutation } from "@/redux/api/features/conversation";
@@ -257,8 +257,6 @@ const CarsForSale = ({
           total={displayedData?.data?.pagination?.total}
           onChange={onPageChange}
           align="end"
-          // showSizeChanger={true}
-          // pageSizeOptions={["3", "6", "9"]}
         />
       </div>
     );
