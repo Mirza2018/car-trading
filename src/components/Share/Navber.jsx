@@ -13,9 +13,7 @@ import MyProfile from "./MyProfile";
 
 import { UserOutlined } from "@ant-design/icons";
 import { useProfileQuery } from "@/redux/api/features/myProfile";
-import {
-  useNotificationActionMutation
-} from "@/redux/api/features/notificationApi";
+import { useNotificationActionMutation } from "@/redux/api/features/notificationApi";
 import { jwtDecode } from "jwt-decode";
 import TaskManagePage from "../DealerComponents/TaskPage/TaskManagePage";
 import Notification from "./Notification";
@@ -138,8 +136,9 @@ const Navbar = () => {
     dispatch(clearAuth());
     cookies.remove("car_trading_accessToken", { path: "/" });
     cookies.remove("car_trading_accessToken", { path: "/dashboard" });
-    navigate.push("/");
+    // navigate.push("/");
     toast.success("Log out successfully done");
+    window.location.reload();
   };
 
   const getMenuItems = (user) => {
@@ -242,7 +241,12 @@ const Navbar = () => {
                 ) : (
                   ""
                 )}
-                <p onClick={handleLogout}>
+                <p
+                  onClick={() => {
+                    handleLogout();
+                    navigate.push("/");
+                  }}
+                >
                   <p className="text-[15px] font-medium px-3 py-2 rounded-3xl whitespace-normal">
                     Log Out
                   </p>
@@ -344,7 +348,7 @@ const Navbar = () => {
                 <p
                   // href={"/sign-in"}
                   onClick={() => {
-                    handleLogout();
+                    // handleLogout();
                     navigate.push("/sign-in");
                   }}
                 >
