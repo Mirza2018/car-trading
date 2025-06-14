@@ -17,8 +17,8 @@ import { toast } from "sonner";
 const SignatureModal = dynamic(
   () => import("@/components/DealerComponents/FinalNote.jsx/SignatureModal"),
   { ssr: false }
-); 
- 
+);
+
 const ContractPaperPage = () => {
   const params = useParams();
   const navigate = useRouter();
@@ -55,7 +55,7 @@ const ContractPaperPage = () => {
   const [isValueIncressed, setIsValueIncreased] = useState(
     displayedData?.data?.isMoms
   );
-console.log(displayedData);
+  console.log(displayedData);
 
   // Access localStorage only on the client side for initial load
   useEffect(() => {
@@ -289,8 +289,9 @@ console.log(displayedData);
                     <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
                       <p className="ps-2">Mærke & model</p>
                       <p className="border-s border-secondary-color ps-2">
-                        {displayedData?.data?.carModel?.brand}
-                        {displayedData?.data?.carModel?.model}
+                        {displayedData?.data?.carModel?.brand +
+                          " " +
+                          displayedData?.data?.carModel?.model}
                       </p>
                     </div>
 
@@ -577,7 +578,12 @@ console.log(displayedData);
                           className="absolute"
                         />
                       ) : (
-                        <p></p>
+                        <button
+                          onClick={() => setIsSignatureModalOpen(true)}
+                          className="font-bold text-white bg-highlight-color p-2 rounded-md flex justify-center items-center gap-2"
+                        >
+                          Sign
+                        </button>
                       )}
                     </div>
                     <p className="text-base font-medium">
@@ -676,19 +682,13 @@ console.log(displayedData);
                       </button>
                     </div>
                     <div className="flex md:justify-center gap-2 flex-wrap">
-                      <button
+                      {/* <button
                         onClick={() => setIsSignatureModalOpen(true)}
                         className="font-bold text-white bg-highlight-color p-2 rounded-md flex justify-center items-center gap-2"
                       >
                         Give your Signature
-                      </button>
-                      {/* <button
-                onClick={handleSubmit}
-                className="font-bold text-white bg-highlight-color p-2 rounded-md flex justify-center items-center gap-2"
-              >
-                <Image width={0} height={0} src={AllImages.print} alt="cross" />
-                Print
-              </button> */}
+                      </button> */}
+
                       <button
                         onClick={handleSubmit}
                         className="font-bold text-white bg-highlight-color p-2 rounded-md flex justify-center items-center gap-2"
@@ -701,13 +701,6 @@ console.log(displayedData);
                         />
                         Final The Deal
                       </button>
-                      {/* <button
-                onClick={handleSubmit}
-                className="font-bold text-white bg-highlight-color p-2 rounded-md flex justify-center items-center gap-2"
-              >
-                <Image width={0} height={0} src={AllImages.save} alt="cross" />
-                Save and send
-              </button> */}
                     </div>
                   </>
                 )}

@@ -45,7 +45,7 @@ const DealerAllCarDetails = ({ car }) => {
               className=""
             />
             <p className="text-sm font-normal">
-              {car?.company?.city} ({car?.company?.postCode})
+              {car?.company?.city.split(",")[0]} ({car?.company?.postCode})
             </p>
           </div>
         )}
@@ -63,14 +63,7 @@ const DealerAllCarDetails = ({ car }) => {
           </div>
         )}
       </div>
-      {/* <div className="text-base font-medium flex flex-wrap gap-3  select-none mb-5">
-          <p className="cursor-pointer">Primary Data</p>
-          <p className="cursor-pointer">Information</p>
-          <p className="cursor-pointer">Equipment</p>
-          <p className="cursor-pointer">Classification</p>
-          <p className="cursor-pointer">Services</p>
-          <p className="cursor-pointer">Seller</p>
-        </div> */}
+
       <DealerCarTableDetails car={car} />
     </div>
   );

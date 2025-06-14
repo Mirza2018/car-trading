@@ -319,8 +319,9 @@ const FinalNode = () => {
                   <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
                     <p className="ps-2">Mærke & model</p>
                     <p className="border-s border-secondary-color ps-2">
-                      {displayedData?.data?.carModel?.brand}
-                      {displayedData?.data?.carModel?.model}
+                      {displayedData?.data?.carModel?.brand +
+                        " " +
+                        displayedData?.data?.carModel?.model}
                     </p>
                   </div>
 
@@ -645,7 +646,12 @@ const FinalNode = () => {
                         className="absolute"
                       />
                     ) : (
-                      <p></p>
+                      <button
+                        onClick={() => setIsSignatureModalOpen(true)}
+                        className="font-bold text-white bg-highlight-color p-2 rounded-md flex justify-center items-center px-6"
+                      >
+                        Sign
+                      </button>
                     )}
                   </div>
                   <p className="text-base font-medium">Dealer underskrift</p>
@@ -695,12 +701,12 @@ const FinalNode = () => {
                     </button>
                   </div>
                   <div className="flex md:justify-center gap-2 flex-wrap">
-                    <button
+                    {/* <button
                       onClick={() => setIsSignatureModalOpen(true)}
                       className="font-bold text-white bg-highlight-color p-2 rounded-md flex justify-center items-center gap-2"
                     >
                       Give your Signature
-                    </button>
+                    </button> */}
                     {/* <button
                 onClick={handleSubmit}
                 className="font-bold text-white bg-highlight-color p-2 rounded-md flex justify-center items-center gap-2"

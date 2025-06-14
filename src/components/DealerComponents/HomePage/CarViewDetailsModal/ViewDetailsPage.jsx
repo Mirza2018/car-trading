@@ -1,4 +1,4 @@
-import { Modal } from "antd";
+import { Avatar, Modal } from "antd";
 import React from "react";
 import ImageSlider from "./ImageSlider";
 import { IoMdLink } from "react-icons/io";
@@ -7,10 +7,10 @@ import MakeABidBtn from "./MakeABidBtn";
 import CarAllDetails from "./CarAllDetails";
 import Link from "next/link";
 import DealerAllCarDetails from "@/components/DashboardComponents/TotalCarForSellPage/DealerAllCarDetails";
- 
+
 const ViewDetailsPage = ({
   setOpenResponsive,
-  openResponsive, 
+  openResponsive,
   car,
   sendOffer,
   buyNow,
@@ -45,14 +45,26 @@ const ViewDetailsPage = ({
           >
             Close
           </button>
-        </div>,
+        </div>
       ]}
     >
       <div>
         <main className="md:grid grid-cols-12  gap-4">
           {/* Left Side */}
           <section className="col-span-5">
-            <ImageSlider carImages={car?.carModel?.images} />
+            {car?.carModel?.images[0] ? (
+              <ImageSlider carImages={car?.carModel?.images} />
+            ) : (
+              <div className="flex justify-center items-center  h-full">
+                <Avatar
+                  shape="square"
+                  className="!bg-secondary-color font-medium"
+                  size={170}
+                >
+                  {car?.carModel?.brand}
+                </Avatar>
+              </div>
+            )}
           </section>
           {/* Right Side */}
           <section className="col-span-7">
@@ -62,30 +74,12 @@ const ViewDetailsPage = ({
                 {/* <IoMdLink className="rotate-90" /> */}
                 Listed:<p> {date}</p>
               </div>
-              {/* <div className=" font-bold text-base">Feb.03 13:06:18</div> */}
-              {/* {car?.maxBidAmount ? (
-                <div className="bg-base-color border border-secondary-color rounded-full aspect-square flex flex-col justify-center items-center px-2">
-                  <h1 className="text-xl font-bold px-1">
-                    {car?.maxBidAmount} DKK
-                  </h1>
-                  <p className=" text-center text-sm">
-                    Maximum price <br /> achieved
-                  </p>
-                </div>
-              ) : (
-                <div className="bg-base-color border border-secondary-color rounded-full aspect-square flex flex-col justify-center items-center px-2">
-                  <p className=" text-center text-sm p-4">
-                    No bids
-                    <br /> achieved
-                  </p>
-                </div>
-              )} */}
             </div>
             {/* Middel part car All Details */}
             <DealerAllCarDetails car={car} />
           </section>
         </main>
-        ;
+        
       </div>
     </Modal>
   );

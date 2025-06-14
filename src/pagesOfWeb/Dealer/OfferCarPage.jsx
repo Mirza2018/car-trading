@@ -13,34 +13,32 @@ const OfferCarPage = () => {
 
   const [isDeal, setIsDeal] = useState(true);
   return (
-    <div className="container mx-auto min-h-screen border-2 border-secondary-color rounded-md my-20">
-      <div className="max-w-[1200px] md:mx-20 mx-4">
-        <div className=" bg-base-color  mx-auto border border-secondary-color rounded mt-10 w-full my-5 grid grid-cols-2">
-          <p
-            style={{ fontSize: "clamp(14px, 1vw + 1rem ,24px)" }}
-            onClick={() => setIsDeal(true)}
-            className={`text-2xl font-bold cursor-pointer m-1 rounded text-center py-1  ${
-              isDeal ? "bg-highlight-color text-white " : ""
-            }`}
-          >
-            Deal
-          </p>
-          <p
-            style={{ fontSize: "clamp(14px, 1vw + 1rem ,24px)" }}
-            onClick={() => setIsDeal(false)}
-            className={` font-bold cursor-pointer  m-1 rounded text-center py-1 ${
-              isDeal ? "" : "bg-highlight-color text-white "
-            }`}
-          >
-            License plate
-          </p>
-        </div>
-        {isDeal ? (
-          <OfferCar offerCar={offerCar} />
-        ) : (
-          <Licenseplate offerCar={offerCar} />
-        )}
+    <div className=" mx-5 my-12 px-5 rounded-lg max-w-[900px]  border  border-secondary-color">
+      <div className=" bg-base-color  mx-auto border border-secondary-color rounded mt-10 w-full my-5 grid grid-cols-2">
+        <p
+          style={{ fontSize: "clamp(14px, 1vw + 1rem ,24px)" }}
+          onClick={() => setIsDeal(true)}
+          className={`text-2xl font-bold cursor-pointer m-1 rounded text-center py-1  ${
+            isDeal ? "bg-highlight-color text-white " : ""
+          }`}
+        >
+          Deal
+        </p>
+        <p
+          style={{ fontSize: "clamp(14px, 1vw + 1rem ,24px)" }}
+          onClick={() => setIsDeal(false)}
+          className={` font-bold cursor-pointer  m-1 rounded text-center py-1 ${
+            isDeal ? "" : "bg-highlight-color text-white "
+          }`}
+        >
+          License plate
+        </p>
       </div>
+      {isDeal ? (
+        <OfferCar offerCar={offerCar} />
+      ) : (
+        <Licenseplate offerCar={offerCar} />
+      )}
     </div>
   );
 };

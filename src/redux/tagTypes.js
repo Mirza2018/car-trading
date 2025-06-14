@@ -16,6 +16,7 @@ export const tagTypes = {
   shelter: "Shelter",
   userProfile: "UserProfile",
   petProfile: "PetProfile",
+  privacy: "Privacy",
 };
 
 export const tagTypesList = [

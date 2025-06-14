@@ -1,5 +1,6 @@
 "use client";
 import { useContactPaperQuery } from "@/redux/api/features/contract";
+import { useProfileQuery } from "@/redux/api/features/myProfile";
 import { useSendMailOrderTransportMutation } from "@/redux/api/features/orderTransport";
 import { Form, Input } from "antd";
 import { useParams, useRouter } from "next/navigation";
@@ -9,18 +10,19 @@ import { toast } from "sonner";
 
 const OrderTransport = () => {
   const params = useParams();
+  const { data: userData, isLoading: isLoadingUser } = useProfileQuery();
   const { data, currentData, isLoading, isFetching, isSuccess, refetch } =
     useContactPaperQuery(params.id);
-  const [orderTransportDetails] = useSendMailOrderTransportMutation()
-  const navigate=useRouter()
+  const [orderTransportDetails] = useSendMailOrderTransportMutation();
+  const navigate = useRouter();
 
   const displayedData = data ?? currentData;
-  console.log(displayedData);
+  // console.log(displayedData);
   if (displayedData?.data?.status != "sold") {
     return <p>Contract paper not Sign</p>;
   }
 
-  const onFinish =async (values) => {
+  const onFinish = async (values) => {
     const toastId = toast.loading("Transport details is submiting...");
     const data = {
       carModel: displayedData?.data?.carModel?._id,
@@ -29,8 +31,6 @@ const OrderTransport = () => {
       receiverPhone: values.phone,
     };
     console.log(values);
-
-
 
     try {
       const res = await orderTransportDetails(data).unwrap();
@@ -43,7 +43,8 @@ const OrderTransport = () => {
     } catch (error) {
       console.log(error);
       toast.error(
-        error?.data?.message || "There is an problem accepting submit transport",
+        error?.data?.message ||
+          "There is an problem accepting submit transport",
         {
           id: toastId,
           duration: 2000,
@@ -51,6 +52,8 @@ const OrderTransport = () => {
       );
     }
   };
+  console.log(userData?.data?.profile?.phoneNumber);
+
   return (
     <div className=" mx-auto container gap-9">
       <div className="p-5">
@@ -128,7 +131,7 @@ const OrderTransport = () => {
           </p>
           <p className="text-[#1E1E1E] text-xl ">
             {" "}
-            Address:{" "}
+            City & Postal Code:{" "}
             <span className="text-[#606060]">
               {" "}
               {displayedData?.data?.company?.city} (
@@ -152,6 +155,7 @@ const OrderTransport = () => {
           <h1 className="text-2xl font-medium mb-2">Delivery information</h1>
           <div className="flex flex-col gap-5 bg-base-color rounded-lg p-5 w-full ">
             <Form.Item
+              initialValue={userData?.data?.profile?.address}
               className="max-w-[800px]"
               layout="vertical"
               label={
@@ -165,6 +169,7 @@ const OrderTransport = () => {
               <Input />
             </Form.Item>
             <Form.Item
+              initialValue={userData?.data?.profile?.phoneNumber}
               className="max-w-[800px]"
               layout="vertical"
               label={
@@ -181,21 +186,20 @@ const OrderTransport = () => {
         </div>
 
         <div className=" flex justify-center gap-5 items-center my-12 flex-wrap">
-          {/* <button className="bg-highlight-color font-medium text-white rounded-2xl px-16 py-5 text-2xl ">
-          Cancel
-        </button> */}
-          <p className="bg-highlight-color font-medium cursor-pointer text-white rounded-2xl px-12 py-5 text-2xl ">
-            Cancel Transport{" "}
+          <p
+            onClick={() => navigate.push("/dashboard/total-dealer-car-sell")}
+            className="bg-highlight-color font-medium cursor-pointer text-white rounded-2xl px-12 py-5 text-2xl "
+          >
+            Cancel Transport
           </p>
-          {/* <button className="bg-highlight-color font-medium text-white rounded-2xl px-20 py-5 text-2xl ">
-          Edit
-        </button> */}
-          <button type="submit" className="bg-highlight-color whitespace-nowrap  font-medium text-white rounded-2xl px-14 py-5 text-2xl ">
+          <button
+            type="submit"
+            className="bg-highlight-color whitespace-nowrap  font-medium text-white rounded-2xl px-14 py-5 text-2xl "
+          >
             Confim & Arrange Transport
           </button>
         </div>
       </Form>
-      {/* <pre>{JSON.stringify(displayedData?.data, null, 2)}</pre> */}
     </div>
   );
 };

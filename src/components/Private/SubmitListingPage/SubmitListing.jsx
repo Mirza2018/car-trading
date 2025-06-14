@@ -1,19 +1,39 @@
+"use client"
 import { AllImages } from "@/assets/AllImages";
 import { useSubmitListingCreateMutation } from "@/redux/api/features/carPrivate";
-import { Checkbox, Form, Input, InputNumber, Select } from "antd";
+import { useProfileQuery } from "@/redux/api/features/myProfile";
+import { Checkbox, Form, Input, InputNumber, Select, Spin } from "antd";
 import { useForm } from "antd/es/form/Form";
-import { Button } from "antd/es/radio";
+import { jwtDecode } from "jwt-decode";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
-import { IoArrowForward } from "react-icons/io5";
 import { toast } from "sonner";
+import Cookies from "universal-cookie";
 
 const SubmitListing = () => {
+    const {
+      data: profileData,
+      currentData,
+      isLoading,
+      isFetching,
+    } = useProfileQuery();
   const [submitListingData] = useSubmitListingCreateMutation();
   const [form] = useForm();
+  const cookies = new Cookies();
+  const userCookie = cookies.get("car_trading_accessToken");
+  let userInfo;
+  if (!userCookie) {
+    userInfo = false;
+  } else {
+    userInfo = jwtDecode(userCookie);
+  }
+  console.log(userInfo);
+
   const navigate = useRouter();
+  const myInfo = profileData ?? currentData;
+  console.log(myInfo);
 
   const [isDistance, setIsDistance] = useState(false);
   const [isCompany, setIsCompany] = useState(true);
@@ -44,11 +64,20 @@ const SubmitListing = () => {
   };
 
   const onFinsh = async (values) => {
-    values.models = selectedCar;
-
+    if (!selectedCar) {
+      return toast.error("please Selete Models", {
+        toastId: "formError",
+        autoClose: 2000,
+      });
+    }
     const toastId = toast.loading("Car details is submitting..");
-
-    const data = { ...values };
+    values.models = selectedCar;
+    let data;
+    if (userInfo) {
+      data = { ...values, userId: userInfo?.userId };
+    } else {
+      data = { ...values };
+    }
 
     delete data.city;
     delete data.street;
@@ -62,147 +91,51 @@ const SubmitListing = () => {
         id: toastId,
         duration: 2000,
       });
+      if (!userInfo) {
+        toast.success("Please check your provided mail", {
+          duration: 2000,
+        });
+      }
       navigate.push("/");
     } catch (error) {
       console.log(error);
 
-      toast.error("Something wrong please try latter.. ", {
-        id: toastId,
-        duration: 2000,
-      });
+      toast.error(
+        error?.data?.errorSources[0]?.message ||
+          error?.data?.message ||
+          "Something wrong please try latter.. ",
+        {
+          id: toastId,
+          duration: 2000,
+        }
+      );
     }
   };
+  if (isLoading) {
+    return <Spin className="flex justify-center items-center h-screen"></Spin>;
+  }
   return (
-    <div className="max-w-[1200px] md:mx-20 mx-4 select-none">
+    <div className=" mx-5 my-12 px-5 rounded-lg max-w-[900px]  border  border-secondary-color">
+      <div className="flex justify-center items-center text-2xl font-bold  gap-3 bg-base-color border border-secondary-color rounded max-w-[1200px] md:mx-20 mx-4 my-10">
+        <button
+          className={` rounded w-full  text-white bg-highlight-color m-1`}
+        >
+          Deal
+        </button>
+      </div>
       <Form
         onFinish={onFinsh}
         onFinishFailed={onFinishFailed}
         form={form}
         layout="vertical"
       >
-        <Form.Item
-          label={
-            <span
-              style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
-              className="font-bold  "
-            >
-              Car Category
-            </span>
-          }
-          name="carCategory"
-          rules={[
-            {
-              required: true,
-              message: "Please select car category",
-            },
-          ]}
-        >
-          <Select
-            className="!h-12 "
-            placeholder={
-              <span
-                style={{ fontSize: "clamp(12px, 1vw + 1rem ,18px)" }}
-                className="text-black   "
-              >
-                Private car or company car
-              </span>
-            }
-          >
-            <Select.Option value="privateCar">Private car</Select.Option>
-            <Select.Option value="companyCar">company car</Select.Option>
-          </Select>
-        </Form.Item>
-
-        <Form.Item
-          rules={[
-            {
-              required: true,
-              message: "Please select Mark",
-            },
-          ]}
-          label={
-            <span
-              style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
-              className="font-bold  "
-            >
-              Mark
-            </span>
-          }
-          name="mark"
-        >
-          <Select
-            placeholder={
-              <span
-                style={{ fontSize: "clamp(12px, 1vw + 1rem ,18px)" }}
-                className="text-black  "
-              >
-                Brands
-              </span>
-            }
-            className="!h-12 !bg-base-color"
-            showSearch
-            optionFilterProp="label"
-            filterSort={(optionA, optionB) =>
-              (optionA?.label ?? "")
-                .toLowerCase()
-                .localeCompare((optionB?.label ?? "").toLowerCase())
-            }
-            options={carBrands}
-          />
-        </Form.Item>
-
-        <Form.Item
-          rules={[
-            {
-              required: true,
-              message: "Please Input Model Name",
-            },
-          ]}
-          label={
-            <span
-              style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
-              className="font-bold  "
-            >
-              Model
-            </span>
-          }
-          name="model"
-        >
-          {/* <Select
-            placeholder={<span className="text-black  ">Model</span>}
-            className="!h-12 !bg-base-color"
-            options={carModels}
-          /> */}
-          <Input placeholder="Give model name" />
-        </Form.Item>
-
-        <h1
-          style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
-          className="font-bold   mb-2"
-        >
-          Cash price
-        </h1>
-
-        <Form.Item
-          rules={[
-            {
-              required: true,
-              message: "Please Input Max Price",
-            },
-          ]}
-          label={<span className="font-medium text-base">Max price</span>}
-          name="cashPrice"
-          className="flex-1"
-        >
-          <InputNumber placeholder="0" className=" w-full" />
-        </Form.Item>
-
-        <div className="flex justify-between items-center">
+        <div className="flex  flex-col md:flex-row justify-between  gap-5 ">
           <Form.Item
+            className="flex-1"
             rules={[
               {
                 required: true,
-                message: "Please select Price type",
+                message: "Please select Mark",
               },
             ]}
             label={
@@ -210,46 +143,87 @@ const SubmitListing = () => {
                 style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
                 className="font-bold  "
               >
-                Price type
+                Mark
               </span>
             }
-            name="priceType"
-            className="flex-1"
+            name="mark"
           >
-            <Checkbox.Group style={{ width: "100%" }}>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "10px",
-                }}
+            <Select
+              placeholder={
+                <span
+                  style={{ fontSize: "clamp(12px, 1vw + 1rem ,14px)" }}
+                  className="text-black  "
+                >
+                  Brands
+                </span>
+              }
+              className=" !bg-base-color"
+              showSearch
+              optionFilterProp="label"
+              filterSort={(optionA, optionB) =>
+                (optionA?.label ?? "")
+                  .toLowerCase()
+                  .localeCompare((optionB?.label ?? "").toLowerCase())
+              }
+              options={carBrands}
+            />
+          </Form.Item>
+          <Form.Item
+            className="flex-1"
+            rules={[
+              {
+                required: true,
+
+                message: "Please Input Model Name",
+              },
+            ]}
+            label={
+              <span
+                style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+                className="font-bold  "
               >
-                <Checkbox
-                  value=" Cash price"
-                  // checked={selectedPriceType === "cashPrice"}
-                  // onChange={handleCheckboxChange}
-                  style={{ lineHeight: "32px" }}
+                Model
+              </span>
+            }
+            name="model"
+          >
+            <Input placeholder="Give model name" />
+          </Form.Item>
+        </div>
+
+        <div className="flex flex-col  md:flex-row justify-between  gap-5 ">
+          <Form.Item
+            className="flex-1"
+            label={
+              <span
+                style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+                className="font-bold  "
+              >
+                Car Category
+              </span>
+            }
+            name="carCategory"
+            rules={[
+              {
+                required: true,
+                message: "Please select car category",
+              },
+            ]}
+          >
+            <Select
+              className=""
+              placeholder={
+                <span
+                  style={{ fontSize: "clamp(12px, 1vw + 1rem ,14px)" }}
+                  className="text-black   "
                 >
-                  Cash price
-                </Checkbox>
-                <Checkbox
-                  value="Cars without tax"
-                  // checked={selectedPriceType === "carsWithoutTax"}
-                  // onChange={handleCheckboxChange}
-                  style={{ lineHeight: "32px" }}
-                >
-                  Cars without tax
-                </Checkbox>
-                <Checkbox
-                  value=" Wholesale/CVR"
-                  // checked={selectedPriceType === "wholesaleCVR"}
-                  // onChange={handleCheckboxChange}
-                  style={{ lineHeight: "32px" }}
-                >
-                  Wholesale/CVR
-                </Checkbox>
-              </div>
-            </Checkbox.Group>
+                  Private car or company car
+                </span>
+              }
+            >
+              <Select.Option value="privateCar">Private car</Select.Option>
+              <Select.Option value="companyCar">company car</Select.Option>
+            </Select>
           </Form.Item>
 
           <Form.Item
@@ -273,7 +247,7 @@ const SubmitListing = () => {
             <Select
               placeholder={
                 <span
-                  style={{ fontSize: "clamp(12px, 1vw + 1rem ,18px)" }}
+                  style={{ fontSize: "clamp(12px, 1vw + 1rem ,14x)" }}
                   className="text-black  "
                 >
                   All
@@ -285,6 +259,210 @@ const SubmitListing = () => {
             </Select>
           </Form.Item>
         </div>
+
+        <h1
+          style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+          className="font-bold   mb-2"
+        >
+          Cash price (Max price)
+        </h1>
+
+        <Form.Item
+          rules={[
+            {
+              required: true,
+              message: "Please Input Max Price",
+            },
+          ]}
+          // label={<span className="font-medium text-base">Max price</span>}
+          name="cashPrice"
+          className="flex-1"
+        >
+          <InputNumber placeholder="0" className=" w-full" />
+        </Form.Item>
+
+        <div className="flex justify-between items-start">
+          <Form.Item
+            rules={[
+              {
+                required: true,
+                message: "Please select Fuel Type",
+              },
+            ]}
+            label={
+              <span
+                style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+                className="font-bold  "
+              >
+                Fuel
+              </span>
+            }
+            name="fuel"
+            className="flex-1"
+          >
+            <Checkbox.Group>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "10px",
+                }}
+              >
+                <Checkbox
+                  value="Electric Car"
+                  // checked={selectedFuleType === "electricCar"}
+                  // onChange={handleFuleTypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Electric Car
+                </Checkbox>
+                <Checkbox
+                  value="Petrol"
+                  // checked={selectedFuleType === "petrol"}
+                  // onChange={handleFuleTypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Petrol
+                </Checkbox>
+                <Checkbox
+                  value="Diesel"
+                  // checked={selectedFuleType === "diesel"}
+                  // onChange={handleFuleTypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Diesel
+                </Checkbox>
+                <Checkbox
+                  value="Hybrid Gasoline"
+                  // checked={selectedFuleType === "hybridGasoline"}
+                  // onChange={handleFuleTypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Hybrid - Gasoline
+                </Checkbox>
+                <Checkbox
+                  value="Hybrid Diesel"
+                  // checked={selectedFuleType === "hybridDiesel"}
+                  // onChange={handleFuleTypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Hybrid - Diesel
+                </Checkbox>
+                <Checkbox
+                  value="Plugin Petrol"
+                  // checked={selectedFuleType === "pluginPetrol"}
+                  // onChange={handleFuleTypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Plug-in - Petrol
+                </Checkbox>
+                <Checkbox
+                  value="Plugin Diesel"
+                  // checked={selectedFuleType === "pluginDiesel"}
+                  // onChange={handleFuleTypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Plug-in - Diesel
+                </Checkbox>
+              </div>
+            </Checkbox.Group>
+          </Form.Item>
+
+          <div className="md:flex-1">
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: "Please select Gear type",
+                },
+              ]}
+              label={
+                <span
+                  style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+                  className="font-bold  "
+                >
+                  Gear type
+                </span>
+              }
+              name="gearType"
+            >
+              <Checkbox.Group>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "10px",
+                  }}
+                >
+                  <Checkbox value="Manual gear" style={{ lineHeight: "32px" }}>
+                    Manual gear
+                  </Checkbox>
+                  <Checkbox
+                    value="Automatic gear"
+                    style={{ lineHeight: "32px" }}
+                  >
+                    Automatic gear
+                  </Checkbox>
+                </div>
+              </Checkbox.Group>
+            </Form.Item>
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: "Please select Price type",
+                },
+              ]}
+              label={
+                <span
+                  style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+                  className="font-bold  "
+                >
+                  Price type
+                </span>
+              }
+              name="priceType"
+              className="flex-1"
+            >
+              <Checkbox.Group style={{ width: "100%" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "10px",
+                  }}
+                >
+                  <Checkbox
+                    value=" Cash price"
+                    // checked={selectedPriceType === "cashPrice"}
+                    // onChange={handleCheckboxChange}
+                    style={{ lineHeight: "32px" }}
+                  >
+                    Cash price
+                  </Checkbox>
+                  <Checkbox
+                    value="Cars without tax"
+                    // checked={selectedPriceType === "carsWithoutTax"}
+                    // onChange={handleCheckboxChange}
+                    style={{ lineHeight: "32px" }}
+                  >
+                    Cars without tax
+                  </Checkbox>
+                  <Checkbox
+                    value=" Wholesale/CVR"
+                    // checked={selectedPriceType === "wholesaleCVR"}
+                    // onChange={handleCheckboxChange}
+                    style={{ lineHeight: "32px" }}
+                  >
+                    Wholesale/CVR
+                  </Checkbox>
+                </div>
+              </Checkbox.Group>
+            </Form.Item>
+          </div>
+        </div>
+
+        {/* <div className="flex justify-between items-center"></div> */}
 
         <Form.Item
           label={
@@ -404,128 +582,6 @@ const SubmitListing = () => {
             </div>
           </div>
         </Form.Item>
-        <div className="flex justify-between items-start">
-          <Form.Item
-            rules={[
-              {
-                required: true,
-                message: "Please select Fuel Type",
-              },
-            ]}
-            label={
-              <span
-                style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
-                className="font-bold  "
-              >
-                Fuel
-              </span>
-            }
-            name="fuel"
-            className="flex-1"
-          >
-            <Checkbox.Group>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "10px",
-                }}
-              >
-                <Checkbox
-                  value="Electric Car"
-                  // checked={selectedFuleType === "electricCar"}
-                  // onChange={handleFuleTypeCheckboxChange}
-                  style={{ lineHeight: "32px" }}
-                >
-                  Electric Car
-                </Checkbox>
-                <Checkbox
-                  value="Petrol"
-                  // checked={selectedFuleType === "petrol"}
-                  // onChange={handleFuleTypeCheckboxChange}
-                  style={{ lineHeight: "32px" }}
-                >
-                  Petrol
-                </Checkbox>
-                <Checkbox
-                  value="Diesel"
-                  // checked={selectedFuleType === "diesel"}
-                  // onChange={handleFuleTypeCheckboxChange}
-                  style={{ lineHeight: "32px" }}
-                >
-                  Diesel
-                </Checkbox>
-                <Checkbox
-                  value="Hybrid Gasoline"
-                  // checked={selectedFuleType === "hybridGasoline"}
-                  // onChange={handleFuleTypeCheckboxChange}
-                  style={{ lineHeight: "32px" }}
-                >
-                  Hybrid - Gasoline
-                </Checkbox>
-                <Checkbox
-                  value="Hybrid Diesel"
-                  // checked={selectedFuleType === "hybridDiesel"}
-                  // onChange={handleFuleTypeCheckboxChange}
-                  style={{ lineHeight: "32px" }}
-                >
-                  Hybrid - Diesel
-                </Checkbox>
-                <Checkbox
-                  value="Plugin Petrol"
-                  // checked={selectedFuleType === "pluginPetrol"}
-                  // onChange={handleFuleTypeCheckboxChange}
-                  style={{ lineHeight: "32px" }}
-                >
-                  Plug-in - Petrol
-                </Checkbox>
-                <Checkbox
-                  value="Plugin Diesel"
-                  // checked={selectedFuleType === "pluginDiesel"}
-                  // onChange={handleFuleTypeCheckboxChange}
-                  style={{ lineHeight: "32px" }}
-                >
-                  Plug-in - Diesel
-                </Checkbox>
-              </div>
-            </Checkbox.Group>
-          </Form.Item>
-          <Form.Item
-            rules={[
-              {
-                required: true,
-                message: "Please select Gear type",
-              },
-            ]}
-            label={
-              <span
-                style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
-                className="font-bold  "
-              >
-                Gear type
-              </span>
-            }
-            name="gearType"
-            className="flex-1"
-          >
-            <Checkbox.Group>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "10px",
-                }}
-              >
-                <Checkbox value="Manual gear" style={{ lineHeight: "32px" }}>
-                  Manual gear
-                </Checkbox>
-                <Checkbox value="Automatic gear" style={{ lineHeight: "32px" }}>
-                  Automatic gear
-                </Checkbox>
-              </div>
-            </Checkbox.Group>
-          </Form.Item>
-        </div>
 
         <h1
           style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
@@ -895,6 +951,7 @@ const SubmitListing = () => {
               First Name*
             </p>
             <Form.Item
+              initialValue={myInfo?.data?.profile?.first_name}
               rules={[
                 {
                   required: true,
@@ -914,6 +971,7 @@ const SubmitListing = () => {
               Last Name*
             </p>
             <Form.Item
+              initialValue={myInfo?.data?.profile?.last_name}
               rules={[
                 {
                   required: true,
@@ -926,6 +984,29 @@ const SubmitListing = () => {
             </Form.Item>
           </div>
         </div>
+
+        {!userInfo && (
+          <div className="">
+            <p
+              style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+              className="  font-medium pb-2 "
+            >
+              Email*
+            </p>
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your Email",
+                },
+              ]}
+              name={`email`}
+            >
+              <Input placeholder="Email" className="py-3" />
+            </Form.Item>
+          </div>
+        )}
+
         <div className="my-[10px] grid md:grid-cols-3 grid-cols-2 gap-5">
           <div className=" ">
             <p
@@ -954,6 +1035,7 @@ const SubmitListing = () => {
               Postal Code*
             </p>
             <Form.Item
+              initialValue={myInfo?.data?.profile?.zip}
               rules={[
                 {
                   required: true,
@@ -974,6 +1056,7 @@ const SubmitListing = () => {
               City*
             </p>
             <Form.Item
+              initialValue={myInfo?.data?.profile?.city}
               rules={[
                 {
                   required: true,
@@ -995,6 +1078,7 @@ const SubmitListing = () => {
             Phone Number*
           </p>
           <Form.Item
+            initialValue={myInfo?.data?.profile?.phoneNumber}
             rules={[
               {
                 required: true,

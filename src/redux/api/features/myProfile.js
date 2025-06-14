@@ -1,14 +1,16 @@
+import { tagTypes } from "@/redux/tagTypes";
 import { baseApi } from "../baseApi";
 
 export const myProfile = baseApi.injectEndpoints({
   endpoints: (build) => ({
     profile: build.query({
       query: () => {
-        return {
+        return { 
           url: `/profile/my_profile`,
           method: "GET",
         };
       },
+      providesTags: [tagTypes.privacy, tagTypes.userProfile],
     }),
 
     staticContent: build.query({
@@ -21,6 +23,20 @@ export const myProfile = baseApi.injectEndpoints({
           // params,
         };
       },
+      providesTags: [tagTypes.privacy],
+    }),
+
+    staticContentUpdate: build.mutation({
+      query: (data) => {
+        console.log("privacy", data);
+
+        return {
+          url: `/users/update_term_and_privacy`,
+          method: "PUT",
+          body: data,
+        };
+      },
+      invalidatesTags: [tagTypes.privacy],
     }),
 
     updateProfile: build.mutation({
@@ -33,6 +49,7 @@ export const myProfile = baseApi.injectEndpoints({
           body: profileInfo.fromData,
         };
       },
+      invalidatesTags: [tagTypes.userProfile],
     }),
 
     //end
@@ -43,4 +60,5 @@ export const {
   useProfileQuery,
   useUpdateProfileMutation,
   useStaticContentQuery,
+  useStaticContentUpdateMutation,
 } = myProfile;

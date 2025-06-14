@@ -1,5 +1,6 @@
 "use client";
 import { useContactPaperQuery } from "@/redux/api/features/contract";
+import { useProfileQuery } from "@/redux/api/features/myProfile";
 import { useSendMailOrderTransportMutation } from "@/redux/api/features/orderTransport";
 import { Form, Input } from "antd";
 import { useParams, useRouter } from "next/navigation";
@@ -9,16 +10,16 @@ import { useSelector } from "react-redux";
 import { toast } from "sonner";
 
 const OrderTransportOffer = () => {
+    const { data: userData, isLoading: isLoadingUser } = useProfileQuery();
   const [orderTransportDetails] = useSendMailOrderTransportMutation();
   const params = useParams();
   console.log(params);
 
+
   const navigate = useRouter();
 
   const displayedData = useSelector((state) => state.offerInfo.offerCarInfo);
-  // const { data, currentData, isLoading, isFetching, isSuccess } =
-  //   useContactPaperQuery(params.id);
-  // const displayedData = data ?? currentData;
+
   console.log(displayedData);
 
 
@@ -38,7 +39,7 @@ const OrderTransportOffer = () => {
         id: toastId,
         duration: 2000,
       });
-      navigate.push("/dashboard/total-dealer-car-sell");
+      navigate.push("/dashboard/dealer-offer-car-aggrement");
     } catch (error) {
       console.log(error);
       toast.error(
@@ -148,6 +149,7 @@ const OrderTransportOffer = () => {
           <h1 className="text-2xl font-medium mb-2">Delivery information</h1>
           <div className="flex flex-col gap-5 bg-base-color rounded-lg p-5 w-full ">
             <Form.Item
+              initialValue={userData?.data?.profile?.address}
               className="max-w-[800px]"
               layout="vertical"
               label={
@@ -161,9 +163,12 @@ const OrderTransportOffer = () => {
               <Input />
             </Form.Item>
             <Form.Item
+              initialValue={userData?.data?.profile?.phoneNumber}
               className="max-w-[800px]"
               layout="vertical"
-              label={<div className="text-xl font-medium">Receiver Phone Number</div>}
+              label={
+                <div className="text-xl font-medium">Receiver Phone Number</div>
+              }
               name="phone"
               rules={[
                 { required: true, message: "Please input your Phone number!" },
@@ -178,7 +183,12 @@ const OrderTransportOffer = () => {
           {/* <button className="bg-highlight-color font-medium text-white rounded-2xl px-16 py-5 text-2xl ">
           Cancel
         </button> */}
-          <p className="bg-highlight-color font-medium cursor-pointer text-white rounded-2xl px-12 py-5 text-2xl ">
+          <p
+            onClick={() =>
+              navigate.push("/dashboard/dealer-offer-car-aggrement")
+            }
+            className="bg-highlight-color font-medium cursor-pointer text-white rounded-2xl px-12 py-5 text-2xl "
+          >
             Cancel Transport{" "}
           </p>
           {/* <button className="bg-highlight-color font-medium text-white rounded-2xl px-20 py-5 text-2xl ">

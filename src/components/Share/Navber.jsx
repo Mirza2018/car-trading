@@ -1,27 +1,25 @@
 "use client";
 import { AllImages } from "@/assets/AllImages";
+import { clearAuth } from "@/redux/slices/authSlice";
 import { Avatar, Modal } from "antd";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import MyProfile from "./MyProfile";
-import { clearAuth } from "@/redux/slices/authSlice";
-import Cookies from "universal-cookie";
 import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 import { toast } from "sonner";
+import Cookies from "universal-cookie";
+import MyProfile from "./MyProfile";
 
-import { useTaskListQuery } from "@/redux/api/features/taskApi";
-import Notification from "./Notification";
-import { SocketContext } from "@/utils/SocketContext";
-import {
-  useGetAllnotificationCountQuery,
-  useNotificationActionMutation,
-} from "@/redux/api/features/notificationApi";
+import { UserOutlined } from "@ant-design/icons";
 import { useProfileQuery } from "@/redux/api/features/myProfile";
-import { getImageUrl } from "@/helpers/config/envConfig";
+import {
+  useNotificationActionMutation
+} from "@/redux/api/features/notificationApi";
 import { jwtDecode } from "jwt-decode";
 import TaskManagePage from "../DealerComponents/TaskPage/TaskManagePage";
+import Notification from "./Notification";
+import { getImageUrl } from "@/helpers/config/envConfig";
 
 const Navbar = () => {
   const { data, currentData, isLoading, isFetching, isSuccess } =
@@ -173,7 +171,7 @@ const Navbar = () => {
   // console.log(loading, "loading");
 
   return (
-    <div className="flex md:justify-around justify-between px-2 bg-secondary-color text-primary-color  items-center !z-[100] md:py-2 py-0  w-full ">
+    <div className="flex  justify-between md:justify-around px-2 bg-secondary-color text-primary-color  items-center !z-[100] md:py-2 py-0  w-full ">
       {" "}
       {/* The style property fixed & w-full is to fixed the navber , if you dont want this just remove it */}
       {/* This is small/Mobile device Menu section */}
@@ -221,7 +219,6 @@ const Navbar = () => {
 
             {userInfo?.role ? (
               <>
-                {" "}
                 {/* <div onClick={() => notificationRead()}>
                   <Notification />
                 </div> */}
@@ -252,17 +249,23 @@ const Navbar = () => {
                 </p>
               </>
             ) : (
-              <Link href={"/sign-in"}>
-                <p className="text-[15px] font-medium px-3 py-2 rounded-3xl whitespace-normal">
-                  Log In
-                </p>
-              </Link>
+              <>
+                <Link href={"/submit-listing"}>
+                  <p className=" text-[15px] hover:bg-gray-700 font-medium px-3 py-2 rounded-3xl whitespace-normal">
+                    Submit Listing
+                  </p>
+                </Link>
+                <Link href={"/sign-in"}>
+                  <p className="text-[15px] hover:bg-gray-700 font-medium px-3 py-2 rounded-3xl whitespace-normal">
+                    Log In
+                  </p>
+                </Link>
+              </>
             )}
           </div>
         )}
       </div>
       {/* This is logo section */}
-      <div></div>
       {/* <div onClick={() => notificationRead()}>
         <Notification />
       </div> */}
@@ -315,7 +318,7 @@ const Navbar = () => {
                 <div onClick={toggleProfile} className="relative ">
                   {displayedData?.data?.profile?.profileImage ? (
                     <Avatar
-                      size={50}
+                      size={40}
                       className="ring ring-highlight-color"
                       src={
                         getImageUrl() +
@@ -323,9 +326,11 @@ const Navbar = () => {
                       }
                     />
                   ) : (
-                    <Avatar size={45} className="ring ring-highlight-color">
-                      {displayedData?.data?.profile?.first_name?.charAt(0)}
-                    </Avatar>
+                    <Avatar
+                      className="ring ring-highlight-color"
+                      size={45}
+                      icon={<UserOutlined />}
+                    />
                   )}
                 </div>
                 {isProfile && (
@@ -352,11 +357,18 @@ const Navbar = () => {
               )}
             </>
           ) : (
-            <Link href={"/sign-in"}>
-              <p className="bg-[#00721E] text-[15px] font-medium px-3 py-2 rounded-3xl whitespace-normal">
-                Log In
-              </p>
-            </Link>
+            <>
+              <Link href={"/submit-listing"}>
+                <p className=" text-[15px] font-medium px-3 py-2 rounded-3xl whitespace-normal">
+                  Submit Listing
+                </p>
+              </Link>
+              <Link href={"/sign-in"}>
+                <p className="bg-[#00721E] text-[15px] font-medium px-3 py-2 rounded-3xl whitespace-normal">
+                  Log In
+                </p>
+              </Link>
+            </>
           )}
         </ul>
         {/* This is hidden in mobile device */}

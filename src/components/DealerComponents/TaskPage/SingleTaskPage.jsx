@@ -40,24 +40,27 @@ const SingleTaskPage = () => {
     };
 
     if (!values?.solutionDetails) {
-     return toast.error("Please Input Solution Details", {
+      return toast.error("Please Input Solution Details", {
         id: toastId,
         duration: 2000,
       });
     }
-    if (!values.solutionImage) {
-     return toast.error("Please Upload Solution image", {
-        id: toastId,
-        duration: 2000,
-      });
-    }
-
-
+    // if (!values.solutionImage) {
+    //  return toast.error("Please Upload Solution image", {
+    //     id: toastId,
+    //     duration: 2000,
+    //   });
+    // }
 
     const formData = new FormData();
     formData.append("data", JSON.stringify(data));
-    formData.append("taskFile", values.solutionImage.fileList[0].originFileObj);
-
+    if (values.solutionImage) {
+      formData.append(
+        "taskFile",
+        values.solutionImage.fileList[0].originFileObj
+      );
+    }
+    // formData.append("taskFile", values.solutionImage.fileList[0].originFileObj);
 
     try {
       const res = await tastSolution(formData).unwrap();

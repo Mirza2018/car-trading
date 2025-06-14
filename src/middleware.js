@@ -11,7 +11,13 @@ export function middleware(request) {
 
   if (!userCookie) {
     console.log("No user cookie found, checking public paths");
-    const publicPaths = ["/", "/about-us", "/contact-us"];
+    const publicPaths = [
+      "/",
+      "/about-us",
+      "/contact-us",
+      "/sell-car",
+      "/submit-listing",
+    ];
     if (!publicPaths.includes(pathname)) {
       console.log("Pathname not in public paths, redirecting to home");
       return NextResponse.redirect(new URL("/", origin));
@@ -45,7 +51,7 @@ export function middleware(request) {
   // Restrict /submit-listing to private_user only
   if (pathname === "/submit-listing") {
     console.log("Accessing submit-listing route, checking user role");
-    if (user.role !== "private_user") {
+    if (user.role == "dealer") {
       console.log(
         "Non-private_user trying to access submit-listing, redirecting"
       );

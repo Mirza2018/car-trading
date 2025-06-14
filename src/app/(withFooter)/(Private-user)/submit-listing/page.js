@@ -1,10 +1,10 @@
-import SubmitListingPage from "@/pagesOfWeb/Private/SubmitListingPage";
+import SubmitListing from "@/components/Private/SubmitListingPage/SubmitListing";
 import React from "react";
 
 const page = () => {
   return (
-    <div>
-      <SubmitListingPage />
+    <div className="flex justify-center">
+      <SubmitListing />
     </div>
   );
 };

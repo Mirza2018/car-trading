@@ -1,6 +1,6 @@
 "use client";
 import { AllImages } from "@/assets/AllImages";
-import { Col, Divider, Modal, Pagination, Row, Spin } from "antd";
+import { Avatar, Col, Divider, Modal, Pagination, Row, Spin } from "antd";
 import Image from "next/image";
 import React, { useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
@@ -32,7 +32,7 @@ const CarsForSale = ({
   //   useSaleCarListQuery();
   const [createConversation] = useCreateConversationMutation();
   const [buyCar] = useBuyCarMutation();
-  const navigate = useRouter()
+  const navigate = useRouter();
   const dispatch = useDispatch();
 
   // const displayedData = data ?? currentData;
@@ -46,7 +46,7 @@ const CarsForSale = ({
     try {
       const res = await createConversation(receiverId);
       navigate.push("/inbox");
-           dispatch(setCarOwnerInfo(receiverId));
+      dispatch(setCarOwnerInfo(receiverId));
 
       console.log(res);
     } catch (error) {}
@@ -69,13 +69,23 @@ const CarsForSale = ({
             <div className="flex gap-6 justify-start items-center max-w-[600px]">
               {/* Icons */}
               <div>
-                <Image
-                  src={getImageUrl() + car?.carModel?.images[0]}
-                  alt="car"
-                  width={500}
-                  height={500}
-                  className="w-44 aspect-square object-cover rounded-lg"
-                />
+                {car?.carModel?.images[0] ? (
+                  <Image
+                    src={getImageUrl() + car?.carModel?.images[0]}
+                    alt="car"
+                    width={500}
+                    height={500}
+                    className="w-44 aspect-square object-cover rounded-lg"
+                  />
+                ) : (
+                  <Avatar
+                    shape="square"
+                    className="!bg-secondary-color font-medium"
+                    size={170}
+                  >
+                    {car?.carModel?.brand}{" "}
+                  </Avatar>
+                )}
               </div>
 
               <div className="flex flex-col gap-2 ">
@@ -140,7 +150,8 @@ const CarsForSale = ({
                         className=""
                       />
                       <p className="text-sm font-normal">
-                        {car?.company?.city} ({car?.company?.postCode})
+                        {car?.company?.city.split(",")[0]} (
+                        {car?.company?.postCode})
                       </p>
                     </div>
                   )}

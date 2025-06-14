@@ -3,31 +3,52 @@ import {
   useLazyGetCarInfoQuery,
   useSaleCarMutation,
 } from "@/redux/api/features/carPrivate";
+import { useProfileQuery } from "@/redux/api/features/myProfile";
 import {
   clearCarLicenseInfo,
   setCarLicenseInfo,
 } from "@/redux/slices/carInfoSlice";
 
-import { Checkbox, Form, Input, InputNumber, Radio, Upload } from "antd";
+import { Checkbox, Form, Input, InputNumber, Radio, Spin, Upload } from "antd";
 import { useForm } from "antd/es/form/Form";
+import { jwtDecode } from "jwt-decode";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
+import Cookies from "universal-cookie";
 
 const SellCarAllDetails = () => {
+  const {
+    data: profileData,
+    currentData,
+    isLoading,
+    isFetching,
+  } = useProfileQuery();
   const [saleData] = useSaleCarMutation();
   const [trigger, { data, isSuccess, isError }] = useLazyGetCarInfoQuery();
   const carData = useSelector((state) => state.carInfo.carLicenseInfo);
-  console.log(carData);
-
+  // console.log(carData);
+  const myInfo = profileData ?? currentData;
+  console.log(myInfo);
+  
   const [isCompany, setIsCompany] = useState(true);
   const [form] = useForm();
   const { TextArea } = Input;
   const inputRef = useRef(null);
   const toastId = "unique-toast-id";
   const dispatch = useDispatch();
+  const cookies = new Cookies();
+  const userCookie = cookies.get("car_trading_accessToken");
+  let userInfo;
+  if (!userCookie) {
+    userInfo = false;
+  } else {
+    userInfo = jwtDecode(userCookie);
+  }
+  console.log(userInfo);
+
   const navigate = useRouter();
 
   useEffect(() => {
@@ -86,9 +107,11 @@ const SellCarAllDetails = () => {
   };
 
   const onFinish = async (values) => {
-    const toastId = toast.loading("Your Car is listing...");
+    const toastId = toast.loading("Car is Listing...", {
+      duration: 2000,
+    });
     try {
-      const data = {
+      let data = {
         ...values,
         registrationNumber: carData?.registration,
         carCategory: carData?.type,
@@ -118,6 +141,11 @@ const SellCarAllDetails = () => {
         delete data.cvrNumber;
         delete data.companyName;
       }
+      // console.log(data);
+
+      if (userInfo) {
+        data = { ...data, userId: userInfo?.userId };
+      }
       console.log(data);
 
       const formData = new FormData();
@@ -131,38 +159,54 @@ const SellCarAllDetails = () => {
           formData.append("images", image.originFileObj);
         }
       });
-      for (let [key, value] of formData.entries()) {
-        console.log(key, value);
-      }
+      // for (let [key, value] of formData.entries()) {
+      //   console.log(key, value);
+      // }
 
       const res = await saleData(formData).unwrap();
       console.log("API Response:", res);
-      toast.success("Car listing is Successfully done", {
+      toast.success("Car listing is successfully done", {
         id: toastId,
         duration: 2000,
       });
+      if (!userInfo) {
+        toast.success("Please check your provided mail", {
+          duration: 2000,
+        });
+      }
 
       // Reset form fields on success
       form.resetFields();
       navigate.push("/");
     } catch (error) {
       console.error("Error submitting to cardetails API:", error);
-      if (error?.data?.message.includes("E11000")) {
+      if (error?.data?.message.includes("numberPlates_1")) {
         toast.error("This car is already Listed", {
           id: toastId,
           duration: 2000,
         });
         return;
       }
-      toast.error(error?.data?.message || "Try Again", {
+      if (error?.data?.message.includes("email_1")) {
+        toast.error("This email is register please log in.. ", {
+          id: toastId,
+          duration: 2000,
+        });
+        return;
+      }
+      toast.error("Something wrong please try latter..", {
         id: toastId,
         duration: 2000,
       });
     }
   };
 
+  if (isLoading) {
+    return <Spin className="flex justify-center items-center h-screen"></Spin>
+  }
+
   return (
-    <div className="container mx-auto my-12 px-2">
+    <div className=" mx-5 my-12 px-5 rounded-lg max-w-[900px]  border  border-secondary-color">
       <h1
         style={{ fontSize: "clamp(18px, 3vw + 1rem ,36px)" }}
         className=" font-bold"
@@ -220,6 +264,7 @@ const SellCarAllDetails = () => {
         {carData?.engine_power && " KW"}
       </p>
       <Form
+        // initialValues={myInfo?.data?.profile}
         className="p-2"
         form={form}
         onFinish={onFinish}
@@ -361,12 +406,6 @@ const SellCarAllDetails = () => {
           <div className="flex-1">
             {/* <p className=" font-medium pb-2">Number of varnish fields</p> */}
             <Form.Item
-              rules={[
-                {
-                  required: true,
-                  message: "Please Select at least one Image!",
-                },
-              ]}
               name="images"
               valuePropName="fileList"
               getValueFromEvent={normFileEvent}
@@ -493,6 +532,7 @@ const SellCarAllDetails = () => {
               First Name*
             </p>
             <Form.Item
+              initialValue={myInfo?.data?.profile?.first_name}
               rules={[
                 {
                   required: true,
@@ -512,6 +552,7 @@ const SellCarAllDetails = () => {
               Last Name*
             </p>
             <Form.Item
+              initialValue={myInfo?.data?.profile?.last_name}
               rules={[
                 {
                   required: true,
@@ -524,6 +565,28 @@ const SellCarAllDetails = () => {
             </Form.Item>
           </div>
         </div>
+
+        {!userInfo && (
+          <div className="">
+            <p
+              style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+              className="  font-medium pb-2 "
+            >
+              Email*
+            </p>
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your Email",
+                },
+              ]}
+              name={`email`}
+            >
+              <Input placeholder="Email" className="py-3" />
+            </Form.Item>
+          </div>
+        )}
         <div className="my-[10px] grid md:grid-cols-3 grid-cols-2 gap-5">
           <div className=" ">
             <p
@@ -552,6 +615,7 @@ const SellCarAllDetails = () => {
               Postal Code*
             </p>
             <Form.Item
+              initialValue={myInfo?.data?.profile?.zip}
               rules={[
                 {
                   required: true,
@@ -572,6 +636,7 @@ const SellCarAllDetails = () => {
               City*
             </p>
             <Form.Item
+              initialValue={myInfo?.data?.profile?.city}
               rules={[
                 {
                   required: true,
@@ -592,6 +657,7 @@ const SellCarAllDetails = () => {
             Phone Number*
           </p>
           <Form.Item
+            initialValue={myInfo?.data?.profile?.phoneNumber}
             rules={[
               {
                 required: true,

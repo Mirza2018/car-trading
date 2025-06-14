@@ -1,22 +1,47 @@
 "use client";
-import { useStaticContentQuery } from "@/redux/api/features/myProfile";
+import {
+  useProfileQuery,
+  useStaticContentQuery,
+  useStaticContentUpdateMutation,
+} from "@/redux/api/features/myProfile";
 import { Button, Spin } from "antd";
-import dynamic from "next/dynamic";
-import { useRef, useState } from "react";
 import { toast } from "sonner";
 
 const TermsPage = () => {
-    const { data, currentData, isLoading, isFetching, isSuccess } =
-      useStaticContentQuery("terms-and-conditions");
-  
-    const displayedData = data ?? currentData;
-    console.log(displayedData?.data?.content);
-    
+  const [privacyMutaion] = useStaticContentUpdateMutation();
+  const { data: userData, isLoading: userDataIsLooding } = useProfileQuery();
 
-  const handleOnSave = () => {
-    toast.success("Terms And Conditions Accepted successfully");
+  const { data, currentData, isLoading, isFetching, isSuccess } =
+    useStaticContentQuery("terms-and-conditions");
+
+  const displayedData = data ?? currentData;
+  console.log(userData?.data?.isPrivacyAccepted);
+
+  const handleOnSave = async () => {
+    const toastId = toast.loading("Terms And Conditions Accepting...");
+    const data = {
+      isTermAccepted: true,
+    };
+    try {
+      const res = await privacyMutaion(data).unwrap();
+      console.log(res);
+      toast.success("Terms And Conditions Accepted successfully", {
+        id: toastId,
+        duration: 2000,
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error(
+        error?.data?.message ||
+          "There is an problem to accepting Terms And Conditions",
+        {
+          id: toastId,
+          duration: 2000,
+        }
+      );
+    }
   };
-  if (isLoading)
+  if (isLoading || userDataIsLooding)
     return <Spin className="flex justify-center items-center" size="large" />;
   if (!isLoading && isFetching)
     return <Spin className="flex justify-center items-center" size="large" />;
@@ -35,12 +60,18 @@ const TermsPage = () => {
               dangerouslySetInnerHTML={{ __html: displayedData?.data?.content }}
             />
 
-            <Button
-              onClick={handleOnSave}
-              className=" py-6 border !border-secondary-color hover:border-secondary-color text-xl !text-primary-color bg-secondary-color hover:!bg-secondary-color font-semibold rounded-2xl "
-            >
-              Accept
-            </Button>
+            {userData?.data?.isTermAccepted ? (
+              <Button className=" cursor-not-allowed py-6 border !border-green-500 hover:border-green-500 text-xl !text-primary-color bg-green-500 hover:!bg-green-500 font-semibold rounded-2xl ">
+                Accepted
+              </Button>
+            ) : (
+              <Button
+                onClick={handleOnSave}
+                className=" py-6 border !border-secondary-color hover:border-secondary-color text-xl !text-primary-color bg-secondary-color hover:!bg-secondary-color font-semibold rounded-2xl "
+              >
+                Accept
+              </Button>
+            )}
           </div>
         </div>
       </div>

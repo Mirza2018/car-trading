@@ -33,13 +33,7 @@ export const mainTheme = {
       colorPrimaryHover: "#F5382C",
     },
     Radio: {
-      // colorBgContainer: "rgb(255,153,28)",
-      colorPrimary: "rgb(255,153,28)",
-      colorPrimaryActive: "rgb(255,153,28)",
-      colorPrimaryBorder: "rgb(255,153,28)",
-      colorPrimaryHover: "rgb(255,153,28)",
-      // colorText: "rgb(255,153,28)",
-      colorBorder: "rgb(255,153,28)",
+      
     },
     DatePicker: {
       fontSize: 20,

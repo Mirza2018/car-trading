@@ -52,12 +52,12 @@ const DealerCarTableDetails = ({ car }) => {
           </div>
         )}
 
-        {car?.milage != 0 && (
+        {/* {car?.milage != 0 && (
           <div className="flex justify-between border-b border-text-light-color">
             <p>Milage:</p>
             <p>{car?.milage} </p>
           </div>
-        )}
+        )} */}
         {car?.chassisNumber && (
           <div className="flex justify-between border-b border-text-light-color">
             <p>Chassis Number:</p>

@@ -1,11 +1,7 @@
 "use client";
-import { AllImages } from "@/assets/AllImages";
-import { Divider, Pagination, Spin } from "antd";
-import Image from "next/image";
+import { Avatar, Pagination, Spin } from "antd";
 import { useState } from "react";
-import ViewDetailsPage from "./CarViewDetailsModal/ViewDetailsPage";
 import BrandVIewDetailsPage from "./BrandViewDetailsModal/BrandVIewDetailsPage";
-import { useSubmitListingQuery } from "@/redux/api/features/carDealer";
 
 const PrivateLookingForCars = ({
   displayedData,
@@ -14,40 +10,10 @@ const PrivateLookingForCars = ({
   isSuccess,
   onPageChange2,
 }) => {
-  // const { data, currentData, isLoading, isFetching, isSuccess } =
-  //   useSubmitListingQuery();
-  console.log(displayedData?.data?.pagination);
   const [openOfferCar, setopenOfferCar] = useState(false);
   const [selectedCar, setSelectedCar] = useState(null);
 
-
-  
-
   const [openResponsive, setOpenResponsive] = useState(false);
-
-  // Track the current (main) image index
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const handleRight = (index) => {
-    console.log(index);
-
-    if (currentIndex === index - 1) {
-      setCurrentIndex(0);
-    } else {
-      setCurrentIndex(() => currentIndex + 1);
-    }
-  };
-  const handleleft = (index) => {
-    console.log(index);
-
-    if (currentIndex === 0) {
-      setCurrentIndex(index - 1);
-    } else {
-      setCurrentIndex(() => currentIndex - 1);
-    }
-  };
-
-  console.log(displayedData);
 
   if (isLoading)
     return <Spin className="flex justify-center items-center" size="large" />;
@@ -65,16 +31,16 @@ const PrivateLookingForCars = ({
                 className="flex lg:flex-row flex-col gap-10 shadow-xl rounded-md p-3"
               >
                 <div className="flex gap-6 justify-start items-center">
-                  <div className="text-4xl font-bold flex justify-center items-center !w-52 uppercase bg-secondary-color py-10 px-5 rounded-xl">
-                    {/* <Image
-                      src={AllImages.brand1}
-                      alt="car"
-                      width={0}
-                      height={0}
-                      className="w-44 aspect-square object-cover rounded-lg"
-                    /> */}
+                  {/* <div className="text-4xl font-bold flex justify-center items-center !w-52 uppercase bg-secondary-color py-10 px-5 rounded-xl">
                     {car?.mark}
-                  </div>
+                  </div> */}
+                  <Avatar
+                    shape="square"
+                    className="!bg-secondary-color font-medium"
+                    size={170}
+                  >
+                    {car?.mark}
+                  </Avatar>
 
                   <div className="flex flex-col gap-2 ">
                     <p className="text-2xl font-semibold">{car?.mark}</p>
