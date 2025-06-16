@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { setAccessToken, setUserInfo } from "@/redux/slices/authSlice";
 import Cookies from "universal-cookie";
 import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 
 const SignIn = () => {
   const [userLogin] = useUserLoginMutation();
@@ -24,43 +25,52 @@ const SignIn = () => {
     const toastId = toast.loading(" Logging in...");
     console.log("car-trading:", values);
 
-    try {
-      const res = await userLogin(values).unwrap();
-      cookies.remove("car_trading_accessToken");
-      const decodeToken = jwtDecode(res?.data?.accessToken);
+    Swal.fire({
+      title: "I'm acccpting all the rules",
+      showDenyButton: true,
+      // showCancelButton: true,
+      confirmButtonText: "Ok",
+      denyButtonText: `Cancel`,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        // Swal.fire("Saved!", "", "success");
 
-      dispatch(setAccessToken(res?.data?.accessToken));
-      dispatch(setUserInfo(decodeToken));
-      console.log("res: ", res, decodeToken);
-      cookies.set("car_trading_accessToken", res?.data?.accessToken, {
-        path: "/",
-      });
-      toast.success(res.message, {
-        id: toastId,
-        duration: 2000,
-      });
-      navigate.push("/");
-    } catch (error) {
-      console.error("Login Error:", error); // Log the error for debugging
+        try {
+          const res = await userLogin(values).unwrap();
+          cookies.remove("car_trading_accessToken");
+          const decodeToken = jwtDecode(res?.data?.accessToken);
 
-      toast.error(
-        error?.data?.message ||
-          error?.error ||
-          "An error occurred during Login",
-        {
+          dispatch(setAccessToken(res?.data?.accessToken));
+          dispatch(setUserInfo(decodeToken));
+          console.log("res: ", res, decodeToken);
+          cookies.set("car_trading_accessToken", res?.data?.accessToken, {
+            path: "/",
+          });
+          toast.success(res.message, {
+            id: toastId,
+            duration: 2000,
+          });
+          navigate.push("/");
+        } catch (error) {
+          console.error("Login Error:", error); // Log the error for debugging
+
+          toast.error(
+            error?.data?.message ||
+              error?.error ||
+              "An error occurred during Login",
+            {
+              id: toastId,
+              duration: 2000,
+            }
+          );
+        }
+      } else if (result.isDenied) {
+        return toast.error("Without Accepting rulels you can't log in", {
           id: toastId,
           duration: 2000,
-        }
-      );
-    }
-
-    return;
-
-    document.cookie = `car-trading_user=${encodeURIComponent(
-      JSON.stringify(values)
-    )}; path=/; secure`;
-
-    navigate.push("/");
+        });
+      }
+    });
   };
   return (
     <div className=" bg-[#E6F3F7]">

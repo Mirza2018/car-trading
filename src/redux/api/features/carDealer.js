@@ -50,7 +50,7 @@ export const carDealer = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags: [tagTypes.sellCarList],
+      providesTags: [tagTypes.sellCarList, tagTypes.contactPaper],
     }),
 
     submitListing: build.query({
@@ -81,7 +81,7 @@ export const carDealer = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags: [tagTypes.sellCarPrivate],
+      providesTags: [tagTypes.sellCarPrivate, tagTypes.contactPaper],
     }),
 
     offerCarDeal: build.mutation({

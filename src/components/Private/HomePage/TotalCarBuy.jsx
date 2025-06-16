@@ -1,6 +1,6 @@
 import { AllImages } from "@/assets/AllImages";
 import { getImageUrl } from "@/helpers/config/envConfig";
-import { Divider, Pagination, Tooltip } from "antd";
+import { Avatar, Divider, Pagination, Tooltip } from "antd";
 import Image from "next/image";
 import React from "react";
  
@@ -31,16 +31,13 @@ const TotalCarBuy = ({
             className="flex justify-between gap-3 border border-base-color py-5 max-w-2xl  me-3 px-2  "
           >
             <React.Fragment>
-              <div className="text-3xl font-bold flex justify-center items-center max-w-32 uppercase bg-secondary-color py-2 md:py-[29px] px-5 rounded-xl">
-                {/* <Image
-                      src={AllImages.brand1}
-                      alt="car"
-                      width={0}
-                      height={0}
-                      className="w-44 aspect-square object-cover rounded-lg"
-                    /> */}
+              <Avatar
+                shape="square"
+                className="!bg-secondary-color font-medium"
+                size={100}
+              >
                 {car?.mark}
-              </div>
+              </Avatar>
             </React.Fragment>
             <div className="flex flex-1 justify-between  gap-3 md:flex-row flex-col">
               <div className="flex flex-col max-w-sm">

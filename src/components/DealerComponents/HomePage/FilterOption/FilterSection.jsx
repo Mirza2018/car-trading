@@ -177,8 +177,8 @@ const fules = [
   { label: "Electric Car", value: "Electric Car" },
   { label: "Petrol", value: "Petrol" },
   { label: "Diesel", value: "Diesel" },
-  { label: "Hybrid - Gasoline", value: "Hybrid Gasoline" },
-  { label: "Hybrid - Diesel", value: "Hybrid Diesel" },
-  { label: "Plug-in - Petrol", value: "Plugin Petrol" },
-  { label: "Plug-in - Diesel", value: "Plugin Diesel" },
+  { label: "Hybrid - Gasoline", value: "Benzin" },
+  { label: "Hybrid - Diesel", value: "Diesel" },
+  { label: "Plug-in - Petrol", value: "Petrol" },
+  { label: "Plug-in - Diesel", value: "Diesel" },
 ];

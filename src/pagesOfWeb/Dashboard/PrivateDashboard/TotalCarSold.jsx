@@ -12,6 +12,7 @@ const TotalCarSold = () => {
     page: 1,
     limit: 8,
     filter: "sold",
+    sort: "-updatedAt",
   });
 
   const onPageChange = (page, limit) => {
@@ -38,8 +39,6 @@ const TotalCarSold = () => {
     setCurrentRecord(record);
     setOpennCarSee(true);
   };
-
-
 
   return (
     <div

@@ -1,7 +1,7 @@
 "use client";
 import { AllImages } from "@/assets/AllImages";
 import { clearAuth } from "@/redux/slices/authSlice";
-import { Avatar, Modal } from "antd";
+import { Avatar, Modal, Spin } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -37,7 +37,7 @@ const Navbar = () => {
     userInfo = jwtDecode(userCookie);
   }
 
-  // console.log(userInfo, decodeToken);
+  console.log(displayedData?.data?.status);
 
   // toast.success(notify, {
   //   id: "notify",
@@ -168,7 +168,16 @@ const Navbar = () => {
   };
 
   // console.log(loading, "loading");
-
+  if (displayedData?.data) {
+    if (displayedData?.data?.status == "blocked") {
+      return navigate.push("/sign-in");
+    }
+  }
+  //  if (isLoading)
+  //    return <Spin className="flex justify-center items-center" size="large" />;
+  //  if (!isLoading && isFetching)
+  //    return <Spin className="flex justify-center items-center" size="large" />;
+  //  if (isSuccess && displayedData)
   return (
     <div className="flex  justify-between md:justify-around px-2 bg-secondary-color text-primary-color  items-center !z-[100] md:py-2 py-0  w-full ">
       {" "}

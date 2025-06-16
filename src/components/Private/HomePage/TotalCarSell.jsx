@@ -37,13 +37,23 @@ const TotalCarSell = ({
             className="flex justify-between gap-3 border border-base-color py-5 max-w-2xl  me-3 px-2  "
           >
             <React.Fragment>
-              <Image
-                src={getImageUrl() + car?.carModel?.images[0]}
-                alt="car"
-                width={100}
-                height={100}
-                className="size-24 aspect-square object-cover"
-              />
+              {car?.carModel?.images[0] ? (
+                <Image
+                  src={getImageUrl() + car?.carModel?.images[0]}
+                  alt="car"
+                  width={100}
+                  height={100}
+                  className="size-24 aspect-square object-cover"
+                />
+              ) : (
+                <Image
+                  src={AllImages.biludenbilleder}
+                  alt="car"
+                  width={100}
+                  height={100}
+                  className="size-30  aspect-square object-center"
+                />
+              )}
             </React.Fragment>
             <div className="flex flex-1 justify-between  gap-3 md:flex-row flex-col">
               <div className="flex flex-col max-w-sm">

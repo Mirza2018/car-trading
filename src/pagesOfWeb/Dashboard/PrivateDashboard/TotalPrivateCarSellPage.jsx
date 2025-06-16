@@ -4,40 +4,39 @@ import PrivateCarSeeDetails from "@/components/DashboardComponents/TotalPrivateC
 import PrivateCarSellTable from "@/components/DashboardComponents/TotalPrivateCarSellPage/PrivateCarSellTable";
 import ViewDetailsPage from "@/components/DealerComponents/HomePage/CarViewDetailsModal/ViewDetailsPage";
 import { useSellCarQuery } from "@/redux/api/features/privateDashboard";
-import axios from "axios"; 
+import axios from "axios";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-  
+
 const TotalPrivateCarSellPage = () => {
   const [filters, setFilters] = useState({
     page: 1,
     limit: 8,
-    filter:"sell"
+    filter: "sell",
+    sort: "-updatedAt",
   });
- 
+
   const onPageChange = (page, limit) => {
     setFilters((prev) => ({
       ...prev,
       page,
-      limit, 
+      limit,
     }));
   };
 
+  const {
+    data: sellCarData,
+    currentData,
+    isLoading,
+  } = useSellCarQuery(filters);
 
-
-
-
-  const { data: sellCarData, currentData, isLoading } = useSellCarQuery(filters);
-  
   const displayedData = sellCarData ?? currentData;
 
   console.log("meta", displayedData?.data?.meta);
   console.log(displayedData);
   const [currentRecord, setCurrentRecord] = useState(null);
-  const [data, setData] = useState([]); 
+  const [data, setData] = useState([]);
   const [openCarSee, setOpennCarSee] = useState(false);
-
-
 
   const showViewServiceUserModal = (record) => {
     setCurrentRecord(record);
@@ -61,7 +60,6 @@ const TotalPrivateCarSellPage = () => {
   }, []);
   // console.log(data, "data");
 
-
   return (
     <div
       className=" min-h-[90vh]  rounded-xl mx-auto"
@@ -71,7 +69,7 @@ const TotalPrivateCarSellPage = () => {
       <div className="bg-secondary-color w-full p-4   rounded-tl-xl rounded-tr-xl">
         <div className=" w-[95%] mx-auto  flex items-center justify-between">
           <p className="text-3xl text-primary-color font-semibold">
-           Total car sell
+            Total car sell
           </p>
           <div className="flex gap-4 items-center"></div>
         </div>

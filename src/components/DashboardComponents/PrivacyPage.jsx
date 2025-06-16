@@ -15,7 +15,7 @@ const PrivacyPage = () => {
     useStaticContentQuery("privacy-policy");
 
   const displayedData = data ?? currentData;
-  console.log(userData?.data?.isPrivacyAccepted);
+  console.log(userData?.data);
 
   const handleOnSave = async () => {
     const toastId = toast.loading("Privacy Policy Accepting...");

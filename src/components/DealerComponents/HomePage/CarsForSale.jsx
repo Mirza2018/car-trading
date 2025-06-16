@@ -37,7 +37,7 @@ const CarsForSale = ({
 
   // const displayedData = data ?? currentData;
 
-  console.log(displayedData?.data?.pagination);
+  // console.log(displayedData?.data?.pagination);
 
   const [openResponsive, setOpenResponsive] = useState(false);
   const [selectedCar, setSelectedCar] = useState(null);
@@ -78,13 +78,13 @@ const CarsForSale = ({
                     className="w-44 aspect-square object-cover rounded-lg"
                   />
                 ) : (
-                  <Avatar
-                    shape="square"
-                    className="!bg-secondary-color font-medium"
-                    size={170}
-                  >
-                    {car?.carModel?.brand}{" "}
-                  </Avatar>
+                  <Image
+                    src={AllImages.biludenbilleder}
+                    alt="car"
+                    width={500}
+                    height={500}
+                    className="w-44 aspect-square object-cover rounded-lg"
+                  />
                 )}
               </div>
 
@@ -182,7 +182,7 @@ const CarsForSale = ({
                 />
                 <p className="text-sm font-normal text-text-light-color">
                   Current Bids:{car?.totalBidCount}
-                  {console.log(car)}
+                  {/* {console.log(car)} */}
                 </p>
               </div>
               {/* <div className="bg-base-color border border-secondary-color rounded-full aspect-square px-2 flex flex-col justify-center items-center">

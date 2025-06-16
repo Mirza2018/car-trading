@@ -11,6 +11,7 @@ const TotalDealerOfferCarPage = () => {
   const [filters, setFilters] = useState({
     page: 1,
     limit: 8,
+    sort: "-updatedAt",
   });
 
   const onPageChange = (page, limit) => {
@@ -49,8 +50,6 @@ const TotalDealerOfferCarPage = () => {
   //* It's Use to Set Seclected User to Block and view
   const [currentRecord, setCurrentRecord] = useState(null);
 
-
-
   const filteredData = useMemo(() => {
     if (!searchText) return data;
     return data.filter((item) =>
@@ -86,7 +85,6 @@ const TotalDealerOfferCarPage = () => {
             <div className="flex gap-4 items-center"></div>
           </div>
         </div>
-      
 
         {/* Table  */}
         <div className="px-10 p-10">

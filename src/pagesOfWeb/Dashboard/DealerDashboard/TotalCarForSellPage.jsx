@@ -24,7 +24,8 @@ const TotalCarForSellPage = () => {
   const [filters, setFilters] = useState({
     page: 1,
     limit: 8,
-  }); 
+    sort: "-updatedAt",
+  });
 
   const onPageChange = (page, limit) => {
     setFilters((prev) => ({
@@ -61,7 +62,6 @@ const TotalCarForSellPage = () => {
 
   //* It's Use to Set Seclected User to Block and view
   const [currentRecord, setCurrentRecord] = useState(null);
-
 
   const filteredData = useMemo(() => {
     if (!searchText) return data;

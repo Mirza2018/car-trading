@@ -35,6 +35,7 @@ import signature from "./icons/signature.svg";
 import save from "./icons/save.svg";
 
 import profile from "./images/profile.png";
+import biludenbilleder from "./images/biludenbilleder.png";
 import companyLogo from "./images/companyLogo.jpg";
 import car from "./images/car.png";
 import fairPriceCar from "./images/home1.jpg";
@@ -69,6 +70,7 @@ import about4 from "./about/about4.png";
 import about5 from "./about/about5.png";
 
 export const AllImages = {
+  biludenbilleder,
   companyLogo,
   logo,
   profile,

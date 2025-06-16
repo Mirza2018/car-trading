@@ -12,6 +12,7 @@ const TotalOfferCarPage = () => {
   const [filters, setFilters] = useState({
     page: 1,
     limit: 8,
+    sort: "-updatedAt",
   });
  
   const onPageChange = (page, limit) => {

@@ -150,6 +150,18 @@ const BrandnViewTableDetails = ({ car }) => {
         </div>
       ) : null}
 
+      {car?.companyName && (
+        <div className="flex justify-between border-b border-text-light-color">
+          <p>Company Name :</p>
+          <p>{car?.companyName}</p>
+        </div>
+      )}
+      {car?.cvrNumber && (
+        <div className="flex justify-between border-b border-text-light-color">
+          <p>CVR Number :</p>
+          <p>{car?.cvrNumber}</p>
+        </div>
+      )}
       {car?.city && (
         <div className="flex justify-between border-b border-text-light-color">
           <p>City:</p>

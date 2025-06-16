@@ -2,6 +2,7 @@ import { Modal } from "antd";
 
 import AllOfferCarDetails from "@/components/DashboardComponents/OfferCarAggrement/AllOfferCarDetails";
 import ImageSlider from "@/components/DealerComponents/HomePage/CarViewDetailsModal/ImageSlider";
+import BrandnViewTableDetails from "@/components/DealerComponents/HomePage/BrandViewDetailsModal/BrandnViewTableDetails";
 
 const ViewOfferDealerCarAcceptDetails = ({
   setOpenResponsive,
@@ -44,27 +45,17 @@ const ViewOfferDealerCarAcceptDetails = ({
                 {/* <IoMdLink className="rotate-90" /> */}
                 Listed:<p> {date}</p>
               </div>
-              {/* <div className=" font-bold text-base">Feb.03 13:06:18</div> */}
-              {/* {car?.maxBidAmount ? (
-                <div className="bg-base-color border border-secondary-color rounded-full aspect-square flex flex-col justify-center items-center px-2">
-                  <h1 className="text-xl font-bold px-1">
-                    {car?.maxBidAmount} DKK
-                  </h1>
-                  <p className=" text-center text-sm">
-                    Maximum price <br /> achieved
-                  </p>
-                </div>
-              ) : (
-                <div className="bg-base-color border border-secondary-color rounded-full aspect-square flex flex-col justify-center items-center px-2">
-                  <p className=" text-center text-sm p-4">
-                    No bids
-                    <br /> achieved
-                  </p>
-                </div>
-              )} */}
             </div>
             {/* Middel part car All Details */}
+            <h1 className="text-3xl  font-medium text-center">
+              Offer Car Info
+            </h1>
             <AllOfferCarDetails car={car} />
+            {console.log(car)}
+            <h1 className="text-3xl  font-medium text-center py-2">
+              Listing Car Info
+            </h1>
+            <BrandnViewTableDetails car={car?.submitListing} />
           </section>
         </main>
       </div>
