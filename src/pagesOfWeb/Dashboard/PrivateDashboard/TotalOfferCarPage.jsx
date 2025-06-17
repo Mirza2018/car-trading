@@ -102,12 +102,7 @@ const TotalOfferCarPage = () => {
         </div>
 
         {/* Modals */}
-        {/* 
-      <ViewCarTables
-        isServiceUserViewModalVisible={isServiceUserViewModalVisible}
-        handleCancel={handleCancel}
-        currentRecord={currentRecord}
-      /> */}
+
         <ViewOfferCarAcceptDetails
           openResponsive={isServiceUserViewModalVisible}
           setOpenResponsive={setIsServiceUserViewModalVisible}

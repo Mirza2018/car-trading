@@ -45,7 +45,7 @@ const OfferCar = ({ offerCar }) => {
   const onFinishFailed = ({ errorFields }) => {
     toast.error(errorFields[0]?.errors[0], {
       toastId: "formError",
-      autoClose: 2000,
+      autoClose: 2000, 
     });
     console.log(errorFields);
   };
@@ -511,12 +511,12 @@ const OfferCar = ({ offerCar }) => {
           <div>
             <h1 className="text-2xl font-bold mb-2">Upload Image</h1>
             <Form.Item
-              rules={[
-                {
-                  required: true,
-                  message: "Please Select  at least one image!",
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: "Please Select  at least one image!",
+              //   },
+              // ]}
               name="carImages"
               valuePropName="fileList"
               getValueFromEvent={normFileEvent}

@@ -35,7 +35,7 @@ export const privateDashboard = baseApi.injectEndpoints({
           body: offerCar,
         };
       },
-      invalidatesTags: [tagTypes.offer],
+      invalidatesTags: [tagTypes.offer,tagTypes.sellCarPrivate],
     }),
 
     bidCarDetails: build.query({

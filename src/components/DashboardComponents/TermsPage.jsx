@@ -13,7 +13,7 @@ const TermsPage = () => {
 
   const { data, currentData, isLoading, isFetching, isSuccess } =
     useStaticContentQuery("terms-and-conditions");
-
+  const date = new Date().toLocaleDateString();
   const displayedData = data ?? currentData;
   console.log(userData?.data?.isPrivacyAccepted);
 
@@ -21,6 +21,7 @@ const TermsPage = () => {
     const toastId = toast.loading("Terms And Conditions Accepting...");
     const data = {
       isTermAccepted: true,
+      termsDate: date,
     };
     try {
       const res = await privacyMutaion(data).unwrap();
@@ -62,7 +63,7 @@ const TermsPage = () => {
 
             {userData?.data?.isTermAccepted ? (
               <Button className=" cursor-not-allowed py-6 border !border-green-500 hover:border-green-500 text-xl !text-primary-color bg-green-500 hover:!bg-green-500 font-semibold rounded-2xl ">
-                Accepted
+                Accepted ({userData?.data?.termsDate})
               </Button>
             ) : (
               <Button

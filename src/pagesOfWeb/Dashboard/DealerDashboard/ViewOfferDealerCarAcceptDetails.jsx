@@ -3,6 +3,8 @@ import { Modal } from "antd";
 import AllOfferCarDetails from "@/components/DashboardComponents/OfferCarAggrement/AllOfferCarDetails";
 import ImageSlider from "@/components/DealerComponents/HomePage/CarViewDetailsModal/ImageSlider";
 import BrandnViewTableDetails from "@/components/DealerComponents/HomePage/BrandViewDetailsModal/BrandnViewTableDetails";
+import Image from "next/image";
+import { AllImages } from "@/assets/AllImages";
 
 const ViewOfferDealerCarAcceptDetails = ({
   setOpenResponsive,
@@ -35,7 +37,16 @@ const ViewOfferDealerCarAcceptDetails = ({
         <main className="md:grid grid-cols-12  gap-4">
           {/* Left Side */}
           <section className="col-span-5">
-            <ImageSlider carImages={car?.carImages} />
+            {car?.carImages.length > 0 ? (
+              <ImageSlider carImages={car?.carImages} />
+            ) : (
+              <div className="flex justify-center items-center py-10">
+                <Image
+                  src={AllImages.biludenbilleder}
+                  className="aspect-square rounded-2xl  "
+                />
+              </div>
+            )}
           </section>
           {/* Right Side */}
           <section className="col-span-7">

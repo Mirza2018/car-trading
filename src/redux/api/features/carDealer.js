@@ -3,24 +3,7 @@ import { baseApi } from "../baseApi";
 
 export const carDealer = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    // getCarInfo: build.query({
-    //   query: ({ license }) => {
-    //     console.log(license);
-    //     return {
-    //       url: `/car/car_info?carNumber=${license}`,
-    //       method: "GET",
-    //     };
-    //   },
-    // }),
-    // saleCar: build.mutation({
-    //   query: (carData) => {
-    //     return {
-    //       url: `/car/sale_car`,
-    //       method: "POST",
-    //       body: carData,
-    //     };
-    //     },
-    // }),
+
 
     saleCarList: build.query({
       query: (params) => {

@@ -33,7 +33,7 @@ const SellCarAllDetails = () => {
   const myInfo = profileData ?? currentData;
   console.log(myInfo);
   
-  const [isCompany, setIsCompany] = useState(true);
+  const [isCompany, setIsCompany] = useState(false);
   const [form] = useForm();
   const { TextArea } = Input;
   const inputRef = useRef(null);

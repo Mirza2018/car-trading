@@ -14,11 +14,15 @@ import {
   useSaleCarListQuery,
   useSubmitListingQuery,
 } from "@/redux/api/features/carDealer";
+import { useProfileQuery } from "@/redux/api/features/myProfile";
+import { useRouter } from "next/navigation";
 
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 const Homepage = () => {
+  const { data: userData, isLoading: userDataIsLooding } = useProfileQuery();
   const [filters, setFilters] = useState({
     page: 1,
     limit: 3,
@@ -48,7 +52,7 @@ const Homepage = () => {
     isFetching: submitIsFetching,
     isSuccess: submitIsSuccess,
   } = useSubmitListingQuery(filters2);
-
+  const navigate = useRouter();
   const onFinish = (values) => {
     console.log(values);
 
@@ -93,6 +97,36 @@ const Homepage = () => {
 
   const displayedData = data ?? currentData;
   const submitDisplayedData = submitData ?? submitCurrentData;
+
+  console.log(userData?.data?.isPrivacyAccepted);
+  console.log(userData?.data?.isTermAccepted);
+
+  if (userData) {
+    if (userData?.data?.isTermAccepted == false) {
+      Swal.fire({
+        title: "Please acccpt the Terms & Conditions",
+        // showDenyButton: true,
+        confirmButtonText: "Ok",
+        // denyButtonText: `Cancel`,
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          navigate.push("/dashboard/terms");
+        }
+      });
+    }
+    if (userData?.data?.isPrivacyAccepted == false) {
+      Swal.fire({
+        title: "Please acccpt the Privacy Policy",
+        // showDenyButton: true,
+        confirmButtonText: "Ok",
+        // denyButtonText: `Cancel`,
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          navigate.push("/dashboard/privacy");
+        }
+      });
+    }
+  }
 
   const userInfo = useSelector((state) => state.auth.userInfo);
 

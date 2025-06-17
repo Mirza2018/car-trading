@@ -1,14 +1,15 @@
 "use client";
 
-
 import { Button } from "antd";
 import { toast } from "sonner";
 import OfferCarDetails from "./OfferCarDetails";
 import OfferCarImageSlider from "./OfferCarImageSlider";
+import Image from "next/image";
+import { AllImages } from "@/assets/AllImages";
 
 const SingleOfferCarComponent = ({ offerCar, offercarAction }) => {
   console.log(offerCar);
-  const date = new Date(offerCar.createdAt).toDateString();
+  const date = new Date(offerCar?.createdAt).toDateString();
 
   const car = {
     buyNowPrice: "6,300 EUR",
@@ -33,7 +34,7 @@ const SingleOfferCarComponent = ({ offerCar, offercarAction }) => {
   const acceptOfferCar = async () => {
     const toastId = toast.loading("Offer is accepting...");
     const data = {
-      offerCarId: offerCar._id,
+      offerCarId: offerCar?._id,
       status: "accept",
     };
 
@@ -58,7 +59,7 @@ const SingleOfferCarComponent = ({ offerCar, offercarAction }) => {
   const rejectOfferCar = async () => {
     const toastId = toast.loading("Offer is rejecting...");
     const data = {
-      offerCarId: offerCar._id,
+      offerCarId: offerCar?._id,
       status: "reject",
     };
 
@@ -82,11 +83,21 @@ const SingleOfferCarComponent = ({ offerCar, offercarAction }) => {
   };
 
   return (
-    <div>
-      <main className="md:grid grid-cols-12  gap-4 px-10">
+    <div className="mt-2">
+      <main className="md:grid grid-cols-12  gap-4 md:px-10 px-2 ">
         {/* Left Side */}
-        <section className="col-span-5">
-          <OfferCarImageSlider carImages={offerCar.carImages} />
+        <section className="col-span-5 max-w-[400px]">
+  
+          {offerCar?.carImages.length > 0 ? (
+            <OfferCarImageSlider carImages={offerCar?.carImages} />
+          ) : (
+            <div className="flex justify-center items-center">
+              <Image
+                src={AllImages.biludenbilleder}
+                className="aspect-square rounded-2xl "
+              />
+            </div>
+          )}
         </section>
         {/* Right Side */}
         <section className="col-span-7">
@@ -98,7 +109,7 @@ const SingleOfferCarComponent = ({ offerCar, offercarAction }) => {
             </div> */}
             <div className=" font-bold text-base">{date}</div>
             <div className=" font-bold text-base">
-              Maximum Price: {offerCar.cashPrice} .kr
+              Maximum Price: {offerCar?.cashPrice} .kr
             </div>
             {/* <div className="bg-base-color border border-secondary-color rounded-full aspect-square flex flex-col justify-center items-center px-2">
               <h1 className="text-xl font-bold">{car?.priceInDKK}</h1>

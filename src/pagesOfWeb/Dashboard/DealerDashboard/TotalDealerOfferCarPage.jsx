@@ -13,7 +13,7 @@ const TotalDealerOfferCarPage = () => {
     limit: 8,
     sort: "-updatedAt",
   });
-
+ 
   const onPageChange = (page, limit) => {
     setFilters((prev) => ({
       ...prev,
@@ -98,12 +98,7 @@ const TotalDealerOfferCarPage = () => {
         </div>
 
         {/* Modals */}
-        {/* 
-      <ViewCarTables
-        isServiceUserViewModalVisible={isServiceUserViewModalVisible}
-        handleCancel={handleCancel}
-        currentRecord={currentRecord}
-      /> */}
+
         <ViewOfferDealerCarAcceptDetails
           openResponsive={isServiceUserViewModalVisible}
           setOpenResponsive={setIsServiceUserViewModalVisible}

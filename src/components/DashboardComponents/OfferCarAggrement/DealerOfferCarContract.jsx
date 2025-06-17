@@ -12,13 +12,13 @@ import { useEffect, useRef, useState } from "react";
 import { LiaQuestionCircleSolid } from "react-icons/lia";
 import { useSelector } from "react-redux";
 import { toast } from "sonner";
-
+ 
 // Dynamically import SignatureModal with SSR disabled
 const SignatureModal = dynamic(
   () => import("@/components/DealerComponents/FinalNote.jsx/SignatureModal"),
   { ssr: false }
 );
- 
+  
 const DealerOfferCarContract = () => {
   const params = useParams();
   const navigate = useRouter();
@@ -465,8 +465,8 @@ const DealerOfferCarContract = () => {
                         ? `${
                             carPrice +
                             carPrice * 0.25 -
-                            (displayedData?.data?.advancedPayment +
-                              displayedData?.data?.advancedPayment * 0.25)
+                            (displayedData?.advancedPayment +
+                              displayedData?.advancedPayment * 0.25)
                           } .kr`
                         : `${
                             carPrice - displayedData?.advancedPayment

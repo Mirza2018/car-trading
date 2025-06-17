@@ -45,6 +45,8 @@ const ImageSlider = ({ carImages }) => {
               src={getImageUrl() + carImages[currentIndex]}
               alt={`car`}
               fill
+              // width={500}
+              // height={500}
               style={{ objectFit: "cover" }}
               sizes="(max-width: 768px) 100vw, 768px"
             />

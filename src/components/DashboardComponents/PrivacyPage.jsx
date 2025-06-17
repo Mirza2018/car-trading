@@ -13,7 +13,7 @@ const PrivacyPage = () => {
 
   const { data, currentData, isLoading, isFetching, isSuccess } =
     useStaticContentQuery("privacy-policy");
-
+  const date = new Date().toLocaleDateString();
   const displayedData = data ?? currentData;
   console.log(userData?.data);
 
@@ -21,7 +21,9 @@ const PrivacyPage = () => {
     const toastId = toast.loading("Privacy Policy Accepting...");
     const data = {
       isPrivacyAccepted: true,
+      privacyDate: date,
     };
+
     try {
       const res = await privacyMutaion(data).unwrap();
       console.log(res);
@@ -52,7 +54,7 @@ const PrivacyPage = () => {
           <p className="text-2xl text-primary-color font-semibold">
             Privacy Policy
           </p>
-        </div>
+        </div> 
         <div className="flex justify-center items-center">
           <div className="w-full lg:w-[90%]">
             <div
@@ -61,7 +63,7 @@ const PrivacyPage = () => {
             />
             {userData?.data?.isPrivacyAccepted ? (
               <Button className=" py-6 border !border-green-500 hover:border-green-500 text-xl !text-primary-color bg-green-500 hover:!bg-green-500 font-semibold rounded-2xl cursor-not-allowed">
-                Accepted
+                Accepted ({userData?.data?.privacyDate})
               </Button>
             ) : (
               <Button

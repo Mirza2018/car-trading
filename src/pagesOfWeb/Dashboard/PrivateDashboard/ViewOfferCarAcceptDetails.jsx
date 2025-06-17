@@ -2,12 +2,19 @@ import { Modal } from "antd";
 
 import AllOfferCarDetails from "@/components/DashboardComponents/OfferCarAggrement/AllOfferCarDetails";
 import ImageSlider from "@/components/DealerComponents/HomePage/CarViewDetailsModal/ImageSlider";
+import BrandnViewTableDetails from "@/components/DealerComponents/HomePage/BrandViewDetailsModal/BrandnViewTableDetails";
+import Image from "next/image";
+import { AllImages } from "@/assets/AllImages";
 
-const ViewOfferCarAcceptDetails = ({ setOpenResponsive, openResponsive, car }) => {
+const ViewOfferCarAcceptDetails = ({
+  setOpenResponsive,
+  openResponsive,
+  car,
+}) => {
   const date = new Date(car?.createdAt).toDateString();
   console.log("sdasdasd", car);
 
-  return ( 
+  return (
     <Modal
       // title="Modal responsive width"
       open={openResponsive}
@@ -30,7 +37,16 @@ const ViewOfferCarAcceptDetails = ({ setOpenResponsive, openResponsive, car }) =
         <main className="md:grid grid-cols-12  gap-4">
           {/* Left Side */}
           <section className="col-span-5">
-            <ImageSlider carImages={car?.carImages} />
+            {car?.carImages?.length > 0 ? (
+              <ImageSlider carImages={car?.carImages} />
+            ) : (
+              <div className="flex justify-center items-center py-10">
+                <Image
+                  src={AllImages.biludenbilleder}
+                  className="aspect-square rounded-2xl  "
+                />
+              </div>
+            )}
           </section>
           {/* Right Side */}
           <section className="col-span-7">
@@ -48,7 +64,7 @@ const ViewOfferCarAcceptDetails = ({ setOpenResponsive, openResponsive, car }) =
                   </h1>
                   <p className=" text-center text-sm">
                     Maximum price <br /> achieved
-                  </p>
+                  </p> 
                 </div>
               ) : (
                 <div className="bg-base-color border border-secondary-color rounded-full aspect-square flex flex-col justify-center items-center px-2">
@@ -59,8 +75,16 @@ const ViewOfferCarAcceptDetails = ({ setOpenResponsive, openResponsive, car }) =
                 </div>
               )} */}
             </div>
+            <h1 className="text-3xl  font-medium text-center">
+              Offer Car Info
+            </h1>
             {/* Middel part car All Details */}
             <AllOfferCarDetails car={car} />
+
+            <h1 className="text-3xl  font-medium text-center py-2">
+              Listing Car Info
+            </h1>
+            <BrandnViewTableDetails car={car?.submitListing} />
           </section>
         </main>
       </div>

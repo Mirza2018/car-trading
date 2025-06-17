@@ -608,12 +608,12 @@ const Licenseplate = ({ offerCar }) => {
           <div>
             <h1 className="text-2xl font-bold mb-2">Upload Image</h1>
             <Form.Item
-              rules={[
-                {
-                  required: true,
-                  message: "Please Select  at least one image!",
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: "Please Select  at least one image!",
+              //   },
+              // ]}
               name="carImages"
               valuePropName="fileList"
               getValueFromEvent={normFileEvent}

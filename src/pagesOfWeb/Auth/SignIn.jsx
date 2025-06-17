@@ -18,22 +18,15 @@ const SignIn = () => {
   const [userLogin] = useUserLoginMutation();
   const dispatch = useDispatch();
   const navigate = useRouter();
-
+ 
   const cookies = new Cookies();
 
   const onFinish = async (values) => {
     const toastId = toast.loading(" Logging in...");
     console.log("car-trading:", values);
 
-    Swal.fire({
-      title: "I'm acccpting all the rules",
-      showDenyButton: true,
-      // showCancelButton: true,
-      confirmButtonText: "Ok",
-      denyButtonText: `Cancel`,
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        // Swal.fire("Saved!", "", "success");
+
+
 
         try {
           const res = await userLogin(values).unwrap();
@@ -64,13 +57,23 @@ const SignIn = () => {
             }
           );
         }
-      } else if (result.isDenied) {
-        return toast.error("Without Accepting rulels you can't log in", {
-          id: toastId,
-          duration: 2000,
-        });
-      }
-    });
+
+
+
+        // Swal.fire({
+        //   title: "I'm acccpting all the rules",
+        //   showDenyButton: true,
+        //   confirmButtonText: "Ok",
+        //   denyButtonText: `Cancel`,
+        // }).then(async (result) => {
+        //   if (result.isConfirmed) {
+        //   } else if (result.isDenied) {
+        //     return toast.error("Without Accepting rulels you can't log in", {
+        //       id: toastId,
+        //       duration: 2000,
+        //     });
+        //   }
+        // });
   };
   return (
     <div className=" bg-[#E6F3F7]">
