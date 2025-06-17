@@ -104,7 +104,7 @@ const Homepage = () => {
   if (userData) {
     if (userData?.data?.isTermAccepted == false) {
       Swal.fire({
-        title: "Please acccpt the Terms & Conditions",
+        title: "Please accept the Terms & Conditions",
         // showDenyButton: true,
         confirmButtonText: "Ok",
         // denyButtonText: `Cancel`,
@@ -116,7 +116,7 @@ const Homepage = () => {
     }
     if (userData?.data?.isPrivacyAccepted == false) {
       Swal.fire({
-        title: "Please acccpt the Privacy Policy",
+        title: "Please accept the Privacy Policy",
         // showDenyButton: true,
         confirmButtonText: "Ok",
         // denyButtonText: `Cancel`,
