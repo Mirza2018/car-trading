@@ -66,16 +66,16 @@ const CarsForSale = ({
             key={car._id}
             className="flex lg:flex-row flex-col   gap-10 shadow-xl rounded-md p-3"
           >
-            <div className="flex gap-6 justify-start items-center max-w-[600px]">
+            <div className="flex gap-6 justify-start items-center ">
               {/* Icons */}
-              <div>
+              <div className="w-44 " >
                 {car?.carModel?.images[0] ? (
                   <Image
                     src={getImageUrl() + car?.carModel?.images[0]}
                     alt="car"
-                    width={500}
-                    height={500}
-                    className="w-44 aspect-square object-cover rounded-lg"
+                    width={400}
+                    height={400}
+                    className="w-full  aspect-square object-cover rounded-lg "
                   />
                 ) : (
                   <Image
@@ -83,12 +83,12 @@ const CarsForSale = ({
                     alt="car"
                     width={500}
                     height={500}
-                    className="w-44 aspect-square object-cover rounded-lg"
+                    className="w-full aspect-square object-cover rounded-lg "
                   />
                 )}
               </div>
 
-              <div className="flex flex-col gap-2 ">
+              <div className="flex flex-col gap-2 w-[400px]">
                 <p className="text-2xl font-semibold">
                   {car?.carModel?.brand} {car?.carModel?.model}
                 </p>
@@ -171,8 +171,8 @@ const CarsForSale = ({
                 </div>
               </div>
             </div>
-            <div className="flex xl:flex-row  flex-wrap gap-10 items-center justify-between flex-1">
-              <div className=" flex items-center gap-2 border-x border-secondary-color xl:h-full px-5">
+            <div className="flex xl:flex-row  flex-wrap gap-10 items-center justify-between flex-1 ">
+              <div className=" flex items-center gap-2 border-x border-secondary-color xl:h-full md:px-5 px-1">
                 <Image
                   alt="speed"
                   width={0}
@@ -248,6 +248,9 @@ const CarsForSale = ({
                   </button>
                 </Link>
               </div>
+
+
+
             </div>
           </div>
         ))}

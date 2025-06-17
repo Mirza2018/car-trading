@@ -50,7 +50,11 @@ export const carDealer = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags: [tagTypes.sellCarList, tagTypes.contactPaper],
+      providesTags: [
+        tagTypes.sellCarList,
+        tagTypes.contactPaper,
+        tagTypes.allCar,
+      ],
     }),
 
     submitListing: build.query({
@@ -103,6 +107,7 @@ export const carDealer = baseApi.injectEndpoints({
           body: buyCar,
         };
       },
+      invalidatesTags:[tagTypes.sellCar,tagTypes.sellCarList]
     }),
 
     bidCreate: build.mutation({

@@ -1,20 +1,20 @@
 "use client";
-import { AllImages } from "@/assets/AllImages";
-import PrivateCarSeeDetails from "@/components/DashboardComponents/TotalPrivateCarSellPage/PrivateCarSeeDetails";
+import AllCarListTable from "@/components/DashboardComponents/TotalPrivateCarSellPage/AllCarListTable";
 import PrivateCarSellTable from "@/components/DashboardComponents/TotalPrivateCarSellPage/PrivateCarSellTable";
 import ViewDetailsPage from "@/components/DealerComponents/HomePage/CarViewDetailsModal/ViewDetailsPage";
-import { useSellCarQuery } from "@/redux/api/features/privateDashboard";
+import { useUserCarsDetailsQuery } from "@/redux/api/features/privateDashboard";
 import axios from "axios";
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
-const TotalPrivateCarSellPage = () => {
+const TotalListedCars = () => {
+  const userInfo = useSelector((state) => state.auth.userInfo);
+  console.log(userInfo?.userId);
+
   const [filters, setFilters] = useState({
     page: 1,
     limit: 8,
-    filter: "sell",
-    sort: "-updatedAt",
-  }); 
+  });
 
   const onPageChange = (page, limit) => {
     setFilters((prev) => ({
@@ -28,7 +28,7 @@ const TotalPrivateCarSellPage = () => {
     data: sellCarData,
     currentData,
     isLoading,
-  } = useSellCarQuery(filters);
+  } = useUserCarsDetailsQuery({ filters, id: userInfo?.userId });
 
   const displayedData = sellCarData ?? currentData;
 
@@ -69,25 +69,20 @@ const TotalPrivateCarSellPage = () => {
       <div className="bg-secondary-color w-full p-4   rounded-tl-xl rounded-tr-xl">
         <div className=" w-[95%] mx-auto  flex items-center justify-between">
           <p className="text-3xl text-primary-color font-semibold">
-            Total car sell
+            My Listed Cars
           </p>
           <div className="flex gap-4 items-center"></div>
         </div>
       </div>
 
       <div className="px-10 py-10">
-        {/* <pre>{JSON.stringify(displayedData?.data?.result, null, 2)}</pre> */}
-        <PrivateCarSellTable
+        <AllCarListTable
           data={displayedData?.data?.result}
           loading={isLoading}
           showViewServiceUserModal={showViewServiceUserModal}
           meta={displayedData?.data?.meta}
           onPageChange={onPageChange}
         />
-        {/* <PrivateCarSeeDetails
-          openCarSee={openCarSee}
-          setOpennCarSee={setOpennCarSee}
-        /> */}
         <ViewDetailsPage
           openResponsive={openCarSee}
           setOpenResponsive={setOpennCarSee}
@@ -100,4 +95,4 @@ const TotalPrivateCarSellPage = () => {
   );
 };
 
-export default TotalPrivateCarSellPage;
+export default TotalListedCars;

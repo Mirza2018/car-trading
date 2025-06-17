@@ -45,6 +45,11 @@ const OfferCarContract = () => {
   const [isSignatureModalOpen, setIsSignatureModalOpen] = useState(false);
   const [signature, setSignature] = useState(null);
   const [isValueIncressed, setIsValueIncreased] = useState(false);
+  const [iserror, setIsError] = useState({
+    errorAgri: false,
+    errorRegistration: false,
+    errorSignature: false,
+  });
 
   // Access localStorage only on the client side for initial load
   useEffect(() => {
@@ -91,6 +96,15 @@ const OfferCarContract = () => {
       isAggrade: agrimentRef.current.input.checked,
       reRegistrationDeRegistrationView: registrationValue,
     };
+    if (!data.isAggrade) {
+      setIsError((prev) => ({ ...prev, errorAgri: true }));
+    }
+    if (!data.reRegistrationDeRegistrationView) {
+      setIsError((prev) => ({ ...prev, errorRegistration: true }));
+    }
+    if (!signature) {
+      setIsError((prev) => ({ ...prev, errorSignature: true }));
+    }
 
     if (!data.isAggrade) {
       return toast.error("Please check mark the Kommentarer!", {
@@ -395,7 +409,12 @@ const OfferCarContract = () => {
             >
               OMREGISTRERING/AFMELDING
             </h1>
-            <div className="border rounded-md font-medium border-secondary-color px-3 py-9 flex flex-col gap-9">
+            <div
+              style={{
+                border: iserror.errorRegistration ? "2px solid red" : "",
+              }}
+              className="border rounded-md font-medium border-secondary-color px-3 py-9 flex flex-col gap-9"
+            >
               <Radio.Group
                 // onChange={onChange}
                 onChange={onChange}
@@ -510,7 +529,11 @@ const OfferCarContract = () => {
                   {carPrice ? (
                     <>
                       {isValueIncressed
-                        ? `${carPrice + carPrice * 0.25 - advanceAmount} .kr`
+                        ? `${
+                            carPrice +
+                            carPrice * 0.25 -
+                            (advanceAmount + advanceAmount * 0.25)
+                          } .kr`
                         : `${carPrice - advanceAmount} .kr`}{" "}
                     </>
                   ) : (
@@ -530,7 +553,14 @@ const OfferCarContract = () => {
                 >
                   Kommentarer
                 </h1>
-                <div className="flex  gap-5">
+                <div
+                  style={{
+                    border: iserror.errorAgri ? "2px solid red" : "",
+                    padding: "5px",
+                    borderRadius: "10px",
+                  }}
+                  className="flex justify-between  gap-5"
+                >
                   <h1>
                     Køber bekræfter at have gennemgået bilen og accepterer dens
                     stand. Handlen gennemføres som beset.
@@ -661,7 +691,13 @@ const OfferCarContract = () => {
               </div>
             ) : (
               <div className="flex flex-col justify-center gap-2 items-center">
-                <div className="max-h-36 min-h-28  aspect-video border-2 border-dotted border-highlight-color rounded-lg flex justify-center items-center relative">
+                <div
+                  style={{
+                    border: iserror.errorSignature ? "2px solid red" : "",
+                    padding: "5px",
+                  }}
+                  className="max-h-36 min-h-28  aspect-video border-2 border-dotted border-highlight-color rounded-lg flex justify-center items-center relative"
+                >
                   {signature ? (
                     <Image
                       src={signature}

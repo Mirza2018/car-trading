@@ -45,7 +45,6 @@ const Profile = () => {
     setIsModalOpen(false);
   };
 
-
   //   {
   //     "first_name": "Rasel",
   //     "last_name": "Viper",
@@ -191,7 +190,7 @@ const Profile = () => {
                 </Upload>
               </Form.Item>
             </div>
-            <div >
+            <div>
               <p
                 onClick={showModal}
                 className="text-black border border-secondary-color hover:bg-green-600 hover:text-white hover:border-none transition-all rounded-md md:px-6 px-2 md:py-4 py-2 text-lg font-medium "
@@ -243,17 +242,19 @@ const Profile = () => {
                 />
               </Form.Item>
             </div>
-            <div>
-              <Typography.Title level={5} style={{ color: "#222222" }}>
-                Website Link
-              </Typography.Title>
-              <Form.Item name="websiteLink" className="text-white">
-                <Input
-                  placeholder="Enter your Website Link"
-                  className="py-2 px-3 text-xl border !border-input-color  "
-                />
-              </Form.Item>
-            </div>
+            {userInfo?.role == "dealer" && (
+              <div>
+                <Typography.Title level={5} style={{ color: "#222222" }}>
+                  Website Link
+                </Typography.Title>
+                <Form.Item name="websiteLink" className="text-white">
+                  <Input
+                    placeholder="Enter your Website Link"
+                    className="py-2 px-3 text-xl border !border-input-color  "
+                  />
+                </Form.Item>
+              </div>
+            )}
           </div>
           <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-5">
             <div>

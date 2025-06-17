@@ -45,18 +45,23 @@ const FinalNode = () => {
     carPrice = displayedData?.data?.expectedPrice;
   }
 
-  console.log(displayedData?.data);
+  // console.log(displayedData?.data);
 
   const inspectionDate = new Date(
     displayedData?.data?.car?.inspectionDate
   ).toDateString();
   const [advanceAmount, setAdvanceAmount] = useState(0);
+  const [iserror, setIsError] = useState({
+    errorAgri: false,
+    errorRegistration: false,
+    errorSignature: false,
+  });
   useEffect(() => {
     if (carPrice) {
       setAdvanceAmount(displayedData?.data?.advancedPayment);
     }
   }, [displayedData?.data?.advancedPayment, carPrice]);
-  console.log(advanceAmount, carPrice);
+  // console.log(advanceAmount, carPrice);
 
   const [registrationValue, setRegistrationValue] = useState(null);
 
@@ -84,11 +89,10 @@ const FinalNode = () => {
 
   // const storedSignature = localStorage.getItem("signature");
   const resetSignature = () => {
-    setIsValueIncreased(false);
-    setRegistrationValue(null);
+    // setIsValueIncreased(false);
+    // setRegistrationValue(null);
     localStorage.removeItem("signature");
     setSignature(null);
-    // console.log("eeeeee");
   };
 
   const handleSubmit = async () => {
@@ -99,6 +103,16 @@ const FinalNode = () => {
       isAggrade: agrimentRef.current.input.checked,
       reRegistrationDeRegistrationView: registrationValue,
     };
+
+    if (!data.isAggrade) {
+      setIsError((prev) => ({ ...prev, errorAgri: true }));
+    }
+    if (!data.reRegistrationDeRegistrationView) {
+      setIsError((prev) => ({ ...prev, errorRegistration: true }));
+    }
+    if (!signature) {
+      setIsError((prev) => ({ ...prev, errorSignature: true }));
+    }
 
     if (!data.isAggrade) {
       return toast.error("Please check mark the Kommentarer!", {
@@ -118,6 +132,7 @@ const FinalNode = () => {
         duration: 2000,
       });
     }
+    console.log(data);
 
     // Convert Base64 signature to File object
     const base64String = signature.replace(/^data:image\/png;base64,/, ""); // Remove prefix
@@ -167,6 +182,8 @@ const FinalNode = () => {
 
     console.log("okok", data, signature);
   };
+
+  // console.log(iserror);
 
   if (isLoading)
     return <Spin className="flex justify-center items-center" size="large" />;
@@ -388,7 +405,14 @@ const FinalNode = () => {
               >
                 OMREGISTRERING/AFMELDING
               </h1>
-              <div className=" rounded-md font-medium border-secondary-color px-3 py-9 flex flex-col gap-9">
+
+              <div
+                style={{
+                  border: iserror.errorRegistration ? "2px solid red" : "",
+                  padding: "5px",
+                }}
+                className=" rounded-md font-medium  px-3 py-9 flex flex-col gap-9  "
+              >
                 <Radio.Group
                   // onChange={onChange}
                   onChange={onChange}
@@ -506,7 +530,11 @@ const FinalNode = () => {
                       <>
                         {" "}
                         {isValueIncressed
-                          ? `${carPrice + carPrice * 0.25 - advanceAmount} .kr`
+                          ? `${
+                              carPrice +
+                              carPrice * 0.25 -
+                              (advanceAmount + advanceAmount * 0.25)
+                            } .kr`
                           : `${carPrice - advanceAmount} .kr`}{" "}
                       </>
                     ) : (
@@ -526,7 +554,14 @@ const FinalNode = () => {
                   >
                     Kommentarer
                   </h1>
-                  <div className="flex  gap-5">
+                  <div
+                    style={{
+                      border: iserror.errorAgri ? "2px solid red" : "",
+                      padding: "5px",
+                      borderRadius: "10px",
+                    }}
+                    className="flex justify-between gap-5 "
+                  >
                     <h1>
                       Køber bekræfter at have gennemgået bilen og accepterer
                       dens stand. Handlen gennemføres som beset.
@@ -636,7 +671,13 @@ const FinalNode = () => {
                 </div>
               ) : (
                 <div className="flex flex-col justify-center gap-2 items-center">
-                  <div className="max-h-36 min-h-28  aspect-video border-2 border-dotted border-highlight-color rounded-lg flex justify-center items-center relative">
+                  <div
+                    style={{
+                      border: iserror.errorSignature ? "2px solid red" : "",
+                      padding: "5px",
+                    }}
+                    className="max-h-36 min-h-28  aspect-video border-2 border-dotted border-highlight-color rounded-lg flex justify-center items-center relative"
+                  >
                     {signature ? (
                       <Image
                         src={signature}

@@ -75,6 +75,18 @@ export const privateDashboard = baseApi.injectEndpoints({
       providesTags: [tagTypes.offer],
     }),
 
+    userCarsDetails: build.query({
+      query: (data) => {
+        console.log(data);
+        // return;
+        return {
+          url: `/users/private_user_total_car/${data.id}`,
+          method: "GET",
+          params: data.filters,
+        };
+      },
+      providesTags: [tagTypes.allCar],
+    }),
     // end
   }),
 });
@@ -85,5 +97,6 @@ export const {
   useOfferCarActionMutation,
   useBidCarDetailsQuery,
   useBidCarActionMutation,
-  useOfferCarListQuery
+  useOfferCarListQuery,
+  useUserCarsDetailsQuery,
 } = privateDashboard;

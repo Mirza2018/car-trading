@@ -1,11 +1,16 @@
+// "use client"
 import { Button, Modal } from "antd";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 import React, { useState } from "react";
 import { toast } from "sonner";
+import Swal from "sweetalert2";
 
 const BuyNowBtn = ({ price, carId, buyCar }) => {
   const [isBuy, setIsBuy] = useState(false);
   const [isCongrat, setIsCongrat] = useState(false);
+  const navigate = useRouter();
 
   const buyCarHandle = async () => {
     const toastId = toast.loading("You buying a car...");
@@ -24,6 +29,19 @@ const BuyNowBtn = ({ price, carId, buyCar }) => {
 
       setIsCongrat(true);
       setIsBuy(false);
+      Swal.fire({
+        title: "Congratulations on Your Purchase!",
+        text: "Your car has been successfully purchased. Thank you for the deal!! you can find your car in Total Buy Car",
+        icon: "success",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: " Go to Buy Car",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate.push("/dashboard/total-dealer-car-sell");
+        }
+      });
     } catch (error) {
       console.log(error);
       toast.error(
@@ -36,6 +54,7 @@ const BuyNowBtn = ({ price, carId, buyCar }) => {
       );
     }
   };
+  console.log(isCongrat);
 
   return (
     <React.Fragment>
@@ -89,7 +108,7 @@ const BuyNowBtn = ({ price, carId, buyCar }) => {
           <Button
             className="text-xl py-5 px-8 !text-black !bg-base-color border border-secondary-color"
             type="primary"
-            onClick={() => setIsBuy(false)}
+            onClick={() => setIsCongrat(false)}
             style={{
               marginRight: 12,
               background: "rgba(221, 221, 221, 1)",

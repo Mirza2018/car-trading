@@ -45,7 +45,13 @@ const PrivateCarSellTable = ({
       render: (text) => (
         <div>
           <p className="whitespace-nowrap">
-            {text?.isBid ? text?.bidPrice : text?.expectedPrice}Dkk
+            {text?.isBid ? text?.bidPrice :
+              
+              
+              text?.expectedPrice
+            
+            
+            }Dkk
           </p>
         </div>
       ),

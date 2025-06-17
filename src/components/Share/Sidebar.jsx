@@ -125,6 +125,29 @@ const Sidebar = ({ slider, setSlider }) => {
                 <p>Total Car Sell</p>
               </li>
             </Link>
+            <Link href="/dashboard/listed-cars" className="w-full">
+              {" "}
+              <li
+                className={`flex items-center gap-x-3 w-full py-3 px-2  font-semibold text-lg lg:rounded-tr-lg lg:rounded-br-lg  ${
+                  location === "/dashboard/listed-cars"
+                    ? "text-white bg-highlight-color"
+                    : "text-black"
+                }`}
+              >
+                <Image
+                  src={AllImages.totalCar}
+                  alt="car"
+                  width={30}
+                  style={{
+                    filter:
+                      location === "/dashboard/listed-cars"
+                        ? "brightness(0) invert(1) "
+                        : undefined,
+                  }}
+                />
+                <p>My Listed Cars</p>
+              </li>
+            </Link>
 
             <Link href="/dashboard/total-car-sold" className="w-full">
               {" "}

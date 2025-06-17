@@ -18,7 +18,7 @@ const SignatureModal = dynamic(
   () => import("@/components/DealerComponents/FinalNote.jsx/SignatureModal"),
   { ssr: false }
 );
-
+ 
 const DealerOfferCarContract = () => {
   const params = useParams();
   const navigate = useRouter();
@@ -49,6 +49,12 @@ const DealerOfferCarContract = () => {
     displayedData?.isMoms
   );
 
+  const [iserror, setIsError] = useState({
+    errorSignature: false,
+  });
+
+
+
   // Access localStorage only on the client side for initial load
   useEffect(() => {
     const storedSignature = localStorage.getItem("signature");
@@ -75,6 +81,9 @@ const DealerOfferCarContract = () => {
     console.log(data);
 
     if (!signature) {
+
+      setIsError((prev) => ({ ...prev, errorSignature: true }));
+
       return toast.error("Give your Signature", {
         id: toastId,
         duration: 2000,
@@ -456,7 +465,8 @@ const DealerOfferCarContract = () => {
                         ? `${
                             carPrice +
                             carPrice * 0.25 -
-                            displayedData?.advancedPayment
+                            (displayedData?.data?.advancedPayment +
+                              displayedData?.data?.advancedPayment * 0.25)
                           } .kr`
                         : `${
                             carPrice - displayedData?.advancedPayment
@@ -580,7 +590,13 @@ const DealerOfferCarContract = () => {
               </div>
             ) : (
               <div className="flex flex-col justify-center gap-2 items-center">
-                <div className="max-h-36 min-h-28  aspect-video border-2 border-dotted border-highlight-color rounded-lg flex justify-center items-center relative">
+                <div
+                  style={{
+                    border: iserror.errorSignature ? "2px solid red" : "",
+                    padding: "5px",
+                  }}
+                  className="max-h-36 min-h-28  aspect-video border-2 border-dotted border-highlight-color rounded-lg flex justify-center items-center relative"
+                >
                   {signature ? (
                     <Image
                       src={signature}

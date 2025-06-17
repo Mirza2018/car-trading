@@ -21,7 +21,7 @@ export const carPrivate = baseApi.injectEndpoints({
           body: carData,
         };
       },
-      invalidatesTags: [tagTypes.sellCar],
+      invalidatesTags: [tagTypes.sellCar, tagTypes.allCar],
     }),
 
     submitListingCreate: build.mutation({
@@ -32,6 +32,7 @@ export const carPrivate = baseApi.injectEndpoints({
           body: carData,
         };
       },
+      invalidatesTags: [tagTypes.sellCarPrivate],
     }),
   }),
 });

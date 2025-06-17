@@ -3,6 +3,7 @@ export const tagTypes = {
   bid: "Bid",
   offer: "Offer",
   order: "Order",
+  allCar: "AllCars",
   task: "Task",
   message: "Message",
   notification: "Notification",
@@ -21,6 +22,7 @@ export const tagTypes = {
 
 export const tagTypesList = [
   tagTypes.user,
+  tagTypes.allCar,
   tagTypes.bid,
   tagTypes.offer,
   tagTypes.order,

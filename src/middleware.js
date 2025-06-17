@@ -90,6 +90,7 @@ export function middleware(request) {
       console.log("User is a regular user, checking allowed paths");
       const allowedUserDashboardPaths = [
         "/dashboard/total-private-car-sell",
+        "/dashboard/listed-cars",
         "/dashboard/private-offer-car-aggrement",
         "/dashboard/total-car-sold",
         "/dashboard/offer-car",

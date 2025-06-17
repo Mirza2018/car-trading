@@ -7,6 +7,8 @@ import MakeABidBtn from "./MakeABidBtn";
 import CarAllDetails from "./CarAllDetails";
 import Link from "next/link";
 import DealerAllCarDetails from "@/components/DashboardComponents/TotalCarForSellPage/DealerAllCarDetails";
+import Image from "next/image";
+import { AllImages } from "@/assets/AllImages";
 
 const ViewDetailsPage = ({
   setOpenResponsive,
@@ -45,7 +47,7 @@ const ViewDetailsPage = ({
           >
             Close
           </button>
-        </div>
+        </div>,
       ]}
     >
       <div>
@@ -56,13 +58,12 @@ const ViewDetailsPage = ({
               <ImageSlider carImages={car?.carModel?.images} />
             ) : (
               <div className="flex justify-center items-center  h-full">
-                <Avatar
-                  shape="square"
-                  className="!bg-secondary-color font-medium"
-                  size={170}
-                >
-                  {car?.carModel?.brand}
-                </Avatar>
+                <Image
+                  src={AllImages.biludenbilleder}
+                  width={400}
+                    height={400}
+                    className="aspect-square rounded-md"
+                />
               </div>
             )}
           </section>
@@ -79,7 +80,6 @@ const ViewDetailsPage = ({
             <DealerAllCarDetails car={car} />
           </section>
         </main>
-        
       </div>
     </Modal>
   );

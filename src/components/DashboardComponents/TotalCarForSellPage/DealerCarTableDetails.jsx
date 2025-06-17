@@ -39,12 +39,7 @@ const DealerCarTableDetails = ({ car }) => {
             <p>{car?.carCategory} </p>
           </div>
         )}
-        {car?.comment && (
-          <div className="flex justify-between border-b border-text-light-color">
-            <p>Comment:</p>
-            <p>{car?.comment} </p>
-          </div>
-        )}
+
         {car?.registrationNumber && (
           <div className="flex justify-between border-b border-text-light-color">
             <p>Registration Number:</p>
@@ -132,6 +127,12 @@ const DealerCarTableDetails = ({ car }) => {
           <div className="flex justify-between border-b border-text-light-color">
             <p>Number Plates:</p>
             <p>{car?.carModel?.numberPlates} </p>
+          </div>
+        )}
+        {car?.comment && (
+          <div className="flex justify-between border-b border-text-light-color">
+            <p>Comment:</p>
+            <p>{car?.comment} </p>
           </div>
         )}
 
