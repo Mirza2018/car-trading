@@ -1,7 +1,9 @@
+import { useGetBrandQuery } from "@/redux/api/features/carPrivate";
 import { Form, Input, Select } from "antd";
 import React from "react";
-
+const { Option } = Select;
 const SubmitListingFilterSection = ({ onFinishPrivate }) => {
+  const { data: allBrand, isLoading: isLoadingBrand } = useGetBrandQuery();
   return (
     <Form onFinish={onFinishPrivate}>
       <div className="flex md:flex-row flex-col justify-between items-center md:gap-5 mx-2">
@@ -10,17 +12,28 @@ const SubmitListingFilterSection = ({ onFinishPrivate }) => {
             <h1 className="sm:text-2xl font-bold">Mark</h1>
             <Form.Item name="brand">
               <Select
-                placeholder={<span className="text-black text-xl">Brands</span>}
                 className="sm:!h-10"
+                placeholder="Select a Brand"
                 showSearch
-                optionFilterProp="label"
-                filterSort={(optionA, optionB) =>
-                  (optionA?.label ?? "")
-                    .toLowerCase()
-                    .localeCompare((optionB?.label ?? "").toLowerCase())
+                optionFilterProp="children"
+                filterOption={(input, option) =>
+                  option.value.toLowerCase().includes(input.toLowerCase())
                 }
-                options={carBrands}
-              />
+              >
+                {allBrand?.data?.map((brand) => (
+                  <Option key={brand._id} value={brand.name}>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "8px",
+                      }}
+                    >
+                      <span>{brand.name}</span>
+                    </div>
+                  </Option>
+                ))}
+              </Select>
             </Form.Item>
           </div>
           <div>

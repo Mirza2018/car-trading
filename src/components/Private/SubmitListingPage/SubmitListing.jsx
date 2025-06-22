@@ -1,8 +1,11 @@
-"use client"
+"use client";
 import { AllImages } from "@/assets/AllImages";
-import { useSubmitListingCreateMutation } from "@/redux/api/features/carPrivate";
+import {
+  useGetBrandQuery,
+  useSubmitListingCreateMutation,
+} from "@/redux/api/features/carPrivate";
 import { useProfileQuery } from "@/redux/api/features/myProfile";
-import { Checkbox, Form, Input, InputNumber, Select, Spin } from "antd";
+import { Avatar, Checkbox, Form, Input, InputNumber, Select, Spin } from "antd";
 import { useForm } from "antd/es/form/Form";
 import { jwtDecode } from "jwt-decode";
 import Image from "next/image";
@@ -11,14 +14,19 @@ import React, { useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { toast } from "sonner";
 import Cookies from "universal-cookie";
-
+const { Option } = Select;
 const SubmitListing = () => {
-    const {
-      data: profileData,
-      currentData,
-      isLoading,
-      isFetching,
-    } = useProfileQuery();
+  const {
+    data: profileData,
+    currentData,
+    isLoading,
+    isFetching,
+  } = useProfileQuery();
+
+  const { data: allBrand, isLoading: isLoadingBrand } = useGetBrandQuery();
+
+  console.log(allBrand?.data);
+
   const [submitListingData] = useSubmitListingCreateMutation();
   const [form] = useForm();
   const cookies = new Cookies();
@@ -29,14 +37,14 @@ const SubmitListing = () => {
   } else {
     userInfo = jwtDecode(userCookie);
   }
-  console.log(userInfo);
+  // console.log(userInfo);
 
   const navigate = useRouter();
   const myInfo = profileData ?? currentData;
-  console.log(myInfo);
+  // console.log(myInfo);
 
   const [isDistance, setIsDistance] = useState(false);
-  const [isCompany, setIsCompany] = useState(true);
+  const [isCompany, setIsCompany] = useState(false);
   const [selectedCar, setSelectedCar] = useState(null);
 
   const handleCarSelect = (car) => {
@@ -81,8 +89,13 @@ const SubmitListing = () => {
 
     delete data.city;
     delete data.street;
+    delete data.mark;
     data.city = `${values.city}, ${values.street}`;
+    const selectedBrand = JSON.parse(values.mark);
+    data.mark = selectedBrand.name;
+    data.brandImage = selectedBrand.image;
     console.log(data);
+
 
     try {
       const res = await submitListingData(data).unwrap();
@@ -149,24 +162,34 @@ const SubmitListing = () => {
             name="mark"
           >
             <Select
-              placeholder={
-                <span
-                  style={{ fontSize: "clamp(12px, 1vw + 1rem ,14px)" }}
-                  className="text-black  "
-                >
-                  Brands
-                </span>
-              }
-              className=" !bg-base-color"
+              placeholder="Select a Brand"
               showSearch
-              optionFilterProp="label"
-              filterSort={(optionA, optionB) =>
-                (optionA?.label ?? "")
-                  .toLowerCase()
-                  .localeCompare((optionB?.label ?? "").toLowerCase())
-              }
-              options={carBrands}
-            />
+              optionFilterProp="children"
+              filterOption={(input, option) => {
+                const data = JSON.parse(option.value);
+                return data.name.toLowerCase().includes(input.toLowerCase());
+              }}
+            >
+              {allBrand?.data?.map((brand) => (
+                <Option
+                  key={brand._id}
+                  value={JSON.stringify({
+                    image: brand.image,
+                    name: brand.name,
+                  })}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                    }}
+                  >
+                    <span>{brand.name}</span>
+                  </div>
+                </Option>
+              ))}
+            </Select>
           </Form.Item>
           <Form.Item
             className="flex-1"

@@ -12,6 +12,14 @@ export const carPrivate = baseApi.injectEndpoints({
         };
       },
     }),
+    getBrand: build.query({
+      query: () => {
+        return {
+          url: `/car/get_brand`,
+          method: "GET",
+        };
+      },
+    }),
 
     saleCar: build.mutation({
       query: (carData) => {
@@ -42,4 +50,5 @@ export const {
   useLazyGetCarInfoQuery,
   useSaleCarMutation,
   useSubmitListingCreateMutation,
+  useGetBrandQuery,
 } = carPrivate;

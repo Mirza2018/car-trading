@@ -3,7 +3,7 @@ import { getImageUrl } from "@/helpers/config/envConfig";
 import { Avatar, Divider, Pagination, Tooltip } from "antd";
 import Image from "next/image";
 import React from "react";
- 
+
 const TotalCarBuy = ({
   displayedData,
   isLoading,
@@ -30,15 +30,28 @@ const TotalCarBuy = ({
             key={car?._id}
             className="flex justify-between gap-3 border border-base-color py-5 max-w-2xl  me-3 px-2  "
           >
-            <React.Fragment>
-              <Avatar
-                shape="square"
-                className="!bg-secondary-color font-medium"
-                size={100}
-              >
-                {car?.mark}
-              </Avatar>
-            </React.Fragment>
+            {car?.brandImage ? (
+              <React.Fragment>
+                <Image
+                  shape="square"
+                  className="font-medium object-contain w-20 aspect-square"
+                  width={100}
+                  height={100}
+                  src={`http://31.97.39.237:8010/${car?.brandImage}`}
+                />
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <Avatar
+                  shape="square"
+                  className="!bg-secondary-color font-medium"
+                  size={100}
+                >
+                  {car?.mark}
+                </Avatar>
+              </React.Fragment>
+            )}
+
             <div className="flex flex-1 justify-between  gap-3 md:flex-row flex-col">
               <div className="flex flex-col max-w-sm">
                 <h3 className="text-[22px] font-medium">

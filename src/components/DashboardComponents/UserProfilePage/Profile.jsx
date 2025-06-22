@@ -45,18 +45,7 @@ const Profile = () => {
     setIsModalOpen(false);
   };
 
-  //   {
-  //     "first_name": "Rasel",
-  //     "last_name": "Viper",
-  //     "phoneNumber": "012365",
-  //     "cvrNumber": "hello12365",
-  //     "address": "Banasree",
-  //     "city": "Dhaka",
-  //     "zip": "12636",
-  //     "websiteLink": "https://rasel.com",
-  //     "regNo": "13241",
-  //     "kontoNr": "654546"
-  // }
+
   const [imageUrl, setImageUrl] = useState(AllImages.profile);
   const [companyImageUrl, setCompanyImageUrl] = useState(AllImages.companyLogo);
 

@@ -2,11 +2,13 @@
 import { Avatar, Pagination, Spin } from "antd";
 import { useState } from "react";
 import BrandVIewDetailsPage from "./BrandViewDetailsModal/BrandVIewDetailsPage";
+import React from "react";
+import Image from "next/image";
 
 const PrivateLookingForCars = ({
   displayedData,
   isLoading,
-  isFetching, 
+  isFetching,
   isSuccess,
   onPageChange2,
 }) => {
@@ -34,14 +36,27 @@ const PrivateLookingForCars = ({
                   {/* <div className="text-4xl font-bold flex justify-center items-center !w-52 uppercase bg-secondary-color py-10 px-5 rounded-xl">
                     {car?.mark}
                   </div> */}
-                  <Avatar
-                    shape="square"
-                    className="!bg-secondary-color font-medium"
-                    size={170}
-                  >
-                    {car?.mark}
-                  </Avatar>
-
+                  {car?.brandImage ? (
+                    <React.Fragment>
+                      <Image
+                        shape="square"
+                        className="font-medium object-contain w-40 aspect-square" 
+                        width={100}
+                        height={100}
+                        src={`http://31.97.39.237:8010/${car?.brandImage}`}
+                      />
+                    </React.Fragment>
+                  ) : (
+                    <React.Fragment>
+                      <Avatar
+                        shape="square"
+                        className="!bg-secondary-color font-medium"
+                        size={100}
+                      >
+                        {car?.mark}
+                      </Avatar>
+                    </React.Fragment>
+                  )}
                   <div className="flex flex-col gap-2 ">
                     <p className="text-2xl font-semibold">{car?.mark}</p>
                     {/* <p className="text-sm font-normal">{car?.edition}</p> */}

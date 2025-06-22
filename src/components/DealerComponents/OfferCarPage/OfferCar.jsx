@@ -1,13 +1,15 @@
 "use client";
 import { AllImages } from "@/assets/AllImages";
-import { Checkbox, Form, Input, InputNumber, Select, Upload } from "antd";
+import { useGetBrandQuery } from "@/redux/api/features/carPrivate";
+import { Checkbox, Form, Input, InputNumber, Select, Spin, Upload } from "antd";
 import { useForm } from "antd/es/form/Form";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
- 
+const { Option } = Select;
 const OfferCar = ({ offerCar }) => {
+  const { data: allBrand, isLoading: isLoadingBrand } = useGetBrandQuery();
   const [form] = useForm();
   const param = useParams();
   const navigate = useRouter();
@@ -45,7 +47,7 @@ const OfferCar = ({ offerCar }) => {
   const onFinishFailed = ({ errorFields }) => {
     toast.error(errorFields[0]?.errors[0], {
       toastId: "formError",
-      autoClose: 2000, 
+      autoClose: 2000,
     });
     console.log(errorFields);
   };
@@ -53,10 +55,16 @@ const OfferCar = ({ offerCar }) => {
   const onFinsh = async (values) => {
     const toastId = toast.loading("Deal is sending...");
     values.models = selectedCar;
-    console.log(values);
 
     const data = { ...values, submitListingCarId: param.id };
     delete data.carImages;
+    delete data.mark;
+    const selectedBrand = JSON.parse(values.mark);
+    data.mark = selectedBrand.name;
+    data.brandImage = selectedBrand.image;
+
+    console.log(data);
+    // return
     const formData = new FormData();
     formData.append("data", JSON.stringify(data));
     const images = values.carImages || [];
@@ -89,7 +97,9 @@ const OfferCar = ({ offerCar }) => {
       });
     }
   };
-
+  if (isLoadingBrand) {
+    return <Spin className="flex justify-center items-center h-screen"></Spin>;
+  }
   return (
     <div className="">
       <Form
@@ -129,7 +139,7 @@ const OfferCar = ({ offerCar }) => {
             label={<span className="font-bold text-2xl">Mark</span>}
             name="mark"
           >
-            <Select
+            {/* <Select
               placeholder={<span className="text-black ">Brands</span>}
               className=" !bg-base-color"
               showSearch
@@ -140,7 +150,36 @@ const OfferCar = ({ offerCar }) => {
                   .localeCompare((optionB?.label ?? "").toLowerCase())
               }
               options={carBrands}
-            />
+            /> */}
+   <Select
+              placeholder="Select a Brand"
+              showSearch
+              optionFilterProp="children"
+              filterOption={(input, option) => {
+                const data = JSON.parse(option.value);
+                return data.name.toLowerCase().includes(input.toLowerCase());
+              }}
+            >
+              {allBrand?.data?.map((brand) => (
+                <Option
+                  key={brand._id}
+                  value={JSON.stringify({
+                    image: brand.image,
+                    name: brand.name,
+                  })}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                    }}
+                  >
+                    <span>{brand.name}</span>
+                  </div>
+                </Option>
+              ))}
+            </Select>
           </Form.Item>
         </div>
         <div className="grid sm:grid-cols-2 gap-5">

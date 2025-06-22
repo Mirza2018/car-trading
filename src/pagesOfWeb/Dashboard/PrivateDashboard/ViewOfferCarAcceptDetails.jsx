@@ -42,8 +42,10 @@ const ViewOfferCarAcceptDetails = ({
             ) : (
               <div className="flex justify-center items-center py-10">
                 <Image
-                  src={AllImages.biludenbilleder}
-                  className="aspect-square rounded-2xl  "
+                  width={100}
+                  height={100}
+                  src={`http://31.97.39.237:8010/${car?.brandImage}`}
+                  className="aspect-square object-contain w-48 flex justify-center items-center mt-10"
                 />
               </div>
             )}

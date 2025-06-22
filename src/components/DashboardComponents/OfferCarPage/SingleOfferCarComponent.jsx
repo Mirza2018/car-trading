@@ -87,18 +87,41 @@ const SingleOfferCarComponent = ({ offerCar, offercarAction }) => {
       <main className="md:grid grid-cols-12  gap-4 md:px-10 px-2 ">
         {/* Left Side */}
         <section className="col-span-5 max-w-[400px]">
-  
           {offerCar?.carImages.length > 0 ? (
             <OfferCarImageSlider carImages={offerCar?.carImages} />
           ) : (
             <div className="flex justify-center items-center">
               <Image
-                src={AllImages.biludenbilleder}
-                className="aspect-square rounded-2xl "
+                width={100}
+                height={100}
+                src={`http://31.97.39.237:8010/${offerCar?.brandImage}`}
+                className="aspect-square object-contain w-48 flex justify-center items-center mt-10"
               />
             </div>
           )}
         </section>
+        {/* 
+        {car.brandImage ? (
+          <React.Fragment>
+            <Avatar
+              shape="square"
+              className="font-medium"
+              size={100}
+              src={`http://31.97.39.237:8010/${car?.brandImage}`}
+            />
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <Avatar
+              shape="square"
+              className="!bg-secondary-color font-medium"
+              size={100}
+            >
+              {car?.mark}
+            </Avatar>
+          </React.Fragment>
+        )} */}
+
         {/* Right Side */}
         <section className="col-span-7">
           {/* Top portion  */}

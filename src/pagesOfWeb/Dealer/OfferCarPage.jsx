@@ -4,7 +4,7 @@ import OfferCar from "@/components/DealerComponents/OfferCarPage/OfferCar";
 import { useOfferCarDealMutation } from "@/redux/api/features/carDealer";
 import { clearCarLicenseInfo } from "@/redux/slices/carInfoSlice";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux"; 
 
 const OfferCarPage = () => {
   const [offerCar] = useOfferCarDealMutation();

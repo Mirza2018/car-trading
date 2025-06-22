@@ -36,15 +36,17 @@ const ViewOfferDealerCarAcceptDetails = ({
       <div>
         <main className="md:grid grid-cols-12  gap-4">
           {/* Left Side */}
-          <section className="col-span-5">
+          <section className="col-span-5"> 
             {car?.carImages.length > 0 ? (
               <ImageSlider carImages={car?.carImages} />
             ) : (
               <div className="flex justify-center items-center py-10">
-                <Image
-                  src={AllImages.biludenbilleder}
-                  className="aspect-square rounded-2xl  "
-                />
+                 <Image
+                                  width={100}
+                                  height={100}
+                                  src={`http://31.97.39.237:8010/${car?.brandImage}`}
+                                  className="aspect-square object-contain w-48 flex justify-center items-center mt-10"
+                                />
               </div>
             )}
           </section>

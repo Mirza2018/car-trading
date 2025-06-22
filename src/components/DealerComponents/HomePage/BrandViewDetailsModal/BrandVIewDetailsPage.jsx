@@ -58,13 +58,27 @@ const BrandVIewDetailsPage = ({
             {/* <div className="text-4xl font-bold flex justify-center items-center md:!w-52 w-32 uppercase bg-secondary-color py-10 px-5 rounded-xl md:mb-0 mb-4 ">
               {car?.mark}
             </div> */}
-            <Avatar
-              className="text-4xl font-bold flex justify-center items-center md:!w-52 w-32 uppercase bg-secondary-color py-10 px-5 rounded-xl md:mb-0 mb-4 "
-              shape="square"
-              size={170}
-            >
-              {car?.mark}
-            </Avatar>
+            {car?.brandImage ? (
+              <React.Fragment>
+                <Image
+                  shape="square"
+                  className="font-medium object-contain w-40 aspect-square"
+                  width={100}
+                  height={100}
+                  src={`http://31.97.39.237:8010/${car?.brandImage}`}
+                />
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <Avatar
+                  shape="square"
+                  className="!bg-secondary-color font-medium"
+                  size={200}
+                >
+                  {car?.mark}
+                </Avatar>
+              </React.Fragment>
+            )}
           </section>
           {/* Right Side */}
           <section className="col-span-7 flex justify-center items-center">
