@@ -186,7 +186,7 @@ const carBrands = [
   { label: "VinFast (vietnamesisk mærke)", value: "VinFast" },
 ];
 
-const fules = [
+const fules = [ 
   { label: "Electric Car", value: "Electric Car" },
   // { label: "Petrol", value: "Petrol" },
   { label: "Diesel", value: "Diesel" },

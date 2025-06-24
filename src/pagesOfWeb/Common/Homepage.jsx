@@ -102,7 +102,24 @@ const Homepage = () => {
   console.log(userData?.data?.isTermAccepted);
 
   if (userData) {
-    if (userData?.data?.isTermAccepted == false) {
+    console.log(userData?.data?.profile);
+    if (
+      !userData?.data?.profile?.first_name?.trim() ||
+      !userData?.data?.profile?.last_name?.trim() ||
+      !userData?.data?.profile?.phoneNumber?.trim() ||
+      !userData?.data?.profile?.zip?.trim() ||
+      !userData?.data?.profile?.city?.trim() ||
+      !userData?.data?.profile?.street?.trim()
+    ) {
+      Swal.fire({
+        title: "Please complete your profile",
+        confirmButtonText: "Ok",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          return navigate.push("/dashboard/user-profile");
+        }
+      });
+    } else if (userData?.data?.isTermAccepted == false) {
       Swal.fire({
         title: "Please accept the Terms & Conditions",
         // showDenyButton: true,
@@ -110,11 +127,10 @@ const Homepage = () => {
         // denyButtonText: `Cancel`,
       }).then(async (result) => {
         if (result.isConfirmed) {
-          navigate.push("/dashboard/terms");
+          return navigate.push("/dashboard/terms");
         }
       });
-    }
-    if (userData?.data?.isPrivacyAccepted == false) {
+    } else if (userData?.data?.isPrivacyAccepted == false) {
       Swal.fire({
         title: "Please accept the Privacy Policy",
         // showDenyButton: true,
@@ -122,7 +138,7 @@ const Homepage = () => {
         // denyButtonText: `Cancel`,
       }).then(async (result) => {
         if (result.isConfirmed) {
-          navigate.push("/dashboard/privacy");
+          return navigate.push("/dashboard/privacy");
         }
       });
     }

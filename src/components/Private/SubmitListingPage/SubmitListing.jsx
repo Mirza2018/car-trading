@@ -87,10 +87,10 @@ const SubmitListing = () => {
       data = { ...values };
     }
 
-    delete data.city;
-    delete data.street;
+    // delete data.city;
+    // delete data.street;
     delete data.mark;
-    data.city = `${values.city}, ${values.street}`;
+    // data.city = `${values.city}, ${values.street}`;
     const selectedBrand = JSON.parse(values.mark);
     data.mark = selectedBrand.name;
     data.brandImage = selectedBrand.image;
@@ -340,12 +340,12 @@ const SubmitListing = () => {
                   Electric Car
                 </Checkbox>
                 <Checkbox
-                  value="Petrol"
+                  value="Gasoline"
                   // checked={selectedFuleType === "petrol"}
                   // onChange={handleFuleTypeCheckboxChange}
                   style={{ lineHeight: "32px" }}
                 >
-                  Petrol
+                  Gasoline
                 </Checkbox>
                 <Checkbox
                   value="Diesel"
@@ -1039,6 +1039,7 @@ const SubmitListing = () => {
               Street Name*
             </p>
             <Form.Item
+              initialValue={myInfo?.data?.profile?.street}
               rules={[
                 {
                   required: true,

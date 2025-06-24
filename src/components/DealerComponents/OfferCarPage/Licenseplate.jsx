@@ -160,11 +160,11 @@ const Licenseplate = ({ offerCar }) => {
         <Input
           ref={inputRef}
           placeholder="Enter license plate"
-          className=""
+          className="!w-80 !h-11 "
           suffix={
             <div
               onClick={handleEditClick}
-              className="bg-highlight-color font-semibold text-white rounded py-2 px-8 cursor-pointer"
+              className="bg-highlight-color font-semibold text-white rounded py-2 px-4 cursor-pointer"
             >
               Search
             </div>

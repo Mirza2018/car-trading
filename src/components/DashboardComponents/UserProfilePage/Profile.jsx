@@ -231,6 +231,19 @@ const Profile = () => {
                 />
               </Form.Item>
             </div>
+            <div>
+              <Typography.Title level={5} style={{ color: "#222222" }}>
+                Address
+              </Typography.Title>
+              <Form.Item name="address" className="text-white">
+                <Input
+                  required
+                  placeholder="Enter your Address"
+                  className="py-2 px-3 text-xl border !border-input-color  "
+                />
+              </Form.Item>
+            </div>
+
             {userInfo?.role == "dealer" && (
               <div>
                 <Typography.Title level={5} style={{ color: "#222222" }}>
@@ -248,12 +261,12 @@ const Profile = () => {
           <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-5">
             <div>
               <Typography.Title level={5} style={{ color: "#222222" }}>
-                Address
+                Street
               </Typography.Title>
-              <Form.Item name="address" className="text-white">
+              <Form.Item name="street" className="text-white">
                 <Input
                   required
-                  placeholder="Enter your Address"
+                  placeholder="Enter your street"
                   className="py-2 px-3 text-xl border !border-input-color  "
                 />
               </Form.Item>

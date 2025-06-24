@@ -49,20 +49,46 @@ const Notification = () => {
       className="flex flex-col gap-4 w-full text-center bg-white p-4 rounded-lg"
       style={{ boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.25)" }}
     >
+      {allNotification?.data?.result?.length==0 && <div>No notification</div>}
       {allNotification?.data?.result?.slice(0, 5).map((notification) => (
         <div className="text-start" key={notification?._id}>
           <div className="flex gap-2">
+            {console.log(notification)}
             <BellFilled style={{ color: "#839F9F" }} />
             <div className="flex flex-col items-start">
               <p>{notification?.message}</p>
-              <p className="text-gray-400">
-                {notification?.createdAt?.split("T")[0]}
-              </p>
+              <div className="text-gray-400 flex justify-between gap-8">
+                <p>{notification?.createdAt?.split("T")[0]}</p>
+
+                {/* <Link href={`/dashboard${notification?.link}`}>
+                  <button className="bg-secondary-color text-white px-2 rounded-md">
+                    Go
+                  </button>
+                </Link> */}
+
+                {notification?.link && (
+                  <>
+                    {userInfo?.role === "private_user" ? (
+                      <Link href={`/dashboard${notification?.link}`}>
+                        <button className="bg-secondary-color text-white px-2 rounded-md">
+                          Go
+                        </button>
+                      </Link>
+                    ) : (
+                      <Link href={`${notification?.link}`}>
+                        <button className="bg-secondary-color text-white px-2 rounded-md">
+                          Go
+                        </button>
+                      </Link>
+                    )}
+                  </>
+                )}
+              </div>
             </div>
           </div>
         </div>
       ))}
-      {userInfo?.role === "private_user" ? (
+      {/* {userInfo?.role === "private_user" ? (
         <p
           onClick={handleNotificationRead}
           // href={`/dashboard/bid-car`}
@@ -72,7 +98,7 @@ const Notification = () => {
         </p>
       ) : (
         ""
-      )}
+      )} */}
     </div>
   );
 

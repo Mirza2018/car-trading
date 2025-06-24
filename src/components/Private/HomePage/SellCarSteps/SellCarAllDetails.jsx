@@ -32,7 +32,7 @@ const SellCarAllDetails = () => {
   // console.log(carData);
   const myInfo = profileData ?? currentData;
   console.log(myInfo);
-  
+
   const [isCompany, setIsCompany] = useState(false);
   const [form] = useForm();
   const { TextArea } = Input;
@@ -134,9 +134,9 @@ const SellCarAllDetails = () => {
       };
 
       delete data.images;
-      delete data.city;
-      delete data.street;
-      data.city = `${values.city}, ${values.street}`;
+      // delete data.city;
+      // delete data.street;
+      // data.city = `${values.city}, ${values.street}`;
       if (!isCompany) {
         delete data.cvrNumber;
         delete data.companyName;
@@ -202,7 +202,7 @@ const SellCarAllDetails = () => {
   };
 
   if (isLoading) {
-    return <Spin className="flex justify-center items-center h-screen"></Spin>
+    return <Spin className="flex justify-center items-center h-screen"></Spin>;
   }
 
   return (
@@ -602,6 +602,7 @@ const SellCarAllDetails = () => {
                   message: "Please input your Street Name!",
                 },
               ]}
+              initialValue={myInfo?.data?.profile?.street}
               name={`street`}
             >
               <Input placeholder="Street Name" className="py-3" />
