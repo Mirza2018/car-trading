@@ -34,7 +34,7 @@ const TotalCarSell = ({
         {displayedData?.data?.result?.map((car) => (
           <div
             key={car?._id}
-            className="flex justify-between gap-3 border border-base-color py-5 max-w-2xl  me-3 px-2  "
+            className="flex justify-between gap-3 border border-base-color py-5 md:w-[550px]   me-3 px-2 "
           >
             <React.Fragment>
               {car?.carModel?.images[0] ? (
@@ -43,7 +43,7 @@ const TotalCarSell = ({
                   alt="car"
                   width={100}
                   height={100}
-                  className="size-24 aspect-square object-cover"
+                  className="font-medium object-contain w-20 aspect-square"
                 />
               ) : (
                 <Image
@@ -51,7 +51,7 @@ const TotalCarSell = ({
                   alt="car"
                   width={100}
                   height={100}
-                  className="size-30  aspect-square object-center"
+                  className="font-medium object-contain w-20 aspect-square"
                 />
               )}
             </React.Fragment>
@@ -83,14 +83,14 @@ const TotalCarSell = ({
               </div>
               <div className="flex md:flex-col flex-row gap-2 text-end">
                 <Tooltip title="Login as Dealer">
-                  <button className="btn border border-base-color rounded md:px-5 px-1 py-1 w-fit whitespace-nowrap cursor-not-allowed">
+                  <button className="btn border border-base-color rounded px-1 md:px-5 py-1 w-fit whitespace-nowrap cursor-not-allowed">
                     Buy Now
                   </button>
                 </Tooltip>
                 <Tooltip title="Login as Dealer">
                   <button
                     // onClick={() => showModal(car)}
-                    className="btn border border-base-color bg-[#E6F3F7] rounded md:px-2 px-1 py-1 w-fit whitespace-nowrap  cursor-not-allowed"
+                    className="btn border border-base-color bg-[#E6F3F7] rounded px-1 md:px-2 py-1 w-fit whitespace-nowrap  cursor-not-allowed"
                   >
                     View Details
                   </button>

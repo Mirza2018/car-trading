@@ -28,10 +28,10 @@ const TotalCarBuy = ({
         {displayedData?.data?.result?.slice(0, 3).map((car) => (
           <div
             key={car?._id}
-            className="flex justify-between gap-3 border border-base-color py-5 max-w-2xl  me-3 px-2  "
+            className="flex justify-between gap-3 border border-base-color py-5  md:w-[550px]   me-3 px-2  "
           >
             {car?.brandImage ? (
-              <React.Fragment>
+              <React.Fragment> 
                 <Image
                   shape="square"
                   className="font-medium object-contain w-20 aspect-square"

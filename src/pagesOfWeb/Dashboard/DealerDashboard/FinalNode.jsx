@@ -720,7 +720,7 @@ const FinalNode = () => {
 
             <section className="flex justify-between mx-5 flex-wrap gap-5">
               {displayedData?.data?.signatureAsDealer ? (
-                ""
+               <p className="!bg-highlight-color text-white px-2 rounded-lg ">Print</p>
               ) : (
                 <>
                   <div className="flex justify-center gap-2 ">
