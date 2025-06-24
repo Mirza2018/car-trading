@@ -1,22 +1,20 @@
 "use client";
-import dynamic from "next/dynamic";
-import Image from "next/image";
-import React, { useState, useEffect, useRef } from "react";
-import { FaShare } from "react-icons/fa";
-import { FaRegSquareCheck } from "react-icons/fa6";
-import { IoIosArrowDown } from "react-icons/io";
-import { LiaQuestionCircleSolid } from "react-icons/lia";
-import { TiPrinter } from "react-icons/ti";
-import { RxCross2 } from "react-icons/rx";
 import { AllImages } from "@/assets/AllImages";
-import { Checkbox, Input, InputNumber, Radio, Space, Spin } from "antd";
-import { useParams, useRouter } from "next/navigation";
+import { getImageUrl } from "@/helpers/config/envConfig";
 import {
   useContactPaperQuery,
   useUpdateContactPaperMutation,
 } from "@/redux/api/features/contract";
+import { Checkbox, InputNumber, Radio, Space, Spin } from "antd";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import { useParams, useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { LiaQuestionCircleSolid } from "react-icons/lia";
+import { PiPrinterThin } from "react-icons/pi";
 import { toast } from "sonner";
-import { getImageUrl } from "@/helpers/config/envConfig";
 
 // Dynamically import SignatureModal with SSR disabled
 const SignatureModal = dynamic(
@@ -27,9 +25,12 @@ const SignatureModal = dynamic(
 const FinalNode = () => {
   const params = useParams();
   const navigate = useRouter();
+
   // console.log(params);
   const advancedRef = useRef();
   const agrimentRef = useRef();
+
+  const contractRef = useRef();
 
   const { data, currentData, isLoading, isFetching, isSuccess } =
     useContactPaperQuery(params.id);
@@ -44,6 +45,46 @@ const FinalNode = () => {
   } else {
     carPrice = displayedData?.data?.expectedPrice;
   }
+
+  const handlePrint = async () => {
+    if (!contractRef.current) return;
+
+    try {
+      const canvas = await html2canvas(contractRef.current, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: "#ffffff",
+        width: contractRef.current.scrollWidth,
+        height: contractRef.current.scrollHeight,
+      });
+
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF("p", "mm", "a4");
+
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+      const imgWidth = canvas.width;
+      const imgHeight = canvas.height;
+
+      const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+      const imgX = (pdfWidth - imgWidth * ratio) / 2;
+      const imgY = 5;
+
+      pdf.addImage(
+        imgData,
+        "PNG",
+        imgX,
+        imgY,
+        imgWidth * ratio,
+        imgHeight * ratio
+      );
+      pdf.save("Contract_SLUTSEDDEL.pdf");
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+      alert("Error generating PDF. Please try again.");
+    }
+  };
 
   // console.log(displayedData?.data);
 
@@ -205,7 +246,7 @@ const FinalNode = () => {
         </div>
 
         <div className="container mx-auto border-2 border-secondary-color rounded-md md:my-20 overflow-x-clip">
-          <div className="max-w-[1350px] mx-auto md:my-10 ">
+          <div ref={contractRef} className="max-w-[1350px] mx-auto md:my-10 ">
             {/* <pre>{JSON.stringify(displayedData, null, 2)}</pre> */}
             <h1
               style={{ fontSize: "clamp(20px, 3vw + 1rem ,60px)" }}
@@ -720,7 +761,18 @@ const FinalNode = () => {
 
             <section className="flex justify-between mx-5 flex-wrap gap-5">
               {displayedData?.data?.signatureAsDealer ? (
-               <p className="!bg-highlight-color text-white px-2 rounded-lg ">Print</p>
+                <>
+                  <div></div>
+                  <div className="text-end">
+                    <button
+                      onClick={handlePrint}
+                      className="font-bold text-white bg-highlight-color p-2 rounded-md flex justify-center items-center gap-2"
+                    >
+                      <PiPrinterThin className="text-xl" />
+                      Print
+                    </button>
+                  </div>
+                </>
               ) : (
                 <>
                   <div className="flex justify-center gap-2 ">

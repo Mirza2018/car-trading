@@ -9,9 +9,12 @@ import { Checkbox, Radio, Space, Spin } from "antd";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react"; 
 import { LiaQuestionCircleSolid } from "react-icons/lia";
 import { toast } from "sonner";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+import { PiPrinterThin } from "react-icons/pi";
 
 // Dynamically import SignatureModal with SSR disabled
 const SignatureModal = dynamic(
@@ -25,6 +28,7 @@ const ContractPaperPage = () => {
   // console.log(params);
   const advancedRef = useRef();
   const agrimentRef = useRef();
+    const contractRef = useRef();
 
   const { data, currentData, isLoading, isFetching, isSuccess } =
     useContactPaperQuery(params.id);
@@ -78,6 +82,46 @@ const ContractPaperPage = () => {
     localStorage.removeItem("signature");
     setSignature(null);
   };
+
+    const handlePrint = async () => {
+      if (!contractRef.current) return;
+  
+      try {
+        const canvas = await html2canvas(contractRef.current, {
+          scale: 2,
+          useCORS: true,
+          allowTaint: true,
+          backgroundColor: "#ffffff",
+          width: contractRef.current.scrollWidth,
+          height: contractRef.current.scrollHeight,
+        });
+  
+        const imgData = canvas.toDataURL("image/png");
+        const pdf = new jsPDF("p", "mm", "a4");
+  
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = pdf.internal.pageSize.getHeight();
+        const imgWidth = canvas.width;
+        const imgHeight = canvas.height;
+  
+        const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+        const imgX = (pdfWidth - imgWidth * ratio) / 2;
+        const imgY = 5;
+  
+        pdf.addImage(
+          imgData,
+          "PNG",
+          imgX,
+          imgY,
+          imgWidth * ratio,
+          imgHeight * ratio
+        );
+        pdf.save("Contract_SLUTSEDDEL.pdf");
+      } catch (error) {
+        console.error("Error generating PDF:", error);
+        alert("Error generating PDF. Please try again.");
+      }
+    };
 
   const handleSubmit = async () => {
     const toastId = toast.loading("Digital Contract is Signing...");
@@ -162,7 +206,7 @@ const ContractPaperPage = () => {
         </div>
         {displayedData?.data?.signatureAsDealer ? (
           <div className="container mx-auto border-2 border-secondary-color rounded-md md:my-20 overflow-x-clip">
-            <div className="max-w-[1350px] mx-auto md:my-10 ">
+            <div ref={contractRef} className="max-w-[1350px] mx-auto md:my-10 ">
               <h1
                 style={{ fontSize: "clamp(20px, 3vw + 1rem ,60px)" }}
                 className="font-bold ms-2"
@@ -671,7 +715,18 @@ const ContractPaperPage = () => {
 
               <section className="flex justify-around mx-5 flex-wrap gap-5 mt-5">
                 {displayedData?.data?.signatureAsOwner ? (
-                  ""
+                  <>
+                    <div></div>
+                    <div className="text-end">
+                      <button
+                        onClick={handlePrint}
+                        className="font-bold text-white bg-highlight-color p-2 rounded-md flex justify-center items-center gap-2"
+                      >
+                        <PiPrinterThin className="text-xl" />
+                        Print
+                      </button>
+                    </div>
+                  </>
                 ) : (
                   <>
                     <div className="ms-2 ps-3 ">
