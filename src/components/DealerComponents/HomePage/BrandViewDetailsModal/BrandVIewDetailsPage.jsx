@@ -13,7 +13,7 @@ const BrandVIewDetailsPage = ({
   openResponsive,
   car,
   sendOffer,
-  buyNow,
+  buyNow, 
 }) => {
   return (
     <Modal
@@ -62,7 +62,8 @@ const BrandVIewDetailsPage = ({
               <React.Fragment>
                 <Image
                   shape="square"
-                  className="font-medium object-contain w-40 aspect-square"
+                  sizes="(max-width: 768px) 100vw, 768px"
+                  className="font-medium object-contain w-96 aspect-square"
                   width={100}
                   height={100}
                   src={`http://31.97.39.237:8010/${car?.brandImage}`}
@@ -81,7 +82,7 @@ const BrandVIewDetailsPage = ({
             )}
           </section>
           {/* Right Side */}
-          <section className="col-span-7 flex justify-center items-center">
+          <section className="col-span-7 flex justify-center items-center w-full">
             <BrandnViewTableDetails car={car} />
             {buyNow && (
               <div className="flex flex-col gap-3 ">

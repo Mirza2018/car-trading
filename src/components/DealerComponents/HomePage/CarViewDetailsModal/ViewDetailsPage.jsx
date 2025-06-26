@@ -25,7 +25,7 @@ const ViewDetailsPage = ({
       onOk={() => setOpenResponsive(false)}
       onCancel={() => setOpenResponsive(false)}
       width={1500}
-      footer={[
+      footer={[ 
         <div key="footerButton" className="flex justify-end gap-80">
           {sendOffer && (
             <>

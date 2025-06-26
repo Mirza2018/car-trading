@@ -187,11 +187,13 @@ const carBrands = [
 ];
 
 const fules = [
-  { label: "Electric Car", value: "Electric Car" },
-  { label: "Gasoline", value: "Gasoline" },
+  { label: "EL", value: "EL" },
+  { label: "Benzin", value: "Benzin" },
+  { label: "Hybrid Benzin", value: "Hybrid Benzin" },
+  { label: "Plug-In Benzin", value: "Plug-In Benzin" },
   { label: "Diesel", value: "Diesel" },
-  { label: "Hybrid - Gasoline", value: "Hybrid Gasoline" },
-  { label: "Hybrid - Diesel", value: "Hybrid Diesel" },
-  { label: "Plug-in - Petrol", value: "Plugin Petrol" },
-  { label: "Plug-in - Diesel", value: "Plugin Diesel" },
+  { label: "Hybrid Diesel", value: "Hybrid Diesel" },
+  { label: "Plug-In Diesel", value: "Plug-In Diesel" },
 ];
+
+

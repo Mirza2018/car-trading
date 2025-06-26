@@ -243,20 +243,6 @@ const Profile = () => {
                 />
               </Form.Item>
             </div>
-
-            {userInfo?.role == "dealer" && (
-              <div>
-                <Typography.Title level={5} style={{ color: "#222222" }}>
-                  Website Link
-                </Typography.Title>
-                <Form.Item name="websiteLink" className="text-white">
-                  <Input
-                    placeholder="Enter your Website Link"
-                    className="py-2 px-3 text-xl border !border-input-color  "
-                  />
-                </Form.Item>
-              </div>
-            )}
           </div>
           <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-5">
             <div>
@@ -391,6 +377,19 @@ const Profile = () => {
                 </div>
                 <p>Change the company logo</p>
               </div>
+              {userInfo?.role == "dealer" && (
+                <div>
+                  <Typography.Title level={5} style={{ color: "#222222" }}>
+                    Website Link
+                  </Typography.Title>
+                  <Form.Item name="websiteLink" className="text-white">
+                    <Input
+                      placeholder="Enter your Website Link"
+                      className="py-2 px-3 text-xl border !border-input-color  "
+                    />
+                  </Form.Item>
+                </div>
+              )}
             </div>
           )}
         </div>

@@ -169,7 +169,7 @@ const Homepage = () => {
               <h1
                 onClick={() => setIsSellCar(true)}
                 style={{ fontSize: "clamp(16px, 1vw + 1rem ,30px)" }}
-                className={`" font-semibold  sm:px-[3vw] px-2 rounded-lg  cursor-pointer  hover:animate-pulse  flex justify-center items-center leading-none" ${
+                className={`" font-semibold  sm:px-[3vw] px-2 rounded-lg  cursor-pointer  hover:animate-pulse  flex justify-center items-center leading-none " ${
                   isSellCar
                     ? "bg-highlight-color text-white "
                     : "bg-base-color text-text-color"
@@ -181,14 +181,14 @@ const Homepage = () => {
               <h1
                 onClick={() => setIsSellCar(false)}
                 style={{ fontSize: "clamp(16px, 1vw + 1rem ,30px)" }}
-                className={`" font-semibold  py-[1vw] sm:px-[3vw] px-2 rounded-lg  cursor-pointer  hover:animate-pulse " ${
+                className={`" font-semibold  py-[1vw] sm:px-[3vw] px-2 rounded-lg  cursor-pointer  hover:animate-pulse flex justify-center items-center " ${
                   isSellCar
                     ? "bg-base-color text-text-color"
                     : "bg-highlight-color text-white "
                 }`}
               >
-                Private looking for car (
-                {submitDisplayedData?.data?.pagination?.total})
+                Private looking for car
+                <br />({submitDisplayedData?.data?.pagination?.total})
               </h1>
             </div>
             {/* Dealer */}

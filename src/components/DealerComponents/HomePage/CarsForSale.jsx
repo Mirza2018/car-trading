@@ -225,7 +225,7 @@ const CarsForSale = ({
                   className="bg-base-color text-black border border-secondary-color  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap md:w-44 w-36"
                 >
                   View Details
-                </button>
+                </button> 
                 <ViewDetailsPage
                   openResponsive={openResponsive}
                   setOpenResponsive={setOpenResponsive}

@@ -332,60 +332,60 @@ const SubmitListing = () => {
                 }}
               >
                 <Checkbox
-                  value="Electric Car"
+                  value="EL"
                   // checked={selectedFuleType === "electricCar"}
                   // onChange={handleFuleTypeCheckboxChange}
                   style={{ lineHeight: "32px" }}
                 >
-                  Electric Car
+                  EL
                 </Checkbox>
                 <Checkbox
-                  value="Gasoline"
+                  value="Benzin"
                   // checked={selectedFuleType === "petrol"}
                   // onChange={handleFuleTypeCheckboxChange}
                   style={{ lineHeight: "32px" }}
                 >
-                  Gasoline
+                  Benzin
+                </Checkbox>
+                <Checkbox
+                  value="Hybrid Benzin"
+                  // checked={selectedFuleType === "diesel"}
+                  // onChange={handleFuleTypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Hybrid Benzin
+                </Checkbox>
+                <Checkbox
+                  value="Plug-In Benzin"
+                  // checked={selectedFuleType === "hybridGasoline"}
+                  // onChange={handleFuleTypeCheckboxChange}
+                  style={{ lineHeight: "32px" }}
+                >
+                  Plug-In Benzin
                 </Checkbox>
                 <Checkbox
                   value="Diesel"
-                  // checked={selectedFuleType === "diesel"}
+                  // checked={selectedFuleType === "hybridDiesel"}
                   // onChange={handleFuleTypeCheckboxChange}
                   style={{ lineHeight: "32px" }}
                 >
                   Diesel
                 </Checkbox>
                 <Checkbox
-                  value="Hybrid Gasoline"
-                  // checked={selectedFuleType === "hybridGasoline"}
-                  // onChange={handleFuleTypeCheckboxChange}
-                  style={{ lineHeight: "32px" }}
-                >
-                  Hybrid - Gasoline
-                </Checkbox>
-                <Checkbox
                   value="Hybrid Diesel"
-                  // checked={selectedFuleType === "hybridDiesel"}
-                  // onChange={handleFuleTypeCheckboxChange}
-                  style={{ lineHeight: "32px" }}
-                >
-                  Hybrid - Diesel
-                </Checkbox>
-                <Checkbox
-                  value="Plugin Petrol"
                   // checked={selectedFuleType === "pluginPetrol"}
                   // onChange={handleFuleTypeCheckboxChange}
                   style={{ lineHeight: "32px" }}
                 >
-                  Plug-in - Petrol
+                  Hybrid Diesel
                 </Checkbox>
                 <Checkbox
-                  value="Plugin Diesel"
+                  value="Plug-In Diesel"
                   // checked={selectedFuleType === "pluginDiesel"}
                   // onChange={handleFuleTypeCheckboxChange}
                   style={{ lineHeight: "32px" }}
                 >
-                  Plug-in - Diesel
+                  Plug-In Diesel
                 </Checkbox>
               </div>
             </Checkbox.Group>

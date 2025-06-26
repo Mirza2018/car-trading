@@ -186,12 +186,12 @@ const carBrands = [
   { label: "VinFast (vietnamesisk mærke)", value: "VinFast" },
 ];
 
-const fules = [ 
-  { label: "Electric Car", value: "Electric Car" },
-  // { label: "Petrol", value: "Petrol" },
-  { label: "Diesel", value: "Diesel" },
+const fules = [
+  { label: "EL", value: "EL" },
   { label: "Benzin", value: "Benzin" },
-  { label: "Hybrid - Diesel", value: "Hybrid - Diesel" },
-  { label: "Plug-in - Petrol", value: "Plug-in - Petrol" },
-  { label: "Plug-in - Diesel", value: "Plug-in - Diesel" },
+  { label: "Hybrid Benzin", value: "Hybrid Benzin" },
+  { label: "Plug-In Benzin", value: "Plug-In Benzin" },
+  { label: "Diesel", value: "Diesel" },
+  { label: "Hybrid Diesel", value: "Hybrid Diesel" },
+  { label: "Plug-In Diesel", value: "Plug-In Diesel" },
 ];
