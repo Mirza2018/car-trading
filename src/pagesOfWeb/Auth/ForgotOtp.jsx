@@ -2,25 +2,17 @@
 import { AllImages } from "@/assets/AllImages";
 import {
   useForgetOtpVerifyMutation,
-  useResendOTPMutation,
-  useVerifiedEmailMutation,
+  useResendOTPMutation
 } from "@/redux/api/features/authApi";
 import {
   clearAuth,
   clearForgotPasswordToken,
   clearResendSignUpToken,
-  clearSignUpToken,
-  setAccessToken,
   setForgotPasswordToken,
-  setResendSignUpToken,
-  setResetPasswordToken,
-  setSignUpToken,
-  setUserInfo,
+  setResetPasswordToken
 } from "@/redux/slices/authSlice";
-import { Button, Form, Input } from "antd";
-import { jwtDecode } from "jwt-decode";
+import { Button, Form } from "antd";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import OTPInput from "react-otp-input";
@@ -142,7 +134,7 @@ const ForgotOtp = () => {
               <Form.Item name="otp" className="">
                 <div className="flex justify-center items-center">
                   <OTPInput
-                    inputStyle="!w-[55px] h-[45px] !sm:w-[76px] sm:h-[64px] text-[20px] sm:text-[30px] bg-transparent border border-input-color
+                    inputStyle="!w-[100px] !h-[100px] px-6 py-2 text-[20px] sm:text-[30px] bg-transparent border border-input-color
                       hover:border-input-color focus:bg-transparent focus:border-input-color rounded-lg mr-[10px] sm:mr-[20px] text-secondary-color !text-black !border-[#1E1E1E] !bg-white"
                     value={otp}
                     onChange={setOtp}
