@@ -233,20 +233,6 @@ const Profile = () => {
             </div>
             <div>
               <Typography.Title level={5} style={{ color: "#222222" }}>
-                Address
-              </Typography.Title>
-              <Form.Item name="address" className="text-white">
-                <Input
-                  required
-                  placeholder="Enter your Address"
-                  className="py-2 px-3 text-xl border !border-input-color  "
-                />
-              </Form.Item>
-            </div>
-          </div>
-          <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-5">
-            <div>
-              <Typography.Title level={5} style={{ color: "#222222" }}>
                 Street
               </Typography.Title>
               <Form.Item name="street" className="text-white">
@@ -257,7 +243,32 @@ const Profile = () => {
                 />
               </Form.Item>
             </div>
-
+            {/* <div>
+              <Typography.Title level={5} style={{ color: "#222222" }}>
+                Address
+              </Typography.Title>
+              <Form.Item name="address" className="text-white">
+                <Input
+                  required
+                  placeholder="Enter your Address"
+                  className="py-2 px-3 text-xl border !border-input-color  "
+                />
+              </Form.Item>
+            </div> */}
+          </div>
+          <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-5">
+            <div>
+              <Typography.Title level={5} style={{ color: "#222222" }}>
+                Zip
+              </Typography.Title>
+              <Form.Item name="zip" className="text-white">
+                <Input
+                  required
+                  placeholder="Enter your  zip code"
+                  className="py-2 px-3 text-xl border !border-input-color"
+                />
+              </Form.Item>
+            </div>
             <div>
               <Typography.Title level={5} style={{ color: "#222222" }}>
                 City{" "}
@@ -272,61 +283,33 @@ const Profile = () => {
             </div>
             <div>
               <Typography.Title level={5} style={{ color: "#222222" }}>
-                Zip
+                Rge Nr.
               </Typography.Title>
-              <Form.Item name="zip" className="text-white">
+              <Form.Item name="regNo" className="text-white">
                 <Input
                   required
-                  placeholder="Enter your  zip code"
-                  className="py-2 px-3 text-xl border !border-input-color"
+                  placeholder="Enter your Rge Nr."
+                  className="py-2 px-3 text-xl border !border-input-color  "
                 />
               </Form.Item>
             </div>
 
-            {userInfo?.role == "dealer" && (
-              <div>
-                <Typography.Title level={5} style={{ color: "#222222" }}>
-                  CVR Number
-                </Typography.Title>
-                <Form.Item name="cvrNumber" className="text-white">
-                  <Input
-                    required
-                    placeholder="Enter your CRV Number"
-                    className="py-2 px-3 text-xl border !border-input-color  "
-                  />
-                </Form.Item>
-              </div>
-            )}
+            <div>
+              <Typography.Title level={5} style={{ color: "#222222" }}>
+                Konto Nr.
+              </Typography.Title>
+              <Form.Item name="kontoNr" className="text-white">
+                <Input
+                  required
+                  placeholder="Enter your  Konto Nr."
+                  className="py-2 px-3 text-xl border !border-input-color"
+                />
+              </Form.Item>
+            </div>
           </div>
 
           {userInfo?.role == "dealer" && (
             <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-5">
-              <div>
-                <Typography.Title level={5} style={{ color: "#222222" }}>
-                  Rge Nr.
-                </Typography.Title>
-                <Form.Item name="regNo" className="text-white">
-                  <Input
-                    required
-                    placeholder="Enter your Rge Nr."
-                    className="py-2 px-3 text-xl border !border-input-color  "
-                  />
-                </Form.Item>
-              </div>
-
-              <div>
-                <Typography.Title level={5} style={{ color: "#222222" }}>
-                  Konto Nr.
-                </Typography.Title>
-                <Form.Item name="kontoNr" className="text-white">
-                  <Input
-                    required
-                    placeholder="Enter your  Konto Nr."
-                    className="py-2 px-3 text-xl border !border-input-color"
-                  />
-                </Form.Item>
-              </div>
-
               <div>
                 <Typography.Title level={5} style={{ color: "#222222" }}>
                   Company Name
@@ -339,7 +322,30 @@ const Profile = () => {
                   />
                 </Form.Item>
               </div>
+              <div>
+                <Typography.Title level={5} style={{ color: "#222222" }}>
+                  CVR Number
+                </Typography.Title>
+                <Form.Item name="cvrNumber" className="text-white">
+                  <Input
+                    required
+                    placeholder="Enter your CRV Number"
+                    className="py-2 px-3 text-xl border !border-input-color  "
+                  />
+                </Form.Item>
+              </div>
 
+              <div>
+                <Typography.Title level={5} style={{ color: "#222222" }}>
+                  Website Link
+                </Typography.Title>
+                <Form.Item name="websiteLink" className="text-white">
+                  <Input
+                    placeholder="Enter your Website Link"
+                    className="py-2 px-3 text-xl border !border-input-color  "
+                  />
+                </Form.Item>
+              </div>
               <div className="flex flex-col  items-center justify-center gap-2">
                 <div className=" flex justify-center items-center">
                   <Image
@@ -377,19 +383,6 @@ const Profile = () => {
                 </div>
                 <p>Change the company logo</p>
               </div>
-              {userInfo?.role == "dealer" && (
-                <div>
-                  <Typography.Title level={5} style={{ color: "#222222" }}>
-                    Website Link
-                  </Typography.Title>
-                  <Form.Item name="websiteLink" className="text-white">
-                    <Input
-                      placeholder="Enter your Website Link"
-                      className="py-2 px-3 text-xl border !border-input-color  "
-                    />
-                  </Form.Item>
-                </div>
-              )}
             </div>
           )}
         </div>
