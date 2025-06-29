@@ -142,7 +142,7 @@ const OtpPage = () => {
               <Form.Item name="otp" className="">
                 <div className="flex justify-center items-center">
                   <OTPInput
-                    inputStyle="!w-[100px] !h-[100px] px-6 py-2 text-[20px] sm:text-[30px] bg-transparent border border-input-color
+                    inputStyle="!w-[100px] !h-[100px] text-4xl  sm:text-[30px] bg-transparent border border-input-color
                       hover:border-input-color focus:bg-transparent focus:border-input-color rounded-lg mr-[10px] sm:mr-[20px] text-secondary-color !text-black !border-[#1E1E1E] !bg-white"
                     value={otp}
                     onChange={setOtp}
