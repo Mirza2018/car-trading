@@ -11,7 +11,7 @@ import { jwtDecode } from "jwt-decode";
 import { useRouter } from "next/navigation";
 import { tagTypes } from "@/redux/tagTypes";
 import { baseApi } from "@/redux/api/baseApi";
- 
+
 const cookies = new Cookies();
 
 export const SocketContext = createContext({});
@@ -60,16 +60,18 @@ export const SocketProvider = ({ children }) => {
       // });
     });
 
-
-
-
-
     socketInstance.on("notification", (data) => {
+      console.log("from soket", data?.data);
 
-      console.log("from soket",data?.data);
-
-      setNotify(data?.data?.message);
-      setCount(data?.data?.count);
+      setNotify(1);
+      // setCount(count + 1);
+      (prev)=>setCount(prev+1)()
+      dispatch(
+        baseApi.util.invalidateTags([
+          tagTypes.notification,
+          tagTypes.notificationCount,
+        ])
+      );
     });
 
     socketInstance.on("disconnect", (reason) => {

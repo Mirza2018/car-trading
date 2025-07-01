@@ -1,6 +1,7 @@
 "use client";
 import {
   useGetAllnotificationCountQuery,
+  useGetAllnotificationQuery,
   useLazyGetAllnotificationQuery,
   useNotificationActionMutation,
 } from "@/redux/api/features/notificationApi";
@@ -15,32 +16,52 @@ import { useSelector } from "react-redux";
 const Notification = () => {
   const { data: allNotificationCount, refetch: refetchCount } =
     useGetAllnotificationCountQuery();
-  const [newNotificationCount, setIsNewNotificationCount] = useState(0);
-  const [trigger, { data: allNotification }] = useLazyGetAllnotificationQuery();
+
+  // const [trigger, { data: allNotification }] = useLazyGetAllnotificationQuery();
+  const { data: allNotification, refetch } = useGetAllnotificationQuery();
   const { count } = useContext(SocketContext);
   const [notificationRead] = useNotificationActionMutation();
+  const [newNotificationCount, setIsNewNotificationCount] = useState(
+    allNotificationCount?.data
+  );
   const userInfo = useSelector((state) => state.auth.userInfo);
   const navigate = useRouter();
   // Sync socket and RTK Query data
+
+  // console.log("Socket count1:", count);
+
+  // console.log("New count1", allNotificationCount?.data);
+
+
+
+
+
+
+
+
+  
+
   useEffect(() => {
     // console.log("Socket count:", count);
-    // console.log("RTK Query data:", allNotificationCount);
-    if (allNotificationCount?.data?.count !== undefined) {
-      console.log(
-        "Setting count from RTK Query:",
-        allNotificationCount.data.count
-      );
-      setIsNewNotificationCount(allNotificationCount.data.count);
-    } else if (count !== undefined && count > 0) {
-      console.log("Setting count from socket:", count);
-      setIsNewNotificationCount(count);
-      refetchCount();
-    }
-  }, [count, allNotificationCount, refetchCount]);
+    refetchCount();
+    // console.log("New count", allNotificationCount?.data);
+
+    setIsNewNotificationCount(allNotificationCount?.data);
+
+    // if (allNotificationCount?.data?.count !== undefined) {
+
+    //   setIsNewNotificationCount(allNotificationCount.data.count);
+    // } else if (count !== undefined ) {
+    //   // console.log("Setting count from socket:", count);
+    //   setIsNewNotificationCount(count);
+    //   refetchCount();
+    //   refetch();
+    // }
+  }, [ allNotificationCount?.data]);
 
   const handleNotificationRead = () => {
     setIsNewNotificationCount(0);
-    notificationRead();
+    // notificationRead();
     navigate.push("/dashboard/bid-car");
   };
 
@@ -49,11 +70,11 @@ const Notification = () => {
       className="flex flex-col gap-4 w-full text-center bg-white p-4 rounded-lg"
       style={{ boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.25)" }}
     >
-      {allNotification?.data?.result?.length==0 && <div>No notification</div>}
+      {allNotification?.data?.result?.length == 0 && <div>No notification</div>}
       {allNotification?.data?.result?.slice(0, 5).map((notification) => (
         <div className="text-start" key={notification?._id}>
           <div className="flex gap-2">
-            {console.log(notification)}
+            {/* {console.log(notification)} */}
             <BellFilled style={{ color: "#839F9F" }} />
             <div className="flex flex-col items-start">
               <p>{notification?.message}</p>
@@ -75,11 +96,22 @@ const Notification = () => {
                         </button>
                       </Link>
                     ) : (
-                      <Link href={`${notification?.link}`}>
-                        <button className="bg-secondary-color text-white px-2 rounded-md">
-                          Go
-                        </button>
-                      </Link>
+                      <>
+                        {notification?.link.includes("/offer-car") && (
+                          <Link href={`/dashboard/dealer-offer-car-aggrement`}>
+                            <button className="bg-secondary-color text-white px-2 rounded-md">
+                              Go
+                            </button>
+                          </Link>
+                        )}
+                        {notification?.link.includes("/task") && (
+                          <Link href={notification?.link}>
+                            <button className="bg-secondary-color text-white px-2 rounded-md">
+                              Go
+                            </button>
+                          </Link>
+                        )}
+                      </>
                     )}
                   </>
                 )}
@@ -105,8 +137,11 @@ const Notification = () => {
   return (
     <div>
       <Dropdown
-        onMouseEnter={() => trigger()}
-        trigger={["hover"]}
+        onMouseEnter={() => {
+          notificationRead();
+          refetchCount();
+        }}
+        // trigger={["hover"]}
         overlay={notificationMenu}
         placement="bottomRight"
         className="cursor-pointer"

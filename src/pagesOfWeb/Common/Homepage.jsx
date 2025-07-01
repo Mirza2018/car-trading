@@ -54,7 +54,7 @@ const Homepage = () => {
   } = useSubmitListingQuery(filters2);
   const navigate = useRouter();
   const onFinish = (values) => {
-    console.log(values);
+    // console.log(values);
 
     // Filter out empty/null/undefined values from filters
     const filters = [values.fuelType, values.brand].filter(
@@ -98,11 +98,11 @@ const Homepage = () => {
   const displayedData = data ?? currentData;
   const submitDisplayedData = submitData ?? submitCurrentData;
 
-  console.log(userData?.data?.isPrivacyAccepted);
-  console.log(userData?.data?.isTermAccepted);
+  // console.log(userData?.data?.isPrivacyAccepted);
+  // console.log(userData?.data?.isTermAccepted);
 
   if (userData) {
-    console.log(userData?.data?.profile);
+    // console.log(userData?.data?.profile);
     if (
       !userData?.data?.profile?.first_name?.trim() ||
       !userData?.data?.profile?.last_name?.trim() ||

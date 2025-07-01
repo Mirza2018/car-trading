@@ -54,7 +54,7 @@ const BuyNowBtn = ({ price, carId, buyCar }) => {
       );
     }
   };
-  console.log(isCongrat);
+  // console.log(isCongrat);
 
   return (
     <React.Fragment>

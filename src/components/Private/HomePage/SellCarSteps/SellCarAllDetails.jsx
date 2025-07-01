@@ -223,6 +223,7 @@ const SellCarAllDetails = () => {
 
       <div className="text-center mb-3 max-w-[600px] ">
         <Input
+          defaultValue={carData?.numberPlates}
           ref={inputRef}
           placeholder="Enter license plate"
           className=""

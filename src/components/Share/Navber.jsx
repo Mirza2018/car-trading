@@ -5,7 +5,7 @@ import { Avatar, Modal, Spin } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "sonner";
 import Cookies from "universal-cookie";
@@ -18,6 +18,7 @@ import { jwtDecode } from "jwt-decode";
 import TaskManagePage from "../DealerComponents/TaskPage/TaskManagePage";
 import Notification from "./Notification";
 import { getImageUrl } from "@/helpers/config/envConfig";
+import { SocketContext } from "@/utils/SocketContext";
 
 const Navbar = () => {
   const { data, currentData, isLoading, isFetching, isSuccess } =
@@ -26,6 +27,7 @@ const Navbar = () => {
   const cookies = new Cookies();
   const navigate = useRouter();
   const dispatch = useDispatch();
+    const { count } = useContext(SocketContext);
   const displayedData = data ?? currentData;
   let userInfo;
   // const userInfo = useSelector((state) => state.auth.userInfo);
@@ -317,6 +319,8 @@ const Navbar = () => {
               </li>
             </Link>
           ))}
+
+          {/* {count} */}
 
           {userInfo?.role ? (
             <>
