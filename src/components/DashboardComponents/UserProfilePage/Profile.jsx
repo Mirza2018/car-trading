@@ -45,7 +45,6 @@ const Profile = () => {
     setIsModalOpen(false);
   };
 
-
   const [imageUrl, setImageUrl] = useState(AllImages.profile);
   const [companyImageUrl, setCompanyImageUrl] = useState(AllImages.companyLogo);
 
@@ -287,7 +286,6 @@ const Profile = () => {
               </Typography.Title>
               <Form.Item name="regNo" className="text-white">
                 <Input
-                  required
                   placeholder="Enter your Rge Nr."
                   className="py-2 px-3 text-xl border !border-input-color  "
                 />
@@ -300,7 +298,6 @@ const Profile = () => {
               </Typography.Title>
               <Form.Item name="kontoNr" className="text-white">
                 <Input
-                  required
                   placeholder="Enter your  Konto Nr."
                   className="py-2 px-3 text-xl border !border-input-color"
                 />
