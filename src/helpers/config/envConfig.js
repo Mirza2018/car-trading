@@ -1,11 +1,11 @@
 export const getBaseUrl = () => {
-  return process.env.NEXT_PUBLIC_BASE_URL;
+  return process.env.NEXT_PUBLIC_BASE_URL || "http://10.10.10.30:8000/api/v1";
 };
 
 export const getImageUrl = () => {
-  return process.env.NEXT_PUBLIC_IMAGE_URL;
+  return process.env.NEXT_PUBLIC_IMAGE_URL || "http://10.10.10.30:8000/";
 };
 
 export const getSocketUrl = () => {
-  return process.env.NEXT_PUBLIC_SOCKET_URL;
+  return process.env.NEXT_PUBLIC_SOCKET_URL || "http://10.10.10.30:8001";
 };

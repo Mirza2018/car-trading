@@ -70,6 +70,7 @@ export function middleware(request) {
         "/dashboard/total-dealer-car-sell",
         "/dashboard/dealer-offer-car-aggrement",
         "/dashboard/order-transport",
+        "/dashboard/my-bids",
         "/dashboard/user-profile",
         "/dashboard/terms",
         "/dashboard/privacy",

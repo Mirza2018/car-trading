@@ -187,6 +187,13 @@ const SellCarAllDetails = () => {
         });
         return;
       }
+      if (error?.data?.message.includes("registrationNumber_1")) {
+        toast.error("This car is already Listed", {
+          id: toastId,
+          duration: 2000,
+        });
+        return;
+      }
       if (error?.data?.message.includes("email_1")) {
         toast.error("This email is register please log in.. ", {
           id: toastId,

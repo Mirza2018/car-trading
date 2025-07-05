@@ -24,6 +24,17 @@ export const dealerDashboard = baseApi.injectEndpoints({
       },
       // providesTags: [tagTypes.offer],
     }),
+    getBidDetails: build.query({
+      query: (params) => {
+        // console.log(filter);
+        return {
+          url: `/bid/my_list`,
+          method: "GET",
+          params,
+        };
+      },
+      // providesTags: [tagTypes.offer],
+    }),
 
     orderTransport: build.mutation({
       query: (orderTransport) => {
@@ -50,6 +61,5 @@ export const dealerDashboard = baseApi.injectEndpoints({
   }),
 });
 
-export const {
-useTotalPurchasedCarsQuery
-} = dealerDashboard;
+export const { useTotalPurchasedCarsQuery, useGetBidDetailsQuery } =
+  dealerDashboard;

@@ -59,7 +59,7 @@ const DealerCarTableDetails = ({ car }) => {
             <p>{car?.chassisNumber} </p>
           </div>
         )}
-        {car?.inspectionDate != 0 && (
+        {car?.inspectionDate  && (
           <div className="flex justify-between border-b border-text-light-color">
             <p>Inspection Date:</p>
             <p>{date} </p>

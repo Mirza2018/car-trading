@@ -32,15 +32,6 @@ const Notification = () => {
 
   // console.log("New count1", allNotificationCount?.data);
 
-
-
-
-
-
-
-
-  
-
   useEffect(() => {
     // console.log("Socket count:", count);
     refetchCount();
@@ -57,7 +48,7 @@ const Notification = () => {
     //   refetchCount();
     //   refetch();
     // }
-  }, [ allNotificationCount?.data]);
+  }, [allNotificationCount?.data]);
 
   const handleNotificationRead = () => {
     setIsNewNotificationCount(0);
@@ -80,39 +71,15 @@ const Notification = () => {
               <p>{notification?.message}</p>
               <div className="text-gray-400 flex justify-between gap-8">
                 <p>{notification?.createdAt?.split("T")[0]}</p>
-
-                {/* <Link href={`/dashboard${notification?.link}`}>
-                  <button className="bg-secondary-color text-white px-2 rounded-md">
-                    Go
-                  </button>
-                </Link> */}
+                <p>{notification?.createdAt?.split("T")[1].slice(0,8)}</p>
 
                 {notification?.link && (
                   <>
-                    {userInfo?.role === "private_user" ? (
-                      <Link href={`/dashboard${notification?.link}`}>
-                        <button className="bg-secondary-color text-white px-2 rounded-md">
-                          Go
-                        </button>
-                      </Link>
-                    ) : (
-                      <>
-                        {notification?.link.includes("/offer-car") && (
-                          <Link href={`/dashboard/dealer-offer-car-aggrement`}>
-                            <button className="bg-secondary-color text-white px-2 rounded-md">
-                              Go
-                            </button>
-                          </Link>
-                        )}
-                        {notification?.link.includes("/task") && (
-                          <Link href={notification?.link}>
-                            <button className="bg-secondary-color text-white px-2 rounded-md">
-                              Go
-                            </button>
-                          </Link>
-                        )}
-                      </>
-                    )}
+                    <Link href={notification?.link}>
+                      <button className="bg-secondary-color text-white px-2 rounded-md">
+                        Go
+                      </button>
+                    </Link>
                   </>
                 )}
               </div>

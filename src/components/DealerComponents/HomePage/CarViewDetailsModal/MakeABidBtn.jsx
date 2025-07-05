@@ -26,7 +26,14 @@ const MakeABidBtn = ({ carid }) => {
       carId: carid,
       bidAmount: valueOfBid,
     };
-    // console.log(data);
+    console.log(valueOfBid);
+    if (valueOfBid < 0) {
+      toast.error("Bid can't be nagetive ammount ", {
+        id: toastId,
+        duration: 2000,
+      });
+      return setIsBuy(false);
+    }
 
     try {
       const res = await bidCreate(data).unwrap();

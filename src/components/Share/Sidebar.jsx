@@ -77,6 +77,29 @@ const Sidebar = ({ slider, setSlider }) => {
                 <p>Offer Car Aggrement</p>
               </li>
             </Link>
+            <Link href="/dashboard/my-bids" className="w-full">
+              {" "}
+              <li
+                className={`flex items-center gap-x-3 w-full py-3 px-2  font-semibold text-lg lg:rounded-tr-lg lg:rounded-br-lg  ${
+                  location === "/dashboard/my-bids"
+                    ? "text-white bg-highlight-color"
+                    : "text-black"
+                }`}
+              >
+                <Image
+                  src={AllImages.bid}
+                  alt="show-feedback"
+                  width={30}
+                  style={{
+                    filter:
+                      location === "/dashboard/my-bids"
+                        ? "brightness(0) invert(1) "
+                        : undefined,
+                  }}
+                />
+                <p>Bid Details</p>
+              </li>
+            </Link>
             <Link href="/dashboard/order-transport" className="w-full">
               <li
                 className={`flex items-center gap-x-3 w-full py-3 px-2  font-semibold text-lg lg:rounded-tr-lg lg:rounded-br-lg ${
