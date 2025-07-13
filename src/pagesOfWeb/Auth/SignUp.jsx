@@ -20,6 +20,7 @@ import { useDispatch } from "react-redux";
 const SignUp = () => {
   const [userSignUp] = useSignUpMutation();
   const [role, setRole] = useState(null);
+  const [isClick, setIsClick] = useState(null);
   const handleRoleChange = (value) => {
     setRole(value); // Update role state when the value changes
   };
@@ -31,35 +32,41 @@ const SignUp = () => {
     const toastId = toast.loading(" Sign Up...");
     console.log("car-trading sign up values", values);
 
-    // return;
+    if (isClick) {
+      try {
+        const res = await userSignUp(values).unwrap();
 
-    try {
-      const res = await userSignUp(values).unwrap();
+        dispatch(setSignUpToken(res?.data?.signUpToken));
+        dispatch(setResendSignUpToken(res?.data?.signUpToken));
+        console.log(res?.data?.signUpToken);
 
-      dispatch(setSignUpToken(res?.data?.signUpToken));
-      dispatch(setResendSignUpToken(res?.data?.signUpToken));
-      console.log(res?.data?.signUpToken);
+        toast.success(res.message, {
+          id: toastId,
+          duration: 2000,
+        });
 
-      toast.success(res.message, {
+        navigate.push("/verify-otp");
+      } catch (error) {
+        console.error("Login Error:", error); // Log the error for debugging
+
+        toast.error(
+          error?.data?.message ||
+            error?.error ||
+            "An error occurred during registration please try later",
+          {
+            id: toastId,
+            duration: 2000,
+          }
+        );
+      }
+    } else {
+      return toast.error("Please Agree with terms and policy ", {
         id: toastId,
         duration: 2000,
       });
-
-      navigate.push("/verify-otp");
-    } catch (error) {
-      console.error("Login Error:", error); // Log the error for debugging
-
-      toast.error(
-        error?.data?.message ||
-          error?.error ||
-          "An error occurred during registration please try later",
-        {
-          id: toastId,
-          duration: 2000,
-        }
-      );
     }
   };
+  console.log(isClick);
 
   return (
     <div className=" bg-[#E6F3F7]">
@@ -281,6 +288,14 @@ const SignUp = () => {
                 </Form.Item>
               </>
             )}
+
+            <Checkbox
+              onChange={(e) => setIsClick(e.target.checked)}
+              className=""
+            >
+              Agree with terms and policy
+            </Checkbox>
+
             <Form.Item>
               <Button
                 type="primary"

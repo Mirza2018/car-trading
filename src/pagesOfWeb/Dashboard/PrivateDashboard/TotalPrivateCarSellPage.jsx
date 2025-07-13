@@ -32,8 +32,8 @@ const TotalPrivateCarSellPage = () => {
 
   const displayedData = sellCarData ?? currentData;
 
-  console.log("meta", displayedData?.data?.meta);
-  console.log(displayedData);
+  // console.log("meta", displayedData?.data?.meta);
+  // console.log(displayedData);
   const [currentRecord, setCurrentRecord] = useState(null);
   const [data, setData] = useState([]);
   const [openCarSee, setOpennCarSee] = useState(false);

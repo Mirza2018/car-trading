@@ -4,7 +4,7 @@ import {
   useGetOrderTransportQuery,
 } from "@/redux/api/features/orderTransport";
 import { Form, Input, Spin } from "antd";
-import { toast } from "sonner";
+import { toast } from "sonner"; 
 
 const OrderTransportPage = () => {
   const { data, currentData, isLoading, isError, refetch } =
@@ -145,15 +145,40 @@ const OrderTransportPage = () => {
           </Form.Item>
         </div>
 
-        <div className="flex justify-between flex-wrap gap-5">
+        <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-5">
           <Form.Item
             className="flex-1"
-            label="Email"
-            name="email"
+            label="Postnr."
+            name="zip"
             rules={[
               {
                 required: true,
-                message: "Please input your Email!",
+                message: "Please input your Postnr.!",
+              },
+            ]}
+          >
+            <Input className="py-2 px-3 text-xl border !border-input-color" />
+          </Form.Item>
+          <Form.Item
+            className="flex-1"
+            label="By"
+            name="city"
+            rules={[
+              {
+                required: true,
+                message: "Please input your City!",
+              },
+            ]}
+          >
+            <Input className="py-2 px-3 text-xl border !border-input-color" />
+          </Form.Item>
+          <Form.Item
+            label="CVR"
+            name="cvr"
+            rules={[
+              {
+                required: true,
+                message: "Please input your CVR!",
               },
             ]}
           >
@@ -164,12 +189,13 @@ const OrderTransportPage = () => {
           </Form.Item>
         </div>
         <Form.Item
-          label="CVR"
-          name="cvr"
+          className="flex-1"
+          label="Email"
+          name="email"
           rules={[
             {
               required: true,
-              message: "Please input your CVR!",
+              message: "Please input your Email!",
             },
           ]}
         >

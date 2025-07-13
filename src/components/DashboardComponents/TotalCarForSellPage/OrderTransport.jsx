@@ -1,8 +1,12 @@
 "use client";
 import { useContactPaperQuery } from "@/redux/api/features/contract";
 import { useProfileQuery } from "@/redux/api/features/myProfile";
-import { useSendMailOrderTransportMutation } from "@/redux/api/features/orderTransport";
+import {
+  useGetOrderTransportQuery,
+  useSendMailOrderTransportMutation,
+} from "@/redux/api/features/orderTransport";
 import { Form, Input } from "antd";
+import TextArea from "antd/es/input/TextArea";
 import { useParams, useRouter } from "next/navigation";
 
 import React from "react";
@@ -13,11 +17,18 @@ const OrderTransport = () => {
   const { data: userData, isLoading: isLoadingUser } = useProfileQuery();
   const { data, currentData, isLoading, isFetching, isSuccess, refetch } =
     useContactPaperQuery(params.id);
+  const {
+    data: oderData,
+    currentData: OrderCurrentData,
+    isLoading: orderIsLoading,
+    isError,
+  } = useGetOrderTransportQuery();
   const [orderTransportDetails] = useSendMailOrderTransportMutation();
   const navigate = useRouter();
 
   const displayedData = data ?? currentData;
-  // console.log(displayedData);
+  const orderTransPortData = oderData ?? OrderCurrentData;
+  console.log(displayedData);
   if (displayedData?.data?.status != "sold") {
     return <p>Contract paper not Sign</p>;
   }
@@ -52,109 +63,232 @@ const OrderTransport = () => {
       );
     }
   };
-  console.log(userData?.data?.profile?.phoneNumber);
+  // console.log(userData?.data?.profile?.phoneNumber);
 
   return (
     <div className=" mx-auto container gap-9">
       <div className="p-5">
         <h1 className="text-2xl font-medium mb-2">Car Details</h1>
-        <div className="flex flex-col gap-5 bg-base-color rounded-lg p-5 w-full">
-          <p className="text-[#1E1E1E] text-xl ">
-            Make & Model:{" "}
-            <span className="text-[#606060]">
-              {displayedData?.data?.carModel?.brand}{" "}
-              {displayedData?.data?.carModel?.model}
-            </span>
-          </p>
 
-          {displayedData?.data?.carModel?.modelYear > 0 && (
-            <p className="text-[#1E1E1E] text-xl ">
-              {" "}
-              Year:{" "}
-              <span className="text-[#606060]">
-                {" "}
-                {displayedData?.data?.carModel?.modelYear}
-              </span>
+        <section className="flex flex-col">
+          <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+            <p className="ps-2">Mærke & model</p>
+            <p className="border-s border-secondary-color ps-2">
+              {displayedData?.data?.carModel?.brand +
+                " " +
+                displayedData?.data?.carModel?.model}
             </p>
-          )}
-          {displayedData?.data?.carModel?.milage > 0 && (
-            <p className="text-[#1E1E1E] text-xl ">
-              {" "}
-              Milage:{" "}
-              <span className="text-[#606060]">
-                {" "}
-                {displayedData?.data?.carModel?.milage}
-              </span>
-            </p>
-          )}
+          </div>
 
-          {/* <p className="text-[#1E1E1E] text-xl ">
-            Mileage: <span className="text-[#606060]">35000 miles</span>
-          </p> */}
-          <p className="text-[#1E1E1E] text-xl ">
-            License plate:{" "}
-            <span className="text-[#606060]">
-              {" "}
-              {displayedData?.data?.carModel?.numberPlates}
-            </span>
+          <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+            <p className="ps-2">Biltype</p>
+            <p className="border-s border-secondary-color ps-2">
+              {displayedData?.data?.car?.carCategory}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+            <p className="ps-2">Kilometer</p>
+            <p className="border-s border-secondary-color ps-2 overflow-x-scroll hide-x-scrollbar">
+              {displayedData?.data?.car?.noOfKmDriven} KM
+            </p>
+          </div>
+          <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+            <p className="ps-2">Brændstof</p>
+            <p className="border-s border-secondary-color ps-2">
+              {displayedData?.data?.carModel?.fuelType}
+            </p>
+          </div>
+          <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+            <p className="ps-2">Chassisnummer</p>
+            <p className="border-s border-secondary-color ps-2">
+              {displayedData?.data?.car?.chassisNumber}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color leading-10">
+            <p className="ps-2">Registreringsnummer</p>
+            <p className="border-s border-secondary-color ps-2">
+              {displayedData?.data?.car?.registrationNumber}
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <section className="grid md:grid-cols-2 grid-cols-1">
+        <div className="p-5">
+          <h1 className="text-2xl font-medium mb-2">From Address</h1>
+
+          <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+            <p className="ps-2">Fornavn</p>
+            <p className="border-s border-secondary-color ps-2">
+              {displayedData?.data?.company?.first_name &&
+                displayedData?.data?.company?.first_name}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+            <p className="ps-2">Efternavn</p>
+            <p className="border-s border-secondary-color ps-2">
+              {displayedData?.data?.company?.last_name &&
+                displayedData?.data?.company?.last_name}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+            <p className="ps-2">Address</p>
+            <p className="border-s border-secondary-color ps-2">
+              {displayedData?.data?.company?.street}
+            </p>
+          </div>
+          <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+            <p className="ps-2">Postnr.</p>
+            <p className="border-s border-secondary-color ps-2">
+              {displayedData?.data?.company?.postCode &&
+                displayedData?.data?.company?.postCode}
+            </p>
+          </div>
+          <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+            <p className="ps-2">By</p>
+            <p className="border-s border-secondary-color ps-2 overflow-x-scroll hide-x-scrollbar">
+              {displayedData?.data?.company?.city}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+            <p className="ps-2">Telefon</p>
+            <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+              {displayedData?.data?.company?.phoneNumber}
+            </p>
+          </div>
+          <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+            <p className="ps-2">Privatperson / Virksomhed CVR </p>
+            <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+              {displayedData?.data?.company?.cvrNumber
+                ? displayedData?.data?.company?.cvrNumber
+                : "Private "}
+            </p>
+          </div>
+          <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color leading-10">
+            <p className="ps-2">Email</p>
+            <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+              {displayedData?.data?.privateUser?.email}
+            </p>
+          </div>
+        </div>
+
+        <div className="p-5">
+          <h1 className="text-2xl font-medium mb-2">To Address</h1>
+
+          <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+            <p className="ps-2">Fornavn</p>
+            <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+              {displayedData?.data?.dealer?.first_name &&
+                displayedData?.data?.dealer?.first_name}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+            <p className="ps-2">Efternavn</p>
+            <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+              {displayedData?.data?.dealer?.last_name &&
+                displayedData?.data?.dealer?.last_name}
+            </p>
+          </div>
+          <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+            <p className="ps-2">Address</p>
+            <p className="border-s border-secondary-color ps-2">
+              {displayedData?.data?.dealer?.street}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+            <p className="ps-2">Postnr.</p>
+            <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+              {displayedData?.data?.dealer?.zip}
+            </p>
+          </div>
+          <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+            <p className="ps-2">By</p>
+            <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+              {displayedData?.data?.dealer?.city}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+            <p className="ps-2">Telefon</p>
+            <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+              {displayedData?.data?.dealer?.phoneNumber}
+            </p>
+          </div>
+          <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+            <p className="ps-2">Privatperson / Virksomhed CVR </p>
+            <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+              Private
+            </p>
+          </div>
+          <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color leading-10">
+            <p className="ps-2">E-mail</p>
+            <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+              {displayedData?.data?.dealer?.email}
+            </p>
+          </div>
+        </div>
+      </section>
+      <div className="p-5">
+        <h1 className="text-2xl font-medium mb-2">Transport Company</h1>
+
+        <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+          <p className="ps-2">Company Name</p>
+          <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+            {orderTransPortData?.data?.companyName}
           </p>
         </div>
-      </div>
-      <div className="p-5">
-        <h1 className="text-2xl font-medium mb-2">
-          Customer Contact information
-        </h1>
-        <div className="flex flex-col gap-5 bg-base-color rounded-lg p-5 w-full">
-          {displayedData?.data?.company?.companyName && (
-            <p className="text-[#1E1E1E] text-xl ">
-              Company Name:{" "}
-              <span className="text-[#606060]">
-                {displayedData?.data?.company?.companyName}
-              </span>
-            </p>
-          )}
-          {displayedData?.data?.company?.cvrNumber && (
-            <p className="text-[#1E1E1E] text-xl ">
-              CVR Number:{" "}
-              <span className="text-[#606060]">
-                {displayedData?.data?.company?.cvrNumber}
-              </span>
-            </p>
-          )}
+        <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+          <p className="ps-2">Address</p>
+          <p className="border-s border-secondary-color ps-2">
+            {orderTransPortData?.data?.address}
+          </p>
+        </div>
 
-          <p className="text-[#1E1E1E] text-xl ">
-            Name:{" "}
-            <span className="text-[#606060]">
-              {displayedData?.data?.company?.first_name}
-              {displayedData?.data?.company?.last_name}
-            </span>
+        <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+          <p className="ps-2">Postnr.</p>
+          <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+            {orderTransPortData?.data?.zip}
           </p>
-          <p className="text-[#1E1E1E] text-xl ">
-            {" "}
-            City & Postal Code:{" "}
-            <span className="text-[#606060]">
-              {" "}
-              {displayedData?.data?.company?.city} (
-              {displayedData?.data?.company?.postCode})
-            </span>
+        </div>
+        <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+          <p className="ps-2">By</p>
+          <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+            {orderTransPortData?.data?.city}
           </p>
-          {/* <p className="text-[#1E1E1E] text-xl ">
-            Mileage: <span className="text-[#606060]">35000 miles</span>
-          </p> */}
-          <p className="text-[#1E1E1E] text-xl ">
-            Phone:{" "}
-            <span className="text-[#606060]">
-              {" "}
-              {displayedData?.data?.company?.phoneNumber}
-            </span>
+        </div>
+
+        <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+          <p className="ps-2">Telefon</p>
+          <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+            {orderTransPortData?.data?.phone}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+          <p className="ps-2">E-mail</p>
+          <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+            {orderTransPortData?.data?.email}
+          </p>
+        </div>
+        <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color leading-10">
+          <p className="ps-2">Contact Person</p>
+          <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+            {orderTransPortData?.data?.contactPerson}
           </p>
         </div>
       </div>
       <Form name="basic" onFinish={onFinish}>
-        <div className="p-5">
-          <h1 className="text-2xl font-medium mb-2">Delivery information</h1>
-          <div className="flex flex-col gap-5 bg-base-color rounded-lg p-5 w-full ">
-            <Form.Item
+        <div className="p-10">
+          <h1 className="text-2xl font-medium mb-2">Comment Box</h1>
+          
+            {/* <Form.Item
               initialValue={userData?.data?.profile?.address}
               className="max-w-[800px]"
               layout="vertical"
@@ -181,8 +315,15 @@ const OrderTransport = () => {
               ]}
             >
               <Input />
+            </Form.Item> */}
+            <Form.Item
+              layout="vertical"
+              label={<div className="text-xl font-medium"></div>}
+              name="comment"
+            >
+              <TextArea rows={3} />
             </Form.Item>
-          </div>
+   
         </div>
 
         <div className=" flex justify-center gap-5 items-center my-12 flex-wrap">

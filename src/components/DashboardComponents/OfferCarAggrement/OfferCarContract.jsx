@@ -1,7 +1,7 @@
 "use client";
 import { AllImages } from "@/assets/AllImages";
 import { getImageUrl } from "@/helpers/config/envConfig";
-// import { AllImages } from "@/assets/AllImages";
+// import { AllImages } from "@/assets/AllImages"; 
 // import { getImageUrl } from "@/helpers/config/envConfig";
 import { useUpdateOfferContactPaperMutation } from "@/redux/api/features/contract";
 import { Checkbox, InputNumber, Radio, Space } from "antd";
@@ -277,32 +277,23 @@ const OfferCarContract = () => {
                       displayedData?.dealerUserProfile?.last_name}
                   </p>
                 </div>
+
                 <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
-                  <p className="ps-2">E-mail</p>
+                  <p className="ps-2">Address</p>
                   <p className="border-s border-secondary-color ps-2">
-                    {displayedData?.dealerUser?.email &&
-                      displayedData?.dealerUser?.email}
+                    {displayedData?.dealerUserProfile?.street}
                   </p>
                 </div>
-                {/* <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
-                <p className="ps-2">street</p>
-                <p className="border-s border-secondary-color ps-2 overflow-x-scroll hide-x-scrollbar">
-                  {displayedData?.dealerUserProfile?.city &&
-                    displayedData?.dealerUserProfile?.city.split(",")[1]}
-                </p>
-              </div> */}
                 <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
                   <p className="ps-2">Postnr.</p>
                   <p className="border-s border-secondary-color ps-2">
-                    {displayedData?.dealerUserProfile?.zip &&
-                      displayedData?.dealerUserProfile?.zip}
+                    {displayedData?.dealerUserProfile?.zip}
                   </p>
                 </div>
                 <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
                   <p className="ps-2">By</p>
                   <p className="border-s border-secondary-color ps-2 overflow-x-scroll hide-x-scrollbar">
-                    {displayedData?.dealerUserProfile?.city &&
-                      displayedData?.dealerUserProfile?.city.split(",")[0]}
+                    {displayedData?.dealerUserProfile?.city}
                   </p>
                 </div>
                 <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
@@ -312,12 +303,19 @@ const OfferCarContract = () => {
                       displayedData?.dealerUserProfile?.phoneNumber}
                   </p>
                 </div>
-                <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color leading-10">
+                <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
                   <p className="ps-2">Privatperson / Virksomhed CVR</p>
                   <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
                     {displayedData?.dealerUserProfile?.cvrNumber
                       ? displayedData?.dealerUserProfile?.cvrNumber
                       : "Private "}
+                  </p>
+                </div>
+                <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color leading-10">
+                  <p className="ps-2">E-mail</p>
+                  <p className="border-s border-secondary-color ps-2">
+                    {displayedData?.dealerUser?.email &&
+                      displayedData?.dealerUser?.email}
                   </p>
                 </div>
               </section>
@@ -342,32 +340,41 @@ const OfferCarContract = () => {
                       displayedData?.privateUserProfile?.last_name}
                   </p>
                 </div>
+
                 <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
-                  <p className="ps-2">E-mail</p>
+                  <p className="ps-2">Address</p>
                   <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
-                    {displayedData?.privateUser?.email &&
-                      displayedData?.privateUser?.email}
+                    {displayedData?.submitListing?.street}
                   </p>
                 </div>
                 <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
                   <p className="ps-2">Postnr.</p>
                   <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
-                    {displayedData?.submitListing?.postalCode &&
-                      displayedData?.submitListing?.postalCode}
+                    {displayedData?.submitListing?.postalCode}
                   </p>
                 </div>
                 <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
                   <p className="ps-2">By</p>
                   <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
-                    {displayedData?.submitListing?.city &&
-                      displayedData?.submitListing?.city}
+                    {displayedData?.submitListing?.city}
+                  </p>
+                </div>
+                <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+                  <p className="ps-2">Telefon</p>
+                  <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+                    {displayedData?.submitListing?.phoneNumber}
+                  </p>
+                </div>
+                <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+                  <p className="ps-2">Privatperson / Virksomhed CVR </p>
+                  <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+                    Private
                   </p>
                 </div>
                 <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color leading-10">
-                  <p className="ps-2">Telefon</p>
+                  <p className="ps-2">E-mail</p>
                   <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
-                    {displayedData?.submitListing?.phoneNumber &&
-                      displayedData?.submitListing?.phoneNumber}
+                    {displayedData?.privateUser?.email}
                   </p>
                 </div>
               </section>

@@ -5,7 +5,7 @@ export const privateDashboard = baseApi.injectEndpoints({
   endpoints: (build) => ({
     sellCar: build.query({
       query: (params) => {
-        console.log(params);
+        // console.log(params);
         return {
           url: `/sell_car`,
           method: "GET",

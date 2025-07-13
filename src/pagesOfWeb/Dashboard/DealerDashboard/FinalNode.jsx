@@ -1,7 +1,7 @@
 "use client";
 import { AllImages } from "@/assets/AllImages";
 import { getImageUrl } from "@/helpers/config/envConfig";
-import {
+import { 
   useContactPaperQuery,
   useUpdateContactPaperMutation,
 } from "@/redux/api/features/contract";
@@ -286,6 +286,12 @@ const FinalNode = () => {
                   </div>
 
                   <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+                    <p className="ps-2">Address</p>
+                    <p className="border-s border-secondary-color ps-2">
+                      {displayedData?.data?.company?.street}
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
                     <p className="ps-2">Postnr.</p>
                     <p className="border-s border-secondary-color ps-2">
                       {displayedData?.data?.company?.postCode &&
@@ -295,24 +301,28 @@ const FinalNode = () => {
                   <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
                     <p className="ps-2">By</p>
                     <p className="border-s border-secondary-color ps-2 overflow-x-scroll hide-x-scrollbar">
-                      {displayedData?.data?.company?.city &&
-                        displayedData?.data?.company?.city.split(",")[0]}
+                      {displayedData?.data?.company?.city}
                     </p>
                   </div>
 
                   <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
                     <p className="ps-2">Telefon</p>
                     <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
-                      {displayedData?.data?.company?.phoneNumber &&
-                        displayedData?.data?.company?.phoneNumber}
+                      {displayedData?.data?.company?.phoneNumber}
                     </p>
                   </div>
-                  <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color leading-10">
+                  <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
                     <p className="ps-2">Privatperson / Virksomhed CVR </p>
                     <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
                       {displayedData?.data?.company?.cvrNumber
                         ? displayedData?.data?.company?.cvrNumber
-                        : "Private "}
+                        : "Private "}   
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color leading-10">
+                    <p className="ps-2">Email</p>
+                    <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+                      {displayedData?.data?.privateUser?.email}
                     </p>
                   </div>
                 </section>
@@ -339,26 +349,42 @@ const FinalNode = () => {
                         displayedData?.data?.dealer?.last_name}
                     </p>
                   </div>
-
                   <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
-                    <p className="ps-2">E-mail</p>
-                    <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
-                      {displayedData?.data?.dealer?.email}
+                    <p className="ps-2">Address</p>
+                    <p className="border-s border-secondary-color ps-2">
+                      {displayedData?.data?.dealer?.street}
                     </p>
                   </div>
 
                   <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
                     <p className="ps-2">Postnr.</p>
                     <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
-                      {displayedData?.data?.dealer?.zip &&
-                        displayedData?.data?.dealer?.zip}
+                      {displayedData?.data?.dealer?.zip}
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+                    <p className="ps-2">By</p>
+                    <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+                      {displayedData?.data?.dealer?.city}
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+                    <p className="ps-2">Telefon</p>
+                    <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+                      {displayedData?.data?.dealer?.phoneNumber}
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
+                    <p className="ps-2">Privatperson / Virksomhed CVR </p>
+                    <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
+                      Private
                     </p>
                   </div>
                   <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color leading-10">
-                    <p className="ps-2">By</p>
+                    <p className="ps-2">E-mail</p>
                     <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
-                      {displayedData?.data?.dealer?.city &&
-                        displayedData?.data?.dealer?.city}
+                      {displayedData?.data?.dealer?.email}
                     </p>
                   </div>
                 </section>

@@ -39,7 +39,7 @@ const Navbar = () => {
     userInfo = jwtDecode(userCookie);
   }
 
-  console.log(displayedData?.data?.status);
+  // console.log(displayedData?.data?.status);
 
   // toast.success(notify, {
   //   id: "notify",
