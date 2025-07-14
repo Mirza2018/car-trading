@@ -71,7 +71,7 @@ const Notification = () => {
               <p>{notification?.message}</p>
               <div className="text-gray-400 flex justify-between gap-8">
                 <p>{notification?.createdAt?.split("T")[0]}</p>
-                <p>{notification?.createdAt?.split("T")[1].slice(0,8)}</p>
+                {/* <p>{notification?.createdAt?.split("T")[1].slice(0,8)}</p> */}
 
                 {notification?.link && (
                   <>
