@@ -32,8 +32,7 @@ const OrderTransportOffer = () => {
     const toastId = toast.loading("Transport details is submiting...");
     const data = {
       offerCarId: displayedData?._id,
-      deliveryAddress: values.address,
-      receiverPhone: values.phone,
+      comments: values.comment,
     };
     console.log(values);
 
@@ -96,10 +95,10 @@ const OrderTransportOffer = () => {
             <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
               <p className="ps-2">Chassisnummer</p>
               <p className="border-s border-secondary-color ps-2">
-                {displayedData?.data?.car?.carLicensePlateNumber ? (
+                {displayedData?.chassisNumber ? (
                   <>{displayedData?.chassisNumber}</>
                 ) : (
-                  <>Offer Car Without License</>
+                  <>No chassisNumber found</>
                 )}
               </p>
             </div>
@@ -181,7 +180,7 @@ const OrderTransportOffer = () => {
                 {displayedData?.dealerUser?.email &&
                   displayedData?.dealerUser?.email}
               </p>
-            </div>
+            </div> 
           </div>
           <div className="flex flex-col">
             <h1 className="text-2xl font-medium mb-2">To Address</h1>

@@ -184,7 +184,7 @@ const SubmitListing = () => {
                       alignItems: "center",
                       gap: "8px",
                     }}
-                  >
+                  > 
                     <span>{brand.name}</span>
                   </div>
                 </Option>

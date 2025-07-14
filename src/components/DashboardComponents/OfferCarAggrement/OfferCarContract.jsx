@@ -424,7 +424,13 @@ const OfferCarContract = () => {
                 <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
                   <p className="ps-2">Chassisnummer</p>
                   <p className="border-s border-secondary-color ps-2">
-                    {displayedData?.data?.car?.chassisNumber}
+                    <p className="border-s border-secondary-color ps-2">
+                      {displayedData?.chassisNumber ? (
+                        <>{displayedData?.chassisNumber}</>
+                      ) : (
+                        <>No chassisNumber found</>
+                      )}
+                    </p>
                   </p>
                 </div>
 
@@ -438,7 +444,11 @@ const OfferCarContract = () => {
                 <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
                   <p className="ps-2">Licensnummer</p>
                   <p className="border-s border-secondary-color ps-2">
-                    {displayedData?.carLicensePlateNumber}
+                    {displayedData?.carLicensePlateNumber ? (
+                      <>{displayedData?.carLicensePlateNumber}</>
+                    ) : (
+                      <>Offer Car Without License</>
+                    )}
                   </p>
                 </div>
 

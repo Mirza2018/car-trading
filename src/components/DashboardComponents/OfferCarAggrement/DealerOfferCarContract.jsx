@@ -15,7 +15,7 @@ import { LiaQuestionCircleSolid } from "react-icons/lia";
 import { useSelector } from "react-redux";
 import { toast } from "sonner";
 import { PiPrinterThin } from "react-icons/pi";
-
+ 
 // Dynamically import SignatureModal with SSR disabled
 const SignatureModal = dynamic(
   () => import("@/components/DealerComponents/FinalNote.jsx/SignatureModal"),
@@ -321,7 +321,9 @@ const DealerOfferCarContract = () => {
                 <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
                   <p className="ps-2">Privatperson / Virksomhed CVR </p>
                   <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
-                    Private
+                    {displayedData?.submitListing?.cvrNumber
+                      ? displayedData?.submitListing?.cvrNumber
+                      : "Private "}
                   </p>
                 </div>
                 <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color leading-10">
@@ -377,7 +379,11 @@ const DealerOfferCarContract = () => {
                 <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
                   <p className="ps-2">Chassisnummer</p>
                   <p className="border-s border-secondary-color ps-2">
-                    {displayedData?.data?.car?.chassisNumber}
+                    {displayedData?.chassisNumber ? (
+                      <>{displayedData?.chassisNumber}</>
+                    ) : (
+                      <>No chassisNumber found</>
+                    )}
                   </p>
                 </div>
 
@@ -391,7 +397,11 @@ const DealerOfferCarContract = () => {
                 <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
                   <p className="ps-2">Licensnummer</p>
                   <p className="border-s border-secondary-color ps-2">
-                    {displayedData?.carLicensePlateNumber}
+                    {displayedData?.carLicensePlateNumber ? (
+                      <>{displayedData?.carLicensePlateNumber}</>
+                    ) : (
+                      <>Offer Car Without License</>
+                    )}
                   </p>
                 </div>
 

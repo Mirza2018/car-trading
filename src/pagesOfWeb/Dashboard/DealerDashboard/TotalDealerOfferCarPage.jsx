@@ -5,7 +5,7 @@ import { ConfigProvider, Form, Input, Spin } from "antd";
 import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import OfferDealerCarAcceptTable from "./OfferDealerCarAcceptTable";
-import ViewOfferDealerCarAcceptDetails from "./ViewOfferDealerCarAcceptDetails";
+import ViewOfferDealerCarAcceptDetails from "./ViewOfferDealerCarAcceptDetails"; 
 
 const TotalDealerOfferCarPage = () => {
   const [filters, setFilters] = useState({
@@ -17,7 +17,7 @@ const TotalDealerOfferCarPage = () => {
   const onPageChange = (page, limit) => {
     setFilters((prev) => ({
       ...prev,
-      page,
+      page, 
       limit,
     }));
   };

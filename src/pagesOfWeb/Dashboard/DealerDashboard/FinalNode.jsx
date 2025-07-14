@@ -316,7 +316,7 @@ const FinalNode = () => {
                     <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
                       {displayedData?.data?.company?.cvrNumber
                         ? displayedData?.data?.company?.cvrNumber
-                        : "Private "}   
+                        : "Private "}
                     </p>
                   </div>
                   <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color leading-10">
@@ -378,7 +378,7 @@ const FinalNode = () => {
                   <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
                     <p className="ps-2">Privatperson / Virksomhed CVR </p>
                     <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
-                      Private
+                      {displayedData?.data?.dealer?.cvrNumber}
                     </p>
                   </div>
                   <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color leading-10">

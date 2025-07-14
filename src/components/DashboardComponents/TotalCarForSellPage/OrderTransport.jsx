@@ -38,10 +38,9 @@ const OrderTransport = () => {
     const data = {
       carModel: displayedData?.data?.carModel?._id,
       userId: displayedData?.data?.privateUser?._id,
-      deliveryAddress: values.address,
-      receiverPhone: values.phone,
+      comments: values.comment,
     };
-    console.log(values);
+    console.log(values.comment);
 
     try {
       const res = await orderTransportDetails(data).unwrap();
@@ -224,7 +223,7 @@ const OrderTransport = () => {
           <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
             <p className="ps-2">Privatperson / Virksomhed CVR </p>
             <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
-              Private
+              {displayedData?.data?.dealer?.cvrNumber}
             </p>
           </div>
           <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color leading-10">
@@ -287,8 +286,8 @@ const OrderTransport = () => {
       <Form name="basic" onFinish={onFinish}>
         <div className="p-10">
           <h1 className="text-2xl font-medium mb-2">Comment Box</h1>
-          
-            {/* <Form.Item
+
+          {/* <Form.Item
               initialValue={userData?.data?.profile?.address}
               className="max-w-[800px]"
               layout="vertical"
@@ -316,14 +315,13 @@ const OrderTransport = () => {
             >
               <Input />
             </Form.Item> */}
-            <Form.Item
-              layout="vertical"
-              label={<div className="text-xl font-medium"></div>}
-              name="comment"
-            >
-              <TextArea rows={3} />
-            </Form.Item>
-   
+          <Form.Item
+            layout="vertical"
+            label={<div className="text-xl font-medium"></div>}
+            name="comment"
+          >
+            <TextArea rows={3} />
+          </Form.Item>
         </div>
 
         <div className=" flex justify-center gap-5 items-center my-12 flex-wrap">

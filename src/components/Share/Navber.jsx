@@ -245,9 +245,9 @@ const Navbar = () => {
                       navigate.push("/sign-in");
                     }}
                   >
-                    <p className=" text-[15px] cursor-pointer font-medium px-3 py-2 rounded-3xl">
+                    {/* <p className=" text-[15px] cursor-pointer font-medium px-3 py-2 rounded-3xl">
                       Log In For Dealer
-                    </p>
+                    </p> */}
                   </p>
                 ) : (
                   ""
@@ -365,9 +365,9 @@ const Navbar = () => {
                     navigate.push("/sign-in");
                   }}
                 >
-                  <p className="bg-[#00721E] text-[14px]  cursor-pointer font-medium px-2 whitespace-nowrap py-2 rounded-3xl">
+                  {/* <p className="bg-[#00721E] text-[14px]  cursor-pointer font-medium px-2 whitespace-nowrap py-2 rounded-3xl">
                     Log In For Dealer
-                  </p>
+                  </p> */}
                 </p>
               ) : (
                 ""

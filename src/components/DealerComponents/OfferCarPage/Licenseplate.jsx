@@ -69,12 +69,17 @@ const Licenseplate = ({ offerCar }) => {
   const handleEditClick = async () => {
     toast.loading("License plate is Checking....", {
       id: toastId,
+      duration: 1000,
     });
     const inputValue = inputRef.current?.input?.value;
 
     try {
       const res = await trigger({ license: inputValue }).unwrap(); // unwrap returns a promise that rejects on error
       console.log("res", res);
+      toast.success("License plate data fetch successfully...", {
+        id: toastId,
+        duration: 1000,
+      });
     } catch (error) {}
   };
 
@@ -115,9 +120,11 @@ const Licenseplate = ({ offerCar }) => {
       ...values,
       submitListingCarId: param.id,
       carLicensePlateNumber: carData?.numberPlates,
+      chassisNumber: carData?.vin,
       mark: carData?.brand,
       model: carData?.model,
     };
+
 
     delete data.carImages;
     const formData = new FormData();
