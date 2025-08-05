@@ -29,7 +29,7 @@ const OfferCarPage = () => {
         <div className="bg-secondary-color w-full p-4   rounded-tl-xl rounded-tr-xl">
           <div className=" w-[95%] mx-auto  flex items-center justify-between">
             <p className="text-3xl text-primary-color font-semibold">
-              Offer Cars
+              Tilbuds biler
             </p>
             <div className="flex gap-4 items-center"></div>
           </div>
@@ -47,7 +47,7 @@ const OfferCarPage = () => {
           </>
         ) : (
           <div className="flex justify-center items-center text-2xl font-medium mt-10">
-            No offer available right now
+            Ingen tilbud tilgængelige lige nu
           </div>
         )}
       </div>

@@ -6,14 +6,14 @@ const OfferCarTable = ({ offerCar }) => {
     <main className="flex flex-col lg:grid lg:grid-cols-2 gap-x-7 gap-y-2">
       {offerCar?.carCategory && (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Car Category</p>
+          <p>Bilkategori</p>
           <p>{offerCar?.carCategory}</p>
         </div>
       )}
 
       {offerCar?.mark && (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Mark</p>
+          <p>Mærke</p>
           <p>{offerCar?.mark}</p>
         </div>
       )}
@@ -25,13 +25,13 @@ const OfferCarTable = ({ offerCar }) => {
       )}
       {offerCar?.cashPrice && (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Cash Price</p>
+          <p>Kontantpris</p>
           <p>{offerCar?.cashPrice}</p>
         </div>
       )}
       {offerCar?.priceType && (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Price Type</p>
+          <p>Pristype</p>
           {offerCar?.priceType.map((p, index) => (
             <p key={index}>{p}</p>
           ))}
@@ -40,21 +40,21 @@ const OfferCarTable = ({ offerCar }) => {
 
       {offerCar?.carCondition && (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Car Condition</p>
+          <p>Bilens tilstand</p>
           <p>{offerCar?.carCondition}</p>
         </div>
       )}
 
       {offerCar?.models && (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Models</p>
+          <p>Modeller</p>
           <p>{offerCar?.models}</p>
         </div>
       )}
 
       {offerCar?.fuel && (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Fuel</p>
+          <p>Brændstof</p>
           {offerCar?.fuel.map((p, index) => (
             <p key={index}>{p}</p>
           ))}
@@ -63,7 +63,7 @@ const OfferCarTable = ({ offerCar }) => {
       {offerCar?.gearType && (
         <div className="flex justify-between border-b border-text-light-color">
           <p>GearType</p>
-          {offerCar?.gearType.map((p,index) => (
+          {offerCar?.gearType.map((p, index) => (
             <p key={index}>{p}</p>
           ))}
         </div>
@@ -71,7 +71,7 @@ const OfferCarTable = ({ offerCar }) => {
 
       {offerCar?.modelsYear && (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Models Year</p>
+          <p>Modelår</p>
           <p>{offerCar?.modelsYear}</p>
         </div>
       )}

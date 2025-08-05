@@ -73,7 +73,7 @@ const SellBuyTrade = () => {
   return (
     <div>
       <Head>
-        <title>Car Trade</title>
+        <title>Bilbytte</title>
         <meta name="description" content="Trade cars easily" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -83,28 +83,27 @@ const SellBuyTrade = () => {
             <div
               className={`flex-1 text-center md:p-4 p-2 font-bold text-[30px] rounded-ss-xl text-primary-color bg-highlight-color`}
             >
-              <p className="text-xl">Sell Car</p>
+              <p className="text-xl">Sælg bil</p>
             </div>
             <div
               className={`flex-1 text-center md:p-4 p-2 rounded-se-xl font-bold text-[30px]  cursor-pointer bg-[#F3F9FB] `}
             >
               <Link di href="/submit-listing">
-                <p className="text-xl">Buy Car</p>
+                <p className="text-xl">Køb bil</p>
               </Link>
             </div>
           </div>
           <div className="text-center my-7 ">
-            <h1 className="text-2xl font-bold">Welcome to Car Trade</h1>
+            <h1 className="text-2xl font-bold">Velkommen til Bilbytte</h1>
             <p className="text-gray-600 mt-5 px-10 max-w-2xl">
-              We are committed to providing our customers with exceptional
-              service.
+              Vi er forpligtede til at give vores kunder en enestående service.
             </p>{" "}
           </div>
 
           <div className="text-center mb-16 mx-10">
             <Input
               ref={license}
-              placeholder="Enter license plate"
+              placeholder="Indtast nummerplade"
               name="number"
               suffix={
                 <div
@@ -115,7 +114,7 @@ const SellBuyTrade = () => {
                     // href="/sell-car"
                     className="text-white font-bold md:text-lg"
                   >
-                    Search
+                    Søg
                   </p>
                 </div>
               }

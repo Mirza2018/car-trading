@@ -6,7 +6,7 @@ import { useSellCarQuery } from "@/redux/api/features/privateDashboard";
 import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-
+ 
 const TotalCarSold = () => {
   const [filters, setFilters] = useState({
     page: 1,
@@ -49,7 +49,7 @@ const TotalCarSold = () => {
       <div className="bg-secondary-color w-full p-4   rounded-tl-xl rounded-tr-xl">
         <div className=" w-[95%] mx-auto  flex items-center justify-between">
           <p className="text-3xl text-primary-color font-semibold">
-            Total car Sold
+            Samlet antal solgte biler
           </p>
           <div className="flex gap-4 items-center"></div>
         </div>

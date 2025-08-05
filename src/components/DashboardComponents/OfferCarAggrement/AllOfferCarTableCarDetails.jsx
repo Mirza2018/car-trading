@@ -7,7 +7,7 @@ const AllOfferCarTableCarDetails = ({ car }) => {
       <main className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-7 gap-y-2">
         {car?.DrivenKm && (
           <div className="flex justify-between border-b border-text-light-color">
-            <p>Driven Km:</p>
+            <p>Kørte km:</p>
             <p>{car?.DrivenKm} Km</p>
           </div>
         )}
@@ -19,7 +19,7 @@ const AllOfferCarTableCarDetails = ({ car }) => {
         )} */}
         {car?.mark && (
           <div className="flex justify-between border-b border-text-light-color">
-            <p>Mark:</p>
+            <p>Mærke:</p>
             <p>{car?.mark} </p>
           </div>
         )}
@@ -31,14 +31,14 @@ const AllOfferCarTableCarDetails = ({ car }) => {
         )}
         {car?.carCondition && (
           <div className="flex justify-between border-b border-text-light-color">
-            <p>Car Condition</p>
+            <p>Bilens stand</p>
             <p>{car?.carCondition} </p>
           </div>
         )}
 
         {car?.fuel && (
           <div className="flex justify-between border-b border-text-light-color">
-            <p>Fuel</p>
+            <p>Brændstof</p>
             <p>
               {car?.fuel.map((p) => (
                 <>{p}, </>
@@ -49,7 +49,7 @@ const AllOfferCarTableCarDetails = ({ car }) => {
 
         {car?.gearType && (
           <div className="flex justify-between border-b border-text-light-color">
-            <p>GearType</p>
+            <p>Gearingstype</p>
             <p>
               {car?.gearType.map((p) => (
                 <>{p}, </>
@@ -59,7 +59,7 @@ const AllOfferCarTableCarDetails = ({ car }) => {
         )}
         {car?.color && (
           <div className="flex justify-between border-b border-text-light-color">
-            <p>Color:</p>
+            <p>Farve:</p>
             <p>{car?.color} </p>
           </div>
         )}
@@ -72,7 +72,7 @@ const AllOfferCarTableCarDetails = ({ car }) => {
 
         {car?.carLicensePlateNumber && (
           <div className="flex justify-between border-b border-text-light-color">
-            <p>License Plate Number:</p>
+            <p>Nummerplade:</p>
             <p>{car?.carLicensePlateNumber} </p>
           </div>
         )}

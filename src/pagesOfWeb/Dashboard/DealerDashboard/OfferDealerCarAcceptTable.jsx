@@ -25,7 +25,7 @@ const OfferDealerCarAcceptTable = ({
 
   const columns = [
     {
-      title: "Dealer Name",
+      title: "Forhandlernavn",
       dataIndex: "dealerUserProfile",
       key: "dealerUserProfile",
       render: (text) => (
@@ -35,25 +35,25 @@ const OfferDealerCarAcceptTable = ({
       ),
     },
     {
-      title: "Brand Name",
+      title: "Mærkenavn",
       dataIndex: "mark",
       key: "mark",
       render: (text) => <p>{text}</p>,
     },
     {
-      title: "Car Model",
+      title: "Bilmodel",
       dataIndex: "model",
       key: "model",
       render: (text) => <p>{text}</p>,
     },
     {
-      title: "Color",
+      title: "Farve",
       dataIndex: "color",
       key: "color",
       render: (text) => <p>{text}</p>,
     },
     {
-      title: "Price",
+      title: "Pris",
       dataIndex: "cashPrice",
       sorter: (a, b) => a.cashPrice - b.cashPrice,
       render: (text) => (
@@ -82,7 +82,7 @@ const OfferDealerCarAcceptTable = ({
       ),
     },
     {
-      title: "Action",
+      title: "Handling",
       key: "action",
       render: (_, record) => (
         <Space size="middle" className="">
@@ -102,7 +102,7 @@ const OfferDealerCarAcceptTable = ({
                   <Button
                     className={`  !text-white !bg-highlight-color   px-6`}
                   >
-                    <p>Waiting for Sign</p>
+                    <p>Venter på underskrift</p>
                   </Button>
                 )}
                 {!record?.signatureAsDealer && record?.signatureAsOwner && (
@@ -116,7 +116,7 @@ const OfferDealerCarAcceptTable = ({
                     className={`  !text-white !bg-secondary-color !px-5`}
                   >
                     {" "}
-                    <p>Make contract</p>{" "}
+                    <p>Lav kontrakt</p>{" "}
                   </Button>
                 )}
                 {record?.signatureAsDealer && record?.signatureAsOwner && (
@@ -130,14 +130,14 @@ const OfferDealerCarAcceptTable = ({
                     className={`  !text-white !bg-green-500 !px-7`}
                   >
                     {" "}
-                    <p>See Contract</p>{" "}
+                    <p>Se kontrakt</p>{" "}
                   </Button>
                 )}
               </Tooltip>
             </p>
           ) : (
             <Button className="bg-highlight-color text-white cursor-pointer  px-3 whitespace-nowrap py-1 rounded-md">
-              Waiting For Accept
+              Venter på accept
             </Button>
           )}
 
@@ -146,7 +146,7 @@ const OfferDealerCarAcceptTable = ({
               {record?.isOrderTransport ? (
                 <>
                   <Button className="!border !border-green-500 !text-black ">
-                    Transport Done
+                    Transport udført
                   </Button>
                 </>
               ) : (
@@ -160,7 +160,7 @@ const OfferDealerCarAcceptTable = ({
                 >
                   <Tooltip placement="right" title="View Details">
                     <Button className="!border-highlight-color !text-black ">
-                      Order Transport
+                      Bestil transport
                     </Button>
                   </Tooltip>
                 </p>

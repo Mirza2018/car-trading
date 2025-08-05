@@ -4,15 +4,15 @@ import Image from "next/image";
 export default function Reviews() {
   const testimonials = [
     {
-      title: "Great Work",
+      title: "Fantastisk arbejde",
       quote:
-        "Amazing design, easy to customize and a design quality superlative account on its cloud platform for the optimized performance. And we didn't on our original designs.",
+        "Fantastisk design, nem at tilpasse og en designkvalitet i topklasse med en cloud-platform, der er optimeret til ydeevne. Og vi ændrede ikke på vores oprindelige design.",
       author: "Leslie Alexander",
       role: "Facebook",
       avatar: "",
     },
     {
-      title: "Awesome Design",
+      title: "Imponerende design",
       quote:
         "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et.",
       author: "Jenny Wilson",
@@ -20,18 +20,18 @@ export default function Reviews() {
       avatar: "",
     },
     {
-      title: "Perfect Quality",
+      title: "Perfekt kvalitet",
       quote:
         "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati.",
       author: "Courtney Henry",
-      role: "Software Developer",
+      role: "Softwareudvikler",
       avatar: "",
     },
   ];
 
   return (
-    <div className="container mx-auto  py-16 relative ">
-      <h2 className="text-3xl font-bold mb-12">What our customers say</h2>
+    <div className="container mx-auto py-16 relative">
+      <h2 className="text-3xl font-bold mb-12">Hvad vores kunder siger</h2>
 
       {/* Large quote mark decoration */}
       <div className="absolute right-4 text-8xl text-black font-serif">‘‘</div>

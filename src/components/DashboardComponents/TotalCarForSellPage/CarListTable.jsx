@@ -23,7 +23,7 @@ const CarListTable = ({
     //   responsive: ["md"],
     // },
     {
-      title: "User Name",
+      title: "Brugernavn",
       dataIndex: "carOwner",
       key: "carOwner",
       render: (text) => (
@@ -33,19 +33,19 @@ const CarListTable = ({
       ),
     },
     {
-      title: "Brand Name",
+      title: "Mærkenavn",
       dataIndex: "carModel",
       key: "carModel",
       render: (text) => <p>{text?.brand}</p>,
     },
     {
-      title: "Car Model",
+      title: "Bilmodel",
       dataIndex: "carModel",
       key: "carModel",
       render: (text) => <p>{text?.model}</p>,
     },
     {
-      title: "Location",
+      title: "Lokation",
       dataIndex: "company",
       key: "company",
       render: (text) => (
@@ -53,13 +53,13 @@ const CarListTable = ({
       ),
     },
     {
-      title: "Color",
+      title: "Farve",
       dataIndex: "carModel",
       key: "carModel",
       render: (text) => <p>{text?.color}</p>,
     },
     {
-      title: "Price",
+      title: "Pris",
       dataIndex: "car",
       sorter: (a, b) => a.expectedPrice - b.expectedPrice,
       render: (text) => (
@@ -83,14 +83,14 @@ const CarListTable = ({
               className="border-[#00721E] hover:border-[#34df61]"
             >
               {/* <GoEye style={{ fontSize: "24px" }} /> */}
-              See Details
+              Se detaljer
             </Button>
           </Tooltip>
         </Space>
       ),
     },
     {
-      title: "Action",
+      title: "Handling",
       key: "action",
       render: (_, record) => (
         <Space
@@ -104,19 +104,19 @@ const CarListTable = ({
               {!record?.signatureAsDealer && !record?.signatureAsOwner && (
                 <Button className={`  !text-white !bg-secondary-color`}>
                   {" "}
-                  <p>Make your contract</p>{" "}
+                  <p>Opret din kontrakt</p>{" "}
                 </Button>
               )}
               {record?.signatureAsDealer && !record?.signatureAsOwner && (
                 <Button className={`  !text-white !bg-highlight-color !px-5`}>
                   {" "}
-                  <p>Pending contract</p>{" "}
+                  <p>Kontrakt afventes</p>{" "}
                 </Button>
               )}
               {record?.signatureAsDealer && record?.signatureAsOwner && (
                 <Button className={`  !text-white !bg-green-500 !px-7`}>
                   {" "}
-                  <p>Contract Done</p>{" "}
+                  <p>Kontrakt udført</p>{" "}
                 </Button>
               )}
             </Tooltip>
@@ -126,7 +126,7 @@ const CarListTable = ({
               {record?.isOrderTransport ? (
                 <>
                   <Button className="!border !border-green-500 !text-black ">
-                    Transport Done
+                    Transport færdig
                   </Button>
                 </>
               ) : (
@@ -140,7 +140,7 @@ const CarListTable = ({
                 >
                   <Tooltip placement="right" title="View Details">
                     <Button className="!border-highlight-color !text-black ">
-                      Order Transport
+                      Bestil transport
                     </Button>
                   </Tooltip>
                 </p>

@@ -92,6 +92,7 @@ const SingleOfferCarComponent = ({ offerCar, offercarAction }) => {
           ) : (
             <div className="flex justify-center items-center">
               <Image
+                alt=""
                 width={100}
                 height={100}
                 src={`http://31.97.39.237:8010/${offerCar?.brandImage}`}
@@ -132,7 +133,7 @@ const SingleOfferCarComponent = ({ offerCar, offercarAction }) => {
             </div> */}
             <div className=" font-bold text-base">{date}</div>
             <div className=" font-bold text-base">
-              Maximum Price: {offerCar?.cashPrice} .kr
+              Maksimal pris: {offerCar?.cashPrice} .kr
             </div>
             {/* <div className="bg-base-color border border-secondary-color rounded-full aspect-square flex flex-col justify-center items-center px-2">
               <h1 className="text-xl font-bold">{car?.priceInDKK}</h1>
@@ -142,20 +143,20 @@ const SingleOfferCarComponent = ({ offerCar, offercarAction }) => {
             </div> */}
 
             <div className="flex flex-col gap-3 ">
-              <h1>Incl. VAT / Incl. Reg.</h1>
+              <h1>Inkl. moms / Inkl. registrering</h1>
               <Button
                 onClick={acceptOfferCar}
                 className={`text-xl py-5 px-8 !bg-highlight-color !hover:bg-red-600 `}
                 type="primary"
               >
-                Accept
+                Accepter
               </Button>
               <Button
                 onClick={rejectOfferCar}
                 className={`text-xl py-5 px-8 !bg-[#DC3545] !hover:bg-red-600 `}
                 type="primary"
               >
-                Reject
+                Afvis
               </Button>
             </div>
           </div>

@@ -28,7 +28,7 @@ const ViewOfferCarAcceptDetails = ({
             style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
             className="bg-highlight-color text-white  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
           >
-            Close
+            Luk
           </button>
         </div>,
       ]}
@@ -42,6 +42,7 @@ const ViewOfferCarAcceptDetails = ({
             ) : (
               <div className="flex justify-center items-center py-10">
                 <Image
+                  alt=""
                   width={100}
                   height={100}
                   src={`http://31.97.39.237:8010/${car?.brandImage}`}
@@ -56,7 +57,7 @@ const ViewOfferCarAcceptDetails = ({
             <div className="flex flex-wrap gap-4 justify-between items-center">
               <div className="flex  justify-start items-center  font-bold text-base">
                 {/* <IoMdLink className="rotate-90" /> */}
-                Listed:<p> {date}</p>
+                Listet:<p> {date}</p>
               </div>
               {/* <div className=" font-bold text-base">Feb.03 13:06:18</div> */}
               {/* {car?.maxBidAmount ? (
@@ -78,13 +79,13 @@ const ViewOfferCarAcceptDetails = ({
               )} */}
             </div>
             <h1 className="text-3xl  font-medium text-center">
-              Offer Car Info
+              Tilbud Biloplysninger
             </h1>
             {/* Middel part car All Details */}
             <AllOfferCarDetails car={car} />
 
             <h1 className="text-3xl  font-medium text-center py-2">
-              Listing Car Info
+              Liste biloplysninger
             </h1>
             <BrandnViewTableDetails car={car?.submitListing} />
           </section>

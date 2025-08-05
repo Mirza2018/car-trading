@@ -59,7 +59,7 @@ const OrderTransportOffer = () => {
   return (
     <div className=" mx-auto container gap-9">
       <div className="p-5">
-        <h1 className="text-2xl font-medium mb-2">Car Details</h1>
+        <h1 className="text-2xl font-medium mb-2">Biloplysninger</h1>
         <main className="flex flex-col lg:grid lg:grid-cols-2 gap-0 ">
           <section className="flex flex-col">
             <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
@@ -98,7 +98,7 @@ const OrderTransportOffer = () => {
                 {displayedData?.chassisNumber ? (
                   <>{displayedData?.chassisNumber}</>
                 ) : (
-                  <>No chassisNumber found</>
+                  <>Intet stelnummer fundet</>
                 )}
               </p>
             </div>
@@ -109,7 +109,7 @@ const OrderTransportOffer = () => {
                 {displayedData?.carLicensePlateNumber ? (
                   <>{displayedData?.carLicensePlateNumber}</>
                 ) : (
-                  <>Offer Car Without License</>
+                  <>Tilbud på bil uden licens</>
                 )}
               </p>
             </div>
@@ -119,7 +119,7 @@ const OrderTransportOffer = () => {
       <div className="p-5">
         <section className="grid md:grid-cols-2 grid-cols-1">
           <div className="flex flex-col">
-            <h1 className="text-2xl font-medium mb-2">From Address</h1>
+            <h1 className="text-2xl font-medium mb-2">Fra adresse</h1>
 
             <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
               <p></p>
@@ -180,7 +180,7 @@ const OrderTransportOffer = () => {
                 {displayedData?.dealerUser?.email &&
                   displayedData?.dealerUser?.email}
               </p>
-            </div> 
+            </div>
           </div>
           <div className="flex flex-col">
             <h1 className="text-2xl font-medium mb-2">To Address</h1>
@@ -240,23 +240,23 @@ const OrderTransportOffer = () => {
         </section>
       </div>
       <div className="p-5">
-        <h1 className="text-2xl font-medium mb-2">Transport Company</h1>
+        <h1 className="text-2xl font-medium mb-2">Transportfirma</h1>
 
         <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
-          <p className="ps-2">Company Name</p>
+          <p className="ps-2">Firmanavn</p>
           <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
             {orderTransPortData?.data?.companyName}
           </p>
         </div>
         <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
-          <p className="ps-2">Address</p>
+          <p className="ps-2">Adresse</p>
           <p className="border-s border-secondary-color ps-2">
             {orderTransPortData?.data?.address}
           </p>
         </div>
 
         <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
-          <p className="ps-2">Postnr.</p>
+          <p className="ps-2">Postnummer</p>
           <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
             {orderTransPortData?.data?.zip}
           </p>
@@ -282,7 +282,7 @@ const OrderTransportOffer = () => {
           </p>
         </div>
         <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color leading-10">
-          <p className="ps-2">Contact Person</p>
+          <p className="ps-2">Kontaktperson</p>
           <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
             {orderTransPortData?.data?.contactPerson}
           </p>
@@ -290,7 +290,7 @@ const OrderTransportOffer = () => {
       </div>
       <Form name="basic" onFinish={onFinish}>
         <div className="p-10">
-          <h1 className="text-2xl font-medium mb-2">Comment Box</h1>
+          <h1 className="text-2xl font-medium mb-2">Kommentarboks</h1>
 
           {/* <Form.Item
               initialValue={userData?.data?.profile?.address}
@@ -334,13 +334,13 @@ const OrderTransportOffer = () => {
             onClick={() => navigate.push("/dashboard/total-dealer-car-sell")}
             className="bg-highlight-color font-medium cursor-pointer text-white rounded-2xl px-12 py-5 text-2xl "
           >
-            Cancel Transport
+            Annuller transport
           </p>
           <button
             type="submit"
             className="bg-highlight-color whitespace-nowrap  font-medium text-white rounded-2xl px-14 py-5 text-2xl "
           >
-            Confim & Arrange Transport
+            Bekræft og arrangér transport
           </button>
         </div>
       </Form>

@@ -28,7 +28,7 @@ const ViewOfferDealerCarAcceptDetails = ({
             style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
             className="bg-highlight-color text-white  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
           >
-            Close
+            Luk
           </button>
         </div>,
       ]}
@@ -36,17 +36,18 @@ const ViewOfferDealerCarAcceptDetails = ({
       <div>
         <main className="md:grid grid-cols-12  gap-4">
           {/* Left Side */}
-          <section className="col-span-5"> 
+          <section className="col-span-5">
             {car?.carImages.length > 0 ? (
               <ImageSlider carImages={car?.carImages} />
             ) : (
               <div className="flex justify-center items-center py-10">
-                 <Image
-                                  width={100}
-                                  height={100}
-                                  src={`http://31.97.39.237:8010/${car?.brandImage}`}
-                                  className="aspect-square object-contain w-48 flex justify-center items-center mt-10"
-                                />
+                <Image
+                  alt=""
+                  width={100}
+                  height={100}
+                  src={`http://31.97.39.237:8010/${car?.brandImage}`}
+                  className="aspect-square object-contain w-48 flex justify-center items-center mt-10"
+                />
               </div>
             )}
           </section>
@@ -56,17 +57,17 @@ const ViewOfferDealerCarAcceptDetails = ({
             <div className="flex flex-wrap gap-4 justify-between items-center">
               <div className="flex  justify-start items-center  font-bold text-base">
                 {/* <IoMdLink className="rotate-90" /> */}
-                Listed:<p> {date}</p>
+                Oplistet:<p> {date}</p>
               </div>
             </div>
             {/* Middel part car All Details */}
             <h1 className="text-3xl  font-medium text-center">
-              Offer Car Info
+              Tilbudsbiloplysninger
             </h1>
             <AllOfferCarDetails car={car} />
             {console.log(car)}
             <h1 className="text-3xl  font-medium text-center py-2">
-              Listing Car Info
+              Oplysninger om opført bil
             </h1>
             <BrandnViewTableDetails car={car?.submitListing} />
           </section>

@@ -133,7 +133,7 @@ const SubmitListing = () => {
         <button
           className={` rounded w-full  text-white bg-highlight-color m-1`}
         >
-          Deal
+          Aftale
         </button>
       </div>
       <Form
@@ -156,7 +156,7 @@ const SubmitListing = () => {
                 style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
                 className="font-bold  "
               >
-                Mark
+                Markér
               </span>
             }
             name="mark"
@@ -184,7 +184,7 @@ const SubmitListing = () => {
                       alignItems: "center",
                       gap: "8px",
                     }}
-                  > 
+                  >
                     <span>{brand.name}</span>
                   </div>
                 </Option>
@@ -222,7 +222,7 @@ const SubmitListing = () => {
                 style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
                 className="font-bold  "
               >
-                Car Category
+                Bilkategori
               </span>
             }
             name="carCategory"
@@ -240,12 +240,12 @@ const SubmitListing = () => {
                   style={{ fontSize: "clamp(12px, 1vw + 1rem ,14px)" }}
                   className="text-black   "
                 >
-                  Private car or company car
+                  Privat bil eller firmabil
                 </span>
               }
             >
-              <Select.Option value="privateCar">Private car</Select.Option>
-              <Select.Option value="companyCar">company car</Select.Option>
+              <Select.Option value="privateCar">Privat bil</Select.Option>
+              <Select.Option value="companyCar">Firmabil</Select.Option>
             </Select>
           </Form.Item>
 
@@ -262,7 +262,7 @@ const SubmitListing = () => {
                 style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
                 className="font-bold  "
               >
-                New/used
+                Ny/Brugt
               </span>
             }
             name="carCondition"
@@ -273,7 +273,7 @@ const SubmitListing = () => {
                   style={{ fontSize: "clamp(12px, 1vw + 1rem ,14x)" }}
                   className="text-black  "
                 >
-                  All
+                  Alle
                 </span>
               }
             >
@@ -287,7 +287,7 @@ const SubmitListing = () => {
           style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
           className="font-bold   mb-2"
         >
-          Cash price (Max price)
+          Kontantpris (Max pris)
         </h1>
 
         <Form.Item
@@ -317,7 +317,7 @@ const SubmitListing = () => {
                 style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
                 className="font-bold  "
               >
-                Fuel
+                Brændstof
               </span>
             }
             name="fuel"
@@ -404,7 +404,7 @@ const SubmitListing = () => {
                   style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
                   className="font-bold  "
                 >
-                  Gear type
+                  Geartype
                 </span>
               }
               name="gearType"
@@ -441,7 +441,7 @@ const SubmitListing = () => {
                   style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
                   className="font-bold  "
                 >
-                  Price type
+                  Pristype
                 </span>
               }
               name="priceType"
@@ -493,7 +493,7 @@ const SubmitListing = () => {
               style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
               className="font-bold  "
             >
-              Models
+              Modeller
             </span>
           }
           name="models"
@@ -610,7 +610,7 @@ const SubmitListing = () => {
           style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
           className="font-bold   mb-2"
         >
-          Models
+          Modeller
         </h1>
         <div className="flex  justify-between gap-5">
           <Form.Item
@@ -646,7 +646,7 @@ const SubmitListing = () => {
           style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
           className="font-bold   mb-2"
         >
-          Driven km
+          Kørte km
         </h1>
         <div className="flex  justify-between gap-5">
           <Form.Item
@@ -656,9 +656,10 @@ const SubmitListing = () => {
                 message: "Please inptut Driven km From",
               },
             ]}
-            label={<span className="font-medium text-base">From</span>}
+            label={<span className="font-medium text-base">Fra</span>}
             name="drivenKmFrom"
             className="flex-1"
+            initialValue={0}
           >
             <InputNumber placeholder="0" className="w-full" />
           </Form.Item>
@@ -669,7 +670,7 @@ const SubmitListing = () => {
                 message: "Please inptut Driven km To",
               },
             ]}
-            label={<span className="font-medium text-base">To</span>}
+            label={<span className="font-medium text-base">Til</span>}
             name="drivenKmTo"
             className="flex-1"
           >
@@ -682,7 +683,7 @@ const SubmitListing = () => {
           onClick={() => setIsDistance(!isDistance)}
           className="font-bold   bg-base-color border border-secondary-color rounded-md py-1 px-2 flex justify-between items-center"
         >
-          <h1>Additional equipment</h1>
+          <h1>Ekstraudstyr</h1>
           <p>
             <IoIosArrowForward
               className={` transition-all ease-in duration-300 ${
@@ -700,7 +701,7 @@ const SubmitListing = () => {
                   style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
                   className="font-bold  "
                 >
-                  Color
+                  Farve
                 </span>
               }
               name="color"
@@ -711,7 +712,7 @@ const SubmitListing = () => {
                     style={{ fontSize: "clamp(12px, 1vw + 1rem ,18px)" }}
                     className="text-black   flex"
                   >
-                    Choose Color
+                    Vælg farve
                   </span>
                 }
                 className=" !bg-base-color"
@@ -730,7 +731,7 @@ const SubmitListing = () => {
               style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
               className="font-bold   "
             >
-              Trailer
+              Trailerkobling
             </h1>
             <div className="flex  justify-between items-center gap-5 mt-3">
               <Form.Item name="trailerHitch" className="flex-1">
@@ -741,30 +742,14 @@ const SubmitListing = () => {
                       style={{ fontSize: "clamp(12px, 1vw + 1rem ,18px)" }}
                       className="text-black  "
                     >
-                      Trailer hitch
+                      Trailertræk
                     </span>
                   }
                 >
-                  <Select.Option value="yes">Yes</Select.Option>
-                  <Select.Option value="no">No</Select.Option>
+                  <Select.Option value="yes">Ja</Select.Option>
+                  <Select.Option value="no">Nej</Select.Option>
                 </Select>
               </Form.Item>
-              {/* <Form.Item
-                className="flex-1 "
-                label={<span className="font-bold text-sm">Trailer hitch</span>}
-                name="mark"
-              >
-                <Select
-                  className="!h-14"
-                  placeholder={
-                    <span className="text-black  ">Trailer hitch</span>
-                  }
-                >
-                  <Select.Option value="demo1">Demo1</Select.Option>
-                  <Select.Option value="demo2">Demo2</Select.Option>
-                  <Select.Option value="demo3">Demo3</Select.Option>
-                </Select>
-              </Form.Item> */}
             </div>
             <div className="flex justify-between items-start">
               <Form.Item
@@ -773,7 +758,7 @@ const SubmitListing = () => {
                     style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
                     className="font-bold  "
                   >
-                    Exterior
+                    Eksteriør
                   </span>
                 }
                 name="exterior"
@@ -818,7 +803,7 @@ const SubmitListing = () => {
                     style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
                     className="font-bold  "
                   >
-                    Interior
+                    Interiør
                   </span>
                 }
                 name="interior"
@@ -888,7 +873,7 @@ const SubmitListing = () => {
                   ${isCompany ? "bg-violet-500 " : " "}
                    ring-2 ring-violet-500 `}
             ></div>
-            Company
+            Firma
           </div>
           <div
             style={{ fontSize: "clamp(16px, 2vw + 1rem ,30px)" }}
@@ -901,7 +886,7 @@ const SubmitListing = () => {
                   ${isCompany ? " " : " bg-violet-500"}
                    ring-2 ring-violet-500 `}
             ></div>
-            Private
+            Privat
           </div>
         </div>
 
@@ -909,16 +894,16 @@ const SubmitListing = () => {
           style={{ fontSize: "clamp(18px, 3vw + 1rem ,36px)" }}
           className=" font-bold"
         >
-          Contact information
+          Kontaktoplysninger
         </h1>
         <div className="h1 w-full border-t border-text-light-color my-5"></div>
         <h1
           style={{ fontSize: "clamp(12px, 1vw + 1rem ,18px)" }}
           className=" font-medium mb-5"
         >
-          To provide you with the best offer for your car, we recommend
-          uploading a few pictures of your car to us. You can find some examples
-          of the angles we would like of your car.
+          For at give dig det bedste tilbud på din bil, anbefaler vi, at du
+          uploader nogle billeder af din bil til os. Du kan finde nogle
+          eksempler på de vinkler, vi gerne vil have af din bil.
         </h1>
 
         {isCompany ? (
@@ -928,7 +913,7 @@ const SubmitListing = () => {
                 style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
                 className="  font-medium pb-2"
               >
-                Company Name*
+                Firmanavn*
               </p>
               <Form.Item
                 rules={[
@@ -947,7 +932,7 @@ const SubmitListing = () => {
                 style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
                 className="  font-medium pb-2"
               >
-                CVR Number*
+                CVR-nummer*
               </p>
               <Form.Item
                 rules={[
@@ -971,7 +956,7 @@ const SubmitListing = () => {
               style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
               className="  font-medium pb-2"
             >
-              First Name*
+              Fornavn*
             </p>
             <Form.Item
               initialValue={myInfo?.data?.profile?.first_name}
@@ -991,7 +976,7 @@ const SubmitListing = () => {
               style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
               className="  font-medium pb-2"
             >
-              Last Name*
+              Efternavn*
             </p>
             <Form.Item
               initialValue={myInfo?.data?.profile?.last_name}
@@ -1014,7 +999,7 @@ const SubmitListing = () => {
               style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
               className="  font-medium pb-2 "
             >
-              Email*
+              E-mail*
             </p>
             <Form.Item
               rules={[
@@ -1036,7 +1021,7 @@ const SubmitListing = () => {
               style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
               className=" font-medium pb-2"
             >
-              Street Name*
+              Gadenavn*
             </p>
             <Form.Item
               initialValue={myInfo?.data?.profile?.street}
@@ -1056,7 +1041,7 @@ const SubmitListing = () => {
               style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
               className=" font-medium pb-2"
             >
-              Postal Code*
+              Postnummer*
             </p>
             <Form.Item
               initialValue={myInfo?.data?.profile?.zip}
@@ -1077,7 +1062,7 @@ const SubmitListing = () => {
               style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
               className=" font-medium pb-2"
             >
-              City*
+              By*
             </p>
             <Form.Item
               initialValue={myInfo?.data?.profile?.city}
@@ -1099,7 +1084,7 @@ const SubmitListing = () => {
             style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
             className="  font-medium pb-2 "
           >
-            Phone Number*
+            Telefonnummer*
           </p>
           <Form.Item
             initialValue={myInfo?.data?.profile?.phoneNumber}
@@ -1121,7 +1106,7 @@ const SubmitListing = () => {
             className="bg-highlight-color text-white py-3 md:px-32 px-3 rounded-md text-center my-10  font-medium "
             htmlType="submit"
           >
-            Create Listing
+            Opret annonce
           </button>
         </div>
       </Form>

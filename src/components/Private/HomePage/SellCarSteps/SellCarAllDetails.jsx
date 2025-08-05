@@ -5,7 +5,7 @@ import {
 } from "@/redux/api/features/carPrivate";
 import { useProfileQuery } from "@/redux/api/features/myProfile";
 import {
-  clearCarLicenseInfo,
+  clearCarLicenseInfo, 
   setCarLicenseInfo,
 } from "@/redux/slices/carInfoSlice";
 
@@ -218,14 +218,14 @@ const SellCarAllDetails = () => {
         style={{ fontSize: "clamp(18px, 3vw + 1rem ,36px)" }}
         className=" font-bold"
       >
-        The car&apos;s information
+        Bilens oplysninger
       </h1>
       <div className="h1 w-full border-t border-text-light-color my-5"></div>
       <h1
         style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
         className=" font-bold mb-5"
       >
-        Number plate*
+        Nummerplade*
       </h1>
 
       <div className="text-center mb-3 max-w-[600px] ">
@@ -239,7 +239,7 @@ const SellCarAllDetails = () => {
               onClick={handleEditClick}
               className="bg-highlight-color font-semibold text-white rounded py-2 px-8 cursor-pointer"
             >
-              Search
+              Søg
             </div>
           }
           prefix={
@@ -284,7 +284,7 @@ const SellCarAllDetails = () => {
               style={{ fontSize: "clamp(14px, 1vw + 1rem ,24px)" }}
               className=" font-medium pb-2 "
             >
-              Number of kilometers driven*
+              Antal kørte kilometer*
             </p>
             <Form.Item
               name={`noOfKmDriven`}
@@ -306,7 +306,7 @@ const SellCarAllDetails = () => {
               style={{ fontSize: "clamp(14px, 1vw + 1rem ,24px)" }}
               className=" font-medium pb-2 "
             >
-              Number of varnish fields*
+              Antal lag lak*
             </p>
             <Form.Item
               rules={[
@@ -336,16 +336,14 @@ const SellCarAllDetails = () => {
               style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
               className=" font-medium pb-2"
             >
-              Additional equipment*
+              Ekstraudstyr*
             </p>
 
             <Form.Item name="additionalEquipment">
               <Checkbox.Group className=" flex flex-col gap-2">
-                <Checkbox value="Automatic transmission">
-                  Automatic transmission
-                </Checkbox>
-                <Checkbox value="Trailer hitch">Trailer hitch</Checkbox>
-                <Checkbox value="Extra wheel set">Extra wheel set</Checkbox>
+                <Checkbox value="Automatic transmission">Automatgear</Checkbox>
+                <Checkbox value="Trailer hitch">Trailertræk</Checkbox>
+                <Checkbox value="Extra wheel set">Ekstra hjulsæt</Checkbox>
               </Checkbox.Group>
             </Form.Item>
           </div>
@@ -354,7 +352,7 @@ const SellCarAllDetails = () => {
               style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
               className=" font-medium pb-2"
             >
-              The condition of the car*
+              Bilens tilstand*
             </p>
             <Form.Item
               rules={[
@@ -378,7 +376,7 @@ const SellCarAllDetails = () => {
             style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
             className=" font-medium pb-2"
           >
-            Defects or other comments*
+            Fejl eller andre kommentarer*
           </p>
           <Form.Item name={`comment`}>
             <TextArea
@@ -394,7 +392,7 @@ const SellCarAllDetails = () => {
               style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
               className=" font-medium pb-2"
             >
-              Expected price (DKK)*
+              Forventet pris (DKK)*
             </p>
             <Form.Item
               rules={[
@@ -435,9 +433,9 @@ const SellCarAllDetails = () => {
                   />
                 </p>
                 <p className="ant-upload-text">
-                  Drag and drop up to 10 images here
+                  Træk og slip op til 10 billeder her
                 </p>
-                <p className="ant-upload-text">or click to upload.</p>
+                <p className="ant-upload-text">eller klik for at uploade.</p>
               </Upload.Dragger>
             </Form.Item>
           </div>
@@ -454,7 +452,7 @@ const SellCarAllDetails = () => {
                   ${isCompany ? "bg-violet-500 " : " "}
                    ring-2 ring-violet-500 `}
             ></div>
-            Company
+            Virksomhed
           </div>
           <div
             style={{ fontSize: "clamp(18px, 3vw + 1rem ,36px)" }}
@@ -467,7 +465,7 @@ const SellCarAllDetails = () => {
                   ${isCompany ? " " : " bg-violet-500"}
                    ring-2 ring-violet-500 `}
             ></div>
-            Private
+            Privatperson
           </div>
         </div>
 
@@ -475,16 +473,16 @@ const SellCarAllDetails = () => {
           style={{ fontSize: "clamp(18px, 3vw + 1rem ,36px)" }}
           className=" font-bold"
         >
-          Contact information
+          Kontaktinformation
         </h1>
         <div className="h1 w-full border-t border-text-light-color my-5"></div>
         <h1
           style={{ fontSize: "clamp(14px, 1vw + 1rem ,20px)" }}
           className="text-xl font-medium mb-5"
         >
-          To provide you with the best offer for your car, we recommend
-          uploading a few pictures of your car to us. You can find some examples
-          of the angles we would like of your car.
+          For at give dig det bedste tilbud på din bil, anbefaler vi, at du
+          uploader nogle billeder af din bil til os. Du kan finde nogle
+          eksempler på de vinkler, vi gerne vil have af din bil.
         </h1>
 
         {isCompany ? (
@@ -494,7 +492,7 @@ const SellCarAllDetails = () => {
                 style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
                 className=" font-medium pb-2"
               >
-                Company Name*
+                Firmanavn*
               </p>
               <Form.Item
                 rules={[
@@ -513,7 +511,7 @@ const SellCarAllDetails = () => {
                 style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
                 className=" font-medium pb-2"
               >
-                CVR Number*
+                CVR-nummer*
               </p>
               <Form.Item
                 rules={[
@@ -537,7 +535,7 @@ const SellCarAllDetails = () => {
               style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
               className=" font-medium pb-2"
             >
-              First Name*
+              Fornavn*
             </p>
             <Form.Item
               initialValue={myInfo?.data?.profile?.first_name}
@@ -557,7 +555,7 @@ const SellCarAllDetails = () => {
               style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
               className=" font-medium pb-2"
             >
-              Last Name*
+              Efternavn*
             </p>
             <Form.Item
               initialValue={myInfo?.data?.profile?.last_name}
@@ -577,10 +575,10 @@ const SellCarAllDetails = () => {
         {!userInfo && (
           <div className="">
             <p
-              style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
-              className="  font-medium pb-2 "
+              style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
+              className=" font-medium pb-2"
             >
-              Email*
+              E-mail*
             </p>
             <Form.Item
               rules={[
@@ -601,7 +599,7 @@ const SellCarAllDetails = () => {
               style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
               className=" font-medium pb-2"
             >
-              Street Name*
+              Gadenavn*
             </p>
             <Form.Item
               rules={[
@@ -621,7 +619,7 @@ const SellCarAllDetails = () => {
               style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
               className=" font-medium pb-2"
             >
-              Postal Code*
+              Postnummer*
             </p>
             <Form.Item
               initialValue={myInfo?.data?.profile?.zip}
@@ -642,7 +640,7 @@ const SellCarAllDetails = () => {
               style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
               className=" font-medium pb-2"
             >
-              City*
+              By*
             </p>
             <Form.Item
               initialValue={myInfo?.data?.profile?.city}
@@ -663,7 +661,7 @@ const SellCarAllDetails = () => {
             style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
             className=" font-medium pb-2"
           >
-            Phone Number*
+            Telefonnummer*
           </p>
           <Form.Item
             initialValue={myInfo?.data?.profile?.phoneNumber}
@@ -685,7 +683,7 @@ const SellCarAllDetails = () => {
             className="bg-highlight-color text-white  font-medium  py-5 px-5 md:px-20 rounded-lg "
             htmlType="submit"
           >
-            Create Listing
+            Opret annonce
           </button>
         </div>
       </Form>

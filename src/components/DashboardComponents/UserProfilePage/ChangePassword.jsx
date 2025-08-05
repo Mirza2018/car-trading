@@ -46,7 +46,7 @@ const ChangePassword = ({ isModalOpen, handleOk, handleCancel }) => {
       <Form form={form} onFinish={onFinish} layout="vertical" className="m-5">
         <div className="col-span-3">
           <Typography.Title level={4} style={{ color: "#222222" }}>
-            Current password
+            Nuværende adgangskode
           </Typography.Title>
           <Form.Item
             rules={[
@@ -64,7 +64,7 @@ const ChangePassword = ({ isModalOpen, handleOk, handleCancel }) => {
             />
           </Form.Item>
           <Typography.Title level={4} style={{ color: "#222222" }}>
-            New password
+            Ny adgangskode
           </Typography.Title>
           <Form.Item
             rules={[
@@ -82,7 +82,7 @@ const ChangePassword = ({ isModalOpen, handleOk, handleCancel }) => {
             />
           </Form.Item>
           <Typography.Title level={4} style={{ color: "#222222" }}>
-            Re-enter new Password
+            Indtast ny adgangskode igen
           </Typography.Title>
           <Form.Item
             name="confirmPassword"
@@ -117,6 +117,7 @@ const ChangePassword = ({ isModalOpen, handleOk, handleCancel }) => {
             >
               Forgot Password?
             </Link>
+            Glemt adgangskode?
           </div>
         </div>
 
@@ -128,13 +129,13 @@ const ChangePassword = ({ isModalOpen, handleOk, handleCancel }) => {
             }}
             className="border cursor-pointer border-[#EF4A00] text-[#EF4A00] hover:border-[#bc4812] transition delay-150 duration-100 py-3 px-8 rounded-xl"
           >
-            Cancel
+            Annuller
           </p>
           <button
             htmlType="submit"
             className="bg-highlight-color transition delay-150 duration-100 py-3 px-9 rounded-xl text-white"
           >
-            Save
+            Gem
           </button>
         </div>
       </Form>

@@ -175,8 +175,7 @@ const Homepage = () => {
                     : "bg-base-color text-text-color"
                 }`}
               >
-                Cars for sale
-                <br />({displayedData?.data?.pagination?.total})
+                Biler til salg <br />({displayedData?.data?.pagination?.total})
               </h1>
               <h1
                 onClick={() => setIsSellCar(false)}
@@ -187,7 +186,7 @@ const Homepage = () => {
                     : "bg-highlight-color text-white "
                 }`}
               >
-                Private looking for car
+                Privatperson søger bil
                 <br />({submitDisplayedData?.data?.pagination?.total})
               </h1>
             </div>

@@ -15,7 +15,7 @@ const TotalPrivateCarSellPage = () => {
     filter: "sell",
     sort: "-updatedAt",
   }); 
-
+ 
   const onPageChange = (page, limit) => {
     setFilters((prev) => ({
       ...prev,
@@ -69,7 +69,7 @@ const TotalPrivateCarSellPage = () => {
       <div className="bg-secondary-color w-full p-4   rounded-tl-xl rounded-tr-xl">
         <div className=" w-[95%] mx-auto  flex items-center justify-between">
           <p className="text-3xl text-primary-color font-semibold">
-            Total car sell
+            Total bilsalg
           </p>
           <div className="flex gap-4 items-center"></div>
         </div>

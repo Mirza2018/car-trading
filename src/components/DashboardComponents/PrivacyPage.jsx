@@ -52,9 +52,9 @@ const PrivacyPage = () => {
       <div className="">
         <div className="bg-secondary-color w-full flex items-center p-5 mb-10 rounded-tl-xl rounded-tr-xl">
           <p className="text-2xl text-primary-color font-semibold">
-            Privacy Policy
+            Privatlivspolitik
           </p>
-        </div> 
+        </div>
         <div className="flex justify-center items-center">
           <div className="w-full lg:w-[90%]">
             <div
@@ -63,14 +63,14 @@ const PrivacyPage = () => {
             />
             {userData?.data?.isPrivacyAccepted ? (
               <Button className=" py-6 border !border-green-500 hover:border-green-500 text-xl !text-primary-color bg-green-500 hover:!bg-green-500 font-semibold rounded-2xl cursor-not-allowed">
-                Accepted ({userData?.data?.privacyDate})
+                Accepteret ({userData?.data?.privacyDate})
               </Button>
             ) : (
               <Button
                 onClick={handleOnSave}
                 className=" py-6 border !border-secondary-color hover:border-secondary-color text-xl !text-primary-color bg-secondary-color hover:!bg-secondary-color font-semibold rounded-2xl "
               >
-                Accept
+                Accepter
               </Button>
             )}
           </div>

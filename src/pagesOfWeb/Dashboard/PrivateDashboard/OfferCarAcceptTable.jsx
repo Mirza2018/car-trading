@@ -25,7 +25,7 @@ const OfferCarAcceptTable = ({
 
   const columns = [
     {
-      title: "Dealer Name",
+      title: "Forhandlernavn",
       dataIndex: "dealerUserProfile",
       key: "dealerUserProfile",
       render: (text) => (
@@ -35,25 +35,25 @@ const OfferCarAcceptTable = ({
       ),
     },
     {
-      title: "Brand Name",
+      title: "Mærkenavn",
       dataIndex: "mark",
       key: "mark",
       render: (text) => <p>{text}</p>,
     },
     {
-      title: "Car Model",
+      title: "Bilmodel",
       dataIndex: "model",
       key: "model",
       render: (text) => <p>{text}</p>,
     },
     {
-      title: "Color",
+      title: "Farve",
       dataIndex: "color",
       key: "color",
       render: (text) => <p>{text}</p>,
     },
     {
-      title: "Price",
+      title: "Pris",
       dataIndex: "cashPrice",
       sorter: (a, b) => a.cashPrice - b.cashPrice,
       render: (text) => (
@@ -75,7 +75,7 @@ const OfferCarAcceptTable = ({
               className="border-[#00721E] hover:border-[#34df61]"
             >
               {/* <GoEye style={{ fontSize: "24px" }} /> */}
-              See Details
+              Se detaljer
             </Button>
           </Tooltip>
         </Space>
@@ -101,13 +101,13 @@ const OfferCarAcceptTable = ({
                     className={`  !text-white !bg-secondary-color`}
                   >
                     {" "}
-                    <p>Make contract</p>{" "}
+                    <p>Kontraktudstedelse</p>{" "}
                   </Button>
                 )}
                 {!record?.signatureAsDealer && record?.signatureAsOwner && (
                   <Button className={`  !text-white !bg-highlight-color !px-5`}>
                     {" "}
-                    <p>Pending contract</p>{" "}
+                    <p>I afventning af kontrakt</p>{" "}
                   </Button>
                 )}
                 {record?.signatureAsDealer && record?.signatureAsOwner && (
@@ -121,7 +121,7 @@ const OfferCarAcceptTable = ({
                     className={`  !text-white !bg-green-500 !px-7`}
                   >
                     {" "}
-                    <p>See Contract</p>{" "}
+                    <p>Se kontrakt</p>{" "}
                   </Button>
                 )}
               </Tooltip>
@@ -131,7 +131,7 @@ const OfferCarAcceptTable = ({
               onClick={() => navigate.push(`offer-car`)}
               className="bg-highlight-color text-white cursor-pointer  px-4 whitespace-nowrap py-1 rounded-md"
             >
-              Accept the Offer
+              Accepter tilbuddet
             </Button>
           )}
         </Space>

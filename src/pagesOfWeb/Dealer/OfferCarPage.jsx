@@ -22,7 +22,7 @@ const OfferCarPage = () => {
             isDeal ? "bg-highlight-color text-white " : ""
           }`}
         >
-          Deal
+          Aftale
         </p>
         <p
           style={{ fontSize: "clamp(14px, 1vw + 1rem ,24px)" }}
@@ -31,7 +31,7 @@ const OfferCarPage = () => {
             isDeal ? "" : "bg-highlight-color text-white "
           }`}
         >
-          License plate
+          Nummerplade
         </p>
       </div>
       {isDeal ? (

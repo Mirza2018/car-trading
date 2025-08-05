@@ -22,7 +22,7 @@ const TotalCarBuy = ({
   return (
     <div className="">
       <h1 className="xl:text-[40px] text-3xl font-semibold text-center">
-        Total Car Buy ({displayedData?.data?.pagination?.total})
+        Samlet bilkøb ({displayedData?.data?.pagination?.total})
       </h1>
       <div className="flex flex-col gap-3 h-[450px] mt-3  overflow-scroll overflow-x-hidden scrollbar-hide">
         {displayedData?.data?.result?.slice(0, 3).map((car) => (
@@ -31,8 +31,9 @@ const TotalCarBuy = ({
             className="flex justify-between gap-3 border border-base-color py-5  md:w-[550px]   me-3 px-2  "
           >
             {car?.brandImage ? (
-              <React.Fragment> 
+              <React.Fragment>
                 <Image
+                  alt=""
                   shape="square"
                   className="font-medium object-contain w-20 aspect-square"
                   width={100}
@@ -63,13 +64,13 @@ const TotalCarBuy = ({
                   {car?.models && `${car?.models} ,`}{" "}
                 </p>
                 <p className="font-normal text-sm">
-                  Price: {car?.cashPrice} kr.
+                  Pris: {car?.cashPrice} kr.
                 </p>
               </div>
               <div className="flex md:flex-col flex-row gap-2 text-end">
                 <Tooltip title="Login as Dealer">
                   <button className="btn border border-base-color rounded px-1 md:px-5 py-1 w-fit whitespace-nowrap cursor-not-allowed">
-                    Buy Now
+                    Køb nu
                   </button>
                 </Tooltip>
                 <Tooltip title="Login as Dealer">
@@ -77,7 +78,7 @@ const TotalCarBuy = ({
                     // onClick={() => showModal(car)}
                     className="btn border border-base-color bg-[#E6F3F7] rounded px-1 md:px-2 py-1 w-fit whitespace-nowrap  cursor-not-allowed"
                   >
-                    View Details
+                    Se detaljer
                   </button>
                 </Tooltip>
               </div>{" "}

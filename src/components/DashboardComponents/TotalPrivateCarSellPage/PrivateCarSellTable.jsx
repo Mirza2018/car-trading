@@ -11,7 +11,7 @@ const PrivateCarSellTable = ({
 }) => {
   const columns = [
     {
-      title: "Dealer Name",
+      title: "Forhandlerens navn",
       dataIndex: "profile",
       key: "profile",
       render: (text) => (
@@ -21,7 +21,7 @@ const PrivateCarSellTable = ({
       ),
     },
     {
-      title: "Brand Name",
+      title: "Mærkenavn",
       dataIndex: "carModel",
       key: "carModel",
       render: (text) => <p>{text?.brand}</p>,
@@ -33,31 +33,25 @@ const PrivateCarSellTable = ({
     //   key: "address",
     // },
     {
-      title: "Color",
+      title: "Farve",
       dataIndex: "carModel",
       key: "carModel",
       render: (text) => <p>{text?.color}</p>,
     },
     {
-      title: "Price",
+      title: "Pris",
       dataIndex: "car",
       sorter: (a, b) => a.car.expectedPrice - b.car.expectedPrice,
       render: (text) => (
         <div>
           <p className="whitespace-nowrap">
-            {text?.isBid ? text?.bidPrice :
-              
-              
-              text?.expectedPrice
-            
-            
-            }Dkk
+            {text?.isBid ? text?.bidPrice : text?.expectedPrice}Dkk
           </p>
         </div>
       ),
     },
     {
-      title: "Service Charge",
+      title: "Servicegebyr",
       dataIndex: "car",
       sorter: (a, b) => a.car.expectedPrice - b.car.expectedPrice,
       render: (text) => (
@@ -73,7 +67,7 @@ const PrivateCarSellTable = ({
       ),
     },
     {
-      title: "Contract Paper",
+      title: "Kontraktpapir",
       key: "action",
       render: (_, record) => (
         <Link
@@ -89,13 +83,13 @@ const PrivateCarSellTable = ({
               )}
               {record?.signatureAsDealer && !record?.signatureAsOwner && (
                 <Button className={`  !text-white !bg-highlight-color `}>
-                  <p>Finish your contract</p>
+                  <p>Færdiggør din kontrakt</p>
                 </Button>
               )}
               {record?.signatureAsDealer && record?.signatureAsOwner && (
                 <Button className={`  !text-white !bg-green-500 !px-6`}>
                   {" "}
-                  <p>See Contract</p>{" "}
+                  <p>Se kontrakt</p>{" "}
                 </Button>
               )}
             </Tooltip>
@@ -116,7 +110,7 @@ const PrivateCarSellTable = ({
               className="border-[#00721E] hover:border-[#34df61]"
             >
               {/* <GoEye style={{ fontSize: "24px" }} /> */}
-              See Details
+              Se detaljer
             </Button>
           </Tooltip>
         </Space>

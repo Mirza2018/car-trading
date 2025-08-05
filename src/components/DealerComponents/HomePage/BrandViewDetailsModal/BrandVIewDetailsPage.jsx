@@ -34,7 +34,7 @@ const BrandVIewDetailsPage = ({
                   style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
                   className="bg-highlight-color text-white  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
                 >
-                  Send Offer
+                  Send tilbud
                 </button>
               </Link>
             </div>
@@ -45,7 +45,7 @@ const BrandVIewDetailsPage = ({
             style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
             className="bg-highlight-color text-white  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
           >
-            Close
+            Luk
           </button>
         </div>,
       ]}

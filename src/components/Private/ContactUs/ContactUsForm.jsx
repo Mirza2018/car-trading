@@ -16,26 +16,20 @@ export default function ContactUsFrom() {
   return (
     <div className="container mx-auto  py-12">
       <div className="grid lg:grid-cols-7 gap-12">
-        {/* Left Column - Contact Form */}
         <div className="col-span-4">
-          <h1 className="text-4xl font-bold mb-4">Get In Touch</h1>
-          {/* <p className="text-[#050B20] mb-8">
-            Likewise, a range of activities enriches life, blending vigor with
-            balance. The result is a lifestyle that&apos;s not only dynamic but
-            also deeply rewarding.
-          </p> */}
+          <h1 className="text-4xl font-bold mb-4"> Kontakt os</h1>
 
           <Form onFinish={onFinish} form={form} className="space-y-6 mt-10">
             <div className="grid md:grid-cols-2 gap-6">
               <div className="relative">
                 <p className="absolute  left-4  px-1 text-[13px] text-gray-500 z-10">
-                  First Name*
+                  Fornavn*
                 </p>
                 <Form.Item name="firstName">
                   <Input
                     required
                     type="text"
-                    placeholder="Enter Your First Name"
+                    placeholder="Indtast dit fornavn"
                     className="w-full px-5 py-4 rounded-lg border border-gray-200 "
                   />
                 </Form.Item>
@@ -43,13 +37,13 @@ export default function ContactUsFrom() {
 
               <div className="relative">
                 <p className="absolute  left-4  px-1 text-[13px] text-gray-500 z-10">
-                  First Name*
+                  Efternavn*
                 </p>
                 <Form.Item name="lastName">
                   <Input
                     required
                     type="text"
-                    placeholder="Last Name"
+                    placeholder="Indtast dit efternavn"
                     className="w-full  px-5 py-4  rounded-lg border border-gray-200 "
                   />
                 </Form.Item>
@@ -71,19 +65,19 @@ export default function ContactUsFrom() {
             </div>
             <div className="relative">
               <p className="absolute  left-4  px-1 text-[13px] text-gray-500 z-50">
-                Phone*
+                Telefon*
               </p>
               <Form.Item name="phone">
                 <Input
                   type="tel"
-                  placeholder="+90 123 456 789"
+                  placeholder="+45 12 34 56 78"
                   className="w-full px-5 py-4 rounded-lg border border-gray-200 "
                 />
               </Form.Item>
             </div>
             <div className="relative">
               <p className="absolute  left-4  px-1 text-[13px] text-gray-500 z-50">
-                Message
+                Besked
               </p>
 
               <Form.Item name="message">
@@ -97,15 +91,14 @@ export default function ContactUsFrom() {
               type="submit"
               className="bg-highlight-color text-white px-8 py-3 rounded-lg transition-colors"
             >
-              Send Message
+              Send besked
             </button>
           </Form>
         </div>
 
-        {/* Right Column - Contact Details */}
         <div className="col-span-3">
           <div className="border border-base-color rounded-2xl p-8">
-            <h2 className="text-2xl font-semibold mb-6">Contact details</h2>
+            <h2 className="text-2xl font-semibold mb-6">Kontaktoplysninger</h2>
             <p className="text-gray-600 mb-8">
               Dette er en bilhandelsplatform, hvor brugere kan oprette annoncer
               for deres biler, og forhandlere har mulighed for at købe eller
@@ -114,10 +107,9 @@ export default function ContactUsFrom() {
 
             <div className="space-y-6">
               <div className="flex items-start gap-3">
-                {/* <MapPin className="w-6 h-6 mt-1" /> */}
                 <FaMapPin />
                 <div>
-                  <h3 className="font-semibold mb-1">Address</h3>
+                  <h3 className="font-semibold mb-1">Adresse</h3>
                   <p className="text-gray-600">
                     Københavnsvej 103
                     <br />
@@ -129,16 +121,14 @@ export default function ContactUsFrom() {
               </div>
 
               <div className="flex items-start gap-3">
-                {/* <Mail className="w-6 h-6 mt-1" /> */}
                 <BsMailbox />
                 <div>
-                  <h3 className="font-semibold mb-1">Mail</h3>
+                  <h3 className="font-semibold mb-1">E-mail</h3>
                   <p className="text-gray-600">ali@boxcars.com</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
-                {/* <Phone className="w-6 h-6 mt-1" /> */}
                 <FaPhone />
                 <div>
                   <h3 className="font-semibold mb-1">Tlf. </h3>
@@ -148,7 +138,7 @@ export default function ContactUsFrom() {
             </div>
 
             <div className="mt-8">
-              <h3 className="font-semibold mb-4">Follow us</h3>
+              <h3 className="font-semibold mb-4">Følg os</h3>
               <div className="flex gap-4">
                 <a href="#" className="text-gray-600 hover:text-black">
                   <svg

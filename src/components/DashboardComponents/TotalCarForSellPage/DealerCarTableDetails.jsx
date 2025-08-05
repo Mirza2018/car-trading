@@ -7,19 +7,19 @@ const DealerCarTableDetails = ({ car }) => {
       <main className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-7 gap-y-2">
         {car?.noOfKmDriven && (
           <div className="flex justify-between border-b border-text-light-color">
-            <p>Driven Km:</p>
+            <p>Kørte kilometer:</p>
             <p>{car?.noOfKmDriven} Km</p>
           </div>
         )}
         {car?.noOfVarnishField && (
           <div className="flex justify-between border-b border-text-light-color">
-            <p>Varnish Field:</p>
+            <p>Lakfelt:</p>
             <p>{car?.noOfVarnishField} </p>
           </div>
         )}
         {car?.additionalEquipment && (
           <div className="flex justify-between border-b border-text-light-color">
-            <p>Additional Equipment</p>
+            <p>Ekstraudstyr</p>
             <p>
               {car?.additionalEquipment.map((p) => (
                 <>{p}, </>
@@ -29,20 +29,20 @@ const DealerCarTableDetails = ({ car }) => {
         )}
         {car?.condition && (
           <div className="flex justify-between border-b border-text-light-color">
-            <p>Condition:</p>
+            <p>Stand:</p>
             <p>{car?.condition} </p>
           </div>
         )}
         {car?.carCategory && (
           <div className="flex justify-between border-b border-text-light-color">
-            <p>Category:</p>
+            <p>Kategori:</p>
             <p>{car?.carCategory} </p>
           </div>
         )}
 
         {car?.registrationNumber && (
           <div className="flex justify-between border-b border-text-light-color">
-            <p>Registration Number:</p>
+            <p>Registreringsnummer:</p>
             <p>{car?.registrationNumber} </p>
           </div>
         )}
@@ -55,20 +55,20 @@ const DealerCarTableDetails = ({ car }) => {
         )} */}
         {car?.chassisNumber && (
           <div className="flex justify-between border-b border-text-light-color">
-            <p>Chassis Number:</p>
+            <p>Stelnummer:</p>
             <p>{car?.chassisNumber} </p>
           </div>
         )}
-        {car?.inspectionDate  && (
+        {car?.inspectionDate && (
           <div className="flex justify-between border-b border-text-light-color">
-            <p>Inspection Date:</p>
+            <p>Synsdato:</p>
             <p>{date} </p>
           </div>
         )}
 
         {car?.carModel?.brand && (
           <div className="flex justify-between border-b border-text-light-color">
-            <p>Brand:</p>
+            <p>Mærke:</p>
             <p>{car?.carModel?.brand} </p>
           </div>
         )}
@@ -82,7 +82,7 @@ const DealerCarTableDetails = ({ car }) => {
         )}
         {car?.carModel?.modelYear ? (
           <div className="flex justify-between border-b border-text-light-color">
-            <p>Model Year:</p>
+            <p>Modelår:</p>
             <p>{car?.carModel?.modelYear} </p>
           </div>
         ) : (
@@ -96,42 +96,42 @@ const DealerCarTableDetails = ({ car }) => {
         )}
         {car?.carModel?.color && (
           <div className="flex justify-between border-b border-text-light-color">
-            <p>Color:</p>
+            <p>Farve:</p>
             <p>{car?.carModel?.color} </p>
           </div>
         )}
         {car?.carModel?.fuelType != 0 && (
           <div className="flex justify-between border-b border-text-light-color">
-            <p>FuelType:</p>
+            <p>Brændstoftype:</p>
             <p>{car?.carModel?.fuelType} </p>
           </div>
         )}
         {car?.carModel?.fuelConsumption && (
           <div className="flex justify-between border-b border-text-light-color">
-            <p>Fuel Consumption:</p>
+            <p>Brændstofforbrug:</p>
             <p>{car?.carModel?.fuelConsumption} </p>
           </div>
         )}
         {car?.carModel?.euroStandard ? (
           <div className="flex justify-between border-b border-text-light-color">
-            <p>Euro Standard:</p>
-            <p>Yes </p>
+            <p>Euro-standard:</p>
+            <p>Ja</p>
           </div>
         ) : (
           <div className="flex justify-between border-b border-text-light-color">
-            <p>Euro Standard:</p>
-            <p>No</p>
+            <p>Euro-standard:</p>
+            <p>Nej</p>
           </div>
         )}
         {car?.carModel?.numberPlates && (
           <div className="flex justify-between border-b border-text-light-color">
-            <p>Number Plates:</p>
+            <p>Nummerplader:</p>
             <p>{car?.carModel?.numberPlates} </p>
           </div>
         )}
         {car?.comment && (
           <div className="flex justify-between border-b border-text-light-color">
-            <p>Comment:</p>
+            <p>Kommentar:</p>
             <p>{car?.comment} </p>
           </div>
         )}

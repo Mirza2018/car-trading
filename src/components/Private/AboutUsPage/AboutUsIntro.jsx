@@ -7,76 +7,74 @@ export default function AboutUsIntro() {
       {/* Header */}
       <h1
         style={{ fontSize: "clamp(20px, 3vw + 1rem ,40px)" }}
-        className=" font-bold text-gray-900 "
+        className="font-bold text-gray-900"
       >
-        About Us
+        Om os
       </h1>
 
       {/* Main Content */}
-
       <div className="grid md:grid-cols-2 mt-12 gap-5">
         <h2
           style={{ fontSize: "clamp(18px, 3vw + 1rem ,38px)" }}
-          className=" font-bold text-[#050B20]leading-tight max-w-xl  "
+          className="font-bold text-[#050B20] leading-tight max-w-xl"
         >
-          We Value Our Clients And Want Them To Have A Nice Experience
+          Vi værdsætter vores kunder og ønsker, at de får en god oplevelse
         </h2>
 
         <p className="text-[#050B20] leading-relaxed text-[15px] mx-2">
-          At Car Trading, our clients are at the heart of everything we do. We
-          are committed to ensuring they have a seamless and enjoyable
-          experience at every step of their journey with us. From personalized
-          attention to exceptional service, we strive to exceed expectations and
-          create lasting impressions. Your satisfaction and comfort are our top
-          priorities, and we work tirelessly to deliver solutions that meet your
-          unique needs. With Car Trading, you&apos;re not just a client;
-          you&apos;re part of our community. Let us make your experience
-          extraordinary.
+          Hos Car Trading er vores kunder i centrum for alt, hvad vi gør. Vi er
+          forpligtede til at sikre, at de får en problemfri og behagelig
+          oplevelse gennem hele rejsen med os. Fra personlig opmærksomhed til
+          enestående service stræber vi efter at overgå forventningerne og skabe
+          varige indtryk. Din tilfredshed og komfort er vores højeste prioritet,
+          og vi arbejder utrætteligt for at levere løsninger, der opfylder dine
+          unikke behov. Hos Car Trading er du ikke bare en kunde; du er en del
+          af vores fællesskab. Lad os gøre din oplevelse ekstraordinær.
         </p>
       </div>
 
-      <div class="grid md:grid-cols-10 grid-cols-3 gap-4 my-14">
-        {/* <!-- First Column for the text "45 Years in Business" --> */}
-        <div class="md:col-span-2 sm:col-span-1 col-span-3 grid grid-rows-2   gap-4">
+      <div className="grid md:grid-cols-10 grid-cols-3 gap-4 my-14">
+        {/* First Column for the text "45 Years in Business" */}
+        <div className="md:col-span-2 sm:col-span-1 col-span-3 grid grid-rows-2 gap-4">
           <div className="bg-secondary-color flex justify-center items-center flex-col rounded-xl">
-            <p className="text-5xl font-medium ">45</p>
-            <p className="text-3xl font-bold ">Years in Business</p>
+            <p className="text-5xl font-medium">45</p>
+            <p className="text-3xl font-bold">År i branchen</p>
           </div>
           <Image
             src={AllImages.about1}
-            alt="Handing car keys"
-            class="w-full h-full object-cover  rounded-xl"
+            alt="Overrækkelse af bilnøgler"
+            className="w-full h-full object-cover rounded-xl"
           />
         </div>
 
-        {/* <!-- Second Column for the main image of the man in the showroom --> */}
-        <div class="md:col-span-4 sm:col-span-2 col-span-3">
+        {/* Second Column for the main image of the man in the showroom */}
+        <div className="md:col-span-4 sm:col-span-2 col-span-3">
           <Image
             src={AllImages.about2}
-            alt="Car showroom"
-            class="w-full h-full object-cover  rounded-xl"
+            alt="Biludstilling"
+            className="w-full h-full object-cover rounded-xl"
           />
         </div>
 
-        {/* <!-- Third Column for smaller images --> */}
-        <div class="md:col-span-4  col-span-3 grid grid-rows-3 gap-4">
-          <div class="row-span-2">
+        {/* Third Column for smaller images */}
+        <div className="md:col-span-4 col-span-3 grid grid-rows-3 gap-4">
+          <div className="row-span-2">
             <Image
               src={AllImages.about3}
               alt="Showroom"
-              class="w-full h-full object-cover  rounded-xl"
+              className="w-full h-full object-cover rounded-xl"
             />
           </div>
-          <div class="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-4">
             <Image
               src={AllImages.about4}
-              alt="Handing car keys"
-              class="w-full h-full object-cover  rounded-xl"
+              alt="Overrækkelse af bilnøgler"
+              className="w-full h-full object-cover rounded-xl"
             />
             <Image
               src={AllImages.about5}
-              alt="Handshake"
-              class="w-full h-full object-cover  rounded-xl"
+              alt="Håndtryk"
+              className="w-full h-full object-cover rounded-xl"
             />
           </div>
         </div>

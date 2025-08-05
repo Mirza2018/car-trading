@@ -25,7 +25,7 @@ const ViewDetailsPage = ({
       onOk={() => setOpenResponsive(false)}
       onCancel={() => setOpenResponsive(false)}
       width={1500}
-      footer={[ 
+      footer={[
         <div key="footerButton" className="flex justify-end gap-80">
           {sendOffer && (
             <>
@@ -34,7 +34,7 @@ const ViewDetailsPage = ({
                   style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
                   className="bg-highlight-color text-white  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
                 >
-                  Send Offer
+                  Send tilbud
                 </button>
               </Link>
             </>
@@ -45,7 +45,7 @@ const ViewDetailsPage = ({
             style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
             className="bg-highlight-color text-white  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
           >
-            Close
+            Luk
           </button>
         </div>,
       ]}
@@ -59,10 +59,11 @@ const ViewDetailsPage = ({
             ) : (
               <div className="flex justify-center items-center  h-full">
                 <Image
+                  alt=""
                   src={AllImages.biludenbilleder}
                   width={400}
-                    height={400}
-                    className="aspect-square rounded-md"
+                  height={400}
+                  className="aspect-square rounded-md"
                 />
               </div>
             )}
@@ -73,7 +74,7 @@ const ViewDetailsPage = ({
             <div className="flex flex-wrap gap-4 justify-between items-center">
               <div className="flex  justify-start items-center  font-bold text-base">
                 {/* <IoMdLink className="rotate-90" /> */}
-                Listed:<p> {date}</p>
+                Opført:<p> {date}</p>
               </div>
             </div>
             {/* Middel part car All Details */}

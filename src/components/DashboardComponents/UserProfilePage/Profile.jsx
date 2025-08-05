@@ -183,7 +183,7 @@ const Profile = () => {
                 onClick={showModal}
                 className="text-black border border-secondary-color hover:bg-green-600 hover:text-white hover:border-none transition-all rounded-md md:px-6 px-2 md:py-4 py-2 text-lg font-medium "
               >
-                Change Password
+                Skift adgangskode
               </p>
             </div>
           </div>
@@ -196,7 +196,7 @@ const Profile = () => {
           <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-5">
             <div>
               <Typography.Title level={5} style={{ color: "#222222" }}>
-                First Name
+                Fornavn
               </Typography.Title>
               <Form.Item name="first_name" className="text-white">
                 <Input
@@ -208,7 +208,7 @@ const Profile = () => {
             </div>
             <div>
               <Typography.Title level={5} style={{ color: "#222222" }}>
-                Last Name
+                Efternavn
               </Typography.Title>
               <Form.Item name="last_name" className="text-white">
                 <Input
@@ -220,7 +220,7 @@ const Profile = () => {
             </div>
             <div>
               <Typography.Title level={5} style={{ color: "#222222" }}>
-                Phone Number
+                Telefonnummer
               </Typography.Title>
               <Form.Item name="phoneNumber" className="text-white">
                 <Input
@@ -309,7 +309,7 @@ const Profile = () => {
             <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-5">
               <div>
                 <Typography.Title level={5} style={{ color: "#222222" }}>
-                  Company Name
+                  Firmanavn
                 </Typography.Title>
                 <Form.Item name="companyName" className="text-white">
                   <Input
@@ -321,7 +321,7 @@ const Profile = () => {
               </div>
               <div>
                 <Typography.Title level={5} style={{ color: "#222222" }}>
-                  CVR Number
+                  CVR-nummer
                 </Typography.Title>
                 <Form.Item name="cvrNumber" className="text-white">
                   <Input
@@ -334,7 +334,7 @@ const Profile = () => {
 
               <div>
                 <Typography.Title level={5} style={{ color: "#222222" }}>
-                  Website Link
+                  Link til hjemmeside
                 </Typography.Title>
                 <Form.Item name="websiteLink" className="text-white">
                   <Input
@@ -378,7 +378,7 @@ const Profile = () => {
                     </Upload>
                   </Form.Item>
                 </div>
-                <p>Change the company logo</p>
+                <p>Skift firmalogo</p>
               </div>
             </div>
           )}
@@ -386,7 +386,7 @@ const Profile = () => {
 
         <div className="flex justify-end items-end gap-3 mt-10">
           <button className="text-secondary-color border border-secondary-color hover:bg-highlight-color hover:text-white hover:border-none transition-all rounded-md px-6 py-4 text-lg font-medium ">
-            Save Changes
+            Gem ændringer
           </button>
         </div>
       </Form>

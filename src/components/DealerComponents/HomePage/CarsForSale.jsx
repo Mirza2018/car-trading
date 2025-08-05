@@ -68,7 +68,7 @@ const CarsForSale = ({
           >
             <div className="flex gap-6 justify-start items-center ">
               {/* Icons */}
-              <div className="w-44 " >
+              <div className="w-44 ">
                 {car?.carModel?.images[0] ? (
                   <Image
                     src={getImageUrl() + car?.carModel?.images[0]}
@@ -181,7 +181,7 @@ const CarsForSale = ({
                   className=""
                 />
                 <p className="text-sm font-normal text-text-light-color">
-                  Current Bids:{car?.totalBidCount}
+                  Nuværende bud:{car?.totalBidCount}
                   {/* {console.log(car)} */}
                 </p>
               </div>
@@ -195,14 +195,14 @@ const CarsForSale = ({
                     {car?.maxBidAmount} .kr
                   </h1>
                   <p className=" text-center text-sm">
-                    Maximum price <br /> achieved
+                    Maksimal pris <br /> Opnået
                   </p>
                 </div>
               ) : (
                 <div className="bg-base-color border border-secondary-color rounded-full aspect-square flex flex-col justify-center items-center px-2">
                   <p className=" text-center text-sm p-4">
-                    No bids
-                    <br /> achieved
+                    Ingen bud
+                    <br /> Opnået
                   </p>
                 </div>
               )}
@@ -224,8 +224,8 @@ const CarsForSale = ({
                   style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
                   className="bg-base-color text-black border border-secondary-color  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap md:w-44 w-36"
                 >
-                  View Details
-                </button> 
+                  Se detaljer
+                </button>
                 <ViewDetailsPage
                   openResponsive={openResponsive}
                   setOpenResponsive={setOpenResponsive}
@@ -248,9 +248,6 @@ const CarsForSale = ({
                   </button>
                 </Link>
               </div>
-
-
-
             </div>
           </div>
         ))}

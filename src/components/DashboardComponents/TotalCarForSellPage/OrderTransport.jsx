@@ -235,10 +235,10 @@ const OrderTransport = () => {
         </div>
       </section>
       <div className="p-5">
-        <h1 className="text-2xl font-medium mb-2">Transport Company</h1>
+        <h1 className="text-2xl font-medium mb-2">Transportfirma</h1>
 
         <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
-          <p className="ps-2">Company Name</p>
+          <p className="ps-2">Firmanavn</p>
           <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
             {orderTransPortData?.data?.companyName}
           </p>
@@ -277,7 +277,7 @@ const OrderTransport = () => {
           </p>
         </div>
         <div className="grid grid-cols-2 bg-base-color border-x font-medium border-y border-secondary-color leading-10">
-          <p className="ps-2">Contact Person</p>
+          <p className="ps-2">Kontaktperson</p>
           <p className="overflow-x-scroll  hide-x-scrollbar border-s border-secondary-color ps-2">
             {orderTransPortData?.data?.contactPerson}
           </p>
@@ -285,7 +285,7 @@ const OrderTransport = () => {
       </div>
       <Form name="basic" onFinish={onFinish}>
         <div className="p-10">
-          <h1 className="text-2xl font-medium mb-2">Comment Box</h1>
+          <h1 className="text-2xl font-medium mb-2">Kommentarfelt</h1>
 
           {/* <Form.Item
               initialValue={userData?.data?.profile?.address}
@@ -329,13 +329,13 @@ const OrderTransport = () => {
             onClick={() => navigate.push("/dashboard/total-dealer-car-sell")}
             className="bg-highlight-color font-medium cursor-pointer text-white rounded-2xl px-12 py-5 text-2xl "
           >
-            Cancel Transport
+            Annuller transport
           </p>
           <button
             type="submit"
             className="bg-highlight-color whitespace-nowrap  font-medium text-white rounded-2xl px-14 py-5 text-2xl "
           >
-            Confim & Arrange Transport
+            Bekræft og arranger transport
           </button>
         </div>
       </Form>

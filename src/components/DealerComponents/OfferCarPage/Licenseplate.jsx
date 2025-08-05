@@ -6,7 +6,7 @@ import {
   setCarLicenseInfo,
 } from "@/redux/slices/carInfoSlice";
 import { Checkbox, Form, Input, InputNumber, Select, Upload } from "antd";
-import { useForm } from "antd/es/form/Form";
+import { useForm } from "antd/es/form/Form"; 
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -163,7 +163,7 @@ const Licenseplate = ({ offerCar }) => {
   return (
     <div className="">
       <div className="mb-3 ">
-        <p className="font-bold text-2xl pb-2">Lisense plate Number</p>
+        <p className="font-bold text-2xl pb-2">Nummerpladenummer</p>
         <Input
           ref={inputRef}
           placeholder="Enter license plate"
@@ -173,7 +173,7 @@ const Licenseplate = ({ offerCar }) => {
               onClick={handleEditClick}
               className="bg-highlight-color font-semibold text-white rounded py-2 px-4 cursor-pointer"
             >
-              Search
+              Søg
             </div>
           }
           prefix={
@@ -227,7 +227,7 @@ const Licenseplate = ({ offerCar }) => {
 
         <div className="grid sm:grid-cols-2 gap-5">
           <Form.Item
-            label={<span className="font-bold text-2xl">Category</span>}
+            label={<span className="font-bold text-2xl">Kategori</span>}
             name="carCategory"
             rules={[
               {
@@ -239,11 +239,11 @@ const Licenseplate = ({ offerCar }) => {
             <Select
               className="! "
               placeholder={
-                <span className="text-black ">Private car or company car</span>
+                <span className="text-black ">Privat bil eller firmabil</span>
               }
             >
-              <Select.Option value="Private Car">Private Car</Select.Option>
-              <Select.Option value="Company Car">Company Car</Select.Option>
+              <Select.Option value="Private Car">Privat bil</Select.Option>
+              <Select.Option value="Company Car">Firmabil</Select.Option>
             </Select>
           </Form.Item>
           <Form.Item
@@ -254,12 +254,12 @@ const Licenseplate = ({ offerCar }) => {
               },
             ]}
             className="flex-1"
-            label={<span className="font-bold text-2xl">Condition</span>}
+            label={<span className="font-bold text-2xl">Tilstand</span>}
             name="carCondition"
           >
-            <Select placeholder={<span className="text-black ">New/used</span>}>
-              <Select.Option value="new">New</Select.Option>
-              <Select.Option value="used">Used</Select.Option>
+            <Select placeholder={<span className="text-black ">Ny/brugt</span>}>
+              <Select.Option value="new">Ny</Select.Option>
+              <Select.Option value="used">Brugt</Select.Option>
             </Select>
           </Form.Item>
         </div>
@@ -286,7 +286,7 @@ const Licenseplate = ({ offerCar }) => {
                 message: "Please Input Models Year",
               },
             ]}
-            label={<span className="font-bold text-2xl">Models Year</span>}
+            label={<span className="font-bold text-2xl">Modelår</span>}
             name="modelsYear"
             className="flex-1"
           >
@@ -299,7 +299,7 @@ const Licenseplate = ({ offerCar }) => {
                 message: "Please Input price",
               },
             ]}
-            label={<span className="font-bold text-2xl">Price</span>}
+            label={<span className="font-bold text-2xl">Pris</span>}
             name="cashPrice"
             className="flex-1"
           >
@@ -315,7 +315,7 @@ const Licenseplate = ({ offerCar }) => {
                 message: "Please Select Price type",
               },
             ]}
-            label={<span className="font-bold text-2xl">Price type</span>}
+            label={<span className="font-bold text-2xl">Pristype</span>}
             name="priceType"
             className="flex-1"
           >
@@ -328,16 +328,16 @@ const Licenseplate = ({ offerCar }) => {
                 }}
               >
                 <Checkbox value="Cash Price" style={{ lineHeight: "32px" }}>
-                  Cash price
+                  Kontantpris
                 </Checkbox>
                 <Checkbox
                   value="Cars Without Tax"
                   style={{ lineHeight: "32px" }}
                 >
-                  Cars without tax
+                  Biler uden afgift
                 </Checkbox>
                 <Checkbox value="Wholesale CVR" style={{ lineHeight: "32px" }}>
-                  Wholesale/CVR
+                  Engros/CVR
                 </Checkbox>
               </div>
             </Checkbox.Group>
@@ -349,7 +349,7 @@ const Licenseplate = ({ offerCar }) => {
                 message: "Please Select Gear type",
               },
             ]}
-            label={<span className="font-bold text-2xl">Gear type</span>}
+            label={<span className="font-bold text-2xl">Geartype</span>}
             name="gearType"
             className="flex-1"
           >
@@ -389,7 +389,7 @@ const Licenseplate = ({ offerCar }) => {
                 message: "Please Input Driven km",
               },
             ]}
-            label={<span className="font-bold text-2xl">Driven km</span>}
+            label={<span className="font-bold text-2xl">Kørte km</span>}
             name="DrivenKm"
             className="flex-1"
           >
@@ -402,12 +402,12 @@ const Licenseplate = ({ offerCar }) => {
                 message: "Please Choose Car Color",
               },
             ]}
-            label={<span className="font-bold text-2xl">Color</span>}
+            label={<span className="font-bold text-2xl">Farve</span>}
             name="color"
             className="flex-1"
           >
             <Select
-              placeholder={<span className="">Choose Color</span>}
+              placeholder={<span className="">Vælg farve</span>}
               className=" !bg-base-color"
               showSearch
               mode=""
@@ -422,7 +422,7 @@ const Licenseplate = ({ offerCar }) => {
           </Form.Item>
         </div>
         <Form.Item
-          label={<span className="font-bold text-2xl">Models</span>}
+          label={<span className="font-bold text-2xl">Modeller</span>}
           name="models"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  xl:grid-cols-5 gap-4 p-4">
@@ -540,7 +540,7 @@ const Licenseplate = ({ offerCar }) => {
                 message: "Please Select Fuel Type",
               },
             ]}
-            label={<span className="font-bold text-2xl">Fuel</span>}
+            label={<span className="font-bold text-2xl">Brændstof</span>}
             name="fuel"
             className="flex-1"
           >
@@ -613,7 +613,7 @@ const Licenseplate = ({ offerCar }) => {
           </Form.Item>
 
           <div>
-            <h1 className="text-2xl font-bold mb-2">Upload Image</h1>
+            <h1 className="text-2xl font-bold mb-2">Upload billede</h1>
             <Form.Item
               // rules={[
               //   {
@@ -642,9 +642,9 @@ const Licenseplate = ({ offerCar }) => {
                   />
                 </p>
                 <p className="ant-upload-text">
-                  Drag and drop up to 10 images here
+                  Træk og slip op til 10 billeder her
                 </p>
-                <p className="ant-upload-text">or click to upload.</p>
+                <p className="ant-upload-text">eller klik for at uploade.</p>
               </Upload.Dragger>
             </Form.Item>
           </div>
@@ -656,7 +656,7 @@ const Licenseplate = ({ offerCar }) => {
             className="bg-highlight-color text-white py-3 md:px-32 px-3 rounded-md text-center my-10 font-medium whitespace-nowrap"
             htmlType="submit"
           >
-            Offer Send
+            Tilbud sendt
           </button>
         </div>
       </Form>
@@ -666,87 +666,6 @@ const Licenseplate = ({ offerCar }) => {
 
 export default Licenseplate;
 
-const carBrands = [
-  { label: "Acura", value: "Acura" },
-  { label: "Alfa Romeo", value: "Alfa Romeo" },
-  { label: "Aston Martin", value: "Aston Martin" },
-  { label: "Audi", value: "Audi" },
-  { label: "Bentley", value: "Bentley" },
-  { label: "BMW", value: "BMW" },
-  { label: "Buick", value: "Buick" },
-  { label: "Cadillac", value: "Cadillac" },
-  { label: "Chevrolet", value: "Chevrolet" },
-  { label: "Chrysler", value: "Chrysler" },
-  { label: "Citroën", value: "Citroën" },
-  { label: "Dacia", value: "Dacia" },
-  { label: "Daewoo", value: "Daewoo" },
-  { label: "Datsun", value: "Datsun" },
-  { label: "Dodge", value: "Dodge" },
-  { label: "Ferrari", value: "Ferrari" },
-  { label: "Fiat", value: "Fiat" },
-  { label: "Ford", value: "Ford" },
-  { label: "GMC", value: "GMC" },
-  { label: "Genesis", value: "Genesis" },
-  { label: "Honda", value: "Honda" },
-  { label: "Hummer", value: "Hummer" },
-  { label: "Hyundai", value: "Hyundai" },
-  { label: "Infiniti", value: "Infiniti" },
-  { label: "Isuzu", value: "Isuzu" },
-  { label: "Jaguar", value: "Jaguar" },
-  { label: "Jeep", value: "Jeep" },
-  { label: "Kia", value: "Kia" },
-  { label: "Lamborghini", value: "Lamborghini" },
-  { label: "Land Rover", value: "Land Rover" },
-  { label: "Lexus", value: "Lexus" },
-  { label: "Lincoln", value: "Lincoln" },
-  { label: "Lotus", value: "Lotus" },
-  { label: "Maserati", value: "Maserati" },
-  { label: "Mazda", value: "Mazda" },
-  { label: "McLaren", value: "McLaren" },
-  { label: "Mercedes-Benz", value: "Mercedes-Benz" },
-  { label: "Mini", value: "Mini" },
-  { label: "Mitsubishi", value: "Mitsubishi" },
-  { label: "Nissan", value: "Nissan" },
-  { label: "Pagani", value: "Pagani" },
-  { label: "Peugeot", value: "Peugeot" },
-  { label: "Porsche", value: "Porsche" },
-  { label: "Ram", value: "Ram" },
-  { label: "Renault", value: "Renault" },
-  { label: "Rolls-Royce", value: "Rolls-Royce" },
-  { label: "Saab", value: "Saab" },
-  { label: "Scion", value: "Scion" },
-  { label: "Smart", value: "Smart" },
-  { label: "Subaru", value: "Subaru" },
-  { label: "Suzuki", value: "Suzuki" },
-  { label: "Tesla", value: "Tesla" },
-  { label: "Toyota", value: "Toyota" },
-  { label: "Volkswagen (VW)", value: "Volkswagen (VW)" },
-  { label: "Volvo", value: "Volvo" },
-  { label: "Zenvo (dansk hyperbil)", value: "Zenvo" },
-  { label: "Hydrema (dansk arbejdskøretøj)", value: "Hydrema" },
-  { label: "Bugatti", value: "Bugatti" },
-  { label: "BYD", value: "BYD" },
-  { label: "Chery", value: "Chery" },
-  { label: "Koenigsegg", value: "Koenigsegg" },
-  { label: "Lada", value: "Lada" },
-  { label: "Lucid", value: "Lucid" },
-  { label: "MG", value: "MG" },
-  { label: "Pininfarina", value: "Pininfarina" },
-  { label: "Polestar", value: "Polestar" },
-  { label: "Rivian", value: "Rivian" },
-  { label: "SsangYong", value: "SsangYong" },
-  { label: "Proton (malaysisk mærke)", value: "Proton" },
-  { label: "Hindustan Motors (indisk mærke)", value: "Hindustan Motors" },
-  { label: "Tata Motors (indisk mærke)", value: "Tata Motors" },
-  { label: "Mahindra (indisk mærke)", value: "Mahindra" },
-  { label: "Geely (kinesisk mærke)", value: "Geely" },
-  { label: "NIO (kinesisk elbil)", value: "NIO" },
-  { label: "XPeng (kinesisk elbil)", value: "XPeng" },
-  { label: "Li Auto (kinesisk elbil)", value: "Li Auto" },
-  { label: "Spyker (hollandsk nichemærke)", value: "Spyker" },
-  { label: "Rimac (kroatisk el-hyperbil)", value: "Rimac" },
-  { label: "VinFast (vietnamesisk mærke)", value: "VinFast" },
-];
 
 const rawColors = [
   { label: "Alle", value: "Alle", colorCode: "#" },

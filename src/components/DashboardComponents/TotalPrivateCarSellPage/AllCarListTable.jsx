@@ -11,13 +11,13 @@ const AllCarListTable = ({
 }) => {
   const columns = [
     {
-      title: "Brand Name",
+      title: "Mærkenavn",
       dataIndex: "carModel",
       key: "carModel",
       render: (text) => <p>{text?.brand}</p>,
     },
     {
-      title: "Model Name",
+      title: "Modelnavn",
       dataIndex: "carModel",
       key: "carModel",
       render: (text) => <p>{text?.model}</p>,
@@ -29,7 +29,7 @@ const AllCarListTable = ({
     //   key: "address",
     // },
     {
-      title: "Color",
+      title: "Farve",
       dataIndex: "carModel",
       key: "carModel",
       render: (text) => (
@@ -40,7 +40,7 @@ const AllCarListTable = ({
       ),
     },
     {
-      title: "Price",
+      title: "Pris",
       dataIndex: "expectedPrice",
       sorter: (a, b) => a.expectedPrice - b.expectedPrice,
       render: (text) => (
@@ -62,7 +62,7 @@ const AllCarListTable = ({
               className="border-[#00721E] hover:border-[#34df61]"
             >
               {/* <GoEye style={{ fontSize: "24px" }} /> */}
-              See Details
+              Se detaljer
             </Button>
           </Tooltip>
         </Space>

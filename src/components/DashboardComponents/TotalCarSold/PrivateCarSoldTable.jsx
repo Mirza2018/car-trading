@@ -10,9 +10,8 @@ const PrivateCarSoldTable = ({
   onPageChange,
 }) => {
   const columns = [
-
     {
-      title: "Dealer Name",
+      title: "Forhandlerens navn",
       dataIndex: "profile",
       key: "profile",
       render: (text) => (
@@ -22,7 +21,7 @@ const PrivateCarSoldTable = ({
       ),
     },
     {
-      title: "Brand Name",
+      title: "Mærkenavn",
       dataIndex: "carModel",
       key: "carModel",
       render: (text) => <p>{text?.brand}</p>,
@@ -47,13 +46,13 @@ const PrivateCarSoldTable = ({
     //   key: "address",
     // },
     {
-      title: "Color",
+      title: "Farve",
       dataIndex: "carModel",
       key: "carModel",
       render: (text) => <p>{text?.color}</p>,
     },
     {
-      title: "Price",
+      title: "Pris",
       dataIndex: "car",
       sorter: (a, b) => a.car.expectedPrice - b.car.expectedPrice,
       render: (text) => (
@@ -88,14 +87,14 @@ const PrivateCarSoldTable = ({
               onClick={() => showViewServiceUserModal(record)}
               className="!border-[#00721E] !text-black"
             >
-              See Details
+              Se detaljer
             </Button>
           </Tooltip>
         </Space>
       ),
     },
     {
-      title: "Action",
+      title: "Handling",
       key: "action",
       render: (_, record) => (
         <Space size="middle">
@@ -107,19 +106,19 @@ const PrivateCarSoldTable = ({
               {!record?.signatureAsDealer && !record?.signatureAsOwner && (
                 <Button className={`  !text-white !bg-secondary-color`}>
                   {" "}
-                  <p>Make your contract</p>{" "}
+                  <p>Opret din kontrakt</p>{" "}
                 </Button>
               )}
               {record?.signatureAsDealer && !record?.signatureAsOwner && (
                 <Button className={`  !text-white !bg-highlight-color !px-5`}>
                   {" "}
-                  <p>Pending contract</p>{" "}
+                  <p>Kontrakt afventes</p>{" "}
                 </Button>
               )}
               {record?.signatureAsDealer && record?.signatureAsOwner && (
                 <Button className={`  !text-white !bg-green-500 !px-7`}>
                   {" "}
-                  <p>Contract Done</p>{" "}
+                  <p>Kontrakt færdig</p>{" "}
                 </Button>
               )}
             </Tooltip>

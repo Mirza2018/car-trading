@@ -101,9 +101,9 @@ const SignIn = () => {
                   className="h-[60px] w-[245px] mx-auto"
                 />
               </div>
-              <h1 className="text-4xl font-semibold mb-4 ">Log in</h1>
+              <h1 className="text-4xl font-semibold mb-4 ">Log ind</h1>
               <p className="text-base font-normal  mb-2 text-[#1E1E1E] ">
-                Welcome back! Please enter your details.
+                Velkommen tilbage! Indtast dine oplysninger.
               </p>
             </div>
           </div>
@@ -115,7 +115,7 @@ const SignIn = () => {
             onFinish={onFinish}
           >
             <Typography.Title level={4} style={{ color: "#222222" }}>
-              Email
+              E-mail
             </Typography.Title>
             <Form.Item
               name="email"
@@ -134,7 +134,7 @@ const SignIn = () => {
               />
             </Form.Item>
             <Typography.Title level={4} style={{ color: "#222222" }}>
-              Password
+              Adgangskode
             </Typography.Title>
             <Form.Item
               rules={[
@@ -172,9 +172,9 @@ const SignIn = () => {
               </Select>
             </Form.Item> */}
             <div className="flex justify-between items-center mt-10">
-              <Checkbox className="">Remember me</Checkbox>
+              <Checkbox className="">Husk mig</Checkbox>
               <Link href="/forgot-password" className="!text-[#1E1E1E] ">
-                Forgot Password?
+                Glemt adgangskode?
               </Link>
             </div>
 
@@ -184,14 +184,14 @@ const SignIn = () => {
                 className="w-full py-6 border border-[#FF991C] hover:border-input-colortext-xl  bg-[#FF991C] hover:!bg-[#FF991C] font-semibold rounded-2xl mt-8 "
                 htmlType="submit"
               >
-                Sign In
+                Log ind
               </Button>
             </Form.Item>
           </Form>
           <div className=" mb-5 flex justify-center items-center gap-2">
-            <p>Don’t have an account?</p>
+            <p>Har du ikke en konto?</p>
             <Link className="text-[#FF991C] font-bold text-lg" href="sign-up">
-              Sign up
+              Tilmeld dig
             </Link>
           </div>
         </div>

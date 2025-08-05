@@ -27,7 +27,7 @@ const TotalCarSell = ({
   return (
     <div className="">
       <h1 className="xl:text-[40px] text-3xl   font-semibold text-center">
-        Total Car Sell ({displayedData?.data?.pagination?.total})
+        Samlet bilsalg ({displayedData?.data?.pagination?.total})
       </h1>
 
       <div className="flex flex-col gap-3 h-[450px]  mt-3 overflow-scroll overflow-x-hidden scrollbar-hide ">
@@ -78,13 +78,13 @@ const TotalCarSell = ({
                   )}
                 </p>
                 <p className="font-normal text-sm">
-                  Price: {car?.expectedPrice} kr.
+                  Pris: {car?.expectedPrice} kr.
                 </p>
               </div>
               <div className="flex md:flex-col flex-row gap-2 text-end">
                 <Tooltip title="Login as Dealer">
                   <button className="btn border border-base-color rounded px-1 md:px-5 py-1 w-fit whitespace-nowrap cursor-not-allowed">
-                    Buy Now
+                    Køb nu
                   </button>
                 </Tooltip>
                 <Tooltip title="Login as Dealer">
@@ -92,7 +92,7 @@ const TotalCarSell = ({
                     // onClick={() => showModal(car)}
                     className="btn border border-base-color bg-[#E6F3F7] rounded px-1 md:px-2 py-1 w-fit whitespace-nowrap  cursor-not-allowed"
                   >
-                    View Details
+                    Se detaljer
                   </button>
                 </Tooltip>
               </div>{" "}
@@ -130,27 +130,27 @@ const TotalCarSell = ({
 
               {/* Car Details */}
               <div className="space-y-6">
-                <h2 className="text-2xl font-bold">Car Details</h2>
+                <h2 className="text-2xl font-bold">Biloplysninger</h2>
 
                 <div className="space-y-3">
                   <div>
-                    <span className="text-gray-600">Car Owner Name: </span>
+                    <span className="text-gray-600">Bil ejer navn</span>
                     <span className="font-medium">John Doe</span>
                   </div>
 
                   <div>
-                    <span className="text-gray-600">Car Name: </span>
+                    <span className="text-gray-600">Bilnavn: </span>
                     <span className="font-medium">Ranger Black – 2021</span>
                   </div>
 
                   <div>
-                    <span className="text-gray-600">Car Price: </span>
+                    <span className="text-gray-600">Bilpris: </span>
                     <span className="font-medium">$165,000</span>
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="block text-gray-600">Bid Price</label>
+                  <label className="block text-gray-600">Budpris</label>
                   <input
                     type="text"
                     value="$150,000"

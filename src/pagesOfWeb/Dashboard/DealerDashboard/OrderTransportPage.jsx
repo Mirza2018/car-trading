@@ -76,7 +76,7 @@ const OrderTransportPage = () => {
       <div className="bg-secondary-color w-full p-4   rounded-tl-xl rounded-tr-xl ">
         <div className=" w-[95%] mx-auto  flex items-center justify-between">
           <p className="text-3xl text-primary-color font-semibold">
-            Order transport
+            Bestil transport{" "}
           </p>
         </div>
       </div>
@@ -93,7 +93,7 @@ const OrderTransportPage = () => {
         <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-5">
           <Form.Item
             className="block"
-            label="Company Name"
+            label="Firmanavn"
             name="companyName"
             rules={[
               {
@@ -106,7 +106,7 @@ const OrderTransportPage = () => {
           </Form.Item>
           <Form.Item
             className=""
-            label="Address"
+            label="Adresse"
             name="address"
             rules={[
               {
@@ -119,7 +119,7 @@ const OrderTransportPage = () => {
           </Form.Item>
           <Form.Item
             className=""
-            label="Contact Person"
+            label="Kontaktperson"
             name="contactPerson"
             rules={[
               {
@@ -132,7 +132,7 @@ const OrderTransportPage = () => {
           </Form.Item>
           <Form.Item
             className=""
-            label="Phone"
+            label="Telefon"
             name="phone"
             rules={[
               {
@@ -148,7 +148,7 @@ const OrderTransportPage = () => {
         <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-5">
           <Form.Item
             className="flex-1"
-            label="Postnr."
+            label="Postnummer."
             name="zip"
             rules={[
               {
@@ -190,7 +190,7 @@ const OrderTransportPage = () => {
         </div>
         <Form.Item
           className="flex-1"
-          label="Email"
+          label="E-mail"
           name="email"
           rules={[
             {
@@ -207,7 +207,7 @@ const OrderTransportPage = () => {
             className="bg-highlight-color text-white font-medium text-xl px-3 py-2 rounded-md"
             htmlType="submit"
           >
-            Register
+            Registrer
           </button>
         </Form.Item>
       </Form>

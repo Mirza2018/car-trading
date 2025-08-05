@@ -132,9 +132,9 @@ const OtpPage = () => {
                   className="w-full object-cover rounded-xl aspect-square"
                 />
               </div>
-              <h1 className="text-4xl font-semibold mb-4">Enter your code</h1>
+              <h1 className="text-4xl font-semibold mb-4">Indtast din kode</h1>
               <p className="text-base font-normal  mb-2 text-[#1E1E1E] ">
-                We sent a code your email address.
+                Vi sendte en kode til din e-mailadresse.
               </p>
             </div>
 
@@ -152,12 +152,12 @@ const OtpPage = () => {
                 </div>
               </Form.Item>
               <div className="flex justify-between py-1">
-                <p>Didn’t receive code?</p>
+                <p>Modtog du ikke en kode?</p>
                 <p
                   onClick={handleResendOtp}
                   className="!text-[#F5382C] !underline font-semibold cursor-pointer"
                 >
-                  Resend
+                  Send igen
                 </p>
               </div>
 
@@ -167,7 +167,7 @@ const OtpPage = () => {
                   type="primary"
                   className="w-full py-6 border border-[#FF991C] hover:border-input-colortext-xl text-white bg-[#FF991C] hover:!bg-[#FF991C] font-semibold rounded-2xl mt-8"
                 >
-                  Get OTP
+                  Få engangskode (OTP)
                 </Button>
               </Form.Item>
             </Form>

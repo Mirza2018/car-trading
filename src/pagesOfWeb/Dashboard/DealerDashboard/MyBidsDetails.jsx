@@ -21,7 +21,7 @@ const MyBidsDetails = () => {
   const displayedData = data ?? currentData;
   const meta = displayedData?.data?.pagination;
 
-  console.log(data);
+
   if (isLoading)
     return <Spin className="flex justify-center items-center" size="large" />;
   if (!isLoading && isFetching)
@@ -35,7 +35,7 @@ const MyBidsDetails = () => {
         <div className="bg-secondary-color w-full p-4   rounded-tl-xl rounded-tr-xl">
           <div className=" w-[95%] mx-auto  flex items-center justify-between">
             <p className="text-3xl text-primary-color font-semibold">
-              My Bid Details
+              Mine buddetaljer
             </p>
             <div className="flex gap-4 items-center"></div>
           </div>
@@ -50,11 +50,13 @@ const MyBidsDetails = () => {
               >
                 <div className="flex gap-7 flex-col">
                   <h1 className="text-lg font-semibold">
-                    Car: {bids?.carName}
+                    Bil: {bids?.carName}
                   </h1>
                   <div className="text-lg font-semibold">
-                            Status:
-                            <button  className="!bg-green-600 px-10 py-2 ">{bids.status}</button>
+                    Status:
+                    <button className="!bg-green-600 px-10 py-2 ">
+                      {bids.status}
+                    </button>
                   </div>
                 </div>
               </div>
@@ -62,7 +64,7 @@ const MyBidsDetails = () => {
           </>
         ) : (
           <div className="flex justify-center items-center text-2xl font-medium mt-10">
-            No Bids available right now
+            Ingen bud tilgængelige lige nu
           </div>
         )}
 

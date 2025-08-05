@@ -72,9 +72,12 @@ const ChangePassword = () => {
                 className="h-[60px] w-[245px] mx-auto"
               />
             </div>
-            <h1 className="text-4xl font-semibold mb-4">Set new password</h1>
+            <h1 className="text-4xl font-semibold mb-4">
+              Indstil ny adgangskode
+            </h1>
             <p className="text-base font-normal  mb-2 text-[#1E1E1E] ">
-              Your new password must be different to previously used passwords.
+              Din nye adgangskode skal være forskellig fra tidligere anvendte
+              adgangskoder.
             </p>
           </div>
         </div>
@@ -85,7 +88,7 @@ const ChangePassword = () => {
           onFinish={onFinish}
         >
           <Typography.Title level={4} style={{ color: "#222222" }}>
-            Password
+            Adgangskode
           </Typography.Title>
           <Form.Item
             rules={[
@@ -103,7 +106,7 @@ const ChangePassword = () => {
             />
           </Form.Item>
           <Typography.Title level={4} style={{ color: "#222222" }}>
-            Confirm Password
+            Bekræft adgangskode
           </Typography.Title>
           <Form.Item
             name="confirmPassword"
@@ -139,7 +142,7 @@ const ChangePassword = () => {
               className="w-full py-6 border border-[#FF991C] hover:border-input-colortext-xl text-white bg-[#FF991C] hover:!bg-[#FF991C] font-semibold rounded-2xl mt-8"
               htmlType="submit"
             >
-              Change password
+             Skift adgangskode
             </Button>
           </Form.Item>
         </Form>

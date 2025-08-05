@@ -8,13 +8,13 @@ const BrandnViewTableDetails = ({ car }) => {
       {/* <pre>{ JSON.stringify(car,null,2)}</pre> */}
       {car?.carCategory && (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Car Category:</p>
+          <p>Bilkategori:</p>
           <p>{car?.carCategory}</p>
         </div>
       )}
       {car?.mark && (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Mark:</p>
+          <p>Mærke:</p>
           <p>{car?.mark}</p>
         </div>
       )}
@@ -26,13 +26,13 @@ const BrandnViewTableDetails = ({ car }) => {
       )}
       {car?.cashPrice && (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Cash Price:</p>
+          <p>Kontantpris:</p>
           <p>{car?.cashPrice} DKK</p>
         </div>
       )}
       {car?.priceType && (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>priceType</p>
+          <p>Pristype</p>
           {car?.priceType.map((p, index) => (
             <p key={index}>{p}</p>
           ))}
@@ -40,20 +40,20 @@ const BrandnViewTableDetails = ({ car }) => {
       )}
       {car?.carCondition && (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Car Condition:</p>
+          <p>Bilens tilstand:</p>
           <p>{car?.carCondition} </p>
         </div>
       )}
       {car?.models && (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Models:</p>
+          <p>Modeller:</p>
           <p>{car?.models} </p>
         </div>
       )}
 
       {car?.fuel && car?.fuel.length > 0 ? (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Fuel:</p>
+          <p>Brændstof:</p>
           <p>
             {car.fuel.map((p, index) => (
               <span key={index}>
@@ -67,7 +67,7 @@ const BrandnViewTableDetails = ({ car }) => {
 
       {car?.gearType && car?.gearType.length > 0 ? (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>GearType:</p>
+          <p>Gearingstype:</p>
           <p>
             {car.gearType.map((p, index) => (
               <span key={index}>
@@ -81,13 +81,13 @@ const BrandnViewTableDetails = ({ car }) => {
 
       {car?.models && (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Models:</p>
+          <p>Modeller:</p>
           <p>{car?.models} </p>
         </div>
       )}
       {car?.drivenKmTo > 0 && (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Driven Km:</p>
+          <p>Kørte kilometer:</p>
           <p>
             {car?.drivenKmFrom}-{car?.drivenKmTo} Km:
           </p>
@@ -95,7 +95,7 @@ const BrandnViewTableDetails = ({ car }) => {
       )}
       {car?.modelsFrom > 0 && (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Models Year:</p>
+          <p>Modelår:</p>
           <p>
             {car?.modelsFrom}-{car?.modelsTo}{" "}
           </p>
@@ -104,7 +104,7 @@ const BrandnViewTableDetails = ({ car }) => {
 
       {car?.color && car?.color.length > 0 ? (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Color:</p>
+          <p>Farve:</p>
           <p>
             {car.color.map((p, index) => (
               <span key={index}>
@@ -118,14 +118,14 @@ const BrandnViewTableDetails = ({ car }) => {
 
       {car?.trailerHitch && (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>TrailerHitch:</p>
+          <p>Trailertræk:</p>
           <p>{car?.trailerHitch} </p>
         </div>
       )}
       {console.log(car?.color)}
       {car?.exterior && car?.exterior.length > 0 ? (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Exterior:</p>
+          <p>Udvendig:</p>
           <p>
             {car.exterior.map((p, index) => (
               <span key={index}>
@@ -138,7 +138,7 @@ const BrandnViewTableDetails = ({ car }) => {
       ) : null}
       {car?.interior && car?.interior.length > 0 ? (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Interior:</p>
+          <p>Indvendig:</p>
           <p>
             {car.interior.map((p, index) => (
               <span key={index}>
@@ -152,25 +152,25 @@ const BrandnViewTableDetails = ({ car }) => {
 
       {car?.companyName && (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Company Name :</p>
+          <p>Firmanavn :</p>
           <p>{car?.companyName}</p>
         </div>
       )}
       {car?.cvrNumber && (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>CVR Number :</p>
+          <p>CVR-nummer:</p>
           <p>{car?.cvrNumber}</p>
         </div>
       )}
       {car?.city && (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>City:</p>
+          <p>By:</p>
           <p>{car?.city.split(",")[0]}</p>
         </div>
       )}
       {car?.postalCode && (
         <div className="flex justify-between border-b border-text-light-color">
-          <p>Postal Code:</p>
+          <p>Postnummer:</p>
           <p>{car?.postalCode} </p>
         </div>
       )}

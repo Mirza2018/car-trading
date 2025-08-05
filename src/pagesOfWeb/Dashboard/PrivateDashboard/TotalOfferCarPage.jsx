@@ -12,7 +12,7 @@ const TotalOfferCarPage = () => {
   const [filters, setFilters] = useState({
     page: 1,
     limit: 8,
-    sort: "-updatedAt",
+    sort: "-updatedAt", 
   }); 
  
   const onPageChange = (page, limit) => {
@@ -83,12 +83,10 @@ const TotalOfferCarPage = () => {
         <div className="bg-secondary-color w-full p-4   rounded-tl-xl rounded-tr-xl">
           <div className=" w-[95%] mx-auto  flex items-center justify-between">
             <p className="text-3xl text-primary-color font-semibold">
-              Car List
+              Bil liste
             </p>
-     
           </div>
         </div>
-       
 
         {/* Table  */}
         <div className="px-10 py-10">

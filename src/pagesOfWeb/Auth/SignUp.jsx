@@ -84,9 +84,7 @@ const SignUp = () => {
                   className="h-[60px] w-[245px] mx-auto"
                 />
               </div>
-              <h1 className="text-4xl font-semibold mb-4 ">
-                Create an account
-              </h1>
+              <h1 className="text-4xl font-semibold mb-4 ">Opret en konto</h1>
               {/* <p className="text-base font-normal  mb-2 text-[#1E1E1E] ">
                 Welcome back! Please enter your details.
               </p> */}
@@ -101,7 +99,7 @@ const SignUp = () => {
             onFinish={onFinish}
           >
             <Typography.Title level={4} style={{ color: "#222222" }}>
-              First Name
+              Fornavn
             </Typography.Title>
             <Form.Item
               name="first_name"
@@ -119,7 +117,7 @@ const SignUp = () => {
               />
             </Form.Item>
             <Typography.Title level={4} style={{ color: "#222222" }}>
-              Last Name
+              Efternavn
             </Typography.Title>
             <Form.Item
               name="last_name"
@@ -138,7 +136,7 @@ const SignUp = () => {
             </Form.Item>
 
             <Typography.Title level={4} style={{ color: "#222222" }}>
-              Email
+              E-mail
             </Typography.Title>
             <Form.Item
               name="email"
@@ -157,7 +155,7 @@ const SignUp = () => {
             </Form.Item>
 
             <Typography.Title level={4} style={{ color: "#222222" }}>
-              Password
+              Adgangskode
             </Typography.Title>
             <Form.Item
               rules={[
@@ -176,7 +174,7 @@ const SignUp = () => {
             </Form.Item>
 
             <Typography.Title level={4} style={{ color: "#222222" }}>
-              Confirm Password
+              Bekræft adgangskode
             </Typography.Title>
             <Form.Item
               name="confirmPassword"
@@ -208,7 +206,7 @@ const SignUp = () => {
             </Form.Item>
 
             <Typography.Title level={4} style={{ color: "#222222" }}>
-              Role
+              Rolle
             </Typography.Title>
             <Form.Item
               rules={[{ required: true }]}
@@ -223,15 +221,17 @@ const SignUp = () => {
                 }
                 className="h-12 text-xl bg-site-color  text-base-color   "
               >
-                <Select.Option value="dealer">Dealer</Select.Option>
-                <Select.Option value="private_user">Private User</Select.Option>
+                <Select.Option value="dealer">Forhandler</Select.Option>
+                <Select.Option value="private_user">
+                  Privat bruger
+                </Select.Option>
               </Select>
             </Form.Item>
 
             {role === "dealer" && (
               <>
                 <Typography.Title level={4} style={{ color: "#222222" }}>
-                  Do you want to use transport?
+                  Vil du bruge transport?
                 </Typography.Title>
                 <Form.Item
                   rules={[{ required: true }]}
@@ -251,7 +251,7 @@ const SignUp = () => {
                 </Form.Item>
 
                 <Typography.Title level={4} style={{ color: "#222222" }}>
-                  Company Name
+                  Firmanavn
                 </Typography.Title>
                 <Form.Item
                   name="companyName"
@@ -269,7 +269,7 @@ const SignUp = () => {
                   />
                 </Form.Item>
                 <Typography.Title level={4} style={{ color: "#222222" }}>
-                  CVR Number
+                  CVR-nummer
                 </Typography.Title>
                 <Form.Item
                   name="cvrNumber"
@@ -293,7 +293,7 @@ const SignUp = () => {
               onChange={(e) => setIsClick(e.target.checked)}
               className=""
             >
-              Agree with terms and policy
+              Accepter vilkår og politik
             </Checkbox>
 
             <Form.Item>
@@ -302,14 +302,14 @@ const SignUp = () => {
                 className="w-full py-6 border border-[#FF991C] hover:border-input-colortext-xl  bg-[#FF991C] hover:!bg-[#FF991C] font-semibold rounded-2xl mt-8 "
                 htmlType="submit"
               >
-                Sign Up
+                Tilmeld dig
               </Button>
             </Form.Item>
           </Form>
           <div className=" mb-5 flex justify-center items-center gap-2">
-            <p>Do you have an account?</p>
+            <p>Har du en konto?</p>
             <Link className="text-[#FF991C] font-bold text-lg" href="sign-in">
-              Sign In
+              Log ind
             </Link>
           </div>
         </div>

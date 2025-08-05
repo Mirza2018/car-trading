@@ -39,8 +39,9 @@ const PrivateLookingForCars = ({
                   {car?.brandImage ? (
                     <React.Fragment>
                       <Image
+                        alt=""
                         shape="square"
-                        className="font-medium object-contain w-40 aspect-square" 
+                        className="font-medium object-contain w-40 aspect-square"
                         width={100}
                         height={100}
                         src={`http://31.97.39.237:8010/${car?.brandImage}`}
@@ -93,7 +94,7 @@ const PrivateLookingForCars = ({
                       style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
                       className="bg-highlight-color text-white  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap w-32"
                     >
-                      Offer Car
+                      Tilbud på bil
                     </button>
 
                     <BrandVIewDetailsPage
@@ -112,7 +113,7 @@ const PrivateLookingForCars = ({
                       style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
                       className="bg-base-color text-black border border-secondary-color  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap w-32"
                     >
-                      View Details
+                      Se detaljer
                     </button>
 
                     <BrandVIewDetailsPage

@@ -51,7 +51,7 @@ const TermsPage = () => {
       <div className="">
         <div className="bg-secondary-color w-full flex items-center p-5 mb-10 rounded-tl-xl rounded-tr-xl">
           <p className="text-2xl text-primary-color font-semibold">
-            Terms & Conditions
+            Vilkår og betingelser
           </p>
         </div>
         <div className="flex justify-center items-center">
@@ -63,14 +63,14 @@ const TermsPage = () => {
 
             {userData?.data?.isTermAccepted ? (
               <Button className=" cursor-not-allowed py-6 border !border-green-500 hover:border-green-500 text-xl !text-primary-color bg-green-500 hover:!bg-green-500 font-semibold rounded-2xl ">
-                Accepted ({userData?.data?.termsDate})
+                Accepteret ({userData?.data?.termsDate})
               </Button>
             ) : (
               <Button
                 onClick={handleOnSave}
                 className=" py-6 border !border-secondary-color hover:border-secondary-color text-xl !text-primary-color bg-secondary-color hover:!bg-secondary-color font-semibold rounded-2xl "
               >
-                Accept
+                Accepter
               </Button>
             )}
           </div>
