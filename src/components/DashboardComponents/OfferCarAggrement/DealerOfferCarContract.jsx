@@ -681,9 +681,24 @@ const DealerOfferCarContract = () => {
 
             <div className="!flex !justify-end !items-end">
               <button className="bg-base-color w-fit px-8 py-2 border border-secondary-color rounded-md text-end h-fit whitespace-nowrap">
-                {isValueIncressed
-                  ? `${carPrice + carPrice * 0.25} .kr`
-                  : `${carPrice} .kr`}
+                {carPrice ? (
+                  <>
+                    {isValueIncressed
+                      ? `${
+                          carPrice +
+                          carPrice * 0.25 -
+                          (displayedData?.advancedPayment +
+                            displayedData?.advancedPayment * 0.25)
+                        } .kr`
+                      : `${carPrice - displayedData?.advancedPayment} .kr`}{" "}
+                  </>
+                ) : (
+                  <>
+                    {isValueIncressed
+                      ? `${carPrice + carPrice * 0.25} .kr`
+                      : `${carPrice} .kr`}
+                  </>
+                )}
               </button>
             </div>
           </section>

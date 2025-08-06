@@ -725,9 +725,26 @@ const ContractPaperPage = () => {
 
                 <div className="!flex !justify-end !items-end">
                   <button className="bg-base-color w-fit px-8 py-2 border border-secondary-color rounded-md text-end h-fit whitespace-nowrap">
-                    {isValueIncressed
-                      ? `${carPrice + carPrice * 0.25} DKK`
-                      : `${carPrice} DKK`}
+                    {carPrice ? (
+                      <>
+                        {isValueIncressed
+                          ? `${
+                              carPrice +
+                              carPrice * 0.25 -
+                              (displayedData?.data?.advancedPayment +
+                                displayedData?.data?.advancedPayment * 0.25)
+                            } Kr.`
+                          : `${
+                              carPrice - displayedData?.data?.advancedPayment
+                            } Kr.`}{" "}
+                      </>
+                    ) : (
+                      <>
+                        {isValueIncressed
+                          ? `${carPrice + carPrice * 0.25} Kr.`
+                          : `${carPrice} Kr.`}
+                      </>
+                    )}
                   </button>
                 </div>
               </section>

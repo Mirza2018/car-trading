@@ -49,7 +49,7 @@ const Sidebar = ({ slider, setSlider }) => {
                         : undefined,
                   }}
                 />
-                <p>Total Purchased Cars</p>
+                <p>I alt købte biler</p>
               </li>
             </Link>
             <Link
@@ -74,7 +74,7 @@ const Sidebar = ({ slider, setSlider }) => {
                         : undefined,
                   }}
                 />
-                <p>Offer Car Aggrement</p>
+                <p>Tilbyd bilaftale</p>
               </li>
             </Link>
             <Link href="/dashboard/my-bids" className="w-full">
@@ -97,7 +97,7 @@ const Sidebar = ({ slider, setSlider }) => {
                         : undefined,
                   }}
                 />
-                <p>Bid Details</p>
+                <p>Budoplysninger</p>
               </li>
             </Link>
             <Link href="/dashboard/order-transport" className="w-full">
@@ -119,7 +119,7 @@ const Sidebar = ({ slider, setSlider }) => {
                         : undefined,
                   }}
                 />
-                Order Transport
+                Bestil transport
               </li>
             </Link>
           </>
@@ -145,7 +145,7 @@ const Sidebar = ({ slider, setSlider }) => {
                         : undefined,
                   }}
                 />
-                <p>Total Car Sell</p>
+                <p>Total antal solgte biler</p>
               </li>
             </Link>
             <Link href="/dashboard/listed-cars" className="w-full">
@@ -168,7 +168,7 @@ const Sidebar = ({ slider, setSlider }) => {
                         : undefined,
                   }}
                 />
-                <p>My Listed Cars</p>
+                <p>Mine annoncerede biler</p>
               </li>
             </Link>
 
@@ -192,7 +192,7 @@ const Sidebar = ({ slider, setSlider }) => {
                         : undefined,
                   }}
                 />
-                <p>Total Car Sold</p>
+                <p>Total solgte biler</p>
               </li>
             </Link>
 
@@ -219,7 +219,7 @@ const Sidebar = ({ slider, setSlider }) => {
                         : undefined,
                   }}
                 />
-                <p>Offer Car Aggrement</p>
+                <p>Tilbyd bilaftale</p>
               </li>
             </Link>
 
@@ -243,7 +243,7 @@ const Sidebar = ({ slider, setSlider }) => {
                         : undefined,
                   }}
                 />
-                <p>Offer car</p>
+                <p>Tilbyd bil</p>
               </li>
             </Link>
             <Link href="/dashboard/bid-car" className="w-full">
@@ -266,7 +266,7 @@ const Sidebar = ({ slider, setSlider }) => {
                         : undefined,
                   }}
                 />
-                <p>Bid Details</p>
+                <p>Budoplysninger</p>
               </li>
             </Link>
           </>
@@ -292,7 +292,7 @@ const Sidebar = ({ slider, setSlider }) => {
                     : undefined,
               }}
             />
-            <p>User Profile</p>
+            <p>Brugerprofil</p>
           </li>
         </Link>
         <Link href="/dashboard/terms" className="w-full">
@@ -315,7 +315,7 @@ const Sidebar = ({ slider, setSlider }) => {
                     : undefined,
               }}
             />
-            Terms & Conditions
+            Vilkår og betingelser
           </li>
         </Link>
         <Link href="/dashboard/privacy" className="w-full">
@@ -338,7 +338,7 @@ const Sidebar = ({ slider, setSlider }) => {
                     : undefined,
               }}
             />
-            Privacy Policy
+            Privatlivspolitik
           </li>
         </Link>
 
@@ -359,7 +359,7 @@ const Sidebar = ({ slider, setSlider }) => {
                 location === "/login" ? "brightness(0) invert(1)" : undefined,
             }}
           />
-          Log Out
+          Log ud
         </li>
       </ul>
     </div>

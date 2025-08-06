@@ -772,9 +772,24 @@ const FinalNode = () => {
 
               <div className="!flex !justify-end !items-end">
                 <button className="bg-base-color w-fit px-8 py-2 border border-secondary-color rounded-md text-end h-fit">
-                  {isValueIncressed
-                    ? `${carPrice + carPrice * 0.25} .kr`
-                    : `${carPrice} .kr`}
+                  {advanceAmount ? (
+                    <>
+                      {" "}
+                      {isValueIncressed
+                        ? `${
+                            carPrice +
+                            carPrice * 0.25 -
+                            (advanceAmount + advanceAmount * 0.25)
+                          } .kr`
+                        : `${carPrice - advanceAmount} .kr`}{" "}
+                    </>
+                  ) : (
+                    <>
+                      {isValueIncressed
+                        ? `${carPrice + carPrice * 0.25} .kr`
+                        : `${carPrice} .kr`}
+                    </>
+                  )}
                 </button>
               </div>
             </section>

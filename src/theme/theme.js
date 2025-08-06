@@ -27,14 +27,13 @@ export const mainTheme = {
       colorBorder: "rgb(173,216,230)",
       colorText: "rgb(0,0,0)",
       colorTextPlaceholder: "rgb(0,0,0)",
+      zIndexPopup: 40,
     },
     Checkbox: {
       colorPrimary: "#F5382C",
       colorPrimaryHover: "#F5382C",
     },
-    Radio: {
-      
-    },
+    Radio: {},
     DatePicker: {
       fontSize: 20,
       colorBorder: "rgb(0, 0, 0,0.5)",

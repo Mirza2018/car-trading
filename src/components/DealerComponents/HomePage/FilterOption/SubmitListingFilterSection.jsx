@@ -13,7 +13,7 @@ const SubmitListingFilterSection = ({ onFinishPrivate }) => {
             <Form.Item name="brand">
               <Select
                 className="sm:!h-10"
-                placeholder="Select a Brand"
+                placeholder="Vælg et mærke"
                 showSearch
                 optionFilterProp="children"
                 filterOption={(input, option) =>
@@ -37,17 +37,17 @@ const SubmitListingFilterSection = ({ onFinishPrivate }) => {
             </Form.Item>
           </div>
           <div>
-            <h1 className="sm:text-2xl font-bold">Model Year</h1>
+            <h1 className="sm:text-2xl font-bold">Modelår</h1>
             <div className="flex  justify-between gap-5">
               <Form.Item
-                label={<span className="sm:font-medium text-base">From</span>}
+                label={<span className="sm:font-medium text-base">Fra</span>}
                 name="modelYearFrom"
                 className="flex-1"
               >
                 <Input placeholder="Before 1975" />
               </Form.Item>
               <Form.Item
-                label={<span className="sm:font-medium text-base">To</span>}
+                label={<span className="sm:font-medium text-base">Til</span>}
                 name="modelYearTo"
                 className="flex-1"
               >
@@ -56,17 +56,17 @@ const SubmitListingFilterSection = ({ onFinishPrivate }) => {
             </div>
           </div>
           <div>
-            <h1 className="sm:text-2xl font-bold">Driven km</h1>
+            <h1 className="sm:text-2xl font-bold">Kørte km</h1>
             <div className="flex  justify-between gap-5">
               <Form.Item
-                label={<span className="sm:font-medium text-base">From</span>}
+                label={<span className="sm:font-medium text-base">Fra</span>}
                 name="drivenKmFrom"
                 className="flex-1"
               >
                 <Input placeholder="0" />
               </Form.Item>
               <Form.Item
-                label={<span className="sm:font-medium text-base">To</span>}
+                label={<span className="sm:font-medium text-base">Til</span>}
                 name="drivenKmTo"
                 className="flex-1"
               >
@@ -75,10 +75,12 @@ const SubmitListingFilterSection = ({ onFinishPrivate }) => {
             </div>
           </div>
           <div className="flex flex-col justify-between">
-            <h1 className="sm:text-2xl font-bold">Fule</h1>
+            <h1 className="sm:text-2xl font-bold">Brændstof</h1>
             <Form.Item name="fuelType">
               <Select
-                placeholder={<span className="text-black text-xl">Fule</span>}
+                placeholder={
+                  <span className="text-black text-xl">Brændstof</span>
+                }
                 className="sm:!h-10"
                 showSearch
                 optionFilterProp="label"
@@ -94,7 +96,7 @@ const SubmitListingFilterSection = ({ onFinishPrivate }) => {
         </div>
         <div className="flex flex-col justify-center items-center">
           <button className=" xl:text-3xl lg:text-2xl  md:text-xl  font-medium sm:rounded-2xl rounded-md xl:px-11 lg:px-8 md:px-5 px-2 py-2 md:py-3 bg-highlight-color text-white">
-            Search
+            Søg
           </button>
         </div>
       </div>

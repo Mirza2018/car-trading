@@ -109,27 +109,27 @@ const Navbar = () => {
   }, [isProfile]);
 
   // Priority Common Menu Items (shown in any specific order)
-  const PriorityCommonMenuItems = [{ name: "Home", path: "/" }];
+  const PriorityCommonMenuItems = [{ name: "Hjem", path: "/" }];
 
   // Items to always appear last
   const AlwaysLastMenuItems = [
-    { name: "About", path: "/about-us" },
-    { name: "Contact", path: "/contact-us" },
+    { name: "Om", path: "/about-us" },
+    { name: "Kontakt", path: "/contact-us" },
   ];
 
   // Specific Menus based on roles
   const RoleSpecificMenus = {
     default: [],
     private_user: [
-      { name: "Submit Listing", path: "/submit-listing" },
-      { name: "Inbox", path: "/inbox" },
+      { name: "Indsend annonce", path: "/submit-listing" },
+      { name: "Indbakke", path: "/inbox" },
       { name: "Dashboard", path: "/dashboard/total-private-car-sell" },
     ],
     dealer: [
       // { name: "Home", path: "/dealer" }, // Overridden Home for dealer
       // { name: "Listings", path: "/listings" },
-      { name: "Task", path: "/", onClick: true },
-      { name: "Inbox", path: "/inbox" },
+      { name: "Opgave", path: "/", onClick: true },
+      { name: "Indbakke", path: "/inbox" },
       { name: "Dashboard", path: "/dashboard/total-dealer-car-sell" },
     ],
   };
@@ -234,7 +234,7 @@ const Navbar = () => {
                 </div> */}
                 <Link href={`/dashboard/user-profile`}>
                   <p className="text-[15px] font-medium px-3 py-2 rounded-3xl whitespace-normal">
-                    My Profile
+                    Min profil
                   </p>
                 </Link>
                 {userInfo?.role === "private_user" ? (
@@ -259,7 +259,7 @@ const Navbar = () => {
                   }}
                 >
                   <p className="text-[15px] font-medium px-3 py-2 rounded-3xl whitespace-normal">
-                    Log Out
+                    Log ud
                   </p>
                 </p>
               </>
@@ -267,12 +267,12 @@ const Navbar = () => {
               <>
                 <Link href={"/submit-listing"}>
                   <p className=" text-[15px] hover:bg-gray-700 font-medium px-3 py-2 rounded-3xl whitespace-normal">
-                    Submit Listing
+                    Indsend annonce
                   </p>
                 </Link>
                 <Link href={"/sign-in"}>
                   <p className="text-[15px] hover:bg-gray-700 font-medium px-3 py-2 rounded-3xl whitespace-normal">
-                    Log In
+                    Log ind
                   </p>
                 </Link>
               </>
@@ -377,12 +377,12 @@ const Navbar = () => {
             <>
               <Link href={"/submit-listing"}>
                 <p className=" text-[15px] font-medium px-3 py-2 rounded-3xl whitespace-normal">
-                  Submit Listing
+                  Indsend annonce
                 </p>
               </Link>
               <Link href={"/sign-in"}>
                 <p className="bg-[#00721E] text-[15px] font-medium px-3 py-2 rounded-3xl whitespace-normal">
-                  Log In
+                  Log ind
                 </p>
               </Link>
             </>
