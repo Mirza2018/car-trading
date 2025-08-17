@@ -18,7 +18,7 @@ const PrivacyPage = () => {
   console.log(userData?.data);
 
   const handleOnSave = async () => {
-    const toastId = toast.loading("Privacy Policy Accepting...");
+    const toastId = toast.loading("Accepterer privatlivspolitik…");
     const data = {
       isPrivacyAccepted: true,
       privacyDate: date,
@@ -27,20 +27,16 @@ const PrivacyPage = () => {
     try {
       const res = await privacyMutaion(data).unwrap();
       console.log(res);
-      toast.success("Privacy Policy Accepted successfully", {
+      toast.success("Privatlivspolitik accepteret succesfuldt", {
         id: toastId,
         duration: 2000,
       });
     } catch (error) {
       console.log(error);
-      toast.error(
-        error?.data?.message ||
-          "There is an problem to accepting Privacy Policy",
-        {
-          id: toastId,
-          duration: 2000,
-        }
-      );
+      toast.error("Der er et problem med at acceptere privatlivspolitikken", {
+        id: toastId,
+        duration: 2000,
+      });
     }
   };
   if (isLoading || userDataIsLooding)

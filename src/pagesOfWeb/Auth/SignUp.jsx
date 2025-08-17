@@ -29,7 +29,7 @@ const SignUp = () => {
   const dispatch = useDispatch();
   const onFinish = async (values) => {
     dispatch(clearAuth());
-    const toastId = toast.loading(" Sign Up...");
+    const toastId = toast.loading("Tilmeld dig…");
     console.log("car-trading sign up values", values);
 
     if (isClick) {
@@ -40,7 +40,7 @@ const SignUp = () => {
         dispatch(setResendSignUpToken(res?.data?.signUpToken));
         console.log(res?.data?.signUpToken);
 
-        toast.success(res.message, {
+        toast.success("Tilmelding lykkedes", {
           id: toastId,
           duration: 2000,
         });
@@ -49,10 +49,7 @@ const SignUp = () => {
       } catch (error) {
         console.error("Login Error:", error); // Log the error for debugging
 
-        toast.error(
-          error?.data?.message ||
-            error?.error ||
-            "An error occurred during registration please try later",
+        toast.error("Der opstod en fejl under registreringen, prøv venligst senere",
           {
             id: toastId,
             duration: 2000,
@@ -60,7 +57,7 @@ const SignUp = () => {
         );
       }
     } else {
-      return toast.error("Please Agree with terms and policy ", {
+      return toast.error("Accepter venligst vilkår og politik ", {
         id: toastId,
         duration: 2000,
       });
@@ -107,12 +104,12 @@ const SignUp = () => {
               rules={[
                 {
                   required: true,
-                  message: "First name is Required",
+                  message: "Fornavn er påkrævet.",
                 },
               ]}
             >
               <Input
-                placeholder="Enter your first name"
+                placeholder="Indtast dit fornavn."
                 className="py-2 px-3 text-xl bg-site-color border !border-[#1E1E1E] r hover:bg-transparent hover:border-secoundary-color focus:bg-transparent focus:border-secoundary-color !bg-white"
               />
             </Form.Item>
@@ -125,12 +122,12 @@ const SignUp = () => {
               rules={[
                 {
                   required: true,
-                  message: "Last name is Required",
+                  message: "Efternavn er påkrævet.",
                 },
               ]}
             >
               <Input
-                placeholder="Enter your last name"
+                placeholder="Indtast dit efternavn."
                 className="py-2 px-3 text-xl bg-site-color border !border-[#1E1E1E] r hover:bg-transparent hover:border-secoundary-color focus:bg-transparent focus:border-secoundary-color !bg-white"
               />
             </Form.Item>
@@ -144,12 +141,12 @@ const SignUp = () => {
               rules={[
                 {
                   required: true,
-                  message: "Email is Required",
+                  message: "E-mail er påkrævet.",
                 },
               ]}
             >
               <Input
-                placeholder="Enter your email"
+                placeholder="Indtast din e-mailadresse."
                 className="py-2 px-3 text-xl bg-site-color border !border-[#1E1E1E] r hover:bg-transparent hover:border-secoundary-color focus:bg-transparent focus:border-secoundary-color !bg-white"
               />
             </Form.Item>
@@ -161,14 +158,14 @@ const SignUp = () => {
               rules={[
                 {
                   required: true,
-                  message: "Password is Required",
+                  message: "Adgangskode er påkrævet.",
                 },
               ]}
               name="password"
               className="text-base-color"
             >
               <Input.Password
-                placeholder="Enter your password"
+                placeholder="Indtast din adgangskode."
                 className="py-2 px-3 text-xl bg-site-color border !border-[#1E1E1E] hover:bg-transparent hover:border-secoundary-color focus:bg-transparent focus:border-secoundary-color !bg-white"
               />
             </Form.Item>
@@ -182,17 +179,19 @@ const SignUp = () => {
               rules={[
                 {
                   required: true,
-                  message: "Confirm Your Password",
+                  message: "Bekræft din adgangskode",
                 },
                 // Validator to check if confirm password matches password
                 {
                   validator: (_, value) => {
                     const password = form.getFieldValue("password"); // Get password value dynamically
                     if (!value) {
-                      return Promise.reject("Please confirm your password");
+                      return Promise.reject("Bekræft din adgangskode");
                     }
                     if (value !== password) {
-                      return Promise.reject("Passwords do not match");
+                      return Promise.reject(
+                        "Adgangskoderne stemmer ikke overens."
+                      );
                     }
                     return Promise.resolve();
                   },
@@ -200,7 +199,7 @@ const SignUp = () => {
               ]}
             >
               <Input.Password
-                placeholder="Confirm Your Password"
+                placeholder="Bekræft dit kodeord."
                 className="py-2 px-3 text-xl bg-site-color border !border-[#1E1E1E] hover:bg-transparent hover:border-secoundary-color focus:bg-transparent focus:border-secoundary-color !bg-white"
               />
             </Form.Item>
@@ -215,7 +214,7 @@ const SignUp = () => {
             >
               <Select
                 onChange={handleRoleChange}
-                placeholder="Select Role"
+                placeholder="Vælg rolle"
                 suffixIcon={
                   <DownOutlined className="text-[#222222] text-xl  mt-1" />
                 }
@@ -239,7 +238,7 @@ const SignUp = () => {
                   className="text-white"
                 >
                   <Select
-                    placeholder="Do you want to use transport? "
+                    placeholder="Vil du benytte transport? "
                     suffixIcon={
                       <DownOutlined className="text-[#222222] text-xl  mt-1" />
                     }
@@ -259,12 +258,12 @@ const SignUp = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Company name is Required",
+                      message: "Firmanavn er påkrævet.",
                     },
                   ]}
                 >
                   <Input
-                    placeholder="Enter your company name"
+                    placeholder="Indtast dit firmanavn."
                     className="py-2 px-3 text-xl bg-site-color border !border-[#1E1E1E] r hover:bg-transparent hover:border-secoundary-color focus:bg-transparent focus:border-secoundary-color !bg-white"
                   />
                 </Form.Item>
@@ -277,12 +276,12 @@ const SignUp = () => {
                   rules={[
                     {
                       required: true,
-                      message: " CVR Number is Required",
+                      message: "CVR-nummer er påkrævet.",
                     },
                   ]}
                 >
                   <Input
-                    placeholder="Enter your  CVR Number"
+                    placeholder="Indtast dit CVR-nummer."
                     className="py-2 px-3 text-xl bg-site-color border !border-[#1E1E1E] r hover:bg-transparent hover:border-secoundary-color focus:bg-transparent focus:border-secoundary-color !bg-white"
                   />
                 </Form.Item>

@@ -53,7 +53,7 @@ const SellCarAllDetails = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success("License plate data fetch successfully...", {
+      toast.success("Registreringspladedata hentet succesfuldt…", {
         id: toastId,
         duration: 2000,
       });
@@ -68,7 +68,7 @@ const SellCarAllDetails = () => {
     }
 
     if (isError) {
-      toast.error("Give a valid license plate number", {
+      toast.error("Angiv et gyldigt registreringspladenummer", {
         id: toastId,
         duration: 2000,
       });
@@ -76,7 +76,7 @@ const SellCarAllDetails = () => {
   }, [isSuccess, isError, data, dispatch]);
 
   const handleEditClick = () => {
-    toast.loading("License plate is Checking....", {
+    toast.loading("Registreringsplade kontrolleres…", {
       id: toastId,
     });
     const inputValue = inputRef.current?.input?.value;
@@ -107,7 +107,7 @@ const SellCarAllDetails = () => {
   };
 
   const onFinish = async (values) => {
-    const toastId = toast.loading("Car is Listing...", {
+    const toastId = toast.loading("Bil listes…", {
       duration: 2000,
     });
     try {
@@ -165,12 +165,12 @@ const SellCarAllDetails = () => {
 
       const res = await saleData(formData).unwrap();
       console.log("API Response:", res);
-      toast.success("Car listing is successfully done", {
+      toast.success("Bil er blevet listet succesfuldt", {
         id: toastId,
         duration: 2000,
       });
       if (!userInfo) {
-        toast.success("Please check your provided mail", {
+        toast.success("Tjek venligst din angivne e-mail", {
           duration: 2000,
         });
       }
@@ -181,27 +181,30 @@ const SellCarAllDetails = () => {
     } catch (error) {
       console.error("Error submitting to cardetails API:", error);
       if (error?.data?.message.includes("numberPlates_1")) {
-        toast.error("This car is already Listed", {
+        toast.error("Denne bil er allerede listet", {
           id: toastId,
           duration: 2000,
         });
         return;
       }
       if (error?.data?.message.includes("registrationNumber_1")) {
-        toast.error("This car is already Listed", {
+        toast.error("Denne bil er allerede listet", {
           id: toastId,
           duration: 2000,
         });
         return;
       }
       if (error?.data?.message.includes("email_1")) {
-        toast.error("This email is register please log in.. ", {
-          id: toastId,
-          duration: 2000,
-        });
+        toast.error(
+          "Denne e-mail er allerede registreret, log venligst ind.",
+          {
+            id: toastId,
+            duration: 2000,
+          }
+        );
         return;
       }
-      toast.error("Something wrong please try latter..", {
+      toast.error("Noget gik galt, prøv venligst senere..", {
         id: toastId,
         duration: 2000,
       });
@@ -232,7 +235,7 @@ const SellCarAllDetails = () => {
         <Input
           defaultValue={carData?.numberPlates}
           ref={inputRef}
-          placeholder="Enter license plate"
+          placeholder="Indtast nummerplade"
           className=""
           suffix={
             <div
@@ -291,12 +294,12 @@ const SellCarAllDetails = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please Input Number of kilometers driven",
+                  message: "Venligst indtast antal kørte kilometer",
                 },
               ]}
             >
               <InputNumber
-                placeholder="Enter Number of kilometers driven"
+                placeholder="Indtast antal kørte kilometer."
                 className="py-3 w-full"
               />
             </Form.Item>
@@ -312,19 +315,19 @@ const SellCarAllDetails = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input the number of varnish fields!",
+                  message: "Venligst indtast antallet af lakskader!",
                 },
                 {
                   type: "number",
                   min: 0,
-                  message: "Number of varnish fields must be at Number!",
+                  message: "Antallet af lakskader skal være et tal!",
                 },
               ]}
               name={`noOfVarnishField`}
               className=""
             >
               <InputNumber
-                placeholder="Enter  Number of varnish fields"
+                placeholder="Indtast antal lakfelter"
                 className="py-3 w-full"
               />
             </Form.Item>
@@ -358,15 +361,15 @@ const SellCarAllDetails = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please Select one condition!",
+                  message: "Vælg venligst en tilstand!",
                 },
               ]}
               name={`condition`}
             >
               <Radio.Group name="condition" className=" flex flex-col gap-2">
-                <Radio value="Good">Good</Radio>
-                <Radio value="Used">Used</Radio>
-                <Radio value="very Used">Very used</Radio>
+                <Radio value="Good">God</Radio>
+                <Radio value="Used">Brugt</Radio>
+                <Radio value="very Used">Meget brugt</Radio>
               </Radio.Group>
             </Form.Item>
           </div>
@@ -380,7 +383,7 @@ const SellCarAllDetails = () => {
           </p>
           <Form.Item name={`comment`}>
             <TextArea
-              placeholder="Defects or other comments"
+              placeholder="Fejl eller andre kommentarer"
               rows={4}
               className="py-3"
             />
@@ -398,13 +401,13 @@ const SellCarAllDetails = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input your expected price!",
+                  message: "Venligst indtast din forventede pris!",
                 },
               ]}
               name={`expectedPrice`}
             >
               <InputNumber
-                placeholder="Expected price (DKK)"
+                placeholder="Forventet pris (DKK)"
                 className="py-3 w-full"
               />
             </Form.Item>
@@ -498,12 +501,12 @@ const SellCarAllDetails = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please input company Name!",
+                    message: "Venligst indtast firmanavn!",
                   },
                 ]}
                 name={`companyName`}
               >
-                <Input placeholder="Company Name" className="py-3" />
+                <Input placeholder="Firmanavn" className="py-3" />
               </Form.Item>
             </div>
             <div className="flex-1">
@@ -517,12 +520,12 @@ const SellCarAllDetails = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please input CVR Number!",
+                    message: "Venligst indtast CVR-nummer!",
                   },
                 ]}
                 name={`cvrNumber`}
               >
-                <Input placeholder="CVR Number" className="py-3" />
+                <Input placeholder="CVR-nummer" className="py-3" />
               </Form.Item>
             </div>
           </div>
@@ -542,12 +545,12 @@ const SellCarAllDetails = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input your first Name!",
+                  message: "Venligst indtast dit fornavn!",
                 },
               ]}
               name={`first_name`}
             >
-              <Input placeholder="First Name" className="py-3" />
+              <Input placeholder="Fornavn" className="py-3" />
             </Form.Item>
           </div>
           <div className="flex-1">
@@ -562,12 +565,12 @@ const SellCarAllDetails = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input your last name!",
+                  message: "Venligst indtast dit efternavn!",
                 },
               ]}
               name={`last_name`}
             >
-              <Input placeholder="Last Name" className="py-3" />
+              <Input placeholder="Efternavn" className="py-3" />
             </Form.Item>
           </div>
         </div>
@@ -584,12 +587,12 @@ const SellCarAllDetails = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input your Email",
+                  message: "Venligst indtast din e-mail",
                 },
               ]}
               name={`email`}
             >
-              <Input placeholder="Email" className="py-3" />
+              <Input placeholder="E-mail" className="py-3" />
             </Form.Item>
           </div>
         )}
@@ -605,13 +608,13 @@ const SellCarAllDetails = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input your Street Name!",
+                  message: "Venligst indtast dit gadenavn!",
                 },
               ]}
               initialValue={myInfo?.data?.profile?.street}
               name={`street`}
             >
-              <Input placeholder="Street Name" className="py-3" />
+              <Input placeholder="Gadenavn" className="py-3" />
             </Form.Item>
           </div>
           <div className=" ">
@@ -626,12 +629,12 @@ const SellCarAllDetails = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input your postal code!",
+                  message: "Venligst indtast dit postnummer!",
                 },
               ]}
               name={`postCode`}
             >
-              <Input placeholder="Postal Code" className="py-3" />
+              <Input placeholder="Postnummer" className="py-3" />
             </Form.Item>
           </div>
 
@@ -647,12 +650,12 @@ const SellCarAllDetails = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input city!",
+                  message: "Venligst indtast by!",
                 },
               ]}
               name={`city`}
             >
-              <Input placeholder="City" className="py-3" />
+              <Input placeholder="By" className="py-3" />
             </Form.Item>
           </div>
         </div>
@@ -668,12 +671,12 @@ const SellCarAllDetails = () => {
             rules={[
               {
                 required: true,
-                message: "Please input your phone number!",
+                message: "Venligst indtast dit telefonnummer!",
               },
             ]}
             name={`phoneNumber`}
           >
-            <Input placeholder="Phone Number" className="py-3" />
+            <Input placeholder="Telefonnummer" className="py-3" />
           </Form.Item>
         </div>
 

@@ -18,7 +18,7 @@ const TermsPage = () => {
   console.log(userData?.data?.isPrivacyAccepted);
 
   const handleOnSave = async () => {
-    const toastId = toast.loading("Terms And Conditions Accepting...");
+    const toastId = toast.loading("Accepterer vilkår og betingelser…");
     const data = {
       isTermAccepted: true,
       termsDate: date,
@@ -26,15 +26,13 @@ const TermsPage = () => {
     try {
       const res = await privacyMutaion(data).unwrap();
       console.log(res);
-      toast.success("Terms And Conditions Accepted successfully", {
+      toast.success("Vilkår og betingelser accepteret succesfuldt", {
         id: toastId,
         duration: 2000,
       });
     } catch (error) {
       console.log(error);
-      toast.error(
-        error?.data?.message ||
-          "There is an problem to accepting Terms And Conditions",
+      toast.error("Der er et problem med at acceptere vilkår og betingelser",
         {
           id: toastId,
           duration: 2000,

@@ -29,7 +29,7 @@ const SellBuyTrade = () => {
   const dispatch = useDispatch();
   const handleEditClick = () => {
 
-    toast.loading("License plate is Checking....", {
+    toast.loading("Registreringsplade kontrolleres…", {
       id: toastId,
     });
 
@@ -50,7 +50,7 @@ const SellBuyTrade = () => {
  
 
   if (isSuccess) {
-    toast.success("License plate data fetch successfully...", {
+    toast.success("Registreringspladedata hentet succesfuldt…", {
       id: toastId,
       duration: 2000,
     });
@@ -64,7 +64,7 @@ const SellBuyTrade = () => {
     navigate.push("/sell-car");
   }
   if (isError) {
-    toast.error("Give a valid license plate number", {
+    toast.error("Angiv et gyldigt registreringspladenummer", {
       id: toastId,
       duration: 2000,
     });

@@ -42,22 +42,20 @@ const OtpPage = () => {
     const data = {
       purpose: "email-verification",
     };
-    const toastId = toast.loading("OTP is Resending...");
+    const toastId = toast.loading("OTP sendes igen…");
     try {
       const res = await resendOtp(data).unwrap();
       dispatch(setSignUpToken(resendToken));
       console.log(res);
-      toast.success(res.message, {
+      toast.success("OTP sendt igen succesfuldt", {
         id: toastId,
         duration: 2000,
       });
     } catch (error) {
-      console.error("RedendOTP Error:", error); // Log the error for debugging
+      console.error("Fejl ved gensending af OTP:", error); // Log the error for debugging
 
       toast.error(
-        error?.data?.message ||
-          error?.error ||
-          "An error occurred during Resend OTP please try later",
+        "Der opstod en fejl under genafsendelse af OTP, prøv venligst senere",
         {
           id: toastId,
           duration: 2000,
@@ -68,7 +66,7 @@ const OtpPage = () => {
 
   const handleOTPSubmit = async () => {
     dispatch(clearResendSignUpToken());
-    const toastId = toast.loading("OTP is submiting...");
+    const toastId = toast.loading("OTP indsendes…");
     console.log("OTP:", otp);
     const data = { otp: Number(otp) };
 
@@ -78,7 +76,7 @@ const OtpPage = () => {
       // dispatch(setSignUpToken(res?.data?.signUpToken));
       console.log(res);
 
-      toast.success(res.message, {
+      toast.success("OTP indsendt succesfuldt", {
         id: toastId,
         duration: 2000,
       });
@@ -95,10 +93,7 @@ const OtpPage = () => {
     } catch (error) {
       console.error("Login Error:", error); // Log the error for debugging
 
-      toast.error(
-        error?.data?.message ||
-          error?.error ||
-          "An error occurred during registration please try later",
+      toast.error("Der opstod en fejl under registreringen, prøv venligst senere",
         {
           id: toastId,
           duration: 2000,

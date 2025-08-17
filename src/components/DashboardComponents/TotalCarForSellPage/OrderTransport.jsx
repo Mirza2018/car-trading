@@ -34,7 +34,7 @@ const OrderTransport = () => {
   }
 
   const onFinish = async (values) => {
-    const toastId = toast.loading("Transport details is submiting...");
+    const toastId = toast.loading("Transportoplysninger indsendes…");
     const data = {
       carModel: displayedData?.data?.carModel?._id,
       userId: displayedData?.data?.privateUser?._id,
@@ -45,21 +45,17 @@ const OrderTransport = () => {
     try {
       const res = await orderTransportDetails(data).unwrap();
       console.log(res);
-      toast.success("Transport details submit Successfully", {
+      toast.success("Transportoplysninger indsendt succesfuldt", {
         id: toastId,
         duration: 2000,
       });
       navigate.push("/dashboard/total-dealer-car-sell");
     } catch (error) {
       console.log(error);
-      toast.error(
-        error?.data?.message ||
-          "There is an problem accepting submit transport",
-        {
-          id: toastId,
-          duration: 2000,
-        }
-      );
+      toast.error("Der er et problem med at indsende transportoplysningerne", {
+        id: toastId,
+        duration: 2000,
+      });
     }
   };
   // console.log(userData?.data?.profile?.phoneNumber);

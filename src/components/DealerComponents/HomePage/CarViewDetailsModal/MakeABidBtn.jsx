@@ -20,7 +20,7 @@ const MakeABidBtn = ({ carid }) => {
   };
 
   const submitBid = async () => {
-    const toastId = toast.loading("Bid is Submiting...");
+    const toastId = toast.loading("Bud indsendes…");
 
     const data = {
       carId: carid,
@@ -28,7 +28,7 @@ const MakeABidBtn = ({ carid }) => {
     };
     console.log(valueOfBid);
     if (valueOfBid < 0) {
-      toast.error("Bid can't be nagetive ammount ", {
+      toast.error("Buddet kan ikke være et negativt beløb", {
         id: toastId,
         duration: 2000,
       });
@@ -38,7 +38,7 @@ const MakeABidBtn = ({ carid }) => {
     try {
       const res = await bidCreate(data).unwrap();
       console.log(res);
-      toast.success("Your Bid Submiting Successfully", {
+      toast.success("Dit bud er indsendt succesfuldt", {
         id: toastId,
         duration: 2000,
       });
@@ -47,7 +47,7 @@ const MakeABidBtn = ({ carid }) => {
     } catch (error) {
       console.log(error);
       toast.error(
-        error?.data?.message || "There is an problem in Bid try latter ",
+        "Der er et problem med at indsende buddet, prøv venligst senere",
         {
           id: toastId,
           duration: 2000,
@@ -84,7 +84,7 @@ const MakeABidBtn = ({ carid }) => {
           className="!bg-[#FFDFB8] md:w-44 w-36 transition-all"
           name="bid"
           ref={bidRef}
-          placeholder="input bid price"
+          placeholder="Indtast budpris"
           suffix={suffix}
           size="large"
         />

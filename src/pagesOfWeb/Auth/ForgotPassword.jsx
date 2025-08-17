@@ -17,7 +17,7 @@ const ForgotPassword = () => {
   const navigate = useRouter();
 
   const onFinish = async (values) => {
-    const toastId = toast.loading(" Password reseting...");
+    const toastId = toast.loading("Adgangskode nulstilles…");
     console.log("Success:", values);
 
     try {
@@ -27,7 +27,7 @@ const ForgotPassword = () => {
       dispatch(setForgotPasswordToken(res?.data?.forgotPasswordToken));
       dispatch(setResendSignUpToken(res?.data?.forgotPasswordToken));
 
-      toast.success(res.message, {
+      toast.success("Adgangskode nulstillet succesfuldt", {
         id: toastId,
         duration: 2000,
       });
@@ -35,15 +35,10 @@ const ForgotPassword = () => {
     } catch (error) {
       console.error("Login Error:", error);
 
-      toast.error(
-        error?.data?.message ||
-          error?.error ||
-          "An error occurred during Reset password",
-        {
-          id: toastId,
-          duration: 2000,
-        }
-      );
+      toast.error("Der opstod en fejl under nulstilling af adgangskoden", {
+        id: toastId,
+        duration: 2000,
+      });
     }
   };
   return (
@@ -93,14 +88,14 @@ const ForgotPassword = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Email is Required",
+                    message: "E-mailadresse er påkrævet.",
                   },
                 ]}
                 name="email"
                 className="text-base-color"
               >
                 <Input
-                  placeholder="Enter your email"
+                  placeholder="Indtast din e-mailadresse."
                   type="email"
                   className="py-2 px-3 text-xl bg-site-color border !border-[#1E1E1E] !bg-white  hover:bg-transparent hover:border-secoundary-color focus:bg-transparent focus:border-secoundary-color"
                 />

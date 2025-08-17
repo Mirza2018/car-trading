@@ -11,12 +11,12 @@ const ChangePassword = ({ isModalOpen, handleOk, handleCancel }) => {
   const onFinish = async (values) => {
     console.log("Success:", values);
 
-    const toastId = toast.loading("Password is changing...");
+    const toastId = toast.loading("Adgangskode ændres…");
 
     try {
       const res = await changePass(values).unwrap();
       console.log(res);
-      toast.success(res?.message || "Password is change successfully", {
+      toast.success("Adgangskode ændret succesfuldt", {
         id: toastId,
         duration: 2000,
       });
@@ -24,13 +24,10 @@ const ChangePassword = ({ isModalOpen, handleOk, handleCancel }) => {
       handleCancel();
     } catch (error) {
       console.log(error);
-      toast.error(
-        error?.data?.message || "There is an problem changeing problem",
-        {
-          id: toastId,
-          duration: 2000,
-        }
-      );
+      toast.error("Der er et problem med at ændre adgangskoden", {
+        id: toastId,
+        duration: 2000,
+      });
     }
   };
   return (
@@ -52,14 +49,14 @@ const ChangePassword = ({ isModalOpen, handleOk, handleCancel }) => {
             rules={[
               {
                 required: true,
-                message: "Please enter your current password!",
+                message: "Indtast venligst din nuværende adgangskode!",
               },
             ]}
             name="oldPassword"
             className="text-white "
           >
             <Input.Password
-              placeholder="Enter your Current password"
+              placeholder="Indtast din nuværende adgangskode."
               className="py-2 px-3 text-xl border !border-input-color "
             />
           </Form.Item>
@@ -70,14 +67,14 @@ const ChangePassword = ({ isModalOpen, handleOk, handleCancel }) => {
             rules={[
               {
                 required: true,
-                message: "Please enter your new password!",
+                message: "Indtast venligst din nye adgangskode!",
               },
             ]}
             name="newPassword"
             className="text-white"
           >
             <Input.Password
-              placeholder="Enter your new password"
+              placeholder="Indtast din nye adgangskode"
               className="py-2 px-3 text-xl border !border-input-color "
             />
           </Form.Item>
@@ -88,7 +85,7 @@ const ChangePassword = ({ isModalOpen, handleOk, handleCancel }) => {
             name="confirmPassword"
             className="text-white"
             rules={[
-              { required: true, message: "Please confirm your password!" },
+              { required: true, message: "Bekræft venligst din adgangskode!" },
               ({ getFieldValue }) => ({
                 validator(_, value) {
                   if (!value || getFieldValue("newPassword") === value) {
@@ -96,7 +93,7 @@ const ChangePassword = ({ isModalOpen, handleOk, handleCancel }) => {
                   }
                   return Promise.reject(
                     new Error(
-                      "The two passwords that you entered do not match!"
+                      "De to adgangskoder, du har indtastet, stemmer ikke overens!"
                     )
                   );
                 },
@@ -104,7 +101,7 @@ const ChangePassword = ({ isModalOpen, handleOk, handleCancel }) => {
             ]}
           >
             <Input.Password
-              placeholder="Again Enter your new password"
+              placeholder="Indtast din nye adgangskode igen"
               className="py-2 px-3 text-xl border !border-input-color "
             />
           </Form.Item>

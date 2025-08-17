@@ -25,7 +25,7 @@ const OrderTransportPage = () => {
   };
 
   const onFinish = async (values) => {
-    const toastId = toast.loading("Order transport is Registering..");
+    const toastId = toast.loading("Transportordre registreres…");
     console.log("Success:", values);
     //   {
     //     "companyName": "Rasel Company",
@@ -40,24 +40,17 @@ const OrderTransportPage = () => {
     try {
       const res = await transportData(values).unwrap();
       console.log(res);
-      toast.success(
-        res?.data?.message || "Order transport created successfully",
-        {
-          id: toastId,
-          duration: 2000,
-        }
-      );
+      toast.success("Transportordre oprettet succesfuldt", {
+        id: toastId,
+        duration: 2000,
+      });
       refetch()
     } catch (error) {
       console.log(error);
-      toast.error(
-        error?.data?.message ||
-          "There is an issue to register Order transoport",
-        {
-          id: toastId,
-          duration: 2000,
-        }
-      );
+      toast.error("Der er et problem med at registrere transportordren", {
+        id: toastId,
+        duration: 2000,
+      });
     }
   };
 
@@ -98,7 +91,7 @@ const OrderTransportPage = () => {
             rules={[
               {
                 required: true,
-                message: "Please input your Company Name!",
+                message: "Venligst indtast dit firmanavn!",
               },
             ]}
           >
@@ -111,7 +104,7 @@ const OrderTransportPage = () => {
             rules={[
               {
                 required: true,
-                message: "Please input your Address!",
+                message: "Venligst indtast din adresse!",
               },
             ]}
           >
@@ -124,7 +117,7 @@ const OrderTransportPage = () => {
             rules={[
               {
                 required: true,
-                message: "Please input your Contact Person!",
+                message: "Venligst indtast din kontaktperson!",
               },
             ]}
           >
@@ -137,7 +130,7 @@ const OrderTransportPage = () => {
             rules={[
               {
                 required: true,
-                message: "Please input your Phone number!",
+                message: "Venligst indtast dit telefonnummer!",
               },
             ]}
           >
@@ -153,7 +146,7 @@ const OrderTransportPage = () => {
             rules={[
               {
                 required: true,
-                message: "Please input your Postnr.!",
+                message: "Venligst indtast dit postnummer!",
               },
             ]}
           >
@@ -166,7 +159,7 @@ const OrderTransportPage = () => {
             rules={[
               {
                 required: true,
-                message: "Please input your City!",
+                message: "Venligst indtast din by!",
               },
             ]}
           >
@@ -178,7 +171,7 @@ const OrderTransportPage = () => {
             rules={[
               {
                 required: true,
-                message: "Please input your CVR!",
+                message: "Venligst indtast dit CVR-nummer!",
               },
             ]}
           >
@@ -195,7 +188,7 @@ const OrderTransportPage = () => {
           rules={[
             {
               required: true,
-              message: "Please input your Email!",
+              message: "Venligst indtast din e-mailadresse!",
             },
           ]}
         >

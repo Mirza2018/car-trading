@@ -32,7 +32,7 @@ const SingleOfferCarComponent = ({ offerCar, offercarAction }) => {
   };
 
   const acceptOfferCar = async () => {
-    const toastId = toast.loading("Offer is accepting...");
+    const toastId = toast.loading("Tilbud accepteres…");
     const data = {
       offerCarId: offerCar?._id,
       status: "accept",
@@ -41,23 +41,20 @@ const SingleOfferCarComponent = ({ offerCar, offercarAction }) => {
     try {
       const res = await offercarAction(data).unwrap();
       console.log(res);
-      toast.success("Offer is accept Successfully", {
+      toast.success("Tilbud accepteret succesfuldt", {
         id: toastId,
         duration: 2000,
       });
     } catch (error) {
       console.log(error);
-      toast.error(
-        error?.data?.message || "There is an problem accepting offer",
-        {
-          id: toastId,
-          duration: 2000,
-        }
-      );
+      toast.error("Der er et problem med at acceptere tilbuddet", {
+        id: toastId,
+        duration: 2000,
+      });
     }
   };
   const rejectOfferCar = async () => {
-    const toastId = toast.loading("Offer is rejecting...");
+    const toastId = toast.loading("Tilbud afvises…");
     const data = {
       offerCarId: offerCar?._id,
       status: "reject",
@@ -66,19 +63,16 @@ const SingleOfferCarComponent = ({ offerCar, offercarAction }) => {
     try {
       const res = await offercarAction(data).unwrap();
       console.log(res);
-      toast.success("Offer is reject Successfully", {
+      toast.success("Tilbud afvist succesfuldt", {
         id: toastId,
         duration: 2000,
       });
     } catch (error) {
       console.log(error);
-      toast.error(
-        error?.data?.message || "There is an problem rejecting offer car",
-        {
-          id: toastId,
-          duration: 2000,
-        }
-      );
+      toast.error("Der er et problem med at afvise tilbuddet på bilen", {
+        id: toastId,
+        duration: 2000,
+      });
     }
   };
 

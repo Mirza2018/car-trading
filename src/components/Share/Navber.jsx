@@ -139,7 +139,7 @@ const Navbar = () => {
     cookies.remove("car_trading_accessToken", { path: "/" });
     cookies.remove("car_trading_accessToken", { path: "/dashboard" });
     // navigate.push("/");
-    toast.success("Log out successfully done");
+    toast.success("Log ud udført succesfuldt");
     window.location.reload();
   };
 

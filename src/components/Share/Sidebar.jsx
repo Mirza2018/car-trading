@@ -22,7 +22,7 @@ const Sidebar = ({ slider, setSlider }) => {
     cookies.remove("car_trading_accessToken", { path: "/" });
     cookies.remove("car_trading_accessToken", { path: "/dashboard" });
     navigate.push("/");
-    toast.success("Log out successfully done");
+    toast.success("Log ud gennemført succesfuldt");
   };
 
   const menuItems = (

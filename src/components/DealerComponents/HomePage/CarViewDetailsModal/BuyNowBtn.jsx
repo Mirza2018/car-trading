@@ -13,7 +13,7 @@ const BuyNowBtn = ({ price, carId, buyCar }) => {
   const navigate = useRouter();
 
   const buyCarHandle = async () => {
-    const toastId = toast.loading("You buying a car...");
+    const toastId = toast.loading("Du køber en bil…");
     const data = {
       carId: carId,
     };
@@ -22,7 +22,7 @@ const BuyNowBtn = ({ price, carId, buyCar }) => {
     try {
       const res = await buyCar(data).unwrap();
       console.log(res);
-      toast.success("You successfully buy a car", {
+      toast.success("Du har købt en bil succesfuldt", {
         id: toastId,
         duration: 2000,
       });
@@ -44,14 +44,10 @@ const BuyNowBtn = ({ price, carId, buyCar }) => {
       });
     } catch (error) {
       console.log(error);
-      toast.error(
-        error?.data?.message ||
-          "There is an problem to buy car, please try letter",
-        {
-          id: toastId,
-          duration: 2000,
-        }
-      );
+      toast.error("Der er et problem med at købe bilen, prøv venligst senere", {
+        id: toastId,
+        duration: 2000,
+      });
     }
   };
   // console.log(isCongrat);

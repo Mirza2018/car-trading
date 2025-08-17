@@ -22,7 +22,7 @@ const SignIn = () => {
   const cookies = new Cookies();
 
   const onFinish = async (values) => {
-    const toastId = toast.loading(" Logging in...");
+    const toastId = toast.loading("Logger ind…");
     console.log("car-trading:", values);
 
 
@@ -39,7 +39,7 @@ const SignIn = () => {
           cookies.set("car_trading_accessToken", res?.data?.accessToken, {
             path: "/",
           });
-          toast.success(res.message, {
+          toast.success("Login lykkedes", {
             id: toastId,
             duration: 2000,
           });
@@ -47,15 +47,10 @@ const SignIn = () => {
         } catch (error) {
           console.error("Login Error:", error); // Log the error for debugging
 
-          toast.error(
-            error?.data?.message ||
-              error?.error ||
-              "An error occurred during Login",
-            {
-              id: toastId,
-              duration: 2000,
-            }
-          );
+          toast.error("Der opstod en fejl under login", {
+            id: toastId,
+            duration: 2000,
+          });
         }
 
 
@@ -123,13 +118,13 @@ const SignIn = () => {
               rules={[
                 {
                   required: true,
-                  message: "Email is Required",
+                  message: "E-mailadresse er påkrævet.",
                 },
               ]}
             >
               <Input
                 autoComplete="email"
-                placeholder="Enter your email"
+                placeholder="Indtast din e-mailadresse."
                 className="py-2 px-3 text-xl bg-site-color border !border-[#1E1E1E]  hover:bg-transparent hover:border-secoundary-color focus:bg-transparent focus:border-secoundary-color !bg-white"
               />
             </Form.Item>
@@ -140,7 +135,7 @@ const SignIn = () => {
               rules={[
                 {
                   required: true,
-                  message: "Password is Required",
+                  message: "Adgangskode er påkrævet.",
                 },
               ]}
               name="password"
@@ -148,7 +143,7 @@ const SignIn = () => {
             >
               <Input.Password
                 autoComplete="current-password"
-                placeholder="Enter your password"
+                placeholder="Indtast dit kodeord."
                 className="py-2 px-3 text-xl bg-site-color border !border-[#1E1E1E] hover:bg-transparent hover:border-secoundary-color focus:bg-transparent focus:border-secoundary-color !bg-white"
               />
             </Form.Item>

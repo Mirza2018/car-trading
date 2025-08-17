@@ -38,12 +38,12 @@ const ForgotOtp = () => {
     const data = {
       purpose: "forget-password",
     };
-    const toastId = toast.loading("OTP is Resending...");
+    const toastId = toast.loading("OTP sendes igen…");
     try {
       const res = await resendOtp(data).unwrap();
       dispatch(setForgotPasswordToken(resendToken));
       console.log(res);
-      toast.success(res.message, {
+      toast.success("OTP sendt succesfuldt", {
         id: toastId,
         duration: 2000,
       });
@@ -51,9 +51,7 @@ const ForgotOtp = () => {
       console.error("RedendOTP Error:", error); // Log the error for debugging
 
       toast.error(
-        error?.data?.message ||
-          error?.error ||
-          "An error occurred during Resend OTP please try later",
+        "Der opstod en fejl under genafsendelse af OTP, prøv venligst senere",
         {
           id: toastId,
           duration: 2000,
@@ -64,7 +62,7 @@ const ForgotOtp = () => {
 
   const handleOTPSubmit = async () => {
     dispatch(clearResendSignUpToken());
-    const toastId = toast.loading("OTP is submiting...");
+    const toastId = toast.loading("OTP indsendes…");
     console.log("OTP:", otp);
     const data = { otp: Number(otp) };
 
@@ -74,7 +72,7 @@ const ForgotOtp = () => {
       // dispatch(setSignUpToken(res?.data?.signUpToken));
       console.log(res);
 
-      toast.success(res.message, {
+      toast.success("OTP indsendt succesfuldt", {
         id: toastId,
         duration: 2000,
       });
@@ -88,9 +86,7 @@ const ForgotOtp = () => {
       console.error("Login Error:", error); // Log the error for debugging
 
       toast.error(
-        error?.data?.message ||
-          error?.error ||
-          "An error occurred during registration please try later",
+        "Der opstod en fejl under registreringen, prøv venligst senere",
         {
           id: toastId,
           duration: 2000,

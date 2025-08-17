@@ -44,7 +44,7 @@ const FilterSection = ({ onFinish }) => {
                 name="modelYearFrom"
                 className="flex-1"
               >
-                <Input placeholder="Before 1975" />
+                <Input placeholder="Før 1975" />
               </Form.Item>
               <Form.Item
                 label={<span className="sm:font-medium text-base">Til</span>}
@@ -77,7 +77,6 @@ const FilterSection = ({ onFinish }) => {
           <div className="flex flex-col justify-between">
             <h1 className="sm:text-2xl font-bold">Brændstof</h1>
             <Form.Item name="fuelType">
-              
               <Select
                 placeholder={
                   <span className="text-black text-xl">Brændstof</span>

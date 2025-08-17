@@ -384,7 +384,7 @@ const ChatWindow = ({ chat, messages, cahtMessage, conversationData }) => {
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             // onChange={(e) => setNewMessage(console.log(e.target.value))}
-            placeholder="Type a message"
+            placeholder="Skriv en besked"
             prefix={
               <SmileOutlined
                 className="text-gray-400 cursor-pointer"

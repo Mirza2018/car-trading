@@ -9,7 +9,7 @@ export default function ContactUsFrom() {
   const [form] = useForm();
   const onFinish = (values) => {
     console.log("About us", values);
-    toast.success("Message Send successfully");
+    toast.success("Besked sendt succesfuldt");
     form.resetFields();
   };
 

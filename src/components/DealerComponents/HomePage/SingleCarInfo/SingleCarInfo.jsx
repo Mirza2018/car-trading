@@ -72,14 +72,14 @@ const SingleCarInfo = ({ car }) => {
               className="!bg-[#FFDFB8] !w-[160px] transition-all"
               name="bid"
               ref={bidRef}
-              placeholder="input bid price"
+              placeholder="ndtast budpris"
               suffix={suffix}
               size="large"
             />
           )}
         </div>
       </div>
- 
+
       <div className="my-5">
         <p className="text-2xl font-semibold">{car?.model}</p>
         <div className="flex gap-4 justify-between my-5 flex-wrap">

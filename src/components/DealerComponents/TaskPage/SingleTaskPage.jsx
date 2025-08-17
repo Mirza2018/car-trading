@@ -32,7 +32,7 @@ const SingleTaskPage = () => {
   }
 
   const onFinish = async (values) => {
-    const toastId = toast.loading("Task Solution is submiting...");
+    const toastId = toast.loading("Opgaveløsning indsendes…");
     console.log(values);
     const data = {
       taskId: myTask?._id,
@@ -40,7 +40,7 @@ const SingleTaskPage = () => {
     };
 
     if (!values?.solutionDetails) {
-      return toast.error("Please Input Solution Details", {
+      return toast.error("Indtast venligst løsningsdetaljer", {
         id: toastId,
         duration: 2000,
       });
@@ -65,13 +65,13 @@ const SingleTaskPage = () => {
     try {
       const res = await tastSolution(formData).unwrap();
       console.log(res);
-      toast.success("Task Solution submit Successfully", {
+      toast.success("Opgaveløsning indsendt succesfuldt", {
         id: toastId,
         duration: 2000,
       });
       navigate.push("/");
     } catch (error) {
-      toast.error("To submit Task Solution There is some Problem", {
+      toast.error("Der er et problem med at indsende opgaveløsningen", {
         id: toastId,
         duration: 2000,
       });
@@ -84,7 +84,7 @@ const SingleTaskPage = () => {
       <section className="border border-secondary-color rounded-md flex flex-col gap-3 p-10 flex-1 h-fit">
         <h1 className="text-xl font-bold">{myTask?.taskTitle}</h1>
         <p>
-          Description:
+          Beskrivelse:
           <span className="font-medium"> {myTask?.taskDescription}</span>
         </p>
         <p>
@@ -97,12 +97,12 @@ const SingleTaskPage = () => {
         </p> */}
       </section>
       <section className="flex-1 flex flex-col gap-5">
-        <h1 className="text-4xl font-bold">Task Solve Screen</h1>
+        <h1 className="text-4xl font-bold">Opgaveløsningsskærm</h1>
         <p className="">
-          Once you successfully complete this task, your profile will be
-          unlocked, granting you access to additional features and
-          opportunities. Ensure that all task requirements are met before
-          submission to proceed smoothly.
+          Når du har fuldført denne opgave succesfuldt, vil din profil blive
+          låst op, hvilket giver dig adgang til yderligere funktioner og
+          muligheder. Sørg for, at alle opgavekrav er opfyldt, inden du
+          indsender, for at kunne fortsætte problemfrit.
         </p>
         <Form onFinish={onFinish}>
           <Form.Item name="solutionDetails">
@@ -112,7 +112,7 @@ const SingleTaskPage = () => {
             <Upload>
               <button className="rounded-md px-2 py-2 border border-text-light-color w-fit flex gap-1 items-center">
                 <MdAttachFile />
-                Choose File
+                Vælg fil
               </button>
             </Upload>
           </Form.Item>
@@ -123,10 +123,10 @@ const SingleTaskPage = () => {
               }}
               className="rounded-md cursor-pointer px-2 py-2 text-text-light-color w-fit flex gap-1 items-center"
             >
-              Cancel
+              Annuller
             </p>
             <button className="rounded-md px-2 py-2  text-white bg-highlight-color w-fit flex gap-1 items-center">
-              Submit Solution
+              Indsend løsning
             </button>
           </div>
         </Form>

@@ -50,7 +50,7 @@ export default function CarInfoForm({ current, setCurrent }) {
           <div className="relative">
             <Input
               required
-              placeholder="License plate Number"
+              placeholder="Nummerplade-nummer"
               defaultValue={licensePlate}
               //   onChange={handleLicensePlateChange}
               className="pr-12"

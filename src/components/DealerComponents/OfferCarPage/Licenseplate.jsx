@@ -26,7 +26,7 @@ const Licenseplate = ({ offerCar }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (isSuccess) {
-      toast.success("License plate data fetch successfully...", {
+      toast.success("Registreringspladedata hentet succesfuldt…", {
         id: toastId,
         duration: 2000,
       });
@@ -43,7 +43,7 @@ const Licenseplate = ({ offerCar }) => {
     if (isError) {
       console.log(isError);
 
-      toast.error("Give a valid license plate number", {
+      toast.error("Angiv et gyldigt registreringspladenummer", {
         id: toastId,
         duration: 2000,
       });
@@ -67,7 +67,7 @@ const Licenseplate = ({ offerCar }) => {
   };
 
   const handleEditClick = async () => {
-    toast.loading("License plate is Checking....", {
+    toast.loading("Registreringsplade kontrolleres…", {
       id: toastId,
       duration: 1000,
     });
@@ -76,7 +76,7 @@ const Licenseplate = ({ offerCar }) => {
     try {
       const res = await trigger({ license: inputValue }).unwrap(); // unwrap returns a promise that rejects on error
       console.log("res", res);
-      toast.success("License plate data fetch successfully...", {
+      toast.success("Registreringspladedata hentet succesfuldt…", {
         id: toastId,
         duration: 1000,
       });
@@ -105,12 +105,12 @@ const Licenseplate = ({ offerCar }) => {
   };
 
   const onFinsh = async (values) => {
-    const toastId = toast.loading("Deal is sending...");
+    const toastId = toast.loading("Handel sendes…");
     values.models = selectedCar;
     console.log(values);
 
     if (!carData) {
-      return toast.error("Please search a lisense plate number", {
+      return toast.error("Søg venligst efter et registreringspladenummer", {
         id: toastId,
         duration: 2000,
       });
@@ -145,7 +145,7 @@ const Licenseplate = ({ offerCar }) => {
     try {
       const res = await offerCar(formData).unwrap();
       console.log(res);
-      toast.success(res?.data?.message || "Deal is sending Successfully", {
+      toast.success("Handel sendt succesfuldt", {
         id: toastId,
         duration: 2000,
       });
@@ -153,7 +153,7 @@ const Licenseplate = ({ offerCar }) => {
       form.resetFields();
     } catch (error) {
       console.log(error);
-      toast.error(error?.data?.message || "There is an problem sending deal", {
+      toast.error("Der er et problem med at sende handlen", {
         id: toastId,
         duration: 2000,
       });
@@ -166,7 +166,7 @@ const Licenseplate = ({ offerCar }) => {
         <p className="font-bold text-2xl pb-2">Nummerpladenummer</p>
         <Input
           ref={inputRef}
-          placeholder="Enter license plate"
+          placeholder="Indtast nummerplade"
           className="!w-80 !h-11 "
           suffix={
             <div
@@ -232,7 +232,7 @@ const Licenseplate = ({ offerCar }) => {
             rules={[
               {
                 required: true,
-                message: "Please Select Category",
+                message: "Vælg venligst kategori",
               },
             ]}
           >
@@ -250,7 +250,7 @@ const Licenseplate = ({ offerCar }) => {
             rules={[
               {
                 required: true,
-                message: "Please Select Car Condition",
+                message: "Vælg venligst bilens tilstand",
               },
             ]}
             className="flex-1"
@@ -283,27 +283,27 @@ const Licenseplate = ({ offerCar }) => {
             rules={[
               {
                 required: true,
-                message: "Please Input Models Year",
+                message: "Indtast venligst modelår",
               },
             ]}
             label={<span className="font-bold text-2xl">Modelår</span>}
             name="modelsYear"
             className="flex-1"
           >
-            <InputNumber className="w-full" placeholder="Input model year" />
+            <InputNumber className="w-full" placeholder="Indtast modelår" />
           </Form.Item>
           <Form.Item
             rules={[
               {
                 required: true,
-                message: "Please Input price",
+                message: "Indtast venligst pris",
               },
             ]}
             label={<span className="font-bold text-2xl">Pris</span>}
             name="cashPrice"
             className="flex-1"
           >
-            <InputNumber className="w-full" placeholder="Input CashPrice " />
+            <InputNumber className="w-full" placeholder="Indtast kontantpris" />
           </Form.Item>
         </div>
 
@@ -312,7 +312,7 @@ const Licenseplate = ({ offerCar }) => {
             rules={[
               {
                 required: true,
-                message: "Please Select Price type",
+                message: "Vælg venligst pris type",
               },
             ]}
             label={<span className="font-bold text-2xl">Pristype</span>}
@@ -346,7 +346,7 @@ const Licenseplate = ({ offerCar }) => {
             rules={[
               {
                 required: true,
-                message: "Please Select Gear type",
+                message: "Vælg venligst geartype",
               },
             ]}
             label={<span className="font-bold text-2xl">Geartype</span>}
@@ -386,20 +386,23 @@ const Licenseplate = ({ offerCar }) => {
             rules={[
               {
                 required: true,
-                message: "Please Input Driven km",
+                message: "Indtast venligst kørte km",
               },
             ]}
             label={<span className="font-bold text-2xl">Kørte km</span>}
             name="DrivenKm"
             className="flex-1"
           >
-            <InputNumber className="w-full" placeholder="Input Driven Km" />
+            <InputNumber
+              className="w-full"
+              placeholder="Indtast antal kørte kilometer."
+            />
           </Form.Item>
           <Form.Item
             rules={[
               {
                 required: true,
-                message: "Please Choose Car Color",
+                message: "Vælg venligst bilens farve",
               },
             ]}
             label={<span className="font-bold text-2xl">Farve</span>}
@@ -537,7 +540,7 @@ const Licenseplate = ({ offerCar }) => {
             rules={[
               {
                 required: true,
-                message: "Please Select Fuel Type",
+                message: "Vælg venligst brændstoftype",
               },
             ]}
             label={<span className="font-bold text-2xl">Brændstof</span>}

@@ -132,7 +132,7 @@ const OfferCarContract = () => {
     };
 
   const handleSubmit = async () => {
-    const toastId = toast.loading("Digital Contract is Signing...");
+    const toastId = toast.loading("Digital kontrakt underskrives…");
     const data = {
       isMoms: isValueIncressed,
       advancedPayment: advancedRef.current.value,
@@ -150,19 +150,19 @@ const OfferCarContract = () => {
     }
 
     if (!data.isAggrade) {
-      return toast.error("Please check mark the Kommentarer!", {
+      return toast.error("Marker venligst Kommentarer!", {
         id: toastId,
         duration: 2000,
       });
     }
     if (!data.reRegistrationDeRegistrationView) {
-      return toast.error("Please Select OMREGISTRERING/AFMELDING", {
+      return toast.error("Vælg venligst OMREGISTRERING/AFMELDING", {
         id: toastId,
         duration: 2000,
       });
     }
     if (!signature) {
-      return toast.error("Give your Signature", {
+      return toast.error("Giv din underskrift", {
         id: toastId,
         duration: 2000,
       });
@@ -201,21 +201,16 @@ const OfferCarContract = () => {
         ContactData: formData,
       }).unwrap();
       console.log(res);
-      toast.success(
-        res?.data?.message || "Digital Contract is Signed Successfully",
-        {
-          id: toastId,
-          duration: 2000,
-        }
-      );
+      toast.success("Digital kontrakt underskrevet succesfuldt", {
+        id: toastId,
+        duration: 2000,
+      });
       navigate.push("/");
       // form.resetFields();
       localStorage.removeItem("signature");
     } catch (error) {
       console.error(error);
-      toast.error(
-        error.data?.message ||
-          "There was a problem signing the Digital Contract",
+      toast.error("Der opstod et problem med at underskrive den digitale kontrakt",
         {
           id: toastId,
           duration: 2000,

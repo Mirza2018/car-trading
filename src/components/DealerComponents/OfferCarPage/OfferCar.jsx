@@ -53,7 +53,7 @@ const OfferCar = ({ offerCar }) => {
   };
 
   const onFinsh = async (values) => {
-    const toastId = toast.loading("Deal is sending...");
+    const toastId = toast.loading("Handel sendes…");
     values.models = selectedCar;
 
     const data = { ...values, submitListingCarId: param.id };
@@ -83,7 +83,7 @@ const OfferCar = ({ offerCar }) => {
     try {
       const res = await offerCar(formData).unwrap();
       console.log(res);
-      toast.success(res?.data?.message || "Deal is sending Successfully", {
+      toast.success("Handel sendt succesfuldt", {
         id: toastId,
         duration: 2000,
       });
@@ -91,7 +91,7 @@ const OfferCar = ({ offerCar }) => {
       form.resetFields();
     } catch (error) {
       console.log(error);
-      toast.error(error?.data?.message || "There is an problem sending deal", {
+      toast.error("Der er et problem med at sende handlen", {
         id: toastId,
         duration: 2000,
       });
@@ -115,7 +115,7 @@ const OfferCar = ({ offerCar }) => {
             rules={[
               {
                 required: true,
-                message: "Please Select Category",
+                message: "Vælg venligst kategori",
               },
             ]}
           >
@@ -133,7 +133,7 @@ const OfferCar = ({ offerCar }) => {
             rules={[
               {
                 required: true,
-                message: "Please Select Mark",
+                message: "Vælg venligst mærke",
               },
             ]}
             label={<span className="font-bold text-2xl">Mærke</span>}
@@ -152,7 +152,7 @@ const OfferCar = ({ offerCar }) => {
               options={carBrands}
             /> */}
             <Select
-              placeholder="Select a Brand"
+              placeholder="Vælg et mærke"
               showSearch
               optionFilterProp="children"
               filterOption={(input, option) => {
@@ -187,19 +187,19 @@ const OfferCar = ({ offerCar }) => {
             rules={[
               {
                 required: true,
-                message: "Please Input Model",
+                message: "Indtast venligst model",
               },
             ]}
             label={<span className="font-bold text-2xl">Model</span>}
             name="model"
           >
-            <Input placeholder="input Model" />
+            <Input placeholder="Indtast model" />
           </Form.Item>
           <Form.Item
             rules={[
               {
                 required: true,
-                message: "Please Select Car Condition",
+                message: "Vælg venligst bilens tilstand",
               },
             ]}
             className="flex-1"
@@ -218,27 +218,27 @@ const OfferCar = ({ offerCar }) => {
             rules={[
               {
                 required: true,
-                message: "Please Input Models Year",
+                message: "Indtast venligst modelår",
               },
             ]}
             label={<span className="font-bold text-2xl">Modelår</span>}
             name="modelsYear"
             className="flex-1"
           >
-            <InputNumber className="w-full" placeholder="Input model year" />
+            <InputNumber className="w-full" placeholder="Indtast modelår" />
           </Form.Item>
           <Form.Item
             rules={[
               {
                 required: true,
-                message: "Please Input price",
+                message: "Indtast venligst pris",
               },
             ]}
             label={<span className="font-bold text-2xl">Pris</span>}
             name="cashPrice"
             className="flex-1"
           >
-            <InputNumber className="w-full" placeholder="Input CashPrice " />
+            <InputNumber className="w-full" placeholder="Indtast modelår" />
           </Form.Item>
         </div>
 
@@ -247,7 +247,7 @@ const OfferCar = ({ offerCar }) => {
             rules={[
               {
                 required: true,
-                message: "Please Select Price type",
+                message: "Vælg venligst pristype",
               },
             ]}
             label={<span className="font-bold text-2xl">Pristype</span>}
@@ -281,7 +281,7 @@ const OfferCar = ({ offerCar }) => {
             rules={[
               {
                 required: true,
-                message: "Please Select Gear type",
+                message: "Vælg venligst geartype",
               },
             ]}
             label={<span className="font-bold text-2xl">Geartype</span>}
@@ -321,20 +321,23 @@ const OfferCar = ({ offerCar }) => {
             rules={[
               {
                 required: true,
-                message: "Please Input Driven km",
+                message: "Indtast venligst kørte km",
               },
             ]}
             label={<span className="font-bold text-2xl">Kørte km</span>}
             name="DrivenKm"
             className="flex-1"
           >
-            <InputNumber className="w-full" placeholder="Input Driven Km" />
+            <InputNumber
+              className="w-full"
+              placeholder="Indtast kørte kilometer."
+            />
           </Form.Item>
           <Form.Item
             rules={[
               {
                 required: true,
-                message: "Please Choose Car Color",
+                message: "Vælg venligst bilens farve",
               },
             ]}
             label={<span className="font-bold text-2xl">Farve</span>}
@@ -472,7 +475,7 @@ const OfferCar = ({ offerCar }) => {
             rules={[
               {
                 required: true,
-                message: "Please Select Fuel Type",
+                message: "Vælg venligst brændstoftype",
               },
             ]}
             label={<span className="font-bold text-2xl">Brændstof</span>}

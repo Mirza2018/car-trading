@@ -73,12 +73,12 @@ const SubmitListing = () => {
 
   const onFinsh = async (values) => {
     if (!selectedCar) {
-      return toast.error("please Selete Models", {
+      return toast.error("Vælg venligst modeller", {
         toastId: "formError",
         autoClose: 2000,
       });
     }
-    const toastId = toast.loading("Car details is submitting..");
+    const toastId = toast.loading("Bildetaljer indsendes…");
     values.models = selectedCar;
     let data;
     if (userInfo) {
@@ -100,12 +100,12 @@ const SubmitListing = () => {
     try {
       const res = await submitListingData(data).unwrap();
       console.log(res);
-      toast.success(res?.data?.message || "Listing created successfully", {
+      toast.success("Liste oprettet succesfuldt", {
         id: toastId,
         duration: 2000,
       });
       if (!userInfo) {
-        toast.success("Please check your provided mail", {
+        toast.success("Tjek venligst din angivne e-mail", {
           duration: 2000,
         });
       }
@@ -113,15 +113,10 @@ const SubmitListing = () => {
     } catch (error) {
       console.log(error);
 
-      toast.error(
-        error?.data?.errorSources[0]?.message ||
-          error?.data?.message ||
-          "Something wrong please try latter.. ",
-        {
-          id: toastId,
-          duration: 2000,
-        }
-      );
+      toast.error("Noget gik galt, prøv venligst senere.", {
+        id: toastId,
+        duration: 2000,
+      });
     }
   };
   if (isLoading) {
@@ -148,7 +143,7 @@ const SubmitListing = () => {
             rules={[
               {
                 required: true,
-                message: "Please select Mark",
+                message: "Vælg venligst et mærke",
               },
             ]}
             label={
@@ -162,7 +157,7 @@ const SubmitListing = () => {
             name="mark"
           >
             <Select
-              placeholder="Select a Brand"
+              placeholder="Opgiv modelnavn"
               showSearch
               optionFilterProp="children"
               filterOption={(input, option) => {
@@ -197,7 +192,7 @@ const SubmitListing = () => {
               {
                 required: true,
 
-                message: "Please Input Model Name",
+                message: "Venligst indtast modelnavn",
               },
             ]}
             label={
@@ -210,7 +205,7 @@ const SubmitListing = () => {
             }
             name="model"
           >
-            <Input placeholder="Give model name" />
+            <Input placeholder="Opgiv modelnavn" />
           </Form.Item>
         </div>
 
@@ -229,7 +224,7 @@ const SubmitListing = () => {
             rules={[
               {
                 required: true,
-                message: "Please select car category",
+                message: "Vælg venligst bilkategori",
               },
             ]}
           >
@@ -253,7 +248,7 @@ const SubmitListing = () => {
             rules={[
               {
                 required: true,
-                message: "Please Select Car Condition",
+                message: "Vælg venligst bilens stand",
               },
             ]}
             className="flex-1"
@@ -294,7 +289,7 @@ const SubmitListing = () => {
           rules={[
             {
               required: true,
-              message: "Please Input Max Price",
+              message: "Venligst indtast makspris",
             },
           ]}
           // label={<span className="font-medium text-base">Max price</span>}
@@ -309,7 +304,7 @@ const SubmitListing = () => {
             rules={[
               {
                 required: true,
-                message: "Please select Fuel Type",
+                message: "Vælg venligst brændstoftype",
               },
             ]}
             label={
@@ -396,7 +391,7 @@ const SubmitListing = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please select Gear type",
+                  message: "Vælg venligst gearkasse",
                 },
               ]}
               label={
@@ -433,7 +428,7 @@ const SubmitListing = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please select Price type",
+                  message: "Vælg venligst pristype",
                 },
               ]}
               label={
@@ -617,7 +612,7 @@ const SubmitListing = () => {
             rules={[
               {
                 required: true,
-                message: "Please inptut models From",
+                message: "Venligst indtast modeller fra",
               },
             ]}
             label={<span className="font-medium text-base">From</span>}
@@ -630,7 +625,7 @@ const SubmitListing = () => {
             rules={[
               {
                 required: true,
-                message: "Please inptut models To",
+                message: "Venligst indtast modeller til",
               },
             ]}
             label={<span className="font-medium text-base">To</span>}
@@ -653,7 +648,7 @@ const SubmitListing = () => {
             rules={[
               {
                 required: true,
-                message: "Please inptut Driven km From",
+                message: "Venligst indtast kørte kilometer fra",
               },
             ]}
             label={<span className="font-medium text-base">Fra</span>}
@@ -667,7 +662,7 @@ const SubmitListing = () => {
             rules={[
               {
                 required: true,
-                message: "Please inptut Driven km To",
+                message: "Venligst indtast kørte kilometer til",
               },
             ]}
             label={<span className="font-medium text-base">Til</span>}
@@ -919,12 +914,12 @@ const SubmitListing = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please inptut Company Name",
+                    message: "Venligst indtast firmanavn",
                   },
                 ]}
                 name={`companyName`}
               >
-                <Input placeholder="Company Name" className="py-3" />
+                <Input placeholder="Firmanavn" className="py-3" />
               </Form.Item>
             </div>
             <div className="flex-1">
@@ -938,12 +933,12 @@ const SubmitListing = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please inptut CVR Number",
+                    message: "Venligst indtast CVR-nummer",
                   },
                 ]}
                 name={`cvrNumber`}
               >
-                <Input placeholder="CVR Number" className="py-3" />
+                <Input placeholder="CVR-nummer" className="py-3" />
               </Form.Item>
             </div>
           </div>
@@ -963,12 +958,12 @@ const SubmitListing = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please inptut First Name",
+                  message: "Venligst indtast fornavn",
                 },
               ]}
               name={`firstName`}
             >
-              <Input placeholder="First Name" className="py-3" />
+              <Input placeholder="Fornavn" className="py-3" />
             </Form.Item>
           </div>
           <div className="flex-1">
@@ -983,12 +978,12 @@ const SubmitListing = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please inptut Last Name",
+                  message: "Venligst indtast efternavn",
                 },
               ]}
               name={`lastName`}
             >
-              <Input placeholder="Last Name" className="py-3" />
+              <Input placeholder="Efternavn" className="py-3" />
             </Form.Item>
           </div>
         </div>
@@ -1005,12 +1000,12 @@ const SubmitListing = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input your Email",
+                  message: "Venligst indtast din e-mail",
                 },
               ]}
               name={`email`}
             >
-              <Input placeholder="Email" className="py-3" />
+              <Input placeholder="E-mail" className="py-3" />
             </Form.Item>
           </div>
         )}
@@ -1028,12 +1023,12 @@ const SubmitListing = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input your Street Name!",
+                  message: "Venligst indtast dit gadenavn!",
                 },
               ]}
               name={`street`}
             >
-              <Input placeholder="Street Name" className="py-3" />
+              <Input placeholder="Gadenavn" className="py-3" />
             </Form.Item>
           </div>
           <div className=" ">
@@ -1048,12 +1043,12 @@ const SubmitListing = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input your postal code!",
+                  message: "Venligst indtast dit postnummer!",
                 },
               ]}
               name={`postalCode`}
             >
-              <Input placeholder="Postal Code" className="py-3" />
+              <Input placeholder="Postnummer" className="py-3" />
             </Form.Item>
           </div>
 
@@ -1069,12 +1064,12 @@ const SubmitListing = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input city!",
+                  message: "Venligst indtast by!",
                 },
               ]}
               name={`city`}
             >
-              <Input placeholder="City" className="py-3" />
+              <Input placeholder="By" className="py-3" />
             </Form.Item>
           </div>
         </div>
@@ -1091,12 +1086,12 @@ const SubmitListing = () => {
             rules={[
               {
                 required: true,
-                message: "Please inptut Phone Number",
+                message: "Venligst indtast telefonnummer",
               },
             ]}
             name={`phoneNumber`}
           >
-            <Input placeholder="Phone Number" className="py-3" />
+            <Input placeholder="Telefonnummer" className="py-3" />
           </Form.Item>
         </div>
 

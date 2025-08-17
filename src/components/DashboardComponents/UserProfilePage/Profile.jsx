@@ -83,7 +83,7 @@ const Profile = () => {
   };
 
   const onFinish = async (values) => {
-    const toastId = toast.loading("Profile is updateing...");
+    const toastId = toast.loading("Profil opdateres…");
 
     const data = { ...values };
     delete data.profileImage;
@@ -114,7 +114,7 @@ const Profile = () => {
       }).unwrap();
 
       console.log("API Response:", res);
-      toast.success(res?.data?.message || "Profile Update Successfully", {
+      toast.success("Profil opdateret succesfuldt", {
         id: toastId,
         duration: 2000,
       });
@@ -122,7 +122,7 @@ const Profile = () => {
     } catch (error) {
       console.log(error);
 
-      toast.error(error?.data?.message || "Try Again", {
+      toast.error("Prøv igen", {
         id: toastId,
         duration: 2000,
       });
@@ -201,7 +201,7 @@ const Profile = () => {
               <Form.Item name="first_name" className="text-white">
                 <Input
                   required
-                  placeholder="Enter your First Name"
+                  placeholder="Indtast dit fornavn."
                   className="py-2 px-3 text-xl border !border-input-color  "
                 />
               </Form.Item>
@@ -213,7 +213,7 @@ const Profile = () => {
               <Form.Item name="last_name" className="text-white">
                 <Input
                   required
-                  placeholder="Enter your Last Name"
+                  placeholder="Indtast dit efternavn."
                   className="py-2 px-3 text-xl border !border-input-color  "
                 />
               </Form.Item>
@@ -225,7 +225,7 @@ const Profile = () => {
               <Form.Item name="phoneNumber" className="text-white">
                 <Input
                   required
-                  placeholder="Enter your phoneNumber"
+                  placeholder="Indtast dit telefonnummer."
                   className="py-2 px-3 text-xl border !border-input-color  "
                 />
               </Form.Item>
@@ -237,7 +237,7 @@ const Profile = () => {
               <Form.Item name="street" className="text-white">
                 <Input
                   required
-                  placeholder="Enter your street"
+                  placeholder="Indtast dit gadenavn."
                   className="py-2 px-3 text-xl border !border-input-color  "
                 />
               </Form.Item>
@@ -263,7 +263,7 @@ const Profile = () => {
               <Form.Item name="zip" className="text-white">
                 <Input
                   required
-                  placeholder="Enter your  zip code"
+                  placeholder="Indtast dit postnummer."
                   className="py-2 px-3 text-xl border !border-input-color"
                 />
               </Form.Item>
@@ -275,7 +275,7 @@ const Profile = () => {
               <Form.Item name="city" className="text-white">
                 <Input
                   required
-                  placeholder="Enter your City Name."
+                  placeholder="Indtast din bys navn."
                   className="py-2 px-3 text-xl border !border-input-color  "
                 />
               </Form.Item>
@@ -286,7 +286,7 @@ const Profile = () => {
               </Typography.Title>
               <Form.Item name="regNo" className="text-white">
                 <Input
-                  placeholder="Enter your Rge Nr."
+                  placeholder="Indtast dit registreringsnummer."
                   className="py-2 px-3 text-xl border !border-input-color  "
                 />
               </Form.Item>
@@ -298,7 +298,7 @@ const Profile = () => {
               </Typography.Title>
               <Form.Item name="kontoNr" className="text-white">
                 <Input
-                  placeholder="Enter your  Konto Nr."
+                  placeholder="Indtast dit kontonummer."
                   className="py-2 px-3 text-xl border !border-input-color"
                 />
               </Form.Item>
@@ -314,7 +314,7 @@ const Profile = () => {
                 <Form.Item name="companyName" className="text-white">
                   <Input
                     required
-                    placeholder="Enter your company name"
+                    placeholder="Indtast dit firmanavn."
                     className="py-2 px-3 text-xl border !border-input-color  "
                   />
                 </Form.Item>
@@ -326,7 +326,7 @@ const Profile = () => {
                 <Form.Item name="cvrNumber" className="text-white">
                   <Input
                     required
-                    placeholder="Enter your CRV Number"
+                    placeholder="Indtast dit CVR-nummer."
                     className="py-2 px-3 text-xl border !border-input-color  "
                   />
                 </Form.Item>
@@ -338,7 +338,7 @@ const Profile = () => {
                 </Typography.Title>
                 <Form.Item name="websiteLink" className="text-white">
                   <Input
-                    placeholder="Enter your Website Link"
+                    placeholder="Indtast linket til din hjemmeside."
                     className="py-2 px-3 text-xl border !border-input-color  "
                   />
                 </Form.Item>

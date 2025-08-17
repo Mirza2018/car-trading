@@ -5,7 +5,7 @@ const BidCar = ({ bids, bidCarAction }) => {
   console.log(bids);
 
   const acceptOffer = async () => {
-    const toastId = toast.loading("Offer is accepting...");
+    const toastId = toast.loading("Tilbud accepteres…");
     const data = {
       bidCarId: bids._id,
       status: "accepted",
@@ -17,24 +17,21 @@ const BidCar = ({ bids, bidCarAction }) => {
     try {
       const res = await bidCarAction(data).unwrap();
       console.log(res);
-      toast.success("Offer is accept Successfully", {
+      toast.success("Tilbud accepteret succesfuldt", {
         id: toastId,
         duration: 2000,
       });
     } catch (error) {
       console.log(error);
-      toast.error(
-        error?.data?.message || "There is an problem accepting offer",
-        {
-          id: toastId,
-          duration: 2000,
-        }
-      );
+      toast.error("Der er et problem med at acceptere tilbuddet", {
+        id: toastId,
+        duration: 2000,
+      });
     }
   };
 
   const rejectOffer = async () => {
-    const toastId = toast.loading("Offer is rejecting...");
+    const toastId = toast.loading("Tilbud afvises…");
     const data = {
       bidCarId: bids._id,
       status: "rejected",
@@ -45,19 +42,16 @@ const BidCar = ({ bids, bidCarAction }) => {
     try {
       const res = await bidCarAction(data).unwrap();
       console.log(res);
-      toast.success("Offer is reject Successfully", {
+      toast.success("Tilbud afvist succesfuldt", {
         id: toastId,
         duration: 2000,
       });
     } catch (error) {
       console.log(error);
-      toast.error(
-        error?.data?.message || "There is an problem rejecting the offer",
-        {
-          id: toastId,
-          duration: 2000,
-        }
-      );
+      toast.error("Der er et problem med at afvise tilbuddet", {
+        id: toastId,
+        duration: 2000,
+      });
     }
   };
 
