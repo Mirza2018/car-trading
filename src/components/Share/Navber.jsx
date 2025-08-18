@@ -121,7 +121,7 @@ const Navbar = () => {
   const RoleSpecificMenus = {
     default: [],
     private_user: [
-      { name: "Indsend annonce", path: "/submit-listing" },
+      { name: "Opret annonce", path: "/submit-listing" },
       { name: "Indbakke", path: "/inbox" },
       { name: "Dashboard", path: "/dashboard/total-private-car-sell" },
     ],

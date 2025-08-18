@@ -5,11 +5,20 @@ import {
 } from "@/redux/api/features/carPrivate";
 import { useProfileQuery } from "@/redux/api/features/myProfile";
 import {
-  clearCarLicenseInfo, 
+  clearCarLicenseInfo,
   setCarLicenseInfo,
 } from "@/redux/slices/carInfoSlice";
 
-import { Checkbox, Form, Input, InputNumber, Radio, Spin, Upload } from "antd";
+import {
+  Checkbox,
+  Form,
+  Input,
+  InputNumber,
+  Radio,
+  Spin,
+  Tooltip,
+  Upload,
+} from "antd";
 import { useForm } from "antd/es/form/Form";
 import { jwtDecode } from "jwt-decode";
 import Image from "next/image";
@@ -17,7 +26,9 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
+
 import Cookies from "universal-cookie";
+import { LuInfo } from "react-icons/lu";
 
 const SellCarAllDetails = () => {
   const {
@@ -195,13 +206,10 @@ const SellCarAllDetails = () => {
         return;
       }
       if (error?.data?.message.includes("email_1")) {
-        toast.error(
-          "Denne e-mail er allerede registreret, log venligst ind.",
-          {
-            id: toastId,
-            duration: 2000,
-          }
-        );
+        toast.error("Denne e-mail er allerede registreret, log venligst ind.", {
+          id: toastId,
+          duration: 2000,
+        });
         return;
       }
       toast.error("Noget gik galt, prøv venligst senere..", {
@@ -294,7 +302,7 @@ const SellCarAllDetails = () => {
               rules={[
                 {
                   required: true,
-                  message: "Venligst indtast antal kørte kilometer",
+                  message: "Alle (Venligst) tekster skal slettes",
                 },
               ]}
             >
@@ -305,12 +313,25 @@ const SellCarAllDetails = () => {
             </Form.Item>
           </div>
           <div className="flex-1 flex flex-col justify-end">
-            <p
-              style={{ fontSize: "clamp(14px, 1vw + 1rem ,24px)" }}
-              className=" font-medium pb-2 "
-            >
-              Antal lag lak*
-            </p>
+            <div className="pb-1 flex justify-between items-center ">
+              <p
+                style={{ fontSize: "clamp(14px, 1vw + 1rem ,24px)" }}
+                className=" font-medium pb-2 "
+              >
+                Antal lak skader*
+              </p>
+              {/* <div className="pb-1 flex justify-end cursor-pointer"> */}
+              <Tooltip
+                className="cursor-pointer"
+                placement="right"
+                title={<Image alt="" src={AllImages.carDetails} />}
+                color={'#FBEBEB'}
+              >
+                <LuInfo className="" />
+              </Tooltip>{" "}
+              {/* </div>{" "} */}
+            </div>
+
             <Form.Item
               rules={[
                 {
@@ -344,9 +365,9 @@ const SellCarAllDetails = () => {
 
             <Form.Item name="additionalEquipment">
               <Checkbox.Group className=" flex flex-col gap-2">
-                <Checkbox value="Automatic transmission">Automatgear</Checkbox>
-                <Checkbox value="Trailer hitch">Trailertræk</Checkbox>
-                <Checkbox value="Extra wheel set">Ekstra hjulsæt</Checkbox>
+                <Checkbox value="Automatgear">Automatgear</Checkbox>
+                <Checkbox value="Anhængertræk">Anhængertræk</Checkbox>
+                <Checkbox value="Ekstra hjulsæt">Ekstra hjulsæt</Checkbox>
               </Checkbox.Group>
             </Form.Item>
           </div>
@@ -414,6 +435,15 @@ const SellCarAllDetails = () => {
           </div>
           <div className="flex-1">
             {/* <p className=" font-medium pb-2">Number of varnish fields</p> */}
+            <div className="pb-1 flex justify-end cursor-pointer">
+              <Tooltip
+                className=""
+                placement="right"
+                title={`Få mest for din bil - upload billeder Et godt billede skaber tillid og giver et stærkt førstehåndsindtryk. Som man siger: "Et billede siger mere end tusind ord" - og kan være nøglen til at få den bedste pris for din bil.`}
+              >
+                <LuInfo className="" />
+              </Tooltip>{" "}
+            </div>
             <Form.Item
               name="images"
               valuePropName="fileList"
@@ -455,7 +485,7 @@ const SellCarAllDetails = () => {
                   ${isCompany ? "bg-violet-500 " : " "}
                    ring-2 ring-violet-500 `}
             ></div>
-            Virksomhed
+            Firma
           </div>
           <div
             style={{ fontSize: "clamp(18px, 3vw + 1rem ,36px)" }}

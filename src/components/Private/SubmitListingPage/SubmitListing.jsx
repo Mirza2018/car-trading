@@ -157,7 +157,7 @@ const SubmitListing = () => {
             name="mark"
           >
             <Select
-              placeholder="Opgiv modelnavn"
+              placeholder="vælg mærke"
               showSearch
               optionFilterProp="children"
               filterOption={(input, option) => {
@@ -205,7 +205,7 @@ const SubmitListing = () => {
             }
             name="model"
           >
-            <Input placeholder="Opgiv modelnavn" />
+            <Input placeholder="Indtast model" />
           </Form.Item>
         </div>
 
@@ -217,14 +217,14 @@ const SubmitListing = () => {
                 style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
                 className="font-bold  "
               >
-                Bilkategori
+                Kategori
               </span>
             }
             name="carCategory"
             rules={[
               {
                 required: true,
-                message: "Vælg venligst bilkategori",
+                message: "Personbil Varebil",
               },
             ]}
           >
@@ -268,7 +268,7 @@ const SubmitListing = () => {
                   style={{ fontSize: "clamp(12px, 1vw + 1rem ,14x)" }}
                   className="text-black  "
                 >
-                  Alle
+                  Ny Brugt
                 </span>
               }
             >
@@ -412,14 +412,11 @@ const SubmitListing = () => {
                     gap: "10px",
                   }}
                 >
-                  <Checkbox value="Manual gear" style={{ lineHeight: "32px" }}>
-                    Manual gear
+                  <Checkbox value="Manual" style={{ lineHeight: "32px" }}>
+                    Manual
                   </Checkbox>
-                  <Checkbox
-                    value="Automatic gear"
-                    style={{ lineHeight: "32px" }}
-                  >
-                    Automatic gear
+                  <Checkbox value="Automatik" style={{ lineHeight: "32px" }}>
+                    Automatik
                   </Checkbox>
                 </div>
               </Checkbox.Group>
@@ -451,29 +448,29 @@ const SubmitListing = () => {
                   }}
                 >
                   <Checkbox
-                    value=" Cash price"
+                    value="Kontant pris"
                     // checked={selectedPriceType === "cashPrice"}
                     // onChange={handleCheckboxChange}
                     style={{ lineHeight: "32px" }}
                   >
-                    Cash price
+                    Kontant pris
                   </Checkbox>
                   <Checkbox
-                    value="Cars without tax"
+                    value="Biler under afgift"
                     // checked={selectedPriceType === "carsWithoutTax"}
                     // onChange={handleCheckboxChange}
                     style={{ lineHeight: "32px" }}
                   >
-                    Cars without tax
+                    Biler under afgift
                   </Checkbox>
-                  <Checkbox
+                  {/* <Checkbox
                     value=" Wholesale/CVR"
                     // checked={selectedPriceType === "wholesaleCVR"}
                     // onChange={handleCheckboxChange}
                     style={{ lineHeight: "32px" }}
                   >
-                    Wholesale/CVR
-                  </Checkbox>
+                    
+                  </Checkbox> */}
                 </div>
               </Checkbox.Group>
             </Form.Item>
@@ -495,29 +492,27 @@ const SubmitListing = () => {
         >
           <div className="flex flex-wrap gap-3">
             <div
-              onClick={() => handleCarSelect("micro")}
+              onClick={() => handleCarSelect("mikrobil")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "micro" ? "border border-blue-500 " : "  "
+                selectedCar === "mikrobil" ? "border border-blue-500 " : "  "
               }`}
             >
               <div className="border  border-secondary-color w-fit p-4 rounded-md">
                 <Image src={AllImages.ct1} alt="car" />
               </div>
-              <p className="text-center"> Micro</p>
+              <p className="text-center">Mikrobil</p>
             </div>
 
             <div
-              onClick={() => handleCarSelect("stationWagon")}
+              onClick={() => handleCarSelect("stationcar")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "stationWagon"
-                  ? "border border-blue-500 "
-                  : "  "
+                selectedCar === "stationcar" ? "border border-blue-500 " : "  "
               }`}
             >
               <div className="border  border-secondary-color w-fit p-4 rounded-md">
                 <Image src={AllImages.ct2} alt="car" />
               </div>
-              <p className="text-center"> Station wagon</p>
+              <p className="text-center">Stationcar</p>
             </div>
 
             <div
@@ -605,7 +600,7 @@ const SubmitListing = () => {
           style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
           className="font-bold   mb-2"
         >
-          Modeller
+          Årgang
         </h1>
         <div className="flex  justify-between gap-5">
           <Form.Item
@@ -615,11 +610,11 @@ const SubmitListing = () => {
                 message: "Venligst indtast modeller fra",
               },
             ]}
-            label={<span className="font-medium text-base">From</span>}
+            label={<span className="font-medium text-base">Fra.</span>}
             name="modelsFrom"
             className="flex-1"
           >
-            <InputNumber placeholder="Before 1975" className="w-full" />
+            <InputNumber placeholder="Årgang fra." className="w-full" />
           </Form.Item>
           <Form.Item
             rules={[
@@ -628,12 +623,12 @@ const SubmitListing = () => {
                 message: "Venligst indtast modeller til",
               },
             ]}
-            label={<span className="font-medium text-base">To</span>}
+            label={<span className="font-medium text-base">Til</span>}
             name="modelsTo"
             className="flex-1"
           >
             {/* <Input placeholder="After 1990" /> */}
-            <InputNumber placeholder="After 1990" className="w-full" />
+            <InputNumber placeholder="Årgang til." className="w-full" />
           </Form.Item>
         </div>
 
@@ -641,7 +636,7 @@ const SubmitListing = () => {
           style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
           className="font-bold   mb-2"
         >
-          Kørte km
+          kilometer
         </h1>
         <div className="flex  justify-between gap-5">
           <Form.Item
@@ -669,7 +664,7 @@ const SubmitListing = () => {
             name="drivenKmTo"
             className="flex-1"
           >
-            <InputNumber placeholder="50000+" className="w-full" />
+            <InputNumber placeholder="500000+" className="w-full" />
           </Form.Item>
         </div>
 
@@ -726,7 +721,7 @@ const SubmitListing = () => {
               style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
               className="font-bold   "
             >
-              Trailerkobling
+              Anhænger
             </h1>
             <div className="flex  justify-between items-center gap-5 mt-3">
               <Form.Item name="trailerHitch" className="flex-1">
@@ -737,7 +732,7 @@ const SubmitListing = () => {
                       style={{ fontSize: "clamp(12px, 1vw + 1rem ,18px)" }}
                       className="text-black  "
                     >
-                      Trailertræk
+                      Anhængertræk
                     </span>
                   }
                 >
@@ -766,29 +761,26 @@ const SubmitListing = () => {
                     gap: "10px",
                   }}
                 >
-                  <Checkbox value="Alloy Rims" style={{ lineHeight: "32px" }}>
-                    Alloy Rims
+                  <Checkbox value="Alufælge" style={{ lineHeight: "32px" }}>
+                    Alufælge
                   </Checkbox>
                   <Checkbox
-                    value="LED headlights"
+                    value="LED forlygter"
                     style={{ lineHeight: "32px" }}
                   >
-                    LED headlights
+                    LED forlygter
+                  </Checkbox>
+                  <Checkbox value="Panoramatag" style={{ lineHeight: "32px" }}>
+                    Panoramatag
+                  </Checkbox>
+                  <Checkbox value="El soltag" style={{ lineHeight: "32px" }}>
+                    El soltag
                   </Checkbox>
                   <Checkbox
-                    value="Panoramic roof"
+                    value="Xenon forlygter"
                     style={{ lineHeight: "32px" }}
                   >
-                    Panoramic roof
-                  </Checkbox>
-                  <Checkbox
-                    value="Sunroof, electric"
-                    style={{ lineHeight: "32px" }}
-                  >
-                    Sunroof, electric
-                  </Checkbox>
-                  <Checkbox value="Xenon lights" style={{ lineHeight: "32px" }}>
-                    Xenon lights
+                    Xenon forlygter
                   </Checkbox>
                 </Checkbox.Group>
               </Form.Item>
@@ -811,26 +803,23 @@ const SubmitListing = () => {
                     gap: "10px",
                   }}
                 >
-                  <Checkbox value="Android auto" style={{ lineHeight: "32px" }}>
-                    Android auto
+                  <Checkbox value="Android Auto" style={{ lineHeight: "32px" }}>
+                    Android Auto
                   </Checkbox>
                   <Checkbox
-                    value="Apple car play"
+                    value="Apple carplay"
                     style={{ lineHeight: "32px" }}
                   >
-                    Apple car play
+                    Apple carplay
                   </Checkbox>
                   <Checkbox
-                    value="Air conditioning"
+                    value="Aircondition/klimaanlæg"
                     style={{ lineHeight: "32px" }}
                   >
-                    Air conditioning
+                    Aircondition/klimaanlæg
                   </Checkbox>
-                  <Checkbox
-                    value="Power windows"
-                    style={{ lineHeight: "32px" }}
-                  >
-                    Power windows
+                  <Checkbox value="Elruder" style={{ lineHeight: "32px" }}>
+                    Elruder
                   </Checkbox>
                   <Checkbox
                     value="Head-up display"
@@ -842,13 +831,13 @@ const SubmitListing = () => {
                     Navigation
                   </Checkbox>
                   <Checkbox
-                    value="Keyless operation"
+                    value="Nøglefri betjening"
                     style={{ lineHeight: "32px" }}
                   >
-                    Keyless operation
+                    Nøglefri betjening
                   </Checkbox>
-                  <Checkbox value="Seat heating" style={{ lineHeight: "32px" }}>
-                    Seat heating
+                  <Checkbox value="Sædevarme" style={{ lineHeight: "32px" }}>
+                    Sædevarme
                   </Checkbox>
                 </Checkbox.Group>
               </Form.Item>

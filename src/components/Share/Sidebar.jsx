@@ -49,7 +49,7 @@ const Sidebar = ({ slider, setSlider }) => {
                         : undefined,
                   }}
                 />
-                <p>I alt købte biler</p>
+                <p>Mine købte biler</p>
               </li>
             </Link>
             <Link
@@ -74,7 +74,7 @@ const Sidebar = ({ slider, setSlider }) => {
                         : undefined,
                   }}
                 />
-                <p>Tilbyd bilaftale</p>
+                <p>Sendte tilbud</p>
               </li>
             </Link>
             <Link href="/dashboard/my-bids" className="w-full">
@@ -97,7 +97,7 @@ const Sidebar = ({ slider, setSlider }) => {
                         : undefined,
                   }}
                 />
-                <p>Budoplysninger</p>
+                <p>Mine bud</p>
               </li>
             </Link>
             <Link href="/dashboard/order-transport" className="w-full">

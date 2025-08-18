@@ -52,7 +52,7 @@ const MyProfile = ({ setIsProfile, handleLogout }) => {
           />
         </svg>
 
-        <h1 className="whitespace-nowrap">Change Password</h1>
+        <h1 className="whitespace-nowrap">Ændre adgangskode</h1>
       </Link>
 
       <Link
@@ -76,7 +76,7 @@ const MyProfile = ({ setIsProfile, handleLogout }) => {
             fill="#333333"
           />
         </svg>
-        <h1>Profile</h1>
+        <h1>Min profil</h1>
       </Link>
 
       <div
@@ -99,7 +99,7 @@ const MyProfile = ({ setIsProfile, handleLogout }) => {
             fill="#414141"
           />
         </svg>
-        <h1>Logout</h1>
+        <h1>Log ud</h1>
       </div>
     </div>
   );

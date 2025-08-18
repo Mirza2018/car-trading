@@ -1,7 +1,7 @@
 import { useGetBrandQuery } from "@/redux/api/features/carPrivate";
 import { Form, Input, Select } from "antd";
 import React from "react";
-const { Option } = Select;
+const { Option } = Select; 
 const SubmitListingFilterSection = ({ onFinishPrivate }) => {
   const { data: allBrand, isLoading: isLoadingBrand } = useGetBrandQuery();
   return (
@@ -9,11 +9,11 @@ const SubmitListingFilterSection = ({ onFinishPrivate }) => {
       <div className="flex md:flex-row flex-col justify-between items-center md:gap-5 mx-2">
         <div className="grid lg:grid-cols-4  grid-cols-2  gap-2 my-12 flex-1">
           <div className="flex flex-col justify-between">
-            <h1 className="sm:text-2xl font-bold">Mark</h1>
+            <h1 className="sm:text-2xl font-bold">Mærke</h1>
             <Form.Item name="brand">
               <Select
                 className="sm:!h-10"
-                placeholder="Vælg et mærke"
+                placeholder="Vælg mærke"
                 showSearch
                 optionFilterProp="children"
                 filterOption={(input, option) =>
@@ -37,7 +37,7 @@ const SubmitListingFilterSection = ({ onFinishPrivate }) => {
             </Form.Item>
           </div>
           <div>
-            <h1 className="sm:text-2xl font-bold">Modelår</h1>
+            <h1 className="sm:text-2xl font-bold">Årgang</h1>
             <div className="flex  justify-between gap-5">
               <Form.Item
                 label={<span className="sm:font-medium text-base">Fra</span>}
@@ -56,7 +56,7 @@ const SubmitListingFilterSection = ({ onFinishPrivate }) => {
             </div>
           </div>
           <div>
-            <h1 className="sm:text-2xl font-bold">Kørte km</h1>
+            <h1 className="sm:text-2xl font-bold">Kilometer</h1>
             <div className="flex  justify-between gap-5">
               <Form.Item
                 label={<span className="sm:font-medium text-base">Fra</span>}

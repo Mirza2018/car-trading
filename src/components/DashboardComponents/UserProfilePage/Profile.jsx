@@ -282,7 +282,7 @@ const Profile = () => {
             </div>
             <div>
               <Typography.Title level={5} style={{ color: "#222222" }}>
-                Rge Nr.
+                Rge nr.
               </Typography.Title>
               <Form.Item name="regNo" className="text-white">
                 <Input

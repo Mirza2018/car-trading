@@ -68,6 +68,7 @@ import about2 from "./about/about2.png";
 import about3 from "./about/about3.png";
 import about4 from "./about/about4.png";
 import about5 from "./about/about5.png";
+import carDetails from "./images/carDetails.png";
 
 export const AllImages = {
   biludenbilleder,
@@ -135,4 +136,5 @@ export const AllImages = {
   signature,
   save,
   brand1,
+  carDetails,
 };
