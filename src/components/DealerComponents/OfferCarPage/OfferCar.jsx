@@ -15,7 +15,7 @@ const OfferCar = ({ offerCar }) => {
   const navigate = useRouter();
   const [selectedCar, setSelectedCar] = useState(null);
   const normFileEvent = (e) => {
-    if (Array.isArray(e)) { 
+    if (Array.isArray(e)) {
       return e;
     }
     return e && e.fileList;
@@ -207,8 +207,8 @@ const OfferCar = ({ offerCar }) => {
             name="carCondition"
           >
             <Select placeholder={<span className="text-black ">Ny/brugt</span>}>
-              <Select.Option value="new">Ny</Select.Option>
-              <Select.Option value="used">Brugt</Select.Option>
+              <Select.Option value="Ny">Ny</Select.Option>
+              <Select.Option value="Brugt">Brugt</Select.Option>
             </Select>
           </Form.Item>
         </div>
@@ -262,18 +262,18 @@ const OfferCar = ({ offerCar }) => {
                   gap: "10px",
                 }}
               >
-                <Checkbox value="Cash Price" style={{ lineHeight: "32px" }}>
-                  Kontantpris
+                <Checkbox value="Kontant pris" style={{ lineHeight: "32px" }}>
+                  Kontant pris
                 </Checkbox>
                 <Checkbox
-                  value="Cars Without Tax"
+                  value="Biler under afgift"
                   style={{ lineHeight: "32px" }}
                 >
-                  Biler uden afgift
+                  Biler under afgift
                 </Checkbox>
-                <Checkbox value="Wholesale CVR" style={{ lineHeight: "32px" }}>
+                {/* <Checkbox value="Wholesale CVR" style={{ lineHeight: "32px" }}>
                   Engros/CVR
-                </Checkbox>
+                </Checkbox> */}
               </div>
             </Checkbox.Group>
           </Form.Item>
@@ -296,21 +296,11 @@ const OfferCar = ({ offerCar }) => {
                   gap: "10px",
                 }}
               >
-                <Checkbox
-                  value="Manual Gear"
-                  // checked={selectedGeartype === "manualGear"}
-                  // onChange={handleGeartypeCheckboxChange}
-                  style={{ lineHeight: "32px" }}
-                >
-                  Manual gear
+                <Checkbox value="Manual" style={{ lineHeight: "32px" }}>
+                  Manual
                 </Checkbox>
-                <Checkbox
-                  value="Automatic Gear"
-                  // checked={selectedGeartype === "automaticGear"}
-                  // onChange={handleGeartypeCheckboxChange}
-                  style={{ lineHeight: "32px" }}
-                >
-                  Automatic gear
+                <Checkbox value="Automatik" style={{ lineHeight: "32px" }}>
+                  Automatik
                 </Checkbox>
               </div>
             </Checkbox.Group>
@@ -364,30 +354,29 @@ const OfferCar = ({ offerCar }) => {
           name="models"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  xl:grid-cols-5 gap-4 p-4">
+
             <div
-              onClick={() => handleCarSelect("micro")}
+              onClick={() => handleCarSelect("mikrobil")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "micro" ? "border border-blue-500 " : "  "
+                selectedCar === "mikrobil" ? "border border-blue-500 " : "  "
               }`}
             >
               <div className="border  border-secondary-color w-fit p-4 rounded-md">
                 <Image src={AllImages.ct1} alt="car" />
               </div>
-              <p className="text-center"> Micro</p>
+              <p className="text-center">Mikrobil</p>
             </div>
 
             <div
-              onClick={() => handleCarSelect("stationWagon")}
+              onClick={() => handleCarSelect("stationcar")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "stationWagon"
-                  ? "border border-blue-500 "
-                  : "  "
+                selectedCar === "stationcar" ? "border border-blue-500 " : "  "
               }`}
             >
               <div className="border  border-secondary-color w-fit p-4 rounded-md">
                 <Image src={AllImages.ct2} alt="car" />
               </div>
-              <p className="text-center"> Station wagon</p>
+              <p className="text-center">Stationcar</p>
             </div>
 
             <div
@@ -413,6 +402,7 @@ const OfferCar = ({ offerCar }) => {
               </div>
               <p className="text-center">Crossover (CUV)</p>
             </div>
+
             <div
               onClick={() => handleCarSelect("minibus")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
@@ -424,6 +414,7 @@ const OfferCar = ({ offerCar }) => {
               </div>
               <p className="text-center">Minibus (MPV)</p>
             </div>
+
             <div
               onClick={() => handleCarSelect("sedan")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
@@ -435,6 +426,7 @@ const OfferCar = ({ offerCar }) => {
               </div>
               <p className="text-center"> Sedan</p>
             </div>
+
             <div
               onClick={() => handleCarSelect("hatchback")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
@@ -446,6 +438,7 @@ const OfferCar = ({ offerCar }) => {
               </div>
               <p className="text-center">Hatchback</p>
             </div>
+
             <div
               onClick={() => handleCarSelect("cabriolet")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
@@ -457,6 +450,7 @@ const OfferCar = ({ offerCar }) => {
               </div>
               <p className="text-center"> Cabriolet</p>
             </div>
+            
             <div
               onClick={() => handleCarSelect("coupe")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
@@ -468,6 +462,9 @@ const OfferCar = ({ offerCar }) => {
               </div>
               <p className="text-center"> Coupe</p>
             </div>
+
+
+
           </div>
         </Form.Item>
         <div className="grid grid-cols-2 gap-5 items-start">
@@ -603,8 +600,6 @@ const OfferCar = ({ offerCar }) => {
 };
 
 export default OfferCar;
-
-
 
 const rawColors = [
   { label: "Alle", value: "Alle", colorCode: "#" },

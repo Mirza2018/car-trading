@@ -258,8 +258,8 @@ const Licenseplate = ({ offerCar }) => {
             name="carCondition"
           >
             <Select placeholder={<span className="text-black ">Ny/brugt</span>}>
-              <Select.Option value="new">Ny</Select.Option>
-              <Select.Option value="used">Brugt</Select.Option>
+              <Select.Option value="Ny">Ny</Select.Option>
+              <Select.Option value="Brugt">Brugt</Select.Option>
             </Select>
           </Form.Item>
         </div>
@@ -327,18 +327,18 @@ const Licenseplate = ({ offerCar }) => {
                   gap: "10px",
                 }}
               >
-                <Checkbox value="Cash Price" style={{ lineHeight: "32px" }}>
-                  Kontantpris
+                <Checkbox value="Kontant pris" style={{ lineHeight: "32px" }}>
+                  Kontant pris
                 </Checkbox>
                 <Checkbox
-                  value="Cars Without Tax"
+                  value="Biler under afgift"
                   style={{ lineHeight: "32px" }}
                 >
-                  Biler uden afgift
+                  Biler under afgift
                 </Checkbox>
-                <Checkbox value="Wholesale CVR" style={{ lineHeight: "32px" }}>
+                {/* <Checkbox value="Wholesale CVR" style={{ lineHeight: "32px" }}>
                   Engros/CVR
-                </Checkbox>
+                </Checkbox> */}
               </div>
             </Checkbox.Group>
           </Form.Item>
@@ -362,20 +362,20 @@ const Licenseplate = ({ offerCar }) => {
                 }}
               >
                 <Checkbox
-                  value="Manual Gear"
+                  value="Manual"
                   // checked={selectedGeartype === "manualGear"}
                   // onChange={handleGeartypeCheckboxChange}
                   style={{ lineHeight: "32px" }}
                 >
-                  Manual gear
+                  Manual
                 </Checkbox>
                 <Checkbox
-                  value="Automatic Gear"
+                  value="Automatic"
                   // checked={selectedGeartype === "automaticGear"}
                   // onChange={handleGeartypeCheckboxChange}
                   style={{ lineHeight: "32px" }}
                 >
-                  Automatic gear
+                  Automatic
                 </Checkbox>
               </div>
             </Checkbox.Group>

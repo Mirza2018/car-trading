@@ -23,7 +23,7 @@ import { useForm } from "antd/es/form/Form";
 import { jwtDecode } from "jwt-decode";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react"; 
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 
@@ -31,7 +31,7 @@ import Cookies from "universal-cookie";
 import { LuInfo } from "react-icons/lu";
 
 const SellCarAllDetails = () => {
-  const {
+  const { 
     data: profileData,
     currentData,
     isLoading,
@@ -324,8 +324,8 @@ const SellCarAllDetails = () => {
               <Tooltip
                 className="cursor-pointer"
                 placement="right"
-                title={<Image alt="" src={AllImages.carDetails} />}
-                color={'#FBEBEB'}
+                title={<Image alt="" className="!h-72 !aspect-auto " src={AllImages.carDetails} />}
+                color={"#FBEBEB"}
               >
                 <LuInfo className="" />
               </Tooltip>{" "}
@@ -388,9 +388,9 @@ const SellCarAllDetails = () => {
               name={`condition`}
             >
               <Radio.Group name="condition" className=" flex flex-col gap-2">
-                <Radio value="Good">God</Radio>
-                <Radio value="Used">Brugt</Radio>
-                <Radio value="very Used">Meget brugt</Radio>
+                <Radio value="God">God</Radio>
+                <Radio value="Brugt">Brugt</Radio>
+                <Radio value="Meget brugt">Meget brugt</Radio>
               </Radio.Group>
             </Form.Item>
           </div>

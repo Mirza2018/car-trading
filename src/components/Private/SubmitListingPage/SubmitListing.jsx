@@ -12,11 +12,11 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
-import { toast } from "sonner";
+import { toast } from "sonner"; 
 import Cookies from "universal-cookie";
 const { Option } = Select;
 const SubmitListing = () => {
-  const {
+  const { 
     data: profileData,
     currentData,
     isLoading,
@@ -239,8 +239,8 @@ const SubmitListing = () => {
                 </span>
               }
             >
-              <Select.Option value="privateCar">Privat bil</Select.Option>
-              <Select.Option value="companyCar">Firmabil</Select.Option>
+              <Select.Option value="PrivatBil">Privat bil</Select.Option>
+              <Select.Option value="Firmabil">Firmabil</Select.Option>
             </Select>
           </Form.Item>
 
@@ -272,8 +272,8 @@ const SubmitListing = () => {
                 </span>
               }
             >
-              <Select.Option value="New">New</Select.Option>
-              <Select.Option value="Used">Used</Select.Option>
+              <Select.Option value="Ny">Ny</Select.Option>
+              <Select.Option value="Brugt">Brugt</Select.Option>
             </Select>
           </Form.Item>
         </div>
@@ -491,6 +491,8 @@ const SubmitListing = () => {
           name="models"
         >
           <div className="flex flex-wrap gap-3">
+
+
             <div
               onClick={() => handleCarSelect("mikrobil")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
@@ -538,6 +540,7 @@ const SubmitListing = () => {
               </div>
               <p className="text-center">Crossover (CUV)</p>
             </div>
+
             <div
               onClick={() => handleCarSelect("minibus")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
@@ -549,6 +552,7 @@ const SubmitListing = () => {
               </div>
               <p className="text-center">Minibus (MPV)</p>
             </div>
+
             <div
               onClick={() => handleCarSelect("sedan")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
@@ -560,6 +564,7 @@ const SubmitListing = () => {
               </div>
               <p className="text-center"> Sedan</p>
             </div>
+
             <div
               onClick={() => handleCarSelect("hatchback")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
@@ -571,6 +576,7 @@ const SubmitListing = () => {
               </div>
               <p className="text-center">Hatchback</p>
             </div>
+
             <div
               onClick={() => handleCarSelect("cabriolet")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
@@ -582,6 +588,7 @@ const SubmitListing = () => {
               </div>
               <p className="text-center"> Cabriolet</p>
             </div>
+            
             <div
               onClick={() => handleCarSelect("coupe")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
@@ -593,6 +600,9 @@ const SubmitListing = () => {
               </div>
               <p className="text-center"> Coupe</p>
             </div>
+
+
+
           </div>
         </Form.Item>
 
@@ -736,8 +746,8 @@ const SubmitListing = () => {
                     </span>
                   }
                 >
-                  <Select.Option value="yes">Ja</Select.Option>
-                  <Select.Option value="no">Nej</Select.Option>
+                  <Select.Option value="Ja">Ja</Select.Option>
+                  <Select.Option value="Nej">Nej</Select.Option>
                 </Select>
               </Form.Item>
             </div>
