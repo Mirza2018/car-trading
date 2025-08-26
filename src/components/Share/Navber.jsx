@@ -181,7 +181,7 @@ const Navbar = () => {
   //    return <Spin className="flex justify-center items-center" size="large" />;
   //  if (isSuccess && displayedData)
   return (
-    <div className="flex  justify-between md:justify-around px-2 bg-secondary-color text-primary-color  items-center !z-[100] md:py-2 py-0  w-full ">
+    <div className="flex  justify-between md:justify-around px-2 bg-blue-700 text-primary-color  items-center !z-[100] md:py-2 py-0  w-full ">
       {" "}
       {/* The style property fixed & w-full is to fixed the navber , if you dont want this just remove it */}
       {/* This is small/Mobile device Menu section */}
