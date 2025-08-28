@@ -231,7 +231,7 @@ const Homepage = () => {
                 />
               )}
             </div>
-            <div>
+            <div> 
               {submitDisplayedData?.data?.pagination?.total > 0 && (
                 <TotalCarBuy
                   displayedData={submitDisplayedData}

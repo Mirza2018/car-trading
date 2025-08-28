@@ -2,7 +2,7 @@ import React from 'react';
 
 const FairPriceFooter = () => {
     return (
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 grid-col-1 container mx-auto gap-5">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 grid-col-1 container mx-auto gap-5 ">
         <div className="flex flex-col items-center">
           <h1 className="text-[38px] font-bold">836M</h1>
           <p className="text-[15px] font-bold">BILER TIL </p>
