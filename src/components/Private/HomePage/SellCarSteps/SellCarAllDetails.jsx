@@ -254,7 +254,7 @@ const SellCarAllDetails = () => {
             </div>
           }
           prefix={
-            <div className="bg-[#007FFF] flex flex-col justify-center items-center gap-2 rounded py-2 px-7">
+            <div className="bg-[#007FFF] flex flex-col justify-center items-center gap-2 rounded py-2 px-3">
               <Image
                 width={0}
                 height={0}

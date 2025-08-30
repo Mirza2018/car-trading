@@ -26,7 +26,7 @@ const Sidebar = ({ slider, setSlider }) => {
   };
 
   const menuItems = (
-    <div>
+    <div className="">
       <ul className=" flex justify-center items-start flex-col gap-3 pe-10">
         {userInfo?.role === "dealer" ? (
           <>

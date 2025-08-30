@@ -119,7 +119,7 @@ const SellBuyTrade = () => {
                 </div>
               }
               prefix={
-                <div className="!bg-blue-600 flex flex-col justify-center items-center gap-2 rounded py-2 px-7">
+                <div className="!bg-blue-600 flex flex-col justify-center items-center gap-2 rounded py-2 px-3">
                   <Image
                     width={0}
                     height={0}

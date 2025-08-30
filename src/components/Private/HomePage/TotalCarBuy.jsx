@@ -68,12 +68,12 @@ const TotalCarBuy = ({
                 </p>
               </div>
               <div className="flex md:flex-col flex-row gap-2 text-end">
-                <Tooltip title="Login as Dealer">
+                <Tooltip title="Log ind som forhandler">
                   <button className="btn border border-base-color rounded px-1 md:px-5 py-1 w-fit whitespace-nowrap cursor-not-allowed">
                     Køb nu
                   </button>
                 </Tooltip>
-                <Tooltip title="Login as Dealer">
+                <Tooltip title="Log ind som forhandler">
                   <button
                     // onClick={() => showModal(car)}
                     className="btn border border-base-color bg-[#E6F3F7] rounded px-1 md:px-2 py-1 w-fit whitespace-nowrap  cursor-not-allowed"
