@@ -20,7 +20,7 @@ import { PiPrinterThin } from "react-icons/pi";
 const SignatureModal = dynamic(
   () => import("@/components/DealerComponents/FinalNote.jsx/SignatureModal"),
   { ssr: false }
-);
+);  
 
 const ContractPaperPage = () => {
   const params = useParams();
@@ -625,9 +625,7 @@ const ContractPaperPage = () => {
                         className="absolute"
                       />
                     </div>
-                    <p className="text-base font-medium">
-                      Private User underskrift
-                    </p>
+                    <p className="text-base font-medium">Sælgers underskrift</p>
                     <p className="text-base font-medium">
                       {displayedData?.data?.privateUser?.first_name}{" "}
                       {displayedData?.data?.privateUser?.last_name}
@@ -658,7 +656,7 @@ const ContractPaperPage = () => {
                           onClick={() => setIsSignatureModalOpen(true)}
                           className="font-bold text-white bg-highlight-color p-2 rounded-md flex justify-center items-center gap-2"
                         >
-                          Sign
+                          Tryk for underskrift
                         </button>
                       )}
                     </div>
@@ -685,7 +683,7 @@ const ContractPaperPage = () => {
                         className="absolute"
                       />
                     </div>
-                    <p className="text-base font-medium">Dealer underskrift</p>
+                    <p className="text-base font-medium">Køber underskrift</p>
                     <p className="text-base font-medium">
                       {displayedData?.data?.dealer?.first_name}{" "}
                       {displayedData?.data?.dealer?.last_name}
@@ -710,7 +708,7 @@ const ContractPaperPage = () => {
                   )}
                 </div> */}
                     <p className="max-h-36 min-h-28 aspect-video border-2 border-dotted border-highlight-color rounded-lg"></p>
-                    <p className="text-base font-medium">Dealer underskrift</p>
+                    <p className="text-base font-medium">Køber underskrift</p>
                     <p className="text-base font-medium">
                       {displayedData?.data?.dealer?.first_name}{" "}
                       {displayedData?.data?.dealer?.last_name}
@@ -782,7 +780,7 @@ const ContractPaperPage = () => {
                           src={AllImages.cross}
                           alt="cross"
                         />
-                        Reset
+                        Nulstil
                       </button>
                     </div>
                     <div className="flex md:justify-center gap-2 flex-wrap">
@@ -803,7 +801,7 @@ const ContractPaperPage = () => {
                           src={AllImages.save}
                           alt="cross"
                         />
-                        Final The Deal
+                        Afslut aftalen
                       </button>
                     </div>
                   </>
@@ -819,7 +817,7 @@ const ContractPaperPage = () => {
           </div>
         ) : (
           <div className="flex flex-col justify-center items-center text-2xl font-medium">
-            <p>Waiting for Dealer Sign...</p>
+            <p>Venter på forhandlerens underskrift...</p>
 
             <button
               onClick={() => {
@@ -827,7 +825,7 @@ const ContractPaperPage = () => {
               }}
               className="bg-highlight-color text-white py-2 px-5 rounded-md mt-4"
             >
-              Go back
+              Gå tilbage
             </button>
           </div>
         )}

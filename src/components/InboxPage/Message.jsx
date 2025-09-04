@@ -191,7 +191,7 @@ const ChatWindow = ({ chat, messages, cahtMessage, conversationData }) => {
       <>
         {/* <pre>{JSON.stringify(conversationData, null, 10)}</pre> */}
         <div className="flex items-center justify-center h-full text-gray-500">
-          Select a chat to start messaging
+          Vælg en chat for at igang
         </div>
       </>
     );
@@ -546,7 +546,7 @@ export default function Home({ conversationData }) {
       >
         <div className="p-[22px] border-b">
           <h1 className="text-xl font-semibold flex items-center">
-            Messages
+            Beskeder
             {/* <span className="ml-2 text-xs bg-orange-500 text-white px-2 py-0.5 rounded-full">
             
             </span> */}
@@ -568,7 +568,7 @@ export default function Home({ conversationData }) {
       >
         {isMobileView && activeChat && (
           <Button className="m-2" onClick={() => setShowChatList(true)}>
-            Back to Chats
+            Tilbage til chats
           </Button>
         )}
         <ChatWindow

@@ -11,7 +11,7 @@ const PrivateCarSellTable = ({
 }) => {
   const columns = [
     {
-      title: "Forhandlerens navn",
+      title: "Forhandler",
       dataIndex: "profile",
       key: "profile",
       render: (text) => (
@@ -21,7 +21,7 @@ const PrivateCarSellTable = ({
       ),
     },
     {
-      title: "Mærkenavn",
+      title: "Mærke",
       dataIndex: "carModel",
       key: "carModel",
       render: (text) => <p>{text?.brand}</p>,
@@ -67,18 +67,18 @@ const PrivateCarSellTable = ({
       ),
     },
     {
-      title: "Kontraktpapir",
+      title: "Kontrakt",
       key: "action",
       render: (_, record) => (
         <Link
           href={`/dashboard/total-private-car-sell/contract/${record?.car?._id}`}
         >
-          <Tooltip placement="right" title="View Details">
-            <Tooltip placement="right" title="View Details">
+          <Tooltip placement="right" title="Se detaljer">
+            <Tooltip placement="right" title="Se detaljer">
               {!record?.signatureAsDealer && !record?.signatureAsOwner && (
                 <Button className={`  !text-white !bg-secondary-color`}>
                   {" "}
-                  <p>Pending contract</p>
+                  <p>Afventer underskrift</p>
                 </Button>
               )}
               {record?.signatureAsDealer && !record?.signatureAsOwner && (
@@ -104,7 +104,7 @@ const PrivateCarSellTable = ({
       render: (_, record) => (
         <Space size="middle">
           {/* View Details Tooltip */}
-          <Tooltip placement="right" title="View Details">
+          <Tooltip placement="right" title="Se detaljer">
             <Button
               onClick={() => showViewServiceUserModal(record)}
               className="border-[#00721E] hover:border-[#34df61]"
@@ -130,7 +130,7 @@ const PrivateCarSellTable = ({
           pageSize: meta?.limit,
           total: meta?.total,
           onChange: onPageChange,
-          showSizeChanger: true,
+          // showSizeChanger: true,
         }}
         rowKey="id"
         scroll={{ x: true }}

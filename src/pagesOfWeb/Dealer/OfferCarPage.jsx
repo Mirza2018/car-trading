@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 const OfferCarPage = () => {
   const [offerCar] = useOfferCarDealMutation();
   const dispatch = useDispatch();
-  dispatch(clearCarLicenseInfo());
+  dispatch(clearCarLicenseInfo()); 
 
   const [isDeal, setIsDeal] = useState(true);
   return (

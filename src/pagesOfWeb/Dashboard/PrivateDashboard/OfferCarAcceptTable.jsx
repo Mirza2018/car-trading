@@ -69,7 +69,7 @@ const OfferCarAcceptTable = ({
       render: (_, record) => (
         <Space size="middle">
           {/* View Details Tooltip */}
-          <Tooltip placement="right" title="View Details">
+          <Tooltip placement="right" title="Se detaljer">
             <Button
               onClick={() => showViewServiceUserModal(record)}
               className="border-[#00721E] hover:border-[#34df61]"
@@ -151,7 +151,7 @@ const OfferCarAcceptTable = ({
           pageSize: meta?.limit,
           total: meta?.total,
           onChange: onPageChange,
-          showSizeChanger: true,
+          // showSizeChanger: true,
         }}
         rowKey="id"
         scroll={{ x: true }}

@@ -77,7 +77,7 @@ const CarListTable = ({
       render: (_, record) => (
         <Space size="middle">
           {/* View Details Tooltip */}
-          <Tooltip placement="right" title="View Details">
+          <Tooltip placement="right" title="Se detaljer">
             <Button
               onClick={() => showViewServiceUserModal(record)}
               className="border-[#00721E] hover:border-[#34df61]"
@@ -100,7 +100,7 @@ const CarListTable = ({
           {/* {console.log(record)} */}
           {/* View Details Tooltip */}{" "}
           <Link href={`total-dealer-car-sell/contract/${record?.car?._id}`}>
-            <Tooltip placement="right" title="View Details">
+            <Tooltip placement="right" title="Se detaljer">
               {!record?.signatureAsDealer && !record?.signatureAsOwner && (
                 <Button className={`  !text-white !bg-secondary-color`}>
                   {" "}
@@ -138,14 +138,14 @@ const CarListTable = ({
                     );
                   }}
                 >
-                  <Tooltip placement="right" title="View Details">
+                  <Tooltip placement="right" title="Se detaljer">
                     <Button className="!border-highlight-color !text-black ">
                       Bestil transport
                     </Button>
                   </Tooltip>
                 </p>
               )}
-            </div>
+            </div> 
           )}
         </Space>
       ),
@@ -167,7 +167,7 @@ const CarListTable = ({
           pageSize: meta?.limit,
           total: meta?.total,
           onChange: onPageChange,
-          showSizeChanger: true,
+          // showSizeChanger: true,
         }}
       />
     </div>

@@ -1,7 +1,7 @@
 "use client";
 import { AllImages } from "@/assets/AllImages";
 import { getImageUrl } from "@/helpers/config/envConfig";
-import { 
+import {
   useContactPaperQuery,
   useUpdateContactPaperMutation,
 } from "@/redux/api/features/contract";
@@ -686,9 +686,7 @@ const FinalNode = () => {
                       className="absolute"
                     />
                   </div>
-                  <p className="text-base font-medium">
-                    Private User underskrift
-                  </p>
+                  <p className="text-base font-medium">Sælgers underskrift</p>
                   <p className="text-base font-medium">
                     {displayedData?.data?.privateUser?.first_name}{" "}
                     {displayedData?.data?.privateUser?.last_name}
@@ -700,9 +698,7 @@ const FinalNode = () => {
               ) : (
                 <div className="flex flex-col justify-center gap-2 items-center">
                   <p className="max-h-36 min-h-28 aspect-video border-2 border-dotted border-highlight-color rounded-lg"></p>
-                  <p className="text-base font-medium">
-                    Private User underskrift
-                  </p>
+                  <p className="text-base font-medium">Sælgers underskrift</p>
                   <p className="text-base font-medium">
                     {displayedData?.data?.privateUser?.first_name}{" "}
                     {displayedData?.data?.privateUser?.last_name}
@@ -723,7 +719,7 @@ const FinalNode = () => {
                       className="absolute"
                     />
                   </div>
-                  <p className="text-base font-medium">Dealer underskrift</p>
+                  <p className="text-base font-medium">Køber underskrift</p>
                   <p className="text-base font-medium">
                     {displayedData?.data?.dealer?.first_name}{" "}
                     {displayedData?.data?.dealer?.last_name}
@@ -754,11 +750,11 @@ const FinalNode = () => {
                         onClick={() => setIsSignatureModalOpen(true)}
                         className="font-bold text-white bg-highlight-color p-2 rounded-md flex justify-center items-center px-6"
                       >
-                        Sign
+                        Tryk for underskrift{" "}
                       </button>
                     )}
                   </div>
-                  <p className="text-base font-medium">Dealer underskrift</p>
+                  <p className="text-base font-medium">Køber underskrift</p>
                   <p className="text-base font-medium">
                     {displayedData?.data?.dealer?.first_name}{" "}
                     {displayedData?.data?.dealer?.last_name}
@@ -827,7 +823,7 @@ const FinalNode = () => {
                         src={AllImages.cross}
                         alt="cross"
                       />
-                      Reset
+                      Nulstil
                     </button>
                   </div>
                   <div className="flex md:justify-center gap-2 flex-wrap">
@@ -854,7 +850,7 @@ const FinalNode = () => {
                         src={AllImages.signature}
                         alt="cross"
                       />
-                      Send for signature
+                      Send til underskrift
                     </button>
                     {/* <button
                 onClick={handleSubmit}

@@ -2,7 +2,7 @@ import ContractPaperPage from "@/pagesOfWeb/Common/ContractPaperPage";
 import React from "react";
 
 const page = () => {
-  return (
+  return ( 
     <div>
       <ContractPaperPage />
     </div>

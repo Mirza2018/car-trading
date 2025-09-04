@@ -112,7 +112,7 @@ const Footer = () => {
 
         <div className="border-t border-white mt-8 pt-8 text-center flex justify-between md:flex-row flex-col">
           <p>© 2025 Alle rettigheder forbeholdes</p>
-          <p>Vilkår og betingelser | Privatlivspolitik</p>
+          <p> Privatlivspolitik | Cookiepolitik</p>
         </div>
       </div>
     </footer>

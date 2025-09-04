@@ -11,17 +11,17 @@ const PrivateCarSoldTable = ({
 }) => {
   const columns = [
     {
-      title: "Forhandlerens navn",
+      title: "Forhandler",
       dataIndex: "profile",
       key: "profile",
-      render: (text) => (
+      render: (text) => ( 
         <p className="whitespace-nowrap">
           {text?.first_name} {text?.last_name}
         </p>
       ),
     },
     {
-      title: "Mærkenavn",
+      title: "Mærke",
       dataIndex: "carModel",
       key: "carModel",
       render: (text) => <p>{text?.brand}</p>,
@@ -82,7 +82,7 @@ const PrivateCarSoldTable = ({
         <Space size="middle">
           {/* View Details Tooltip */}
 
-          <Tooltip placement="right" title="View Details">
+          <Tooltip placement="right" title="Se detaljer">
             <Button
               onClick={() => showViewServiceUserModal(record)}
               className="!border-[#00721E] !text-black"
@@ -94,7 +94,7 @@ const PrivateCarSoldTable = ({
       ),
     },
     {
-      title: "Handling",
+      title: "Underskrift",
       key: "action",
       render: (_, record) => (
         <Space size="middle">
@@ -102,7 +102,7 @@ const PrivateCarSoldTable = ({
           <Link
             href={`/dashboard/total-private-car-sell/contract/${record?.car?._id}`}
           >
-            <Tooltip placement="right" title="View Details">
+            <Tooltip placement="right" title="Se detaljer">
               {!record?.signatureAsDealer && !record?.signatureAsOwner && (
                 <Button className={`  !text-white !bg-secondary-color`}>
                   {" "}
@@ -118,7 +118,7 @@ const PrivateCarSoldTable = ({
               {record?.signatureAsDealer && record?.signatureAsOwner && (
                 <Button className={`  !text-white !bg-green-500 !px-7`}>
                   {" "}
-                  <p>Kontrakt færdig</p>{" "}
+                  <p>Kontrakt underskrevet</p>{" "}
                 </Button>
               )}
             </Tooltip>
@@ -139,7 +139,7 @@ const PrivateCarSoldTable = ({
           pageSize: meta?.limit,
           total: meta?.total,
           onChange: onPageChange,
-          showSizeChanger: true,
+          // showSizeChanger: true,
         }}
         rowKey="id"
         scroll={{ x: true }}

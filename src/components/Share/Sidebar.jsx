@@ -145,7 +145,7 @@ const Sidebar = ({ slider, setSlider }) => {
                         : undefined,
                   }}
                 />
-                <p>Total antal solgte biler</p>
+                <p>Oversigt</p>
               </li>
             </Link>
             <Link href="/dashboard/listed-cars" className="w-full">
@@ -168,7 +168,7 @@ const Sidebar = ({ slider, setSlider }) => {
                         : undefined,
                   }}
                 />
-                <p>Mine annoncerede biler</p>
+                <p>Mine biler</p>
               </li>
             </Link>
 
@@ -192,7 +192,7 @@ const Sidebar = ({ slider, setSlider }) => {
                         : undefined,
                   }}
                 />
-                <p>Total solgte biler</p>
+                <p>Solgte biler</p>
               </li>
             </Link>
 
@@ -219,7 +219,7 @@ const Sidebar = ({ slider, setSlider }) => {
                         : undefined,
                   }}
                 />
-                <p>Tilbyd bilaftale</p>
+                <p>Mine handler</p>
               </li>
             </Link>
 
@@ -243,7 +243,7 @@ const Sidebar = ({ slider, setSlider }) => {
                         : undefined,
                   }}
                 />
-                <p>Tilbyd bil</p>
+                <p>Tilbud fra forhandlere</p>
               </li>
             </Link>
             <Link href="/dashboard/bid-car" className="w-full">
@@ -266,7 +266,7 @@ const Sidebar = ({ slider, setSlider }) => {
                         : undefined,
                   }}
                 />
-                <p>Budoplysninger</p>
+                <p>Købstilbud</p>
               </li>
             </Link>
           </>
@@ -292,7 +292,7 @@ const Sidebar = ({ slider, setSlider }) => {
                     : undefined,
               }}
             />
-            <p>Brugerprofil</p>
+            <p>Min profil</p>
           </li>
         </Link>
         <Link href="/dashboard/terms" className="w-full">
@@ -315,7 +315,7 @@ const Sidebar = ({ slider, setSlider }) => {
                     : undefined,
               }}
             />
-            Vilkår og betingelser
+            Vilkår
           </li>
         </Link>
         <Link href="/dashboard/privacy" className="w-full">
@@ -338,7 +338,7 @@ const Sidebar = ({ slider, setSlider }) => {
                     : undefined,
               }}
             />
-            Privatlivspolitik
+            Privatliv
           </li>
         </Link>
 

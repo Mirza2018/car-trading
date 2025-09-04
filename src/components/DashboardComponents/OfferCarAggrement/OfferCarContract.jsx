@@ -19,7 +19,7 @@ import { PiPrinterThin } from "react-icons/pi";
 const SignatureModal = dynamic(
   () => import("@/components/DealerComponents/FinalNote.jsx/SignatureModal"),
   { ssr: false }
-); 
+);  
 
 const OfferCarContract = () => {
   const params = useParams();
@@ -733,9 +733,7 @@ const OfferCarContract = () => {
                     className="absolute"
                   />
                 </div>
-                <p className="text-base font-medium">
-                  Private User underskrift
-                </p>
+                <p className="text-base font-medium">Sælgers underskrift</p>
                 <p className="text-base font-medium">
                   {displayedData?.privateUserProfile?.first_name}{" "}
                   {displayedData?.privateUserProfile?.last_name}
@@ -766,13 +764,11 @@ const OfferCarContract = () => {
                       onClick={() => setIsSignatureModalOpen(true)}
                       className="font-bold text-white bg-highlight-color p-2 rounded-md flex justify-center items-center px-6"
                     >
-                      Sign
+                      Tryk for underskrift
                     </button>
                   )}
                 </div>
-                <p className="text-base font-medium">
-                  Private User underskrift
-                </p>
+                <p className="text-base font-medium">Sælgers underskrift</p>
                 <p className="text-base font-medium">
                   {displayedData?.privateUserProfile?.first_name}{" "}
                   {displayedData?.privateUserProfile?.last_name}
@@ -791,7 +787,7 @@ const OfferCarContract = () => {
                     className="absolute"
                   />
                 </div>
-                <p className="text-base font-medium">Dealer underskrift</p>
+                <p className="text-base font-medium">Køber underskrift</p>
                 <p className="text-base font-medium">
                   {displayedData?.dealerUserProfile?.first_name}{" "}
                   {displayedData?.dealerUserProfile?.last_name}
@@ -803,7 +799,7 @@ const OfferCarContract = () => {
             ) : (
               <div className="flex flex-col justify-center gap-2 items-center">
                 <p className="max-h-36 min-h-28 aspect-video border-2 border-dotted border-highlight-color rounded-lg"></p>
-                <p className="text-base font-medium">Dealer underskrift</p>
+                <p className="text-base font-medium">Køber underskrift</p>
                 <p className="text-base font-medium">
                   {displayedData?.dealerUserProfile?.first_name}{" "}
                   {displayedData?.dealerUserProfile?.last_name}
@@ -871,7 +867,7 @@ const OfferCarContract = () => {
                       src={AllImages.cross}
                       alt="cross"
                     />
-                    Reset
+                    Nulstil
                   </button>
                 </div>
                 <div className="flex md:justify-center gap-2 flex-wrap">
@@ -910,7 +906,7 @@ const OfferCarContract = () => {
                       src={AllImages.save}
                       alt="cross"
                     />
-                    Save and send
+                    Gem og send
                   </button>
                 </div>
               </>

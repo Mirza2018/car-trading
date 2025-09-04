@@ -128,7 +128,7 @@ const SubmitListing = () => {
         <button
           className={` rounded w-full  text-white bg-highlight-color m-1`}
         >
-          Aftale
+          Opret bil Ønske
         </button>
       </div>
       <Form
@@ -151,7 +151,7 @@ const SubmitListing = () => {
                 style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
                 className="font-bold  "
               >
-                Markér
+                Mærke
               </span>
             }
             name="mark"
@@ -491,8 +491,6 @@ const SubmitListing = () => {
           name="models"
         >
           <div className="flex flex-wrap gap-3">
-
-
             <div
               onClick={() => handleCarSelect("mikrobil")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
@@ -588,7 +586,7 @@ const SubmitListing = () => {
               </div>
               <p className="text-center"> Cabriolet</p>
             </div>
-            
+
             <div
               onClick={() => handleCarSelect("coupe")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
@@ -600,9 +598,6 @@ const SubmitListing = () => {
               </div>
               <p className="text-center"> Coupe</p>
             </div>
-
-
-
           </div>
         </Form.Item>
 
@@ -1015,7 +1010,7 @@ const SubmitListing = () => {
               style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
               className=" font-medium pb-2"
             >
-              Gadenavn*
+              Vejnavn*
             </p>
             <Form.Item
               initialValue={myInfo?.data?.profile?.street}
@@ -1027,7 +1022,7 @@ const SubmitListing = () => {
               ]}
               name={`street`}
             >
-              <Input placeholder="Gadenavn" className="py-3" />
+              <Input placeholder="Vejnavn" className="py-3" />
             </Form.Item>
           </div>
           <div className=" ">

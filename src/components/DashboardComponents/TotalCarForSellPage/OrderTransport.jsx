@@ -63,7 +63,7 @@ const OrderTransport = () => {
   return (
     <div className=" mx-auto container gap-9">
       <div className="p-5">
-        <h1 className="text-2xl font-medium mb-2">Car Details</h1>
+        <h1 className="text-2xl font-medium mb-2">Biloplysninger</h1>
 
         <section className="flex flex-col">
           <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
@@ -112,7 +112,7 @@ const OrderTransport = () => {
 
       <section className="grid md:grid-cols-2 grid-cols-1">
         <div className="p-5">
-          <h1 className="text-2xl font-medium mb-2">From Address</h1>
+          <h1 className="text-2xl font-medium mb-2">Afsender</h1>
 
           <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
             <p className="ps-2">Fornavn</p>
@@ -173,7 +173,7 @@ const OrderTransport = () => {
         </div>
 
         <div className="p-5">
-          <h1 className="text-2xl font-medium mb-2">To Address</h1>
+          <h1 className="text-2xl font-medium mb-2">Modtager</h1>
 
           <div className="grid grid-cols-2 bg-base-color border-x font-medium border-t border-secondary-color leading-10">
             <p className="ps-2">Fornavn</p>

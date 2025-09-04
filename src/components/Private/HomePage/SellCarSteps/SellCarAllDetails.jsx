@@ -324,7 +324,13 @@ const SellCarAllDetails = () => {
               <Tooltip
                 className="cursor-pointer"
                 placement="right"
-                title={<Image alt="" className="!h-72 !aspect-auto " src={AllImages.carDetails} />}
+                title={
+                  <Image
+                    alt=""
+                    className="!h-72 !aspect-auto "
+                    src={AllImages.carDetails}
+                  />
+                }
                 color={"#FBEBEB"}
               >
                 <LuInfo className="" />
@@ -632,7 +638,7 @@ const SellCarAllDetails = () => {
               style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
               className=" font-medium pb-2"
             >
-              Gadenavn*
+              Vejnavn*
             </p>
             <Form.Item
               rules={[
@@ -644,7 +650,7 @@ const SellCarAllDetails = () => {
               initialValue={myInfo?.data?.profile?.street}
               name={`street`}
             >
-              <Input placeholder="Gadenavn" className="py-3" />
+              <Input placeholder="Vejnavn" className="py-3" />
             </Form.Item>
           </div>
           <div className=" ">

@@ -200,7 +200,7 @@ const OrderTransportPage = () => {
             className="bg-highlight-color text-white font-medium text-xl px-3 py-2 rounded-md"
             htmlType="submit"
           >
-            Registrer
+            Gem
           </button>
         </Form.Item>
       </Form>

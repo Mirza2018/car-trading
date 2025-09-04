@@ -64,7 +64,7 @@ const BidCarPage = () => {
                 total={meta?.total}
                 onChange={onPageChange}
                 align="end"
-                showSizeChanger={true}
+                // showSizeChanger={true}
                 // pageSizeOptions={["3", "6", "9"]}
               />
             </>

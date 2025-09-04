@@ -13,7 +13,7 @@ const SignatureModal = ({
   const saveSignature = () => {
     try {
       const dataUrl = sigCanvas.current.toDataURL();
-      localStorage.setItem("signature", dataUrl);
+      localStorage.setItem("signature", dataUrl); 
       onSignatureSave(dataUrl); // Call the callback to update the parent
       setIsSignatureModalOpen(false);
       sigCanvas.current.clear();
@@ -30,7 +30,7 @@ const SignatureModal = ({
     <Modal
       title={
         <h1 className="text-xl font-bold text-highlight-color mx-10">
-          Signature
+          Underskrift
         </h1>
       }
       open={isSignatureModalOpen}
@@ -45,19 +45,19 @@ const SignatureModal = ({
             className="text-[#808080] text-base px-5 py-2 rounded-lg"
             onClick={() => setIsSignatureModalOpen(false)}
           >
-            Cancel
+          Annuller
           </button>
           <button
             className="border border-dashed border-highlight-color text-[#808080] text-base px-5 py-2 rounded-lg"
             onClick={clearSignature}
           >
-            Clear
+          Nulstil
           </button>
           <button
             className="bg-highlight-color text-white text-xl font-bold px-5 py-2 rounded-lg"
             onClick={saveSignature}
           >
-            Save Signature
+           Gem underskrift
           </button>
         </div>,
       ]}

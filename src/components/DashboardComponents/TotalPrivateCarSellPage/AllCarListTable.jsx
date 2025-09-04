@@ -11,13 +11,13 @@ const AllCarListTable = ({
 }) => {
   const columns = [
     {
-      title: "Mærkenavn",
+      title: "Mærke",
       dataIndex: "carModel",
       key: "carModel",
       render: (text) => <p>{text?.brand}</p>,
     },
     {
-      title: "Modelnavn",
+      title: "Model",
       dataIndex: "carModel",
       key: "carModel",
       render: (text) => <p>{text?.model}</p>,
@@ -56,7 +56,7 @@ const AllCarListTable = ({
       render: (_, record) => (
         <Space size="middle">
           {/* View Details Tooltip */}
-          <Tooltip placement="right" title="View Details">
+          <Tooltip placement="right" title="Se detaljer">
             <Button
               onClick={() => showViewServiceUserModal(record)}
               className="border-[#00721E] hover:border-[#34df61]"
@@ -82,7 +82,7 @@ const AllCarListTable = ({
           pageSize: meta?.limit,
           total: meta?.total,
           onChange: onPageChange,
-          showSizeChanger: true,
+          // showSizeChanger: true,
         }}
         rowKey="id"
         scroll={{ x: true }}

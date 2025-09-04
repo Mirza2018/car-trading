@@ -16,7 +16,7 @@ import { AllImages } from "@/assets/AllImages";
 import React from "react";
 import Image from "next/image";
 import ChangePassword from "./ChangePassword";
-import {
+import { 
   useProfileQuery,
   useUpdateProfileMutation,
 } from "@/redux/api/features/myProfile";
@@ -193,7 +193,7 @@ const Profile = () => {
             handleCancel={handleCancel}
           />
 
-          <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-5">
+          <div className="grid grid-cols-2 gap-5">
             <div>
               <Typography.Title level={5} style={{ color: "#222222" }}>
                 Fornavn
@@ -220,6 +220,18 @@ const Profile = () => {
             </div>
             <div>
               <Typography.Title level={5} style={{ color: "#222222" }}>
+                Gade
+              </Typography.Title>
+              <Form.Item name="street" className="text-white">
+                <Input
+                  required
+                  placeholder="Indtast dit gadenavn."
+                  className="py-2 px-3 text-xl border !border-input-color  "
+                />
+              </Form.Item>
+            </div>
+            <div>
+              <Typography.Title level={5} style={{ color: "#222222" }}>
                 Telefonnummer
               </Typography.Title>
               <Form.Item name="phoneNumber" className="text-white">
@@ -230,18 +242,7 @@ const Profile = () => {
                 />
               </Form.Item>
             </div>
-            <div>
-              <Typography.Title level={5} style={{ color: "#222222" }}>
-                Street
-              </Typography.Title>
-              <Form.Item name="street" className="text-white">
-                <Input
-                  required
-                  placeholder="Indtast dit gadenavn."
-                  className="py-2 px-3 text-xl border !border-input-color  "
-                />
-              </Form.Item>
-            </div>
+
             {/* <div>
               <Typography.Title level={5} style={{ color: "#222222" }}>
                 Address
@@ -255,10 +256,10 @@ const Profile = () => {
               </Form.Item>
             </div> */}
           </div>
-          <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-5">
+          <div className="grid grid-cols-2 gap-5">
             <div>
               <Typography.Title level={5} style={{ color: "#222222" }}>
-                Zip
+                Postnummer
               </Typography.Title>
               <Form.Item name="zip" className="text-white">
                 <Input
@@ -270,7 +271,7 @@ const Profile = () => {
             </div>
             <div>
               <Typography.Title level={5} style={{ color: "#222222" }}>
-                City{" "}
+             By
               </Typography.Title>
               <Form.Item name="city" className="text-white">
                 <Input
