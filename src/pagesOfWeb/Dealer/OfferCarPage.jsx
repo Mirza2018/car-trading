@@ -22,7 +22,7 @@ const OfferCarPage = () => {
             isDeal ? "bg-highlight-color text-white " : ""
           }`}
         >
-          Aftale
+          Indtast manuelt
         </p>
         <p
           style={{ fontSize: "clamp(14px, 1vw + 1rem ,24px)" }}

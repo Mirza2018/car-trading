@@ -506,7 +506,7 @@ const FinalNode = () => {
                       value={3}
                       // className="flex flex-row-reverse justify-between"
                     >
-                      Sælger afmelder bilen og afleverer nummerplader plates
+                      Sælger afmelder bilen og afleverer nummerplader
                     </Radio>
                     <Radio
                       value={4}

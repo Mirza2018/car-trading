@@ -97,7 +97,7 @@ const OfferDealerCarAcceptTable = ({
             // }}
             // href={`private-offer-car-aggrement/contract/${record?._id}`}
             >
-              <Tooltip placement="right" title="View Contract Details">
+              <Tooltip placement="right" title="Se kontraktoplysninger">
                 {!record?.signatureAsDealer && !record?.signatureAsOwner && (
                   <Button
                     className={`  !text-white !bg-highlight-color   px-6`}

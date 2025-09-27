@@ -25,7 +25,7 @@ const OfferCarAcceptTable = ({
 
   const columns = [
     {
-      title: "Forhandlernavn",
+      title: "Forhandler",
       dataIndex: "dealerUserProfile",
       key: "dealerUserProfile",
       render: (text) => (
@@ -35,13 +35,13 @@ const OfferCarAcceptTable = ({
       ),
     },
     {
-      title: "Mærkenavn",
+      title: "Mærke",
       dataIndex: "mark",
       key: "mark",
       render: (text) => <p>{text}</p>,
     },
     {
-      title: "Bilmodel",
+      title: "Model",
       dataIndex: "model",
       key: "model",
       render: (text) => <p>{text}</p>,
@@ -82,7 +82,7 @@ const OfferCarAcceptTable = ({
       ),
     },
     {
-      title: "Action",
+      title: "Handling",
       key: "action",
       render: (_, record) => (
         <Space size="middle" className="">

@@ -57,17 +57,17 @@ const ViewOfferDealerCarAcceptDetails = ({
             <div className="flex flex-wrap gap-4 justify-between items-center">
               <div className="flex  justify-start items-center  font-bold text-base">
                 {/* <IoMdLink className="rotate-90" /> */}
-                Oplistet:<p> {date}</p>
+                {/* Oplistet:<p> {date}</p> */}
               </div>
             </div>
             {/* Middel part car All Details */}
             <h1 className="text-3xl  font-medium text-center">
-              Tilbudsbiloplysninger
+              Tilbud fra forhandler
             </h1>
             <AllOfferCarDetails car={car} />
             {console.log(car)}
             <h1 className="text-3xl  font-medium text-center py-2">
-              Oplysninger om opført bil
+              Dit oprettede ønske bil
             </h1>
             <BrandnViewTableDetails car={car?.submitListing} />
           </section>

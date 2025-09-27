@@ -23,20 +23,21 @@ import Swal from "sweetalert2";
 
 const Homepage = () => {
   const { data: userData, isLoading: userDataIsLooding } = useProfileQuery();
-  const [filters, setFilters] = useState({
-    page: 1,
-    limit: 3,
-  });
+const [filters, setFilters] = useState({
+  page: 1,
+  limit: 3,
+});
   const [filters2, setFilters2] = useState({
     page: 1,
     limit: 4,
   });
-  const onPageChange = (page) => {
-    setFilters((prev) => ({
-      ...prev,
-      page,
-    }));
-  };
+const onPageChange = (page) => {
+  setFilters((prev) => ({
+    ...prev,
+    page,
+  }));
+};
+
   const onPageChange2 = (page) => {
     setFilters2((prev) => ({
       ...prev,
@@ -53,48 +54,108 @@ const Homepage = () => {
     isSuccess: submitIsSuccess,
   } = useSubmitListingQuery(filters2);
   const navigate = useRouter();
-  const onFinish = (values) => {
-    // console.log(values);
+  // const onFinish = (values) => {
 
-    // Filter out empty/null/undefined values from filters
-    const filters = [values.fuelType, values.brand].filter(
-      (f) => f && f.trim() !== ""
-    );
+  //   const filters = [values.fuelType, values.brand].filter(
+  //     (f) => f && f.trim() !== ""
+  //   );
+  //   const params = {
+  //     page: 1,
+  //     limit: 3,
+  //     filter: filters.length > 0 ? filters : undefined,
+  //     modelYearFrom: 0,
+  //     modelYearTo: values.modelYearTo,
+  //     drivenKmFrom: values.drivenKmFrom,
+  //     drivenKmTo: values.drivenKmTo,
+  //   };
 
-    const params = {
-      page: 1,
-      limit: 3,
-      filter: filters.length > 0 ? filters : undefined,
-      modelYearFrom: 0,
-      modelYearTo: values.modelYearTo,
-      drivenKmFrom: values.drivenKmFrom,
-      drivenKmTo: values.drivenKmTo,
-    };
+  //   setFilters(params);
+  // };
 
-    setFilters(params);
+
+const onFinish = (values) => {
+  // Filter out empty or invalid fuelType and brand
+  const filters = [values.fuelType, values.brand].filter(
+    (f) => f && f.trim() !== ""
+  );
+
+  // Construct the newFilters object with only provided values
+  const newFilters = {
+    page: 1,
+    limit: 3,
+    filter: filters.length > 0 ? filters : undefined, // Only include filter if values exist
+    modelYearFrom: values.modelYearFrom || undefined, // Set to undefined if no value is provided
+    modelYearTo: values.modelYearTo || undefined, // Set to undefined if no value is provided
+    drivenKmFrom: values.drivenKmFrom || undefined, // Set to undefined if no value is provided
+    drivenKmTo: values.drivenKmTo || undefined, // Set to undefined if no value is provided
   };
 
-  const onFinishPrivate = (values) => {
-    console.log(values);
+  // If no filters are provided, do not update the state
+  if (
+    !newFilters.filter &&
+    !newFilters.modelYearFrom &&
+    !newFilters.modelYearTo &&
+    !newFilters.drivenKmFrom &&
+    !newFilters.drivenKmTo
+  ) {
+    return; // Do nothing if no filters are set
+  }
 
-    // Filter out empty/null/undefined values from filters
-    const filters = [values.fuelType, values.brand].filter(
-      (f) => f && f.trim() !== ""
-    );
+  // Check if the filters have changed before updating the state
+  if (JSON.stringify(newFilters) !== JSON.stringify(filters)) {
+    setFilters(newFilters);
+  }
+};
 
-    const params = {
-      page: 1,
-      limit: 4,
-      filter: filters.length > 0 ? filters : undefined,
-      modelsFrom: values.modelYearFrom,
-      modelsTo: values.modelYearTo,
-      drivenKmFrom: values.drivenKmFrom,
-      drivenKmTo: values.drivenKmTo,
-    };
 
-    setFilters2(params);
-  };
 
+
+
+
+
+
+
+
+
+
+
+
+ const onFinishPrivate = (values) => {
+   console.log(values);
+
+   // Filter out empty or invalid fuelType and brand
+   const filters = [values.fuelType, values.brand].filter(
+     (f) => f && f.trim() !== ""
+   );
+
+   // Construct the params object
+   const newFilters = {
+     page: 1,
+     limit: 4,
+     filter: filters.length > 0 ? filters : undefined, // Only include filter if there are values
+     modelsFrom: values.modelYearFrom || undefined, // Set undefined if no value is provided
+     modelsTo: values.modelYearTo || undefined, // Set undefined if no value is provided
+     drivenKmFrom: values.drivenKmFrom || undefined, // Set undefined if no value is provided
+     drivenKmTo: values.drivenKmTo || undefined, // Set undefined if no value is provided
+   };
+
+   // If no filters are provided, don't update the state
+   if (
+     !newFilters.filter &&
+     !newFilters.modelsFrom &&
+     !newFilters.modelsTo &&
+     !newFilters.drivenKmFrom &&
+     !newFilters.drivenKmTo
+   ) {
+     // If no filters are set, return early (don't update the state)
+     return;
+   }
+
+   // Only update the state if the new filters are different from the current state
+   if (JSON.stringify(newFilters) !== JSON.stringify(filters2)) {
+     setFilters2(newFilters);
+   }
+ };
   const displayedData = data ?? currentData;
   const submitDisplayedData = submitData ?? submitCurrentData;
 

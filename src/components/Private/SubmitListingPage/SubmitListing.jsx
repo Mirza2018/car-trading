@@ -15,7 +15,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { toast } from "sonner"; 
 import Cookies from "universal-cookie";
 const { Option } = Select;
-const SubmitListing = () => {
+const SubmitListing = () => { 
   const { 
     data: profileData,
     currentData,
@@ -157,7 +157,7 @@ const SubmitListing = () => {
             name="mark"
           >
             <Select
-              placeholder="vælg mærke"
+              placeholder="Vælg mærke"
               showSearch
               optionFilterProp="children"
               filterOption={(input, option) => {
@@ -224,7 +224,7 @@ const SubmitListing = () => {
             rules={[
               {
                 required: true,
-                message: "Personbil Varebil",
+                message: "Personbil eller Varebil ?",
               },
             ]}
           >
@@ -289,7 +289,7 @@ const SubmitListing = () => {
           rules={[
             {
               required: true,
-              message: "Venligst indtast makspris",
+              message: "Venligst indtast max pris",
             },
           ]}
           // label={<span className="font-medium text-base">Max price</span>}
@@ -456,6 +456,14 @@ const SubmitListing = () => {
                     Kontant pris
                   </Checkbox>
                   <Checkbox
+                    value="Finansiering"
+                    // checked={selectedPriceType === "wholesaleCVR"}
+                    // onChange={handleCheckboxChange}
+                    style={{ lineHeight: "32px" }}
+                  >
+                    Finansiering
+                  </Checkbox>
+                  <Checkbox
                     value="Biler under afgift"
                     // checked={selectedPriceType === "carsWithoutTax"}
                     // onChange={handleCheckboxChange}
@@ -463,14 +471,6 @@ const SubmitListing = () => {
                   >
                     Biler under afgift
                   </Checkbox>
-                  {/* <Checkbox
-                    value=" Wholesale/CVR"
-                    // checked={selectedPriceType === "wholesaleCVR"}
-                    // onChange={handleCheckboxChange}
-                    style={{ lineHeight: "32px" }}
-                  >
-                    
-                  </Checkbox> */}
                 </div>
               </Checkbox.Group>
             </Form.Item>
@@ -612,7 +612,7 @@ const SubmitListing = () => {
             rules={[
               {
                 required: true,
-                message: "Venligst indtast modeller fra",
+                message: "Venligst indtast årgang fra",
               },
             ]}
             label={<span className="font-medium text-base">Fra.</span>}
@@ -625,7 +625,7 @@ const SubmitListing = () => {
             rules={[
               {
                 required: true,
-                message: "Venligst indtast modeller til",
+                message: "Venligst indtast årgang til",
               },
             ]}
             label={<span className="font-medium text-base">Til</span>}
@@ -1017,7 +1017,7 @@ const SubmitListing = () => {
               rules={[
                 {
                   required: true,
-                  message: "Venligst indtast dit gadenavn!",
+                  message: "Venligst indtast vejnavn!",
                 },
               ]}
               name={`street`}

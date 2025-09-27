@@ -221,11 +221,11 @@ const OfferCar = ({ offerCar }) => {
                 message: "Indtast venligst modelår",
               },
             ]}
-            label={<span className="font-bold text-2xl">Modelår</span>}
+            label={<span className="font-bold text-2xl">Indtast årgang</span>}
             name="modelsYear"
             className="flex-1"
           >
-            <InputNumber className="w-full" placeholder="Indtast modelår" />
+            <InputNumber className="w-full" placeholder="Indtast årgang" />
           </Form.Item>
           <Form.Item
             rules={[
@@ -238,7 +238,7 @@ const OfferCar = ({ offerCar }) => {
             name="cashPrice"
             className="flex-1"
           >
-            <InputNumber className="w-full" placeholder="Indtast modelår" />
+            <InputNumber className="w-full" placeholder="Indtast pris" />
           </Form.Item>
         </div>
 
@@ -354,7 +354,6 @@ const OfferCar = ({ offerCar }) => {
           name="models"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  xl:grid-cols-5 gap-4 p-4">
-
             <div
               onClick={() => handleCarSelect("mikrobil")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
@@ -450,7 +449,7 @@ const OfferCar = ({ offerCar }) => {
               </div>
               <p className="text-center"> Cabriolet</p>
             </div>
-            
+
             <div
               onClick={() => handleCarSelect("coupe")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
@@ -462,9 +461,6 @@ const OfferCar = ({ offerCar }) => {
               </div>
               <p className="text-center"> Coupe</p>
             </div>
-
-
-
           </div>
         </Form.Item>
         <div className="grid grid-cols-2 gap-5 items-start">

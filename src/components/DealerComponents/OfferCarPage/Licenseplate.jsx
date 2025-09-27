@@ -286,11 +286,11 @@ const Licenseplate = ({ offerCar }) => {
                 message: "Indtast venligst modelår",
               },
             ]}
-            label={<span className="font-bold text-2xl">Modelår</span>}
+            label={<span className="font-bold text-2xl">Indtast årgang</span>}
             name="modelsYear"
             className="flex-1"
           >
-            <InputNumber className="w-full" placeholder="Indtast modelår" />
+            <InputNumber className="w-full" placeholder="Indtast årgang" />
           </Form.Item>
           <Form.Item
             rules={[
@@ -303,7 +303,7 @@ const Licenseplate = ({ offerCar }) => {
             name="cashPrice"
             className="flex-1"
           >
-            <InputNumber className="w-full" placeholder="Indtast kontantpris" />
+            <InputNumber className="w-full" placeholder="Indtast pris" />
           </Form.Item>
         </div>
 
