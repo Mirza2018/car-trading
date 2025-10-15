@@ -129,6 +129,25 @@ const OfferCar = ({ offerCar }) => {
               <Select.Option value="Company Car">Firmabil</Select.Option>
             </Select>
           </Form.Item>
+
+          <Form.Item
+            rules={[
+              {
+                required: true,
+                message: "Vælg venligst bilens tilstand",
+              },
+            ]}
+            className="flex-1"
+            label={<span className="font-bold text-2xl">Tilstand</span>}
+            name="carCondition"
+          >
+            <Select placeholder={<span className="text-black ">Ny/brugt</span>}>
+              <Select.Option value="Ny">Ny</Select.Option>
+              <Select.Option value="Brugt">Brugt</Select.Option>
+            </Select>
+          </Form.Item>
+        </div>
+        <div className="grid sm:grid-cols-2 gap-5">
           <Form.Item
             rules={[
               {
@@ -181,8 +200,6 @@ const OfferCar = ({ offerCar }) => {
               ))}
             </Select>
           </Form.Item>
-        </div>
-        <div className="grid sm:grid-cols-2 gap-5">
           <Form.Item
             rules={[
               {
@@ -195,21 +212,49 @@ const OfferCar = ({ offerCar }) => {
           >
             <Input placeholder="Indtast model" />
           </Form.Item>
+        </div>
+
+        <div className="grid sm:grid-cols-2 gap-5 pt-4">
           <Form.Item
             rules={[
               {
                 required: true,
-                message: "Vælg venligst bilens tilstand",
+                message: "Indtast venligst kørte km",
               },
             ]}
+            label={<span className="font-bold text-2xl">Kørte km</span>}
+            name="DrivenKm"
             className="flex-1"
-            label={<span className="font-bold text-2xl">Tilstand</span>}
-            name="carCondition"
           >
-            <Select placeholder={<span className="text-black ">Ny/brugt</span>}>
-              <Select.Option value="Ny">Ny</Select.Option>
-              <Select.Option value="Brugt">Brugt</Select.Option>
-            </Select>
+            <InputNumber
+              className="w-full"
+              placeholder="Indtast kørte kilometer."
+            />
+          </Form.Item>
+          <Form.Item
+            rules={[
+              {
+                required: true,
+                message: "Vælg venligst bilens farve",
+              },
+            ]}
+            label={<span className="font-bold text-2xl">Farve</span>}
+            name="color"
+            className="flex-1"
+          >
+            <Select
+              placeholder={<span className="">Vælg farve</span>}
+              className=" !bg-base-color"
+              showSearch
+              mode=""
+              optionFilterProp="label"
+              filterOption={(input, option) =>
+                option?.label?.props?.children?.[1]?.props?.children
+                  ?.toLowerCase()
+                  .includes(input.toLowerCase())
+              }
+              options={carColors}
+            />
           </Form.Item>
         </div>
 
@@ -221,7 +266,9 @@ const OfferCar = ({ offerCar }) => {
                 message: "Indtast venligst modelår",
               },
             ]}
-            label={<span className="font-bold text-2xl">Indtast årgang</span>}
+            label={
+              <span className="font-bold text-2xl capitalize">Årgang</span>
+            }
             name="modelsYear"
             className="flex-1"
           >
@@ -306,49 +353,7 @@ const OfferCar = ({ offerCar }) => {
             </Checkbox.Group>
           </Form.Item>
         </div>
-        <div className="grid sm:grid-cols-2 gap-5 pt-4">
-          <Form.Item
-            rules={[
-              {
-                required: true,
-                message: "Indtast venligst kørte km",
-              },
-            ]}
-            label={<span className="font-bold text-2xl">Kørte km</span>}
-            name="DrivenKm"
-            className="flex-1"
-          >
-            <InputNumber
-              className="w-full"
-              placeholder="Indtast kørte kilometer."
-            />
-          </Form.Item>
-          <Form.Item
-            rules={[
-              {
-                required: true,
-                message: "Vælg venligst bilens farve",
-              },
-            ]}
-            label={<span className="font-bold text-2xl">Farve</span>}
-            name="color"
-            className="flex-1"
-          >
-            <Select
-              placeholder={<span className="">Vælg farve</span>}
-              className=" !bg-base-color"
-              showSearch
-              mode=""
-              optionFilterProp="label"
-              filterOption={(input, option) =>
-                option?.label?.props?.children?.[1]?.props?.children
-                  ?.toLowerCase()
-                  .includes(input.toLowerCase())
-              }
-              options={carColors}
-            />
-          </Form.Item>
-        </div>
+
         <Form.Item
           label={<span className="font-bold text-2xl">Modeller</span>}
           name="models"

@@ -11,10 +11,10 @@ const CarListTable = ({
   showViewServiceUserModal,
   pageSize = 0,
   meta,
-  onPageChange, 
+  onPageChange,
 }) => {
   const dispatch = useDispatch();
-  const navigate=useRouter()
+  const navigate = useRouter();
   const columns = [
     // {
     //   title: "SL.",
@@ -65,7 +65,23 @@ const CarListTable = ({
       render: (text) => (
         <div>
           <p className="whitespace-nowrap">
-            {text?.isBid ? text?.bidPrice : text?.expectedPrice} .kr
+            {text?.isBid ? (
+              <div>
+                <h1 className="font-medium">
+                  {" "}
+                  Faktisk pris: {text?.expectedPrice} .kr
+                </h1>
+                <h1 className="font-medium">Budpris: {text?.bidPrice} .kr</h1>{" "}
+              </div>
+            ) : (
+              <div>
+                <h1 className="font-medium">
+                  {" "}
+                  Faktisk pris: {text?.expectedPrice} .kr
+                </h1>
+              </div>
+            )}{" "}
+            {/* {console.log(text?.expectedPrice)} */}
           </p>
         </div>
       ),
@@ -145,7 +161,7 @@ const CarListTable = ({
                   </Tooltip>
                 </p>
               )}
-            </div> 
+            </div>
           )}
         </Space>
       ),

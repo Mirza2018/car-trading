@@ -75,7 +75,7 @@ const MakeABidBtn = ({ carid }) => {
           isBid ? "bg-[#00721E]" : "bg-highlight-color "
         }`}
       >
-        Make An Bid Price
+        Giv et bud
       </button>
       {bidOpen && (
         <Input
@@ -92,7 +92,7 @@ const MakeABidBtn = ({ carid }) => {
 
       <Modal open={isBuy} onCancel={() => setIsBuy(false)} footer={[]}>
         <h1 className="text-center text-2xl  font-medium mt-5 mb-5">
-          Are You Sure You Bid this Car?
+          Er du sikker på, at du har budt på denne bil?
         </h1>
         <section className="flex justify-center items-center ">
           <Button
@@ -104,7 +104,7 @@ const MakeABidBtn = ({ carid }) => {
               background: "rgba(221, 221, 221, 1)",
             }}
           >
-            No
+            Nej
           </Button>
           {/* <Link href={`/final-note`}> */}
           <Button
@@ -112,7 +112,7 @@ const MakeABidBtn = ({ carid }) => {
             className={`text-xl py-5 px-8 bg-highlight-color !hover:bg-red-600 `}
             type="primary"
           >
-            yes
+            Ja
           </Button>
           {/* </Link> */}
         </section>

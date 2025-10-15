@@ -1,4 +1,4 @@
-import logo from "./icons/logo.svg";
+import logo from "./images/logo.svg";
 import check from "./icons/check.svg";
 import f1 from "./icons/f1.svg";
 import f2 from "./icons/f2.svg";

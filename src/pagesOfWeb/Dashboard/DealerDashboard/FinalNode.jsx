@@ -638,8 +638,8 @@ const FinalNode = () => {
 
                 <div className="flex justify-between items-center w-full gap-5">
                   <h1>
-                    *The buyer is obliged to pay the agreed amount at the time
-                    of transfer.
+                    *Betaling for bilen skal ske senest ved levering/afhentning
+                    af bilen fra sælger.
                   </h1>
                 </div>
               </div>

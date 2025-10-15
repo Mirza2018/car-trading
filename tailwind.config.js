@@ -15,7 +15,8 @@ module.exports = {
         "highlight-light-color": "#FFF5ED",
         "text-color": "#000000",
         "text-light-color": "#667085",
-        "error-color":"#ed4337"
+        "error-color": "#ed4337",
+        "success-color": "#008000",
       },
     },
   },

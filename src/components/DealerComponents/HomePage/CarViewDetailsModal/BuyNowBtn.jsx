@@ -60,14 +60,14 @@ const BuyNowBtn = ({ price, carId, buyCar }) => {
         className="bg-highlight-color text-white  font-semibold py-1  rounded-lg  cursor-pointer  hover:animate-pulse flex flex-col  items-center md:w-44 w-36"
       >
         <div className="text-start">
-          <p className="text-[10px] text-start">Buy Now :</p>
+          <p className="text-[10px] text-start">Køb nu:</p>
           <p>{price} .kr</p>
         </div>
       </button>
 
       <Modal open={isBuy} onCancel={() => setIsBuy(false)} footer={[]}>
         <h1 className="text-center text-2xl  font-medium mt-5 mb-5">
-          Are You Sure You Buy this Car?
+          Er du sikker på, at du køber denne bil?
         </h1>
         <section className="flex justify-center items-center ">
           <Button
@@ -79,7 +79,7 @@ const BuyNowBtn = ({ price, carId, buyCar }) => {
               background: "rgba(221, 221, 221, 1)",
             }}
           >
-            No
+            Ingen
           </Button>
 
           <Button
@@ -87,18 +87,18 @@ const BuyNowBtn = ({ price, carId, buyCar }) => {
             className={`text-xl py-5 px-8 bg-highlight-color !hover:bg-red-600 `}
             type="primary"
           >
-            yes
+            ja
           </Button>
         </section>
       </Modal>
 
       <Modal open={isCongrat} onCancel={() => setIsCongrat(false)} footer={[]}>
         <h1 className="text-center text-2xl  font-medium mt-5 mb-5">
-          Congratulations on Your Purchase!
+          Tillykke med dit køb!
         </h1>
         <p className="font-medium text-center mx-20 mb-5">
-          Your car has been successfully purchased. Thank you for the deal!! you
-          can find your car in “Total Buy Car“
+          Din bil er blevet købt. Tak for handlen!! Du kan finde din bil i
+          “Total Køb Bil”
         </p>
         <section className="flex justify-center items-center ">
           <Button
@@ -110,7 +110,7 @@ const BuyNowBtn = ({ price, carId, buyCar }) => {
               background: "rgba(221, 221, 221, 1)",
             }}
           >
-            No
+            Ingen
           </Button>
           <Link href={`/dashboard/total-dealer-car-sell`}>
             <Button
@@ -118,7 +118,7 @@ const BuyNowBtn = ({ price, carId, buyCar }) => {
               className={`text-xl py-5 px-8 bg-highlight-color !hover:bg-red-600 `}
               type="primary"
             >
-              Go to Buy Car
+              Gå til Køb bil
             </Button>
           </Link>
         </section>

@@ -143,7 +143,7 @@ const SubmitListing = () => {
             rules={[
               {
                 required: true,
-                message: "Vælg venligst et mærke",
+                message: "Vælg mærke",
               },
             ]}
             label={
@@ -235,12 +235,12 @@ const SubmitListing = () => {
                   style={{ fontSize: "clamp(12px, 1vw + 1rem ,14px)" }}
                   className="text-black   "
                 >
-                  Privat bil eller firmabil
+                  Personbil eller Varebil
                 </span>
               }
             >
-              <Select.Option value="PrivatBil">Privat bil</Select.Option>
-              <Select.Option value="Firmabil">Firmabil</Select.Option>
+              <Select.Option value="Personbil">Personbil</Select.Option>
+              <Select.Option value="Varebil">Varebil</Select.Option>
             </Select>
           </Form.Item>
 

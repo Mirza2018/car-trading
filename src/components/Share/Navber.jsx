@@ -27,7 +27,7 @@ const Navbar = () => {
   const cookies = new Cookies();
   const navigate = useRouter();
   const dispatch = useDispatch();
-    const { count } = useContext(SocketContext);
+  const { count } = useContext(SocketContext);
   const displayedData = data ?? currentData;
   let userInfo;
   // const userInfo = useSelector((state) => state.auth.userInfo);
@@ -140,7 +140,7 @@ const Navbar = () => {
     cookies.remove("car_trading_accessToken", { path: "/dashboard" });
     // navigate.push("/");
     toast.success("Log ud udført succesfuldt");
-    window.location.reload();
+    window.location.replace("/");
   };
 
   const getMenuItems = (user) => {
@@ -290,7 +290,7 @@ const Navbar = () => {
             alt="logo"
             width={0}
             height={0}
-            className=""
+            className="md:w-56 w-40 object-contain"
             src={AllImages.logo}
           />
           {/* <h1 className="text-white uppercase font-semibold md:text-3xl text-xl">

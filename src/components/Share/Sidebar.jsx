@@ -21,8 +21,11 @@ const Sidebar = ({ slider, setSlider }) => {
     dispatch(clearAuth());
     cookies.remove("car_trading_accessToken", { path: "/" });
     cookies.remove("car_trading_accessToken", { path: "/dashboard" });
-    navigate.push("/");
+ 
     toast.success("Log ud gennemført succesfuldt");
+    // navigate.push("/");
+window.location.replace("/");
+
   };
 
   const menuItems = (
