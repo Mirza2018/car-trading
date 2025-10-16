@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import {
   FacebookFilled,
@@ -8,10 +9,14 @@ import {
 import { FaApple, FaGooglePlay } from "react-icons/fa";
 import Image from "next/image";
 import { AllImages } from "@/assets/AllImages";
-import { Input } from "antd";
+import { Input, message } from "antd";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 const Footer = () => {
+  const userInfo = useSelector((state) => state.auth.userInfo);
+
+  
   return (
     <footer className="bg-blue-600 text-white p-8">
       <div className="container mx-auto">
@@ -112,7 +117,27 @@ const Footer = () => {
 
         <div className="border-t border-white mt-8 pt-8 text-center flex justify-between md:flex-row flex-col">
           <p>© 2025 Alle rettigheder forbeholdes</p>
-          <p> Privatlivspolitik | Cookiepolitik</p>
+          {userInfo?.role == "private_user" && (
+            <Link href="/dashboard/privacy">
+              {" "}
+              Privatlivspolitik | Cookiepolitik
+            </Link>
+          )}
+          {userInfo?.role == "dealer" && (
+            <Link href="/dashboard/privacy">
+              {" "}
+              Privatlivspolitik | Cookiepolitik
+            </Link>
+          )}
+          {!userInfo?.role && (
+            <p
+              onClick={() => message.info("Venligst log ind")}
+              className="cursor-pointer"
+            >
+              {" "}
+              Privatlivspolitik | Cookiepolitik
+            </p>
+          )}
         </div>
       </div>
     </footer>

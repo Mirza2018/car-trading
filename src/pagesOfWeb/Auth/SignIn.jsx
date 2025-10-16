@@ -9,7 +9,11 @@ import { toast } from "sonner";
 import { useUserLoginMutation } from "@/redux/api/features/authApi";
 import { jwtDecode } from "jwt-decode";
 import { useDispatch } from "react-redux";
-import { setAccessToken, setUserInfo } from "@/redux/slices/authSlice";
+import {
+  clearAuth,
+  setAccessToken,
+  setUserInfo,
+} from "@/redux/slices/authSlice";
 import Cookies from "universal-cookie";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
@@ -18,57 +22,64 @@ const SignIn = () => {
   const [userLogin] = useUserLoginMutation();
   const dispatch = useDispatch();
   const navigate = useRouter();
- 
+
   const cookies = new Cookies();
 
   const onFinish = async (values) => {
     const toastId = toast.loading("Logger ind…");
     console.log("car-trading:", values);
 
+    try {
+      const res = await userLogin(values).unwrap();
+      cookies.remove("car_trading_accessToken");
+      cookies.remove("car_trading_accessToken", { path: "/" });
+      cookies.remove("car_trading_accessToken", { path: "/dashboard" });
+      dispatch(clearAuth());
+      const decodeToken = jwtDecode(res?.data?.accessToken);
 
+      dispatch(setAccessToken(res?.data?.accessToken));
+      dispatch(setUserInfo(decodeToken));
 
+      console.log(decodeToken?.role);
+      if (decodeToken?.role == "admin") {
+        toast.warning("Admin kan ikke logge ind på hjemmesiden", {
+          id: toastId,
+          duration: 5000,
+        });
+        return;
+      }
 
-        try {
-          const res = await userLogin(values).unwrap();
-          cookies.remove("car_trading_accessToken");
-          const decodeToken = jwtDecode(res?.data?.accessToken);
+      cookies.set("car_trading_accessToken", res?.data?.accessToken, {
+        path: "/",
+      });
+      toast.success("Login lykkedes", {
+        id: toastId,
+        duration: 2000,
+      });
+      navigate.push("/");
+    } catch (error) {
+      console.error("Login Error:", error); // Log the error for debugging
 
-          dispatch(setAccessToken(res?.data?.accessToken));
-          dispatch(setUserInfo(decodeToken));
-          console.log("res: ", res, decodeToken);
-          cookies.set("car_trading_accessToken", res?.data?.accessToken, {
-            path: "/",
-          });
-          toast.success("Login lykkedes", {
-            id: toastId,
-            duration: 2000,
-          });
-          navigate.push("/");
-        } catch (error) {
-          console.error("Login Error:", error); // Log the error for debugging
+      toast.error("Der opstod en fejl under login", {
+        id: toastId,
+        duration: 2000,
+      });
+    }
 
-          toast.error("Der opstod en fejl under login", {
-            id: toastId,
-            duration: 2000,
-          });
-        }
-
-
-
-        // Swal.fire({
-        //   title: "I'm acccpting all the rules",
-        //   showDenyButton: true,
-        //   confirmButtonText: "Ok",
-        //   denyButtonText: `Cancel`,
-        // }).then(async (result) => {
-        //   if (result.isConfirmed) {
-        //   } else if (result.isDenied) {
-        //     return toast.error("Without Accepting rulels you can't log in", {
-        //       id: toastId,
-        //       duration: 2000,
-        //     });
-        //   }
-        // });
+    // Swal.fire({
+    //   title: "I'm acccpting all the rules",
+    //   showDenyButton: true,
+    //   confirmButtonText: "Ok",
+    //   denyButtonText: `Cancel`,
+    // }).then(async (result) => {
+    //   if (result.isConfirmed) {
+    //   } else if (result.isDenied) {
+    //     return toast.error("Without Accepting rulels you can't log in", {
+    //       id: toastId,
+    //       duration: 2000,
+    //     });
+    //   }
+    // });
   };
   return (
     <div className=" bg-[#E6F3F7]">
