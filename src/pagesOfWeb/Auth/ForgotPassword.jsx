@@ -2,6 +2,7 @@
 import { AllImages } from "@/assets/AllImages";
 import { useForgetPasswordMutation } from "@/redux/api/features/authApi";
 import {
+  clearAuth,
   setForgotPasswordToken,
   setResendSignUpToken,
 } from "@/redux/slices/authSlice";
@@ -22,10 +23,10 @@ const ForgotPassword = () => {
 
     try {
       const res = await forgotPassEmail(values).unwrap();
-
+      dispatch(clearAuth());
       console.log("res: ", res?.data?.forgotPasswordToken);
       dispatch(setForgotPasswordToken(res?.data?.forgotPasswordToken));
-      dispatch(setResendSignUpToken(res?.data?.forgotPasswordToken));
+      // dispatch(setResendSignUpToken(res?.data?.forgotPasswordToken));
 
       toast.success("Adgangskode nulstillet succesfuldt", {
         id: toastId,

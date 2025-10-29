@@ -2,14 +2,14 @@
 import { AllImages } from "@/assets/AllImages";
 import {
   useForgetOtpVerifyMutation,
-  useResendOTPMutation
+  useResendOTPMutation,
 } from "@/redux/api/features/authApi";
-import { 
+import {
   clearAuth,
   clearForgotPasswordToken,
   clearResendSignUpToken,
   setForgotPasswordToken,
-  setResetPasswordToken
+  setResetPasswordToken,
 } from "@/redux/slices/authSlice";
 import { Button, Form } from "antd";
 import Image from "next/image";
@@ -31,16 +31,18 @@ const ForgotOtp = () => {
   const resendToken = useSelector((state) => state.auth.resendSignUpToken);
 
   // const userInfo = useSelector((state) => state.auth.resendSignUpToken);
-  console.log("yes yes",resendToken);
+  console.log("yes yes", resendToken);
 
   const handleResendOtp = async () => {
-    dispatch(clearForgotPasswordToken());
+    // dispatch(clearForgotPasswordToken());
+    dispatch(setResetPasswordToken(resendToken));
     const data = {
       purpose: "forget-password",
     };
     const toastId = toast.loading("OTP sendes igen…");
     try {
       const res = await resendOtp(data).unwrap();
+      dispatch(clearForgotPasswordToken());
       dispatch(setForgotPasswordToken(resendToken));
       console.log(res);
       toast.success("OTP sendt succesfuldt", {
@@ -79,9 +81,7 @@ const ForgotOtp = () => {
       dispatch(clearAuth());
       dispatch(setResetPasswordToken(res?.data?.resetPasswordToken));
 
-
-
-        navigate.push("/update-password");
+      navigate.push("/update-password");
     } catch (error) {
       console.error("Login Error:", error); // Log the error for debugging
 
@@ -149,12 +149,19 @@ const ForgotOtp = () => {
                 </div>
               </Form.Item>
               <div className="flex justify-between py-1">
-                <p>Modtog du ikke koden?</p>
+                {/* <p>Modtog du ikke koden?</p>
                 <p
                   onClick={handleResendOtp}
                   className="!text-[#F5382C] !underline font-semibold cursor-pointer"
                 >
                   Send igen
+                </p> */}
+                <p>Tilbage til login-siden?</p>
+                <p
+                  onClick={() => navigate.push("/sign-in")}
+                  className="!text-[#F5382C] !underline font-semibold cursor-pointer"
+                >
+                  Log ind
                 </p>
               </div>
 
