@@ -370,10 +370,13 @@ const OfferCar = ({ offerCar }) => {
         </div>
 
         <Form.Item
-          label={<span className="font-bold text-2xl">Modeller</span>}
+          label={
+            <span className="font-bold text-2xl select-none">Modeller</span>
+          }
           name="models"
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  xl:grid-cols-5 gap-4 p-4">
+          {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  xl:grid-cols-5 gap-4 p-4"> */}
+          <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-3 select-none">
             <div
               onClick={() => handleCarSelect("mikrobil")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
