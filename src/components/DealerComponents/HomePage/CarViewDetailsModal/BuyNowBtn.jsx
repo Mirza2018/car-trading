@@ -30,13 +30,13 @@ const BuyNowBtn = ({ price, carId, buyCar }) => {
       setIsCongrat(true);
       setIsBuy(false);
       Swal.fire({
-        title: "Congratulations on Your Purchase!",
-        text: "Your car has been successfully purchased. Thank you for the deal!! you can find your car in Total Buy Car",
+        title: "Tillykke med dit køb!",
+        text: "Din bil er blevet købt succesfuldt. Tak for handlen!! Du kan finde din bil på Total Buy Car.",
         icon: "success",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: " Go to Buy Car",
+        confirmButtonText: "Gå til Køb Bil",
       }).then((result) => {
         if (result.isConfirmed) {
           navigate.push("/dashboard/total-dealer-car-sell");
