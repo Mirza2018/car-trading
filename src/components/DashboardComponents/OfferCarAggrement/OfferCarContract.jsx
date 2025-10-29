@@ -563,6 +563,9 @@ const OfferCarContract = () => {
                   </p>
                 ) : (
                   <InputNumber
+                    type="number" 
+                    inputMode="numeric" 
+                    pattern="[0-9]*"
                     defaultValue={displayedData?.advancedPayment}
                     onChange={(e) => setAdvanceAmount(e)}
                     name="advancedPayment"

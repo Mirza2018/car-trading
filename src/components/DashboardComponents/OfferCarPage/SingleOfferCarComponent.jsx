@@ -140,14 +140,14 @@ const SingleOfferCarComponent = ({ offerCar, offercarAction }) => {
               <h1>Inkl. moms / Inkl. registrering</h1>
               <Button
                 onClick={acceptOfferCar}
-                className={`text-xl py-5 px-8 !bg-highlight-color !hover:bg-red-600 `}
+                className={`text-xl  !bg-highlight-color py-2 md:w-full w-fit !hover:bg-red-600 `}
                 type="primary"
               >
                 Accepter
               </Button>
               <Button
                 onClick={rejectOfferCar}
-                className={`text-xl py-5 px-8 !bg-[#DC3545] !hover:bg-red-600 `}
+                className={`text-xl  !bg-[#DC3545] py-2 md:w-full px-8 w-fit  !hover:bg-red-600 `}
                 type="primary"
               >
                 Afvis

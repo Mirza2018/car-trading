@@ -290,7 +290,13 @@ const Licenseplate = ({ offerCar }) => {
             name="modelsYear"
             className="flex-1"
           >
-            <InputNumber className="w-full" placeholder="Indtast årgang" />
+            <InputNumber
+              type="number"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              className="w-full"
+              placeholder="Indtast årgang"
+            />
           </Form.Item>
           <Form.Item
             rules={[
@@ -303,7 +309,13 @@ const Licenseplate = ({ offerCar }) => {
             name="cashPrice"
             className="flex-1"
           >
-            <InputNumber className="w-full" placeholder="Indtast pris" />
+            <InputNumber
+              type="number"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              className="w-full"
+              placeholder="Indtast pris"
+            />
           </Form.Item>
         </div>
 
@@ -394,6 +406,9 @@ const Licenseplate = ({ offerCar }) => {
             className="flex-1"
           >
             <InputNumber
+              type="number"
+              inputMode="numeric"
+              pattern="[0-9]*"
               className="w-full"
               placeholder="Indtast antal kørte kilometer."
             />

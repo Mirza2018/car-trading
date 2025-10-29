@@ -227,6 +227,9 @@ const OfferCar = ({ offerCar }) => {
             className="flex-1"
           >
             <InputNumber
+              type="number"
+              inputMode="numeric"
+              pattern="[0-9]*"
               className="w-full"
               placeholder="Indtast kørte kilometer."
             />
@@ -272,7 +275,13 @@ const OfferCar = ({ offerCar }) => {
             name="modelsYear"
             className="flex-1"
           >
-            <InputNumber className="w-full" placeholder="Indtast årgang" />
+            <InputNumber
+              type="number"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              className="w-full"
+              placeholder="Indtast årgang"
+            />
           </Form.Item>
           <Form.Item
             rules={[
@@ -285,7 +294,13 @@ const OfferCar = ({ offerCar }) => {
             name="cashPrice"
             className="flex-1"
           >
-            <InputNumber className="w-full" placeholder="Indtast pris" />
+            <InputNumber
+              type="number"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              className="w-full"
+              placeholder="Indtast pris"
+            />
           </Form.Item>
         </div>
 

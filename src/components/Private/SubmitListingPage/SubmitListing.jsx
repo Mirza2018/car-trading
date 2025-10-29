@@ -296,7 +296,13 @@ const SubmitListing = () => {
           name="cashPrice"
           className="flex-1"
         >
-          <InputNumber placeholder="0" className=" w-full" />
+          <InputNumber
+            type="number"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            placeholder="0"
+            className=" w-full"
+          />
         </Form.Item>
 
         <div className="flex justify-between items-start">
@@ -483,14 +489,14 @@ const SubmitListing = () => {
           label={
             <span
               style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
-              className="font-bold  "
+              className="font-bold select-none"
             >
               Modeller
             </span>
           }
           name="models"
         >
-          <div className="flex flex-wrap gap-3">
+          <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-3 select-none">
             <div
               onClick={() => handleCarSelect("mikrobil")}
               className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
@@ -522,7 +528,7 @@ const SubmitListing = () => {
               }`}
             >
               <div className="border  border-secondary-color w-fit p-4 rounded-md">
-                <Image src={AllImages.ct3} alt="car" />
+                <Image src={AllImages.ct3} alt="car" className="w-fit" />
               </div>
               <p className="text-center"> SUV</p>
             </div>
@@ -534,7 +540,7 @@ const SubmitListing = () => {
               }`}
             >
               <div className="border  border-secondary-color w-fit p-4 rounded-md">
-                <Image src={AllImages.ct4} alt="car" />
+                <Image src={AllImages.ct4} alt="car" className="w-fit" />
               </div>
               <p className="text-center">Crossover (CUV)</p>
             </div>
@@ -619,7 +625,13 @@ const SubmitListing = () => {
             name="modelsFrom"
             className="flex-1"
           >
-            <InputNumber placeholder="Årgang fra." className="w-full" />
+            <InputNumber
+              type="number"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              placeholder="Årgang fra."
+              className="w-full"
+            />
           </Form.Item>
           <Form.Item
             rules={[
@@ -633,7 +645,13 @@ const SubmitListing = () => {
             className="flex-1"
           >
             {/* <Input placeholder="After 1990" /> */}
-            <InputNumber placeholder="Årgang til." className="w-full" />
+            <InputNumber
+              type="number"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              placeholder="Årgang til."
+              className="w-full"
+            />
           </Form.Item>
         </div>
 
@@ -656,7 +674,13 @@ const SubmitListing = () => {
             className="flex-1"
             initialValue={0}
           >
-            <InputNumber placeholder="0" className="w-full" />
+            <InputNumber
+              type="number"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              placeholder="0"
+              className="w-full"
+            />
           </Form.Item>
           <Form.Item
             rules={[
@@ -669,7 +693,13 @@ const SubmitListing = () => {
             name="drivenKmTo"
             className="flex-1"
           >
-            <InputNumber placeholder="500000+" className="w-full" />
+            <InputNumber
+              type="number"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              placeholder="500000+"
+              className="w-full"
+            />
           </Form.Item>
         </div>
 

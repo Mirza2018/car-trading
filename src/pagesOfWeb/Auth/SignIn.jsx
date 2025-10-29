@@ -1,22 +1,20 @@
 "use client";
-import { Checkbox, Button, Input, Form, Typography, Select } from "antd";
-import { DownOutlined } from "@ant-design/icons";
-import Link from "next/link";
 import { AllImages } from "@/assets/AllImages";
+import { Button, Checkbox, Form, Input, Typography } from "antd";
 import Image from "next/image";
+import Link from "next/link";
 
-import { toast } from "sonner";
 import { useUserLoginMutation } from "@/redux/api/features/authApi";
-import { jwtDecode } from "jwt-decode";
-import { useDispatch } from "react-redux";
 import {
   clearAuth,
   setAccessToken,
   setUserInfo,
 } from "@/redux/slices/authSlice";
-import Cookies from "universal-cookie";
+import { jwtDecode } from "jwt-decode";
 import { useRouter } from "next/navigation";
-import Swal from "sweetalert2";
+import { useDispatch } from "react-redux";
+import { toast } from "sonner";
+import Cookies from "universal-cookie";
 
 const SignIn = () => {
   const [userLogin] = useUserLoginMutation();

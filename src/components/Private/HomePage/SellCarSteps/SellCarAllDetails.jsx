@@ -307,6 +307,9 @@ const SellCarAllDetails = () => {
               ]}
             >
               <InputNumber
+                type="number"
+                inputMode="numeric"
+                pattern="[0-9]*"
                 placeholder="Indtast antal kørte kilometer."
                 className="py-3 w-full"
               />
@@ -354,6 +357,9 @@ const SellCarAllDetails = () => {
               className=""
             >
               <InputNumber
+                type="number"
+                inputMode="numeric"
+                pattern="[0-9]*"
                 placeholder="Indtast antal lakfelter"
                 className="py-3 w-full"
               />
@@ -434,6 +440,9 @@ const SellCarAllDetails = () => {
               name={`expectedPrice`}
             >
               <InputNumber
+                type="number"
+                inputMode="numeric"
+                pattern="[0-9]*"
                 placeholder="Forventet pris (DKK)"
                 className="py-3 w-full"
               />

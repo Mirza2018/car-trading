@@ -563,6 +563,9 @@ const FinalNode = () => {
                     </p>
                   ) : (
                     <InputNumber
+                      type="number"
+                      inputMode="numeric"
+                      pattern="[0-9]*"
                       defaultValue={displayedData?.data?.advancedPayment}
                       onChange={(e) => setAdvanceAmount(e)}
                       name="advancedPayment"

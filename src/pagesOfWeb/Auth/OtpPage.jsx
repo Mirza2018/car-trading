@@ -93,7 +93,8 @@ const OtpPage = () => {
     } catch (error) {
       console.error("Login Error:", error); // Log the error for debugging
 
-      toast.error("Der opstod en fejl under registreringen, prøv venligst senere",
+      toast.error(
+        "Der opstod en fejl under registreringen, prøv venligst senere",
         {
           id: toastId,
           duration: 2000,
@@ -142,7 +143,15 @@ const OtpPage = () => {
                     value={otp}
                     onChange={setOtp}
                     numInputs={6}
-                    renderInput={(props) => <input {...props} required />}
+                    renderInput={(props) => (
+                      <input
+                        {...props}
+                        type="tel"
+                        inputMode="numeric"
+                        pattern="[0-9]*"
+                        autoComplete="one-time-code"
+                      />
+                    )}
                   />
                 </div>
               </Form.Item>
