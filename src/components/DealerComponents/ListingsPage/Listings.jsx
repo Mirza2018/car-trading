@@ -398,7 +398,7 @@ const Listings = () => {
             name="modelFrom"
             className="flex-1"
           >
-            <Input placeholder="Before 1975" />
+            <Input placeholder="før 1975" />
           </Form.Item>
           <Form.Item
             label={<span className="font-medium text-base">To</span>}
@@ -423,7 +423,7 @@ const Listings = () => {
             name="drivenTo"
             className="flex-1"
           >
-            <Input placeholder="50000+" />
+            <Input placeholder="500000+" />
           </Form.Item>
         </div>
 

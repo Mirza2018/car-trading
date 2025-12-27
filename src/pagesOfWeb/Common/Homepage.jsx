@@ -4,6 +4,7 @@ import FilterSection from "@/components/DealerComponents/HomePage/FilterOption/F
 import SubmitListingFilterSection from "@/components/DealerComponents/HomePage/FilterOption/SubmitListingFilterSection";
 import PrivateLookingForCars from "@/components/DealerComponents/HomePage/PrivateLookingForCars";
 import Reviews from "@/components/Private/AboutUsPage/Reviews";
+import DelarPrice from "@/components/Private/HomePage/DelarPrice";
 import FairPriceCard from "@/components/Private/HomePage/FairPriceCard";
 import FairPriceFooter from "@/components/Private/HomePage/FairPriceFooter";
 import SellBuyTrade from "@/components/Private/HomePage/SellBuyTrade";
@@ -23,20 +24,20 @@ import Swal from "sweetalert2";
 
 const Homepage = () => {
   const { data: userData, isLoading: userDataIsLooding } = useProfileQuery();
-const [filters, setFilters] = useState({
-  page: 1,
-  limit: 3,
-});
+  const [filters, setFilters] = useState({
+    page: 1,
+    limit: 3,
+  });
   const [filters2, setFilters2] = useState({
     page: 1,
     limit: 4,
   });
-const onPageChange = (page) => {
-  setFilters((prev) => ({
-    ...prev,
-    page,
-  }));
-};
+  const onPageChange = (page) => {
+    setFilters((prev) => ({
+      ...prev,
+      page,
+    }));
+  };
 
   const onPageChange2 = (page) => {
     setFilters2((prev) => ({
@@ -46,6 +47,7 @@ const onPageChange = (page) => {
   };
   const { data, currentData, isLoading, isFetching, isSuccess } =
     useSaleCarListQuery(filters);
+
   const {
     data: submitData,
     currentData: submitCurrentData,
@@ -53,6 +55,7 @@ const onPageChange = (page) => {
     isFetching: submitIsFetching,
     isSuccess: submitIsSuccess,
   } = useSubmitListingQuery(filters2);
+
   const navigate = useRouter();
   // const onFinish = (values) => {
 
@@ -72,90 +75,48 @@ const onPageChange = (page) => {
   //   setFilters(params);
   // };
 
+  const onFinish = (newFilters) => {
+    // Only update if there's at least one meaningful filter
+    const hasFilters =
+      newFilters.filter ||
+      newFilters.modelYearFrom ||
+      newFilters.modelYearTo ||
+      newFilters.drivenKmFrom ||
+      newFilters.drivenKmTo;
 
-const onFinish = (values) => {
-  // Filter out empty or invalid fuelType and brand
-  const filters = [values.fuelType, values.brand].filter(
-    (f) => f && f.trim() !== ""
-  );
+    if (!hasFilters) {
+      setFilters({ page: 1, limit: 3 }); // Reset to default
+      return;
+    }
 
-  // Construct the newFilters object with only provided values
-  const newFilters = {
-    page: 1,
-    limit: 3,
-    filter: filters.length > 0 ? filters : undefined, // Only include filter if values exist
-    modelYearFrom: values.modelYearFrom || undefined, // Set to undefined if no value is provided
-    modelYearTo: values.modelYearTo || undefined, // Set to undefined if no value is provided
-    drivenKmFrom: values.drivenKmFrom || undefined, // Set to undefined if no value is provided
-    drivenKmTo: values.drivenKmTo || undefined, // Set to undefined if no value is provided
+    setFilters((prev) => {
+      if (JSON.stringify(prev) !== JSON.stringify(newFilters)) {
+        return newFilters;
+      }
+      return prev;
+    });
   };
 
-  // If no filters are provided, do not update the state
-  if (
-    !newFilters.filter &&
-    !newFilters.modelYearFrom &&
-    !newFilters.modelYearTo &&
-    !newFilters.drivenKmFrom &&
-    !newFilters.drivenKmTo
-  ) {
-    return; // Do nothing if no filters are set
-  }
+  const onFinishPrivate = (newFilters) => {
+    const hasFilters =
+      newFilters.filter ||
+      newFilters.modelYearFrom ||
+      newFilters.modelYearTo ||
+      newFilters.drivenKmFrom ||
+      newFilters.drivenKmTo;
 
-  // Check if the filters have changed before updating the state
-  if (JSON.stringify(newFilters) !== JSON.stringify(filters)) {
-    setFilters(newFilters);
-  }
-};
+    if (!hasFilters) {
+      setFilters2({ page: 1, limit: 3 }); // Reset to default
+      return;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
- const onFinishPrivate = (values) => {
-   console.log(values);
-
-   // Filter out empty or invalid fuelType and brand
-   const filters = [values.fuelType, values.brand].filter(
-     (f) => f && f.trim() !== ""
-   );
-
-   // Construct the params object
-   const newFilters = {
-     page: 1,
-     limit: 4,
-     filter: filters.length > 0 ? filters : undefined, // Only include filter if there are values
-     modelsFrom: values.modelYearFrom || undefined, // Set undefined if no value is provided
-     modelsTo: values.modelYearTo || undefined, // Set undefined if no value is provided
-     drivenKmFrom: values.drivenKmFrom || undefined, // Set undefined if no value is provided
-     drivenKmTo: values.drivenKmTo || undefined, // Set undefined if no value is provided
-   };
-
-   // If no filters are provided, don't update the state
-   if (
-     !newFilters.filter &&
-     !newFilters.modelsFrom &&
-     !newFilters.modelsTo &&
-     !newFilters.drivenKmFrom &&
-     !newFilters.drivenKmTo
-   ) {
-     // If no filters are set, return early (don't update the state)
-     return;
-   }
-
-   // Only update the state if the new filters are different from the current state
-   if (JSON.stringify(newFilters) !== JSON.stringify(filters2)) {
-     setFilters2(newFilters);
-   }
- };
+    setFilters2((prev) => {
+      if (JSON.stringify(prev) !== JSON.stringify(newFilters)) {
+        return newFilters;
+      }
+      return prev;
+    });
+  };
   const displayedData = data ?? currentData;
   const submitDisplayedData = submitData ?? submitCurrentData;
 
@@ -292,7 +253,7 @@ const onFinish = (values) => {
                 />
               )}
             </div>
-            <div> 
+            <div>
               {submitDisplayedData?.data?.pagination?.total > 0 && (
                 <TotalCarBuy
                   displayedData={submitDisplayedData}
@@ -308,9 +269,11 @@ const onFinish = (values) => {
       )}
 
       <FairPriceCard />
-      <FairPriceFooter />
+      {/* <FairPriceFooter /> */}
       <div className="w-full h-1 border-t border-t-highlight-color mt-20"></div>
       <WhyChooseUS />
+      <div className="w-full h-1 border-t border-t-highlight-color mt-20"></div>
+      <DelarPrice />
       <div className="">
         <Reviews />
       </div>

@@ -32,7 +32,13 @@ const PrivateLookingForCars = ({
                 key={car?._id}
                 className="flex lg:flex-row flex-col gap-10 shadow-xl rounded-md p-3"
               >
-                <div className="flex gap-6 justify-start items-center">
+                <div
+                  onClick={() => {
+                    setSelectedCar(car);
+                    setopenOfferCar(true);
+                  }}
+                  className="flex gap-6 justify-start items-center cursor-pointer"
+                >
                   {/* <div className="text-4xl font-bold flex justify-center items-center !w-52 uppercase bg-secondary-color py-10 px-5 rounded-xl">
                     {car?.mark}
                   </div> */}

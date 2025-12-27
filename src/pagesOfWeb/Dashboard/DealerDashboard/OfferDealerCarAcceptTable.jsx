@@ -75,7 +75,7 @@ const OfferDealerCarAcceptTable = ({
               className="border-[#00721E] hover:border-[#34df61]"
             >
               {/* <GoEye style={{ fontSize: "24px" }} /> */}
-              See Details
+              Se detaljer
             </Button>
           </Tooltip>
         </Space>

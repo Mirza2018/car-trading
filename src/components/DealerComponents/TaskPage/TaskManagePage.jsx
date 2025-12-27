@@ -7,7 +7,7 @@ import React from "react";
 
 const TaskManagePage = ({ setIsModalOpen }) => {
   const { data, currentData, isLoading, isFetching, isSuccess } =
-    useTaskListQuery();
+    useTaskListQuery(); 
   const navigate = useRouter();
   const displayedData = data ?? currentData;
   console.log(displayedData?.data);
@@ -24,7 +24,7 @@ const TaskManagePage = ({ setIsModalOpen }) => {
             style={{ fontSize: "clamp(20px, 1vw + 1rem ,48px)" }}
             className="font-semibold"
           >
-            Task
+            opgaver
           </h1>
 
           {displayedData?.data?.length > 0 ? (
@@ -49,7 +49,7 @@ const TaskManagePage = ({ setIsModalOpen }) => {
                     }}
                     className="text-[15px] px-3 py-2 text-white bg-highlight-color rounded-md"
                   >
-                    Resolve
+                    Løse
                   </button>
                   {/* </Link> */}
                 </div>

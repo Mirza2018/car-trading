@@ -1,194 +1,11 @@
 import { useGetBrandQuery } from "@/redux/api/features/carPrivate";
-import { Form, Input, Select } from "antd";
+import { Form, Input, Select, Button } from "antd";
 import React from "react";
+
 const { Option } = Select;
-const FilterSection = ({ onFinish }) => {
-  const { data: allBrand, isLoading: isLoadingBrand } = useGetBrandQuery();
-  return (
-    <Form onFinish={onFinish}>
-      <div className="flex md:flex-row flex-col justify-between items-center md:gap-5 mx-2">
-        <div className="grid lg:grid-cols-4  grid-cols-2  gap-2 md:my-12 mt-4 flex-1">
-          <div className="flex flex-col justify-between">
-            <h1 className="sm:text-2xl font-bold">Mærke</h1>
-            <Form.Item name="brand">
-              <Select
-                className="sm:!h-10"
-                placeholder="Vælg mærke"
-                showSearch
-                optionFilterProp="children"
-                filterOption={(input, option) =>
-                  option.value.toLowerCase().includes(input.toLowerCase())
-                }
-              >
-                {allBrand?.data?.map((brand) => (
-                  <Option key={brand._id} value={brand.name}>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "8px",
-                      }}
-                    >
-                      <span>{brand.name}</span>
-                    </div>
-                  </Option>
-                ))}
-              </Select>
-            </Form.Item>
-          </div>
-          <div>
-            <h1 className="sm:text-2xl font-bold">Årgang</h1>
-            <div className="flex  justify-between gap-5">
-              <Form.Item
-                label={<span className="sm:font-medium text-base">Fra</span>}
-                name="modelYearFrom"
-                className="flex-1"
-              >
-                <Input placeholder="Før 1975" />
-              </Form.Item>
-              <Form.Item
-                label={<span className="sm:font-medium text-base">Til</span>}
-                name="modelYearTo"
-                className="flex-1"
-              >
-                <Input placeholder="2025" />
-              </Form.Item>
-            </div>
-          </div>
-          <div>
-            <h1 className="sm:text-2xl font-bold">Kilometer</h1>
-            <div className="flex  justify-between gap-5">
-              <Form.Item
-                label={<span className="sm:font-medium text-base">Fra</span>}
-                name="drivenKmFrom"
-                className="flex-1"
-              >
-                <Input placeholder="0" />
-              </Form.Item>
-              <Form.Item
-                label={<span className="sm:font-medium text-base">Til</span>}
-                name="drivenKmTo"
-                className="flex-1"
-              >
-                <Input placeholder="50000+" />
-              </Form.Item>
-            </div>
-          </div>
-          <div className="flex flex-col justify-between">
-            <h1 className="sm:text-2xl font-bold">Brændstof</h1>
-            <Form.Item name="fuelType">
-              <Select
-                placeholder={
-                  <span className="text-black text-xl">Brændstof</span>
-                }
-                className="sm:!h-10"
-                showSearch
-                optionFilterProp="label"
-                filterSort={(optionA, optionB) =>
-                  (optionA?.label ?? "")
-                    .toLowerCase()
-                    .localeCompare((optionB?.label ?? "").toLowerCase())
-                }
-                options={fules}
-              />
-            </Form.Item>
-          </div>
-        </div>
-        <div className="flex flex-col justify-center items-center">
-          <button className=" xl:text-3xl lg:text-2xl  md:text-xl  font-medium sm:rounded-2xl rounded-md xl:px-11 lg:px-8 md:px-5 px-2 py-2 md:py-3 bg-highlight-color text-white">
-            Søg
-          </button>
-        </div>
-      </div>
-    </Form>
-  );
-};
 
-export default FilterSection;
-
-const carBrands = [
-  { label: "Acura", value: "Acura" },
-  { label: "Alfa Romeo", value: "Alfa Romeo" },
-  { label: "Aston Martin", value: "Aston Martin" },
-  { label: "Audi", value: "Audi" },
-  { label: "Bentley", value: "Bentley" },
-  { label: "BMW", value: "BMW" },
-  { label: "Buick", value: "Buick" },
-  { label: "Cadillac", value: "Cadillac" },
-  { label: "Chevrolet", value: "Chevrolet" },
-  { label: "Chrysler", value: "Chrysler" },
-  { label: "Citroën", value: "Citroën" },
-  { label: "Dacia", value: "Dacia" },
-  { label: "Daewoo", value: "Daewoo" },
-  { label: "Datsun", value: "Datsun" },
-  { label: "Dodge", value: "Dodge" },
-  { label: "Ferrari", value: "Ferrari" },
-  { label: "Fiat", value: "Fiat" },
-  { label: "Ford", value: "Ford" },
-  { label: "GMC", value: "GMC" },
-  { label: "Genesis", value: "Genesis" },
-  { label: "Honda", value: "Honda" },
-  { label: "Hummer", value: "Hummer" },
-  { label: "Hyundai", value: "Hyundai" },
-  { label: "Infiniti", value: "Infiniti" },
-  { label: "Isuzu", value: "Isuzu" },
-  { label: "Jaguar", value: "Jaguar" },
-  { label: "Jeep", value: "Jeep" },
-  { label: "Kia", value: "Kia" },
-  { label: "Lamborghini", value: "Lamborghini" },
-  { label: "Land Rover", value: "Land Rover" },
-  { label: "Lexus", value: "Lexus" },
-  { label: "Lincoln", value: "Lincoln" },
-  { label: "Lotus", value: "Lotus" },
-  { label: "Maserati", value: "Maserati" },
-  { label: "Mazda", value: "Mazda" },
-  { label: "McLaren", value: "McLaren" },
-  { label: "Mercedes-Benz", value: "Mercedes-Benz" },
-  { label: "Mini", value: "Mini" },
-  { label: "Mitsubishi", value: "Mitsubishi" },
-  { label: "Nissan", value: "Nissan" },
-  { label: "Pagani", value: "Pagani" },
-  { label: "Peugeot", value: "Peugeot" },
-  { label: "Porsche", value: "Porsche" },
-  { label: "Ram", value: "Ram" },
-  { label: "Renault", value: "Renault" },
-  { label: "Rolls-Royce", value: "Rolls-Royce" },
-  { label: "Saab", value: "Saab" },
-  { label: "Scion", value: "Scion" },
-  { label: "Smart", value: "Smart" },
-  { label: "Subaru", value: "Subaru" },
-  { label: "Suzuki", value: "Suzuki" },
-  { label: "Tesla", value: "Tesla" },
-  { label: "Toyota", value: "Toyota" },
-  { label: "Volkswagen (VW)", value: "Volkswagen (VW)" },
-  { label: "Volvo", value: "Volvo" },
-  { label: "Zenvo (dansk hyperbil)", value: "Zenvo" },
-  { label: "Hydrema (dansk arbejdskøretøj)", value: "Hydrema" },
-  { label: "Bugatti", value: "Bugatti" },
-  { label: "BYD", value: "BYD" },
-  { label: "Chery", value: "Chery" },
-  { label: "Koenigsegg", value: "Koenigsegg" },
-  { label: "Lada", value: "Lada" },
-  { label: "Lucid", value: "Lucid" },
-  { label: "MG", value: "MG" },
-  { label: "Pininfarina", value: "Pininfarina" },
-  { label: "Polestar", value: "Polestar" },
-  { label: "Rivian", value: "Rivian" },
-  { label: "SsangYong", value: "SsangYong" },
-  { label: "Proton (malaysisk mærke)", value: "Proton" },
-  { label: "Hindustan Motors (indisk mærke)", value: "Hindustan Motors" },
-  { label: "Tata Motors (indisk mærke)", value: "Tata Motors" },
-  { label: "Mahindra (indisk mærke)", value: "Mahindra" },
-  { label: "Geely (kinesisk mærke)", value: "Geely" },
-  { label: "NIO (kinesisk elbil)", value: "NIO" },
-  { label: "XPeng (kinesisk elbil)", value: "XPeng" },
-  { label: "Li Auto (kinesisk elbil)", value: "Li Auto" },
-  { label: "Spyker (hollandsk nichemærke)", value: "Spyker" },
-  { label: "Rimac (kroatisk el-hyperbil)", value: "Rimac" },
-  { label: "VinFast (vietnamesisk mærke)", value: "VinFast" },
-];
-
-const fules = [
+const fuelOptions = [
+  { label: "Alle brændstoftyper", value: "ALL" }, // Use a clear sentinel value
   { label: "EL", value: "EL" },
   { label: "Benzin", value: "Benzin" },
   { label: "Hybrid Benzin", value: "Hybrid Benzin" },
@@ -197,3 +14,130 @@ const fules = [
   { label: "Hybrid Diesel", value: "Hybrid Diesel" },
   { label: "Plug-In Diesel", value: "Plug-In Diesel" },
 ];
+
+const FilterSection = ({ onFinish }) => {
+  const { data: brandData, isLoading: isLoadingBrand } = useGetBrandQuery();
+  const brands = brandData?.data || [];
+
+  const handleFinish = (values) => {
+    const filters = [];
+
+    // Handle Brand: exclude if "ALL" or empty
+    if (values.brand && values.brand !== "ALL") {
+      filters.push(values.brand);
+    }
+
+    // Handle Fuel Type: exclude if "ALL"
+    if (values.fuelType && values.fuelType !== "ALL") {
+      filters.push(values.fuelType);
+    }
+
+    const newFilters = {
+      page: 1,
+      limit: 3,
+      ...(filters.length > 0 && { filter: filters }),
+      ...(values.modelYearFrom && { modelYearFrom: values.modelYearFrom }),
+      ...(values.modelYearTo && { modelYearTo: values.modelYearTo }),
+      ...(values.drivenKmFrom && { drivenKmFrom: values.drivenKmFrom }),
+      ...(values.drivenKmTo && { drivenKmTo: values.drivenKmTo }),
+    };
+
+    // Only trigger update if something meaningful changed
+    onFinish(newFilters);
+  };
+
+  return (
+    <Form onFinish={handleFinish} layout="vertical">
+      <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6">
+          {/* Brand */}
+          <Form.Item
+            label={<span className="text-lg font-semibold">Mærke</span>}
+            name="brand"
+          >
+            <Select
+              placeholder="Vælg mærke"
+              loading={isLoadingBrand}
+              showSearch
+              optionFilterProp="children"
+              filterOption={(input, option) =>
+                option.children.toLowerCase().includes(input.toLowerCase())
+              }
+              className="w-full"
+              size="large"
+              allowClear
+            >
+              <Option value="ALL">Alle mærker</Option>
+              {brands.map((brand) => (
+                <Option key={brand._id} value={brand.name}>
+                  {brand.name}
+                </Option>
+              ))}
+            </Select>
+          </Form.Item>
+
+          {/* Year Range */}
+          <div>
+            <h3 className="text-lg font-semibold mb-3">Årgang</h3>
+            <div className="grid grid-cols-2 gap-4">
+              <Form.Item name="modelYearFrom" noStyle>
+                <Input
+                  placeholder="Fra (f.eks. 2010)"
+                  size="large"
+                  type="number"
+                />
+              </Form.Item>
+              <Form.Item name="modelYearTo" noStyle>
+                <Input
+                  placeholder="Til (f.eks. 2025)"
+                  size="large"
+                  type="number"
+                />
+              </Form.Item>
+            </div>
+          </div>
+
+          {/* KM Range */}
+          <div>
+            <h3 className="text-lg font-semibold mb-3">Kilometer</h3>
+            <div className="grid grid-cols-2 gap-4">
+              <Form.Item name="drivenKmFrom" noStyle>
+                <Input placeholder="Fra" size="large" type="number" />
+              </Form.Item>
+              <Form.Item name="drivenKmTo" noStyle>
+                <Input placeholder="Til" size="large" type="number" />
+              </Form.Item>
+            </div>
+          </div>
+
+          {/* Fuel Type */}
+          <Form.Item
+            label={<span className="text-lg font-semibold">Brændstof</span>}
+            name="fuelType"
+          >
+            <Select
+              placeholder="Vælg brændstof"
+              options={fuelOptions}
+              size="large"
+              className="w-full"
+            />
+          </Form.Item>
+        </div>
+
+        {/* Submit Button */}
+        <div className="flex justify-center mt-8">
+          <Button
+            type="primary"
+            htmlType="submit"
+            size="large"
+            className="bg-highlight-color hover:bg-highlight-color/90 text-white font-semibold px-12 py-6 text-xl rounded-2xl shadow-md hover:shadow-lg transition"
+          >
+            Søg
+          </Button>
+        </div>
+      </div>
+    </Form>
+  );
+};
+
+export default FilterSection;

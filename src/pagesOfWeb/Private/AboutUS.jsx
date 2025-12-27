@@ -11,7 +11,7 @@ const AboutUS = () => {
       <AboutUsIntro />
       <WhyChooseUS />
       <FairPriceCard />
-      <FairPriceFooter />
+      {/* <FairPriceFooter /> */}
       <div className="bg-[#F9FBFC] mt-10">
         <Reviews />
       </div>

@@ -15,6 +15,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import { setCarLicenseInfo } from "@/redux/slices/carInfoSlice";
+import { FiInfo } from "react-icons/fi";
 const { Search } = Input;
 
 const SellBuyTrade = () => {
@@ -83,13 +84,17 @@ const SellBuyTrade = () => {
             <div
               className={`flex-1 text-center md:p-4 p-2 font-bold text-[30px] rounded-ss-xl text-primary-color bg-highlight-color`}
             >
-              <p className="text-xl">Sælg bil</p>
+              <p className="text-xl flex justify-center items-center gap-3">
+                Sælg bil <FiInfo />
+              </p>
             </div>
             <div
               className={`flex-1 text-center md:p-4 p-2 rounded-se-xl font-bold text-[30px]  cursor-pointer bg-blue-600 text-white `}
             >
               <Link di href="/submit-listing">
-                <p className="text-xl">Køb bil</p>
+                <p className="text-xl text-xl flex justify-center items-center gap-3">
+                  Køb bil <FiInfo />
+                </p>
               </Link>
             </div>
           </div>

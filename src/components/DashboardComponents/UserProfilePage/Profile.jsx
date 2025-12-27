@@ -16,7 +16,7 @@ import { AllImages } from "@/assets/AllImages";
 import React from "react";
 import Image from "next/image";
 import ChangePassword from "./ChangePassword";
-import { 
+import {
   useProfileQuery,
   useUpdateProfileMutation,
 } from "@/redux/api/features/myProfile";
@@ -271,7 +271,7 @@ const Profile = () => {
             </div>
             <div>
               <Typography.Title level={5} style={{ color: "#222222" }}>
-             By
+                By
               </Typography.Title>
               <Form.Item name="city" className="text-white">
                 <Input
@@ -283,7 +283,7 @@ const Profile = () => {
             </div>
             <div>
               <Typography.Title level={5} style={{ color: "#222222" }}>
-                Rge nr.
+                Reg nr.
               </Typography.Title>
               <Form.Item name="regNo" className="text-white">
                 <Input

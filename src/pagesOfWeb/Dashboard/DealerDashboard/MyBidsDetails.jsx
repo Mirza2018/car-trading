@@ -54,7 +54,7 @@ const MyBidsDetails = () => {
                     {bids?.carName}
                   </h1>
                   <p className="text-lg font-medium text-gray-600">
-                    Bid Amount:{" "}
+                    Budbeløb:{" "}
                     <span className="text-green-600 font-semibold">
                       {bids?.bidAmount}
                     </span>

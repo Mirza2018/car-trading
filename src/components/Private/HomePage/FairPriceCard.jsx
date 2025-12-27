@@ -7,7 +7,7 @@ import React from "react";
 
 const FairPriceCard = () => {
   return (
-    <div className="container mx-auto flex my-14 gap-5 lg:flex-row flex-col">
+    <div className="container mx-auto flex my-14 gap-5 lg:flex-row flex-col m">
       <div>
         <Image
           alt="car"
@@ -16,33 +16,39 @@ const FairPriceCard = () => {
         />
       </div>
       <div className="bg-[#F3F9FB] text-gray-800 p-10 max-w-4xl mx-auto  rounded-lg">
-        <h1 className="text-2xl font-bold">Få en fair pris for din bil</h1>
+        <h1 className="text-2xl font-bold">
+          Sælg din bil direkte til forhandlere
+        </h1>
         <h2 className="text-xl font-bold text-gray-700 mt-2">
-          Sælg til os i dag
+          Nem, gratis og uden forpligtelser
         </h2>
         <p className="mt-4">
-          Vi er forpligtede til at give vores kunder en enestående service,
-          konkurrencedygtige priser og et bredt udvalg af muligheder.
+          Private kan gratis oprette deres bil på engrobasen. Herefter kan
+          professionelle bilforhandlere købe bilen direkte eller byde på den. Du
+          bestemmer selv – og sælger kun, hvis prisen er rigtig.
         </p>
         <div className="pl-5 mt-4">
           <p className="flex justify-start items-center gap-2">
             <Image src={AllImages.check} alt=" " width={0} height={0} />
-            Vi er Storbritanniens største leverandør med flere patruljer flere
-            steder.
+            Gratis for private – ingen salær
           </p>
           <p className="flex justify-start items-center  gap-2">
             <Image src={AllImages.check} alt=" " width={0} height={0} />
-            Du får vejhjælp døgnet rundt (24/7).
+            Få bud fra flere forhandlere
           </p>
           <p className="flex justify-start items-center  gap-2">
             <Image src={AllImages.check} alt=" " width={0} height={0} />
-            Vi reparerer 4 ud af 5 biler ved vejkanten.
+            Ingen løbende – bilen er online med det samme
+          </p>
+          <p className="flex justify-start items-center  gap-2">
+            <Image src={AllImages.check} alt=" " width={0} height={0} />
+            Ingen løbende – bilen er online med det samme
           </p>
         </div>
-        <button className="mt-6 bg-highlight-color text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#f29524] transition-colors whitespace-nowrap w-fit flex justify-between items-center gap-2">
+        {/* <button className="mt-6 bg-highlight-color text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#f29524] transition-colors whitespace-nowrap w-fit flex justify-between items-center gap-2">
           Kom i gang
           <LuMoveUpRight />
-        </button>
+        </button> */}
       </div>
     </div>
   );

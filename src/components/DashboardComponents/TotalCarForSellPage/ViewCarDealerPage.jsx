@@ -22,14 +22,12 @@ const ViewCarDealerPage = ({
       width={1500}
       footer={[
         <div key="footerButton" className="flex justify-end gap-80">
-
-
           <button
             onClick={() => setOpenResponsive(false)}
             style={{ fontSize: "clamp(12px, 2vw + 1rem ,15px)" }}
             className="bg-highlight-color text-white  font-medium  py-2  px-4 rounded-lg  cursor-pointer  hover:animate-pulse whitespace-nowrap"
           >
-            Close
+            luk
           </button>
         </div>,
       ]}
@@ -66,8 +64,6 @@ const ViewCarDealerPage = ({
                   </p>
                 </div>
               )} */}
-
- 
             </div>
             {/* Middel part car All Details */}
             <DealerAllCarDetails car={car} />

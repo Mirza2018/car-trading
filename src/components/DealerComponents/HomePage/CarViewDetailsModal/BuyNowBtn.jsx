@@ -31,12 +31,13 @@ const BuyNowBtn = ({ price, carId, buyCar }) => {
       setIsBuy(false);
       Swal.fire({
         title: "Tillykke med dit køb!",
-        text: "Din bil er blevet købt succesfuldt. Tak for handlen!! Du kan finde din bil på Total Buy Car.",
+        text: "Din bil er blevet købt succesfuldt. Tak for handlen!! Du kan finde din bil på Mine købte biler.",
         icon: "success",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Gå til Køb Bil",
+        cancelButtonText: "Annullere",
       }).then((result) => {
         if (result.isConfirmed) {
           navigate.push("/dashboard/total-dealer-car-sell");
@@ -49,6 +50,9 @@ const BuyNowBtn = ({ price, carId, buyCar }) => {
         duration: 2000,
       });
     }
+
+
+
   };
   // console.log(isCongrat);
 
