@@ -198,7 +198,7 @@ const Homepage = () => {
                 }`}
               >
                 Antal biler til salg <br />(
-                {displayedData?.data?.pagination?.total})
+                {displayedData?.data?.pagination?.total || 0})
               </h1>
               <h1
                 onClick={() => setIsSellCar(false)}
@@ -210,7 +210,7 @@ const Homepage = () => {
                 }`}
               >
                 Antal kunder søger bil
-                <br />({submitDisplayedData?.data?.pagination?.total})
+                <br />({submitDisplayedData?.data?.pagination?.total || 0})
               </h1>
             </div>
             {/* Dealer */}
@@ -273,7 +273,7 @@ const Homepage = () => {
       <div className="w-full h-1 border-t border-t-highlight-color mt-20"></div>
       <WhyChooseUS />
       <div className="w-full h-1 border-t border-t-highlight-color mt-20"></div>
-      <DelarPrice />
+      {/* <DelarPrice /> */}
       <div className="">
         <Reviews />
       </div>

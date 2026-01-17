@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import {
   FacebookFilled,
@@ -12,11 +12,22 @@ import { AllImages } from "@/assets/AllImages";
 import { Input, message } from "antd";
 import Link from "next/link";
 import { useSelector } from "react-redux";
+import Cookies from "universal-cookie";
 
 const Footer = () => {
-  const userInfo = useSelector((state) => state.auth.userInfo);
+  const cookies = new Cookies();
+  const userCookie = cookies.get("car_trading_accessToken");
+  let userInfo;
+  if (!userCookie) {
+    // navigate.push("/sign-in");
+    userInfo = { role: false };
+  } else {
+    userInfo = jwtDecode(userCookie);
+  }
+  console.log("====================================");
+  console.log(userInfo);
+  console.log("====================================");
 
-  
   return (
     <footer className="bg-blue-600 text-white p-8">
       <div className="container mx-auto">
@@ -117,27 +128,28 @@ const Footer = () => {
 
         <div className="border-t border-white mt-8 pt-8 text-center flex justify-between md:flex-row flex-col">
           <p>© 2025 Alle rettigheder forbeholdes</p>
-          {userInfo?.role == "private_user" && (
-            <Link href="/dashboard/privacy">
-              {" "}
-              Privatlivspolitik | Cookiepolitik
-            </Link>
-          )}
-          {userInfo?.role == "dealer" && (
-            <Link href="/dashboard/privacy">
-              {" "}
-              Privatlivspolitik | Cookiepolitik
-            </Link>
-          )}
-          {!userInfo?.role && (
-            <p
-              onClick={() => message.info("Venligst log ind")}
-              className="cursor-pointer"
-            >
-              {" "}
-              Privatlivspolitik | Cookiepolitik
-            </p>
-          )}
+
+          <div className="flex flex-wrap gap-5">
+            {userInfo?.role == "private_user" && (
+              <Link href="/dashboard/privacy">
+                {" "}
+                Privatlivspolitik | Cookiepolitik
+              </Link>
+            )}
+            {userInfo?.role == "dealer" && (
+              <Link href="/dashboard/privacy">
+                {" "}
+                Privatlivspolitik | Cookiepolitik
+              </Link>
+            )}
+            {!userInfo?.role && (
+              <>
+                <Link href="/private"> Privatlivspolitik</Link>
+                <Link href="/cookie"> Cookiepolitik</Link>
+              </>
+            )}
+            <Link href="/prisstruktur"> Prisstruktur</Link>
+          </div>
         </div>
       </div>
     </footer>

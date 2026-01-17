@@ -15,6 +15,9 @@ export function middleware(request) {
       "/",
       "/about-us",
       "/contact-us",
+      "/prisstruktur",
+      "/private",
+      "/cookie",
       "/sell-car",
       "/submit-listing",
     ];
@@ -53,7 +56,7 @@ export function middleware(request) {
     console.log("Accessing submit-listing route, checking user role");
     if (user.role == "dealer") {
       console.log(
-        "Non-private_user trying to access submit-listing, redirecting"
+        "Non-private_user trying to access submit-listing, redirecting",
       );
       return NextResponse.redirect(new URL("/", origin));
     }
@@ -76,15 +79,15 @@ export function middleware(request) {
         "/dashboard/privacy",
       ];
       const isAllowedPath = allowedDealerDashboardPaths.some((path) =>
-        pathname.startsWith(path)
+        pathname.startsWith(path),
       );
       const isOrderTransportPath = pathname.startsWith(
-        "/dashboard/total-dealer-car-sell/order-transport"
+        "/dashboard/total-dealer-car-sell/order-transport",
       );
       if (!isAllowedPath && !isOrderTransportPath) {
         console.log("Dealer trying to access unauthorized path, redirecting");
         return NextResponse.redirect(
-          new URL("/dashboard/total-dealer-car-sell", origin)
+          new URL("/dashboard/total-dealer-car-sell", origin),
         );
       }
     } else if (user.role === "private_user") {
@@ -101,12 +104,12 @@ export function middleware(request) {
         "/dashboard/privacy",
       ];
       const isAllowedPath = allowedUserDashboardPaths.some((path) =>
-        pathname.startsWith(path)
+        pathname.startsWith(path),
       );
       if (!isAllowedPath) {
         console.log("User trying to access unauthorized path, redirecting");
         return NextResponse.redirect(
-          new URL("/dashboard/total-private-car-sell", origin)
+          new URL("/dashboard/total-private-car-sell", origin),
         );
       }
     }
