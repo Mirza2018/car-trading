@@ -11,6 +11,7 @@ import {
 
 import {
   Checkbox,
+  DatePicker,
   Form,
   Input,
   InputNumber,
@@ -29,6 +30,7 @@ import { toast } from "sonner";
 
 import Cookies from "universal-cookie";
 import { LuInfo } from "react-icons/lu";
+import dayjs from "dayjs";
 
 const SellCarAllDetails = () => {
   const {
@@ -42,7 +44,6 @@ const SellCarAllDetails = () => {
   const carData = useSelector((state) => state.carInfo.carLicenseInfo);
   // console.log(carData);
   const myInfo = profileData ?? currentData;
-  console.log(myInfo);
 
   const [isCompany, setIsCompany] = useState(false);
   const [form] = useForm();
@@ -58,7 +59,6 @@ const SellCarAllDetails = () => {
   } else {
     userInfo = jwtDecode(userCookie);
   }
-  console.log(userInfo);
 
   const navigate = useRouter();
 
@@ -132,10 +132,10 @@ const SellCarAllDetails = () => {
         inspectionDate: carData?.last_inspection_date || "",
         brand: carData?.brand,
         model: carData?.model,
-        modelYear: carData?.model_year || 0,
+        modelYear: carData?.model_year || values?.modelYear || 0,
         variant: carData?.version,
         color: carData?.color?.name,
-        fuelType: carData?.fuel_type || 0,
+        fuelType: carData?.fuel_type || values?.fuelType || 0,
         engineSize: carData?.engine_displacement,
         enginePerformance: carData?.engine_power,
         fuelConsumption: carData?.fuel_efficiency,
@@ -152,7 +152,8 @@ const SellCarAllDetails = () => {
         delete data.cvrNumber;
         delete data.companyName;
       }
-      // console.log(data);
+      console.log(data);
+
 
       if (userInfo) {
         data = { ...data, userId: userInfo?.userId };
@@ -367,6 +368,45 @@ const SellCarAllDetails = () => {
           </div>
         </div>
         <div className="my-[10px] flex md:flex-row flex-col justify-between gap-5">
+          {!carData?.model_year && (
+            <div className="flex-1">
+              <p
+                style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
+                className=" font-medium pb-2"
+              >
+                Årgang*{" "}
+                <span className="text-yellow-600 text-sm">
+                  (Ikke fundet i nummerpladeregistrene)
+                </span>
+              </p>
+              <Form.Item
+                rules={[
+                  {
+                    required: true,
+                    message: "Venligst indtast årgang fra",
+                  },
+                ]}
+                // label={<span className="font-medium text-base">Årgang</span>}
+                name="modelYear"
+                className="flex-1"
+                getValueFromEvent={(date) => (date ? date.year() : null)}
+                getValueProps={(value) => ({
+                  value: value ? dayjs(String(value), "YYYY") : null,
+                })}
+              >
+                <DatePicker
+                  picker="year"
+                  format="YYYY"
+                  placeholder="Årgang fra"
+                  className="w-full"
+                  style={{ height: 40 }}
+                />
+              </Form.Item>
+            </div>
+          )}
+        </div>
+
+        <div className="my-[10px] flex md:flex-row flex-col justify-between gap-5">
           <div className="flex-1">
             <p
               style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
@@ -406,6 +446,68 @@ const SellCarAllDetails = () => {
               </Radio.Group>
             </Form.Item>
           </div>
+          {!carData?.fuel_type && (
+            <div className="flex-1">
+              <p
+                style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
+                className=" font-medium pb-2"
+              >
+                Brændstof*
+              </p>
+              <span className="text-yellow-600 text-sm">
+                (Ikke fundet i nummerpladeregistrene)
+              </span>
+              <Form.Item
+                // initialValue={carData?.fuel_type}
+                rules={[
+                  {
+                    required: true,
+                    message: "Vælg venligst brændstoftype",
+                  },
+                ]}
+                name="fuelType"
+                className="flex-1"
+              >
+                <Radio.Group>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "10px",
+                    }}
+                  >
+                    <Radio value="EL" style={{ lineHeight: "32px" }}>
+                      EL
+                    </Radio>
+                    <Radio value="Benzin" style={{ lineHeight: "32px" }}>
+                      Benzin
+                    </Radio>
+                    <Radio value="Hybrid Benzin" style={{ lineHeight: "32px" }}>
+                      Hybrid Benzin
+                    </Radio>
+                    <Radio
+                      value="Plug-In Benzin"
+                      style={{ lineHeight: "32px" }}
+                    >
+                      Plug-In Benzin
+                    </Radio>
+                    <Radio value="Diesel" style={{ lineHeight: "32px" }}>
+                      Diesel
+                    </Radio>
+                    <Radio value="Hybrid Diesel" style={{ lineHeight: "32px" }}>
+                      Hybrid Diesel
+                    </Radio>
+                    <Radio
+                      value="Plug-In Diesel"
+                      style={{ lineHeight: "32px" }}
+                    >
+                      Plug-In Diesel
+                    </Radio>
+                  </div>
+                </Radio.Group>
+              </Form.Item>
+            </div>
+          )}
         </div>
         <div className="flex-1">
           <p

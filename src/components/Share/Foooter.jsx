@@ -25,9 +25,6 @@ const Footer = () => {
   } else {
     userInfo = jwtDecode(userCookie);
   }
-  console.log("====================================");
-  console.log(userInfo);
-  console.log("====================================");
 
   return (
     <footer className="bg-blue-600 text-white p-8">
