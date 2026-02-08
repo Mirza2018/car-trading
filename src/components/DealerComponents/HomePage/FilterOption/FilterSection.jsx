@@ -1,12 +1,16 @@
+"use client";
+
 import { useGetBrandQuery } from "@/redux/api/features/carPrivate";
-import { Form, Input, Select, Button } from "antd";
-import React from "react";
+import { Select, Button, Slider, DatePicker } from "antd";
+import React, { useState } from "react";
+import dayjs from "dayjs";
 
 const { Option } = Select;
+const { RangePicker } = DatePicker;
 
 const fuelOptions = [
-  { label: "Alle brændstoftyper", value: "ALL" }, // Use a clear sentinel value
-  { label: "EL", value: "EL" },
+  { label: "Alle brændstoftyper", value: "ALL" },
+  { label: "EL", value: "el" },
   { label: "Benzin", value: "Benzin" },
   { label: "Hybrid Benzin", value: "Hybrid Benzin" },
   { label: "Plug-In Benzin", value: "Plug-In Benzin" },
@@ -19,124 +23,148 @@ const FilterSection = ({ onFinish }) => {
   const { data: brandData, isLoading: isLoadingBrand } = useGetBrandQuery();
   const brands = brandData?.data || [];
 
-  const handleFinish = (values) => {
-    const filters = [];
+  const [brand, setBrand] = useState("");
+  const [fuelType, setFuelType] = useState("");
+  const [modelYearRange, setModelYearRange] = useState([null, null]);
+  const [kmRange, setKmRange] = useState([0, 50000]);
 
-    // Handle Brand: exclude if "ALL" or empty
-    if (values.brand && values.brand !== "ALL") {
-      filters.push(values.brand);
-    }
-
-    // Handle Fuel Type: exclude if "ALL"
-    if (values.fuelType && values.fuelType !== "ALL") {
-      filters.push(values.fuelType);
-    }
-
-    const newFilters = {
+  const handleFinish = () => {
+    const filters = {
       page: 1,
-      limit: 3,
-      ...(filters.length > 0 && { filter: filters }),
-      ...(values.modelYearFrom && { modelYearFrom: values.modelYearFrom }),
-      ...(values.modelYearTo && { modelYearTo: values.modelYearTo }),
-      ...(values.drivenKmFrom && { drivenKmFrom: values.drivenKmFrom }),
-      ...(values.drivenKmTo && { drivenKmTo: values.drivenKmTo }),
+      limit: 10,
+      sort: "-updatedAt",
     };
 
-    // Only trigger update if something meaningful changed
-    onFinish(newFilters);
+    // EXACT API PARAMS from your endpoint
+    if (brand && brand !== "ALL") {
+      filters["carModel.brand"] = brand;
+    }
+    if (fuelType && fuelType !== "ALL") {
+      filters["carModel.fuelType"] = fuelType;
+    }
+    if (modelYearRange[0] && modelYearRange[1]) {
+      filters.modelYearFrom = modelYearRange[0].year();
+      filters.modelYearTo = modelYearRange[1].year();
+    }
+    if (kmRange[0] > 0) {
+      filters.drivenKmFrom = kmRange[0];
+    }
+    if (kmRange[1] < 500000) {
+      filters.drivenKmTo = kmRange[1];
+    }
+
+    onFinish(filters);
   };
 
+  const handleReset = () => {
+    setBrand("");
+    setFuelType("");
+    setModelYearRange([null, null]);
+    setKmRange([0, 50000]);
+    onFinish({ page: 1, limit: 10, sort: "-updatedAt" });
+  };
+
+  const formatKm = (value) => `${value.toLocaleString()} km`;
+
   return (
-    <Form onFinish={handleFinish} layout="vertical">
-      <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6">
-          {/* Brand */}
-          <Form.Item
-            label={<span className="text-lg font-semibold">Mærke</span>}
-            name="brand"
+    <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6">
+        {/* Brand */}
+        <div>
+          <label className="text-lg font-semibold block mb-3">Mærke</label>
+          <Select
+            value={brand}
+            onChange={setBrand}
+            placeholder="Vælg mærke"
+            loading={isLoadingBrand}
+            showSearch
+            optionFilterProp="children"
+            filterOption={(input, option) =>
+              option.children.toLowerCase().includes(input.toLowerCase())
+            }
+            className="w-full"
+            size="large"
+            allowClear
           >
-            <Select
-              placeholder="Vælg mærke"
-              loading={isLoadingBrand}
-              showSearch
-              optionFilterProp="children"
-              filterOption={(input, option) =>
-                option.children.toLowerCase().includes(input.toLowerCase())
-              }
-              className="w-full"
-              size="large"
-              allowClear
-            >
-              <Option value="ALL">Alle mærker</Option>
-              {brands.map((brand) => (
-                <Option key={brand._id} value={brand.name}>
-                  {brand.name}
-                </Option>
-              ))}
-            </Select>
-          </Form.Item>
-
-          {/* Year Range */}
-          <div>
-            <h3 className="text-lg font-semibold mb-3">Årgang</h3>
-            <div className="grid grid-cols-2 gap-4">
-              <Form.Item name="modelYearFrom" noStyle>
-                <Input
-                  placeholder="Fra (f.eks. 2010)"
-                  size="large"
-                  type="number"
-                />
-              </Form.Item>
-              <Form.Item name="modelYearTo" noStyle>
-                <Input
-                  placeholder="Til (f.eks. 2025)"
-                  size="large"
-                  type="number"
-                />
-              </Form.Item>
-            </div>
-          </div>
-
-          {/* KM Range */}
-          <div>
-            <h3 className="text-lg font-semibold mb-3">Kilometer</h3>
-            <div className="grid grid-cols-2 gap-4">
-              <Form.Item name="drivenKmFrom" noStyle>
-                <Input placeholder="Fra" size="large" type="number" />
-              </Form.Item>
-              <Form.Item name="drivenKmTo" noStyle>
-                <Input placeholder="Til" size="large" type="number" />
-              </Form.Item>
-            </div>
-          </div>
-
-          {/* Fuel Type */}
-          <Form.Item
-            label={<span className="text-lg font-semibold">Brændstof</span>}
-            name="fuelType"
-          >
-            <Select
-              placeholder="Vælg brændstof"
-              options={fuelOptions}
-              size="large"
-              className="w-full"
-            />
-          </Form.Item>
+            <Option value="ALL">Alle mærker</Option>
+            {brands.map((brandItem) => (
+              <Option key={brandItem._id} value={brandItem.name}>
+                {brandItem.name}
+              </Option>
+            ))}
+          </Select>
         </div>
 
-        {/* Submit Button */}
-        <div className="flex justify-center mt-8">
-          <Button
-            type="primary"
-            htmlType="submit"
+        {/* Year Range */}
+        <div>
+          <h3 className="text-lg font-semibold mb-3">Årgang</h3>
+          <RangePicker
+            value={modelYearRange}
+            onChange={setModelYearRange}
+            picker="year"
             size="large"
-            className="bg-highlight-color hover:bg-highlight-color/90 text-white font-semibold px-12 py-6 text-xl rounded-2xl shadow-md hover:shadow-lg transition"
-          >
-            Søg
-          </Button>
+            className="w-full"
+            placeholder={["Fra år", "Til år"]}
+            format="YYYY"
+          />
+        </div>
+
+        {/* KM Range */}
+        <div>
+          <h3 className="text-lg font-semibold mb-3">Kilometer</h3>
+          <div className="space-y-3">
+            <Slider
+              range
+              value={kmRange}
+              onChange={setKmRange}
+              min={0}
+              max={500000}
+              step={1000}
+              tipFormatter={formatKm}
+              tooltipPlacement="top"
+              className="mt-2"
+            />
+            <div className="flex justify-between text-sm text-gray-600">
+              <span>{formatKm(kmRange[0])}</span>
+              <span>{formatKm(kmRange[1])}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Fuel Type */}
+        <div>
+          <label className="text-lg font-semibold block mb-3">Brændstof</label>
+          <Select
+            value={fuelType}
+            onChange={setFuelType}
+            placeholder="Vælg brændstof"
+            options={fuelOptions}
+            size="large"
+            className="w-full"
+            allowClear
+          />
         </div>
       </div>
-    </Form>
+
+      <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+        <Button
+          block
+          size="large"
+          onClick={handleReset}
+          className="bg-gray-100 hover:bg-gray-200 border-gray-300 font-semibold px-12 py-6 text-lg rounded-2xl"
+        >
+          Nulstil
+        </Button>
+        <Button
+          type="primary"
+          onClick={handleFinish}
+          size="large"
+          className="bg-highlight-color hover:bg-highlight-color/90 text-white font-semibold px-12 py-6 text-xl rounded-2xl shadow-md hover:shadow-lg transition flex-1 sm:flex-none"
+        >
+          Søg
+        </Button>
+      </div>
+    </div>
   );
 };
 

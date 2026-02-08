@@ -11,7 +11,7 @@ const PrivateLookingForCars = ({
   isFetching,
   isSuccess,
   onPageChange2,
-}) => {
+}) => { 
   const [openOfferCar, setopenOfferCar] = useState(false);
   const [selectedCar, setSelectedCar] = useState(null);
 

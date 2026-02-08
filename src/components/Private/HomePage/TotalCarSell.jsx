@@ -4,7 +4,7 @@ import { getImageUrl } from "@/helpers/config/envConfig";
 import { Button, Divider, Modal, Pagination, Tooltip } from "antd";
 import Image from "next/image";
 import React, { useState } from "react";
-
+ 
 const TotalCarSell = ({
   displayedData,
   isLoading,

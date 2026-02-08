@@ -32,6 +32,17 @@ const Homepage = () => {
     page: 1,
     limit: 4,
   });
+  const [queryParams2, setQueryParams2] = useState({
+    page: 1,
+    limit: 3,
+    sort: "-updatedAt",
+  });
+  const [queryParams, setQueryParams] = useState({
+    page: 1,
+    limit: 4,
+    sort: "-updatedAt", // Fixed, not changeable
+  });
+
   const onPageChange = (page) => {
     setFilters((prev) => ({
       ...prev,
@@ -45,8 +56,16 @@ const Homepage = () => {
       page,
     }));
   };
-  const { data, currentData, isLoading, isFetching, isSuccess } =
-    useSaleCarListQuery(filters);
+const { data, currentData, isLoading, isFetching, isSuccess,  } =
+  useSaleCarListQuery(queryParams2);
+
+  // const {
+  //   data: submitData,
+  // currentData: submitCurrentData,
+  // isLoading: submitIsLoading,
+  // isFetching: submitIsFetching,
+  // isSuccess: submitIsSuccess,
+  // } = useSubmitListingQuery(filters2);
 
   const {
     data: submitData,
@@ -54,7 +73,26 @@ const Homepage = () => {
     isLoading: submitIsLoading,
     isFetching: submitIsFetching,
     isSuccess: submitIsSuccess,
-  } = useSubmitListingQuery(filters2);
+    refetch,
+  } = useSubmitListingQuery(queryParams);
+
+  // Handle filter changes
+  const handleFiltersChange = (filters) => {
+    setQueryParams({
+      page: 1, // Reset page on filter change
+      limit: 5,
+      sort: "-updatedAt",
+      ...filters, // Only active filters
+    });
+  };
+  const handleFiltersChange2 = (filters) => {
+    setQueryParams2({
+      page: 1, // Reset page on filter change
+      limit: 5,
+      sort: "-updatedAt",
+      ...filters, // Only active filters
+    });
+  };
 
   const navigate = useRouter();
   // const onFinish = (values) => {
@@ -176,9 +214,9 @@ const Homepage = () => {
       {userInfo?.role === "dealer" && (
         <>
           {isSellCar ? (
-            <FilterSection onFinish={onFinish} />
+            <FilterSection onFinish={handleFiltersChange2} />
           ) : (
-            <SubmitListingFilterSection onFinishPrivate={onFinishPrivate} />
+            <SubmitListingFilterSection onFinishPrivate={handleFiltersChange} />
           )}
         </>
       )}

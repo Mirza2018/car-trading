@@ -5,32 +5,84 @@ export const carDealer = baseApi.injectEndpoints({
   endpoints: (build) => ({
 
 
+
+
+    
+    // saleCarList: build.query({
+    //   query: (params) => {
+    //     const { filter, ...rest } = params || {};
+
+    //     const searchParams = new URLSearchParams();
+
+    //     // Add other params normally
+    //     Object.entries(rest).forEach(([key, value]) => {
+    //       if (value !== undefined && value !== null) {
+    //         searchParams.append(key, String(value));
+    //       }
+    //     });
+
+    //     // Add multiple 'filter' keys if filter is array
+    //     if (Array.isArray(filter)) {
+    //       filter.forEach((f) => {
+    //         if (f) searchParams.append("filter", f);
+    //       });
+    //     } else if (filter) {
+    //       // if filter is a single string
+    //       searchParams.append("filter", filter);
+    //     }
+
+    //     return {
+    //       url: `/car/sale_car_list?${searchParams.toString()}`,
+    //       method: "GET",
+    //     };
+    //   },
+    //   providesTags: [
+    //     tagTypes.sellCarList,
+    //     tagTypes.contactPaper,
+    //     tagTypes.allCar,
+    //   ],
+    // }),
+
+
+
+
+    // submitListing: build.query({
+    //   query: (params) => {
+    //     const { filter, ...rest } = params || {};
+
+    //     const searchParams = new URLSearchParams();
+
+    //     // Add other params normally
+    //     Object.entries(rest).forEach(([key, value]) => {
+    //       if (value !== undefined && value !== null) {
+    //         searchParams.append(key, String(value));
+    //       }
+    //     });
+
+    //     // Add multiple 'filter' keys if filter is array
+    //     if (Array.isArray(filter)) {
+    //       filter.forEach((f) => {
+    //         if (f) searchParams.append("filter", f);
+    //       });
+    //     } else if (filter) {
+    //       // if filter is a single string
+    //       searchParams.append("filter", filter);
+    //     }
+
+    //     return {
+    //       url: `/submit_listing?${searchParams.toString()}`,
+    //       method: "GET",
+    //     };
+    //   },
+    //   providesTags: [tagTypes.sellCarPrivate, tagTypes.contactPaper],
+    // }),
+
     saleCarList: build.query({
       query: (params) => {
-        const { filter, ...rest } = params || {};
-
-        const searchParams = new URLSearchParams();
-
-        // Add other params normally
-        Object.entries(rest).forEach(([key, value]) => {
-          if (value !== undefined && value !== null) {
-            searchParams.append(key, String(value));
-          }
-        });
-
-        // Add multiple 'filter' keys if filter is array
-        if (Array.isArray(filter)) {
-          filter.forEach((f) => {
-            if (f) searchParams.append("filter", f);
-          });
-        } else if (filter) {
-          // if filter is a single string
-          searchParams.append("filter", filter);
-        }
-
         return {
-          url: `/car/sale_car_list?${searchParams.toString()}`,
+          url: `/car/sale_car_list`,
           method: "GET",
+          params,
         };
       },
       providesTags: [
@@ -39,33 +91,12 @@ export const carDealer = baseApi.injectEndpoints({
         tagTypes.allCar,
       ],
     }),
-
     submitListing: build.query({
       query: (params) => {
-        const { filter, ...rest } = params || {};
-
-        const searchParams = new URLSearchParams();
-
-        // Add other params normally
-        Object.entries(rest).forEach(([key, value]) => {
-          if (value !== undefined && value !== null) {
-            searchParams.append(key, String(value));
-          }
-        });
-
-        // Add multiple 'filter' keys if filter is array
-        if (Array.isArray(filter)) {
-          filter.forEach((f) => {
-            if (f) searchParams.append("filter", f);
-          });
-        } else if (filter) {
-          // if filter is a single string
-          searchParams.append("filter", filter);
-        }
-
         return {
-          url: `/submit_listing?${searchParams.toString()}`,
+          url: `/submit_listing`,
           method: "GET",
+          params,
         };
       },
       providesTags: [tagTypes.sellCarPrivate, tagTypes.contactPaper],
@@ -90,7 +121,7 @@ export const carDealer = baseApi.injectEndpoints({
           body: buyCar,
         };
       },
-      invalidatesTags:[tagTypes.sellCar,tagTypes.sellCarList]
+      invalidatesTags: [tagTypes.sellCar, tagTypes.sellCarList],
     }),
 
     bidCreate: build.mutation({

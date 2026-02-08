@@ -13,6 +13,7 @@ import { Input, message } from "antd";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import Cookies from "universal-cookie";
+import { jwtDecode } from "jwt-decode";
 
 const Footer = () => {
   const cookies = new Cookies();

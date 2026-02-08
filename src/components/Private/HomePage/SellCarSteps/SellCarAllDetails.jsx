@@ -23,7 +23,7 @@ import { useForm } from "antd/es/form/Form";
 import { jwtDecode } from "jwt-decode";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react"; 
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 
@@ -31,7 +31,7 @@ import Cookies from "universal-cookie";
 import { LuInfo } from "react-icons/lu";
 
 const SellCarAllDetails = () => {
-  const { 
+  const {
     data: profileData,
     currentData,
     isLoading,
