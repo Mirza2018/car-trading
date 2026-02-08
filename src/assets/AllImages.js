@@ -1,4 +1,5 @@
 import logo from "./images/logo.svg";
+import logo2 from "./images/logo2.png";
 import check from "./icons/check.svg";
 import f1 from "./icons/f1.svg";
 import f2 from "./icons/f2.svg";
@@ -74,6 +75,7 @@ export const AllImages = {
   biludenbilleder,
   companyLogo,
   logo,
+  logo2,
   profile,
   car,
   fairPriceCar,

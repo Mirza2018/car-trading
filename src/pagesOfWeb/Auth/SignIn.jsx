@@ -92,7 +92,7 @@ const SignIn = () => {
             className=" mx-auto"
           />
         </div>
-        <div className="w-full md:w-[80%] lg:w-[80%] mx-auto px-10 bg-[#F3F9FB] shadow-lg rounded-xl">
+        <div className="w-full md:w-[80%] lg:w-[80%] mx-auto px-10 bg-white shadow-lg rounded-xl">
           {/* -------- Sign In Page Header ------------ */}
           <div className="flex flex-col justify-center items-center">
             <div className="text-center mt-5 mb-8">
@@ -100,7 +100,7 @@ const SignIn = () => {
                 <Image
                   width={0}
                   height={0}
-                  src={AllImages.logo}
+                  src={AllImages.logo2}
                   alt="logo"
                   className="h-[60px] w-[245px] mx-auto"
                 />

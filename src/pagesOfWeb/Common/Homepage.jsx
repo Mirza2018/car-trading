@@ -16,11 +16,13 @@ import {
   useSubmitListingQuery,
 } from "@/redux/api/features/carDealer";
 import { useProfileQuery } from "@/redux/api/features/myProfile";
+import { jwtDecode } from "jwt-decode";
 import { useRouter } from "next/navigation";
 
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import Cookies from "universal-cookie";
 
 const Homepage = () => {
   const { data: userData, isLoading: userDataIsLooding } = useProfileQuery();
@@ -42,7 +44,7 @@ const Homepage = () => {
     limit: 4,
     sort: "-updatedAt", // Fixed, not changeable
   });
-
+  const cookies = new Cookies();
   const onPageChange = (page) => {
     setFilters((prev) => ({
       ...prev,
@@ -204,7 +206,24 @@ const { data, currentData, isLoading, isFetching, isSuccess,  } =
     }
   }
 
-  const userInfo = useSelector((state) => state.auth.userInfo);
+  // const userInfo = useSelector((state) => state.auth.userInfo);
+
+  let userInfo;
+  // const userInfo = useSelector((state) => state.auth.userInfo);
+  const userCookie = cookies.get("car_trading_accessToken");
+  if (!userCookie) {
+    // navigate.push("/sign-in");
+    userInfo = { role: false };
+  } else {
+    userInfo = jwtDecode(userCookie);
+  }
+
+
+
+
+
+
+
 
   const [isSellCar, setIsSellCar] = useState(true);
 
