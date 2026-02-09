@@ -25,15 +25,8 @@ import Swal from "sweetalert2";
 import Cookies from "universal-cookie";
 
 const Homepage = () => {
-  const { data: userData, isLoading: userDataIsLooding } = useProfileQuery();
-  const [filters, setFilters] = useState({
-    page: 1,
-    limit: 3,
-  });
-  const [filters2, setFilters2] = useState({
-    page: 1,
-    limit: 4,
-  });
+  const { data: userData, isLoading: userDataIsLoading } = useProfileQuery();
+
   const [queryParams2, setQueryParams2] = useState({
     page: 1,
     limit: 3,
@@ -46,14 +39,14 @@ const Homepage = () => {
   });
   const cookies = new Cookies();
   const onPageChange = (page) => {
-    setFilters((prev) => ({
+    setQueryParams2((prev) => ({
       ...prev,
       page,
     }));
   };
 
   const onPageChange2 = (page) => {
-    setFilters2((prev) => ({
+    setQueryParams((prev) => ({
       ...prev,
       page,
     }));
@@ -82,7 +75,7 @@ const { data, currentData, isLoading, isFetching, isSuccess,  } =
   const handleFiltersChange = (filters) => {
     setQueryParams({
       page: 1, // Reset page on filter change
-      limit: 5,
+      limit: 4,
       sort: "-updatedAt",
       ...filters, // Only active filters
     });
@@ -90,7 +83,7 @@ const { data, currentData, isLoading, isFetching, isSuccess,  } =
   const handleFiltersChange2 = (filters) => {
     setQueryParams2({
       page: 1, // Reset page on filter change
-      limit: 5,
+      limit: 3,
       sort: "-updatedAt",
       ...filters, // Only active filters
     });
@@ -115,48 +108,8 @@ const { data, currentData, isLoading, isFetching, isSuccess,  } =
   //   setFilters(params);
   // };
 
-  const onFinish = (newFilters) => {
-    // Only update if there's at least one meaningful filter
-    const hasFilters =
-      newFilters.filter ||
-      newFilters.modelYearFrom ||
-      newFilters.modelYearTo ||
-      newFilters.drivenKmFrom ||
-      newFilters.drivenKmTo;
 
-    if (!hasFilters) {
-      setFilters({ page: 1, limit: 3 }); // Reset to default
-      return;
-    }
 
-    setFilters((prev) => {
-      if (JSON.stringify(prev) !== JSON.stringify(newFilters)) {
-        return newFilters;
-      }
-      return prev;
-    });
-  };
-
-  const onFinishPrivate = (newFilters) => {
-    const hasFilters =
-      newFilters.filter ||
-      newFilters.modelYearFrom ||
-      newFilters.modelYearTo ||
-      newFilters.drivenKmFrom ||
-      newFilters.drivenKmTo;
-
-    if (!hasFilters) {
-      setFilters2({ page: 1, limit: 3 }); // Reset to default
-      return;
-    }
-
-    setFilters2((prev) => {
-      if (JSON.stringify(prev) !== JSON.stringify(newFilters)) {
-        return newFilters;
-      }
-      return prev;
-    });
-  };
   const displayedData = data ?? currentData;
   const submitDisplayedData = submitData ?? submitCurrentData;
 

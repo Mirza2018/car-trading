@@ -135,7 +135,7 @@ const SellCarAllDetails = () => {
         modelYear: carData?.model_year || values?.modelYear || 0,
         variant: carData?.version,
         color: carData?.color?.name,
-        fuelType: carData?.fuel_type || values?.fuelType || 0,
+        fuelType: values?.fuelType || carData?.fuel_type || 0,
         engineSize: carData?.engine_displacement,
         enginePerformance: carData?.engine_power,
         fuelConsumption: carData?.fuel_efficiency,
@@ -152,13 +152,13 @@ const SellCarAllDetails = () => {
         delete data.cvrNumber;
         delete data.companyName;
       }
-      console.log(data);
+     
 
 
       if (userInfo) {
         data = { ...data, userId: userInfo?.userId };
       }
-      console.log(data);
+      
 
       const formData = new FormData();
 
@@ -220,6 +220,19 @@ const SellCarAllDetails = () => {
     }
   };
 
+const fuelOptions = [
+  { label: "EL", value: "EL" },
+  { label: "Benzin", value: "Benzin" },
+  { label: "Hybrid Benzin", value: "Hybrid Benzin" },
+  { label: "Plug-In Benzin", value: "Plug-In Benzin" },
+  { label: "Diesel", value: "Diesel" },
+  { label: "Hybrid Diesel", value: "Hybrid Diesel" },
+  { label: "Plug-In Diesel", value: "Plug-In Diesel" },
+];
+
+  const foundFuel = fuelOptions.find(
+    (option) => option.value === carData?.fuel_type
+  );
   if (isLoading) {
     return <Spin className="flex justify-center items-center h-screen"></Spin>;
   }
@@ -446,7 +459,7 @@ const SellCarAllDetails = () => {
               </Radio.Group>
             </Form.Item>
           </div>
-          {!carData?.fuel_type && (
+          {!foundFuel && (
             <div className="flex-1">
               <p
                 style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}

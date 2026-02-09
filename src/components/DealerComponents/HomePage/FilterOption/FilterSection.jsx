@@ -9,8 +9,7 @@ const { Option } = Select;
 const { RangePicker } = DatePicker;
 
 const fuelOptions = [
-  { label: "Alle brændstoftyper", value: "ALL" },
-  { label: "EL", value: "el" },
+  { label: "EL", value: "EL" },
   { label: "Benzin", value: "Benzin" },
   { label: "Hybrid Benzin", value: "Hybrid Benzin" },
   { label: "Plug-In Benzin", value: "Plug-In Benzin" },
