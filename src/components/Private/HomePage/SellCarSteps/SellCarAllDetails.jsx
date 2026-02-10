@@ -213,6 +213,13 @@ const SellCarAllDetails = () => {
         });
         return;
       }
+      if (error?.data?.message.includes("Car already listed")) {
+        toast.error("Bilen er allerede opført", {
+          id: toastId,
+          duration: 2000,
+        });
+        return;
+      }
       toast.error("Noget gik galt, prøv venligst senere..", {
         id: toastId,
         duration: 2000,
