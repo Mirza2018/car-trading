@@ -91,8 +91,8 @@ const SellBuyTrade = () => {
             <div
               className={`flex-1 text-center md:p-4 p-2 rounded-se-xl font-bold text-[30px]  cursor-pointer bg-blue-600 text-white `}
             >
-              <Link di href="/submit-listing">
-                <p className="text-xl text-xl flex justify-center items-center gap-3">
+              <Link href="/submit-listing">
+                <p className="text-xl flex justify-center items-center gap-3">
                   Køb bil <FiInfo />
                 </p>
               </Link>

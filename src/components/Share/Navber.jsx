@@ -5,7 +5,7 @@ import { Avatar, Modal, Spin } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "sonner";
 import Cookies from "universal-cookie";
@@ -29,26 +29,30 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const { count } = useContext(SocketContext);
   const displayedData = data ?? currentData;
-  let userInfo;
+
   // const userInfo = useSelector((state) => state.auth.userInfo);
   const userCookie = cookies.get("car_trading_accessToken");
-  if (!userCookie) {
-    // navigate.push("/sign-in");
-    userInfo = { role: false };
-  } else {
-    userInfo = jwtDecode(userCookie);
-  }
 
-  // console.log(displayedData?.data?.status);
+  // 1️⃣ Pure calculation (NO dispatch here)
+  const userInfo = useMemo(() => {
+    if (!userCookie) {
+      return { role: false };
+    }
 
-  // toast.success(notify, {
-  //   id: "notify",
-  //   duration: 1500,
-  // });
+    try {
+      return jwtDecode(userCookie);
+    } catch (err) {
+      return { role: false };
+    }
+  }, [userCookie]);
 
-  // console.log(carUser, "carUser");
+  // 2️⃣ Side effects go here
+  useEffect(() => {
+    if (!userCookie) {
+      dispatch(clearAuth());
+    }
+  }, [userCookie, dispatch]);
 
-  const task = true;
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isProfile, setIsProfile] = useState(false);
@@ -149,7 +153,7 @@ const Navbar = () => {
 
     // Combining and de-duplicating items, allowing for role-based overrides
     const priorityItemsMap = new Map(
-      PriorityCommonMenuItems.map((item) => [item.name, item])
+      PriorityCommonMenuItems.map((item) => [item.name, item]),
     );
     specificItems.forEach((item) => priorityItemsMap.set(item.name, item)); // Updates or adds specific items
 
@@ -252,16 +256,11 @@ const Navbar = () => {
                 ) : (
                   ""
                 )}
-                <p
-                  onClick={() => {
-                    handleLogout();
-                    navigate.push("/");
-                  }}
-                >
-                  <p className="text-[15px] font-medium px-3 py-2 rounded-3xl whitespace-normal">
+                <div onClick={handleLogout} className="cursor-pointer">
+                  <p className="text-[15px] font-medium px-3 py-2 rounded-3xl">
                     Log ud
                   </p>
-                </p>
+                </div>
               </>
             ) : (
               <>
