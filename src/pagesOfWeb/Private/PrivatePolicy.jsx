@@ -21,16 +21,17 @@ const PrivatePolicy = () => {
             Dataansvarlig
           </h2>
           <p className="text-lg text-gray-600 leading-relaxed">
-            engrosbasen ApS <br />
+            Engrosbasen ApS
+            <br />
             CVR-nr.: 44013142 <br />
             Ellehammersvej 2A <br />
             7100 Vejle, Danmark <br />
             E-mail:{" "}
             <a
-              href="mailto:kundeservice@engrosbasen.dk"
+              href="mailto:info@engrosbasen.dk"
               className="text-blue-600 underline"
             >
-              kundeservice@engrosbasen.dk
+              info@engrosbasen.dk
             </a>
           </p>
         </div>
@@ -90,10 +91,10 @@ const PrivatePolicy = () => {
             Du har ret til indsigt, rettelse, sletning, indsigelse og
             tilbagetrækning af samtykke. Kontakt os på{" "}
             <a
-              href="mailto:kundeservice@engrosbasen.dk"
+              href="mailto:info@engrosbasen.dk"
               className="text-blue-600 underline"
             >
-              kundeservice@engrosbasen.dk
+              info@engrosbasen.dk
             </a>
             .
           </p>
