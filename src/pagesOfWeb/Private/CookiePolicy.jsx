@@ -4,26 +4,26 @@ const CookiePolicy = () => {
   return (
     <div className="container mx-auto p-8 bg-gray-50 rounded-lg ">
       <h1 className="text-center text-4xl font-bold text-blue-600 mb-8">
-        VILKÅR & HANDELSBETINGELSER FOR ENGROBASEN
+        VILKÅR & HANDELSBETINGELSER FOR engrosbasen
       </h1>
 
       <div className="mb-8">
         <p className="text-lg text-gray-600 mb-4">
-          Disse vilkår og handelsbetingelser gælder for brugen af engrobasen og
+          Disse vilkår og handelsbetingelser gælder for brugen af engrosbasen og
           regulerer forholdet mellem private brugere, bilforhandlere og
-          engrobasen som formidlende platform. Ved anvendelse af platformen
+          engrosbasen som formidlende platform. Ved anvendelse af platformen
           accepterer brugeren nedenstående vilkår.
         </p>
       </div>
 
       <div className="mb-8">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-          1. Om engrobasen
+          1. Om engrosbasen
         </h2>
         <p className="text-lg text-gray-600 leading-relaxed">
-          Engrobasen drives af Engrobasen ApS og fungerer som en uafhængig
+          engrosbasen drives af engrosbasen ApS og fungerer som en uafhængig
           digital formidlingsplatform, hvor private kan sælge biler direkte til
-          professionelle bilforhandlere. Engrobasen er ikke part i den handel,
+          professionelle bilforhandlere. engrosbasen er ikke part i den handel,
           der indgås mellem sælger og bilforhandler.
         </p>
       </div>
@@ -33,7 +33,7 @@ const CookiePolicy = () => {
           2. Platformens rolle
         </h2>
         <p className="text-lg text-gray-600 leading-relaxed">
-          Engrobasen stiller alene platformen til rådighed og påtager sig intet
+          engrosbasen stiller alene platformen til rådighed og påtager sig intet
           ansvar for aftalens indhold, gennemførelse, betaling eller levering.
         </p>
       </div>
@@ -43,9 +43,9 @@ const CookiePolicy = () => {
           3. Brug af platformen
         </h2>
         <p className="text-lg text-gray-600 leading-relaxed">
-          Det er gratis for private at oprette og anvende engrobasen.
+          Det er gratis for private at oprette og anvende engrosbasen.
           Bilforhandlere kan afgive bud og gennemføre handler i henhold til
-          gældende vilkår. Engrobasen opkræver udelukkende salær fra
+          gældende vilkår. engrosbasen opkræver udelukkende salær fra
           bilforhandlere, og kun ved gennemført handel.
         </p>
       </div>
@@ -65,7 +65,7 @@ const CookiePolicy = () => {
           5. Betaling
         </h2>
         <p className="text-lg text-gray-600 leading-relaxed">
-          Betaling sker direkte mellem sælger og bilforhandler. Engrobasen
+          Betaling sker direkte mellem sælger og bilforhandler. engrosbasen
           håndterer ikke betaling og har intet ansvar for købesummens
           overførsel.
         </p>
@@ -98,7 +98,7 @@ const CookiePolicy = () => {
           8. Ansvarsfraskrivelse
         </h2>
         <p className="text-lg text-gray-600 leading-relaxed">
-          Engrobasen fraskriver sig ethvert ansvar for:
+          engrosbasen fraskriver sig ethvert ansvar for:
           <ul className="list-disc ml-6">
             <li>Bilens stand og oplysninger</li>
             <li>Betaling, levering eller afhentning</li>
@@ -113,7 +113,7 @@ const CookiePolicy = () => {
           9. Ændringer
         </h2>
         <p className="text-lg text-gray-600 leading-relaxed">
-          Engrobasen forbeholder sig retten til at ændre vilkårene. Gældende
+          engrosbasen forbeholder sig retten til at ændre vilkårene. Gældende
           vilkår vil altid være tilgængelige på hjemmesiden.
         </p>
       </div>
@@ -123,7 +123,7 @@ const CookiePolicy = () => {
           10. Immaterielle rettigheder
         </h2>
         <p className="text-lg text-gray-600 leading-relaxed">
-          Alt indhold på platformen tilhører Engrobasen ApS og må ikke anvendes
+          Alt indhold på platformen tilhører engrosbasen ApS og må ikke anvendes
           uden skriftligt samtykke.
         </p>
       </div>

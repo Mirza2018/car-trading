@@ -23,7 +23,7 @@ const FairPriceCard = () => {
           Nem, gratis og uden forpligtelser
         </h2>
         <p className="mt-4">
-          Private kan gratis oprette deres bil på engrobasen. Herefter kan
+          Private kan gratis oprette deres bil på engrosbasen. Herefter kan
           professionelle bilforhandlere købe bilen direkte eller byde på den. Du
           bestemmer selv – og sælger kun, hvis prisen er rigtig.
         </p>

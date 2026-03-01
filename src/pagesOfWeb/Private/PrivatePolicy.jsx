@@ -4,12 +4,12 @@ const PrivatePolicy = () => {
     return (
       <div className="container mx-auto p-8 bg-gray-50 rounded-lg">
         <h1 className="text-center text-4xl font-bold text-blue-600 mb-8">
-          PRIVATLIVSPOLITIK & COOKIEPOLITIK FOR ENGROBASEN
+          PRIVATLIVSPOLITIK & COOKIEPOLITIK FOR engrosbasen
         </h1>
 
         <div className="mb-8">
           <p className="text-lg text-gray-600 leading-relaxed">
-            Hos Engrobasen tager vi beskyttelsen af dine personoplysninger
+            Hos engrosbasen tager vi beskyttelsen af dine personoplysninger
             alvorligt. Denne privatlivs- og cookiepolitik forklarer, hvordan vi
             indsamler, bruger og beskytter dine oplysninger, når du anvender
             vores platform.
@@ -21,16 +21,16 @@ const PrivatePolicy = () => {
             Dataansvarlig
           </h2>
           <p className="text-lg text-gray-600 leading-relaxed">
-            Engrobasen ApS <br />
+            engrosbasen ApS <br />
             CVR-nr.: 44013142 <br />
             Ellehammersvej 2A <br />
             7100 Vejle, Danmark <br />
             E-mail:{" "}
             <a
-              href="mailto:kundeservice@engrobasen.dk"
+              href="mailto:kundeservice@engrosbasen.dk"
               className="text-blue-600 underline"
             >
-              kundeservice@engrobasen.dk
+              kundeservice@engrosbasen.dk
             </a>
           </p>
         </div>
@@ -90,10 +90,10 @@ const PrivatePolicy = () => {
             Du har ret til indsigt, rettelse, sletning, indsigelse og
             tilbagetrækning af samtykke. Kontakt os på{" "}
             <a
-              href="mailto:kundeservice@engrobasen.dk"
+              href="mailto:kundeservice@engrosbasen.dk"
               className="text-blue-600 underline"
             >
-              kundeservice@engrobasen.dk
+              kundeservice@engrosbasen.dk
             </a>
             .
           </p>

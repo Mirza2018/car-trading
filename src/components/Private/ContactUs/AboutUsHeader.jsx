@@ -47,13 +47,13 @@ const AboutUsHeader = () => {
           VORES LØSNING
         </h2>
         <p className="text-lg text-gray-600 leading-relaxed mb-4">
-          På baggrund af denne indsigt har vi udviklet engrobasen – en platform
+          På baggrund af denne indsigt har vi udviklet engrosbasen – en platform
           skabt med det formål at gøre det nemt, professionelt og gennemsigtigt
           for private at sælge deres bil, samtidig med at bilforhandlere får
           direkte adgang til biler uden unødige mellemled.
         </p>
         <p className="text-lg text-gray-600 leading-relaxed mb-4">
-          Hos engrobasen sælger private direkte til professionelle
+          Hos engrosbasen sælger private direkte til professionelle
           bilforhandlere. Flere forhandlere kan byde på bilen, og salget sker
           til den højeste pris, uden at bilen først skal videre gennem flere
           led.
@@ -69,7 +69,7 @@ const AboutUsHeader = () => {
           EN FAIR FORRETNINGSMODEL
         </h2>
         <p className="text-lg text-gray-600 leading-relaxed mb-4">
-          For private er brugen af engrobasen helt gratis. Vi opkræver
+          For private er brugen af engrosbasen helt gratis. Vi opkræver
           udelukkende et salær fra bilforhandlerne, og kun når en handel
           gennemføres. Der er ingen skjulte gebyrer og ingen omkostninger for
           private sælgere.
@@ -91,7 +91,7 @@ const AboutUsHeader = () => {
         <p className="text-lg text-gray-600 leading-relaxed">
           Vi er to brødre med benzin i blodet, som brænder for bilbranchen og
           for at gøre op med ineffektive processer og unødige mellemled.
-          Engrobasen er skabt ud fra praksis og mange års erfaring – ikke teori.
+          engrosbasen er skabt ud fra praksis og mange års erfaring – ikke teori.
         </p>
       </div>
 

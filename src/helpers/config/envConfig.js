@@ -12,13 +12,13 @@
 
 
 export const getBaseUrl = () => {
-  return process.env.NEXT_PUBLIC_BASE_URL || "https://api.engrobasen.dk/api/v1";
+  return process.env.NEXT_PUBLIC_BASE_URL;
 };
 
 export const getImageUrl = () => {
-  return process.env.NEXT_PUBLIC_IMAGE_URL || "https://api.engrobasen.dk/";
+  return process.env.NEXT_PUBLIC_IMAGE_URL ;
 };
 
 export const getSocketUrl = () => {
-  return process.env.NEXT_PUBLIC_SOCKET_URL || "http://10.10.10.30:8081";
+  return process.env.NEXT_PUBLIC_SOCKET_URL ;
 };

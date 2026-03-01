@@ -411,7 +411,7 @@ const FaqEngrosbasen = () => {
             klager bedes sendt skriftligt pr. mail eller brev til:
           </p>
           <p className="font-semibold">
-            Engrobasen ApS
+            engrosbasen ApS
             <br />
             CVR-nr.: 44013142
             <br />

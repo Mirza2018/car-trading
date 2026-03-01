@@ -7,7 +7,7 @@ const PrisstrukturDealer = () => {
         PRISSTRUKTUR FOR FORHANDLERE
       </h1>
       <h2 className="text-xl text-gray-700 font-semibold mb-4">
-        Engrobasen anvender en ensartet og gennemsigtig salærmodel.
+        engrosbasen anvender en ensartet og gennemsigtig salærmodel.
       </h2>
       <p className="text-lg text-gray-600 mb-4">
         Salær opkræves udelukkende ved gennemført handel, uanset om du som
