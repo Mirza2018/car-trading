@@ -19,6 +19,9 @@ const geistMono = localFont({
 export const metadata = {
   title: "Engrobasen",
   description: "car",
+  icons: {
+    icon: "/icon.jpg",
+  },
 };
 
 export default function RootLayout({ children }) {

@@ -1,5 +1,5 @@
 "use client";
-import { Input } from "antd";
+import { Input, Tooltip } from "antd";
 import Head from "next/head";
 import React, { useEffect, useRef, useState } from "react";
 import { AudioOutlined, UserOutlined } from "@ant-design/icons";
@@ -16,6 +16,7 @@ import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import { setCarLicenseInfo } from "@/redux/slices/carInfoSlice";
 import { FiInfo } from "react-icons/fi";
+import { FaCheck } from "react-icons/fa";
 const { Search } = Input;
 
 const SellBuyTrade = () => {
@@ -73,11 +74,11 @@ const SellBuyTrade = () => {
 
   return (
     <div>
-      <Head>
+      {/* <Head>
         <title>Bilbytte</title>
         <meta name="description" content="Trade cars easily" />
         <link rel="icon" href="/favicon.ico" />
-      </Head>
+      </Head> */}
       <div className="flex flex-col items-center justify-center">
         <main className=" max-w-7xl border-2 rounded-xl border-base-color w-fit">
           <div className=" flex w-full max-w-4xl ">
@@ -85,7 +86,34 @@ const SellBuyTrade = () => {
               className={`flex-1 text-center md:p-4 p-2 font-bold text-[30px] rounded-ss-xl text-primary-color bg-highlight-color`}
             >
               <p className="text-xl flex justify-center items-center gap-3">
-                Sælg bil <FiInfo />
+                Sælg bil
+                <Tooltip
+                  placement="bottom"
+                  title={
+                    <div>
+                      <p style={{ fontWeight: 600, marginBottom: 8 }}>
+                        Gør som tusind andre – sælg sin bil nemt
+                      </p>
+                      <div className="flex flex-col justify-start items-start">
+                        <p className="flex gap-2 justify-center items-center">
+                          <FaCheck /> Gratis for private – ingen salær
+                        </p>
+                        <p className="flex gap-2 justify-center items-center">
+                          <FaCheck /> Opret sin bil på få klik
+                        </p>
+                        <p className="flex gap-2 justify-center items-center">
+                          <FaCheck /> Forhandlere køber eller byder direkte
+                        </p>
+                        <p className="flex gap-2 justify-center items-center">
+                          <FaCheck /> Ingen løbetid bilen er online med det
+                          samme
+                        </p>
+                      </div>
+                    </div>
+                  }
+                >
+                  <FiInfo style={{ cursor: "pointer" }} />
+                </Tooltip>
               </p>
             </div>
             <div
@@ -93,7 +121,33 @@ const SellBuyTrade = () => {
             >
               <Link href="/submit-listing">
                 <p className="text-xl flex justify-center items-center gap-3">
-                  Køb bil <FiInfo />
+                  Køb bil{" "}
+                  <Tooltip
+                    placement="bottom"
+                    title={
+                      <div >
+                        <p style={{ fontWeight: 600, marginBottom: 8 }}>
+                          Find din næste bil
+                        </p>
+                        <div className="flex flex-col justify-start items-start">
+                          <p className="flex gap-2 justify-center items-center">
+                            <FaCheck /> Opret gratis en bilsøgning
+                          </p>
+                          <p className="flex gap-2 justify-center items-center">
+                            <FaCheck /> Få direkte tilbud fra bilforhandlere
+                          </p>
+                          <p className="flex gap-2 justify-center items-center">
+                            <FaCheck /> Også biler, der ikke er annonceret endnu
+                          </p>
+                          <p className="flex gap-2 justify-center items-center">
+                            <FaCheck /> Du vælger selv, om du vil købe
+                          </p>
+                        </div>
+                      </div>
+                    }
+                  >
+                    <FiInfo style={{ cursor: "pointer" }} />
+                  </Tooltip>
                 </p>
               </Link>
             </div>

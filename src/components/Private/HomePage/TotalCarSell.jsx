@@ -27,7 +27,7 @@ const TotalCarSell = ({
   return (
     <div className="">
       <h1 className="xl:text-[40px] text-3xl   font-semibold text-center">
-        Samlet bilsalg ({displayedData?.data?.pagination?.total})
+        Private sælger bil ({displayedData?.data?.pagination?.total || 0})
       </h1>
 
       <div className="flex flex-col gap-3 h-[450px]  mt-3 overflow-scroll overflow-x-hidden scrollbar-hide ">

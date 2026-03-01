@@ -119,6 +119,7 @@ const Navbar = () => {
   const AlwaysLastMenuItems = [
     { name: "Om", path: "/about-us" },
     { name: "Kontakt", path: "/contact-us" },
+    { name: "Faq", path: "/faq" },
   ];
 
   // Specific Menus based on roles

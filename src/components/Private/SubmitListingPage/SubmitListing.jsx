@@ -701,8 +701,6 @@ const SubmitListing = () => {
               style={{ height: 40 }}
             />
           </Form.Item>
-
-   
         </div>
 
         <h1
@@ -1062,28 +1060,6 @@ const SubmitListing = () => {
           </div>
         </div>
 
-        {!userInfo && (
-          <div className="">
-            <p
-              style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
-              className="  font-medium pb-2 "
-            >
-              E-mail*
-            </p>
-            <Form.Item
-              rules={[
-                {
-                  required: true,
-                  message: "Venligst indtast din e-mail",
-                },
-              ]}
-              name={`email`}
-            >
-              <Input placeholder="E-mail" className="py-3" />
-            </Form.Item>
-          </div>
-        )}
-
         <div className="my-[10px] grid md:grid-cols-3 grid-cols-2 gap-5">
           <div className=" ">
             <p
@@ -1168,6 +1144,28 @@ const SubmitListing = () => {
             <Input placeholder="Telefonnummer" className="py-3" />
           </Form.Item>
         </div>
+
+        {!userInfo && (
+          <div className="">
+            <p
+              style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+              className="  font-medium pb-2 "
+            >
+              E-mail*
+            </p>
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: "Venligst indtast din e-mail",
+                },
+              ]}
+              name={`email`}
+            >
+              <Input placeholder="E-mail" className="py-3" />
+            </Form.Item>
+          </div>
+        )}
 
         <div className="text-center">
           <button

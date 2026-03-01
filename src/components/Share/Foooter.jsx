@@ -26,6 +26,8 @@ const Footer = () => {
     userInfo = jwtDecode(userCookie);
   }
 
+  const year = new Date().getFullYear();
+
   return (
     <footer className="bg-blue-600 text-white p-8">
       <div className="container mx-auto">
@@ -61,7 +63,7 @@ const Footer = () => {
               <li>Coupe</li>
             </ul>
           </div>
-          <div>
+          {/* <div>
             <h3 className="font-medium text-[20px] mb-4">Vores mobilapp</h3>
             <div className="flex flex-col justify-center gap-2 ">
               <div className="flex items-center justify-start w-fit border-[#FFFFFF] border bg-[#CCDFE6] text-black px-6 py-2 rounded-lg">
@@ -86,9 +88,11 @@ const Footer = () => {
             <h3 className="font-medium text-[20px] mb-4 mt-3">
               Kommer snart...
             </h3>
-          </div>
+          </div> */}
           <div>
-            <h3 className="font-medium text-[20px] mt-3">Tilmeld dig BoxCar</h3>
+            <h3 className="font-medium text-[20px] mt-3">
+              Tilmeld dig Engrosbasen
+            </h3>
             <p className="text-[15px] font-normal mb-3">
               Modtag prisopdateringer, købstips og meget mere!
             </p>
@@ -125,7 +129,7 @@ const Footer = () => {
         </ul>
 
         <div className="border-t border-white mt-8 pt-8 text-center flex justify-between md:flex-row flex-col">
-          <p>© 2025 Alle rettigheder forbeholdes</p>
+          <p>© {year} Alle rettigheder forbeholdes</p>
 
           <div className="flex flex-wrap gap-5">
             {userInfo?.role == "private_user" && (

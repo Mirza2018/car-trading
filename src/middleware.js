@@ -14,6 +14,7 @@ export function middleware(request) {
     const publicPaths = [
       "/",
       "/about-us",
+      "/faq",
       "/contact-us",
       "/prisstruktur",
       "/private",

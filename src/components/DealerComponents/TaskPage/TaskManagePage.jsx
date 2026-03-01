@@ -24,7 +24,7 @@ const TaskManagePage = ({ setIsModalOpen }) => {
             style={{ fontSize: "clamp(20px, 1vw + 1rem ,48px)" }}
             className="font-semibold"
           >
-            opgaver
+            Opgaver
           </h1>
 
           {displayedData?.data?.length > 0 ? (

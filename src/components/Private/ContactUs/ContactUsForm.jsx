@@ -102,7 +102,7 @@ export default function ContactUsFrom() {
               Kontaktoplysninger
             </h3>
             <p className="text-lg text-gray-600 mb-4">
-              Engrobasen ApS
+              Engrosbasen ApS
               <br />
               CVR-nr.: 44013142
               <br />
@@ -113,17 +113,13 @@ export default function ContactUsFrom() {
               Danmark
               <br />
               E-mail:{" "}
-              <a
-                href="mailto:kundeservice@engrobasen.dk"
-                className="text-blue-600"
-              >
-                kundeservice@engrobasen.dk
+              <a href="mailto:info@engrosbasen.dk" className="text-blue-600">
+                info@engrosbasen.dk
               </a>
             </p>
           </div>
         </div>
       </div>
-   
     </div>
   );
 }
