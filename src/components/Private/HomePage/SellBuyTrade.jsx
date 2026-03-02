@@ -125,7 +125,7 @@ const SellBuyTrade = () => {
                   <Tooltip
                     placement="bottom"
                     title={
-                      <div >
+                      <div>
                         <p style={{ fontWeight: 600, marginBottom: 8 }}>
                           Find din næste bil
                         </p>
@@ -153,7 +153,7 @@ const SellBuyTrade = () => {
             </div>
           </div>
           <div className="text-center my-7 ">
-            <h1 className="text-2xl font-bold">Velkommen til Bilbytte</h1>
+            <h1 className="text-2xl font-bold">Velkommen til Engrosbasen</h1>
             <p className="text-gray-600 mt-5 px-10 max-w-2xl">
               Vi er forpligtede til at give vores kunder en enestående service.
             </p>{" "}
