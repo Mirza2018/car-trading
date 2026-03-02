@@ -119,7 +119,7 @@ const SellBuyTrade = () => {
             <div
               className={`flex-1 text-center md:p-4 p-2 rounded-se-xl font-bold text-[30px]  cursor-pointer bg-blue-600 text-white `}
             >
-              <Link href="/submit-listing">
+              {/* <Link href="/submit-listing"> */}
                 <p className="text-xl flex justify-center items-center gap-3">
                   Køb bil{" "}
                   <Tooltip
@@ -149,7 +149,7 @@ const SellBuyTrade = () => {
                     <FiInfo style={{ cursor: "pointer" }} />
                   </Tooltip>
                 </p>
-              </Link>
+              {/* </Link> */}
             </div>
           </div>
           <div className="text-center my-7 ">
