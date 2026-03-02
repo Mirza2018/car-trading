@@ -1,10 +1,10 @@
-import FaqEngrosbasen from "@/components/Share/FaqLists";
+import FaqLists from "@/components/Share/FaqLists";
 import React from "react";
 
 const FaqPage = () => {
   return (
     <div>
-      <FaqEngrosbasen />
+      <FaqLists />
     </div>
   );
 };

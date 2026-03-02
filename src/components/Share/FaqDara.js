@@ -1,6 +1,4 @@
-=
-
-export const faqItems= = [
+export const faqItems = [
   {
     question: "Hvorfor sælge din bil på Højestebilpris.dk?",
     answer: "Højestebilpris.dk er for dig, der ikke gider at være begrænset til ét bud, når du skal sælge din bil. Og gerne vil undgå alt det besvær og papirarbejde, der er ved et bilsalg.\n\nSamtidig kan du glæde dig over en tryg, sikker og nem bilhandel uden tidskrævende processer, hvor du altid er i fuld kontrol.",

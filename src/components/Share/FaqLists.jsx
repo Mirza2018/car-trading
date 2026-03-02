@@ -1,9 +1,9 @@
-// src/components/FaqEngrosbasen.jsx
+
 import { Collapse } from "antd";
 import React from "react";
 import "./faq.css"; // Opret denne fil (se længere nede)
 
-const FaqEngrosbasen = () => {
+const FaqLists = () => {
   const items = [
     {
       key: "1",
@@ -455,5 +455,5 @@ const FaqEngrosbasen = () => {
     </div>
   );
 };
-
-export default FaqEngrosbasen;
+ 
+export default FaqLists;
