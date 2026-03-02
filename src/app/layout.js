@@ -20,7 +20,7 @@ export const metadata = {
   title: "Engrosbasen",
   description: "car",
   icons: {
-    icon: "/icon.jpg",
+    icon: "/image.svg",
   },
 };
 
