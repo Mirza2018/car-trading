@@ -26,7 +26,7 @@ const MakeABidBtn = ({ carid }) => {
       carId: carid,
       bidAmount: valueOfBid,
     };
-    console.log(valueOfBid);
+    // console.log(valueOfBid);
     if (valueOfBid < 0) {
       toast.error("Buddet kan ikke være et negativt beløb", {
         id: toastId,

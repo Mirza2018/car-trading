@@ -37,7 +37,7 @@ const CarsForSale = ({
 
   // const displayedData = data ?? currentData;
 
-  // console.log(displayedData?.data?.pagination);
+  console.log(displayedData);
 
   const [openResponsive, setOpenResponsive] = useState(false);
   const [selectedCar, setSelectedCar] = useState(null);
@@ -189,10 +189,10 @@ const CarsForSale = ({
                 <h1 className="text-xl font-bold">{car?.priceInDKK}</h1>
                 <p className="whitespace-nowrap ">Minimum price achieved</p>
               </div> */}
-              {car?.maxBidAmount ? (
+              {car?.bids ? (
                 <div className="bg-base-color border border-secondary-color rounded-full aspect-square flex flex-col justify-center items-center px-2 ">
                   <h1 className="text-xl font-bold px-1">
-                    {car?.maxBidAmount} .kr
+                    {car?.bids?.bidAmount} .kr
                   </h1>
                   <p className=" text-center text-sm">
                     Maksimal pris <br /> Opnået

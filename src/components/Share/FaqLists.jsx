@@ -6,45 +6,79 @@ import "./faq.css"; // Opret denne fil (se længere nede)
 const FaqLists = () => {
   const items = [
     {
-      key: "1",
-      label: "Hvorfor sælge din bil på Engrosbasen.dk?",
+      key: "15",
+      label: "Hvad med restgæld og hæftelse i bilen?",
       children: (
         <div className="faq-content">
           <p>
-            Engrosbasen.dk er for dig, der ikke gider at være begrænset til ét
-            bud, når du skal sælge din bil. Og gerne vil undgå alt det besvær og
-            papirarbejde, der er ved et bilsalg.
+            Er der restgæld i bilen, og står den som sikkerhed for billånet, kan
+            forhandleren slå det op, når han får oplyst bilens nummerplade.
           </p>
           <p>
-            er for dig, der ikke gider at være begrænset til ét bud, når du skal
-            sælge din bil. Og gerne vil undgå alt det besvær og papirarbejde,
-            der er ved et bilsalg
+            Skal forhandleren indfri billånet med en del af købssummen, skal du
+            indhente en indfrielsesopgørelse fra finansieringsselskabet eller
+            din bank. Så fremsender de en mail med oplysninger om restgælden,
+            som du kan sende videre til forhandleren.
+          </p>
+          <p>
+            Accepterer forhandleren bilen, indløses denne restgælden hos
+            långiveren senest ved overdragelsen. Om ønsket kan du følge med i
+            processen fra forhandlerens mobiltelefon.
+          </p>
+          <p>
+            Ved overdragelsen af bilen udbetaler forhandleren så det eventuelt
+            overskydende beløb for handlen som en straksoverførsel til din
+            bankkonto.
+          </p>
+          <p>
+            Senest 5 hverdage efter lånets indfrielse modtager du en skriftlig
+            aflysning af tinglysningen på pantet i bilen fra Bilbogen. Sker
+            dette ikke, skal du kontakte dem, du har taget billånet hos.
+          </p>
+          <p>
+            Du kan også vælge at indfri billånet selv forud for overdragelsen af
+            bilen. Og fremvise en kvittering for dette til forhandleren, når du
+            overdrager bilen til denne
           </p>
         </div>
       ),
     },
     {
-      key: "2",
-      label: "Hvad kan jeg få for min bil?",
+      key: "11",
+      label: "Får jeg virkelig bud fra forhandlere over hele landet?",
       children: (
         <div className="faq-content">
           <p>
-            Prisen på din bil afhænger af bilens stand, årgang, udstyr, og hvor
-            i landet du sælger den.
+            Med mere end 17 års erfaring fra bilhandlerbranchen og tilsvarende
+            bilauktionstjenester ved vi, hvordan du får mest for din bil. Og
+            undgår branchens brodne kar og kedelige karakterer.
           </p>
           <p>
-            Husk at beskrive alt ekstraudstyr på bilen. Både medfødt og
-            eftermonteret – f.eks. trækkrog og vinterhjul. Det giver ofte højere
-            bud.
+            Med mere end 17 års erfaring fra bilhandlerbranchen og tilsvarende
+            bilauktionstjenester ved vi, hvordan du får mest for din bil. Og
+            undgår branchens brodne kar og kedelige karakterer.
           </p>
           <p>
-            Husk at beskrive alt ekstraudstyr på bilen. Både medfødt og
-            eftermonteret – f.eks. trækkrog og vinterhjul. Det giver ofte højere
-            bud.
+            For værdien af din bil afhænger af efterspørgslen – og den kan der
+            være stor forskel på, alt efter hvor i landet forhandleren bor.
           </p>
         </div>
       ),
     },
+    {
+      key: "5",
+      label: "Hvad hvis forhandleren ikke vil købe bilen alligevel?",
+      children: (
+        <div className="faq-content">
+          <p>
+            Vil forhandleren ikke købe din bil efter at have set den, har vi
+            oftest fået flere andre gode bud på bilen. Eller vi kan arbejde
+            videre med bilen i en ny budrunde.
+          </p>
+        </div>
+      ),
+    },
+
     {
       key: "3",
       label: "Hvordan foregår salget?",
@@ -83,39 +117,7 @@ const FaqLists = () => {
         </div>
       ),
     },
-    {
-      key: "4",
-      label: "Hvad betyder forbehold for besigtigelse?",
-      children: (
-        <div className="faq-content">
-          <p>
-            Når du accepterer buddet, udarbejdes en købsaftale med forbehold for
-            besigtigelse. Det betyder, at forhandleren kan ophæve aftalen, hvis
-            bilen ikke lever op til beskrivelsen. Eller kræve et nedslag i
-            prisen.
-          </p>
-          <p>
-            Samtidig betyder forbeholdet, at du kan nægte at acceptere
-            forhandlerens prisnedslag, hvis du ikke ønsker at sælge bilen til en
-            lavere pris. Uden at forhandleren kan kræve kompensation for brud på
-            aftalen.
-          </p>
-        </div>
-      ),
-    },
-    {
-      key: "5",
-      label: "Hvad hvis forhandleren ikke vil købe bilen alligevel?",
-      children: (
-        <div className="faq-content">
-          <p>
-            Vil forhandleren ikke købe din bil efter at have set den, har vi
-            oftest fået flere andre gode bud på bilen. Eller vi kan arbejde
-            videre med bilen i en ny budrunde.
-          </p>
-        </div>
-      ),
-    },
+
     {
       key: "6",
       label:
@@ -146,6 +148,28 @@ const FaqLists = () => {
               info@engrosbasen.dk
             </a>
             .
+          </p>
+        </div>
+      ),
+    },
+    {
+      key: "2",
+      label: "Hvad kan jeg få for min bil?",
+      children: (
+        <div className="faq-content">
+          <p>
+            Prisen på din bil afhænger af bilens stand, årgang, udstyr, og hvor
+            i landet du sælger den.
+          </p>
+          <p>
+            Husk at beskrive alt ekstraudstyr på bilen. Både medfødt og
+            eftermonteret – f.eks. trækkrog og vinterhjul. Det giver ofte højere
+            bud.
+          </p>
+          <p>
+            Husk at beskrive alt ekstraudstyr på bilen. Både medfødt og
+            eftermonteret – f.eks. trækkrog og vinterhjul. Det giver ofte højere
+            bud.
           </p>
         </div>
       ),
@@ -195,6 +219,24 @@ const FaqLists = () => {
       ),
     },
     {
+      key: "1",
+      label: "Hvorfor sælge din bil på Engrosbasen.dk?",
+      children: (
+        <div className="faq-content">
+          <p>
+            Engrosbasen.dk er for dig, der ikke gider at være begrænset til ét
+            bud, når du skal sælge din bil. Og gerne vil undgå alt det besvær og
+            papirarbejde, der er ved et bilsalg.
+          </p>
+          <p>
+            er for dig, der ikke gider at være begrænset til ét bud, når du skal
+            sælge din bil. Og gerne vil undgå alt det besvær og papirarbejde,
+            der er ved et bilsalg
+          </p>
+        </div>
+      ),
+    },
+    {
       key: "10",
       label: "Hvordan kan jeg se, hvad min bil er værd?",
       children: (
@@ -214,28 +256,7 @@ const FaqLists = () => {
         </div>
       ),
     },
-    {
-      key: "11",
-      label: "Får jeg virkelig bud fra forhandlere over hele landet?",
-      children: (
-        <div className="faq-content">
-          <p>
-            Med mere end 17 års erfaring fra bilhandlerbranchen og tilsvarende
-            bilauktionstjenester ved vi, hvordan du får mest for din bil. Og
-            undgår branchens brodne kar og kedelige karakterer.
-          </p>
-          <p>
-            Med mere end 17 års erfaring fra bilhandlerbranchen og tilsvarende
-            bilauktionstjenester ved vi, hvordan du får mest for din bil. Og
-            undgår branchens brodne kar og kedelige karakterer.
-          </p>
-          <p>
-            For værdien af din bil afhænger af efterspørgslen – og den kan der
-            være stor forskel på, alt efter hvor i landet forhandleren bor.
-          </p>
-        </div>
-      ),
-    },
+
     {
       key: "12",
       label: "Afhenter forhandleren altid bilen hos mig?",
@@ -304,43 +325,26 @@ const FaqLists = () => {
       ),
     },
     {
-      key: "15",
-      label: "Hvad med restgæld og hæftelse i bilen?",
+      key: "4",
+      label: "Hvad betyder forbehold for besigtigelse?",
       children: (
         <div className="faq-content">
           <p>
-            Er der restgæld i bilen, og står den som sikkerhed for billånet, kan
-            forhandleren slå det op, når han får oplyst bilens nummerplade.
+            Når du accepterer buddet, udarbejdes en købsaftale med forbehold for
+            besigtigelse. Det betyder, at forhandleren kan ophæve aftalen, hvis
+            bilen ikke lever op til beskrivelsen. Eller kræve et nedslag i
+            prisen.
           </p>
           <p>
-            Skal forhandleren indfri billånet med en del af købssummen, skal du
-            indhente en indfrielsesopgørelse fra finansieringsselskabet eller
-            din bank. Så fremsender de en mail med oplysninger om restgælden,
-            som du kan sende videre til forhandleren.
-          </p>
-          <p>
-            Accepterer forhandleren bilen, indløses denne restgælden hos
-            långiveren senest ved overdragelsen. Om ønsket kan du følge med i
-            processen fra forhandlerens mobiltelefon.
-          </p>
-          <p>
-            Ved overdragelsen af bilen udbetaler forhandleren så det eventuelt
-            overskydende beløb for handlen som en straksoverførsel til din
-            bankkonto.
-          </p>
-          <p>
-            Senest 5 hverdage efter lånets indfrielse modtager du en skriftlig
-            aflysning af tinglysningen på pantet i bilen fra Bilbogen. Sker
-            dette ikke, skal du kontakte dem, du har taget billånet hos.
-          </p>
-          <p>
-            Du kan også vælge at indfri billånet selv forud for overdragelsen af
-            bilen. Og fremvise en kvittering for dette til forhandleren, når du
-            overdrager bilen til denne
+            Samtidig betyder forbeholdet, at du kan nægte at acceptere
+            forhandlerens prisnedslag, hvis du ikke ønsker at sælge bilen til en
+            lavere pris. Uden at forhandleren kan kræve kompensation for brud på
+            aftalen.
           </p>
         </div>
       ),
     },
+
     {
       key: "16",
       label:

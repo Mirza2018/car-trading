@@ -220,7 +220,7 @@ const Profile = () => {
             </div>
             <div>
               <Typography.Title level={5} style={{ color: "#222222" }}>
-                Gade
+               Vejnavn
               </Typography.Title>
               <Form.Item name="street" className="text-white">
                 <Input
@@ -276,7 +276,7 @@ const Profile = () => {
               <Form.Item name="city" className="text-white">
                 <Input
                   required
-                  placeholder="Indtast din bys navn."
+                  placeholder="Indtast bynavn."
                   className="py-2 px-3 text-xl border !border-input-color  "
                 />
               </Form.Item>

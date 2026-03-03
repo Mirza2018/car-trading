@@ -127,7 +127,7 @@ const { data, currentData, isLoading, isFetching, isSuccess,  } =
       !userData?.data?.profile?.street?.trim()
     ) {
       Swal.fire({
-        title: "Please complete your profile",
+        title: "Fuldfør din profil for at komme i gang.",
         confirmButtonText: "Ok",
       }).then(async (result) => {
         if (result.isConfirmed) {
@@ -136,7 +136,7 @@ const { data, currentData, isLoading, isFetching, isSuccess,  } =
       });
     } else if (userData?.data?.isTermAccepted == false) {
       Swal.fire({
-        title: "Please accept the Terms & Conditions",
+        title: "Accepter venligst vilkår og betingelser.",
         // showDenyButton: true,
         confirmButtonText: "Ok",
         // denyButtonText: `Cancel`,
