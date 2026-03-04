@@ -30,16 +30,9 @@ const SellBuyTrade = () => {
   const toastId = "unique-toast-id";
   const dispatch = useDispatch();
   const handleEditClick = () => {
-
     toast.loading("Registreringsplade kontrolleres…", {
       id: toastId,
     });
-
-
-
-
-
-
 
     console.log(license?.current?.input?.value);
     // AJ30124;
@@ -48,8 +41,6 @@ const SellBuyTrade = () => {
   };
 
   // console.log(isSuccess, isError, data?.data?.data);
-
- 
 
   if (isSuccess) {
     toast.success("Registreringspladedata hentet succesfuldt…", {
@@ -117,39 +108,39 @@ const SellBuyTrade = () => {
               </p>
             </div>
             <div
-              className={`flex-1 text-center md:p-4 p-2 rounded-se-xl font-bold text-[30px]  cursor-pointer bg-blue-600 text-white `}
+              className={`flex-1 text-center md:p-4 p-2 rounded-se-xl font-bold text-[30px]   bg-blue-600 text-white `}
             >
-              {/* <Link href="/submit-listing"> */}
-                <p className="text-xl flex justify-center items-center gap-3">
-                  Køb bil{" "}
-                  <Tooltip
-                    placement="bottom"
-                    title={
-                      <div>
-                        <p style={{ fontWeight: 600, marginBottom: 8 }}>
-                          Find din næste bil
+              <div className="text-xl flex justify-center items-center gap-3">
+                <Link href="/submit-listing">
+                  <button>Køb bil</button>
+                </Link>
+                <Tooltip
+                  placement="bottom"
+                  title={
+                    <div>
+                      <p style={{ fontWeight: 600, marginBottom: 8 }}>
+                        Find din næste bil
+                      </p>
+                      <div className="flex flex-col justify-start items-start">
+                        <p className="flex gap-2 justify-center items-center">
+                          <FaCheck /> Opret gratis en bilsøgning
                         </p>
-                        <div className="flex flex-col justify-start items-start">
-                          <p className="flex gap-2 justify-center items-center">
-                            <FaCheck /> Opret gratis en bilsøgning
-                          </p>
-                          <p className="flex gap-2 justify-center items-center">
-                            <FaCheck /> Få direkte tilbud fra bilforhandlere
-                          </p>
-                          <p className="flex gap-2 justify-center items-center">
-                            <FaCheck /> Også biler, der ikke er annonceret endnu
-                          </p>
-                          <p className="flex gap-2 justify-center items-center">
-                            <FaCheck /> Du vælger selv, om du vil købe
-                          </p>
-                        </div>
+                        <p className="flex gap-2 justify-center items-center">
+                          <FaCheck /> Få direkte tilbud fra bilforhandlere
+                        </p>
+                        <p className="flex gap-2 justify-center items-center">
+                          <FaCheck /> Også biler, der ikke er annonceret endnu
+                        </p>
+                        <p className="flex gap-2 justify-center items-center">
+                          <FaCheck /> Du vælger selv, om du vil købe
+                        </p>
                       </div>
-                    }
-                  >
-                    <FiInfo style={{ cursor: "pointer" }} />
-                  </Tooltip>
-                </p>
-              {/* </Link> */}
+                    </div>
+                  }
+                >
+                  <FiInfo style={{ cursor: "pointer" }} />
+                </Tooltip>
+              </div>
             </div>
           </div>
           <div className="text-center my-7 ">
