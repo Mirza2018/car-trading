@@ -26,7 +26,7 @@ const Licenseplate = ({ offerCar }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (isSuccess) {
-      toast.success("Registreringspladedata hentet succesfuldt…", {
+      toast.success("Nummerplade fundet", {
         id: toastId,
         duration: 2000,
       });
@@ -67,7 +67,7 @@ const Licenseplate = ({ offerCar }) => {
   };
 
   const handleEditClick = async () => {
-    toast.loading("Registreringsplade kontrolleres…", {
+    toast.loading("Søger efter nummerplade", {
       id: toastId,
       duration: 1000,
     });
@@ -76,7 +76,7 @@ const Licenseplate = ({ offerCar }) => {
     try {
       const res = await trigger({ license: inputValue }).unwrap(); // unwrap returns a promise that rejects on error
       console.log("res", res);
-      toast.success("Registreringspladedata hentet succesfuldt…", {
+      toast.success("Nummerplade fundet", {
         id: toastId,
         duration: 1000,
       });

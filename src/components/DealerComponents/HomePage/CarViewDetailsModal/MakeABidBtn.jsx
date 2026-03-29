@@ -92,7 +92,7 @@ const MakeABidBtn = ({ carid }) => {
 
       <Modal open={isBuy} onCancel={() => setIsBuy(false)} footer={[]}>
         <h1 className="text-center text-2xl  font-medium mt-5 mb-5">
-          Er du sikker på, at du har budt på denne bil?
+          Er du sikker på at du vil købe denne bil?
         </h1>
         <section className="flex justify-center items-center ">
           <Button

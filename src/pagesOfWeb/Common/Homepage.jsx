@@ -284,9 +284,9 @@ const { data, currentData, isLoading, isFetching, isSuccess,  } =
       <WhyChooseUS />
       <div className="w-full h-1 border-t border-t-highlight-color mt-20"></div>
       {/* <DelarPrice /> */}
-      <div className="">
+      {/* <div className="">
         <Reviews />
-      </div>
+      </div> */}
     </div>
   );
 };

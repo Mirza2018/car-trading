@@ -1,15 +1,9 @@
 import { Modal } from "antd";
 
-
 import ImageSlider from "@/components/DealerComponents/HomePage/CarViewDetailsModal/ImageSlider";
 import DealerAllCarDetails from "./DealerAllCarDetails";
 
-const ViewCarDealerPage = ({
-  setOpenResponsive,
-  openResponsive,
-  car,
-
-}) => {
+const ViewCarDealerPage = ({ setOpenResponsive, openResponsive, car }) => {
   const date = new Date(car?.carModel?.updatedAt).toDateString();
   // console.log("sdasdasd", car);
 
@@ -44,7 +38,7 @@ const ViewCarDealerPage = ({
             <div className="flex flex-wrap gap-4 justify-between items-center">
               <div className="flex  justify-start items-center  font-bold text-base">
                 {/* <IoMdLink className="rotate-90" /> */}
-                Listed:<p> {date}</p>
+                Oprettet: <p> {date}</p>
               </div>
               {/* <div className=" font-bold text-base">Feb.03 13:06:18</div> */}
               {/* {car?.maxBidAmount ? (

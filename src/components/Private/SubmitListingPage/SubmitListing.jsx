@@ -5,7 +5,17 @@ import {
   useSubmitListingCreateMutation,
 } from "@/redux/api/features/carPrivate";
 import { useProfileQuery } from "@/redux/api/features/myProfile";
-import { Avatar, Checkbox, DatePicker, Form, Input, InputNumber, Select, Spin } from "antd";
+import {
+  Avatar,
+  Checkbox,
+  DatePicker,
+  Form,
+  Input,
+  InputNumber,
+  Select,
+  Slider,
+  Spin,
+} from "antd";
 import { useForm } from "antd/es/form/Form";
 import dayjs from "dayjs";
 import { jwtDecode } from "jwt-decode";
@@ -13,11 +23,13 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
-import { toast } from "sonner"; 
+import { toast } from "sonner";
 import Cookies from "universal-cookie";
 const { Option } = Select;
-const SubmitListing = () => { 
-  const { 
+
+const { RangePicker } = DatePicker;
+const SubmitListing = () => {
+  const {
     data: profileData,
     currentData,
     isLoading,
@@ -26,11 +38,10 @@ const SubmitListing = () => {
 
   const { data: allBrand, isLoading: isLoadingBrand } = useGetBrandQuery();
 
-
-
   const [submitListingData] = useSubmitListingCreateMutation();
   const [form] = useForm();
   const cookies = new Cookies();
+  const [kmRange, setKmRange] = useState([0, 500000]);
   const userCookie = cookies.get("car_trading_accessToken");
   let userInfo;
   if (!userCookie) {
@@ -47,6 +58,20 @@ const SubmitListing = () => {
   const [isDistance, setIsDistance] = useState(false);
   const [isCompany, setIsCompany] = useState(false);
   const [selectedCar, setSelectedCar] = useState(null);
+
+  const formatKm = (value) => {
+    if (value >= 500000) {
+      return "500000+";
+    }
+    return value.toLocaleString("da-DK");
+  };
+  const handleKmRangeChange = (value) => {
+    setKmRange(value);
+    form.setFieldsValue({
+      drivenKmFrom: value[0],
+      drivenKmTo: value[1],
+    });
+  };
 
   const handleCarSelect = (car) => {
     setSelectedCar(car);
@@ -73,8 +98,17 @@ const SubmitListing = () => {
   };
 
   const onFinsh = async (values) => {
+      const [modelsFrom, modelsTo] = values.modelYearRange || [];
     if (!selectedCar) {
       return toast.error("Vælg venligst modeller", {
+        toastId: "formError",
+        autoClose: 2000,
+      });
+    }
+
+
+    if (!values.drivenKmTo || !values.drivenKmFrom) {
+      return toast.error("Vælg kørte kilometer fra og til", {
         toastId: "formError",
         autoClose: 2000,
       });
@@ -83,9 +117,9 @@ const SubmitListing = () => {
     values.models = selectedCar;
     let data;
     if (userInfo) {
-      data = { ...values, userId: userInfo?.userId };
+      data = { ...values, userId: userInfo?.userId, modelsFrom, modelsTo };
     } else {
-      data = { ...values };
+      data = { ...values, modelsFrom, modelsTo };
     }
 
     // delete data.city;
@@ -95,8 +129,9 @@ const SubmitListing = () => {
     const selectedBrand = JSON.parse(values.mark);
     data.mark = selectedBrand.name;
     data.brandImage = selectedBrand.image;
-    // console.log(data);
 
+    console.log(data);
+    // return;
 
     try {
       const res = await submitListingData(data).unwrap();
@@ -209,7 +244,6 @@ const SubmitListing = () => {
             <Input placeholder="Indtast model" />
           </Form.Item>
         </div>
-
         <div className="flex flex-col  md:flex-row justify-between  gap-5 ">
           <Form.Item
             className="flex-1"
@@ -278,14 +312,12 @@ const SubmitListing = () => {
             </Select>
           </Form.Item>
         </div>
-
         <h1
           style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
           className="font-bold   mb-2"
         >
           Kontantpris (Max pris)
         </h1>
-
         <Form.Item
           rules={[
             {
@@ -305,7 +337,6 @@ const SubmitListing = () => {
             className=" w-full"
           />
         </Form.Item>
-
         <div className="flex justify-between items-start">
           <Form.Item
             rules={[
@@ -483,9 +514,7 @@ const SubmitListing = () => {
             </Form.Item>
           </div>
         </div>
-
         {/* <div className="flex justify-between items-center"></div> */}
-
         <Form.Item
           label={
             <span
@@ -500,48 +529,48 @@ const SubmitListing = () => {
           <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-3 select-none">
             <div
               onClick={() => handleCarSelect("mikrobil")}
-              className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "mikrobil" ? "border border-blue-500 " : "  "
+              className={`px-4  pt-2 cursor-pointer rounded-md mb-2  w-fit ${
+                selectedCar === "mikrobil" ? "border border-blue-500" : "  "
               }`}
             >
-              <div className="border  border-secondary-color w-fit p-4 rounded-md">
-                <Image src={AllImages.ct1} alt="car" />
+              <div className="border   border-secondary-color w-fit  rounded-md">
+                <Image src={AllImages.ct11} alt="car" className="h-[90px]" />
               </div>
               <p className="text-center">Mikrobil</p>
             </div>
 
             <div
               onClick={() => handleCarSelect("stationcar")}
-              className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
+              className={`px-4 pt-2 cursor-pointer rounded-md mb-2  w-fit ${
                 selectedCar === "stationcar" ? "border border-blue-500 " : "  "
               }`}
             >
-              <div className="border  border-secondary-color w-fit p-4 rounded-md">
-                <Image src={AllImages.ct2} alt="car" />
+              <div className="border  border-secondary-color w-fit rounded-md">
+                <Image src={AllImages.ct12} alt="car" className="h-[90px]" />
               </div>
               <p className="text-center">Stationcar</p>
             </div>
 
             <div
               onClick={() => handleCarSelect("suv")}
-              className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
+              className={`px-4 pt-2 cursor-pointer rounded-md mb-2  w-fit ${
                 selectedCar === "suv" ? "border border-blue-500 " : "  "
               }`}
             >
-              <div className="border  border-secondary-color w-fit p-4 rounded-md">
-                <Image src={AllImages.ct3} alt="car" className="w-fit" />
+              <div className="border  border-secondary-color w-fit  rounded-md">
+                <Image src={AllImages.ct13} alt="car" className="h-[90px]" />
               </div>
               <p className="text-center"> SUV</p>
             </div>
 
             <div
               onClick={() => handleCarSelect("crossover")}
-              className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
+              className={`px-4 pt-2 cursor-pointer rounded-md mb-2  w-fit ${
                 selectedCar === "crossover" ? "border border-blue-500 " : "  "
               }`}
             >
-              <div className="border  border-secondary-color w-fit p-4 rounded-md">
-                <Image src={AllImages.ct4} alt="car" className="w-fit" />
+              <div className="border  border-secondary-color w-fit  rounded-md">
+                <Image src={AllImages.ct14} alt="car" className="h-[90px]" />
               </div>
               <p className="text-center">Crossover (CUV)</p>
             </div>
@@ -572,12 +601,12 @@ const SubmitListing = () => {
 
             <div
               onClick={() => handleCarSelect("hatchback")}
-              className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
+              className={`px-4 pt-2 cursor-pointer rounded-md mb-2  w-fit ${
                 selectedCar === "hatchback" ? "border border-blue-500 " : "  "
               }`}
             >
-              <div className="border  border-secondary-color w-fit p-4 rounded-md">
-                <Image src={AllImages.ct8} alt="car" />
+              <div className="border  border-secondary-color w-fit  rounded-md">
+                <Image src={AllImages.ct15} alt="car" className="h-[90px]" />
               </div>
               <p className="text-center">Hatchback</p>
             </div>
@@ -589,7 +618,7 @@ const SubmitListing = () => {
               }`}
             >
               <div className="border  border-secondary-color w-fit p-4 rounded-md">
-                <Image src={AllImages.ct9} alt="car" />
+                <Image src={AllImages.ct10} alt="car" />
               </div>
               <p className="text-center"> Cabriolet</p>
             </div>
@@ -601,60 +630,14 @@ const SubmitListing = () => {
               }`}
             >
               <div className="border  border-secondary-color w-fit p-4 rounded-md">
-                <Image src={AllImages.ct10} alt="car" />
+                <Image src={AllImages.ct9} alt="car" />
               </div>
               <p className="text-center"> Coupe</p>
             </div>
           </div>
         </Form.Item>
 
-        <h1
-          style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
-          className="font-bold   mb-2"
-        >
-          Årgang
-        </h1>
-        <div className="flex  justify-between gap-5">
-          {/* <Form.Item
-            rules={[
-              {
-                required: true,
-                message: "Venligst indtast årgang fra",
-              },
-            ]}
-            label={<span className="font-medium text-base">Fra.</span>}
-            name="modelsFrom"
-            className="flex-1"
-          >
-            <InputNumber
-              type="number"
-              inputMode="numeric"
-              pattern="[0-9]*"
-              placeholder="Årgang fra."
-              className="w-full"
-            />
-          </Form.Item>
-
-          <Form.Item
-            rules={[
-              {
-                required: true,
-                message: "Venligst indtast årgang til",
-              },
-            ]}
-            label={<span className="font-medium text-base">Til</span>}
-            name="modelsTo"
-            className="flex-1"
-          >
-            <InputNumber
-              type="number"
-              inputMode="numeric"
-              pattern="[0-9]*"
-              placeholder="Årgang til."
-              className="w-full"
-            />
-          </Form.Item> */}
-
+        {/* <div className="flex  justify-between gap-5">
           <Form.Item
             rules={[
               {
@@ -701,6 +684,45 @@ const SubmitListing = () => {
               style={{ height: 40 }}
             />
           </Form.Item>
+        </div> */}
+        <div>
+          <h1
+            style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
+            className="font-bold   mb-2"
+          >
+            Årgang
+          </h1>
+
+          <Form.Item
+            name="modelYearRange"
+            rules={[
+              {
+                required: true,
+                message: "Venligst vælg årgang",
+              },
+            ]}
+            className="mb-0"
+            getValueFromEvent={(dates) => {
+              if (!dates) return null;
+              return [dates[0]?.year(), dates[1]?.year()];
+            }}
+            getValueProps={(value) => ({
+              value: value
+                ? [
+                    value[0] ? dayjs(String(value[0]), "YYYY") : null,
+                    value[1] ? dayjs(String(value[1]), "YYYY") : null,
+                  ]
+                : null,
+            })}
+          >
+            <RangePicker
+              picker="year"
+              format="YYYY"
+              placeholder={["Fra år", "Til år"]}
+              size="large"
+              className="w-full"
+            />
+          </Form.Item>
         </div>
 
         <h1
@@ -709,7 +731,7 @@ const SubmitListing = () => {
         >
           kilometer
         </h1>
-        <div className="flex  justify-between gap-5">
+        {/* <div className="flex  justify-between gap-5">
           <Form.Item
             rules={[
               {
@@ -749,8 +771,43 @@ const SubmitListing = () => {
               className="w-full"
             />
           </Form.Item>
-        </div>
+        </div> */}
+        <div className="flex gap-5 w-full">
+          <Form.Item
+            className="w-full" // ✅ IMPORTANT
+            label={
+              <span className="font-medium text-base">Kørte kilometer</span>
+            }
+            required
+          >
+            <div className="space-y-3 w-full">
+              <Slider
+                range
+                value={kmRange}
+                onChange={handleKmRangeChange}
+                min={0}
+                max={500000}
+                step={10000}
+                tipFormatter={formatKm}
+                tooltipPlacement="top"
+                className="mt-2 w-full"
+              />
 
+              <div className="flex justify-between text-sm text-gray-600 px-1">
+                <span>{formatKm(kmRange[0])}</span>
+                <span>{formatKm(kmRange[1])}</span>
+              </div>
+            </div>
+
+            {/* Hidden fields */}
+            <Form.Item name="drivenKmFrom" hidden>
+              <InputNumber />
+            </Form.Item>
+            <Form.Item name="drivenKmTo" hidden>
+              <InputNumber />
+            </Form.Item>
+          </Form.Item>
+        </div>
         <div
           style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
           onClick={() => setIsDistance(!isDistance)}
@@ -927,7 +984,6 @@ const SubmitListing = () => {
             </div>
           </React.Fragment>
         )}
-
         <div name="type" className=" flex  gap-10 my-8">
           <div
             style={{ fontSize: "clamp(16px, 2vw + 1rem ,30px)" }}
@@ -956,7 +1012,6 @@ const SubmitListing = () => {
             Privat
           </div>
         </div>
-
         <h1
           style={{ fontSize: "clamp(18px, 3vw + 1rem ,36px)" }}
           className=" font-bold"
@@ -972,7 +1027,6 @@ const SubmitListing = () => {
           uploader nogle billeder af din bil til os. Du kan finde nogle
           eksempler på de vinkler, vi gerne vil have af din bil.
         </h1>
-
         {isCompany ? (
           <div className="my-[10px] flex justify-between gap-5">
             <div className="flex-1">
@@ -1059,7 +1113,6 @@ const SubmitListing = () => {
             </Form.Item>
           </div>
         </div>
-
         <div className="my-[10px] grid md:grid-cols-3 grid-cols-2 gap-5">
           <div className=" ">
             <p
@@ -1123,7 +1176,6 @@ const SubmitListing = () => {
             </Form.Item>
           </div>
         </div>
-
         <div className="">
           <p
             style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
@@ -1144,7 +1196,6 @@ const SubmitListing = () => {
             <Input placeholder="Telefonnummer" className="py-3" />
           </Form.Item>
         </div>
-
         {!userInfo && (
           <div className="">
             <p
@@ -1166,7 +1217,6 @@ const SubmitListing = () => {
             </Form.Item>
           </div>
         )}
-
         <div className="text-center">
           <button
             style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
@@ -1182,7 +1232,6 @@ const SubmitListing = () => {
 };
 
 export default SubmitListing;
-
 
 const rawColors = [
   { label: "Alle", value: "Alle", colorCode: "#" },

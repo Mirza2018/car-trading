@@ -64,7 +64,7 @@ const SellCarAllDetails = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success("Registreringspladedata hentet succesfuldt…", {
+      toast.success("Nummerplade fundet", {
         id: toastId,
         duration: 2000,
       });
@@ -87,7 +87,7 @@ const SellCarAllDetails = () => {
   }, [isSuccess, isError, data, dispatch]);
 
   const handleEditClick = () => {
-    toast.loading("Registreringsplade kontrolleres…", {
+    toast.loading("Søger efter nummerplade", {
       id: toastId,
     });
     const inputValue = inputRef.current?.input?.value;
@@ -177,7 +177,7 @@ const SellCarAllDetails = () => {
 
       const res = await saleData(formData).unwrap();
       console.log("API Response:", res);
-      toast.success("Bil er blevet listet succesfuldt", {
+      toast.success("Din bil er nu oprettet", {
         id: toastId,
         duration: 2000,
       });
@@ -323,7 +323,7 @@ const fuelOptions = [
               rules={[
                 {
                   required: true,
-                  message: "Alle (Venligst) tekster skal slettes",
+                  message: "Venligst indtast kilometertal",
                 },
               ]}
             >
@@ -344,22 +344,13 @@ const fuelOptions = [
               >
                 Antal lak skader*
               </p>
-              {/* <div className="pb-1 flex justify-end cursor-pointer"> */}
               <Tooltip
-                className="cursor-pointer"
                 placement="right"
-                title={
-                  <Image
-                    alt=""
-                    className="!h-72 !aspect-auto "
-                    src={AllImages.carDetails}
-                  />
-                }
-                color={"#FBEBEB"}
+                overlayStyle={{ maxWidth: "none" }} // 👈 important
+                title={<Image alt="" src={AllImages.carDetails} width={400} />}
               >
-                <LuInfo className="" />
-              </Tooltip>{" "}
-              {/* </div>{" "} */}
+                <LuInfo />
+              </Tooltip>
             </div>
 
             <Form.Item
@@ -534,7 +525,7 @@ const fuelOptions = [
             style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
             className=" font-medium pb-2"
           >
-            Fejl eller andre kommentarer*
+            Fejl eller andre kommentarer
           </p>
           <Form.Item name={`comment`}>
             <TextArea

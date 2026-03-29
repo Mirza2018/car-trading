@@ -30,7 +30,7 @@ const SellBuyTrade = () => {
   const toastId = "unique-toast-id";
   const dispatch = useDispatch();
   const handleEditClick = () => {
-    toast.loading("Registreringsplade kontrolleres…", {
+    toast.loading("Søger efter nummerplade", {
       id: toastId,
     });
 
@@ -43,7 +43,7 @@ const SellBuyTrade = () => {
   // console.log(isSuccess, isError, data?.data?.data);
 
   if (isSuccess) {
-    toast.success("Registreringspladedata hentet succesfuldt…", {
+    toast.success("Nummerplade fundet", {
       id: toastId,
       duration: 2000,
     });

@@ -30,6 +30,11 @@ import ct7 from "./icons/ct7.svg";
 import ct8 from "./icons/ct8.svg";
 import ct9 from "./icons/ct9.svg";
 import ct10 from "./icons/ct10.svg";
+import ct11 from "./icons/ct11.svg";
+import ct12 from "./icons/ct12.svg";
+import ct13 from "./icons/ct13.svg";
+import ct14 from "./icons/ct14.svg";
+import ct15 from "./icons/ct15.svg";
 import cross from "./icons/cross.svg";
 import print from "./icons/print.svg";
 import signature from "./icons/signature.svg";
@@ -109,6 +114,11 @@ export const AllImages = {
   ct8,
   ct9,
   ct10,
+  ct11,
+  ct12,
+  ct13,
+  ct14,
+  ct15,
   orderTransport,
   terms,
   totalCar,

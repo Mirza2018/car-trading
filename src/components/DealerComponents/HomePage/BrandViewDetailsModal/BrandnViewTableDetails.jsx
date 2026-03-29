@@ -1,7 +1,7 @@
 import React from "react";
 
 const BrandnViewTableDetails = ({ car }) => {
-  console.log(car);
+  // console.log(car);
 
   return (
     <main className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-7 gap-y-2 w-full">

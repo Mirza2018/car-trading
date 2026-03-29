@@ -97,23 +97,17 @@ const Footer = () => {
               Modtag prisopdateringer, købstips og meget mere!
             </p>
 
-            <div className="relative max-w-3xl">
-              <Input
-                placeholder="Din e-mail"
-                className="w-full bg-[#ccdfe6] border-[#FFFFFF] border rounded-full text-lg placeholder-[#53585a] focus:outline-none"
-                suffix={
-                  <div className="whitespace-nowrap bg-[#ff991c] !text-white font-medium px-4 py-2 rounded-full lg:text-lg text-sm hover:opacity-90 transition-opacity">
-                    <Link href="/sign-up" className="!text-white">
-                      Tilmeld
-                    </Link>
-                  </div>
-                }
-              />
-            </div>
+            {/* <div className="relative max-w-3xl">
+              <Link href="/contact-us" className="!text-white">
+                <p className="whitespace-nowrap bg-[#ff991c] !text-white font-medium px-4 py-2 rounded-full w-fit lg:text-lg text-sm hover:opacity-90 transition-opacity">
+                  Kontakt os
+                </p>
+              </Link>
+            </div> */}
           </div>
         </div>
 
-        <ul className="flex space-x-4 justify-end mt-4">
+        {/* <ul className="flex space-x-4 justify-end mt-4">
           <li>
             <FacebookFilled className="text-2xl" />
           </li>
@@ -126,7 +120,7 @@ const Footer = () => {
           <li>
             <LinkedinFilled className="text-2xl" />
           </li>
-        </ul>
+        </ul> */}
 
         <div className="border-t border-white mt-8 pt-8 text-center flex justify-between md:flex-row flex-col">
           <p>© {year} Alle rettigheder forbeholdes</p>

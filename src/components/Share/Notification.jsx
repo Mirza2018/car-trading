@@ -61,7 +61,9 @@ const Notification = () => {
       className="flex flex-col gap-4 w-full text-center bg-white p-4 rounded-lg"
       style={{ boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.25)" }}
     >
-      {allNotification?.data?.result?.length == 0 && <div>No notification</div>}
+      {allNotification?.data?.result?.length == 0 && (
+        <div>Ingen meddelelser</div>
+      )}
       {allNotification?.data?.result?.slice(0, 5).map((notification) => (
         <div className="text-start" key={notification?._id}>
           <div className="flex gap-2">
@@ -77,7 +79,7 @@ const Notification = () => {
                   <>
                     <Link href={notification?.link}>
                       <button className="bg-secondary-color text-white px-2 rounded-md">
-                        Go
+                        Gå
                       </button>
                     </Link>
                   </>
