@@ -98,14 +98,13 @@ const SubmitListing = () => {
   };
 
   const onFinsh = async (values) => {
-      const [modelsFrom, modelsTo] = values.modelYearRange || [];
+    const [modelsFrom, modelsTo] = values.modelYearRange || [];
     if (!selectedCar) {
       return toast.error("Vælg venligst modeller", {
         toastId: "formError",
         autoClose: 2000,
       });
     }
-
 
     if (!values.drivenKmTo || !values.drivenKmFrom) {
       return toast.error("Vælg kørte kilometer fra og til", {
@@ -130,7 +129,7 @@ const SubmitListing = () => {
     data.mark = selectedBrand.name;
     data.brandImage = selectedBrand.image;
 
-    console.log(data);
+    // console.log(data);
     // return;
 
     try {
@@ -514,7 +513,7 @@ const SubmitListing = () => {
             </Form.Item>
           </div>
         </div>
-        {/* <div className="flex justify-between items-center"></div> */}
+      
         <Form.Item
           label={
             <span
@@ -526,165 +525,149 @@ const SubmitListing = () => {
           }
           name="models"
         >
-          <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-3 select-none">
-            <div
-              onClick={() => handleCarSelect("mikrobil")}
-              className={`px-4  pt-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "mikrobil" ? "border border-blue-500" : "  "
-              }`}
-            >
-              <div className="border   border-secondary-color w-fit  rounded-md">
-                <Image src={AllImages.ct11} alt="car" className="h-[90px]" />
+          <div className="flex justify-center ">
+            <div className="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-2 gap-3 select-none max-w-xl ">
+              <div
+                onClick={() => handleCarSelect("mikrobil")}
+                className={`cursor-pointer rounded-md p-2 w-fit border transition-all duration-300 
+    transform
+    ${
+      selectedCar === "mikrobil"
+        ? "border-secondary-color bg-gray-100 scale-105 shadow-md"
+        : "border-transparent hover:border-gray-300 hover:scale-105 hover:shadow-md"
+    }
+  `}
+              >
+                <div className="w-fit rounded p-2 ">
+                  <Image src={AllImages.ct1} alt="Mikrobil car" />
+                </div>
               </div>
-              <p className="text-center">Mikrobil</p>
-            </div>
 
-            <div
-              onClick={() => handleCarSelect("stationcar")}
-              className={`px-4 pt-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "stationcar" ? "border border-blue-500 " : "  "
-              }`}
-            >
-              <div className="border  border-secondary-color w-fit rounded-md">
-                <Image src={AllImages.ct12} alt="car" className="h-[90px]" />
+              <div
+                onClick={() => handleCarSelect("stationcar")}
+                className={`cursor-pointer rounded-md p-2 w-fit border transition-all duration-300 
+    transform ${
+      selectedCar === "stationcar"
+        ? "border-secondary-color bg-gray-100 scale-105 shadow-md"
+        : "border-transparent hover:border-gray-300 hover:scale-105 hover:shadow-md"
+    }`}
+              >
+                <div className="w-fit rounded p-2 ">
+                  <Image src={AllImages.ct2} alt="car" />
+                </div>
+                {/* <p className="text-center">Stationcar</p> */}
               </div>
-              <p className="text-center">Stationcar</p>
-            </div>
 
-            <div
-              onClick={() => handleCarSelect("suv")}
-              className={`px-4 pt-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "suv" ? "border border-blue-500 " : "  "
-              }`}
-            >
-              <div className="border  border-secondary-color w-fit  rounded-md">
-                <Image src={AllImages.ct13} alt="car" className="h-[90px]" />
+              <div
+                // type="button"
+                onClick={() => handleCarSelect("suv")}
+                className={`cursor-pointer rounded-md p-2 w-fit border transition-all duration-300 
+    transform ${
+      selectedCar === "suv"
+        ? "border-secondary-color bg-gray-100 scale-105 shadow-md"
+        : "border-transparent hover:border-gray-300 hover:scale-105 hover:shadow-md"
+    }`}
+              >
+                <div className="w-fit rounded p-2 ">
+                  <Image src={AllImages.ct3} alt="car" />
+                </div>
+                {/* <p className="text-center"> SUV</p> */}
               </div>
-              <p className="text-center"> SUV</p>
-            </div>
 
-            <div
-              onClick={() => handleCarSelect("crossover")}
-              className={`px-4 pt-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "crossover" ? "border border-blue-500 " : "  "
-              }`}
-            >
-              <div className="border  border-secondary-color w-fit  rounded-md">
-                <Image src={AllImages.ct14} alt="car" className="h-[90px]" />
+              <div
+                // type="button"
+                onClick={() => handleCarSelect("crossover")}
+                className={`cursor-pointer rounded-md p-2 w-fit border transition-all duration-300 
+    transform ${
+      selectedCar === "crossover"
+        ? "border-secondary-color bg-gray-100 scale-105 shadow-md"
+        : "border-transparent hover:border-gray-300 hover:scale-105 hover:shadow-md"
+    }`}
+              >
+                <div className="w-fit rounded p-2 ">
+                  <Image src={AllImages.ct4} alt="car" />
+                </div>
+                {/* <p className="text-center">Crossover (CUV)</p> */}
               </div>
-              <p className="text-center">Crossover (CUV)</p>
-            </div>
 
-            <div
-              onClick={() => handleCarSelect("minibus")}
-              className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "minibus" ? "border border-blue-500 " : "  "
-              }`}
-            >
-              <div className="border  border-secondary-color w-fit p-4 rounded-md">
-                <Image src={AllImages.ct6} alt="car" />
+              <div
+                onClick={() => handleCarSelect("minibus")}
+                className={`cursor-pointer rounded-md p-2 w-fit border transition-all duration-300 
+    transform ${
+      selectedCar === "minibus"
+        ? "border-secondary-color bg-gray-100 scale-105 shadow-md"
+        : "border-transparent hover:border-gray-300 hover:scale-105 hover:shadow-md"
+    }`}
+              >
+                <div className="w-fit rounded p-2 ">
+                  <Image src={AllImages.ct5} alt="car" />
+                </div>
+                {/* <p className="text-center">Minibus (MPV)</p> */}
               </div>
-              <p className="text-center">Minibus (MPV)</p>
-            </div>
 
-            <div
-              onClick={() => handleCarSelect("sedan")}
-              className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "sedan" ? "border border-blue-500 " : "  "
-              }`}
-            >
-              <div className="border  border-secondary-color w-fit p-4 rounded-md">
-                <Image src={AllImages.ct7} alt="car" />
+              <div
+                onClick={() => handleCarSelect("sedan")}
+                className={`cursor-pointer rounded-md p-2 w-fit border transition-all duration-300 
+    transform ${
+      selectedCar === "sedan"
+        ? "border-secondary-color bg-gray-100 scale-105 shadow-md"
+        : "border-transparent hover:border-gray-300 hover:scale-105 hover:shadow-md"
+    }`}
+              >
+                <div className="w-fit rounded p-2 ">
+                  <Image src={AllImages.ct6} alt="car" />
+                </div>
+                {/* <p className="text-center"> Sedan</p> */}
               </div>
-              <p className="text-center"> Sedan</p>
-            </div>
 
-            <div
-              onClick={() => handleCarSelect("hatchback")}
-              className={`px-4 pt-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "hatchback" ? "border border-blue-500 " : "  "
-              }`}
-            >
-              <div className="border  border-secondary-color w-fit  rounded-md">
-                <Image src={AllImages.ct15} alt="car" className="h-[90px]" />
+              <div
+                onClick={() => handleCarSelect("hatchback")}
+                className={`cursor-pointer rounded-md p-2 w-fit border transition-all duration-300 
+    transform ${
+      selectedCar === "hatchback"
+        ? "border-secondary-color bg-gray-100 scale-105 shadow-md"
+        : "border-transparent hover:border-gray-300 hover:scale-105 hover:shadow-md"
+    }`}
+              >
+                <div className="w-fit rounded p-2 ">
+                  <Image src={AllImages.ct7} alt="car" />
+                </div>
+                {/* <p className="text-center">Hatchback</p> */}
               </div>
-              <p className="text-center">Hatchback</p>
-            </div>
 
-            <div
-              onClick={() => handleCarSelect("cabriolet")}
-              className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "cabriolet" ? "border border-blue-500 " : "  "
-              }`}
-            >
-              <div className="border  border-secondary-color w-fit p-4 rounded-md">
-                <Image src={AllImages.ct10} alt="car" />
+              <div
+                onClick={() => handleCarSelect("cabriolet")}
+                className={`cursor-pointer rounded-md p-2 w-fit border transition-all duration-300 
+    transform ${
+      selectedCar === "cabriolet"
+        ? "border-secondary-color bg-gray-100 scale-105 shadow-md"
+        : "border-transparent hover:border-gray-300 hover:scale-105 hover:shadow-md"
+    }`}
+              >
+                <div className="w-fit rounded p-2 ">
+                  <Image src={AllImages.ct8} alt="car" />
+                </div>
+                {/* <p className="text-center"> Cabriolet</p> */}
               </div>
-              <p className="text-center"> Cabriolet</p>
-            </div>
 
-            <div
-              onClick={() => handleCarSelect("coupe")}
-              className={`px-4 py-2 cursor-pointer rounded-md mb-2  w-fit ${
-                selectedCar === "coupe" ? "border border-blue-500 " : "  "
-              }`}
-            >
-              <div className="border  border-secondary-color w-fit p-4 rounded-md">
-                <Image src={AllImages.ct9} alt="car" />
+              <div
+                onClick={() => handleCarSelect("coupe")}
+                className={`cursor-pointer rounded-md p-2 w-fit border transition-all duration-300 
+    transform ${
+      selectedCar === "coupe"
+        ? "border-secondary-color bg-gray-100 scale-105 shadow-md"
+        : "border-transparent hover:border-gray-300 hover:scale-105 hover:shadow-md"
+    }`}
+              >
+                <div className="w-fit rounded p-2 ">
+                  <Image src={AllImages.ct9} alt="car" />
+                </div>
+                {/* <p className="text-center"> Coupe</p> */}
               </div>
-              <p className="text-center"> Coupe</p>
             </div>
           </div>
         </Form.Item>
 
-        {/* <div className="flex  justify-between gap-5">
-          <Form.Item
-            rules={[
-              {
-                required: true,
-                message: "Venligst indtast årgang fra",
-              },
-            ]}
-            label={<span className="font-medium text-base">Fra.</span>}
-            name="modelsFrom"
-            className="flex-1"
-            getValueFromEvent={(date) => (date ? date.year() : null)}
-            getValueProps={(value) => ({
-              value: value ? dayjs(String(value), "YYYY") : null,
-            })}
-          >
-            <DatePicker
-              picker="year"
-              format="YYYY"
-              placeholder="Årgang fra"
-              className="w-full"
-              style={{ height: 40 }}
-            />
-          </Form.Item>
-          <Form.Item
-            rules={[
-              {
-                required: true,
-                message: "Venligst indtast årgang til",
-              },
-            ]}
-            label={<span className="font-medium text-base">Til</span>}
-            name="modelsTo"
-            className="flex-1"
-            getValueFromEvent={(date) => (date ? date.year() : null)}
-            getValueProps={(value) => ({
-              value: value ? dayjs(String(value), "YYYY") : null,
-            })}
-          >
-            <DatePicker
-              picker="year"
-              format="YYYY"
-              placeholder="Årgang til."
-              className="w-full"
-              style={{ height: 40 }}
-            />
-          </Form.Item>
-        </div> */}
         <div>
           <h1
             style={{ fontSize: "clamp (14px, 1vw + 1rem ,24px)" }}
