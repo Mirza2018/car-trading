@@ -83,21 +83,21 @@ const SellBuyTrade = () => {
                   title={
                     <div>
                       <p style={{ fontWeight: 600, marginBottom: 8 }}>
-                        Gør som tusind andre – sælg sin bil nemt
+                        Sælg din bil nemt og uden omkostninger
                       </p>
                       <div className="flex flex-col justify-start items-start">
                         <p className="flex gap-2 justify-center items-center">
-                          <FaCheck /> Gratis for private – ingen salær
+                          <FaCheck /> Gratis for private – ingen salærer
                         </p>
                         <p className="flex gap-2 justify-center items-center">
-                          <FaCheck /> Opret sin bil på få klik
+                          <FaCheck />
+                          Opret din annonce på 1 minut
                         </p>
                         <p className="flex gap-2 justify-center items-center">
-                          <FaCheck /> Forhandlere køber eller byder direkte
+                          <FaCheck /> Forhandlere afgiver bud direkte på din bil
                         </p>
                         <p className="flex gap-2 justify-center items-center">
-                          <FaCheck /> Ingen løbetid bilen er online med det
-                          samme
+                          <FaCheck /> Din annonce er online med det samme
                         </p>
                       </div>
                     </div>
@@ -119,17 +119,18 @@ const SellBuyTrade = () => {
                   title={
                     <div>
                       <p style={{ fontWeight: 600, marginBottom: 8 }}>
-                        Find din næste bil
+                        Find din næste bil nemt og overskueligt
                       </p>
                       <div className="flex flex-col justify-start items-start">
                         <p className="flex gap-2 justify-center items-center">
-                          <FaCheck /> Opret gratis en bilsøgning
+                          <FaCheck /> Opret en gratis bilsøgning på 1 minut
                         </p>
                         <p className="flex gap-2 justify-center items-center">
-                          <FaCheck /> Få direkte tilbud fra bilforhandlere
+                          <FaCheck /> Modtag tilbud direkte fra bilforhandlere
                         </p>
                         <p className="flex gap-2 justify-center items-center">
-                          <FaCheck /> Også biler, der ikke er annonceret endnu
+                          <FaCheck /> Få adgang til biler fra forhandleres lager
+                          – også uden aktive annoncer
                         </p>
                         <p className="flex gap-2 justify-center items-center">
                           <FaCheck /> Du vælger selv, om du vil købe

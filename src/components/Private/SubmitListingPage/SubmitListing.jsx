@@ -135,7 +135,7 @@ const SubmitListing = () => {
     try {
       const res = await submitListingData(data).unwrap();
       console.log(res);
-      toast.success("Liste oprettet succesfuldt", {
+      toast.success("Annoncen er oprettet.", {
         id: toastId,
         duration: 2000,
       });
@@ -513,7 +513,7 @@ const SubmitListing = () => {
             </Form.Item>
           </div>
         </div>
-      
+
         <Form.Item
           label={
             <span

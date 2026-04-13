@@ -118,7 +118,7 @@ const SellCarAllDetails = () => {
   };
 
   const onFinish = async (values) => {
-    const toastId = toast.loading("Bil listes…", {
+    const toastId = toast.loading("Opretter annoncen...", {
       duration: 2000,
     });
     try {
