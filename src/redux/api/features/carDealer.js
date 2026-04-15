@@ -3,11 +3,6 @@ import { baseApi } from "../baseApi";
 
 export const carDealer = baseApi.injectEndpoints({
   endpoints: (build) => ({
-
-
-
-
-    
     // saleCarList: build.query({
     //   query: (params) => {
     //     const { filter, ...rest } = params || {};
@@ -42,9 +37,6 @@ export const carDealer = baseApi.injectEndpoints({
     //     tagTypes.allCar,
     //   ],
     // }),
-
-
-
 
     // submitListing: build.query({
     //   query: (params) => {
@@ -135,6 +127,29 @@ export const carDealer = baseApi.injectEndpoints({
       invalidatesTags: [tagTypes.bid, tagTypes.sellCarList],
     }),
 
+    ////Email receive
+    getEmailRecive: build.query({
+      query: (params) => {
+        return {
+          url: `/users/dealer-email-received-status`,
+          method: "GET",
+          params,
+        };
+      },
+      providesTags: [tagTypes.reciveMail],
+    }),
+
+    createEmailRecive: build.mutation({
+      query: (body) => {
+        return {
+          url: `/users/dealer-email-received-status`,
+          method: "PATCH",
+          body,
+        };
+      },
+      invalidatesTags: [tagTypes.reciveMail],
+    }),
+
     //end
   }),
 });
@@ -145,4 +160,6 @@ export const {
   useOfferCarDealMutation,
   useBuyCarMutation,
   useBidCreateMutation,
+  useGetEmailReciveQuery,
+  useCreateEmailReciveMutation,
 } = carDealer;

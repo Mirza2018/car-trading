@@ -4,6 +4,7 @@ import {
   Form,
   Input,
   Spin,
+  Switch,
   Typography,
   Upload,
 } from "antd";
@@ -23,10 +24,16 @@ import {
 import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import { getImageUrl } from "@/helpers/config/envConfig";
+import {
+  useCreateEmailReciveMutation,
+  useGetEmailReciveQuery,
+} from "@/redux/api/features/carDealer";
 
 const Profile = () => {
   const { data, currentData, isLoading, isFetching, isSuccess, refetch } =
     useProfileQuery();
+  const { data: reciveEmailData } = useGetEmailReciveQuery();
+  const [toggleEmail] = useCreateEmailReciveMutation();
   const [profileUpdate] = useUpdateProfileMutation();
   const displayedData = data ?? currentData;
 
@@ -51,7 +58,7 @@ const Profile = () => {
   useEffect(() => {
     setImageUrl(getImageUrl() + displayedData?.data?.profile?.profileImage);
     setCompanyImageUrl(
-      getImageUrl() + displayedData?.data?.profile?.companyLogo
+      getImageUrl() + displayedData?.data?.profile?.companyLogo,
     );
   }, [displayedData?.data?.profile]);
 
@@ -119,6 +126,30 @@ const Profile = () => {
         duration: 2000,
       });
       // refetch();
+    } catch (error) {
+      console.log(error);
+
+      toast.error("Prøv igen", {
+        id: toastId,
+        duration: 2000,
+      });
+    }
+  };
+
+  const handleReciveEmail = async (value) => {
+    const toastId = toast.loading("Email opdateres…");
+
+    const data = { receiveEmail: value }; // ✅ use actual toggle state
+
+    try {
+      const res = await toggleEmail(data).unwrap();
+
+      console.log(res);
+
+      toast.success("Email opdateret succesfuldt", {
+        id: toastId,
+        duration: 2000,
+      });
     } catch (error) {
       console.log(error);
 
@@ -220,7 +251,7 @@ const Profile = () => {
             </div>
             <div>
               <Typography.Title level={5} style={{ color: "#222222" }}>
-               Vejnavn
+                Vejnavn
               </Typography.Title>
               <Form.Item name="street" className="text-white">
                 <Input
@@ -391,6 +422,22 @@ const Profile = () => {
           </button>
         </div>
       </Form>
+
+      {userInfo?.role == "dealer" && (
+        <div className="flex justify-start  gap-5  my-3 items-center">
+          <Typography.Title level={5} style={{ color: "#222222" }}>
+            Modtag e-mails
+          </Typography.Title>
+          <Form.Item className="text-white  mt-3">
+            <Switch
+              checked={reciveEmailData?.data?.receiveEmail}
+              onChange={handleReciveEmail}
+              checkedChildren="Ja"
+              unCheckedChildren="Nej"
+            />
+          </Form.Item>
+        </div>
+      )}
     </div>
   );
 };

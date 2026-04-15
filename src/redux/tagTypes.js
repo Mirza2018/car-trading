@@ -18,6 +18,7 @@ export const tagTypes = {
   userProfile: "UserProfile",
   petProfile: "PetProfile",
   privacy: "Privacy",
+  reciveMail:"ReciveMail"
 };
 
 export const tagTypesList = [
@@ -39,4 +40,6 @@ export const tagTypesList = [
   tagTypes.shelter,
   tagTypes.userProfile,
   tagTypes.petProfile,
+  tagTypes.privacy,
+  tagTypes.reciveMail
 ];
