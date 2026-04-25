@@ -1,581 +1,395 @@
-import { useState, useRef, useEffect, useContext } from "react"; // Add useEffect
-import { Input, Avatar, Badge, Button, Upload, Modal, message } from "antd";
-import {
-  SmileOutlined,
-  PaperClipOutlined,
-  SendOutlined,
-  SearchOutlined,
-  EllipsisOutlined,
-  UploadOutlined,
-} from "@ant-design/icons";
+"use client";
+import { useState, useRef, useEffect, useContext, useCallback } from "react";
+import { Avatar, Badge } from "antd";
+import { SendOutlined, EllipsisOutlined } from "@ant-design/icons";
 import { BsCheck2All } from "react-icons/bs";
-import EmojiPicker from "emoji-picker-react";
-import Image from "next/image";
 import { getImageUrl } from "@/helpers/config/envConfig";
-import {
-  useLazySingleConversationQuery,
-  useSingleConversationQuery,
-} from "@/redux/api/features/conversation";
+import { useLazySingleConversationQuery } from "@/redux/api/features/conversation";
 import RelativeTime from "@/utils/RelativeTime";
 import { SocketContext } from "@/utils/SocketContext";
-import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import { baseApi } from "@/redux/api/baseApi";
 import { tagTypes } from "@/redux/tagTypes";
-// import { useSocket } from "@/utils/SocketContext";
 
-const ChatList = ({ conversationData, chats, activeChat, onSelectChat }) => {
-  // console.log("conversationData", conversationData);
+// Lazy-load EmojiPicker — prevents ShadowPortal unmount crash in Next.js
+import dynamic from "next/dynamic";
+const EmojiPicker = dynamic(() => import("emoji-picker-react"), {
+  ssr: false,
+  loading: () => null,
+});
 
+// ─────────────────────────────────────────────
+// UserAvatar
+// ─────────────────────────────────────────────
+const UserAvatar = ({ profile, size = 40, color = "#3b82f6" }) => {
+  if (profile?.profileImage) {
+    return <Avatar src={getImageUrl() + profile.profileImage} size={size} />;
+  }
   return (
-    <div className="flex flex-col">
-      {/* <div className="p-4">
-        <Input
-          prefix={<SearchOutlined className="text-gray-400" />}
-          placeholder="Search messages"
-          className="rounded-lg"
-        />
-      </div> */}
-      <div className="flex-1 overflow-y-auto">
-        {conversationData.map((chat) => (
-          <div
-            key={chat._id}
-            onClick={() => onSelectChat(chat)}
-            className={`flex items-center p-4 cursor-pointer hover:bg-gray-50 ${
-              activeChat?._id === chat?._id
-                ? "bg-gray-100 shadow-md rounded-md"
-                : ""
-            }`}
-          >
-            <Badge dot={chat?.online} offset={[-6, 6]}>
-              <Avatar
-                src={getImageUrl() + chat?.otherUser?.profile?.profileImage}
-                size={40}
-              />
-            </Badge>
-            <div className="ml-3 flex-1">
-              <div className="flex justify-between">
-                <span className="font-medium">
-                  {chat?.otherUser?.profile?.first_name}{" "}
-                  {chat?.otherUser?.profile?.last_name}
-                </span>
-                <span className="text-xs text-gray-500">
-                  {chat.lastMessageTime}
-                </span>
-              </div>
-              <p className="text-sm text-gray-500 truncate">
-                {chat?.lastMessage?.message}
-              </p>
-            </div>
-          </div>
-        ))}
-        {/* {chats.map((chat) => (
-          <div
-            key={chat.id}
-            onClick={() => onSelectChat(chat)}
-            className={`flex items-center p-4 cursor-pointer hover:bg-gray-50 ${
-              activeChat?.id === chat.id ? "bg-gray-50" : ""
-            }`}
-          >
-            <Badge dot={chat.online} offset={[-6, 6]}>
-              <Avatar src={chat.avatar} size={40} />
-            </Badge>
-            <div className="ml-3 flex-1">
-              <div className="flex justify-between">
-                <span className="font-medium">{chat.name}</span>
-                <span className="text-xs text-gray-500">
-                  {chat.lastMessageTime}
-                </span>
-              </div>
-              <p className="text-sm text-gray-500 truncate">
-                {chat?.lastMessage}
-              </p>
-            </div>
-          </div>
-        ))} */}
-      </div>
-    </div>
+    <Avatar
+      size={size}
+      style={{
+        backgroundColor: color,
+        color: "#fff",
+        fontWeight: 600,
+        fontSize: size * 0.4,
+      }}
+    >
+      {profile?.first_name?.charAt(0) ?? "?"}
+    </Avatar>
   );
 };
 
-const ChatWindow = ({ chat, messages, cahtMessage, conversationData }) => {
-  console.log(getImageUrl() + chat?.otherUser?.profile?.profileImage);
+// ─────────────────────────────────────────────
+// ChatList
+// ─────────────────────────────────────────────
+const ChatList = ({ conversationData, activeChat, onSelectChat }) => (
+  <div className="flex-1 overflow-y-auto">
+    {conversationData.map((chat) => (
+      <div
+        key={chat._id}
+        onClick={() => onSelectChat(chat)}
+        className={`flex items-center gap-3 px-4 py-3 cursor-pointer transition-colors hover:bg-gray-50 border-l-4 ${
+          activeChat?._id === chat._id
+            ? "bg-blue-50 border-blue-500"
+            : "border-transparent"
+        }`}
+      >
+        <Badge dot={!!chat?.online} offset={[-4, 4]}>
+          <UserAvatar profile={chat?.otherUser?.profile} size={44} />
+        </Badge>
+        <div className="flex-1 min-w-0">
+          <div className="flex justify-between items-baseline">
+            <span className="font-semibold text-gray-800 text-sm truncate">
+              {chat?.otherUser?.profile?.first_name}{" "}
+              {chat?.otherUser?.profile?.last_name}
+            </span>
+            {chat?.lastMessageTime && (
+              <span className="text-xs text-gray-400 ml-2 shrink-0">
+                {chat.lastMessageTime}
+              </span>
+            )}
+          </div>
+          <p className="text-xs text-gray-500 truncate mt-0.5">
+            {chat?.lastMessage?.message || "Ingen beskeder endnu"}
+          </p>
+        </div>
+      </div>
+    ))}
+  </div>
+);
 
-  // const { messages:myMessages, sendMessage, isConnected } = useSocket();
-  const [updateMessage, setUpdateMessage] = useState(
-    Array.isArray(cahtMessage) ? [...cahtMessage] : []
-  );
-  useEffect(() => {
-    if (Array.isArray(cahtMessage)) {
-      setUpdateMessage([...cahtMessage]);
-    } else {
-      setUpdateMessage([]);
-    }
-  }, [cahtMessage]);
+// ─────────────────────────────────────────────
+// ChatWindow
+// ─────────────────────────────────────────────
+const ChatWindow = ({
+  chat,
+  cahtMessage,
+  conversationData,
+  isMobileView,
+  onBack,
+}) => {
+  const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const [fileList, setFileList] = useState([]);
-  const [previewOpen, setPreviewOpen] = useState(false);
-  const [previewImage, setPreviewImage] = useState("");
-  const messageEndRef = useRef(null);
+  const [emojiOpen, setEmojiOpen] = useState(false);
+  // isMounted guard prevents EmojiPicker rendering during unmount → fixes ShadowPortal crash
+  const [isMounted, setIsMounted] = useState(false);
+  const messagesEndRef = useRef(null);
   const { socket } = useContext(SocketContext);
   const dispatch = useDispatch();
 
-  const messagesEndRef = useRef(null);
-  const messagesContainerRef = useRef(null);
-
-  // useEffect(() => {
-  //   if (messagesContainerRef.current && messagesEndRef.current) {
-  //     // Scroll the container to the bottom smoothly
-  //     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-  //   }
-  // }, [cahtMessage]);
-  console.log(chat);
-
-  socket?.on(`receive_message::${chat?._id}`, (message) => {
-    console.log("Received message", message);
-    const date = new Date().toISOString();
-    const messagefake = { ...message, createdAt: date };
-
-    setUpdateMessage([...updateMessage, messagefake]);
-
-    // message
-  });
-
-  socket?.on(`receive_typing::${chat?.otherUser._id}`, (message) => {
-    console.log("Received type", message);
-
-    // message
-  });
+  useEffect(() => {
+    setIsMounted(true);
+    return () => setIsMounted(false);
+  }, []);
 
   useEffect(() => {
-    if (messagesContainerRef.current) {
-      messagesContainerRef.current.scrollTop =
-        messagesContainerRef.current.scrollHeight;
+    setMessages(Array.isArray(cahtMessage) ? [...cahtMessage] : []);
+  }, [cahtMessage]);
+
+  // Smooth scroll on new message
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  // Instant jump when switching conversations
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "instant" });
+    setEmojiOpen(false);
+  }, [chat?._id]);
+
+  // Socket listener
+  useEffect(() => {
+    if (!socket || !chat?._id) return;
+    const handler = (msg) =>
+      setMessages((prev) => [
+        ...prev,
+        { ...msg, createdAt: new Date().toISOString() },
+      ]);
+    socket.on(`receive_message::${chat._id}`, handler);
+    return () => socket.off(`receive_message::${chat._id}`, handler);
+  }, [socket, chat?._id]);
+
+  const selfId = conversationData?.[0]?.self?._id;
+
+  const handleSend = useCallback(() => {
+    if (!newMessage?.trim() || !chat?._id) return;
+    const messageData = {
+      conversationId: chat._id,
+      message: newMessage,
+      senderId: selfId,
+    };
+    try {
+      socket?.emit("send_message", messageData);
+      setMessages((prev) => [
+        ...prev,
+        {
+          ...messageData,
+          _id: Date.now(),
+          createdAt: new Date().toISOString(),
+        },
+      ]);
+      dispatch(baseApi.util.invalidateTags([tagTypes.message]));
+      setNewMessage("");
+    } catch (err) {
+      console.error("Send error:", err);
     }
-  });
+  }, [newMessage, chat?._id, selfId, socket, dispatch]);
 
-  const onEmojiClick = (emojiObject) => {
-    setNewMessage((prev) => prev + emojiObject.emoji);
-    setShowEmojiPicker(false);
-  };
-
-  const handleUpload = ({ file, fileList }) => {
-    if (file.status === "done") {
-      message.success(`${file.name} file uploaded successfully`);
-    } else if (file.status === "error") {
-      message.error(`${file.name} file upload failed.`);
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
     }
-    setFileList(fileList);
-  };
-
-  const handlePreview = async (file) => {
-    if (!file.url && !file.preview) {
-      file.preview = await getBase64(file.originFileObj);
-    }
-    setPreviewImage(file.url || file.preview);
-    setPreviewOpen(true);
-  };
-
-  const getBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
   };
 
   if (!chat) {
     return (
-      <>
-        {/* <pre>{JSON.stringify(conversationData, null, 10)}</pre> */}
-        <div className="flex items-center justify-center h-full text-gray-500">
-          Vælg en chat for at igang
+      <div className="flex flex-col items-center justify-center h-full text-gray-400 gap-3 bg-gray-50">
+        <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center">
+          <SendOutlined className="text-2xl text-gray-300" />
         </div>
-      </>
+        <p className="text-sm">Vælg en chat for at komme i gang</p>
+      </div>
     );
   }
 
-  const OtherPerson = conversationData.find((singleConversation) => {
-    singleConversation?.otherUser?._id == cahtMessage?.[0]?.senderId;
-  });
-
-  // console.log(cahtMessage, conversationData);
-  // console.log("sender id", conversationData[0]?.self?._id);
-  // console.log(cahtMessage?.[0]?.conversationId);
-  // console.log(cahtMessage);
-
-  const handleSendMessage = () => {
-    console.log(newMessage);
-    console.log(conversationData[0]?.self?._id);
-    console.log(chat?._id);
-
-    // console.log(chat);
-
-    // return;
-    const date = new Date().toISOString();
-    const messageData = {
-      conversationId: chat?._id,
-      message: newMessage,
-      senderId: conversationData[0]?.self?._id,
-    };
-    // const messagefake = { ...messageData, createdAt: date };
-
-    try {
-      socket?.emit("send_message", messageData, (res) => {
-        console.log(res);
-      });
-      setUpdateMessage([...updateMessage, messagefake]);
-      dispatch(baseApi.util.invalidateTags([tagTypes.message]));
-      setNewMessage(null);
-    } catch (error) {
-      console.error("Error sending message:", error);
-    }
-  };
-  // const date = new Date().toISOString();
-  // console.log(date);
-
   return (
-    <div className="flex flex-col h-[85%]">
-      {/* Chat Header */}
-      <div className="flex items-center justify-between p-4 border-b">
-        <div className="flex items-center">
-          {/* <Avatar
-              src={getImageUrl() + chat?.otherUser?.profile?.profileImage}
-              size={40}
-            /> */}
-
-          {chat?.otherUser?.profile?.profileImage ? (
-            <Avatar
-              src={getImageUrl() + chat?.otherUser?.profile?.profileImage}
-              size={40}
-            />
-          ) : (
-            <Avatar style={{ backgroundColor: "#fde3cf", color: "#f56a00" }}>
-              {chat?.otherUser?.profile?.first_name.charAt(0)}
-            </Avatar>
+    <div className="flex flex-col h-full min-h-0">
+      {/* ── Header ── */}
+      <div className="flex items-center justify-between px-3 py-2 border-b bg-white shrink-0 shadow-sm">
+        <div className="flex items-center gap-2">
+          {isMobileView && (
+            <button
+              onClick={onBack}
+              aria-label="Tilbage"
+              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors text-gray-600 text-xl leading-none"
+            >
+              ←
+            </button>
           )}
-
-          <div className="ml-3">
-            <div className="font-medium">
-              {chat?.otherUser?.profile?.first_name}{" "}
-              {chat?.otherUser?.profile?.last_name}
-            </div>
-            {/* <div className="text-xs text-gray-500">
-              {chat.online ? "Online" : "Offline"}
-            </div> */}
-          </div>
+          <UserAvatar profile={chat?.otherUser?.profile} size={36} />
+          <span className="font-semibold text-gray-800 text-sm">
+            {chat?.otherUser?.profile?.first_name}{" "}
+            {chat?.otherUser?.profile?.last_name}
+          </span>
         </div>
-        <Button type="text" icon={<EllipsisOutlined />} />
+        <button className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 text-gray-500">
+          <EllipsisOutlined />
+        </button>
       </div>
 
-      {/* Messages */}
-      <div
-        ref={messagesContainerRef}
-        className="flex-1 overflow-y-auto p-4 space-y-4"
-      >
-        {/* {console.log(OtherPerson)} */}
-        {updateMessage?.map((message) => (
-          <div
-            key={message._id}
-            className={`flex ${
-              message?.senderId == conversationData[0]?.self?._id
-                ? "justify-end"
-                : "justify-start"
-            }`}
-          >
+      {/* ── Messages ── */}
+      <div className="flex-1 overflow-y-auto px-3 py-4 space-y-3 bg-gray-50 min-h-0">
+        {messages.length === 0 && (
+          <div className="flex justify-center pt-8">
+            <span className="text-xs text-gray-400 bg-white px-3 py-1.5 rounded-full shadow-sm">
+              Ingen beskeder endnu — sig hej! 👋
+            </span>
+          </div>
+        )}
+        {messages.map((msg, idx) => {
+          const isSelf = msg?.senderId === selfId;
+          return (
             <div
-              className={`message-bubble ${
-                message?.senderId == conversationData[0]?.self?._id
-                  ? "sent"
-                  : "received"
-              }`}
+              key={msg._id ?? idx}
+              className={`flex items-end gap-2 ${isSelf ? "flex-row-reverse" : "flex-row"}`}
             >
-              {message.file && (
-                <div className="mb-2">
-                  <a
-                    href={message.file.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline flex items-center gap-2"
-                  >
-                    <PaperClipOutlined />
-                    {message.file.name}
-                  </a>
-                </div>
-              )}
-
-              <div>
-                {message?.senderId == conversationData[0]?.self?._id ? (
-                  <div className="flex flex-row-reverse justify-start items-center gap-2">
-                    {chat?.self?.profile?.profileImage ? (
-                      <Avatar
-                        src={getImageUrl() + chat?.self?.profile?.profileImage}
-                        size={40}
-                      />
-                    ) : (
-                      <Avatar
-                        style={{ backgroundColor: "#fde3cf", color: "#f56a00" }}
-                      >
-                        {chat?.self?.profile?.first_name.charAt(0)}
-                      </Avatar>
-                    )}
-                    <p>{message?.message}</p>
-                  </div>
-                ) : (
-                  <div className="flex justify-start items-center gap-2">
-                    {chat?.otherUser?.profile?.profileImage ? (
-                      <Avatar
-                        src={
-                          getImageUrl() + chat?.otherUser?.profile?.profileImage
-                        }
-                        size={40}
-                      />
-                    ) : (
-                      <Avatar
-                        style={{ backgroundColor: "#fde3cf", color: "#f56a00" }}
-                      >
-                        {chat?.otherUser?.profile?.first_name.charAt(0)}
-                      </Avatar>
-                    )}
-                    <p>{message?.message}</p>
-                  </div>
-                )}
+              <div className="shrink-0">
+                <UserAvatar
+                  profile={
+                    isSelf ? chat?.self?.profile : chat?.otherUser?.profile
+                  }
+                  size={26}
+                  color={isSelf ? "#3b82f6" : "#6b7280"}
+                />
               </div>
-
               <div
-                className={`flex justify-end items-center gap-1 text-xs ${
-                  message?.senderId == conversationData[0]?.self?._id
-                    ? "text-white/80"
-                    : "text-gray-500"
-                }`}
+                className={`flex flex-col max-w-[70%] ${isSelf ? "items-end" : "items-start"}`}
               >
-                {message.time}
-                <RelativeTime timestamp={message?.createdAt} />
-                {message?.senderId == conversationData[0]?.self?._id && (
-                  <BsCheck2All className="text-blue-500" />
-                )}
+                <div
+                  className={`px-3 py-2 rounded-2xl text-sm leading-relaxed shadow-sm break-words ${
+                    isSelf
+                      ? "bg-blue-500 text-white rounded-br-sm"
+                      : "bg-white text-gray-800 rounded-bl-sm"
+                  }`}
+                >
+                  {msg?.message}
+                </div>
+                <div className="flex items-center gap-1 mt-0.5 px-1">
+                  <RelativeTime timestamp={msg?.createdAt} />
+                  {isSelf && <BsCheck2All className="text-blue-400 text-xs" />}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Message Input */}
-      <div className="p-4 border-t relative">
-        {showEmojiPicker && (
-          <div className="absolute bottom-full right-0 mb-2">
-            <EmojiPicker onEmojiClick={onEmojiClick} />
+      {/* ── Input ── */}
+      <div className="px-3 py-2 border-t bg-white shrink-0 relative">
+        {/* Only render EmojiPicker after mount and when open — prevents ShadowPortal crash */}
+        {isMounted && emojiOpen && (
+          <div className="absolute bottom-full right-3 mb-2 z-50 shadow-xl rounded-xl overflow-hidden">
+            <EmojiPicker
+              onEmojiClick={(obj) => {
+                setNewMessage((prev) => prev + obj.emoji);
+                setEmojiOpen(false);
+              }}
+              height={350}
+              width={isMobileView ? 280 : 320}
+            />
           </div>
         )}
-        <div className="flex gap-2">
-          <Upload
-            fileList={fileList}
-            onChange={handleUpload}
-            onPreview={handlePreview}
-            multiple
-            className="flex-shrink-0"
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setEmojiOpen((v) => !v)}
+            aria-label="Emoji"
+            className="shrink-0 w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors text-lg"
           >
-            <Button icon={<UploadOutlined />} />
-          </Upload>
-          <Input
-            value={newMessage}
+            😊
+          </button>
+          <input
+            value={newMessage ?? ""}
             onChange={(e) => setNewMessage(e.target.value)}
-            // onChange={(e) => setNewMessage(console.log(e.target.value))}
-            placeholder="Skriv en besked"
-            prefix={
-              <SmileOutlined
-                className="text-gray-400 cursor-pointer"
-                onClick={() => setShowEmojiPicker(!showEmojiPicker)}
-              />
-            }
-            suffix={
-              <SendOutlined
-                onClick={handleSendMessage}
-                className="text-primary cursor-pointer"
-              />
-            }
-            className="rounded-full"
+            onKeyDown={handleKeyDown}
+            placeholder="Skriv en besked…"
+            className="flex-1 bg-gray-100 rounded-full px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-300 transition min-w-0"
           />
+          <button
+            onClick={handleSend}
+            disabled={!newMessage?.trim()}
+            aria-label="Send"
+            className={`shrink-0 w-9 h-9 flex items-center justify-center rounded-full transition-colors ${
+              newMessage?.trim()
+                ? "bg-blue-500 hover:bg-blue-600 text-white"
+                : "bg-gray-200 text-gray-400 cursor-not-allowed"
+            }`}
+          >
+            <SendOutlined className="text-sm" />
+          </button>
         </div>
       </div>
-
-      <Modal
-        open={previewOpen}
-        title="Preview"
-        footer={null}
-        onCancel={() => setPreviewOpen(false)}
-      >
-        <Image
-          alt="preview"
-          style={{ width: "100%" }}
-          width={0}
-          height={0}
-          src={previewImage}
-        />
-      </Modal>
     </div>
   );
 };
 
-export default function Home({ conversationData }) {
+// ─────────────────────────────────────────────
+// Main export
+// ─────────────────────────────────────────────
+export default function Message({ conversationData }) {
   const [activeChat, setActiveChat] = useState(null);
-  const [isMobileView, setIsMobileView] = useState(false); // Default to false for SSR
-  const [showChatList, setShowChatList] = useState(true);
-  // console.log("activeChat", activeChat);
+  const [isMobileView, setIsMobileView] = useState(false);
+  const [showList, setShowList] = useState(true);
+
   const displayedData = useSelector((state) => state.carowner.carOwnerInfo);
-  // const displayedData = useSelector((state) => state.offerInfo.offerCarInfo);
-// console.log(okok,displayedData);
+  const [trigger, { data, currentData }] = useLazySingleConversationQuery();
+  const cahtMessage = data ?? currentData;
 
-
-  const [trigger, { data, isLoading, isFetching, isSuccess, currentData }] =
-    useLazySingleConversationQuery();
-
+  // Auto-select conversation coming from a car listing page
   useEffect(() => {
-    if (activeChat?._id) {
-      trigger(activeChat?._id); // manually trigger fetch when activeChat changes
+    if (!displayedData || !conversationData?.length) return;
+    const matched = conversationData.find(
+      (c) =>
+        c?.otherUser?._id === displayedData || c?.self?._id === displayedData,
+    );
+    if (matched) {
+      setActiveChat(matched);
+      setShowList(false);
     }
+  }, [displayedData, conversationData]);
+
+  // Fetch messages on conversation change
+  useEffect(() => {
+    if (activeChat?._id) trigger(activeChat._id);
   }, [activeChat, trigger]);
 
-  // const { data, currentData, isLoading, isFetching, isSuccess } =
-  //   useSingleConversationQuery(activeChat?._id);
-  // useSingleConversationQuery("68107630f354a728a439ea25");
-  const cahtMessage = data ?? currentData;
-  // console.log("data", cahtMessage);
-
-  // console.log(cahtMessage?.data);
-
-  // console.log(activeChat?._id);
-
-  const chats = [
-    {
-      id: 1,
-      name: "Larry",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=1",
-      lastMessage: "Larry is Typing...",
-      lastMessageTime: "24m",
-      online: true,
-    },
-    {
-      id: 2,
-      name: "Max",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=2",
-      lastMessage: "Hello",
-      lastMessageTime: "40m",
-      online: true,
-    },
-    // Add more chats as needed
-  ];
-
-  const messages = [
-    {
-      id: 1,
-      text: "omg, this is amazing",
-      time: "2 min ago",
-      sent: false,
-    },
-    {
-      id: 2,
-      text: "perfect! ✅",
-      time: "2 min ago",
-      sent: false,
-    },
-    {
-      id: 3,
-      text: "Wow, this is really epic",
-      time: "1 min ago",
-      sent: false,
-    },
-    {
-      id: 4,
-      text: "woohoooo",
-      time: "just now",
-      sent: true,
-    },
-    {
-      id: 5,
-      text: "Haha oh man",
-      time: "just now",
-      sent: true,
-    },
-    {
-      id: 6,
-      text: "Haha that's terrifying 😅",
-      time: "just now",
-      sent: true,
-      file: {
-        name: "document.pdf",
-        url: "#",
-      },
-    },
-  ];
-
-  // Handle chat selection
-  const handleChatSelect = (chat) => {
-    setActiveChat(chat);
-    if (isMobileView) {
-      setShowChatList(false);
-    }
-  };
-
-  // Effect to handle responsive layout
+  // Responsive breakpoint
   useEffect(() => {
-    // Changed from useState to useEffect
-    const handleResize = () => {
-      setIsMobileView(window.innerWidth < 768);
-    };
-
-    handleResize(); // Set initial value
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const check = () => setIsMobileView(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
   }, []);
 
+  const handleChatSelect = (chat) => {
+    setActiveChat(chat);
+    setShowList(false);
+  };
+
   return (
-    <div className="flex h-screen bg-background">
-      {/* Chat List */}
+    /**
+     * height = full viewport minus 64px website header
+     * On desktop: flex row — sidebar + window side by side (no absolute positioning needed)
+     * On mobile:  both panels are absolute inside this container and slide in/out with translateX
+     *             The container itself is position:relative so they stay within the header-offset area
+     */
+    <div
+      className="relative flex overflow-hidden bg-gray-100"
+      style={{ height: "calc(100dvh - 64px)" }}
+    >
+      {/* ── Sidebar ── */}
       <div
-        className={`${
-          isMobileView
-            ? `fixed inset-0 z-10 transition-transform duration-300 ${
-                showChatList ? "translate-x-0" : "-translate-x-full"
-              }`
-            : "w-[380px]"
-        } border-r bg-white`}
+        className={`
+          flex flex-col bg-white border-r shrink-0 transition-transform duration-300
+          ${
+            isMobileView
+              ? `absolute inset-0 z-20 w-full ${showList ? "translate-x-0" : "-translate-x-full"}`
+              : "w-80"
+          }
+        `}
       >
-        <div className="p-[22px] border-b">
-          <h1 className="text-xl font-semibold flex items-center">
-            Beskeder
-            {/* <span className="ml-2 text-xs bg-orange-500 text-white px-2 py-0.5 rounded-full">
-            
-            </span> */}
-          </h1>
+        <div className="px-5 py-4 border-b shrink-0">
+          <h1 className="text-lg font-bold text-gray-800">Beskeder</h1>
+          <p className="text-xs text-gray-400 mt-0.5">
+            {conversationData?.length ?? 0} samtaler
+          </p>
         </div>
         <ChatList
           conversationData={conversationData}
-          chats={chats}
           activeChat={activeChat}
           onSelectChat={handleChatSelect}
         />
       </div>
 
-      {/* Chat Window */}
+      {/* ── Chat window ── */}
       <div
-        className={`flex-1 bg-white ${
-          isMobileView && showChatList ? "hidden" : "block"
-        }`}
+        className={`
+          flex flex-col bg-white transition-transform duration-300
+          ${
+            isMobileView
+              ? `absolute inset-0 z-10 w-full ${!showList ? "translate-x-0" : "translate-x-full"}`
+              : "flex-1"
+          }
+        `}
       >
-        {isMobileView && activeChat && (
-          <Button className="m-2" onClick={() => setShowChatList(true)}>
-            Tilbage til chats
-          </Button>
-        )}
         <ChatWindow
           conversationData={conversationData}
           chat={activeChat}
-          messages={messages}
           cahtMessage={cahtMessage?.data}
+          isMobileView={isMobileView}
+          onBack={() => setShowList(true)}
         />
       </div>
     </div>
