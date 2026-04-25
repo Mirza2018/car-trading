@@ -58,7 +58,7 @@ export default function ContactUsFrom() {
                 <Input
                   required
                   type="email"
-                  placeholder="example@gmail.com"
+                  placeholder="Indtast din e-mailadresse"
                   className="w-full  px-5 py-4  rounded-lg border border-gray-200 "
                 />
               </Form.Item>

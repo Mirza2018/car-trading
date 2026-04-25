@@ -49,11 +49,12 @@ const SignUp = () => {
       } catch (error) {
         console.error("Login Error:", error); // Log the error for debugging
 
-        toast.error("Der opstod en fejl under registreringen, prøv venligst senere",
+        toast.error(
+          "Der opstod en fejl under registreringen, prøv venligst senere",
           {
             id: toastId,
             duration: 2000,
-          }
+          },
         );
       }
     } else {
@@ -76,7 +77,7 @@ const SignUp = () => {
                 <Image
                   width={0}
                   height={0}
-                  src={AllImages.logo}
+                  src={AllImages.logo2}
                   alt="logo"
                   className="h-[60px] w-[245px] mx-auto"
                 />
@@ -190,7 +191,7 @@ const SignUp = () => {
                     }
                     if (value !== password) {
                       return Promise.reject(
-                        "Adgangskoderne stemmer ikke overens."
+                        "Adgangskoderne stemmer ikke overens.",
                       );
                     }
                     return Promise.resolve();
@@ -287,14 +288,25 @@ const SignUp = () => {
                 </Form.Item>
               </>
             )}
-
-            <Checkbox
-              onChange={(e) => setIsClick(e.target.checked)}
-              className=""
-            >
-              Accepter vilkår og politik
-            </Checkbox>
-
+            <div className="flex items-center gap-2">
+              <Checkbox onChange={(e) => setIsClick(e.target.checked)} />
+              <p className="text-sm">
+                Jeg accepterer{" "}
+                <Link
+                  href="/cookie"
+                  className="text-blue-500 hover:text-blue-700 cursor-pointer"
+                >
+                  vilkår
+                </Link>{" "}
+                og{" "}
+                <Link
+                  href="/private"
+                  className="text-blue-500 hover:text-blue-700 cursor-pointer"
+                >
+                  privatlivspolitik
+                </Link>
+              </p>
+            </div>
             <Form.Item>
               <Button
                 type="primary"

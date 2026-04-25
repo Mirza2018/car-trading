@@ -12,9 +12,9 @@ const AboutUS = () => {
       <WhyChooseUS />
       <FairPriceCard />
       {/* <FairPriceFooter /> */}
-      <div className="bg-[#F9FBFC] mt-10">
+      {/* <div className="bg-[#F9FBFC] mt-10">
         <Reviews />
-      </div>
+      </div> */}
     </div>
   );
 };

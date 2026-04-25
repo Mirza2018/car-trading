@@ -25,7 +25,7 @@ const FilterSection = ({ onFinish }) => {
   const [brand, setBrand] = useState("");
   const [fuelType, setFuelType] = useState("");
   const [modelYearRange, setModelYearRange] = useState([null, null]);
-  const [kmRange, setKmRange] = useState([0, 50000]);
+  const [kmRange, setKmRange] = useState([0, 500000]);
 
   const handleFinish = () => {
     const filters = {
@@ -59,7 +59,7 @@ const FilterSection = ({ onFinish }) => {
     setBrand("");
     setFuelType("");
     setModelYearRange([null, null]);
-    setKmRange([0, 50000]);
+    setKmRange([0, 500000]);
     onFinish({ page: 1, limit: 10, sort: "-updatedAt" });
   };
 

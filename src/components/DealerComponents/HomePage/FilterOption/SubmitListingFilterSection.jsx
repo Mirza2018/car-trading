@@ -26,7 +26,7 @@ const SubmitListingFilterSection = ({ onFinishPrivate }) => {
   const [brand, setBrand] = useState("");
   const [fuelType, setFuelType] = useState("");
   const [modelYearRange, setModelYearRange] = useState([null, null]);
-  const [kmRange, setKmRange] = useState([0, 50000]);
+  const [kmRange, setKmRange] = useState([0, 500000]);
 
   const handleFinish = () => {
     const filters = {};
@@ -50,7 +50,7 @@ const SubmitListingFilterSection = ({ onFinishPrivate }) => {
     setBrand("");
     setFuelType("");
     setModelYearRange([null, null]);
-    setKmRange([0, 50000]);
+    setKmRange([0, 500000]);
     onFinishPrivate({}); // This clears parent queryParams
   };
 

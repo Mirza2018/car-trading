@@ -162,6 +162,8 @@ const SellCarAllDetails = () => {
 
       const formData = new FormData();
 
+
+
       // Append non-image data as a JSON string under the 'data' key
       formData.append("data", JSON.stringify(data));
 
@@ -544,20 +546,28 @@ const fuelOptions = [
               Forventet pris (DKK)*
             </p>
             <Form.Item
+              name="expectedPrice"
               rules={[
                 {
                   required: true,
                   message: "Venligst indtast din forventede pris!",
                 },
+                {
+                  pattern: /^[0-9]+$/,
+                  message: "Kun tal er tilladt!",
+                },
               ]}
-              name={`expectedPrice`}
             >
-              <InputNumber
-                type="number"
+              <Input
                 inputMode="numeric"
                 pattern="[0-9]*"
                 placeholder="Forventet pris (DKK)"
                 className="py-3 w-full"
+                onChange={(e) => {
+                  // Remove anything that's not a number
+                  const value = e.target.value.replace(/\D/g, "");
+                  e.target.value = value;
+                }}
               />
             </Form.Item>
           </div>

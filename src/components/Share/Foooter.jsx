@@ -14,9 +14,11 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import Cookies from "universal-cookie";
 import { jwtDecode } from "jwt-decode";
+import { useRouter } from "next/navigation";
 
 const Footer = () => {
   const cookies = new Cookies();
+  const navigate = useRouter();
   const userCookie = cookies.get("car_trading_accessToken");
   let userInfo;
   if (!userCookie) {
@@ -35,10 +37,30 @@ const Footer = () => {
           <div>
             <h3 className="font-bold mb-4">Virksomhed</h3>
             <ul>
-              <li>Om os</li>
-              <li>Tjenester</li>
-              <li>Vilkår</li>
-              <li>Kontakt os</li>
+              <li
+                className="cursor-pointer"
+                onClick={() => navigate.push("/about-us")}
+              >
+                Om os
+              </li>
+              <li
+                className="cursor-pointer"
+                onClick={() => navigate.push("/faq")}
+              >
+                FAQ
+              </li>
+              <li
+                className="cursor-pointer"
+                onClick={() => navigate.push("/private")}
+              >
+                Vilkår
+              </li>
+              <li
+                className="cursor-pointer"
+                onClick={() => navigate.push("/contact-us")}
+              >
+                Kontakt os
+              </li>
             </ul>
           </div>
           <div>
@@ -94,7 +116,7 @@ const Footer = () => {
               Tilmeld dig Engrosbasen
             </h3>
             <p className="text-[15px] font-normal mb-3">
-              Modtag prisopdateringer, købstips og meget mere!
+              Sælg din bil hurtigt Få bud fra forhandlere – helt gratis
             </p>
 
             {/* <div className="relative max-w-3xl">
