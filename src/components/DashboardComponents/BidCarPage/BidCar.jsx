@@ -56,7 +56,7 @@ const BidCar = ({ bids, bidCarAction }) => {
   };
 
   return (
-    <div className="rounded-lg border border-highlight-color p-6 flex justify-between items-center my-5 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600">
+    <div className="rounded-lg border border-highlight-color p-6 flex justify-between items-center my-5 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 md:flex-row flex-col gap-4">
       <div className="flex flex-col gap-4 text-white">
         <h1 className="text-2xl font-bold">Car: {bids?.carName}</h1>
         <h1 className="text-xl font-medium opacity-90">
@@ -69,7 +69,7 @@ const BidCar = ({ bids, bidCarAction }) => {
       <div className="flex gap-5">
         <button
           onClick={acceptOffer}
-          className="bg-green-500 text-white rounded-lg px-6 py-3 font-medium transition-transform transform hover:scale-110 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-300"
+          className="bg-green-500 text-white rounded-lg px-4 py-3 font-medium transition-transform transform hover:scale-110 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-300 text-sm md:text-base"
         >
           <span className="flex items-center justify-center">
             <svg
@@ -91,7 +91,7 @@ const BidCar = ({ bids, bidCarAction }) => {
         </button>
         <button
           onClick={rejectOffer}
-          className="bg-red-500 text-white rounded-lg px-6 py-3 font-medium transition-transform transform hover:scale-110 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-red-300"
+          className="bg-red-500 text-white rounded-lg px-4 py-3 font-medium transition-transform transform hover:scale-110 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-red-300 text-sm md:text-base"
         >
           <span className="flex items-center justify-center">
             <svg

@@ -47,7 +47,7 @@ const BidCarPage = () => {
             <div className="flex gap-4 items-center"></div>
           </div>
         </div>
-        <div className="px-10 py-10">
+        <div className="md:px-10 px-3 py-10">
           {displayedData?.data?.result != 0 ? (
             <>
               {" "}

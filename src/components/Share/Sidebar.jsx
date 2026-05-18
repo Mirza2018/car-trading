@@ -226,7 +226,7 @@ const Sidebar = ({ slider, setSlider }) => {
   return (
     <div className="bg-base-color text-black h-[89vh] lg:h-screen lg:fixed pt-5 overflow-y-auto">
       {/* 1. Mobile Toggle Button (Visible on small screens) */}
-      <div className="lg:hidden px-4 mb-4">
+      <div className="lg:hidden md:px-4 px-0 mb-4">
         <button
           onClick={() => setSlider(true)}
           className="ml-0"
@@ -248,6 +248,7 @@ const Sidebar = ({ slider, setSlider }) => {
               d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
             />
           </svg>
+          
         </button>
       </div>
 
