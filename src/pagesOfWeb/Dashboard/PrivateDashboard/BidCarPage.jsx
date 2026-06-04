@@ -25,9 +25,9 @@ const BidCarPage = () => {
   const [bidCarAction] = useBidCarActionMutation();
   const displayedData = data ?? currentData;
   const meta = displayedData?.data?.meta;
-  console.log(displayedData);
+  // console.log(displayedData);
 
-  console.log("meta", displayedData?.data?.meta);
+  // console.log("meta", displayedData?.data?.meta);
   if (isLoading)
     return <Spin className="flex justify-center items-center" size="large" />;
   if (!isLoading && isFetching)

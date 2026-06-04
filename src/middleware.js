@@ -5,9 +5,9 @@ import { NextResponse } from "next/server";
 export function middleware(request) {
   const cookies = new Cookies();
   const { pathname, origin } = request.nextUrl;
-  console.log("Received request for pathname:", pathname);
+  // console.log("Received request for pathname:", pathname);
   const userCookie = request.cookies.get("car_trading_accessToken")?.value;
-  console.log("User cookie on homepage:", userCookie);
+  // console.log("User cookie on homepage:", userCookie);
 
   if (!userCookie) {
     console.log("No user cookie found, checking public paths");
