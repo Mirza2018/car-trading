@@ -18,7 +18,7 @@ const DashboardSlider = ({ children }) => {
       {/* //*2nd grid */}
       <div
         className={`${
-          slider ? "col-span-12" : "col-span-11"
+          slider ? "col-span-12" : "md:col-span-11 col-span-12"
         }  lg:col-span-9 xl:col-span-10 min-h-screen w-[95%] mx-auto mt-5`}
       >
         {children}

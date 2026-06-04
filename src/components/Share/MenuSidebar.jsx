@@ -1,14 +1,13 @@
 "use client";
+import { AllImages } from "@/assets/AllImages";
+import { clearAuth } from "@/redux/slices/authSlice";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { AllImages } from "@/assets/AllImages";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Cookies from "universal-cookie";
-import { clearAuth } from "@/redux/slices/authSlice";
 import { toast } from "sonner";
-import { FiMenu } from "react-icons/fi";
+import Cookies from "universal-cookie";
 
 // =================================================================
 // Custom Hook: useOutsideClick
@@ -37,7 +36,7 @@ const useOutsideClick = (ref, handler) => {
 // =================================================================
 // Main Component: Sidebar
 // =================================================================
-const Sidebar = ({ slider, setSlider }) => {
+const MenuSidebar = ({ slider, setSlider }) => {
   const navigate = useRouter();
   const dispatch = useDispatch();
   const cookies = new Cookies();
@@ -79,10 +78,10 @@ const Sidebar = ({ slider, setSlider }) => {
         <li
           className={`flex items-center gap-x-3 w-full py-3 px-2 font-semibold text-lg lg:rounded-tr-lg lg:rounded-br-lg transition-colors duration-200 ${
             isActive
-              ? "text-white bg-highlight-color"
+              ? "text-white bg-highlight-color rounded"
               : isDashboardExit
-              ? "text-black hover:bg-red-100 lg:hidden" // Highlighted for Exit/Home on mobile
-              : "text-black hover:bg-gray-100"
+                ? "text-black hover:bg-red-100 lg:hidden" // Highlighted for Exit/Home on mobile
+                : "text-black hover:bg-gray-100"
           }`}
         >
           <Image
@@ -99,11 +98,13 @@ const Sidebar = ({ slider, setSlider }) => {
     );
   };
 
+
+
   // =================================================================
-  // Menu Items Content
+  // Component Render (Focus on Mobile Overlay)
   // =================================================================
-  const menuItems = (
-    <div className="p-4">
+  return (
+    <div className="p-2 bg-base-color w-[200px] rounded max-h-screen overflow-y-auto hide-scrollbar">
       <ul className="flex justify-center items-start flex-col gap-3">
         {/* --- NEW: Exit Dashboard Button for Mobile --- */}
         {/* Assumes AllImages.home or similar is available. Using AllImages.logOut as a placeholder for a distinct icon if 'home' isn't available. */}
@@ -220,91 +221,6 @@ const Sidebar = ({ slider, setSlider }) => {
       </ul>
     </div>
   );
-
-  // =================================================================
-  // Component Render (Focus on Mobile Overlay)
-  // =================================================================
-  return (
-    <div className="bg-base-color text-black h-[89vh] lg:h-screen lg:fixed pt-5 overflow-y-auto hidden md:block">
-      {/* 1. Mobile Toggle Button (Visible on small screens) */}
-      <div className="lg:hidden md:px-4 px-0 mb-4">
-        <button
-          onClick={() => setSlider(true)}
-          className="flex items-center justify-center "
-          aria-label="Open menu"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="30"
-            height="30"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1}
-            stroke="currentColor"
-            className="w-8 h-8 "
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-            />
-          </svg>
-          {/* <FiMenu /> */}
-        </button>
-      </div>
-
-      {/* 2. Desktop Sidebar (Always visible) */}
-      <div className="hidden lg:block relative h-full">{menuItems}</div>
-
-      {/* 3. Mobile Slide-Out Sidebar (Fixed overlay and content) */}
-      <div
-        className={`fixed inset-0 z-50 lg:hidden transition-opacity duration-300 ${
-          slider
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
-      >
-        {/* Overlay to close sidebar on click outside */}
-        <div
-          className="absolute inset-0 bg-black/50"
-          onClick={() => setSlider(false)}
-        />
-
-        {/* Sidebar Content Panel */}
-        <div
-          ref={sidebarRef}
-          className={`absolute top-0 left-0 h-full w-3/4 max-w-xs bg-base-color shadow-xl transform transition-transform duration-300 ease-in-out overflow-y-auto ${
-            slider ? "translate-x-0" : "-translate-x-full"
-          }`}
-        >
-          {/* --- CLOSE BUTTON (Sticky at the top for easy access) --- */}
-          <div className="flex justify-end p-4 sticky top-0 bg-base-color z-10">
-            <button onClick={() => setSlider(false)} aria-label="Close menu">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1}
-                stroke="currentColor"
-                className="w-8 h-8 text-black"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                />
-              </svg>
-            </button>
-          </div>
-
-          {/* The actual menu items */}
-          {menuItems}
-        </div>
-      </div>
-    </div>
-  );
 };
 
-export default Sidebar;
+export default MenuSidebar;

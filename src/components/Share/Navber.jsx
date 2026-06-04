@@ -4,7 +4,7 @@ import { clearAuth } from "@/redux/slices/authSlice";
 import { Avatar, Modal, Spin } from "antd";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "sonner";
@@ -19,6 +19,8 @@ import TaskManagePage from "../DealerComponents/TaskPage/TaskManagePage";
 import Notification from "./Notification";
 import { getImageUrl } from "@/helpers/config/envConfig";
 import { SocketContext } from "@/utils/SocketContext";
+import Sidebar from "./Sidebar";
+import MenuSidebar from "./MenuSidebar";
 
 const Navbar = () => {
   const { data, currentData, isLoading, isFetching, isSuccess } =
@@ -26,9 +28,12 @@ const Navbar = () => {
   const [notificationRead] = useNotificationActionMutation();
   const cookies = new Cookies();
   const navigate = useRouter();
+  const pathname = usePathname();
   const dispatch = useDispatch();
   const { count } = useContext(SocketContext);
   const displayedData = data ?? currentData;
+  const isDashboard = pathname.startsWith("/dashboard");
+
 
   // const userInfo = useSelector((state) => state.auth.userInfo);
   const userCookie = cookies.get("car_trading_accessToken");
@@ -217,73 +222,75 @@ const Navbar = () => {
           </label>
         </div>
         {isOpen && (
-          <div className="px-2 w-[180px] pt-2 pb-3 space-y-1 sm:px-3 absolute bg-black z-20 rounded-xl">
-            {mainMenu.map((item) => (
-              <Link
-                onClick={() => setIsOpen(false)}
-                key={item.name}
-                href={item.path}
-                className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out"
-                aria-label={item.name}
-              >
-                <span className="flex items-center">
-                  <span>{item.name}</span>
-                </span>
-              </Link>
-            ))}
+          <div className="px-2  pt-2 pb-3 space-y-1 sm:px-3 absolute  z-20 rounded-xl">
+            {isDashboard ? (
+              <MenuSidebar slider={isOpen} setSlider={setIsOpen} />
+            ) : (
+              <div className="bg-black w-[180px] rounded-xl p-3">
+                {mainMenu.map((item) => (
+                  <Link
+                    onClick={() => setIsOpen(false)}
+                    key={item.name}
+                    href={item.path}
+                    className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out"
+                    aria-label={item.name}
+                  >
+                    <span className="flex items-center">
+                      <span>{item.name}</span>
+                    </span>
+                  </Link>
+                ))}
 
-            {userInfo?.role ? (
-              <>
-                {/* <div onClick={() => notificationRead()}>
+                {userInfo?.role ? (
+                  <>
+                    {/* <div onClick={() => notificationRead()}>
                   <Notification />
                 </div> */}
-                <Link href={`/dashboard/user-profile`}>
-                  <p className="text-[15px] font-medium px-3 py-2 rounded-3xl whitespace-normal">
-                    Min profil
-                  </p>
-                </Link>
-                {userInfo?.role === "private_user" ? (
-                  <p
-                    // href={"/sign-in"}
-                    onClick={() => {
-                      handleLogout();
-                      navigate.push("/sign-in");
-                    }}
-                  >
-                    {/* <p className=" text-[15px] cursor-pointer font-medium px-3 py-2 rounded-3xl">
+                    <Link href={`/dashboard/user-profile`}>
+                      <p className="text-[15px] font-medium px-3 py-2 rounded-3xl whitespace-normal">
+                        Min profil
+                      </p>
+                    </Link>
+                    {userInfo?.role === "private_user" ? (
+                      <p
+                        // href={"/sign-in"}
+                        onClick={() => {
+                          handleLogout();
+                          navigate.push("/sign-in");
+                        }}
+                      >
+                        {/* <p className=" text-[15px] cursor-pointer font-medium px-3 py-2 rounded-3xl">
                       Log In For Dealer
                     </p> */}
-                  </p>
+                      </p>
+                    ) : (
+                      ""
+                    )}
+                    <div onClick={handleLogout} className="cursor-pointer">
+                      <p className="text-[15px] font-medium px-3 py-2 rounded-3xl">
+                        Log ud
+                      </p>
+                    </div>
+                  </>
                 ) : (
-                  ""
+                  <>
+                    <Link href={"/submit-listing"}>
+                      <p className=" text-[15px] hover:bg-gray-700 font-medium px-3 py-2 rounded-3xl whitespace-normal">
+                        Indsend annonce
+                      </p>
+                    </Link>
+                    <Link href={"/sign-in"}>
+                      <p className="text-[15px] hover:bg-gray-700 font-medium px-3 py-2 rounded-3xl whitespace-normal">
+                        Log ind
+                      </p>
+                    </Link>
+                  </>
                 )}
-                <div onClick={handleLogout} className="cursor-pointer">
-                  <p className="text-[15px] font-medium px-3 py-2 rounded-3xl">
-                    Log ud
-                  </p>
-                </div>
-              </>
-            ) : (
-              <>
-                <Link href={"/submit-listing"}>
-                  <p className=" text-[15px] hover:bg-gray-700 font-medium px-3 py-2 rounded-3xl whitespace-normal">
-                    Indsend annonce
-                  </p>
-                </Link>
-                <Link href={"/sign-in"}>
-                  <p className="text-[15px] hover:bg-gray-700 font-medium px-3 py-2 rounded-3xl whitespace-normal">
-                    Log ind
-                  </p>
-                </Link>
-              </>
+              </div>
             )}
           </div>
         )}
       </div>
-      {/* This is logo section */}
-      {/* <div onClick={() => notificationRead()}>
-        <Notification />
-      </div> */}
       <Link href="/">
         <div className="flex justify-center items-center md:gap-2 my-7">
           <Image
