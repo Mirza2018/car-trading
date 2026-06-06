@@ -121,7 +121,7 @@ const Notification = () => {
           overflowCount={999}
           size="default"
         >
-          <BellFilled className="bg-highlight-color text-white font-bold text-xl rounded-full border w-11 aspect-square p-1 flex justify-center items-center" />
+          <BellFilled className="bg-highlight-color text-white font-bold text-xl rounded-full border w-8 h-8 aspect-square p-1 flex justify-center items-center" />
         </Badge>
       </Dropdown>
     </div>

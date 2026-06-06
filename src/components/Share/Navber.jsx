@@ -19,7 +19,6 @@ import TaskManagePage from "../DealerComponents/TaskPage/TaskManagePage";
 import Notification from "./Notification";
 import { getImageUrl } from "@/helpers/config/envConfig";
 import { SocketContext } from "@/utils/SocketContext";
-import Sidebar from "./Sidebar";
 import MenuSidebar from "./MenuSidebar";
 
 const Navbar = () => {
@@ -33,7 +32,6 @@ const Navbar = () => {
   const { count } = useContext(SocketContext);
   const displayedData = data ?? currentData;
   const isDashboard = pathname.startsWith("/dashboard");
-
 
   // const userInfo = useSelector((state) => state.auth.userInfo);
   const userCookie = cookies.get("car_trading_accessToken");
@@ -291,20 +289,28 @@ const Navbar = () => {
           </div>
         )}
       </div>
-      <Link href="/">
-        <div className="flex justify-center items-center md:gap-2 my-7">
-          <Image
-            alt="logo"
-            width={0}
-            height={0}
-            className="md:w-56 w-40 object-contain"
-            src={AllImages.logo}
-          />
-          {/* <h1 className="text-white uppercase font-semibold md:text-3xl text-xl">
+      <div className="flex   items-center gap-2">
+        {userInfo?.role && (
+          <div className="block md:hidden  " onClick={() => notificationRead()}>
+            <Notification />
+          </div>
+        )}
+
+        <Link href="/">
+          <div className="flex justify-center items-center md:gap-2 my-7">
+            <Image
+              alt="logo"
+              width={0}
+              height={0}
+              className="md:w-56 w-40 object-contain"
+              src={AllImages.logo}
+            />
+            {/* <h1 className="text-white uppercase font-semibold md:text-3xl text-xl">
             Mirza
           </h1> */}
-        </div>
-      </Link>
+          </div>
+        </Link>
+      </div>
       {/* This is Big device Menu section */}
       <div className="hidden md:block ">
         {/* This is hidden in mobile device  */}
@@ -333,7 +339,7 @@ const Navbar = () => {
             <>
               {" "}
               <div
-                className="hidden lg:block  "
+                className="hidden md:block  "
                 onClick={() => notificationRead()}
               >
                 <Notification />
