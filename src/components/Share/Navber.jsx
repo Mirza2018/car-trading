@@ -333,8 +333,7 @@ const Navbar = () => {
             </Link>
           ))}
 
-          {/* {count} */}
-
+ 
           {userInfo?.role ? (
             <>
               {" "}
