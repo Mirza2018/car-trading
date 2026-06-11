@@ -247,7 +247,7 @@ const fuelOptions = [
   }
 
   return (
-    <div className=" mx-5 my-12 px-5 rounded-lg max-w-[900px]  border  border-secondary-color">
+    <div className=" mx-5 my-12 px-5 rounded-lg max-w-[900px]  border  border-secondary-color min-w-20">
       <h1
         style={{ fontSize: "clamp(18px, 3vw + 1rem ,36px)" }}
         className=" font-bold"
@@ -613,7 +613,7 @@ const fuelOptions = [
         </div>
         <div name="type" className=" flex  gap-10 my-8">
           <div
-            style={{ fontSize: "clamp(18px, 3vw + 1rem ,36px)" }}
+            style={{ fontSize: "clamp(20px, 3vw + 1rem ,18px)" }}
             onClick={() => setIsCompany(true)}
             value="companyName"
             className=" flex justify-center items-center gap-2 font-medium cursor-pointer"
@@ -626,7 +626,7 @@ const fuelOptions = [
             Firma
           </div>
           <div
-            style={{ fontSize: "clamp(18px, 3vw + 1rem ,36px)" }}
+            style={{ fontSize: "clamp(18px, 3vw + 1rem ,18px)" }}
             onClick={() => setIsCompany(false)}
             value="Private"
             className=" flex justify-center items-center gap-2 font-medium cursor-pointer"
@@ -660,7 +660,7 @@ const fuelOptions = [
           <div className="my-[10px] flex justify-between items-end gap-5">
             <div className="flex-1">
               <p
-                style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
+                style={{ fontSize: "clamp(14px, 3vw + 1rem ,20px)" }}
                 className=" font-medium pb-2"
               >
                 Firmanavn*
@@ -679,7 +679,7 @@ const fuelOptions = [
             </div>
             <div className="flex-1">
               <p
-                style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
+                style={{ fontSize: "clamp(14px, 3vw + 1rem ,20px)" }}
                 className=" font-medium pb-2"
               >
                 CVR-nummer*
@@ -703,7 +703,7 @@ const fuelOptions = [
         <div className="my-[10px] flex justify-between gap-5">
           <div className="flex-1">
             <p
-              style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
+              style={{ fontSize: "clamp(14px, 3vw + 1rem ,20px)" }}
               className=" font-medium pb-2"
             >
               Fornavn*
@@ -723,7 +723,7 @@ const fuelOptions = [
           </div>
           <div className="flex-1">
             <p
-              style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
+              style={{ fontSize: "clamp(14px, 3vw + 1rem ,20px)" }}
               className=" font-medium pb-2"
             >
               Efternavn*
@@ -746,7 +746,7 @@ const fuelOptions = [
         <div className="my-[10px] grid md:grid-cols-3 grid-cols-2 gap-5">
           <div className=" ">
             <p
-              style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
+              style={{ fontSize: "clamp(14px, 3vw + 1rem ,20px)" }}
               className=" font-medium pb-2"
             >
               Vejnavn*
@@ -766,7 +766,7 @@ const fuelOptions = [
           </div>
           <div className=" ">
             <p
-              style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
+              style={{ fontSize: "clamp(14px, 3vw + 1rem ,20px)" }}
               className=" font-medium pb-2"
             >
               Postnummer*
@@ -787,7 +787,7 @@ const fuelOptions = [
 
           <div className="col-span-2 md:col-span-1">
             <p
-              style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
+              style={{ fontSize: "clamp(14px, 3vw + 1rem ,20px)" }}
               className=" font-medium pb-2"
             >
               By*
@@ -808,7 +808,7 @@ const fuelOptions = [
         </div>
         <div className="">
           <p
-            style={{ fontSize: "clamp(14px, 3vw + 1rem ,24px)" }}
+            style={{ fontSize: "clamp(14px, 3vw + 1rem ,20px)" }}
             className=" font-medium pb-2"
           >
             Telefonnummer*
