@@ -413,6 +413,7 @@ const fuelOptions = [
                   placeholder="Årgang fra"
                   className="w-full"
                   style={{ height: 40 }}
+                  maxDate={dayjs().endOf("year")}
                 />
               </Form.Item>
             </div>

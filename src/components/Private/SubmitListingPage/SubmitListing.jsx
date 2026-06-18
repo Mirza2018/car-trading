@@ -704,6 +704,7 @@ const SubmitListing = () => {
               placeholder={["Fra år", "Til år"]}
               size="large"
               className="w-full"
+              maxDate={dayjs().endOf("year")}
             />
           </Form.Item>
         </div>

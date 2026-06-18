@@ -105,6 +105,7 @@ const FilterSection = ({ onFinish }) => {
             className="w-full"
             placeholder={["Fra år", "Til år"]}
             format="YYYY"
+            maxDate={dayjs().endOf("year")}
           />
         </div>
 

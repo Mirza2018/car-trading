@@ -394,7 +394,7 @@ console.log(isDistance);
           label={<span className="font-bold text-2xl">Car Use</span>}
           name="carUse"
         >
-          <RangePicker />
+          <RangePicker maxDate={dayjs().endOf("year")} />
         </Form.Item>
         <Form.Item
           label={<span className="font-bold text-2xl">Driven km</span>}
