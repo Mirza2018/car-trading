@@ -1,4 +1,5 @@
 "use client";
+import AcceptPolicyModal from "@/components/AcceptPolicyModal";
 import CarsForSale from "@/components/DealerComponents/HomePage/CarsForSale";
 import FilterSection from "@/components/DealerComponents/HomePage/FilterOption/FilterSection";
 import SubmitListingFilterSection from "@/components/DealerComponents/HomePage/FilterOption/SubmitListingFilterSection";
@@ -11,6 +12,7 @@ import SellBuyTrade from "@/components/Private/HomePage/SellBuyTrade";
 import TotalCarBuy from "@/components/Private/HomePage/TotalCarBuy";
 import TotalCarSell from "@/components/Private/HomePage/TotalCarSell";
 import WhyChooseUS from "@/components/Private/HomePage/WhyChooseUS";
+
 import {
   useSaleCarListQuery,
   useSubmitListingQuery,
@@ -25,7 +27,11 @@ import Swal from "sweetalert2";
 import Cookies from "universal-cookie";
 
 const Homepage = () => {
-  const { data: userData, isLoading: userDataIsLoading } = useProfileQuery();
+  const {
+    data: userData,
+    isLoading: userDataIsLoading,
+    refetch: refetchProfile,
+  } = useProfileQuery();
 
   const [queryParams2, setQueryParams2] = useState({
     page: 1,
@@ -51,16 +57,8 @@ const Homepage = () => {
       page,
     }));
   };
-const { data, currentData, isLoading, isFetching, isSuccess,  } =
-  useSaleCarListQuery(queryParams2);
-
-  // const {
-  //   data: submitData,
-  // currentData: submitCurrentData,
-  // isLoading: submitIsLoading,
-  // isFetching: submitIsFetching,
-  // isSuccess: submitIsSuccess,
-  // } = useSubmitListingQuery(filters2);
+  const { data, currentData, isLoading, isFetching, isSuccess } =
+    useSaleCarListQuery(queryParams2);
 
   const {
     data: submitData,
@@ -90,98 +88,71 @@ const { data, currentData, isLoading, isFetching, isSuccess,  } =
   };
 
   const navigate = useRouter();
-  // const onFinish = (values) => {
-
-  //   const filters = [values.fuelType, values.brand].filter(
-  //     (f) => f && f.trim() !== ""
-  //   );
-  //   const params = {
-  //     page: 1,
-  //     limit: 3,
-  //     filter: filters.length > 0 ? filters : undefined,
-  //     modelYearFrom: 0,
-  //     modelYearTo: values.modelYearTo,
-  //     drivenKmFrom: values.drivenKmFrom,
-  //     drivenKmTo: values.drivenKmTo,
-  //   };
-
-  //   setFilters(params);
-  // };
-
-
 
   const displayedData = data ?? currentData;
   const submitDisplayedData = submitData ?? submitCurrentData;
 
-  // console.log(userData?.data?.isPrivacyAccepted);
-  // console.log(userData?.data?.isTermAccepted);
-
-  if (userData) {
-    // console.log(userData?.data?.profile);
-    if (
-      !userData?.data?.profile?.first_name?.trim() ||
+  // Profile completeness check stays exactly as before: redirects to the
+  // profile edit page, untouched by the terms/privacy logic below.
+  if (
+    userData &&
+    (!userData?.data?.profile?.first_name?.trim() ||
       !userData?.data?.profile?.last_name?.trim() ||
       !userData?.data?.profile?.phoneNumber?.trim() ||
       !userData?.data?.profile?.zip?.trim() ||
       !userData?.data?.profile?.city?.trim() ||
-      !userData?.data?.profile?.street?.trim()
-    ) {
-      Swal.fire({
-        title: "Fuldfør din profil for at komme i gang.",
-        confirmButtonText: "Ok",
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          return navigate.push("/dashboard/user-profile");
-        }
-      });
-    } else if (userData?.data?.isTermAccepted == false) {
-      Swal.fire({
-        title: "Accepter venligst vilkår og betingelser.",
-        // showDenyButton: true,
-        confirmButtonText: "Ok",
-        // denyButtonText: `Cancel`,
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          return navigate.push("/dashboard/terms");
-        }
-      });
-    } else if (userData?.data?.isPrivacyAccepted == false) {
-      Swal.fire({
-        title: "Please accept the Privacy Policy",
-        // showDenyButton: true,
-        confirmButtonText: "Ok",
-        // denyButtonText: `Cancel`,
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          return navigate.push("/dashboard/privacy");
-        }
-      });
-    }
+      !userData?.data?.profile?.street?.trim())
+  ) {
+    Swal.fire({
+      title: "Fuldfør din profil for at komme i gang.",
+      confirmButtonText: "Ok",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        return navigate.push("/dashboard/user-profile");
+      }
+    });
   }
 
-  // const userInfo = useSelector((state) => state.auth.userInfo);
+  // Combined terms + privacy modal: shown in-place (no navigation away from
+  // the homepage), fully blocking until both are accepted. Profile must be
+  // complete first (handled above) before this is relevant.
+  const profileIsComplete =
+    userData &&
+    userData?.data?.profile?.first_name?.trim() &&
+    userData?.data?.profile?.last_name?.trim() &&
+    userData?.data?.profile?.phoneNumber?.trim() &&
+    userData?.data?.profile?.zip?.trim() &&
+    userData?.data?.profile?.city?.trim() &&
+    userData?.data?.profile?.street?.trim();
 
-  let userInfo;
-  // const userInfo = useSelector((state) => state.auth.userInfo);
+  const needsPolicyAcceptance =
+    profileIsComplete &&
+    (userData?.data?.isTermAccepted === false ||
+      userData?.data?.isPrivacyAccepted === false);
+
+  // let userInfo;
   const userCookie = cookies.get("car_trading_accessToken");
+  let userInfo;
   if (!userCookie) {
-    // navigate.push("/sign-in");
     userInfo = { role: false };
   } else {
     userInfo = jwtDecode(userCookie);
   }
 
-
-
-
-
-
-
-
   const [isSellCar, setIsSellCar] = useState(true);
 
   return (
     <div className="text-text-color container mx-auto">
+      <AcceptPolicyModal
+        open={Boolean(needsPolicyAcceptance)}
+        onAccepted={() => {
+          // Re-fetch profile so isTermAccepted/isPrivacyAccepted flip to
+          // true and the modal closes automatically; rest of the page
+          // (including profile editing) is unaffected.
+          refetchProfile();
+        }}
+      />
+
       {/* dealer */}
       {userInfo?.role === "dealer" && (
         <>
@@ -223,9 +194,7 @@ const { data, currentData, isLoading, isFetching, isSuccess,  } =
                 <br />({submitDisplayedData?.data?.pagination?.total || 0})
               </h1>
             </div>
-            {/* Dealer */}
 
-            {/* {(displayedData, isLoading, isFetching, isSuccess)} */}
             {isSellCar ? (
               <CarsForSale
                 displayedData={displayedData}
@@ -279,14 +248,9 @@ const { data, currentData, isLoading, isFetching, isSuccess,  } =
       )}
 
       <FairPriceCard />
-      {/* <FairPriceFooter /> */}
       <div className="w-full h-1 border-t border-t-highlight-color mt-20"></div>
       <WhyChooseUS />
       <div className="w-full h-1 border-t border-t-highlight-color mt-20"></div>
-      {/* <DelarPrice /> */}
-      {/* <div className="">
-        <Reviews />
-      </div> */}
     </div>
   );
 };

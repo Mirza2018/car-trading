@@ -6,7 +6,7 @@ import {
 } from "@/redux/api/features/myProfile";
 import { Button, Spin } from "antd";
 import { toast } from "sonner";
-
+ 
 const TermsPage = () => {
   const [privacyMutaion] = useStaticContentUpdateMutation();
   const { data: userData, isLoading: userDataIsLooding } = useProfileQuery();
