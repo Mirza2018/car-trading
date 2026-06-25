@@ -31,7 +31,7 @@ const SignUp = () => {
     dispatch(clearAuth());
     const toastId = toast.loading("Tilmeld dig…");
     console.log("car-trading sign up values", values);
-
+    // return;
     if (isClick) {
       try {
         const res = await userSignUp(values).unwrap();
@@ -230,7 +230,7 @@ const SignUp = () => {
 
             {role === "dealer" && (
               <>
-                <Typography.Title level={4} style={{ color: "#222222" }}>
+                {/* <Typography.Title level={4} style={{ color: "#222222" }}>
                   Vil du bruge transport?
                 </Typography.Title>
                 <Form.Item
@@ -248,7 +248,7 @@ const SignUp = () => {
                     <Select.Option value={true}>Yes</Select.Option>
                     <Select.Option value={false}>No</Select.Option>
                   </Select>
-                </Form.Item>
+                </Form.Item> */}
 
                 <Typography.Title level={4} style={{ color: "#222222" }}>
                   Firmanavn
