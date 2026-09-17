@@ -144,14 +144,14 @@ const SellBuyTrade = () => {
               </div>
             </div>
           </div>
-          <div className="text-center my-7 ">
+          <div className="text-center my-4 ">
             <h1 className="text-2xl font-bold">Velkommen til Engrosbasen</h1>
             <p className="text-gray-600 mt-5 px-10 max-w-2xl">
               Vi er forpligtede til at give vores kunder en enestående service.
-            </p>{" "}
+            </p>
           </div>
 
-          <div className="text-center mb-16 mx-10">
+          <div className="text-center mb-12 mx-10">
             <Input
               ref={license}
               placeholder="Indtast nummerplade"
